@@ -16,6 +16,13 @@ AC_CONFIG_SRCDIR([include/round/client.h])
 AM_INIT_AUTOMAKE([subdir-objects])
 
 ##############################
+# Constants
+##############################
+
+#Libcurl version
+LIBCURL_VERSION=7.13.0
+
+##############################
 # Checks for programs.
 ##############################
 
@@ -31,6 +38,19 @@ AC_PROG_RANLIB
 ##############################
 
 AC_CHECK_HEADERS([stdbool.h])
+
+AC_CHECK_LIB(curl, curl_easy_perform,
+[
+	AC_DEFINE([CG_HTTP_CURL],1,[LIBCURL])
+
+	HTTP_CFLAGS=`curl-config --cflags`
+	AC_SUBST(HTTP_CFLAGS)
+
+	HTTP_LIBS=`curl-config --libs`
+	AC_SUBST(HTTP_LIBS)
+],[
+	AC_MSG_ERROR(CyberLink needs libcurl3-dev >= $LIBCURL_VERSION)
+])
 
 ##############################
 # Testing
