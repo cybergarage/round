@@ -13,7 +13,7 @@ print<<HEADER;
 round_client_headers = \\
 HEADER
 
-my @find_files = `find ./round_client_ -name *.h`;
+my @find_files = `find ./round -name *.h`;
 my @include_files;
 foreach $file (@find_files) {
 	$file =~ s/\n//;

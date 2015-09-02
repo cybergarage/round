@@ -11,9 +11,9 @@ print<<HEADER;
 ##################################################################
 
 #if HAVE_LIBTOOL
-#lib_LTLIBRARIES = libround-client.la
+#lib_LTLIBRARIES = libroundclient.la
 #else
-lib_LIBRARIES = libround-client.a
+lib_LIBRARIES = libroundclient.a
 #endif
 
 AM_CFLAGS = -I\$(top_builddir)/include -I\$(top_builddir)/src
@@ -32,12 +32,12 @@ print join(" \\\n", @source_files) . "\n";
 print<<FOTTER;
 
 #if HAVE_LIBTOOL
-#libround-client_la_SOURCES = \\
+#libroundclient_la_SOURCES = \\
 #        \$(uecho_source)
-#libround-client_la_CFLAGS = \$(AM_CFLAGS)
+#libroundclient_la_CFLAGS = \$(AM_CFLAGS)
 #else
-libround-client_a_SOURCES = \\
+libroundclient_a_SOURCES = \\
         \$(round_mpi_sources)
-libround-client_a_CFLAGS = \$(AM_CFLAGS)
+libroundclient_a_CFLAGS = \$(AM_CFLAGS)
 #endif
 FOTTER
