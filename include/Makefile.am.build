@@ -1,0 +1,29 @@
+#!/usr/bin/perl
+print<<HEADER;
+##################################################################
+#
+# Round SDK for C
+#
+# Copyright (C) Satoshi Konno 2015
+#
+# This is licensed under BSD-style license, see file COPYING.
+#
+##################################################################
+
+round_client_headers = \\
+HEADER
+
+my @find_files = `find ./round_client_ -name *.h`;
+my @include_files;
+foreach $file (@find_files) {
+	$file =~ s/\n//;
+	$file = "\t" . $file;
+	push @include_files, $file;
+}
+print join(" \\\n", @include_files) . "\n";
+
+print<<FOTTER;
+
+nobase_include_HEADERS = \\
+	\$(round_client_headers)
+FOTTER
