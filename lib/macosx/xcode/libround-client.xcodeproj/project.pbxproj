@@ -1,0 +1,270 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		21DB50A31B96F69F000FA777 /* mpi.h in Headers */ = {isa = PBXBuildFile; fileRef = 21DB50A21B96F69F000FA777 /* mpi.h */; };
+		21DB50A51B96F6BC000FA777 /* mpi_env.c in Sources */ = {isa = PBXBuildFile; fileRef = 21DB50A41B96F6BC000FA777 /* mpi_env.c */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		212ADD881A8D4F000054EC0F /* liblibround-client.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "liblibround-client.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		21DB50A21B96F69F000FA777 /* mpi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mpi.h; path = ../../../include/round/mpi.h; sourceTree = "<group>"; };
+		21DB50A41B96F6BC000FA777 /* mpi_env.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = mpi_env.c; path = ../../../src/round/mpi_env.c; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		212ADD851A8D4F000054EC0F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		212ADD7F1A8D4F000054EC0F = {
+			isa = PBXGroup;
+			children = (
+				21678EE11A8D50BD00AE79AA /* Headers */,
+				21678EF51A8D510900AE79AA /* Sources */,
+				212ADD891A8D4F000054EC0F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		212ADD891A8D4F000054EC0F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				212ADD881A8D4F000054EC0F /* liblibround-client.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		21678EE11A8D50BD00AE79AA /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				21DB50A21B96F69F000FA777 /* mpi.h */,
+			);
+			name = Headers;
+			sourceTree = "<group>";
+		};
+		21678EF51A8D510900AE79AA /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				21DB50A41B96F6BC000FA777 /* mpi_env.c */,
+			);
+			name = Sources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		212ADD861A8D4F000054EC0F /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				21DB50A31B96F69F000FA777 /* mpi.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		212ADD871A8D4F000054EC0F /* libround-client */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 212ADD8C1A8D4F000054EC0F /* Build configuration list for PBXNativeTarget "libround-client" */;
+			buildPhases = (
+				212ADD841A8D4F000054EC0F /* Sources */,
+				212ADD851A8D4F000054EC0F /* Frameworks */,
+				212ADD861A8D4F000054EC0F /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "libround-client";
+			productName = libuecho;
+			productReference = 212ADD881A8D4F000054EC0F /* liblibround-client.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		212ADD801A8D4F000054EC0F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0640;
+				ORGANIZATIONNAME = "Satoshi Konno";
+				TargetAttributes = {
+					212ADD871A8D4F000054EC0F = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+				};
+			};
+			buildConfigurationList = 212ADD831A8D4F000054EC0F /* Build configuration list for PBXProject "libround-client" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 212ADD7F1A8D4F000054EC0F;
+			productRefGroup = 212ADD891A8D4F000054EC0F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				212ADD871A8D4F000054EC0F /* libround-client */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		212ADD841A8D4F000054EC0F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				21DB50A51B96F6BC000FA777 /* mpi_env.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		212ADD8A1A8D4F000054EC0F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					../../../include,
+					../../../src,
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		212ADD8B1A8D4F000054EC0F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					../../../include,
+					../../../src,
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		212ADD8D1A8D4F000054EC0F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				EXECUTABLE_PREFIX = lib;
+				PRODUCT_NAME = "libround-client";
+				SUPPORTED_PLATFORMS = macosx;
+				VALID_ARCHS = x86_64;
+			};
+			name = Debug;
+		};
+		212ADD8E1A8D4F000054EC0F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				EXECUTABLE_PREFIX = lib;
+				PRODUCT_NAME = "libround-client";
+				SUPPORTED_PLATFORMS = macosx;
+				VALID_ARCHS = x86_64;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		212ADD831A8D4F000054EC0F /* Build configuration list for PBXProject "libround-client" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				212ADD8A1A8D4F000054EC0F /* Debug */,
+				212ADD8B1A8D4F000054EC0F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		212ADD8C1A8D4F000054EC0F /* Build configuration list for PBXNativeTarget "libround-client" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				212ADD8D1A8D4F000054EC0F /* Debug */,
+				212ADD8E1A8D4F000054EC0F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 212ADD801A8D4F000054EC0F /* Project object */;
+}

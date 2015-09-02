@@ -1,0 +1,43 @@
+#!/usr/bin/perl
+print<<HEADER;
+##################################################################
+#
+# Round SDK for C
+#
+# Copyright (C) Satoshi Konno 2015
+#
+# This is licensed under BSD-style license, see file COPYING.
+#
+##################################################################
+
+#if HAVE_LIBTOOL
+#lib_LTLIBRARIES = libround-client.la
+#else
+lib_LIBRARIES = libround-client.a
+#endif
+
+AM_CFLAGS = -I\$(top_builddir)/include -I\$(top_builddir)/src
+
+round_mpi_sources = \\
+HEADER
+my @find_files = `find ../../src/round -name *.c`;
+my @source_files;
+foreach $file (@find_files) {
+	$file =~ s/\n//;
+	$file = "\t" . $file;
+	push @source_files, $file;
+}
+print join(" \\\n", @source_files) . "\n";
+
+print<<FOTTER;
+
+#if HAVE_LIBTOOL
+#libround-client_la_SOURCES = \\
+#        \$(uecho_source)
+#libround-client_la_CFLAGS = \$(AM_CFLAGS)
+#else
+libround-client_a_SOURCES = \\
+        \$(round_mpi_sources)
+libround-client_a_CFLAGS = \$(AM_CFLAGS)
+#endif
+FOTTER
