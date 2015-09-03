@@ -9,7 +9,8 @@
 ##################################################################
 
 round_client_headers = \
-	./round/client.h
+	./round/client.h \
+	./round/typedef.h
 
 nobase_include_HEADERS = \
 	$(round_client_headers)

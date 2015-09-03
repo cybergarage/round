@@ -8,8 +8,10 @@
  *
  ******************************************************************/
 
-#ifndef _ROUNDC_CLIENT_H_
-#define _ROUNDC_CLIENT_H_
+#ifndef _ROUNDC_CLIENT_INTERNAL_H_
+#define _ROUNDC_CLIENT_INTERNAL_H_
+
+#include <round/finder.h>
 
 #ifdef  __cplusplus
 extern "C" {
@@ -19,19 +21,14 @@ extern "C" {
  * Data Type
  ****************************************/
   
-#if !defined(_ROUNDC_CLIENT_INTERNAL_H_)
-typedef void RoundClient;
-#endif
-
-/****************************************
- * Function
- ****************************************/
-  
-RoundClient *round_client_new(void);
-bool round_client_delete(RoundClient *c);
+typedef struct {
+  RoundFinder *finder;
+} RoundClient;
   
 #ifdef  __cplusplus
 } /* extern C */
 #endif
 
-#endif /* _ROUNDC_CLIENT_H_ */
+#endif /* _ROUNDC_CLIENT_INTERNAL_H_ */
+
+#include <round/client.h>

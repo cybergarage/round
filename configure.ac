@@ -19,11 +19,13 @@ AM_INIT_AUTOMAKE([subdir-objects])
 # Constants
 ##############################
 
-#Libcurl version
 LIBCURL_VERSION=7.13.0
+JANSSON_VERSION=2.2.1
+EXPAT_VERSION=1.95
+LIBXML2_VERSION=2.6.0
 
 ##############################
-# Checks for programs.
+# Checks compiler
 ##############################
 
 AC_PROG_CC
@@ -34,10 +36,14 @@ AC_PROG_AWK
 AC_PROG_RANLIB
 
 ##############################
-# Checks for header files.
+# Check standard header files
 ##############################
 
 AC_CHECK_HEADERS([stdbool.h])
+
+##############################
+# Check libcurl
+##############################
 
 AC_CHECK_LIB(curl, curl_easy_perform,
 [
@@ -49,22 +55,98 @@ AC_CHECK_LIB(curl, curl_easy_perform,
 	HTTP_LIBS=`curl-config --libs`
 	AC_SUBST(HTTP_LIBS)
 ],[
-	AC_MSG_ERROR(CyberLink needs libcurl3-dev >= $LIBCURL_VERSION)
+	AC_MSG_ERROR(Round needs libcurl-dev >= $LIBCURL_VERSION)
 ])
+
+##############################
+# Check libcurl
+##############################
+
+AC_CHECK_LIB([jansson],[main],,[AC_MSG_ERROR(Round needs Jansson $JANSSON_VERSION later)])
+
+AC_MSG_CHECKING(json_object_foreach)
+  AC_TRY_COMPILE([
+    #include <jansson.h>
+    void func()
+    {
+      json_t *jsonTDict;
+      const char *jsonKey;
+      json_t *jsonTObj;
+      json_object_foreach(jsonTDict, jsonKey, jsonTObj) {
+      }
+    }
+  ],
+  [],
+  [AC_MSG_RESULT(yes)
+  AC_DEFINE([ROUND_USE_JANSSON_JSON_OBJECT_FOREACH],1,[json_object_foreach])],
+  [AC_MSG_RESULT(no)]
+)
+
+AC_MSG_CHECKING(json_array_foreach)
+  AC_TRY_COMPILE([
+    #include <jansson.h>
+    void func()
+    {
+      json_t *jsonTArray;
+      size_t jsonIdx;
+      json_t *jsonTObj;
+      json_array_foreach(jsonTArray, jsonIdx, jsonTObj) {
+      }
+    }
+  ],
+  [],
+  [AC_MSG_RESULT(yes)
+  AC_DEFINE([ROUND_USE_JANSSON_JSON_ARRAY_FOREACH],1,[json_array_foreach])],
+  [AC_MSG_RESULT(no)]
+)
+
+##############################
+# Check XML parsers
+##############################
+
+AC_CHECK_HEADERS([expat/expat.h])
+AC_CHECK_HEADERS([expat.h])
+AC_CHECK_LIB([expat],[main],
+[
+  FOUND_EXPAT=yes
+	XML_LIBS+="-lexpat"
+],
+[]
+)
+
+AC_CHECK_LIB(xml2, xmlSAXUserParseMemory,
+[
+  FOUND_LIBXML2=yes
+	XML_CFLAGS+=`pkg-config libxml-2.0 --cflags`
+	XML_LIBS+=`pkg-config libxml-2.0 --libs`
+],
+[]
+)
+
+if [ test $FOUND_EXPAT != yes ]; then
+  if [ test $FOUND_LIBXML2 != yes ]; then
+  	AC_MSG_ERROR(Round needs Expat >= $EXPAT_VERSION or libxml2-dev >= $LIBXML2_VERSION)
+  fi
+fi
+
+AC_SUBST(XML_CFLAGS)
+AC_SUBST(XML_LIBS)
 
 ##############################
 # Testing
 ##############################
 
-AC_ARG_ENABLE([tests], AC_HELP_STRING([--enable-tests], [ build tests (default = no) ]), [build_tests="yes"], [])
-AM_CONDITIONAL(UNITTESTS,test "$build_tests" = yes)
+AC_ARG_ENABLE(
+  [tests],
+	AC_HELP_STRING([--enable-tests], [ build tests (default = no) ]),
+	[case "${enableval}" in
+    yes | no ) build_tests="${enableval}" ;;
+  esac],
+	[]
+)
+AM_CONDITIONAL(ROUND_ENABLE_TESTS,test "$build_tests" = yes)
 if [ test "$build_tests" = yes ]; then
-	AC_CHECK_LIB([boost_unit_test_framework-mt],[main],,
-		[AC_CHECK_LIB([boost_unit_test_framework],[main],,[AC_MSG_ERROR(Round for C++ needs boost::unit_test_framework)])])
-	AC_CHECK_LIB([boost_system-mt],[main],,
-		[AC_CHECK_LIB([boost_system],[main],,[AC_MSG_ERROR(Round for C++ needs boost::system)])])
-	AC_CHECK_LIB([boost_thread-mt],[main],,
-		[AC_CHECK_LIB([boost_thread],[main],,[AC_MSG_ERROR(Round for C++ needs boost::thread)])])
+  AC_CHECK_LIB([boost_unit_test_framework-mt],[main],,[AC_MSG_ERROR(mUPnP unittests need boost::unit_test_framework)])
 fi
 
 ##############################

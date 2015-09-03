@@ -7,14 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		21DB50A31B96F69F000FA777 /* mpi.h in Headers */ = {isa = PBXBuildFile; fileRef = 21DB50A21B96F69F000FA777 /* mpi.h */; };
-		21DB50A51B96F6BC000FA777 /* mpi_env.c in Sources */ = {isa = PBXBuildFile; fileRef = 21DB50A41B96F6BC000FA777 /* mpi_env.c */; };
+		211E45CA1B98154A00CF0088 /* client.h in Headers */ = {isa = PBXBuildFile; fileRef = 211E45C91B98154A00CF0088 /* client.h */; };
+		211E45CD1B98157400CF0088 /* client.c in Sources */ = {isa = PBXBuildFile; fileRef = 211E45CC1B98157400CF0088 /* client.c */; };
+		211E45D01B9816F300CF0088 /* client_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 211E45CF1B9816F300CF0088 /* client_internal.h */; };
+		211E45D71B98192600CF0088 /* finder.h in Headers */ = {isa = PBXBuildFile; fileRef = 211E45D51B98192600CF0088 /* finder.h */; };
+		211E45D81B98192600CF0088 /* finder.c in Sources */ = {isa = PBXBuildFile; fileRef = 211E45D61B98192600CF0088 /* finder.c */; };
+		211E45DA1B981A6300CF0088 /* typedef.h in Headers */ = {isa = PBXBuildFile; fileRef = 211E45D91B981A6300CF0088 /* typedef.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		211E45C91B98154A00CF0088 /* client.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = client.h; path = ../../../include/round/client.h; sourceTree = "<group>"; };
+		211E45CC1B98157400CF0088 /* client.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = client.c; path = ../../../src/round/client.c; sourceTree = "<group>"; };
+		211E45CF1B9816F300CF0088 /* client_internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = client_internal.h; path = ../../../src/round/client_internal.h; sourceTree = "<group>"; };
+		211E45D51B98192600CF0088 /* finder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = finder.h; path = ../../../src/round/finder.h; sourceTree = "<group>"; };
+		211E45D61B98192600CF0088 /* finder.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = finder.c; path = ../../../src/round/finder.c; sourceTree = "<group>"; };
+		211E45D91B981A6300CF0088 /* typedef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = typedef.h; path = ../../../include/round/typedef.h; sourceTree = "<group>"; };
 		212ADD881A8D4F000054EC0F /* liblibround-client.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "liblibround-client.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		21DB50A21B96F69F000FA777 /* mpi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mpi.h; path = ../../../include/round/mpi.h; sourceTree = "<group>"; };
-		21DB50A41B96F6BC000FA777 /* mpi_env.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = mpi_env.c; path = ../../../src/round/mpi_env.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -28,6 +36,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		211E45C81B98153200CF0088 /* round */ = {
+			isa = PBXGroup;
+			children = (
+				211E45D91B981A6300CF0088 /* typedef.h */,
+				211E45C91B98154A00CF0088 /* client.h */,
+			);
+			name = round;
+			sourceTree = "<group>";
+		};
+		211E45CB1B98155300CF0088 /* round */ = {
+			isa = PBXGroup;
+			children = (
+				211E45D51B98192600CF0088 /* finder.h */,
+				211E45D61B98192600CF0088 /* finder.c */,
+				211E45CF1B9816F300CF0088 /* client_internal.h */,
+				211E45CC1B98157400CF0088 /* client.c */,
+			);
+			name = round;
+			sourceTree = "<group>";
+		};
 		212ADD7F1A8D4F000054EC0F = {
 			isa = PBXGroup;
 			children = (
@@ -48,7 +76,7 @@
 		21678EE11A8D50BD00AE79AA /* Headers */ = {
 			isa = PBXGroup;
 			children = (
-				21DB50A21B96F69F000FA777 /* mpi.h */,
+				211E45C81B98153200CF0088 /* round */,
 			);
 			name = Headers;
 			sourceTree = "<group>";
@@ -56,7 +84,7 @@
 		21678EF51A8D510900AE79AA /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				21DB50A41B96F6BC000FA777 /* mpi_env.c */,
+				211E45CB1B98155300CF0088 /* round */,
 			);
 			name = Sources;
 			sourceTree = "<group>";
@@ -68,7 +96,10 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				21DB50A31B96F69F000FA777 /* mpi.h in Headers */,
+				211E45DA1B981A6300CF0088 /* typedef.h in Headers */,
+				211E45D01B9816F300CF0088 /* client_internal.h in Headers */,
+				211E45CA1B98154A00CF0088 /* client.h in Headers */,
+				211E45D71B98192600CF0088 /* finder.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -128,7 +159,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				21DB50A51B96F6BC000FA777 /* mpi_env.c in Sources */,
+				211E45CD1B98157400CF0088 /* client.c in Sources */,
+				211E45D81B98192600CF0088 /* finder.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -173,7 +205,9 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					../../../include,
 					../../../src,
+					/usr/local/include,
 				);
+				LIBRARY_SEARCH_PATHS = /usr/local/lib;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -214,7 +248,9 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					../../../include,
 					../../../src,
+					/usr/local/include,
 				);
+				LIBRARY_SEARCH_PATHS = /usr/local/lib;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;

@@ -17,7 +17,8 @@ lib_LIBRARIES = libroundclient.a
 AM_CFLAGS = -I$(top_builddir)/include -I$(top_builddir)/src
 
 round_mpi_sources = \
-	../../src/round/client.c
+	../../src/round/client.c \
+	../../src/round/finder.c
 
 #if HAVE_LIBTOOL
 #libroundclient_la_SOURCES = \

@@ -8,8 +8,10 @@
  *
  ******************************************************************/
 
-#ifndef _ROUNDC_CLIENT_H_
-#define _ROUNDC_CLIENT_H_
+#ifndef _ROUNDC_FINDER__H_
+#define _ROUNDC_FINDER__H_
+
+#include <mupnp/controlpoint.h>
 
 #ifdef  __cplusplus
 extern "C" {
@@ -19,19 +21,19 @@ extern "C" {
  * Data Type
  ****************************************/
   
-#if !defined(_ROUNDC_CLIENT_INTERNAL_H_)
-typedef void RoundClient;
-#endif
-
+typedef struct {
+  mUpnpControlPoint *cp;
+} RoundFinder;
+  
 /****************************************
  * Function
  ****************************************/
   
-RoundClient *round_client_new(void);
-bool round_client_delete(RoundClient *c);
-  
+RoundFinder *round_finder_new(void);
+bool round_finder_delete(RoundFinder *finder);
+
 #ifdef  __cplusplus
 } /* extern C */
 #endif
 
-#endif /* _ROUNDC_CLIENT_H_ */
+#endif /* _ROUNDC_FINDER__H_ */

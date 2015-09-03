@@ -7,16 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		21A762ED1B96F82400D29732 /* RoundMpiTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21A762EC1B96F82400D29732 /* RoundMpiTest.cpp */; };
+		211E45C71B98151100CF0088 /* liblibround-client.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 211E45C41B9814FA00CF0088 /* liblibround-client.a */; };
+		211E45D21B98188600CF0088 /* ClientTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 211E45D11B98188600CF0088 /* ClientTest.cpp */; };
+		211E45D41B9818E300CF0088 /* FinderTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 211E45D31B9818E300CF0088 /* FinderTest.cpp */; };
+		21A762ED1B96F82400D29732 /* RoundSdkTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21A762EC1B96F82400D29732 /* RoundSdkTest.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		21A762EA1B96F81500D29732 /* PBXContainerItemProxy */ = {
+		211E45C31B9814FA00CF0088 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 21A762E61B96F81500D29732 /* libround-mpi.xcodeproj */;
+			containerPortal = 211E45BF1B9814FA00CF0088 /* libround-client.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 212ADD881A8D4F000054EC0F;
-			remoteInfo = "libround-mpi";
+			remoteInfo = "libround-client";
+		};
+		211E45C51B98150C00CF0088 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 211E45BF1B9814FA00CF0088 /* libround-client.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 212ADD871A8D4F000054EC0F;
+			remoteInfo = "libround-client";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -34,8 +44,10 @@
 
 /* Begin PBXFileReference section */
 		210363311B4A51B300DB3025 /* RoundSdkTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = RoundSdkTest; sourceTree = BUILT_PRODUCTS_DIR; };
-		21A762E61B96F81500D29732 /* libround-mpi.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "libround-mpi.xcodeproj"; path = "../../../lib/macosx/xcode/libround-mpi.xcodeproj"; sourceTree = "<group>"; };
-		21A762EC1B96F82400D29732 /* RoundMpiTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RoundMpiTest.cpp; path = ../../RoundMpiTest.cpp; sourceTree = "<group>"; };
+		211E45BF1B9814FA00CF0088 /* libround-client.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "libround-client.xcodeproj"; path = "../../../lib/macosx/xcode/libround-client.xcodeproj"; sourceTree = "<group>"; };
+		211E45D11B98188600CF0088 /* ClientTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ClientTest.cpp; path = ../../ClientTest.cpp; sourceTree = "<group>"; };
+		211E45D31B9818E300CF0088 /* FinderTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FinderTest.cpp; path = ../../FinderTest.cpp; sourceTree = "<group>"; };
+		21A762EC1B96F82400D29732 /* RoundSdkTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RoundSdkTest.cpp; path = ../../RoundSdkTest.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +55,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				211E45C71B98151100CF0088 /* liblibround-client.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -66,10 +79,18 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		211E45C01B9814FA00CF0088 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				211E45C41B9814FA00CF0088 /* liblibround-client.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		213C5BF41B4A543C0013DDD9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				21A762E61B96F81500D29732 /* libround-mpi.xcodeproj */,
+				211E45BF1B9814FA00CF0088 /* libround-client.xcodeproj */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -77,17 +98,11 @@
 		217993091B4A5A6B00A158CD /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				21A762EC1B96F82400D29732 /* RoundMpiTest.cpp */,
+				211E45D31B9818E300CF0088 /* FinderTest.cpp */,
+				211E45D11B98188600CF0088 /* ClientTest.cpp */,
+				21A762EC1B96F82400D29732 /* RoundSdkTest.cpp */,
 			);
 			name = Sources;
-			sourceTree = "<group>";
-		};
-		21A762E71B96F81500D29732 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				21A762EB1B96F81500D29732 /* liblibround-mpi.a */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -104,6 +119,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				211E45C61B98150C00CF0088 /* PBXTargetDependency */,
 			);
 			name = RoundSdkTest;
 			productName = uEchoTest;
@@ -136,8 +152,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 21A762E71B96F81500D29732 /* Products */;
-					ProjectRef = 21A762E61B96F81500D29732 /* libround-mpi.xcodeproj */;
+					ProductGroup = 211E45C01B9814FA00CF0088 /* Products */;
+					ProjectRef = 211E45BF1B9814FA00CF0088 /* libround-client.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -148,11 +164,11 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		21A762EB1B96F81500D29732 /* liblibround-mpi.a */ = {
+		211E45C41B9814FA00CF0088 /* liblibround-client.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = "liblibround-mpi.a";
-			remoteRef = 21A762EA1B96F81500D29732 /* PBXContainerItemProxy */;
+			path = "liblibround-client.a";
+			remoteRef = 211E45C31B9814FA00CF0088 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -162,11 +178,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				21A762ED1B96F82400D29732 /* RoundMpiTest.cpp in Sources */,
+				211E45D21B98188600CF0088 /* ClientTest.cpp in Sources */,
+				211E45D41B9818E300CF0088 /* FinderTest.cpp in Sources */,
+				21A762ED1B96F82400D29732 /* RoundSdkTest.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		211E45C61B98150C00CF0088 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "libround-client";
+			targetProxy = 211E45C51B98150C00CF0088 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		210363361B4A51B300DB3025 /* Debug */ = {
@@ -211,6 +237,10 @@
 					"-lboost_unit_test_framework-mt",
 					"-lboost_thread-mt",
 					"-lboost_system-mt",
+					"-lexpat",
+					"-lxml2",
+					"-lcurl",
+					"-lmupnp",
 				);
 				SDKROOT = macosx;
 			};
@@ -251,6 +281,10 @@
 					"-lboost_unit_test_framework-mt",
 					"-lboost_thread-mt",
 					"-lboost_system-mt",
+					"-lexpat",
+					"-lxml2",
+					"-lcurl",
+					"-lmupnp",
 				);
 				SDKROOT = macosx;
 			};
@@ -271,6 +305,10 @@
 					"-lboost_unit_test_framework-mt",
 					"-lboost_thread-mt",
 					"-lboost_system-mt",
+					"-lexpat",
+					"-lxml2",
+					"-lcurl",
+					"-lmupnp",
 				);
 				PRODUCT_NAME = RoundSdkTest;
 			};
@@ -291,6 +329,10 @@
 					"-lboost_unit_test_framework-mt",
 					"-lboost_thread-mt",
 					"-lboost_system-mt",
+					"-lexpat",
+					"-lxml2",
+					"-lcurl",
+					"-lmupnp",
 				);
 				PRODUCT_NAME = RoundSdkTest;
 			};

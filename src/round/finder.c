@@ -8,38 +8,38 @@
  *
  ******************************************************************/
 
-#include <round/client_internal.h>
+#include <round/finder.h>
 
 /****************************************
- * round_client_new
+ * round_finder_new
  ****************************************/
 
-RoundClient *round_client_new(void)
+RoundFinder *round_finder_new(void)
 {
-  RoundClient *c;
+  RoundFinder *finder;
   
-  c = (RoundClient *)malloc(sizeof(RoundClient));
+  finder = (RoundFinder *)malloc(sizeof(RoundFinder));
   
-  if (!c)
+  if (!finder)
     return NULL;
   
-  c->finder = round_finder_new();
+  finder->cp = mupnp_controlpoint_new();
   
-  return c;
+  return finder;
 }
 
 /****************************************
- * round_client_delete
+ * round_finder_delete
  ****************************************/
 
-bool round_client_delete(RoundClient *c)
+bool round_finder_delete(RoundFinder *finder)
 {
-  if (!c)
+  if (!finder)
     return false;
   
-  round_finder_delete(c->finder);
+  mupnp_controlpoint_delete(finder->cp);
   
-  free(c);
+  free(finder);
   
   return true;
 }
