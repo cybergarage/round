@@ -14,6 +14,13 @@
 		211E45D81B98192600CF0088 /* finder.c in Sources */ = {isa = PBXBuildFile; fileRef = 211E45D61B98192600CF0088 /* finder.c */; };
 		211E45DA1B981A6300CF0088 /* typedef.h in Headers */ = {isa = PBXBuildFile; fileRef = 211E45D91B981A6300CF0088 /* typedef.h */; };
 		2178B3621B98986200B9D86B /* const.h in Headers */ = {isa = PBXBuildFile; fileRef = 2178B3611B98986200B9D86B /* const.h */; };
+		2178B36B1B98BEAE00B9D86B /* list.c in Sources */ = {isa = PBXBuildFile; fileRef = 2178B3641B98BEAE00B9D86B /* list.c */; };
+		2178B36C1B98BEAE00B9D86B /* list.h in Headers */ = {isa = PBXBuildFile; fileRef = 2178B3651B98BEAE00B9D86B /* list.h */; };
+		2178B36D1B98BEAE00B9D86B /* mutex.c in Sources */ = {isa = PBXBuildFile; fileRef = 2178B3661B98BEAE00B9D86B /* mutex.c */; };
+		2178B36E1B98BEAE00B9D86B /* mutex.h in Headers */ = {isa = PBXBuildFile; fileRef = 2178B3671B98BEAE00B9D86B /* mutex.h */; };
+		2178B36F1B98BEAE00B9D86B /* thread_list.c in Sources */ = {isa = PBXBuildFile; fileRef = 2178B3681B98BEAE00B9D86B /* thread_list.c */; };
+		2178B3701B98BEAE00B9D86B /* thread.c in Sources */ = {isa = PBXBuildFile; fileRef = 2178B3691B98BEAE00B9D86B /* thread.c */; };
+		2178B3711B98BEAE00B9D86B /* thread.h in Headers */ = {isa = PBXBuildFile; fileRef = 2178B36A1B98BEAE00B9D86B /* thread.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +32,13 @@
 		211E45D91B981A6300CF0088 /* typedef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = typedef.h; path = ../../../include/round/typedef.h; sourceTree = "<group>"; };
 		212ADD881A8D4F000054EC0F /* liblibround-client.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "liblibround-client.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2178B3611B98986200B9D86B /* const.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = const.h; path = ../../../include/round/const.h; sourceTree = "<group>"; };
+		2178B3641B98BEAE00B9D86B /* list.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = list.c; path = ../../../src/round/util/list.c; sourceTree = "<group>"; };
+		2178B3651B98BEAE00B9D86B /* list.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = list.h; path = ../../../src/round/util/list.h; sourceTree = "<group>"; };
+		2178B3661B98BEAE00B9D86B /* mutex.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = mutex.c; path = ../../../src/round/util/mutex.c; sourceTree = "<group>"; };
+		2178B3671B98BEAE00B9D86B /* mutex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mutex.h; path = ../../../src/round/util/mutex.h; sourceTree = "<group>"; };
+		2178B3681B98BEAE00B9D86B /* thread_list.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = thread_list.c; path = ../../../src/round/util/thread_list.c; sourceTree = "<group>"; };
+		2178B3691B98BEAE00B9D86B /* thread.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = thread.c; path = ../../../src/round/util/thread.c; sourceTree = "<group>"; };
+		2178B36A1B98BEAE00B9D86B /* thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = thread.h; path = ../../../src/round/util/thread.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +65,7 @@
 		211E45CB1B98155300CF0088 /* round */ = {
 			isa = PBXGroup;
 			children = (
+				2178B3631B98BE7B00B9D86B /* util */,
 				211E45D51B98192600CF0088 /* finder.h */,
 				211E45D61B98192600CF0088 /* finder.c */,
 				211E45CF1B9816F300CF0088 /* client_internal.h */,
@@ -92,6 +107,20 @@
 			name = Sources;
 			sourceTree = "<group>";
 		};
+		2178B3631B98BE7B00B9D86B /* util */ = {
+			isa = PBXGroup;
+			children = (
+				2178B3641B98BEAE00B9D86B /* list.c */,
+				2178B3651B98BEAE00B9D86B /* list.h */,
+				2178B3661B98BEAE00B9D86B /* mutex.c */,
+				2178B3671B98BEAE00B9D86B /* mutex.h */,
+				2178B3681B98BEAE00B9D86B /* thread_list.c */,
+				2178B3691B98BEAE00B9D86B /* thread.c */,
+				2178B36A1B98BEAE00B9D86B /* thread.h */,
+			);
+			name = util;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -100,9 +129,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				211E45DA1B981A6300CF0088 /* typedef.h in Headers */,
+				2178B36E1B98BEAE00B9D86B /* mutex.h in Headers */,
 				211E45D01B9816F300CF0088 /* client_internal.h in Headers */,
 				2178B3621B98986200B9D86B /* const.h in Headers */,
 				211E45CA1B98154A00CF0088 /* client.h in Headers */,
+				2178B36C1B98BEAE00B9D86B /* list.h in Headers */,
+				2178B3711B98BEAE00B9D86B /* thread.h in Headers */,
 				211E45D71B98192600CF0088 /* finder.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -163,8 +195,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2178B36B1B98BEAE00B9D86B /* list.c in Sources */,
 				211E45CD1B98157400CF0088 /* client.c in Sources */,
 				211E45D81B98192600CF0088 /* finder.c in Sources */,
+				2178B36F1B98BEAE00B9D86B /* thread_list.c in Sources */,
+				2178B36D1B98BEAE00B9D86B /* mutex.c in Sources */,
+				2178B3701B98BEAE00B9D86B /* thread.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
