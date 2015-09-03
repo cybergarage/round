@@ -8,8 +8,8 @@
 #
 ##################################################################
 
-if UNITTESTS
-SUBDIRS = include lib tests
-else
 SUBDIRS = include lib
+
+if ROUND_ENABLE_TESTS
+SUBDIRS += tests
 endif

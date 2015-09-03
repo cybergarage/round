@@ -15,7 +15,9 @@ AM_CPPFLAGS = -I$(top_srcdir)/include -I$(top_srcdir)/src -I../
 
 
 roundclienttest_SOURCES = \
-	..//RoundMpiTest.cpp
+	..//ClientTest.cpp \
+	..//FinderTest.cpp \
+	..//RoundSdkTest.cpp
 #if HAVE_LIBTOOL
 #roundclienttest_LDADD = ../../lib/unix/libroundclient.la
 #else
