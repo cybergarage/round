@@ -11,6 +11,9 @@
 #ifndef _ROUNDC_CLIENT_H_
 #define _ROUNDC_CLIENT_H_
 
+#include <round/typedef.h>
+#include <round/const.h>
+
 #ifdef  __cplusplus
 extern "C" {
 #endif

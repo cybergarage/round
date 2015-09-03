@@ -13,6 +13,7 @@
 		211E45D71B98192600CF0088 /* finder.h in Headers */ = {isa = PBXBuildFile; fileRef = 211E45D51B98192600CF0088 /* finder.h */; };
 		211E45D81B98192600CF0088 /* finder.c in Sources */ = {isa = PBXBuildFile; fileRef = 211E45D61B98192600CF0088 /* finder.c */; };
 		211E45DA1B981A6300CF0088 /* typedef.h in Headers */ = {isa = PBXBuildFile; fileRef = 211E45D91B981A6300CF0088 /* typedef.h */; };
+		2178B3621B98986200B9D86B /* const.h in Headers */ = {isa = PBXBuildFile; fileRef = 2178B3611B98986200B9D86B /* const.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,7 @@
 		211E45D61B98192600CF0088 /* finder.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = finder.c; path = ../../../src/round/finder.c; sourceTree = "<group>"; };
 		211E45D91B981A6300CF0088 /* typedef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = typedef.h; path = ../../../include/round/typedef.h; sourceTree = "<group>"; };
 		212ADD881A8D4F000054EC0F /* liblibround-client.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "liblibround-client.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2178B3611B98986200B9D86B /* const.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = const.h; path = ../../../include/round/const.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,6 +41,7 @@
 		211E45C81B98153200CF0088 /* round */ = {
 			isa = PBXGroup;
 			children = (
+				2178B3611B98986200B9D86B /* const.h */,
 				211E45D91B981A6300CF0088 /* typedef.h */,
 				211E45C91B98154A00CF0088 /* client.h */,
 			);
@@ -98,6 +101,7 @@
 			files = (
 				211E45DA1B981A6300CF0088 /* typedef.h in Headers */,
 				211E45D01B9816F300CF0088 /* client_internal.h in Headers */,
+				2178B3621B98986200B9D86B /* const.h in Headers */,
 				211E45CA1B98154A00CF0088 /* client.h in Headers */,
 				211E45D71B98192600CF0088 /* finder.h in Headers */,
 			);

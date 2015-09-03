@@ -43,3 +43,40 @@ bool round_finder_delete(RoundFinder *finder)
   
   return true;
 }
+
+/****************************************
+ * round_finder_start
+ ****************************************/
+
+bool round_finder_start(RoundFinder *finder)
+{
+  if (!finder)
+    return false;
+
+  return mupnp_controlpoint_start(finder->cp);
+}
+
+/****************************************
+ * round_finder_stop
+ ****************************************/
+
+bool round_finder_stop(RoundFinder *finder)
+{
+  if (!finder)
+    return false;
+  
+  return mupnp_controlpoint_stop(finder->cp);
+}
+
+/****************************************
+ * round_finder_search
+ ****************************************/
+
+bool round_finder_search(RoundFinder *finder)
+{
+  if (!finder)
+    return false;
+  
+  return mupnp_controlpoint_search(finder->cp, ROUNDC_UPNP_DEVICE_TYPE);
+}
+
