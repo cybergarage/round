@@ -1,0 +1,2 @@
+#!/bin/sh
+./const.h.gen > const.h
