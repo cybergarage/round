@@ -1,5 +1,7 @@
 #!/bin/sh
 
+cd include/round; ./const.h.build ; cd ../..
+
 cd include; ./Makefile.am.build > Makefile.am; cd ..
 cd lib/unix; ./Makefile.am.build > Makefile.am; cd ../..
 cd tests/unix; ./Makefile.am.build > Makefile.am; cd ../..

@@ -1,0 +1,53 @@
+#!/usr/bin/perl
+print<<HEADER;
+/******************************************************************
+ *
+ * Round SDK for C
+ *
+ * Copyright (C) Satoshi Konno 2015
+ *
+ * This is licensed under BSD-style license, see file COPYING.
+ *
+ ******************************************************************/
+
+#ifndef _ROUNDC_CONST_H_
+#define _ROUNDC_CONST_H_
+
+#ifdef  __cplusplus
+extern "C" {
+#endif
+
+HEADER
+@const_lines = `curl -s https://raw.githubusercontent.com/cybergarage/round-common/master/const/constants.csv | awk '/./' | awk '\$0 !~ /^#/{print \$0}'`;
+foreach $const_line (@const_lines) {
+  @const = split(/,/, $const_line);
+  $const[0] =~ s/([a-z])/\u$1/g;
+  print "#define ROUNDC_" . $const[0] . " " . $const[1];
+}
+
+print "\n";
+@const_lines = `curl -s https://raw.githubusercontent.com/cybergarage/round-common/master/const/rpc_errors.csv | awk '/./' | awk '\$0 !~ /^#/{print \$0}'`;
+foreach $const_line (@const_lines) {
+  @const = split(/,/, $const_line);
+  $const[0] =~ s/([a-z])/\u$1/g;
+  print "#define ROUNDC_RPC_" . $const[0] . " " . $const[1] . "\n";
+}
+print "\n";
+foreach $const_line (@const_lines) {
+  @const = split(/,/, $const_line);
+  $const[0] =~ s/([a-z])/\u$1/g;
+  chomp($const[2]);
+  if (length($const[2]) <= 2) {
+    next;
+  }
+  print "#define ROUNDC_RPC_" . $const[0] . "_MSG  " . $const[2] . "\n";
+}
+
+print<<FOTTER;
+
+#ifdef  __cplusplus
+} /* extern C */
+#endif
+
+#endif
+FOTTER
