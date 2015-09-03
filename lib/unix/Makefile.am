@@ -18,7 +18,15 @@ AM_CFLAGS = -I$(top_builddir)/include -I$(top_builddir)/src
 
 round_mpi_sources = \
 	../../src/round/client.c \
-	../../src/round/finder.c
+	../../src/round/cluster.c \
+	../../src/round/cluster_list.c \
+	../../src/round/finder.c \
+	../../src/round/node.c \
+	../../src/round/node_list.c \
+	../../src/round/util/list.c \
+	../../src/round/util/mutex.c \
+	../../src/round/util/thread.c \
+	../../src/round/util/thread_list.c
 
 #if HAVE_LIBTOOL
 #libroundclient_la_SOURCES = \

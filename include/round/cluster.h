@@ -1,6 +1,6 @@
 /******************************************************************
  *
- * Round for C
+ * Round SDK for C
  *
  * Copyright (C) Satoshi Konno 2015
  *
@@ -8,47 +8,33 @@
  *
  ******************************************************************/
 
-#ifndef _ROUNDC_UTIL_MUTEX_H_
-#define _ROUNDC_UTIL_MUTEX_H_
+#ifndef _ROUNDC_CLUSTER_H_
+#define _ROUNDC_CLUSTER_H_
 
 #include <round/typedef.h>
-
-#if defined(WIN32)
-#include <winsock2.h>
-#else
-#include <pthread.h>
-#endif
 
 #ifdef  __cplusplus
 extern "C" {
 #endif
 
 /****************************************
- * Data Types
+ * Data Type
  ****************************************/
 
-typedef struct _RoundMutex {
-#if defined(WIN32)
-  HANDLE  mutexID;
-#else
-  pthread_mutex_t mutexID;
+#if !defined(_ROUNDC_CLUSTER_INTERNAL_H_)
+typedef void RoundCluster;
 #endif
-} RoundMutex;
-
+  
 /****************************************
- * Functions
+ * Function
  ****************************************/
 
-RoundMutex *round_mutex_new(void);
-bool round_mutex_delete(RoundMutex *mutex);
-
-bool round_mutex_lock(RoundMutex *mutex);
-bool round_mutex_unlock(RoundMutex *mutex);
+RoundCluster *round_cluster_new(void);
+void round_cluster_delete(RoundCluster *node);
+RoundCluster *round_cluster_next(RoundCluster *node);
 
 #ifdef  __cplusplus
-
-} /* extern "C" */
-
+} /* extern C */
 #endif
 
-#endif
+#endif /* _ROUNDC_CLUSTER_H_ */

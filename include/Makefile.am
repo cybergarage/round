@@ -10,7 +10,9 @@
 
 round_client_headers = \
 	./round/client.h \
+	./round/cluster.h \
 	./round/const.h \
+	./round/node.h \
 	./round/typedef.h
 
 nobase_include_HEADERS = \

@@ -8,8 +8,8 @@
  *
  ******************************************************************/
 
-#ifndef _UECHO_UTIL_THREAD_H_
-#define _UECHO_UTIL_THREAD_H_
+#ifndef _ROUNDC_UTIL_THREAD_H_
+#define _ROUNDC_UTIL_THREAD_H_
 
 #include <round/typedef.h>
 #include <round/util/list.h>
@@ -82,7 +82,7 @@ void *round_thread_getuserdata(RoundThread *thread);
 RoundThreadList *round_threadlist_new();
 void round_threadlist_delete(RoundThreadList *threadList);
 
-#define round_threadlist_clear(threadList) round_list_clear((RoundList *)threadList, (UECHO_LIST_DESTRUCTORFUNC)round_thread_delete)
+#define round_threadlist_clear(threadList) round_list_clear((RoundList *)threadList, (ROUND_LIST_DESTRUCTORFUNC)round_thread_delete)
 #define round_threadlist_size(threadList) round_list_size((RoundList *)threadList)
 #define round_threadlist_gets(threadList) (RoundThread *)round_list_next((RoundList *)threadList)
 #define round_threadlist_add(threadList, thread) round_list_add((RoundList *)threadList, (RoundList *)thread)

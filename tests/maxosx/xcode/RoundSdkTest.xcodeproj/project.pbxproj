@@ -11,6 +11,10 @@
 		211E45D21B98188600CF0088 /* ClientTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 211E45D11B98188600CF0088 /* ClientTest.cpp */; };
 		211E45D41B9818E300CF0088 /* FinderTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 211E45D31B9818E300CF0088 /* FinderTest.cpp */; };
 		21A762ED1B96F82400D29732 /* RoundSdkTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21A762EC1B96F82400D29732 /* RoundSdkTest.cpp */; };
+		21EA96DE1B99104E00E00841 /* ClusterListTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21EA96DC1B99104E00E00841 /* ClusterListTest.cpp */; };
+		21EA96DF1B99104E00E00841 /* ClusterTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21EA96DD1B99104E00E00841 /* ClusterTest.cpp */; };
+		21EA96E21B99105E00E00841 /* NodeListTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21EA96E01B99105E00E00841 /* NodeListTest.cpp */; };
+		21EA96E31B99105E00E00841 /* NodeTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21EA96E11B99105E00E00841 /* NodeTest.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +52,10 @@
 		211E45D11B98188600CF0088 /* ClientTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ClientTest.cpp; path = ../../ClientTest.cpp; sourceTree = "<group>"; };
 		211E45D31B9818E300CF0088 /* FinderTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FinderTest.cpp; path = ../../FinderTest.cpp; sourceTree = "<group>"; };
 		21A762EC1B96F82400D29732 /* RoundSdkTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RoundSdkTest.cpp; path = ../../RoundSdkTest.cpp; sourceTree = "<group>"; };
+		21EA96DC1B99104E00E00841 /* ClusterListTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ClusterListTest.cpp; path = ../../ClusterListTest.cpp; sourceTree = "<group>"; };
+		21EA96DD1B99104E00E00841 /* ClusterTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ClusterTest.cpp; path = ../../ClusterTest.cpp; sourceTree = "<group>"; };
+		21EA96E01B99105E00E00841 /* NodeListTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = NodeListTest.cpp; path = ../../NodeListTest.cpp; sourceTree = "<group>"; };
+		21EA96E11B99105E00E00841 /* NodeTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = NodeTest.cpp; path = ../../NodeTest.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +106,10 @@
 		217993091B4A5A6B00A158CD /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				21EA96E01B99105E00E00841 /* NodeListTest.cpp */,
+				21EA96E11B99105E00E00841 /* NodeTest.cpp */,
+				21EA96DC1B99104E00E00841 /* ClusterListTest.cpp */,
+				21EA96DD1B99104E00E00841 /* ClusterTest.cpp */,
 				211E45D31B9818E300CF0088 /* FinderTest.cpp */,
 				211E45D11B98188600CF0088 /* ClientTest.cpp */,
 				21A762EC1B96F82400D29732 /* RoundSdkTest.cpp */,
@@ -180,7 +192,11 @@
 			files = (
 				211E45D21B98188600CF0088 /* ClientTest.cpp in Sources */,
 				211E45D41B9818E300CF0088 /* FinderTest.cpp in Sources */,
+				21EA96DE1B99104E00E00841 /* ClusterListTest.cpp in Sources */,
+				21EA96E31B99105E00E00841 /* NodeTest.cpp in Sources */,
+				21EA96E21B99105E00E00841 /* NodeListTest.cpp in Sources */,
 				21A762ED1B96F82400D29732 /* RoundSdkTest.cpp in Sources */,
+				21EA96DF1B99104E00E00841 /* ClusterTest.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

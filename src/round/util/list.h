@@ -8,8 +8,8 @@
  *
  ******************************************************************/
 
-#ifndef _UECHO_UTIL_LIST_H_
-#define _UECHO_UTIL_LIST_H_
+#ifndef _ROUNDC_UTIL_LIST_H_
+#define _ROUNDC_UTIL_LIST_H_
 
 #include <round/typedef.h>
 
@@ -21,7 +21,7 @@ extern "C" {
  * Define
  ****************************************/
 
-typedef void (*UECHO_LIST_DESTRUCTORFUNC)(void *);
+typedef void (*ROUND_LIST_DESTRUCTORFUNC)(void *);
 
 /****************************************
  * Data Type
@@ -54,7 +54,7 @@ RoundList *round_list_prev(RoundList *list);
 RoundList *round_list_next_circular(RoundList *list);
 RoundList *round_list_next(RoundList *list);
 
-bool round_list_clear(RoundList *headList, UECHO_LIST_DESTRUCTORFUNC dstructorFunc);
+bool round_list_clear(RoundList *headList, ROUND_LIST_DESTRUCTORFUNC dstructorFunc);
 
 #ifdef  __cplusplus
 } /* extern "C" */

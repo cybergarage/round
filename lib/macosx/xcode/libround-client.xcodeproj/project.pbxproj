@@ -21,6 +21,14 @@
 		2178B36F1B98BEAE00B9D86B /* thread_list.c in Sources */ = {isa = PBXBuildFile; fileRef = 2178B3681B98BEAE00B9D86B /* thread_list.c */; };
 		2178B3701B98BEAE00B9D86B /* thread.c in Sources */ = {isa = PBXBuildFile; fileRef = 2178B3691B98BEAE00B9D86B /* thread.c */; };
 		2178B3711B98BEAE00B9D86B /* thread.h in Headers */ = {isa = PBXBuildFile; fileRef = 2178B36A1B98BEAE00B9D86B /* thread.h */; };
+		21EA96CD1B990AF800E00841 /* cluster_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 21EA96CA1B990AF800E00841 /* cluster_internal.h */; };
+		21EA96CE1B990AF800E00841 /* cluster_list.c in Sources */ = {isa = PBXBuildFile; fileRef = 21EA96CB1B990AF800E00841 /* cluster_list.c */; };
+		21EA96CF1B990AF800E00841 /* cluster.c in Sources */ = {isa = PBXBuildFile; fileRef = 21EA96CC1B990AF800E00841 /* cluster.c */; };
+		21EA96D11B990B1100E00841 /* cluster.h in Headers */ = {isa = PBXBuildFile; fileRef = 21EA96D01B990B1100E00841 /* cluster.h */; };
+		21EA96D71B990C3B00E00841 /* node_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 21EA96D41B990C3B00E00841 /* node_internal.h */; };
+		21EA96D81B990C3B00E00841 /* node_list.c in Sources */ = {isa = PBXBuildFile; fileRef = 21EA96D51B990C3B00E00841 /* node_list.c */; };
+		21EA96D91B990C3B00E00841 /* node.c in Sources */ = {isa = PBXBuildFile; fileRef = 21EA96D61B990C3B00E00841 /* node.c */; };
+		21EA96DB1B990CF400E00841 /* node.h in Headers */ = {isa = PBXBuildFile; fileRef = 21EA96DA1B990CF400E00841 /* node.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +47,14 @@
 		2178B3681B98BEAE00B9D86B /* thread_list.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = thread_list.c; path = ../../../src/round/util/thread_list.c; sourceTree = "<group>"; };
 		2178B3691B98BEAE00B9D86B /* thread.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = thread.c; path = ../../../src/round/util/thread.c; sourceTree = "<group>"; };
 		2178B36A1B98BEAE00B9D86B /* thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = thread.h; path = ../../../src/round/util/thread.h; sourceTree = "<group>"; };
+		21EA96CA1B990AF800E00841 /* cluster_internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cluster_internal.h; path = ../../../src/round/cluster_internal.h; sourceTree = "<group>"; };
+		21EA96CB1B990AF800E00841 /* cluster_list.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = cluster_list.c; path = ../../../src/round/cluster_list.c; sourceTree = "<group>"; };
+		21EA96CC1B990AF800E00841 /* cluster.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = cluster.c; path = ../../../src/round/cluster.c; sourceTree = "<group>"; };
+		21EA96D01B990B1100E00841 /* cluster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cluster.h; path = ../../../include/round/cluster.h; sourceTree = "<group>"; };
+		21EA96D41B990C3B00E00841 /* node_internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = node_internal.h; path = ../../../src/round/node_internal.h; sourceTree = "<group>"; };
+		21EA96D51B990C3B00E00841 /* node_list.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = node_list.c; path = ../../../src/round/node_list.c; sourceTree = "<group>"; };
+		21EA96D61B990C3B00E00841 /* node.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = node.c; path = ../../../src/round/node.c; sourceTree = "<group>"; };
+		21EA96DA1B990CF400E00841 /* node.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = node.h; path = ../../../include/round/node.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +71,8 @@
 		211E45C81B98153200CF0088 /* round */ = {
 			isa = PBXGroup;
 			children = (
+				21EA96DA1B990CF400E00841 /* node.h */,
+				21EA96D01B990B1100E00841 /* cluster.h */,
 				2178B3611B98986200B9D86B /* const.h */,
 				211E45D91B981A6300CF0088 /* typedef.h */,
 				211E45C91B98154A00CF0088 /* client.h */,
@@ -70,6 +88,12 @@
 				211E45D61B98192600CF0088 /* finder.c */,
 				211E45CF1B9816F300CF0088 /* client_internal.h */,
 				211E45CC1B98157400CF0088 /* client.c */,
+				21EA96CA1B990AF800E00841 /* cluster_internal.h */,
+				21EA96CB1B990AF800E00841 /* cluster_list.c */,
+				21EA96CC1B990AF800E00841 /* cluster.c */,
+				21EA96D41B990C3B00E00841 /* node_internal.h */,
+				21EA96D51B990C3B00E00841 /* node_list.c */,
+				21EA96D61B990C3B00E00841 /* node.c */,
 			);
 			name = round;
 			sourceTree = "<group>";
@@ -133,9 +157,13 @@
 				211E45D01B9816F300CF0088 /* client_internal.h in Headers */,
 				2178B3621B98986200B9D86B /* const.h in Headers */,
 				211E45CA1B98154A00CF0088 /* client.h in Headers */,
+				21EA96D11B990B1100E00841 /* cluster.h in Headers */,
+				21EA96DB1B990CF400E00841 /* node.h in Headers */,
 				2178B36C1B98BEAE00B9D86B /* list.h in Headers */,
 				2178B3711B98BEAE00B9D86B /* thread.h in Headers */,
+				21EA96D71B990C3B00E00841 /* node_internal.h in Headers */,
 				211E45D71B98192600CF0088 /* finder.h in Headers */,
+				21EA96CD1B990AF800E00841 /* cluster_internal.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -195,12 +223,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21EA96D91B990C3B00E00841 /* node.c in Sources */,
 				2178B36B1B98BEAE00B9D86B /* list.c in Sources */,
 				211E45CD1B98157400CF0088 /* client.c in Sources */,
 				211E45D81B98192600CF0088 /* finder.c in Sources */,
 				2178B36F1B98BEAE00B9D86B /* thread_list.c in Sources */,
+				21EA96D81B990C3B00E00841 /* node_list.c in Sources */,
 				2178B36D1B98BEAE00B9D86B /* mutex.c in Sources */,
 				2178B3701B98BEAE00B9D86B /* thread.c in Sources */,
+				21EA96CF1B990AF800E00841 /* cluster.c in Sources */,
+				21EA96CE1B990AF800E00841 /* cluster_list.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

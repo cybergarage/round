@@ -230,7 +230,7 @@ RoundList *round_list_next(RoundList *list)
 * round_list_clear
 ****************************************/
 
-bool round_list_clear(RoundList *headList, UECHO_LIST_DESTRUCTORFUNC dstructorFunc)
+bool round_list_clear(RoundList *headList, ROUND_LIST_DESTRUCTORFUNC dstructorFunc)
 {
   RoundList *list;
 
