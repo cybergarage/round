@@ -8,14 +8,11 @@
  *
  ******************************************************************/
 
-#include <boost/test/unit_test.hpp>
+#ifndef _ROUNDC_ROUND_H_
+#define _ROUNDC_ROUND_H_
 
-#include <round/client.h>
+#include <round/script/js.h>
+#include <round/script/lua.h>
+#include <round/script/ruby.h>
 
-BOOST_AUTO_TEST_CASE(ClientNew)
-{
-  RoundClient *c = round_client_new();
-  BOOST_CHECK(c);
-  
-  BOOST_CHECK(round_client_delete(c));
-}
+#endif
