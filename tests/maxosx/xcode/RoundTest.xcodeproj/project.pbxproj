@@ -7,30 +7,33 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		211E45C71B98151100CF0088 /* liblibround-client.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 211E45C41B9814FA00CF0088 /* liblibround-client.a */; };
 		211E45D21B98188600CF0088 /* ClientTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 211E45D11B98188600CF0088 /* ClientTest.cpp */; };
 		211E45D41B9818E300CF0088 /* FinderTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 211E45D31B9818E300CF0088 /* FinderTest.cpp */; };
+		2137D3F11B998AEF00652E68 /* liblibround.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2137D3EE1B998ADD00652E68 /* liblibround.a */; };
 		21A762ED1B96F82400D29732 /* RoundSdkTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21A762EC1B96F82400D29732 /* RoundSdkTest.cpp */; };
 		21EA96DE1B99104E00E00841 /* ClusterListTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21EA96DC1B99104E00E00841 /* ClusterListTest.cpp */; };
 		21EA96DF1B99104E00E00841 /* ClusterTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21EA96DD1B99104E00E00841 /* ClusterTest.cpp */; };
 		21EA96E21B99105E00E00841 /* NodeListTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21EA96E01B99105E00E00841 /* NodeListTest.cpp */; };
 		21EA96E31B99105E00E00841 /* NodeTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21EA96E11B99105E00E00841 /* NodeTest.cpp */; };
+		21F6D99D1B9983A500714056 /* JsEngineTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21F6D99A1B9983A500714056 /* JsEngineTest.cpp */; };
+		21F6D99E1B9983A500714056 /* LuaEngineTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21F6D99B1B9983A500714056 /* LuaEngineTest.cpp */; };
+		21F6D99F1B9983A500714056 /* RubyEngineTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21F6D99C1B9983A500714056 /* RubyEngineTest.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		211E45C31B9814FA00CF0088 /* PBXContainerItemProxy */ = {
+		2137D3ED1B998ADD00652E68 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 211E45BF1B9814FA00CF0088 /* libround-client.xcodeproj */;
+			containerPortal = 211E45BF1B9814FA00CF0088 /* libround.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 212ADD881A8D4F000054EC0F;
-			remoteInfo = "libround-client";
+			remoteInfo = libround;
 		};
-		211E45C51B98150C00CF0088 /* PBXContainerItemProxy */ = {
+		2137D3EF1B998AE900652E68 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 211E45BF1B9814FA00CF0088 /* libround-client.xcodeproj */;
+			containerPortal = 211E45BF1B9814FA00CF0088 /* libround.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 212ADD871A8D4F000054EC0F;
-			remoteInfo = "libround-client";
+			remoteInfo = libround;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -47,8 +50,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		210363311B4A51B300DB3025 /* RoundSdkTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = RoundSdkTest; sourceTree = BUILT_PRODUCTS_DIR; };
-		211E45BF1B9814FA00CF0088 /* libround-client.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "libround-client.xcodeproj"; path = "../../../lib/macosx/xcode/libround-client.xcodeproj"; sourceTree = "<group>"; };
+		210363311B4A51B300DB3025 /* RoundTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = RoundTest; sourceTree = BUILT_PRODUCTS_DIR; };
+		211E45BF1B9814FA00CF0088 /* libround.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libround.xcodeproj; path = ../../../lib/macosx/xcode/libround.xcodeproj; sourceTree = "<group>"; };
 		211E45D11B98188600CF0088 /* ClientTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ClientTest.cpp; path = ../../ClientTest.cpp; sourceTree = "<group>"; };
 		211E45D31B9818E300CF0088 /* FinderTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FinderTest.cpp; path = ../../FinderTest.cpp; sourceTree = "<group>"; };
 		21A762EC1B96F82400D29732 /* RoundSdkTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RoundSdkTest.cpp; path = ../../RoundSdkTest.cpp; sourceTree = "<group>"; };
@@ -56,6 +59,9 @@
 		21EA96DD1B99104E00E00841 /* ClusterTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ClusterTest.cpp; path = ../../ClusterTest.cpp; sourceTree = "<group>"; };
 		21EA96E01B99105E00E00841 /* NodeListTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = NodeListTest.cpp; path = ../../NodeListTest.cpp; sourceTree = "<group>"; };
 		21EA96E11B99105E00E00841 /* NodeTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = NodeTest.cpp; path = ../../NodeTest.cpp; sourceTree = "<group>"; };
+		21F6D99A1B9983A500714056 /* JsEngineTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JsEngineTest.cpp; sourceTree = "<group>"; };
+		21F6D99B1B9983A500714056 /* LuaEngineTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LuaEngineTest.cpp; sourceTree = "<group>"; };
+		21F6D99C1B9983A500714056 /* RubyEngineTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RubyEngineTest.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,7 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				211E45C71B98151100CF0088 /* liblibround-client.a in Frameworks */,
+				2137D3F11B998AEF00652E68 /* liblibround.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,15 +88,15 @@
 		210363321B4A51B300DB3025 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				210363311B4A51B300DB3025 /* RoundSdkTest */,
+				210363311B4A51B300DB3025 /* RoundTest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		211E45C01B9814FA00CF0088 /* Products */ = {
+		2137D3EA1B998ADB00652E68 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				211E45C41B9814FA00CF0088 /* liblibround-client.a */,
+				2137D3EE1B998ADD00652E68 /* liblibround.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -98,7 +104,7 @@
 		213C5BF41B4A543C0013DDD9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				211E45BF1B9814FA00CF0088 /* libround-client.xcodeproj */,
+				211E45BF1B9814FA00CF0088 /* libround.xcodeproj */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -106,6 +112,7 @@
 		217993091B4A5A6B00A158CD /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				21F6D9991B9983A500714056 /* script */,
 				21EA96E01B99105E00E00841 /* NodeListTest.cpp */,
 				21EA96E11B99105E00E00841 /* NodeTest.cpp */,
 				21EA96DC1B99104E00E00841 /* ClusterListTest.cpp */,
@@ -117,12 +124,23 @@
 			name = Sources;
 			sourceTree = "<group>";
 		};
+		21F6D9991B9983A500714056 /* script */ = {
+			isa = PBXGroup;
+			children = (
+				21F6D99A1B9983A500714056 /* JsEngineTest.cpp */,
+				21F6D99B1B9983A500714056 /* LuaEngineTest.cpp */,
+				21F6D99C1B9983A500714056 /* RubyEngineTest.cpp */,
+			);
+			name = script;
+			path = ../../script;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		210363301B4A51B300DB3025 /* RoundSdkTest */ = {
+		210363301B4A51B300DB3025 /* RoundTest */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 210363381B4A51B300DB3025 /* Build configuration list for PBXNativeTarget "RoundSdkTest" */;
+			buildConfigurationList = 210363381B4A51B300DB3025 /* Build configuration list for PBXNativeTarget "RoundTest" */;
 			buildPhases = (
 				2103632D1B4A51B300DB3025 /* Sources */,
 				2103632E1B4A51B300DB3025 /* Frameworks */,
@@ -131,11 +149,11 @@
 			buildRules = (
 			);
 			dependencies = (
-				211E45C61B98150C00CF0088 /* PBXTargetDependency */,
+				2137D3F01B998AE900652E68 /* PBXTargetDependency */,
 			);
-			name = RoundSdkTest;
+			name = RoundTest;
 			productName = uEchoTest;
-			productReference = 210363311B4A51B300DB3025 /* RoundSdkTest */;
+			productReference = 210363311B4A51B300DB3025 /* RoundTest */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -152,7 +170,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 2103632C1B4A51B300DB3025 /* Build configuration list for PBXProject "RoundSdkTest" */;
+			buildConfigurationList = 2103632C1B4A51B300DB3025 /* Build configuration list for PBXProject "RoundTest" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -164,23 +182,23 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 211E45C01B9814FA00CF0088 /* Products */;
-					ProjectRef = 211E45BF1B9814FA00CF0088 /* libround-client.xcodeproj */;
+					ProductGroup = 2137D3EA1B998ADB00652E68 /* Products */;
+					ProjectRef = 211E45BF1B9814FA00CF0088 /* libround.xcodeproj */;
 				},
 			);
 			projectRoot = "";
 			targets = (
-				210363301B4A51B300DB3025 /* RoundSdkTest */,
+				210363301B4A51B300DB3025 /* RoundTest */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		211E45C41B9814FA00CF0088 /* liblibround-client.a */ = {
+		2137D3EE1B998ADD00652E68 /* liblibround.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = "liblibround-client.a";
-			remoteRef = 211E45C31B9814FA00CF0088 /* PBXContainerItemProxy */;
+			path = liblibround.a;
+			remoteRef = 2137D3ED1B998ADD00652E68 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -190,10 +208,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21F6D99E1B9983A500714056 /* LuaEngineTest.cpp in Sources */,
 				211E45D21B98188600CF0088 /* ClientTest.cpp in Sources */,
 				211E45D41B9818E300CF0088 /* FinderTest.cpp in Sources */,
+				21F6D99F1B9983A500714056 /* RubyEngineTest.cpp in Sources */,
 				21EA96DE1B99104E00E00841 /* ClusterListTest.cpp in Sources */,
 				21EA96E31B99105E00E00841 /* NodeTest.cpp in Sources */,
+				21F6D99D1B9983A500714056 /* JsEngineTest.cpp in Sources */,
 				21EA96E21B99105E00E00841 /* NodeListTest.cpp in Sources */,
 				21A762ED1B96F82400D29732 /* RoundSdkTest.cpp in Sources */,
 				21EA96DF1B99104E00E00841 /* ClusterTest.cpp in Sources */,
@@ -203,10 +224,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		211E45C61B98150C00CF0088 /* PBXTargetDependency */ = {
+		2137D3F01B998AE900652E68 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = "libround-client";
-			targetProxy = 211E45C51B98150C00CF0088 /* PBXContainerItemProxy */;
+			name = libround;
+			targetProxy = 2137D3EF1B998AE900652E68 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -257,6 +278,9 @@
 					"-lxml2",
 					"-lcurl",
 					"-lmupnp",
+					"-lmruby",
+					"-llua",
+					"-lmozjs185",
 				);
 				SDKROOT = macosx;
 			};
@@ -301,6 +325,9 @@
 					"-lxml2",
 					"-lcurl",
 					"-lmupnp",
+					"-lmruby",
+					"-llua",
+					"-lmozjs185",
 				);
 				SDKROOT = macosx;
 			};
@@ -325,8 +352,11 @@
 					"-lxml2",
 					"-lcurl",
 					"-lmupnp",
+					"-lmozjs185",
+					"-llua",
+					"-lmruby",
 				);
-				PRODUCT_NAME = RoundSdkTest;
+				PRODUCT_NAME = RoundTest;
 			};
 			name = Debug;
 		};
@@ -349,15 +379,18 @@
 					"-lxml2",
 					"-lcurl",
 					"-lmupnp",
+					"-lmozjs185",
+					"-llua",
+					"-lmruby",
 				);
-				PRODUCT_NAME = RoundSdkTest;
+				PRODUCT_NAME = RoundTest;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2103632C1B4A51B300DB3025 /* Build configuration list for PBXProject "RoundSdkTest" */ = {
+		2103632C1B4A51B300DB3025 /* Build configuration list for PBXProject "RoundTest" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				210363361B4A51B300DB3025 /* Debug */,
@@ -366,7 +399,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		210363381B4A51B300DB3025 /* Build configuration list for PBXNativeTarget "RoundSdkTest" */ = {
+		210363381B4A51B300DB3025 /* Build configuration list for PBXNativeTarget "RoundTest" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				210363391B4A51B300DB3025 /* Debug */,
