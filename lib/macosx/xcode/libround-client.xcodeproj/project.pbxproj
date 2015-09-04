@@ -29,6 +29,8 @@
 		21EA96D81B990C3B00E00841 /* node_list.c in Sources */ = {isa = PBXBuildFile; fileRef = 21EA96D51B990C3B00E00841 /* node_list.c */; };
 		21EA96D91B990C3B00E00841 /* node.c in Sources */ = {isa = PBXBuildFile; fileRef = 21EA96D61B990C3B00E00841 /* node.c */; };
 		21EA96DB1B990CF400E00841 /* node.h in Headers */ = {isa = PBXBuildFile; fileRef = 21EA96DA1B990CF400E00841 /* node.h */; };
+		21EAA2A51B9931B10002CFF0 /* strings.h in Headers */ = {isa = PBXBuildFile; fileRef = 21EAA2A31B9931B10002CFF0 /* strings.h */; };
+		21EAA2A61B9931B10002CFF0 /* strings.c in Sources */ = {isa = PBXBuildFile; fileRef = 21EAA2A41B9931B10002CFF0 /* strings.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +57,8 @@
 		21EA96D51B990C3B00E00841 /* node_list.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = node_list.c; path = ../../../src/round/node_list.c; sourceTree = "<group>"; };
 		21EA96D61B990C3B00E00841 /* node.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = node.c; path = ../../../src/round/node.c; sourceTree = "<group>"; };
 		21EA96DA1B990CF400E00841 /* node.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = node.h; path = ../../../include/round/node.h; sourceTree = "<group>"; };
+		21EAA2A31B9931B10002CFF0 /* strings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = strings.h; path = ../../../src/round/util/strings.h; sourceTree = "<group>"; };
+		21EAA2A41B9931B10002CFF0 /* strings.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = strings.c; path = ../../../src/round/util/strings.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +138,8 @@
 		2178B3631B98BE7B00B9D86B /* util */ = {
 			isa = PBXGroup;
 			children = (
+				21EAA2A31B9931B10002CFF0 /* strings.h */,
+				21EAA2A41B9931B10002CFF0 /* strings.c */,
 				2178B3641B98BEAE00B9D86B /* list.c */,
 				2178B3651B98BEAE00B9D86B /* list.h */,
 				2178B3661B98BEAE00B9D86B /* mutex.c */,
@@ -157,6 +163,7 @@
 				211E45D01B9816F300CF0088 /* client_internal.h in Headers */,
 				2178B3621B98986200B9D86B /* const.h in Headers */,
 				211E45CA1B98154A00CF0088 /* client.h in Headers */,
+				21EAA2A51B9931B10002CFF0 /* strings.h in Headers */,
 				21EA96D11B990B1100E00841 /* cluster.h in Headers */,
 				21EA96DB1B990CF400E00841 /* node.h in Headers */,
 				2178B36C1B98BEAE00B9D86B /* list.h in Headers */,
@@ -225,6 +232,7 @@
 			files = (
 				21EA96D91B990C3B00E00841 /* node.c in Sources */,
 				2178B36B1B98BEAE00B9D86B /* list.c in Sources */,
+				21EAA2A61B9931B10002CFF0 /* strings.c in Sources */,
 				211E45CD1B98157400CF0088 /* client.c in Sources */,
 				211E45D81B98192600CF0088 /* finder.c in Sources */,
 				2178B36F1B98BEAE00B9D86B /* thread_list.c in Sources */,
