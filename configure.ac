@@ -23,6 +23,7 @@ LIBCURL_VERSION=7.13.0
 JANSSON_VERSION=2.2.1
 EXPAT_VERSION=1.95
 LIBXML2_VERSION=2.6.0
+MUPNP_VERSION=3.0.0
 
 ##############################
 # Checks compiler
@@ -59,7 +60,7 @@ AC_CHECK_LIB(curl, curl_easy_perform,
 ])
 
 ##############################
-# Check libcurl
+# Check jansson
 ##############################
 
 AC_CHECK_LIB([jansson],[main],,[AC_MSG_ERROR(Round needs Jansson $JANSSON_VERSION later)])
@@ -131,6 +132,12 @@ fi
 
 AC_SUBST(XML_CFLAGS)
 AC_SUBST(XML_LIBS)
+
+##############################
+# Check mUPnP
+##############################
+
+AC_CHECK_LIB([mupnp],[main],,[AC_MSG_ERROR(Round needs mUPnP $MUPNP_VERSION later)])
 
 ##############################
 # Testing

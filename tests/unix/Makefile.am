@@ -8,13 +8,13 @@
 #
 ##################################################################
 
-noinst_PROGRAMS = roundclienttest
+noinst_PROGRAMS = roundtest
 
 AM_CPPFLAGS = -I$(top_srcdir)/include -I$(top_srcdir)/src -I../
 
 
 
-roundclienttest_SOURCES = \
+roundtest_SOURCES = \
 	..//ClientTest.cpp \
 	..//ClusterListTest.cpp \
 	..//ClusterTest.cpp \
@@ -26,7 +26,7 @@ roundclienttest_SOURCES = \
 	..//script/LuaEngineTest.cpp \
 	..//script/RubyEngineTest.cpp
 #if HAVE_LIBTOOL
-#roundclienttest_LDADD = @CURL_LIBS@ @XML_LIBS@ ../../lib/unix/libroundclient.la
+#roundtest_LDADD = @HTTP_LIBS@ @XML_LIBS@ ../../lib/unix/libround.la
 #else
-roundclienttest_LDADD = @CURL_LIBS@ @XML_LIBS@ ../../lib/unix/libroundclient.a
+roundtest_LDADD = @HTTP_LIBS@ @XML_LIBS@ ../../lib/unix/libround.a
 #endif
