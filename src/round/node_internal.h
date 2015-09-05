@@ -29,7 +29,7 @@ typedef struct _RoundNode {
 } RoundNode, RoundNodeList;
 
 /****************************************
- * Header
+ * Public Header
  ****************************************/
   
 #include <round/node.h>
