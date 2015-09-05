@@ -6,11 +6,41 @@
 "   </specVersion>\n"
 "   <actionList>\n"
 "     <action>\n"
-"       <name>GetStatus</name>\n"
+"       <name>GetProductInfo</name>\n"
 "       <argumentList>\n"
 "         <argument>\n"
-"           <name>Version</name>\n"
+"           <name>ProductName</name>\n"
+"           <relatedStateVariable>Name</relatedStateVariable>\n"
+"           <direction>out</direction>\n"
+"         </argument>\n"
+"         <argument>\n"
+"           <name>ProductVersion</name>\n"
 "           <relatedStateVariable>Version</relatedStateVariable>\n"
+"           <direction>out</direction>\n"
+"         </argument>\n"
+"       </argumentList>\n"
+"     </action>\n"
+"     <action>\n"
+"       <name>GetConnectionInfo</name>\n"
+"       <argumentList>\n"
+"         <argument>\n"
+"           <name>Address</name>\n"
+"           <relatedStateVariable>Address</relatedStateVariable>\n"
+"           <direction>out</direction>\n"
+"         </argument>\n"
+"         <argument>\n"
+"           <name>Port</name>\n"
+"           <relatedStateVariable>Port</relatedStateVariable>\n"
+"           <direction>out</direction>\n"
+"         </argument>\n"
+"         <argument>\n"
+"           <name>Protocol</name>\n"
+"           <relatedStateVariable>Protocol</relatedStateVariable>\n"
+"           <direction>out</direction>\n"
+"         </argument>\n"
+"         <argument>\n"
+"           <name>Path</name>\n"
+"           <relatedStateVariable>Path</relatedStateVariable>\n"
 "           <direction>out</direction>\n"
 "         </argument>\n"
 "       </argumentList>\n"
@@ -18,9 +48,51 @@
 "   </actionList>\n"
 "   <serviceStateTable>\n"
 "     <stateVariable sendEvents=\"no\">\n"
+"       <name>Name</name>\n"
+"       <dataType>string</dataType>\n"
+"     </stateVariable>\n"
+"     <stateVariable sendEvents=\"no\">\n"
 "       <name>Version</name>\n"
+"       <dataType>string</dataType>\n"
+"     </stateVariable>\n"
+"     <stateVariable sendEvents=\"no\">\n"
+"       <name>Address</name>\n"
+"       <dataType>string</dataType>\n"
+"     </stateVariable>\n"
+"     <stateVariable sendEvents=\"no\">\n"
+"       <name>Port</name>\n"
+"       <dataType>int</dataType>\n"
+"     </stateVariable>\n"
+"     <stateVariable sendEvents=\"no\">\n"
+"       <name>Protocol</name>\n"
+"       <dataType>string</dataType>\n"
+"     </stateVariable>\n"
+"     <stateVariable sendEvents=\"no\">\n"
+"       <name>Path</name>\n"
 "       <dataType>string</dataType>\n"
 "     </stateVariable>\n"
 "   </serviceStateTable>\n"
 "</scpd>\n"
 
+
+
+
+
+
+
+
+
+
+ProductName	Out	Name
+ProductVersion	Out	Version
+GetConnectionInfo
+
+This required action returns the connection information to connect the node.
+
+Arguments
+
+Argument	Direction	relatedStateVariable
+Address	Out	Address
+Port	Out	Port
+Protocol	Out	Protocol
+Path	Out	Path
