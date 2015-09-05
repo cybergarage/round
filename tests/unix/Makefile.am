@@ -21,9 +21,12 @@ roundclienttest_SOURCES = \
 	..//FinderTest.cpp \
 	..//NodeListTest.cpp \
 	..//NodeTest.cpp \
-	..//RoundSdkTest.cpp
+	..//RoundSdkTest.cpp \
+	..//script/JsEngineTest.cpp \
+	..//script/LuaEngineTest.cpp \
+	..//script/RubyEngineTest.cpp
 #if HAVE_LIBTOOL
-#roundclienttest_LDADD = ../../lib/unix/libroundclient.la
+#roundclienttest_LDADD = @CURL_LIBS@ @XML_LIBS@ ../../lib/unix/libroundclient.la
 #else
-roundclienttest_LDADD = ../../lib/unix/libroundclient.a
+roundclienttest_LDADD = @CURL_LIBS@ @XML_LIBS@ ../../lib/unix/libroundclient.a
 #endif

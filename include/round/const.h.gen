@@ -18,7 +18,7 @@ extern "C" {
 #endif
 
 HEADER
-@const_lines = `curl -s https://raw.githubusercontent.com/cybergarage/round-common/master/const/constants.csv | awk '/./' | awk '\$0 !~ /^#/{print \$0}'`;
+@const_lines = `more ../../const/constants.csv | awk '/./' | awk '\$0 !~ /^#/{print \$0}'`;
 foreach $const_line (@const_lines) {
   @const = split(/,/, $const_line);
   $const[0] =~ s/([a-z])/\u$1/g;
@@ -26,7 +26,7 @@ foreach $const_line (@const_lines) {
 }
 
 print "\n";
-@const_lines = `curl -s https://raw.githubusercontent.com/cybergarage/round-common/master/const/rpc_errors.csv | awk '/./' | awk '\$0 !~ /^#/{print \$0}'`;
+@const_lines = `more ../../const/rpc_errors.csv | awk '/./' | awk '\$0 !~ /^#/{print \$0}'`;
 foreach $const_line (@const_lines) {
   @const = split(/,/, $const_line);
   $const[0] =~ s/([a-z])/\u$1/g;

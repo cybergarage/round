@@ -23,8 +23,14 @@ round_mpi_sources = \
 	../../src/round/finder.c \
 	../../src/round/node.c \
 	../../src/round/node_list.c \
+	../../src/round/script/js_engine.c \
+	../../src/round/script/js_sm_engine.c \
+	../../src/round/script/lua_engine.c \
+	../../src/round/script/ruby_engine.c \
+	../../src/round/script_engine.c \
 	../../src/round/util/list.c \
 	../../src/round/util/mutex.c \
+	../../src/round/util/strings.c \
 	../../src/round/util/thread.c \
 	../../src/round/util/thread_list.c
 
