@@ -8,7 +8,7 @@
  *
  ******************************************************************/
 
-#include <round/finder.h>
+#include <round/finder_internal.h>
 
 /****************************************
  * round_finder_new
@@ -77,6 +77,6 @@ bool round_finder_search(RoundFinder *finder)
   if (!finder)
     return false;
   
-  return mupnp_controlpoint_search(finder->cp, ROUNDC_UPNP_DEVICE_TYPE);
+  return mupnp_controlpoint_search(finder->cp, ROUNDC_FINDER_UPNP_DEVICE_TYPE);
 }
 

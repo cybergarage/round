@@ -10,7 +10,7 @@
 		211E45CA1B98154A00CF0088 /* client.h in Headers */ = {isa = PBXBuildFile; fileRef = 211E45C91B98154A00CF0088 /* client.h */; };
 		211E45CD1B98157400CF0088 /* client.c in Sources */ = {isa = PBXBuildFile; fileRef = 211E45CC1B98157400CF0088 /* client.c */; };
 		211E45D01B9816F300CF0088 /* client_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 211E45CF1B9816F300CF0088 /* client_internal.h */; };
-		211E45D71B98192600CF0088 /* finder.h in Headers */ = {isa = PBXBuildFile; fileRef = 211E45D51B98192600CF0088 /* finder.h */; };
+		211E45D71B98192600CF0088 /* finder_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 211E45D51B98192600CF0088 /* finder_internal.h */; };
 		211E45D81B98192600CF0088 /* finder.c in Sources */ = {isa = PBXBuildFile; fileRef = 211E45D61B98192600CF0088 /* finder.c */; };
 		211E45DA1B981A6300CF0088 /* typedef.h in Headers */ = {isa = PBXBuildFile; fileRef = 211E45D91B981A6300CF0088 /* typedef.h */; };
 		2178B3621B98986200B9D86B /* const.h in Headers */ = {isa = PBXBuildFile; fileRef = 2178B3611B98986200B9D86B /* const.h */; };
@@ -21,6 +21,7 @@
 		2178B36F1B98BEAE00B9D86B /* thread_list.c in Sources */ = {isa = PBXBuildFile; fileRef = 2178B3681B98BEAE00B9D86B /* thread_list.c */; };
 		2178B3701B98BEAE00B9D86B /* thread.c in Sources */ = {isa = PBXBuildFile; fileRef = 2178B3691B98BEAE00B9D86B /* thread.c */; };
 		2178B3711B98BEAE00B9D86B /* thread.h in Headers */ = {isa = PBXBuildFile; fileRef = 2178B36A1B98BEAE00B9D86B /* thread.h */; };
+		218EE9661B9AE73300960009 /* finder.h in Headers */ = {isa = PBXBuildFile; fileRef = 218EE9651B9AE73300960009 /* finder.h */; };
 		21EA96CD1B990AF800E00841 /* cluster_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 21EA96CA1B990AF800E00841 /* cluster_internal.h */; };
 		21EA96CE1B990AF800E00841 /* cluster_list.c in Sources */ = {isa = PBXBuildFile; fileRef = 21EA96CB1B990AF800E00841 /* cluster_list.c */; };
 		21EA96CF1B990AF800E00841 /* cluster.c in Sources */ = {isa = PBXBuildFile; fileRef = 21EA96CC1B990AF800E00841 /* cluster.c */; };
@@ -47,7 +48,7 @@
 		211E45C91B98154A00CF0088 /* client.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = client.h; path = ../../../include/round/client.h; sourceTree = "<group>"; };
 		211E45CC1B98157400CF0088 /* client.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = client.c; path = ../../../src/round/client.c; sourceTree = "<group>"; };
 		211E45CF1B9816F300CF0088 /* client_internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = client_internal.h; path = ../../../src/round/client_internal.h; sourceTree = "<group>"; };
-		211E45D51B98192600CF0088 /* finder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = finder.h; path = ../../../src/round/finder.h; sourceTree = "<group>"; };
+		211E45D51B98192600CF0088 /* finder_internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = finder_internal.h; path = ../../../src/round/finder_internal.h; sourceTree = "<group>"; };
 		211E45D61B98192600CF0088 /* finder.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = finder.c; path = ../../../src/round/finder.c; sourceTree = "<group>"; };
 		211E45D91B981A6300CF0088 /* typedef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = typedef.h; path = ../../../include/round/typedef.h; sourceTree = "<group>"; };
 		212ADD881A8D4F000054EC0F /* liblibround.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblibround.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -59,6 +60,7 @@
 		2178B3681B98BEAE00B9D86B /* thread_list.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = thread_list.c; path = ../../../src/round/util/thread_list.c; sourceTree = "<group>"; };
 		2178B3691B98BEAE00B9D86B /* thread.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = thread.c; path = ../../../src/round/util/thread.c; sourceTree = "<group>"; };
 		2178B36A1B98BEAE00B9D86B /* thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = thread.h; path = ../../../src/round/util/thread.h; sourceTree = "<group>"; };
+		218EE9651B9AE73300960009 /* finder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = finder.h; path = ../../../include/round/finder.h; sourceTree = "<group>"; };
 		21EA96CA1B990AF800E00841 /* cluster_internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cluster_internal.h; path = ../../../src/round/cluster_internal.h; sourceTree = "<group>"; };
 		21EA96CB1B990AF800E00841 /* cluster_list.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = cluster_list.c; path = ../../../src/round/cluster_list.c; sourceTree = "<group>"; };
 		21EA96CC1B990AF800E00841 /* cluster.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = cluster.c; path = ../../../src/round/cluster.c; sourceTree = "<group>"; };
@@ -95,8 +97,9 @@
 		211E45C81B98153200CF0088 /* round */ = {
 			isa = PBXGroup;
 			children = (
-				21F6D9B41B99857700714056 /* round.h */,
 				21F6D9A01B99840B00714056 /* script */,
+				218EE9651B9AE73300960009 /* finder.h */,
+				21F6D9B41B99857700714056 /* round.h */,
 				21F6D9A71B99844200714056 /* script.h */,
 				21EA96DA1B990CF400E00841 /* node.h */,
 				21EA96D01B990B1100E00841 /* cluster.h */,
@@ -113,7 +116,7 @@
 				21F6D9A91B99848000714056 /* script */,
 				21F6D9AE1B99848000714056 /* script_engine.c */,
 				2178B3631B98BE7B00B9D86B /* util */,
-				211E45D51B98192600CF0088 /* finder.h */,
+				211E45D51B98192600CF0088 /* finder_internal.h */,
 				211E45D61B98192600CF0088 /* finder.c */,
 				211E45CF1B9816F300CF0088 /* client_internal.h */,
 				211E45CC1B98157400CF0088 /* client.c */,
@@ -221,9 +224,10 @@
 				2178B3711B98BEAE00B9D86B /* thread.h in Headers */,
 				21F6D9A81B99844200714056 /* script.h in Headers */,
 				21EA96D71B990C3B00E00841 /* node_internal.h in Headers */,
-				211E45D71B98192600CF0088 /* finder.h in Headers */,
+				211E45D71B98192600CF0088 /* finder_internal.h in Headers */,
 				21F6D9A61B99840B00714056 /* ruby.h in Headers */,
 				21EA96CD1B990AF800E00841 /* cluster_internal.h in Headers */,
+				218EE9661B9AE73300960009 /* finder.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

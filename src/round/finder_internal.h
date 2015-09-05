@@ -8,8 +8,8 @@
  *
  ******************************************************************/
 
-#ifndef _ROUNDC_FINDER__H_
-#define _ROUNDC_FINDER__H_
+#ifndef _ROUNDC_FINDER_INTERNAL_H_
+#define _ROUNDC_FINDER_INTERNAL_H_
 
 #include <round/typedef.h>
 #include <round/const.h>
@@ -27,21 +27,19 @@ extern "C" {
 typedef struct {
   mUpnpControlPoint *cp;
 } RoundFinder;
+
+/****************************************
+ * Public Header
+ ****************************************/
+  
+#include <round/node.h>
   
 /****************************************
  * Function
  ****************************************/
   
-RoundFinder *round_finder_new(void);
-bool round_finder_delete(RoundFinder *finder);
-
-bool round_finder_start(RoundFinder *finder);
-bool round_finder_stop(RoundFinder *finder);
-
-bool round_finder_search(RoundFinder *finder);
-
 #ifdef  __cplusplus
 } /* extern C */
 #endif
 
-#endif /* _ROUNDC_FINDER__H_ */
+#endif /* _ROUNDC_FINDER_INTERNAL_H_ */
