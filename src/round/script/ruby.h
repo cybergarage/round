@@ -11,9 +11,15 @@
 #ifndef _ROUNDC_RUBY_ENGINE_H_
 #define _ROUNDC_RUBY_ENGINE_H_
 
-#include <round/script.h>
+#include <round/script_internal.h>
 
-#if defined(ROUND_SUPPORT_MRUBY)
+#if defined(ROUND_SUPPORT_RUBY)
+#if defined(__APPLE__)
+#include <Ruby/ruby.h>
+#else
+#include <ruby.h>
+#endif
+#elif defined(ROUND_SUPPORT_MRUBY)
 #include <mruby.h>
 #endif
 

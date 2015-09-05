@@ -32,7 +32,10 @@ RoundRubyEngine *round_ruby_engine_new()
     return NULL;
   }
  
-#if defined(ROUND_SUPPORT_MRUBY)
+#if defined(ROUND_SUPPORT_RUBY)
+  ruby_init();
+  ruby_init_loadpath();
+#elif defined(ROUND_SUPPORT_MRUBY)
   rubyEngine->mrb = mrb_open() ;
 #endif
   
@@ -46,8 +49,10 @@ RoundRubyEngine *round_ruby_engine_new()
 bool round_ruby_engine_delete(RoundRubyEngine *rubyEngine) {
   if (!rubyEngine)
     return false;
-  
-#if defined(ROUND_SUPPORT_MRUBY)
+
+#if defined(ROUND_SUPPORT_RUBY)
+  ruby_cleanup(0);
+#elif defined(ROUND_SUPPORT_MRUBY)
   mrb_close(rubyEngine->mrb);
 #endif
   

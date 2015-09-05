@@ -10,8 +10,9 @@
 
 #include <boost/test/unit_test.hpp>
 #include <string>
-#include <round/round.h>
+#include <round/script/js.h>
 
+#if defined(ROUND_SUPPORT_JS_SM)
 
 BOOST_AUTO_TEST_CASE(JavaScriptEngineTest) {
   #define SCRIPT_ECHO_LOOP 10
@@ -33,3 +34,5 @@ BOOST_AUTO_TEST_CASE(JavaScriptEngineTest) {
   
   BOOST_CHECK(round_js_engine_delete(jsEngine));
 }
+
+#endif
