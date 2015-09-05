@@ -115,17 +115,21 @@ bool round_ruby_engine_run(RoundRubyEngine *rubyEngine, const char *source, cons
   return false;
 }
 
+/****************************************
+ * round_ruby_engine_run
+ ****************************************/
+
 bool round_ruby_engine_run_code(RoundRubyEngine *rubyEngine, const char *code) {
-#if defined(ROUND_SUPPORT_MRUBY)
-#endif
-  
   if (!rubyEngine)
     return false;
-  
-#if defined(ROUND_SUPPORT_MRUBY)
+
+#if defined(ROUND_SUPPORT_RUBY)
+  ruby_cleanup(0);
+  return true;
+#elif defined(ROUND_SUPPORT_MRUBY)
   mrb_load_string(rubyEngine->mrb, code);
   return true;
-#else
-  return false;
 #endif
+
+  return false;
 }
