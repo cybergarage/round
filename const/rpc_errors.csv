@@ -1,0 +1,23 @@
+# Copyright 2015 Satoshi Konno. All rights reserved.
+# Use of this source code is governed by a BSD-style
+# license that can be found in the LICENSE file.
+
+error_code_unknown,0,"Unknown Error"
+error_code_parser_error,-32700,"Parse error"
+error_code_invalid_qequest,-32600,"Invalid Request"
+error_code_method_not_found,-32601,"Method not found"
+error_code_invalid_params,-32602,"Invalid params"
+error_code_internal_error,-32603,"Internal error"
+
+error_code_bad_destination,-32000,"Bad Destination"
+error_code_moved_permanently,-32001,"Moved Permanently"
+
+error_code_condition_failed,-32010,"Condition Failed"
+
+error_code_script_engine_internal_error,-32020,"Script Engine Internal Error"
+error_code_script_engine_not_found,-32021,"Script Engine Not Found"
+error_code_script_compile_error,-32022,"Script Compile Error"
+error_code_script_runtime_error,-32023,"Script Runtime Error"
+
+error_code_server_error_max,-32000,""
+error_code_server_error_min,-32099,""
