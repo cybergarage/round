@@ -9,9 +9,9 @@
 ##################################################################
 
 #if HAVE_LIBTOOL
-#lib_LTLIBRARIES = libroundclient.la
+#lib_LTLIBRARIES = libround.la
 #else
-lib_LIBRARIES = libroundclient.a
+lib_LIBRARIES = libround.a
 #endif
 
 AM_CFLAGS = -I$(top_builddir)/include -I$(top_builddir)/src
@@ -35,11 +35,11 @@ round_mpi_sources = \
 	../../src/round/util/thread_list.c
 
 #if HAVE_LIBTOOL
-#libroundclient_la_SOURCES = \
+#libround_la_SOURCES = \
 #        $(uecho_source)
-#libroundclient_la_CFLAGS = $(AM_CFLAGS)
+#libround_la_CFLAGS = $(AM_CFLAGS)
 #else
-libroundclient_a_SOURCES = \
+libround_a_SOURCES = \
         $(round_mpi_sources)
-libroundclient_a_CFLAGS = $(AM_CFLAGS)
+libround_a_CFLAGS = $(AM_CFLAGS)
 #endif

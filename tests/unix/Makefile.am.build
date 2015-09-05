@@ -10,7 +10,7 @@ print<<HEADER;
 #
 ##################################################################
 
-noinst_PROGRAMS = roundclienttest
+noinst_PROGRAMS = roundtest
 
 AM_CPPFLAGS = -I\$(top_srcdir)/include -I\$(top_srcdir)/src -I../
 
@@ -27,7 +27,7 @@ print join(" \\\n", @include_files) . "\n";
 
 print<<SOURCES;
 
-roundclienttest_SOURCES = \\
+roundtest_SOURCES = \\
 SOURCES
 
 my @find_files = `find ../ -name *.cpp -or -name *.c`;
@@ -41,9 +41,9 @@ print join(" \\\n", @source_files) . "\n";
 
 print<<FOTTER;
 #if HAVE_LIBTOOL
-#roundclienttest_LDADD = \@CURL_LIBS\@ \@XML_LIBS\@ ../../lib/unix/libroundclient.la
+#roundtest_LDADD = \@HTTP_LIBS\@ \@XML_LIBS\@ ../../lib/unix/libround.la
 #else
-roundclienttest_LDADD = \@CURL_LIBS\@ \@XML_LIBS\@ ../../lib/unix/libroundclient.a
+roundtest_LDADD = \@HTTP_LIBS\@ \@XML_LIBS\@ ../../lib/unix/libround.a
 #endif
 FOTTER
 
