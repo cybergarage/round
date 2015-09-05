@@ -5,6 +5,12 @@
 # System constants
 system_trigger_timer_precision,0.1
 
+# Finder (UPnP)
+finder_upnp_device_type,"urn:cybergarage-org:device:round:1"
+finder_upnp_service_type,"urn:cybergarage-org:service:round:1"
+finder_upnp_action_getproductinfo,"GetProductInfo"
+finder_upnp_action_getconnectioninfo,"GetConnectionInfo"
+
 # HTTP Server
 rpc_http_endpoint,"/rpc"
 rpc_http_content_type,"application/json"
