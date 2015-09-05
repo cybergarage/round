@@ -10,7 +10,9 @@
 
 #include <boost/test/unit_test.hpp>
 #include <string>
-#include <round/round.h>
+#include <round/script/lua.h>
+
+#if defined(ROUND_SUPPORT_LUA)
 
 BOOST_AUTO_TEST_CASE(LuaEngineTest) {
   #define SCRIPT_ECHO_LOOP 10
@@ -37,3 +39,5 @@ BOOST_AUTO_TEST_CASE(LuaEngineTest) {
   
   BOOST_CHECK(round_lua_engine_delete(luaEngine));
 }
+
+#endif

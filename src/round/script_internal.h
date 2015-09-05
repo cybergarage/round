@@ -8,8 +8,8 @@
  *
  ******************************************************************/
 
-#ifndef _ROUNDC_SCRIPT_ENGINE_H_
-#define _ROUNDC_SCRIPT_ENGINE_H_
+#ifndef _ROUNDC_SCRIPT_INTERNAL_H_
+#define _ROUNDC_SCRIPT_INTERNAL_H_
 
 #ifdef HAVE_CONFIG_H
 #  include "config.h"
@@ -21,14 +21,16 @@
 #ifdef  __cplusplus
 extern "C" {
 #endif
-  
+
 /****************************************
  * Data Type
  ****************************************/
-  
-#if !defined(_ROUNDC_SCRIPT_INTERNAL_H_)
-  typedef void RoundScriptEngine;
-#endif
+
+typedef struct _RoundScriptEngine {
+  RoundMutex *mutex;
+  char *result;
+  char *error;
+} RoundScriptEngine;
 
 /****************************************
  * Function
