@@ -14,7 +14,8 @@
 * round_js_engine_new
 ****************************************/
 
-RoundJavaScriptEngine *round_js_engine_new() {
+RoundJavaScriptEngine *round_js_engine_new()
+{
   RoundJavaScriptEngine *jsEngine;
   
   jsEngine = (RoundJavaScriptEngine *)calloc(1, sizeof(RoundJavaScriptEngine));

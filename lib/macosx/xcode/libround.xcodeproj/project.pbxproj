@@ -13,6 +13,8 @@
 		211E45D71B98192600CF0088 /* finder_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 211E45D51B98192600CF0088 /* finder_internal.h */; };
 		211E45D81B98192600CF0088 /* finder.c in Sources */ = {isa = PBXBuildFile; fileRef = 211E45D61B98192600CF0088 /* finder.c */; };
 		211E45DA1B981A6300CF0088 /* typedef.h in Headers */ = {isa = PBXBuildFile; fileRef = 211E45D91B981A6300CF0088 /* typedef.h */; };
+		212A95451B9BCA4200EC9A71 /* script_manager.c in Sources */ = {isa = PBXBuildFile; fileRef = 212A95431B9BCA4200EC9A71 /* script_manager.c */; };
+		212A95461B9BCA4200EC9A71 /* script.c in Sources */ = {isa = PBXBuildFile; fileRef = 212A95441B9BCA4200EC9A71 /* script.c */; };
 		2178B3621B98986200B9D86B /* const.h in Headers */ = {isa = PBXBuildFile; fileRef = 2178B3611B98986200B9D86B /* const.h */; };
 		2178B36B1B98BEAE00B9D86B /* list.c in Sources */ = {isa = PBXBuildFile; fileRef = 2178B3641B98BEAE00B9D86B /* list.c */; };
 		2178B36C1B98BEAE00B9D86B /* list.h in Headers */ = {isa = PBXBuildFile; fileRef = 2178B3651B98BEAE00B9D86B /* list.h */; };
@@ -37,7 +39,6 @@
 		21EA96DB1B990CF400E00841 /* node.h in Headers */ = {isa = PBXBuildFile; fileRef = 21EA96DA1B990CF400E00841 /* node.h */; };
 		21EAA2A51B9931B10002CFF0 /* strings.h in Headers */ = {isa = PBXBuildFile; fileRef = 21EAA2A31B9931B10002CFF0 /* strings.h */; };
 		21EAA2A61B9931B10002CFF0 /* strings.c in Sources */ = {isa = PBXBuildFile; fileRef = 21EAA2A41B9931B10002CFF0 /* strings.c */; };
-		21F6D9A81B99844200714056 /* script.h in Headers */ = {isa = PBXBuildFile; fileRef = 21F6D9A71B99844200714056 /* script.h */; };
 		21F6D9AF1B99848000714056 /* js_engine.c in Sources */ = {isa = PBXBuildFile; fileRef = 21F6D9AA1B99848000714056 /* js_engine.c */; };
 		21F6D9B01B99848000714056 /* js_sm_engine.c in Sources */ = {isa = PBXBuildFile; fileRef = 21F6D9AB1B99848000714056 /* js_sm_engine.c */; };
 		21F6D9B11B99848000714056 /* lua_engine.c in Sources */ = {isa = PBXBuildFile; fileRef = 21F6D9AC1B99848000714056 /* lua_engine.c */; };
@@ -53,6 +54,8 @@
 		211E45D51B98192600CF0088 /* finder_internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = finder_internal.h; path = ../../../src/round/finder_internal.h; sourceTree = "<group>"; };
 		211E45D61B98192600CF0088 /* finder.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = finder.c; path = ../../../src/round/finder.c; sourceTree = "<group>"; };
 		211E45D91B981A6300CF0088 /* typedef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = typedef.h; path = ../../../include/round/typedef.h; sourceTree = "<group>"; };
+		212A95431B9BCA4200EC9A71 /* script_manager.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = script_manager.c; path = ../../../src/round/script_manager.c; sourceTree = "<group>"; };
+		212A95441B9BCA4200EC9A71 /* script.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = script.c; path = ../../../src/round/script.c; sourceTree = "<group>"; };
 		212ADD881A8D4F000054EC0F /* liblibround.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblibround.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		2178B3611B98986200B9D86B /* const.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = const.h; path = ../../../include/round/const.h; sourceTree = "<group>"; };
 		2178B3641B98BEAE00B9D86B /* list.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = list.c; path = ../../../src/round/util/list.c; sourceTree = "<group>"; };
@@ -78,7 +81,6 @@
 		21EA96DA1B990CF400E00841 /* node.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = node.h; path = ../../../include/round/node.h; sourceTree = "<group>"; };
 		21EAA2A31B9931B10002CFF0 /* strings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = strings.h; path = ../../../src/round/util/strings.h; sourceTree = "<group>"; };
 		21EAA2A41B9931B10002CFF0 /* strings.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = strings.c; path = ../../../src/round/util/strings.c; sourceTree = "<group>"; };
-		21F6D9A71B99844200714056 /* script.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = script.h; path = ../../../include/round/script.h; sourceTree = "<group>"; };
 		21F6D9AA1B99848000714056 /* js_engine.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = js_engine.c; sourceTree = "<group>"; };
 		21F6D9AB1B99848000714056 /* js_sm_engine.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = js_sm_engine.c; sourceTree = "<group>"; };
 		21F6D9AC1B99848000714056 /* lua_engine.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lua_engine.c; sourceTree = "<group>"; };
@@ -104,7 +106,6 @@
 			children = (
 				218EE9651B9AE73300960009 /* finder.h */,
 				21F6D9B41B99857700714056 /* round.h */,
-				21F6D9A71B99844200714056 /* script.h */,
 				21EA96DA1B990CF400E00841 /* node.h */,
 				21EA96D01B990B1100E00841 /* cluster.h */,
 				2178B3611B98986200B9D86B /* const.h */,
@@ -131,6 +132,8 @@
 				21EA96D61B990C3B00E00841 /* node.c */,
 				219A8E2C1B9AF607004ED802 /* script_internal.h */,
 				21F6D9AE1B99848000714056 /* script_engine.c */,
+				212A95431B9BCA4200EC9A71 /* script_manager.c */,
+				212A95441B9BCA4200EC9A71 /* script.c */,
 			);
 			name = round;
 			sourceTree = "<group>";
@@ -220,7 +223,6 @@
 				21F6D9B51B99857700714056 /* round.h in Headers */,
 				2178B36C1B98BEAE00B9D86B /* list.h in Headers */,
 				2178B3711B98BEAE00B9D86B /* thread.h in Headers */,
-				21F6D9A81B99844200714056 /* script.h in Headers */,
 				21EA96D71B990C3B00E00841 /* node_internal.h in Headers */,
 				211E45D71B98192600CF0088 /* finder_internal.h in Headers */,
 				219A8E2D1B9AF607004ED802 /* script_internal.h in Headers */,
@@ -287,6 +289,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				21F6D9B11B99848000714056 /* lua_engine.c in Sources */,
+				212A95451B9BCA4200EC9A71 /* script_manager.c in Sources */,
 				21EA96D91B990C3B00E00841 /* node.c in Sources */,
 				2178B36B1B98BEAE00B9D86B /* list.c in Sources */,
 				21F6D9AF1B99848000714056 /* js_engine.c in Sources */,
@@ -295,6 +298,7 @@
 				211E45D81B98192600CF0088 /* finder.c in Sources */,
 				2178B36F1B98BEAE00B9D86B /* thread_list.c in Sources */,
 				21EA96D81B990C3B00E00841 /* node_list.c in Sources */,
+				212A95461B9BCA4200EC9A71 /* script.c in Sources */,
 				2178B36D1B98BEAE00B9D86B /* mutex.c in Sources */,
 				21F6D9B31B99848000714056 /* script_engine.c in Sources */,
 				2178B3701B98BEAE00B9D86B /* thread.c in Sources */,
