@@ -8,37 +8,37 @@
  *
  ******************************************************************/
 
-#include <round/node_internal.h>
+#include <round/script_internal.h>
 
 /****************************************
-* round_nodelist_new
+* round_scriptlist_new
 ****************************************/
 
-RoundNodeList *round_nodelist_new(void)
+RoundScriptList *round_scriptlist_new(void)
 {
-  RoundNodeList *nodeses;
+  RoundScriptList *scriptses;
 
-  nodeses = (RoundNodeList *)malloc(sizeof(RoundNodeList));
-  if (!nodeses)
+  scriptses = (RoundScriptList *)malloc(sizeof(RoundScriptList));
+  if (!scriptses)
     return NULL;
 
-  round_list_header_init((RoundList *)nodeses);
+  round_list_header_init((RoundList *)scriptses);
 
-  return nodeses;
+  return scriptses;
 }
 
 /****************************************
-* round_nodelist_delete
+* round_scriptlist_delete
 ****************************************/
 
-bool round_nodelist_delete(RoundNodeList *nodeses)
+bool round_scriptlist_delete(RoundScriptList *scriptses)
 {
-  if (!nodeses)
+  if (!scriptses)
     return false;
   
-  round_nodelist_clear(nodeses);
+  round_scriptlist_clear(scriptses);
 
-  free(nodeses);
-  
+  free(scriptses);
+
   return true;
 }

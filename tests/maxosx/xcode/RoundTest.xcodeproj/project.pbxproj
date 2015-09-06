@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		211E45D21B98188600CF0088 /* ClientTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 211E45D11B98188600CF0088 /* ClientTest.cpp */; };
 		211E45D41B9818E300CF0088 /* FinderTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 211E45D31B9818E300CF0088 /* FinderTest.cpp */; };
+		212A954B1B9BD1A400EC9A71 /* ScriptListTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 212A95491B9BD1A400EC9A71 /* ScriptListTest.cpp */; };
+		212A954C1B9BD1A400EC9A71 /* ScriptManagerTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 212A954A1B9BD1A400EC9A71 /* ScriptManagerTest.cpp */; };
+		212A954E1B9BD24700EC9A71 /* ScriptTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 212A954D1B9BD24700EC9A71 /* ScriptTest.cpp */; };
 		2137D3F11B998AEF00652E68 /* liblibround.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2137D3EE1B998ADD00652E68 /* liblibround.a */; };
 		2172C4C11B9AF3CB0032BE98 /* Ruby.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2172C4C01B9AF3CB0032BE98 /* Ruby.framework */; };
 		21A762ED1B96F82400D29732 /* RoundSdkTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21A762EC1B96F82400D29732 /* RoundSdkTest.cpp */; };
@@ -55,6 +58,9 @@
 		211E45BF1B9814FA00CF0088 /* libround.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libround.xcodeproj; path = ../../../lib/macosx/xcode/libround.xcodeproj; sourceTree = "<group>"; };
 		211E45D11B98188600CF0088 /* ClientTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ClientTest.cpp; path = ../../ClientTest.cpp; sourceTree = "<group>"; };
 		211E45D31B9818E300CF0088 /* FinderTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FinderTest.cpp; path = ../../FinderTest.cpp; sourceTree = "<group>"; };
+		212A95491B9BD1A400EC9A71 /* ScriptListTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ScriptListTest.cpp; path = ../../ScriptListTest.cpp; sourceTree = "<group>"; };
+		212A954A1B9BD1A400EC9A71 /* ScriptManagerTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ScriptManagerTest.cpp; path = ../../ScriptManagerTest.cpp; sourceTree = "<group>"; };
+		212A954D1B9BD24700EC9A71 /* ScriptTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ScriptTest.cpp; path = ../../ScriptTest.cpp; sourceTree = "<group>"; };
 		2172C4C01B9AF3CB0032BE98 /* Ruby.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Ruby.framework; path = System/Library/Frameworks/Ruby.framework; sourceTree = SDKROOT; };
 		21A762EC1B96F82400D29732 /* RoundSdkTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RoundSdkTest.cpp; path = ../../RoundSdkTest.cpp; sourceTree = "<group>"; };
 		21EA96DC1B99104E00E00841 /* ClusterListTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ClusterListTest.cpp; path = ../../ClusterListTest.cpp; sourceTree = "<group>"; };
@@ -124,6 +130,9 @@
 				211E45D31B9818E300CF0088 /* FinderTest.cpp */,
 				211E45D11B98188600CF0088 /* ClientTest.cpp */,
 				21A762EC1B96F82400D29732 /* RoundSdkTest.cpp */,
+				212A954D1B9BD24700EC9A71 /* ScriptTest.cpp */,
+				212A95491B9BD1A400EC9A71 /* ScriptListTest.cpp */,
+				212A954A1B9BD1A400EC9A71 /* ScriptManagerTest.cpp */,
 			);
 			name = Sources;
 			sourceTree = "<group>";
@@ -213,6 +222,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				21F6D99E1B9983A500714056 /* LuaEngineTest.cpp in Sources */,
+				212A954B1B9BD1A400EC9A71 /* ScriptListTest.cpp in Sources */,
+				212A954C1B9BD1A400EC9A71 /* ScriptManagerTest.cpp in Sources */,
 				211E45D21B98188600CF0088 /* ClientTest.cpp in Sources */,
 				211E45D41B9818E300CF0088 /* FinderTest.cpp in Sources */,
 				21F6D99F1B9983A500714056 /* RubyEngineTest.cpp in Sources */,
@@ -221,6 +232,7 @@
 				21F6D99D1B9983A500714056 /* JsEngineTest.cpp in Sources */,
 				21EA96E21B99105E00E00841 /* NodeListTest.cpp in Sources */,
 				21A762ED1B96F82400D29732 /* RoundSdkTest.cpp in Sources */,
+				212A954E1B9BD24700EC9A71 /* ScriptTest.cpp in Sources */,
 				21EA96DF1B99104E00E00841 /* ClusterTest.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

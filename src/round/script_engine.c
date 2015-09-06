@@ -15,16 +15,16 @@
 * round_script_engine_init
 ****************************************/
 
-bool round_script_engine_init(RoundScriptEngine *eng) {
-  if (!eng)
+bool round_script_engine_init(RoundScriptEngine *engine) {
+  if (!engine)
     return false;
 
-  eng->result = NULL;
-  eng->error = NULL;
+  engine->result = NULL;
+  engine->error = NULL;
   
-  eng->mutex = round_mutex_new();
-  if (!eng->mutex) {
-    round_script_engine_delete(eng);
+  engine->mutex = round_mutex_new();
+  if (!engine->mutex) {
+    round_script_engine_delete(engine);
     return false;
   }
 
@@ -35,18 +35,18 @@ bool round_script_engine_init(RoundScriptEngine *eng) {
  * round_script_engine_clear
  ****************************************/
 
-bool round_script_engine_clear(RoundScriptEngine *eng) {
-  if (!eng)
+bool round_script_engine_clear(RoundScriptEngine *engine) {
+  if (!engine)
     return false;
   
-  if (eng->result) {
-    free(eng->result);
-    eng->result = NULL;
+  if (engine->result) {
+    free(engine->result);
+    engine->result = NULL;
   }
 
-  if (eng->error) {
-    free(eng->error);
-    eng->error = NULL;
+  if (engine->error) {
+    free(engine->error);
+    engine->error = NULL;
   }
 
   return true;
@@ -56,16 +56,16 @@ bool round_script_engine_clear(RoundScriptEngine *eng) {
  * round_script_engine_delete
  ****************************************/
 
-bool round_script_engine_delete(RoundScriptEngine *eng) {
-  if (!eng)
+bool round_script_engine_delete(RoundScriptEngine *engine) {
+  if (!engine)
     return false;
   
-  if (!round_script_engine_clear(eng))
+  if (!round_script_engine_clear(engine))
     return false;
   
-  if (eng->mutex) {
-    round_mutex_delete(eng->mutex);
-    eng->mutex = NULL;
+  if (engine->mutex) {
+    round_mutex_delete(engine->mutex);
+    engine->mutex = NULL;
   }
 
   return true;
@@ -75,58 +75,58 @@ bool round_script_engine_delete(RoundScriptEngine *eng) {
  * round_script_engine_setresult
  ****************************************/
 
-bool round_script_engine_setresult(RoundScriptEngine *eng, const char *value) {
-  if (!eng)
+bool round_script_engine_setresult(RoundScriptEngine *engine, const char *value) {
+  if (!engine)
     return false;
-  return round_strloc(value, &eng->result);
+  return round_strloc(value, &engine->result);
 }
 
 /****************************************
  * round_script_engine_getresult
  ****************************************/
 
-const char *round_script_engine_getresult(RoundScriptEngine *eng) {
-  if (!eng)
+const char *round_script_engine_getresult(RoundScriptEngine *engine) {
+  if (!engine)
     return NULL;
-  return eng->result;
+  return engine->result;
 }
 
 /****************************************
  * round_script_engine_seterror
  ****************************************/
 
-bool round_script_engine_seterror(RoundScriptEngine *eng, const char *value) {
-  if (!eng)
+bool round_script_engine_seterror(RoundScriptEngine *engine, const char *value) {
+  if (!engine)
     return false;
-  return round_strloc(value, &eng->error);
+  return round_strloc(value, &engine->error);
 }
 
 /****************************************
  * round_script_engine_geterror
  ****************************************/
 
-const char *round_script_engine_geterror(RoundScriptEngine *eng) {
-  if (!eng)
+const char *round_script_engine_geterror(RoundScriptEngine *engine) {
+  if (!engine)
     return NULL;
-  return eng->error;
+  return engine->error;
 }
 
 /****************************************
  * round_script_engine_lock
  ****************************************/
 
-bool round_script_engine_lock(RoundScriptEngine *eng) {
-  if (!eng)
+bool round_script_engine_lock(RoundScriptEngine *engine) {
+  if (!engine)
     return false;
-  return round_mutex_lock(eng->mutex);
+  return round_mutex_lock(engine->mutex);
 }
 
 /****************************************
  * round_script_engine_unlock
  ****************************************/
 
-bool round_script_engine_unlock(RoundScriptEngine *eng) {
-  if (!eng)
+bool round_script_engine_unlock(RoundScriptEngine *engine) {
+  if (!engine)
     return false;
-  return round_mutex_unlock(eng->mutex);
+  return round_mutex_unlock(engine->mutex);
 }
