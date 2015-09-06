@@ -26,28 +26,52 @@ extern "C" {
  * Data Type
  ****************************************/
 
-typedef struct _RoundScriptEngine {
+typedef struct {
+  RoundMutex *mutex;
+  char *result;
+  char *error;
+} RoundScript;
+
+typedef struct {
   RoundMutex *mutex;
   char *result;
   char *error;
 } RoundScriptEngine;
 
+typedef struct {
+  RoundMutex *mutex;
+} RoundScriptManager;
+
 /****************************************
- * Function
+ * Function (Script)
  ****************************************/
-
-bool round_script_engine_init(RoundScriptEngine *scriptEngine);
-bool round_script_engine_clear(RoundScriptEngine *scriptEngine);
-bool round_script_engine_delete(RoundScriptEngine *scriptEngine);
-bool round_script_engine_lock(RoundScriptEngine *scriptEngine);
-bool round_script_engine_unlock(RoundScriptEngine *scriptEngine);
   
-bool round_script_engine_setresult(RoundScriptEngine *scriptEngine, const char *value);
-const char *round_script_engine_getresult(RoundScriptEngine *scriptEngine);
-
-bool round_script_engine_seterror(RoundScriptEngine *scriptEngine, const char *value);
-const char *round_script_engine_geterror(RoundScriptEngine *scriptEngine);
-
+RoundScript *round_script_new();
+bool round_script_delete(RoundScript *scr);
+  
+/****************************************
+ * Function (Script Engine)
+ ****************************************/
+  
+bool round_script_engine_init(RoundScriptEngine *eng);
+bool round_script_engine_clear(RoundScriptEngine *eng);
+bool round_script_engine_delete(RoundScriptEngine *eng);
+bool round_script_engine_lock(RoundScriptEngine *eng);
+bool round_script_engine_unlock(RoundScriptEngine *eng);
+  
+bool round_script_engine_setresult(RoundScriptEngine *engine, const char *value);
+const char *round_script_engine_getresult(RoundScriptEngine *eng);
+  
+bool round_script_engine_seterror(RoundScriptEngine *engine, const char *value);
+const char *round_script_engine_geterror(RoundScriptEngine *eng);
+  
+/****************************************
+ * Function (Script Manager)
+ ****************************************/
+  
+RoundScriptManager *round_script_manager_new();
+bool round_script_manager_delete(RoundScriptManager *mgr);
+  
 #ifdef  __cplusplus
 }
 #endif
