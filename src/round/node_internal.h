@@ -45,7 +45,7 @@ typedef struct _RoundNode {
  ****************************************/
   
 RoundNodeList *round_nodelist_new(void);
-void round_nodelist_delete(RoundNodeList *nodes);
+bool round_nodelist_delete(RoundNodeList *nodes);
   
 #define round_nodelist_clear(nodes) round_list_clear((RoundList *)nodes, (ROUND_LIST_DESTRUCTORFUNC)round_node_delete)
 #define round_nodelist_size(nodes) round_list_size((RoundList *)nodes)

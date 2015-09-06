@@ -15,6 +15,7 @@
 		211E45DA1B981A6300CF0088 /* typedef.h in Headers */ = {isa = PBXBuildFile; fileRef = 211E45D91B981A6300CF0088 /* typedef.h */; };
 		212A95451B9BCA4200EC9A71 /* script_manager.c in Sources */ = {isa = PBXBuildFile; fileRef = 212A95431B9BCA4200EC9A71 /* script_manager.c */; };
 		212A95461B9BCA4200EC9A71 /* script.c in Sources */ = {isa = PBXBuildFile; fileRef = 212A95441B9BCA4200EC9A71 /* script.c */; };
+		212A95481B9BD09700EC9A71 /* script_list.c in Sources */ = {isa = PBXBuildFile; fileRef = 212A95471B9BD09700EC9A71 /* script_list.c */; };
 		2178B3621B98986200B9D86B /* const.h in Headers */ = {isa = PBXBuildFile; fileRef = 2178B3611B98986200B9D86B /* const.h */; };
 		2178B36B1B98BEAE00B9D86B /* list.c in Sources */ = {isa = PBXBuildFile; fileRef = 2178B3641B98BEAE00B9D86B /* list.c */; };
 		2178B36C1B98BEAE00B9D86B /* list.h in Headers */ = {isa = PBXBuildFile; fileRef = 2178B3651B98BEAE00B9D86B /* list.h */; };
@@ -56,6 +57,7 @@
 		211E45D91B981A6300CF0088 /* typedef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = typedef.h; path = ../../../include/round/typedef.h; sourceTree = "<group>"; };
 		212A95431B9BCA4200EC9A71 /* script_manager.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = script_manager.c; path = ../../../src/round/script_manager.c; sourceTree = "<group>"; };
 		212A95441B9BCA4200EC9A71 /* script.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = script.c; path = ../../../src/round/script.c; sourceTree = "<group>"; };
+		212A95471B9BD09700EC9A71 /* script_list.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = script_list.c; path = ../../../src/round/script_list.c; sourceTree = "<group>"; };
 		212ADD881A8D4F000054EC0F /* liblibround.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblibround.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		2178B3611B98986200B9D86B /* const.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = const.h; path = ../../../include/round/const.h; sourceTree = "<group>"; };
 		2178B3641B98BEAE00B9D86B /* list.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = list.c; path = ../../../src/round/util/list.c; sourceTree = "<group>"; };
@@ -134,6 +136,7 @@
 				21F6D9AE1B99848000714056 /* script_engine.c */,
 				212A95431B9BCA4200EC9A71 /* script_manager.c */,
 				212A95441B9BCA4200EC9A71 /* script.c */,
+				212A95471B9BD09700EC9A71 /* script_list.c */,
 			);
 			name = round;
 			sourceTree = "<group>";
@@ -289,6 +292,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				21F6D9B11B99848000714056 /* lua_engine.c in Sources */,
+				212A95481B9BD09700EC9A71 /* script_list.c in Sources */,
 				212A95451B9BCA4200EC9A71 /* script_manager.c in Sources */,
 				21EA96D91B990C3B00E00841 /* node.c in Sources */,
 				2178B36B1B98BEAE00B9D86B /* list.c in Sources */,
