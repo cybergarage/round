@@ -18,7 +18,7 @@
 #include <round/typedef.h>
 #include <round/util/mutex.h>
 #include <round/util/strings.h>
-#include <round/util/list.h>
+#include <round/util/map.h>
 
 #ifdef  __cplusplus
 extern "C" {
@@ -28,34 +28,31 @@ extern "C" {
  * Data Type
  ****************************************/
 
-typedef struct _RoundScript {
-  bool headFlag;
-  struct _RoundScript *prev;
-  struct _RoundScript *next;
-
+typedef struct {
   char *lang;
   char *name;
   byte *code;
   size_t codeSize;
-} RoundScript, RoundScriptList;
+} RoundScript;
 
-typedef struct _RoundScriptEngine {
-  bool headFlag;
-  struct _RoundScriptEngine *prev;
-  struct _RoundScriptEngine *next;
-  
+typedef RoundMap RoundScriptMap;
+
+typedef struct {
   RoundMutex *mutex;
   char *lang;
   char *result;
   char *error;
-} RoundScriptEngine, RoundScriptEngineList;
+} RoundScriptEngine;
+
+typedef RoundMap RoundScriptEngineMap;
 
 typedef struct {
   RoundMutex *mutex;
-  RoundScriptList *scripts;
-  RoundScriptEngineList *engines;
+  RoundScriptMap *scriptMap;
+  RoundScriptEngineMap *engineMap;
 } RoundScriptManager;
 
+  
 /****************************************
  * Function (Script)
  ****************************************/
@@ -79,16 +76,14 @@ bool round_script_setcode(RoundScript *script, byte *code, size_t codeLen);
 bool round_script_isvalid(RoundScript *script);
   
 /****************************************
- * Function (Script List)
+ * Function (Script Map)
  ****************************************/
 
-RoundScriptList *round_scriptlist_new(void);
-bool round_scriptlist_delete(RoundScriptList *scripts);
-
-#define round_scriptlist_clear(scripts) round_list_clear((RoundList *)scripts, (ROUND_LIST_DESTRUCTORFUNC)round_script_delete)
-#define round_scriptlist_size(scripts) round_list_size((RoundList *)scripts)
-#define round_scriptlist_gets(scripts) (RoundScript *)round_list_next((RoundList *)scripts)
-#define round_scriptlist_add(scripts,script) round_list_add((RoundList *)scripts, (RoundList *)script)
+#define round_script_map_new() round_map_new()
+#define round_script_map_delete(map) round_map_delete(map)
+#define round_script_map_size(map) round_map_size(map)
+#define round_script_map_set(map, script) round_map_setobject(map, script->name, script)
+#define round_script_map_get(map, name) ((RoundScript*)round_map_getobjectbykey(map, name))
   
 /****************************************
  * Function (Script Engine)
@@ -111,16 +106,14 @@ bool round_script_engine_seterror(RoundScriptEngine *engine, const char *value);
 const char *round_script_engine_geterror(RoundScriptEngine *engine);
   
 /****************************************
- * Function (Script Engine List)
+ * Function (Script Engine Map)
  ****************************************/
   
-RoundScriptEngineList *round_script_enginelist_new(void);
-bool round_script_enginelist_delete(RoundScriptEngineList *nodes);
-  
-#define round_script_enginelist_clear(nodes) round_list_clear((RoundList *)nodes, (ROUND_LIST_DESTRUCTORFUNC)round_script_engine_delete)
-#define round_script_enginelist_size(nodes) round_list_size((RoundList *)nodes)
-#define round_script_enginelist_gets(nodes) (RoundScriptEngine *)round_list_next((RoundList *)nodes)
-#define round_script_enginelist_add(nodes,node) round_list_add((RoundList *)nodes, (RoundList *)node)
+#define round_script_engine_map_new() round_map_new()
+#define round_script_engine_map_delete(map) round_map_delete(map)
+#define round_script_engine_map_size(map) round_map_size(map)
+#define round_script_engine_map_set(map, eng) round_map_setobject(map, eng->lang, eng)
+#define round_script_engine_map_get(map, name) ((RoundEngine*)round_map_getobjectbykey(map, name))
 
 /****************************************
  * Function (Script Manager)

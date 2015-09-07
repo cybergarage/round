@@ -13,21 +13,21 @@
 #include "RoundTest.h"
 #include <round/script_internal.h>
 
-BOOST_AUTO_TEST_CASE(ScriptListAdd)
+BOOST_AUTO_TEST_CASE(ScriptListMap)
 {
-  RoundScriptList *scripts = round_scriptlist_new();
+  RoundScriptMap *map = round_script_map_new();
   
-  BOOST_CHECK(scripts);
-  BOOST_CHECK_EQUAL(0, round_scriptlist_size(scripts));
+  BOOST_CHECK(map);
+  BOOST_CHECK_EQUAL(0, round_script_map_size(map));
   
   RoundScript *script[ROUND_TEST_LIST_CNT];
   for (int n=0; n<ROUND_TEST_LIST_CNT; n++) {
     script[n] = round_script_new();
-    BOOST_CHECK(round_scriptlist_add(scripts, script[n]));
-    BOOST_CHECK_EQUAL((n+1), round_scriptlist_size(scripts));
+    BOOST_CHECK(round_script_map_set(map, script[n]));
+    BOOST_CHECK_EQUAL((n+1), round_script_map_size(map));
   }
   
-  BOOST_CHECK_EQUAL(ROUND_TEST_LIST_CNT, round_scriptlist_size(scripts));
+  BOOST_CHECK_EQUAL(ROUND_TEST_LIST_CNT, round_script_map_size(map));
   
-  BOOST_CHECK(round_scriptlist_delete(scripts));
+  BOOST_CHECK(round_script_map_delete(map));
 }

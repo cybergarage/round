@@ -125,10 +125,10 @@ size_t round_map_getkeycode(RoundMap *map, const char *key)
 }
 
 /****************************************
- * round_map_addobject
+ * round_map_addmapobject
  ****************************************/
 
-bool round_map_addobject(RoundMap *map, RoundMapObject *obj)
+bool round_map_addmapobject(RoundMap *map, RoundMapObject *obj)
 {
   char *key;
   size_t keyCode;
@@ -154,6 +154,27 @@ bool round_map_addobject(RoundMap *map, RoundMapObject *obj)
 }
 
 /****************************************
+ * round_map_addmapobject
+ ****************************************/
+
+bool round_map_setobject(RoundMap *map, const char *key, void *obj)
+{
+  RoundMapObject *mapObj;
+  
+  mapObj = round_map_object_new();
+  if (!obj)
+    return false;
+  
+  if (!key)
+    return false;
+  
+  round_map_object_setkey(mapObj, key);
+  round_map_object_setobject(mapObj, obj);
+  
+  return round_map_addmapobject(map, mapObj);
+}
+
+/****************************************
  * round_map_removeobjectbykey
  ****************************************/
 
@@ -164,7 +185,7 @@ bool round_map_removeobjectbykey(RoundMap *map, const char *key)
   if (!map || !key)
     return false;
   
-  obj = round_map_getobjectbykey(map, key);
+  obj = round_map_getmapobjectbykey(map, key);
   if (!obj)
     return false;
   
@@ -175,12 +196,12 @@ bool round_map_removeobjectbykey(RoundMap *map, const char *key)
 }
 
 /****************************************
- * round_map_getobjectbykey
+ * round_map_getmapobjectbykey
  ****************************************/
 
-RoundMapObject *round_map_getobjectbykey(RoundMap *map, const char *key)
+RoundMapObject *round_map_getmapobjectbykey(RoundMap *map, const char *key)
 {
-  RoundMapObject *obj;
+  RoundMapObject *mapObj;
   size_t keyCode;
   
   if (!map)
@@ -190,10 +211,27 @@ RoundMapObject *round_map_getobjectbykey(RoundMap *map, const char *key)
   if (!map->table[keyCode])
     return NULL;
   
-  for (obj = round_map_objectlist_gets(map->table[keyCode]); obj; obj = round_map_object_next(obj)) {
-    if (round_map_object_iskey(obj, key))
-      return obj;
+  for (mapObj = round_map_objectlist_gets(map->table[keyCode]); mapObj; mapObj = round_map_object_next(mapObj)) {
+    if (round_map_object_iskey(mapObj, key))
+      return mapObj;
   }
   
   return NULL;
 }
+
+/****************************************
+ * round_map_getobjectbykey
+ ****************************************/
+
+void *round_map_getobjectbykey(RoundMap *map, const char *key)
+{
+  RoundMapObject *mapObj;
+
+  mapObj = round_map_getmapobjectbykey(map, key);
+  if (!mapObj)
+    return NULL;
+  
+  return round_map_object_getobject(mapObj);
+}
+
+
