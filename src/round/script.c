@@ -23,8 +23,6 @@ RoundScript *round_script_new()
   if (!script)
     return NULL;
   
-  round_list_node_init((RoundList *)script);
-  
   script->name = NULL;
   script->lang = NULL;
   script->code = NULL;

@@ -23,8 +23,8 @@ RoundScriptManager *round_script_manager_new()
   if (!mgr)
     return NULL;
   
-  mgr->scripts = round_scriptlist_new();
-  mgr->engines = round_script_enginelist_new();
+  mgr->scriptMap  = round_script_map_new();
+  mgr->engineMap = round_script_engine_map_new();
   
   return mgr;  
 }
@@ -38,8 +38,8 @@ bool round_script_manager_delete(RoundScriptManager *mgr)
   if (!mgr)
     return false;
   
-  round_scriptlist_delete(mgr->scripts);
-  round_script_enginelist_delete(mgr->engines);
+  round_script_map_delete(mgr->scriptMap);
+  round_script_engine_map_delete(mgr->engineMap);
   
   free(mgr);
   
@@ -65,7 +65,7 @@ bool round_script_manager_addscript(RoundScriptManager *mgr, RoundScript *script
     round_script_remove(oldScript);
   }
 
-  return round_scriptlist_add(mgr->scripts, script);
+  return round_script_map_set(mgr->scriptMap, script);
 }
 
 /****************************************
@@ -74,14 +74,8 @@ bool round_script_manager_addscript(RoundScriptManager *mgr, RoundScript *script
 
 RoundScript *round_script_manager_getscriptbyname(RoundScriptManager *mgr, const char *name)
 {
-  RoundScript *script;
-  
   if (!mgr)
     return NULL;
   
-  for (script = round_scriptlist_gets(mgr->scripts); script; script = round_script_next(script)) {
-  
-  }
-  
-  return NULL;
+  return round_script_map_get(mgr->scriptMap, name);
 }

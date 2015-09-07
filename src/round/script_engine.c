@@ -23,8 +23,6 @@ RoundScriptEngine *round_script_engine_new()
   if (!engine)
     return NULL;
   
-  round_script_engine_init(engine);
-  
   return engine;
 }
 

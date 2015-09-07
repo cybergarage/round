@@ -28,7 +28,7 @@ BOOST_AUTO_TEST_CASE(MapNew)
     snprintf(key, sizeof(key), "%08X%08X", n, (ROUND_UTIL_MAP_TABLE_SIZE - n));
     mapObj = round_map_object_new();
     round_map_object_setkey(mapObj, key);
-    BOOST_CHECK(round_map_addobject(map, mapObj));
+    BOOST_CHECK(round_map_addmapobject(map, mapObj));
     BOOST_CHECK_EQUAL(round_map_size(map), (n+1));
   }
 
@@ -43,7 +43,7 @@ BOOST_AUTO_TEST_CASE(MapNew)
   
   for (int n=0; n<ROUND_UTIL_MAP_TABLE_SIZE; n++) {
     snprintf(key, sizeof(key), "%08X%08X", n, (ROUND_UTIL_MAP_TABLE_SIZE - n));
-    mapObj = round_map_getobjectbykey(map, key);
+    mapObj = round_map_getmapobjectbykey(map, key);
     BOOST_CHECK(mapObj);
   }
   
@@ -55,7 +55,7 @@ BOOST_AUTO_TEST_CASE(MapNew)
     snprintf(key, sizeof(key), "%08X%08X", n, (ROUND_UTIL_MAP_TABLE_SIZE - n));
     mapObj = round_map_object_new();
     round_map_object_setkey(mapObj, key);
-    BOOST_CHECK(round_map_addobject(map, mapObj));
+    BOOST_CHECK(round_map_addmapobject(map, mapObj));
     BOOST_CHECK_EQUAL(round_map_size(map), ROUND_UTIL_MAP_TABLE_SIZE);
   }
   
