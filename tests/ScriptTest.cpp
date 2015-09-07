@@ -16,5 +16,8 @@ BOOST_AUTO_TEST_CASE(ScriptNew)
 {
   RoundScript *sc = round_script_new();
   BOOST_CHECK(sc);
+  
+  BOOST_CHECK_EQUAL(round_script_isvalid(sc), false);
+  
   BOOST_CHECK(round_script_delete(sc));
 }

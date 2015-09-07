@@ -45,3 +45,43 @@ bool round_script_manager_delete(RoundScriptManager *mgr)
   
   return true;
 }
+
+/****************************************
+ * round_script_manager_delete
+ ****************************************/
+
+bool round_script_manager_addscript(RoundScriptManager *mgr, RoundScript *script)
+{
+  RoundScript *oldScript;
+  
+  if (!mgr)
+    return false;
+  
+  if (!round_script_isvalid(script))
+    return false;
+
+  oldScript = round_script_manager_getscriptbyname(mgr, round_script_getname(script));
+  if (oldScript) {
+    round_script_remove(oldScript);
+  }
+
+  return round_scriptlist_add(mgr->scripts, script);
+}
+
+/****************************************
+ * round_script_manager_getscriptbyname
+ ****************************************/
+
+RoundScript *round_script_manager_getscriptbyname(RoundScriptManager *mgr, const char *name)
+{
+  RoundScript *script;
+  
+  if (!mgr)
+    return NULL;
+  
+  //for (script = round_scriptlist_gets(mgr->scripts); script; script = round_script_next(script)) {
+  //
+  //}
+  
+  return NULL;
+}

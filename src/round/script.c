@@ -50,6 +50,27 @@ bool round_script_delete(RoundScript *script)
 }
 
 /****************************************
+ * round_script_isvalid
+ ****************************************/
+
+bool round_script_isvalid(RoundScript *script)
+{
+  if (!script)
+    return false;
+
+  if (round_strlen(script->name) <= 0)
+    return false;
+  
+  if (!script->code)
+    return false;
+  
+  if (script->codeSize <= 0)
+    return false;
+
+    return true;
+}
+
+/****************************************
  * round_script_setcode
  ****************************************/
 
