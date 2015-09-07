@@ -63,6 +63,7 @@ typedef struct {
 RoundScript *round_script_new();
 bool round_script_delete(RoundScript *script);
 
+#define round_script_next(script) round_list_next((RoundList *)script)
 #define round_script_remove(script) round_list_remove((RoundList *)script)
 
 #define round_script_setlanguage(script, value) round_strloc(value, &script->lang)
@@ -75,6 +76,8 @@ bool round_script_setcode(RoundScript *script, byte *code, size_t codeLen);
 #define round_script_getcode(script) (script->code)
 #define round_script_getcodeSize(script) (script->codeSize)
 
+bool round_script_isvalid(RoundScript *script);
+  
 /****************************************
  * Function (Script List)
  ****************************************/
@@ -125,7 +128,10 @@ bool round_script_enginelist_delete(RoundScriptEngineList *nodes);
   
 RoundScriptManager *round_script_manager_new();
 bool round_script_manager_delete(RoundScriptManager *mgr);
-  
+
+bool round_script_manager_addscript(RoundScriptManager *mgr, RoundScript *script);
+RoundScript *round_script_manager_getscriptbyname(RoundScriptManager *mgr, const char *name);
+
 #ifdef  __cplusplus
 }
 #endif
