@@ -26,13 +26,11 @@ roundtest_SOURCES = \
 	..//script/JsEngineTest.cpp \
 	..//script/LuaEngineTest.cpp \
 	..//script/RubyEngineTest.cpp \
-	..//ScriptEngineListTest.cpp \
+	..//ScriptEngineMapTest.cpp \
 	..//ScriptEngineTest.cpp \
-	..//ScriptListTest.cpp \
 	..//ScriptManagerTest.cpp \
-	..//ScriptTest.cpp \
-	..//util/mutex_test.cpp \
-	..//util/string_test.cpp
+	..//ScriptMapTest.cpp \
+	..//ScriptTest.cpp
 #if HAVE_LIBTOOL
 #roundtest_LDADD = @HTTP_LIBS@ @XML_LIBS@ ../../lib/unix/libround.la
 #else
