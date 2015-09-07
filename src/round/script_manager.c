@@ -79,9 +79,9 @@ RoundScript *round_script_manager_getscriptbyname(RoundScriptManager *mgr, const
   if (!mgr)
     return NULL;
   
-  //for (script = round_scriptlist_gets(mgr->scripts); script; script = round_script_next(script)) {
-  //
-  //}
+  for (script = round_scriptlist_gets(mgr->scripts); script; script = round_script_next(script)) {
+  
+  }
   
   return NULL;
 }
