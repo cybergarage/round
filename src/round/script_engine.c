@@ -39,15 +39,16 @@ bool round_script_engine_init(RoundScriptEngine *engine)
 
   round_list_node_init((RoundList *)engine);
   
-  engine->result = NULL;
-  engine->error = NULL;
-  
   engine->mutex = round_mutex_new();
   if (!engine->mutex) {
     round_script_engine_delete(engine);
     return false;
   }
-
+  
+  engine->lang = NULL;
+  engine->result = NULL;
+  engine->error = NULL;
+  
   return true;
 }
 
