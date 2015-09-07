@@ -35,7 +35,8 @@ typedef struct _RoundScript {
 
   char *lang;
   char *name;
-  char *code;
+  byte *code;
+  size_t codeSize;
 } RoundScript, RoundScriptList;
 
 typedef struct _RoundScriptEngine {
@@ -63,7 +64,17 @@ RoundScript *round_script_new();
 bool round_script_delete(RoundScript *script);
 
 #define round_script_remove(script) round_list_remove((RoundList *)script)
-  
+
+#define round_script_setlanguage(script, value) round_strloc(value, &script->lang)
+#define round_script_getlanguage(script) (script->lang)
+
+#define round_script_setname(script, value) round_strloc(value, &script->name)
+#define round_script_getname(script) (script->name)
+
+bool round_script_setcode(RoundScript *script, byte *code, size_t codeLen);
+#define round_script_getcode(script) (script->code)
+#define round_script_getcodeSize(script) (script->codeSize)
+
 /****************************************
  * Function (Script List)
  ****************************************/
@@ -87,7 +98,10 @@ bool round_script_engine_delete(RoundScriptEngine *engine);
 bool round_script_engine_lock(RoundScriptEngine *engine);
 bool round_script_engine_unlock(RoundScriptEngine *engine);
   
-bool round_script_engine_setresult(RoundScriptEngine *engine, const char *value);
+#define round_script_engine_setlanguage(script, value) round_strloc(value, &engine->lang)
+#define round_script_engine_getlanguage(script) (engine->lang)
+
+  bool round_script_engine_setresult(RoundScriptEngine *engine, const char *value);
 const char *round_script_engine_getresult(RoundScriptEngine *engine);
   
 bool round_script_engine_seterror(RoundScriptEngine *engine, const char *value);
