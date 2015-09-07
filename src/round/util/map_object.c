@@ -27,6 +27,7 @@ RoundMapObject *round_map_object_new(void)
 
   obj->key = NULL;
   obj->obj = NULL;
+  obj->objDestFunc = NULL;
   
   return obj;
 }
@@ -44,6 +45,10 @@ bool round_map_object_delete(RoundMapObject *obj)
 
   if (obj->key) {
     free(obj->key);
+  }
+  
+  if (obj->obj && obj->objDestFunc) {
+    obj->objDestFunc(obj->obj);
   }
 
   free(obj);

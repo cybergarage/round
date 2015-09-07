@@ -78,7 +78,7 @@ bool round_script_isvalid(RoundScript *script);
  * Function (Script Map)
  ****************************************/
 
-#define round_script_map_new() round_map_new()
+RoundScriptMap *round_script_map_new();
 #define round_script_map_delete(map) round_map_delete(map)
 #define round_script_map_size(map) round_map_size(map)
 #define round_script_map_set(map, script) round_map_setobject(map, script->name, script)
@@ -108,7 +108,7 @@ const char *round_script_engine_geterror(RoundScriptEngine *engine);
  * Function (Script Engine Map)
  ****************************************/
   
-#define round_script_engine_map_new() round_map_new()
+RoundScriptEngineMap *round_script_engine_map_new();
 #define round_script_engine_map_delete(map) round_map_delete(map)
 #define round_script_engine_map_size(map) round_map_size(map)
 #define round_script_engine_map_set(map, eng) round_map_setobject(map, eng->lang, eng)

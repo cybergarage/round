@@ -29,7 +29,7 @@ RoundMap *round_map_new()
     return NULL;
   }
   
-  map->destFunc = NULL;
+  map->mapObjDestFunc = NULL;
 
   return map;
 }
@@ -172,6 +172,10 @@ bool round_map_setobject(RoundMap *map, const char *key, void *obj)
   
   round_map_object_setkey(mapObj, key);
   round_map_object_setobject(mapObj, obj);
+  
+  if (map->mapObjDestFunc) {
+    round_map_object_setobjectdestructor(mapObj, map->mapObjDestFunc);
+  }
   
   return round_map_addmapobject(map, mapObj);
 }
