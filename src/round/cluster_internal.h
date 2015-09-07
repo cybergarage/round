@@ -46,7 +46,7 @@ typedef struct _RoundCluster {
  ****************************************/
   
 RoundClusterList *round_clusterlist_new(void);
-void round_clusterlist_delete(RoundClusterList *clusters);
+bool round_clusterlist_delete(RoundClusterList *clusters);
   
 #define round_clusterlist_clear(clusters) round_list_clear((RoundList *)clusters, (ROUND_LIST_DESTRUCTORFUNC)round_cluster_delete)
 #define round_clusterlist_size(clusters) round_list_size((RoundList *)clusters)
