@@ -31,12 +31,14 @@ RoundClusterList *round_clusterlist_new(void)
 * round_clusterlist_delete
 ****************************************/
 
-void round_clusterlist_delete(RoundClusterList *clusterses)
+bool round_clusterlist_delete(RoundClusterList *clusterses)
 {
   if (!clusterses)
-    return;
+    return false;
   
   round_clusterlist_clear(clusterses);
 
   free(clusterses);
+
+  return true;
 }

@@ -28,21 +28,26 @@ extern "C" {
  * Data Type
  ****************************************/
 
-typedef struct {
+typedef struct _RoundScript {
   bool headFlag;
-  struct _RoundNode *prev;
-  struct _RoundNode *next;
+  struct _RoundScript *prev;
+  struct _RoundScript *next;
 } RoundScript, RoundScriptList;
 
-typedef struct {
+typedef struct _RoundScriptEngine {
+  bool headFlag;
+  struct _RoundScriptEngine *prev;
+  struct _RoundScriptEngine *next;
+  
   RoundMutex *mutex;
   char *result;
   char *error;
-} RoundScriptEngine;
+} RoundScriptEngine, RoundScriptEngineList;
 
 typedef struct {
   RoundMutex *mutex;
   RoundScriptList *scripts;
+  RoundScriptEngineList *engines;
 } RoundScriptManager;
 
 /****************************************
@@ -70,6 +75,7 @@ bool round_scriptlist_delete(RoundScriptList *scripts);
  * Function (Script Engine)
  ****************************************/
   
+RoundScriptEngine *round_script_engine_new();
 bool round_script_engine_init(RoundScriptEngine *engine);
 bool round_script_engine_clear(RoundScriptEngine *engine);
 bool round_script_engine_delete(RoundScriptEngine *engine);
@@ -82,6 +88,18 @@ const char *round_script_engine_getresult(RoundScriptEngine *engine);
 bool round_script_engine_seterror(RoundScriptEngine *engine, const char *value);
 const char *round_script_engine_geterror(RoundScriptEngine *engine);
   
+/****************************************
+ * Function (Script Engine List)
+ ****************************************/
+  
+RoundScriptEngineList *round_script_enginelist_new(void);
+bool round_script_enginelist_delete(RoundScriptEngineList *nodes);
+  
+#define round_script_enginelist_clear(nodes) round_list_clear((RoundList *)nodes, (ROUND_LIST_DESTRUCTORFUNC)round_script_engine_delete)
+#define round_script_enginelist_size(nodes) round_list_size((RoundList *)nodes)
+#define round_script_enginelist_gets(nodes) (RoundNode *)round_list_next((RoundList *)nodes)
+#define round_script_enginelist_add(nodes,node) round_list_add((RoundList *)nodes, (RoundList *)node)
+
 /****************************************
  * Function (Script Manager)
  ****************************************/
