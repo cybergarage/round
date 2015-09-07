@@ -15,10 +15,6 @@ round_client_headers = \
 	./round/finder.h \
 	./round/node.h \
 	./round/round.h \
-	./round/script/js.h \
-	./round/script/lua.h \
-	./round/script/ruby.h \
-	./round/script.h \
 	./round/typedef.h
 
 nobase_include_HEADERS = \

@@ -63,7 +63,7 @@ typedef struct {
 RoundScript *round_script_new();
 bool round_script_delete(RoundScript *script);
 
-#define round_script_next(script) round_list_next((RoundList *)script)
+#define round_script_next(script) ((RoundScript*)round_list_next((RoundList *)script))
 #define round_script_remove(script) round_list_remove((RoundList *)script)
 
 #define round_script_setlanguage(script, value) round_strloc(value, &script->lang)
@@ -87,7 +87,7 @@ bool round_scriptlist_delete(RoundScriptList *scripts);
 
 #define round_scriptlist_clear(scripts) round_list_clear((RoundList *)scripts, (ROUND_LIST_DESTRUCTORFUNC)round_script_delete)
 #define round_scriptlist_size(scripts) round_list_size((RoundList *)scripts)
-#define round_scriptlist_gets(scripts) (RoundNode *)round_list_next((RoundList *)scripts)
+#define round_scriptlist_gets(scripts) (RoundScript *)round_list_next((RoundList *)scripts)
 #define round_scriptlist_add(scripts,script) round_list_add((RoundList *)scripts, (RoundList *)script)
   
 /****************************************
@@ -119,7 +119,7 @@ bool round_script_enginelist_delete(RoundScriptEngineList *nodes);
   
 #define round_script_enginelist_clear(nodes) round_list_clear((RoundList *)nodes, (ROUND_LIST_DESTRUCTORFUNC)round_script_engine_delete)
 #define round_script_enginelist_size(nodes) round_list_size((RoundList *)nodes)
-#define round_script_enginelist_gets(nodes) (RoundNode *)round_list_next((RoundList *)nodes)
+#define round_script_enginelist_gets(nodes) (RoundScriptEngine *)round_list_next((RoundList *)nodes)
 #define round_script_enginelist_add(nodes,node) round_list_add((RoundList *)nodes, (RoundList *)node)
 
 /****************************************
