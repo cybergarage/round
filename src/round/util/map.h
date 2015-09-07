@@ -29,6 +29,8 @@ extern "C" {
  * Data Type
  ****************************************/
 
+typedef void (*ROUND_MAP_OBJECT_DESTRUCTOR)(void *);
+
 typedef struct _RoundMapObject {
   bool headFlag;
   struct _RoundMapObject *prev;
@@ -36,13 +38,13 @@ typedef struct _RoundMapObject {
 
   char *key;
   void *obj;
+  ROUND_MAP_OBJECT_DESTRUCTOR objDestFunc;
 } RoundMapObject, RoundMapObjectList;
   
-typedef void (*ROUND_MAP_DESTRUCTORFUNC)(void *);
   
 typedef struct {
   RoundMapObjectList **table;
-  ROUND_MAP_DESTRUCTORFUNC destFunc;
+  ROUND_MAP_OBJECT_DESTRUCTOR mapObjDestFunc;
 } RoundMap;
 
 /****************************************
@@ -59,6 +61,9 @@ RoundMapObject *round_map_object_next(RoundMapObject *obj);
 
 #define round_map_object_setobject(mapObj, value) (mapObj->obj = value)
 #define round_map_object_getobject(mapObj) (mapObj->obj)
+
+#define round_map_object_setobjectdestructor(mapObj, func) (mapObj->objDestFunc = func)
+#define round_map_object_getobjectdestructor(mapObj) (mapObj->objDestFunc)
 
 #define round_map_object_next(mapObj) ((RoundMapObject *)round_list_next((RoundList *)mapObj))
 #define round_map_object_remove(mapObj) round_list_remove((RoundList *)mapObj)
@@ -81,8 +86,9 @@ bool round_map_objectlist_delete(RoundMapObjectList *objs);
 
 RoundMap *round_map_new();
 bool round_map_delete(RoundMap *map);
-
+  
 size_t round_map_size(RoundMap *map);
+
 bool round_map_addmapobject(RoundMap *map, RoundMapObject *obj);
 bool round_map_removeobjectbykey(RoundMap *map, const char *key);
 size_t round_map_getkeycode(RoundMap *map, const char *key);
@@ -90,6 +96,9 @@ RoundMapObject *round_map_getmapobjectbykey(RoundMap *map, const char *key);
 
 bool round_map_setobject(RoundMap *map, const char *key, void *object);
 void *round_map_getobjectbykey(RoundMap *map, const char *key);
+
+#define round_map_setmapobjectdestructor(map, func) (map->mapObjDestFunc = func)
+#define round_map_getmapobjectdestructor(map) (map->mapObjDestFunc)
   
 double round_map_getefficiency(RoundMap *map);
 
