@@ -38,8 +38,11 @@ typedef struct _RoundMapObject {
   void *obj;
 } RoundMapObject, RoundMapObjectList;
   
+typedef void (*ROUND_MAP_DESTRUCTORFUNC)(void *);
+  
 typedef struct {
   RoundMapObjectList **table;
+  ROUND_MAP_DESTRUCTORFUNC destFunc;
 } RoundMap;
 
 /****************************************
@@ -65,7 +68,7 @@ RoundMapObject *round_map_object_next(RoundMapObject *obj);
  ****************************************/
   
 RoundMapObjectList *round_map_objectlist_new(void);
-bool round_map_objectlist_delete(RoundMapObjectList *map_objects);
+bool round_map_objectlist_delete(RoundMapObjectList *objs);
   
 #define round_map_objectlist_clear(objs) round_list_clear((RoundList *)objs, (ROUND_LIST_DESTRUCTORFUNC)round_map_object_delete)
 #define round_map_objectlist_size(objs) round_list_size((RoundList *)objs)

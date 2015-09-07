@@ -23,6 +23,11 @@ RoundScriptEngine *round_script_engine_new()
   if (!engine)
     return NULL;
   
+  if (!round_script_engine_init(engine)) {
+    round_script_engine_delete(engine);
+    return NULL;
+  }
+  
   return engine;
 }
 
@@ -58,6 +63,11 @@ bool round_script_engine_clear(RoundScriptEngine *engine)
 {
   if (!engine)
     return false;
+  
+  if (engine->lang) {
+    free(engine->lang);
+    engine->lang = NULL;
+  }
   
   if (engine->result) {
     free(engine->result);

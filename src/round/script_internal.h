@@ -52,7 +52,6 @@ typedef struct {
   RoundScriptEngineMap *engineMap;
 } RoundScriptManager;
 
-  
 /****************************************
  * Function (Script)
  ****************************************/
@@ -96,10 +95,10 @@ bool round_script_engine_delete(RoundScriptEngine *engine);
 bool round_script_engine_lock(RoundScriptEngine *engine);
 bool round_script_engine_unlock(RoundScriptEngine *engine);
   
-#define round_script_engine_setlanguage(script, value) round_strloc(value, &engine->lang)
-#define round_script_engine_getlanguage(script) (engine->lang)
+#define round_script_engine_setlanguage(engine, value) round_strloc(value, &engine->lang)
+#define round_script_engine_getlanguage(engine) (engine->lang)
 
-  bool round_script_engine_setresult(RoundScriptEngine *engine, const char *value);
+bool round_script_engine_setresult(RoundScriptEngine *engine, const char *value);
 const char *round_script_engine_getresult(RoundScriptEngine *engine);
   
 bool round_script_engine_seterror(RoundScriptEngine *engine, const char *value);
@@ -113,7 +112,7 @@ const char *round_script_engine_geterror(RoundScriptEngine *engine);
 #define round_script_engine_map_delete(map) round_map_delete(map)
 #define round_script_engine_map_size(map) round_map_size(map)
 #define round_script_engine_map_set(map, eng) round_map_setobject(map, eng->lang, eng)
-#define round_script_engine_map_get(map, name) ((RoundEngine*)round_map_getobjectbykey(map, name))
+#define round_script_engine_map_get(map, name) ((RoundScriptEngine*)round_map_getobjectbykey(map, name))
 
 /****************************************
  * Function (Script Manager)
