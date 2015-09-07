@@ -49,6 +49,8 @@
 		21F6D9B21B99848000714056 /* ruby_engine.c in Sources */ = {isa = PBXBuildFile; fileRef = 21F6D9AD1B99848000714056 /* ruby_engine.c */; };
 		21F6D9B31B99848000714056 /* script_engine.c in Sources */ = {isa = PBXBuildFile; fileRef = 21F6D9AE1B99848000714056 /* script_engine.c */; };
 		21F6D9B51B99857700714056 /* round.h in Headers */ = {isa = PBXBuildFile; fileRef = 21F6D9B41B99857700714056 /* round.h */; };
+		21FBE36F1B9DC803000C2512 /* map_object_list.c in Sources */ = {isa = PBXBuildFile; fileRef = 21FBE36D1B9DC803000C2512 /* map_object_list.c */; };
+		21FBE3701B9DC803000C2512 /* map_object.c in Sources */ = {isa = PBXBuildFile; fileRef = 21FBE36E1B9DC803000C2512 /* map_object.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -95,6 +97,8 @@
 		21F6D9AD1B99848000714056 /* ruby_engine.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ruby_engine.c; sourceTree = "<group>"; };
 		21F6D9AE1B99848000714056 /* script_engine.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = script_engine.c; path = ../../../src/round/script_engine.c; sourceTree = "<group>"; };
 		21F6D9B41B99857700714056 /* round.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = round.h; path = ../../../include/round/round.h; sourceTree = "<group>"; };
+		21FBE36D1B9DC803000C2512 /* map_object_list.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = map_object_list.c; path = ../../../src/round/util/map_object_list.c; sourceTree = "<group>"; };
+		21FBE36E1B9DC803000C2512 /* map_object.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = map_object.c; path = ../../../src/round/util/map_object.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,8 +189,10 @@
 		2178B3631B98BE7B00B9D86B /* util */ = {
 			isa = PBXGroup;
 			children = (
-				21852FB31B9DB11000C7F878 /* map.c */,
 				21852FB41B9DB11000C7F878 /* map.h */,
+				21852FB31B9DB11000C7F878 /* map.c */,
+				21FBE36E1B9DC803000C2512 /* map_object.c */,
+				21FBE36D1B9DC803000C2512 /* map_object_list.c */,
 				21EAA2A31B9931B10002CFF0 /* strings.h */,
 				21EAA2A41B9931B10002CFF0 /* strings.c */,
 				2178B3641B98BEAE00B9D86B /* list.c */,
@@ -309,6 +315,7 @@
 				21F6D9AF1B99848000714056 /* js_engine.c in Sources */,
 				21EAA2A61B9931B10002CFF0 /* strings.c in Sources */,
 				211E45CD1B98157400CF0088 /* client.c in Sources */,
+				21FBE3701B9DC803000C2512 /* map_object.c in Sources */,
 				211E45D81B98192600CF0088 /* finder.c in Sources */,
 				2178B36F1B98BEAE00B9D86B /* thread_list.c in Sources */,
 				21EA96D81B990C3B00E00841 /* node_list.c in Sources */,
@@ -316,6 +323,7 @@
 				21852FB51B9DB11000C7F878 /* map.c in Sources */,
 				2178B36D1B98BEAE00B9D86B /* mutex.c in Sources */,
 				21F6D9B31B99848000714056 /* script_engine.c in Sources */,
+				21FBE36F1B9DC803000C2512 /* map_object_list.c in Sources */,
 				2166EF891B9D29FE002FE45D /* script_engine_list.c in Sources */,
 				2178B3701B98BEAE00B9D86B /* thread.c in Sources */,
 				21EA96CF1B990AF800E00841 /* cluster.c in Sources */,
