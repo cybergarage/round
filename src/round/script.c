@@ -25,6 +25,10 @@ RoundScript *round_script_new()
   
   round_list_node_init((RoundList *)script);
   
+  script->name = NULL;
+  script->lang = NULL;
+  script->code = NULL;
+  
   return script;
 }
 

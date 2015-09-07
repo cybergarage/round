@@ -32,6 +32,10 @@ typedef struct _RoundScript {
   bool headFlag;
   struct _RoundScript *prev;
   struct _RoundScript *next;
+
+  char *lang;
+  char *name;
+  char *code;
 } RoundScript, RoundScriptList;
 
 typedef struct _RoundScriptEngine {
@@ -40,6 +44,7 @@ typedef struct _RoundScriptEngine {
   struct _RoundScriptEngine *next;
   
   RoundMutex *mutex;
+  char *lang;
   char *result;
   char *error;
 } RoundScriptEngine, RoundScriptEngineList;

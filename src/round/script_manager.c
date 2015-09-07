@@ -23,6 +23,9 @@ RoundScriptManager *round_script_manager_new()
   if (!mgr)
     return NULL;
   
+  mgr->scripts = round_scriptlist_new();
+  mgr->engines = round_script_enginelist_new();
+  
   return mgr;  
 }
 
@@ -34,6 +37,9 @@ bool round_script_manager_delete(RoundScriptManager *mgr)
 {
   if (!mgr)
     return false;
+  
+  round_scriptlist_delete(mgr->scripts);
+  round_script_enginelist_delete(mgr->engines);
   
   free(mgr);
   
