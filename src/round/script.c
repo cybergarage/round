@@ -28,6 +28,7 @@ RoundScript *round_script_new()
   script->name = NULL;
   script->lang = NULL;
   script->code = NULL;
+  script->codeSize = 0;
   
   return script;
 }
@@ -41,7 +42,38 @@ bool round_script_delete(RoundScript *script)
   if (!script)
     return false;
   
+  round_script_setcode(script, NULL, 0);
+  
   free(script);
+  
+  return true;
+}
+
+/****************************************
+ * round_script_setcode
+ ****************************************/
+
+bool round_script_setcode(RoundScript *script, byte *code, size_t codeSize)
+{
+  if (!script)
+    return false;
+
+  if (script->code) {
+    free(script->code);
+    script->code = NULL;
+    script->codeSize = 0;
+  }
+
+  if (!code || (codeSize == 0))
+    return true;
+  
+  script->code = (byte *)malloc(codeSize);
+  if (!script->code)
+    return false;
+  
+  
+  memcpy(script->code, code, codeSize);
+  script->codeSize = codeSize;
   
   return true;
 }
