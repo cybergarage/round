@@ -90,12 +90,11 @@ bool round_map_delete(RoundMap *map);
 size_t round_map_size(RoundMap *map);
 
 bool round_map_addmapobject(RoundMap *map, RoundMapObject *obj);
+bool round_map_setobject(RoundMap *map, const char *key, void *object);
+void *round_map_getobjectbykey(RoundMap *map, const char *key);
 bool round_map_removeobjectbykey(RoundMap *map, const char *key);
 size_t round_map_getkeycode(RoundMap *map, const char *key);
 RoundMapObject *round_map_getmapobjectbykey(RoundMap *map, const char *key);
-
-bool round_map_setobject(RoundMap *map, const char *key, void *object);
-void *round_map_getobjectbykey(RoundMap *map, const char *key);
 
 #define round_map_setmapobjectdestructor(map, func) (map->mapObjDestFunc = func)
 #define round_map_getmapobjectdestructor(map) (map->mapObjDestFunc)

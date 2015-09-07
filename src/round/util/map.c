@@ -156,7 +156,7 @@ bool round_map_addmapobject(RoundMap *map, RoundMapObject *obj)
 }
 
 /****************************************
- * round_map_addmapobject
+ * round_map_setobject
  ****************************************/
 
 bool round_map_setobject(RoundMap *map, const char *key, void *obj)
