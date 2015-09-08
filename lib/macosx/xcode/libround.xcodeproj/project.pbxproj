@@ -35,6 +35,9 @@
 		219A8E2B1B9AF54D004ED802 /* ruby.h in Headers */ = {isa = PBXBuildFile; fileRef = 219A8E241B9AF54D004ED802 /* ruby.h */; };
 		219A8E2D1B9AF607004ED802 /* script_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 219A8E2C1B9AF607004ED802 /* script_internal.h */; };
 		219A8E2F1B9B0103004ED802 /* Ruby.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 219A8E2E1B9B0103004ED802 /* Ruby.framework */; };
+		21C482441B9F5A100087380C /* json_object.c in Sources */ = {isa = PBXBuildFile; fileRef = 21C482411B9F5A100087380C /* json_object.c */; };
+		21C482451B9F5A100087380C /* json.c in Sources */ = {isa = PBXBuildFile; fileRef = 21C482421B9F5A100087380C /* json.c */; };
+		21C482461B9F5A100087380C /* json.h in Headers */ = {isa = PBXBuildFile; fileRef = 21C482431B9F5A100087380C /* json.h */; };
 		21D427E71B9EFD5900BBBD41 /* string.c in Sources */ = {isa = PBXBuildFile; fileRef = 21D427E61B9EFD5900BBBD41 /* string.c */; };
 		21D427EA1B9F00B700BBBD41 /* error.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D427E91B9F00B700BBBD41 /* error.h */; };
 		21D427EC1B9F010A00BBBD41 /* error.c in Sources */ = {isa = PBXBuildFile; fileRef = 21D427EB1B9F010A00BBBD41 /* error.c */; };
@@ -89,6 +92,9 @@
 		219A8E241B9AF54D004ED802 /* ruby.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ruby.h; sourceTree = "<group>"; };
 		219A8E2C1B9AF607004ED802 /* script_internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = script_internal.h; path = ../../../src/round/script_internal.h; sourceTree = "<group>"; };
 		219A8E2E1B9B0103004ED802 /* Ruby.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Ruby.framework; path = System/Library/Frameworks/Ruby.framework; sourceTree = SDKROOT; };
+		21C482411B9F5A100087380C /* json_object.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = json_object.c; path = ../../../src/round/util/json_object.c; sourceTree = "<group>"; };
+		21C482421B9F5A100087380C /* json.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = json.c; path = ../../../src/round/util/json.c; sourceTree = "<group>"; };
+		21C482431B9F5A100087380C /* json.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = json.h; path = ../../../src/round/util/json.h; sourceTree = "<group>"; };
 		21D427E61B9EFD5900BBBD41 /* string.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = string.c; path = ../../../src/round/util/string.c; sourceTree = "<group>"; };
 		21D427E91B9F00B700BBBD41 /* error.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = error.h; path = ../../../include/round/error.h; sourceTree = "<group>"; };
 		21D427EB1B9F010A00BBBD41 /* error.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = error.c; path = ../../../src/round/error.c; sourceTree = "<group>"; };
@@ -205,6 +211,9 @@
 		2178B3631B98BE7B00B9D86B /* util */ = {
 			isa = PBXGroup;
 			children = (
+				21C482411B9F5A100087380C /* json_object.c */,
+				21C482421B9F5A100087380C /* json.c */,
+				21C482431B9F5A100087380C /* json.h */,
 				21852FB41B9DB11000C7F878 /* map.h */,
 				21852FB31B9DB11000C7F878 /* map.c */,
 				215E6B461B9E75EA00AAA203 /* map_hash.c */,
@@ -255,6 +264,7 @@
 				2178B3621B98986200B9D86B /* const.h in Headers */,
 				211E45CA1B98154A00CF0088 /* client.h in Headers */,
 				21EAA2A51B9931B10002CFF0 /* strings.h in Headers */,
+				21C482461B9F5A100087380C /* json.h in Headers */,
 				21EA96D11B990B1100E00841 /* cluster.h in Headers */,
 				21EA96DB1B990CF400E00841 /* node.h in Headers */,
 				21F6D9B51B99857700714056 /* round.h in Headers */,
@@ -349,8 +359,10 @@
 				21F6D9B31B99848000714056 /* script_engine.c in Sources */,
 				21FBE36F1B9DC803000C2512 /* map_object_list.c in Sources */,
 				2178B3701B98BEAE00B9D86B /* thread.c in Sources */,
+				21C482441B9F5A100087380C /* json_object.c in Sources */,
 				21EA96CF1B990AF800E00841 /* cluster.c in Sources */,
 				21F6D9B21B99848000714056 /* ruby_engine.c in Sources */,
+				21C482451B9F5A100087380C /* json.c in Sources */,
 				21F6D9B01B99848000714056 /* js_sm_engine.c in Sources */,
 				21EA96CE1B990AF800E00841 /* cluster_list.c in Sources */,
 				21D427E71B9EFD5900BBBD41 /* string.c in Sources */,

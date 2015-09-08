@@ -20,6 +20,7 @@ roundtest_SOURCES = \
 	..//ClusterTest.cpp \
 	..//ErrorTest.cpp \
 	..//FinderTest.cpp \
+	..//JSONTest.cpp \
 	..//MapTest.cpp \
 	..//NodeListTest.cpp \
 	..//NodeTest.cpp \
