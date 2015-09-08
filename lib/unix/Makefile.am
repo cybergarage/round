@@ -20,6 +20,8 @@ round_mpi_sources = \
 	../../src/round/client.c \
 	../../src/round/cluster.c \
 	../../src/round/cluster_list.c \
+	../../src/round/error.c \
+	../../src/round/error_rpc.c \
 	../../src/round/finder.c \
 	../../src/round/node.c \
 	../../src/round/node_list.c \
@@ -34,10 +36,12 @@ round_mpi_sources = \
 	../../src/round/script_map.c \
 	../../src/round/util/list.c \
 	../../src/round/util/map.c \
+	../../src/round/util/map_hash.c \
 	../../src/round/util/map_object.c \
 	../../src/round/util/map_object_list.c \
 	../../src/round/util/mutex.c \
-	../../src/round/util/strings.c \
+	../../src/round/util/string.c \
+	../../src/round/util/string_func.c \
 	../../src/round/util/thread.c \
 	../../src/round/util/thread_list.c
 

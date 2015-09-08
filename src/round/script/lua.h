@@ -25,29 +25,21 @@ extern "C" {
 
 typedef struct _RoundLuaEngine {
   RoundMutex *mutex;
-  char *result;
-  char *error;
+  char *lang;
+  ROUND_SCRIPT_ENGINE_EXECFUNC execFunc;
+  ROUND_SCRIPT_ENGINE_DESTRUCTOR destFunc;
 #if defined(ROUND_SUPPORT_LUA)
   lua_State *luaState;
 #endif
 } RoundLuaEngine;
 
 RoundLuaEngine *round_lua_engine_new();
-bool round_lua_engine_delete(RoundLuaEngine *luaEngine);
+bool round_lua_engine_delete(RoundLuaEngine *engine);
 
-bool round_lua_engine_lock(RoundLuaEngine *luaEngine);
-bool round_lua_engine_unlock(RoundLuaEngine *luaEngine);
-  
-bool round_lua_engine_setresult(RoundLuaEngine *luaEngine, const char *value);
-const char *round_lua_engine_getresult(RoundLuaEngine *luaEngine);
-
-bool round_lua_engine_seterror(RoundLuaEngine *luaEngine, const char *value);
-const char *round_lua_engine_geterror(RoundLuaEngine *luaEngine);
-
-bool round_lua_engine_run(RoundLuaEngine *luaEngine, const char *source, const char *func, const char *param);
+bool round_lua_engine_run(RoundLuaEngine *engine, RoundScript *script, const char *param, RoundString *result, RoundError *err);
 
 #if defined(ROUND_SUPPORT_LUA)
-bool round_lua_engine_register(RoundLuaEngine *luaEngine, const char *name, lua_CFunction func);
+bool round_lua_engine_register(RoundLuaEngine *engine, const char *name, lua_CFunction func);
 #endif
 
 #ifdef  __cplusplus

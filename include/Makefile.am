@@ -12,6 +12,7 @@ round_client_headers = \
 	./round/client.h \
 	./round/cluster.h \
 	./round/const.h \
+	./round/error.h \
 	./round/finder.h \
 	./round/node.h \
 	./round/round.h \

@@ -41,7 +41,7 @@ BOOST_AUTO_TEST_CASE(MapNew)
   double mapDist = round_map_getefficiency(map);
   BOOST_WARN(0.5f < mapDist);
 #ifdef DEBUG
-  round_map_printdistribution(map);
+  //round_map_printdistribution(map);
 #endif
   
   // Get key objects

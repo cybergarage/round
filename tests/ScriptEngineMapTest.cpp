@@ -15,7 +15,7 @@
 
 BOOST_AUTO_TEST_CASE(ScriptEngineListAdd)
 {
-  RoundScriptEngineMap *map = round_script_engine_map_new();
+  RoundMap *map = round_script_engine_map_new();
 
   BOOST_CHECK(map);
   BOOST_CHECK_EQUAL(0, round_script_engine_map_size(map));
@@ -27,6 +27,7 @@ BOOST_AUTO_TEST_CASE(ScriptEngineListAdd)
   
   for (int n=0; n<ROUND_TEST_MAP_SIZE; n++) {
     engine[n] = round_script_engine_new();
+    BOOST_CHECK(engine[n]);
     BOOST_CHECK(!round_script_engine_map_set(map, engine[n]));
     snprintf(lang, sizeof(lang), "%d", n);
     round_script_engine_setlanguage(engine[n], lang);

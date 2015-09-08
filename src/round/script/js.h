@@ -23,8 +23,9 @@ extern "C" {
 
 typedef struct _RoundJavaScriptEngine {
   RoundMutex *mutex;
-  char *result;
-  char *error;
+  char *lang;
+  ROUND_SCRIPT_ENGINE_EXECFUNC execFunc;
+  ROUND_SCRIPT_ENGINE_DESTRUCTOR destFunc;
 #if defined(ROUND_SUPPORT_JS_SM)
   JSRuntime *rt;
   JSContext *cx;
@@ -33,25 +34,25 @@ typedef struct _RoundJavaScriptEngine {
 } RoundJavaScriptEngine;
 
 RoundJavaScriptEngine *round_js_engine_new();
-bool round_js_engine_delete(RoundJavaScriptEngine *jsEngine);
+bool round_js_engine_delete(RoundJavaScriptEngine *engine);
 
-bool round_js_engine_lock(RoundJavaScriptEngine *jsEngine);
-bool round_js_engine_unlock(RoundJavaScriptEngine *jsEngine);
+bool round_js_engine_lock(RoundJavaScriptEngine *engine);
+bool round_js_engine_unlock(RoundJavaScriptEngine *engine);
   
-bool round_js_engine_setresult(RoundJavaScriptEngine *jsEngine, const char *value);
-const char *round_js_engine_getresult(RoundJavaScriptEngine *jsEngine);
+bool round_js_engine_setresult(RoundJavaScriptEngine *engine, const char *value);
+const char *round_js_engine_getresult(RoundJavaScriptEngine *engine);
 
-bool round_js_engine_seterror(RoundJavaScriptEngine *jsEngine, const char *value);
-const char *round_js_engine_geterror(RoundJavaScriptEngine *jsEngine);
+bool round_js_engine_seterror(RoundJavaScriptEngine *engine, const char *value);
+const char *round_js_engine_geterror(RoundJavaScriptEngine *engine);
 
 #if defined(ROUND_SUPPORT_JS_SM)
-bool round_js_sm_engine_init(RoundJavaScriptEngine *jsEngine);
-bool round_js_sm_engine_destroy(RoundJavaScriptEngine *jsEngine);
-bool round_js_sm_engine_setfunctions(RoundJavaScriptEngine *jsEngine, JSFunctionSpec *funcs);
-bool round_js_sm_engine_run(RoundJavaScriptEngine *jsEngine, const char *source, size_t sourceLen, char **result);
+bool round_js_sm_engine_init(RoundJavaScriptEngine *engine);
+bool round_js_sm_engine_destroy(RoundJavaScriptEngine *engine);
+bool round_js_sm_engine_setfunctions(RoundJavaScriptEngine *engine, JSFunctionSpec *funcs);
+  bool round_js_sm_engine_run(RoundJavaScriptEngine *engine, const char *source, size_t sourceLen, RoundString *result, RoundError *err);
 #endif
 
-bool round_js_engine_run(RoundJavaScriptEngine *jsEngine, const char *source);
+bool round_js_engine_run(RoundJavaScriptEngine *engine, RoundScript *script, const char *param, RoundString *result, RoundError *err);
   
 #ifdef  __cplusplus
 }

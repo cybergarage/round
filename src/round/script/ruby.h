@@ -29,26 +29,27 @@ extern "C" {
 
 typedef struct _RoundRubyEngine {
   RoundMutex *mutex;
-  char *result;
-  char *error;
+  char *lang;
+  ROUND_SCRIPT_ENGINE_EXECFUNC execFunc;
+  ROUND_SCRIPT_ENGINE_DESTRUCTOR destFunc;
 #if defined(ROUND_SUPPORT_MRUBY)
   mrb_state *mrb;
 #endif
 } RoundRubyEngine;
 
 RoundRubyEngine *round_ruby_engine_new();
-bool round_ruby_engine_delete(RoundRubyEngine *jsEngine);
+bool round_ruby_engine_delete(RoundRubyEngine *engine);
 
-bool round_ruby_engine_lock(RoundRubyEngine *jsEngine);
-bool round_ruby_engine_unlock(RoundRubyEngine *jsEngine);
+bool round_ruby_engine_lock(RoundRubyEngine *engine);
+bool round_ruby_engine_unlock(RoundRubyEngine *engine);
   
-bool round_ruby_engine_setresult(RoundRubyEngine *jsEngine, const char *value);
-const char *round_ruby_engine_getresult(RoundRubyEngine *jsEngine);
+bool round_ruby_engine_setresult(RoundRubyEngine *engine, const char *value);
+const char *round_ruby_engine_getresult(RoundRubyEngine *engine);
 
-bool round_ruby_engine_seterror(RoundRubyEngine *jsEngine, const char *value);
-const char *round_ruby_engine_geterror(RoundRubyEngine *jsEngine);
+bool round_ruby_engine_seterror(RoundRubyEngine *engine, const char *value);
+const char *round_ruby_engine_geterror(RoundRubyEngine *engine);
 
-bool round_ruby_engine_run(RoundRubyEngine *luaErubyEnginengine, const char *source, const char *func, const char *param);
+bool round_ruby_engine_run(RoundRubyEngine *engine, RoundScript *script, const char *param, RoundString *result, RoundError *err);
   
 #ifdef  __cplusplus
 }
