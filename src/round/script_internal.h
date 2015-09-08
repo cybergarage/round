@@ -124,10 +124,14 @@ RoundScriptManager *round_script_manager_new();
 bool round_script_manager_delete(RoundScriptManager *mgr);
 
 bool round_script_manager_addscript(RoundScriptManager *mgr, RoundScript *script);
-RoundScript *round_script_manager_getscriptbyname(RoundScriptManager *mgr, const char *name);
+RoundScript *round_script_manager_getscript(RoundScriptManager *mgr, const char *name);
+bool round_script_manager_removescript(RoundScriptManager *mgr, const char *name);
+#define round_script_manager_getscriptsize(mgr) round_map_size(mgr->scriptMap)
 
 bool round_script_manager_addengine(RoundScriptManager *mgr, RoundScriptEngine *engine);
-RoundScriptEngine *round_script_manager_getenginebyname(RoundScriptManager *mgr, const char *name);
+RoundScriptEngine *round_script_manager_getengine(RoundScriptManager *mgr, const char *name);
+bool round_script_manager_removeengine(RoundScriptManager *mgr, const char *name);
+#define round_script_manager_getenginsize(mgr) round_map_size(mgr->engineMap)
   
 #ifdef  __cplusplus
 }

@@ -64,15 +64,27 @@ bool round_script_manager_addscript(RoundScriptManager *mgr, RoundScript *script
 }
 
 /****************************************
- * round_script_manager_getscriptbyname
+ * round_script_manager_getscript
  ****************************************/
 
-RoundScript *round_script_manager_getscriptbyname(RoundScriptManager *mgr, const char *name)
+RoundScript *round_script_manager_getscript(RoundScriptManager *mgr, const char *name)
 {
   if (!mgr)
     return NULL;
   
   return round_script_map_get(mgr->scriptMap, name);
+}
+
+/****************************************
+ * round_script_manager_removescript
+ ****************************************/
+
+bool round_script_manager_removescript(RoundScriptManager *mgr, const char *name)
+{
+  if (!mgr)
+    return false;
+  
+  return round_script_map_remove(mgr->scriptMap, name);
 }
 
 /****************************************
@@ -93,13 +105,26 @@ bool round_script_manager_addengine(RoundScriptManager *mgr, RoundScriptEngine *
 }
 
 /****************************************
- * round_script_manager_getenginebyname
+ * round_script_manager_getengine
  ****************************************/
 
-RoundScriptEngine *round_script_manager_getenginebyname(RoundScriptManager *mgr, const char *name)
+RoundScriptEngine *round_script_manager_getengine(RoundScriptManager *mgr, const char *name)
 {
   if (!mgr)
     return NULL;
   
   return round_script_engine_map_get(mgr->engineMap, name);
 }
+
+/****************************************
+ * round_script_manager_removeengine
+ ****************************************/
+
+bool round_script_manager_removeengine(RoundScriptManager *mgr, const char *name)
+{
+  if (!mgr)
+    return false;
+  
+  return round_script_engine_map_remove(mgr->engineMap, name);
+}
+
