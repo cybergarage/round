@@ -91,16 +91,16 @@ typedef struct {
 ****************************************/
 
 RoundString *round_string_new();
-void round_string_delete(RoundString *str);
-void round_string_clear(RoundString *str);
+bool round_string_delete(RoundString *str);
+bool round_string_clear(RoundString *str);
 
-void round_string_setvalue(RoundString *str, const char *value);
-void round_string_setintvalue(RoundString *str, int value);
-void round_string_setlongvalue(RoundString *str, long value);
-void round_string_setfloatvalue(RoundString *str, float value);
-void round_string_setdoublevalue(RoundString *str, double value);
-void round_string_setnvalue(RoundString *str, const char *value, size_t len);
-void round_string_setpointervalue(RoundString *str, char *value, size_t len);
+bool round_string_setvalue(RoundString *str, const char *value);
+bool round_string_setintvalue(RoundString *str, int value);
+bool round_string_setlongvalue(RoundString *str, long value);
+bool round_string_setfloatvalue(RoundString *str, float value);
+bool round_string_setdoublevalue(RoundString *str, double value);
+bool round_string_setnvalue(RoundString *str, const char *value, size_t len);
+bool round_string_setpointervalue(RoundString *str, char *value, size_t len);
 
 char *round_string_getvalue(RoundString *str);
 #define round_string_getintvalue(str) mupnp_str2int(round_string_getvalue(str))

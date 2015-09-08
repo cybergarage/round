@@ -35,6 +35,9 @@
 		219A8E2D1B9AF607004ED802 /* script_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 219A8E2C1B9AF607004ED802 /* script_internal.h */; };
 		219A8E2F1B9B0103004ED802 /* Ruby.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 219A8E2E1B9B0103004ED802 /* Ruby.framework */; };
 		21D427E71B9EFD5900BBBD41 /* string.c in Sources */ = {isa = PBXBuildFile; fileRef = 21D427E61B9EFD5900BBBD41 /* string.c */; };
+		21D427EA1B9F00B700BBBD41 /* error.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D427E91B9F00B700BBBD41 /* error.h */; };
+		21D427EC1B9F010A00BBBD41 /* error.c in Sources */ = {isa = PBXBuildFile; fileRef = 21D427EB1B9F010A00BBBD41 /* error.c */; };
+		21D427EE1B9F07CD00BBBD41 /* error_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D427ED1B9F07CD00BBBD41 /* error_internal.h */; };
 		21EA96CD1B990AF800E00841 /* cluster_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 21EA96CA1B990AF800E00841 /* cluster_internal.h */; };
 		21EA96CE1B990AF800E00841 /* cluster_list.c in Sources */ = {isa = PBXBuildFile; fileRef = 21EA96CB1B990AF800E00841 /* cluster_list.c */; };
 		21EA96CF1B990AF800E00841 /* cluster.c in Sources */ = {isa = PBXBuildFile; fileRef = 21EA96CC1B990AF800E00841 /* cluster.c */; };
@@ -85,6 +88,9 @@
 		219A8E2C1B9AF607004ED802 /* script_internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = script_internal.h; path = ../../../src/round/script_internal.h; sourceTree = "<group>"; };
 		219A8E2E1B9B0103004ED802 /* Ruby.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Ruby.framework; path = System/Library/Frameworks/Ruby.framework; sourceTree = SDKROOT; };
 		21D427E61B9EFD5900BBBD41 /* string.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = string.c; path = ../../../src/round/util/string.c; sourceTree = "<group>"; };
+		21D427E91B9F00B700BBBD41 /* error.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = error.h; path = ../../../include/round/error.h; sourceTree = "<group>"; };
+		21D427EB1B9F010A00BBBD41 /* error.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = error.c; path = ../../../src/round/error.c; sourceTree = "<group>"; };
+		21D427ED1B9F07CD00BBBD41 /* error_internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = error_internal.h; path = ../../../src/round/error_internal.h; sourceTree = "<group>"; };
 		21EA96CA1B990AF800E00841 /* cluster_internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cluster_internal.h; path = ../../../src/round/cluster_internal.h; sourceTree = "<group>"; };
 		21EA96CB1B990AF800E00841 /* cluster_list.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = cluster_list.c; path = ../../../src/round/cluster_list.c; sourceTree = "<group>"; };
 		21EA96CC1B990AF800E00841 /* cluster.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = cluster.c; path = ../../../src/round/cluster.c; sourceTree = "<group>"; };
@@ -120,6 +126,7 @@
 		211E45C81B98153200CF0088 /* round */ = {
 			isa = PBXGroup;
 			children = (
+				21D427E91B9F00B700BBBD41 /* error.h */,
 				218EE9651B9AE73300960009 /* finder.h */,
 				21F6D9B41B99857700714056 /* round.h */,
 				21EA96DA1B990CF400E00841 /* node.h */,
@@ -136,6 +143,8 @@
 			children = (
 				21F6D9A91B99848000714056 /* script */,
 				2178B3631B98BE7B00B9D86B /* util */,
+				21D427ED1B9F07CD00BBBD41 /* error_internal.h */,
+				21D427EB1B9F010A00BBBD41 /* error.c */,
 				211E45D51B98192600CF0088 /* finder_internal.h */,
 				211E45D61B98192600CF0088 /* finder.c */,
 				211E45CF1B9816F300CF0088 /* client_internal.h */,
@@ -238,6 +247,7 @@
 				211E45DA1B981A6300CF0088 /* typedef.h in Headers */,
 				2178B36E1B98BEAE00B9D86B /* mutex.h in Headers */,
 				219A8E2A1B9AF54D004ED802 /* lua.h in Headers */,
+				21D427EE1B9F07CD00BBBD41 /* error_internal.h in Headers */,
 				211E45D01B9816F300CF0088 /* client_internal.h in Headers */,
 				2178B3621B98986200B9D86B /* const.h in Headers */,
 				211E45CA1B98154A00CF0088 /* client.h in Headers */,
@@ -252,6 +262,7 @@
 				219A8E2D1B9AF607004ED802 /* script_internal.h in Headers */,
 				21EA96CD1B990AF800E00841 /* cluster_internal.h in Headers */,
 				21852FB61B9DB11000C7F878 /* map.h in Headers */,
+				21D427EA1B9F00B700BBBD41 /* error.h in Headers */,
 				218EE9661B9AE73300960009 /* finder.h in Headers */,
 				219A8E2B1B9AF54D004ED802 /* ruby.h in Headers */,
 			);
@@ -329,6 +340,7 @@
 				2148E5D81B9DFDAF0021CE7B /* script_engine_map.c in Sources */,
 				212A95461B9BCA4200EC9A71 /* script.c in Sources */,
 				21852FB51B9DB11000C7F878 /* map.c in Sources */,
+				21D427EC1B9F010A00BBBD41 /* error.c in Sources */,
 				2178B36D1B98BEAE00B9D86B /* mutex.c in Sources */,
 				21F6D9B31B99848000714056 /* script_engine.c in Sources */,
 				21FBE36F1B9DC803000C2512 /* map_object_list.c in Sources */,
