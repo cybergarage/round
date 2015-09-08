@@ -22,19 +22,19 @@ extern "C" {
 * Define
 ****************************************/
 
-#define ROUNDC_STRING_FLOAT_BUFLEN_MEMORY_ALLOCATION_UNIT 64
+#define ROUNDC_STRING_MEMORY_ALLOCATION_UNIT 64
  
 /* UINT_MAX : 4294967295U */
-#define ROUNDC_STRING_FLOAT_BUFLEN_INTEGER_BUFLEN 16 
+#define ROUNDC_STRING_INTEGER_BUFLEN 16
  
  /* ULONG_MAX : 4294967295UL */
-#define ROUNDC_STRING_FLOAT_BUFLEN_LONG_BUFLEN 32
+#define ROUNDC_STRING_LONG_BUFLEN 32
 
  /*  ULLONG_MAX : 18446744073709551615ULL */
-#define ROUNDC_STRING_FLOAT_BUFLEN_LONGLONG_BUFLEN 32
+#define ROUNDC_STRING_LONGLONG_BUFLEN 32
 
-#define ROUNDC_STRING_FLOAT_BUFLEN_FLOAT_BUFLEN 64
-#define ROUNDC_STRING_FLOAT_BUFLEN_DOUBLE_BUFLEN 64
+#define ROUNDC_STRING_FLOAT_BUFLEN 64
+#define ROUNDC_STRING_DOUBLE_BUFLEN 64
   
 /****************************************
 * Function 
@@ -75,6 +75,49 @@ const char *round_ssizet2str(ssize_t value, char *buf, size_t bufSize);
 #define round_str2double(value) (value ? atof(value) : 0.0)
 #define round_str2sizet(value) ((size_t)(value ? atol(value) : 0))
 #define round_str2ssizet(value) ((ssize_t)(value ? atol(value) : 0))
+
+/****************************************
+* Data Type
+****************************************/
+	
+typedef struct {
+	char *value;
+	size_t memSize;
+	size_t valueSize;
+} RoundString;
+	
+/****************************************
+* Function (String)
+****************************************/
+
+RoundString *round_string_new();
+void round_string_delete(RoundString *str);
+void round_string_clear(RoundString *str);
+
+void round_string_setvalue(RoundString *str, const char *value);
+void round_string_setintvalue(RoundString *str, int value);
+void round_string_setlongvalue(RoundString *str, long value);
+void round_string_setfloatvalue(RoundString *str, float value);
+void round_string_setdoublevalue(RoundString *str, double value);
+void round_string_setnvalue(RoundString *str, const char *value, size_t len);
+void round_string_setpointervalue(RoundString *str, char *value, size_t len);
+
+char *round_string_getvalue(RoundString *str);
+#define round_string_getintvalue(str) mupnp_str2int(round_string_getvalue(str))
+#define round_string_getlongvalue(str) mupnp_str2long(round_string_getvalue(str))
+#define round_string_getfloatvalue(str) mupnp_str2float(round_string_getvalue(str))
+#define round_string_getdoublevalue(str) mupnp_str2double(round_string_getvalue(str))
+	
+size_t round_string_length(RoundString *str);
+
+char *round_string_addvalue(RoundString *str, const char *value);
+char *round_string_naddvalue(RoundString *str, const char *value, size_t valueLen);
+char *round_string_addrepvalue(RoundString *str, const char *value, size_t repeatCnt);
+char *round_string_naddrepvalue(RoundString *str, const char *value, size_t valueLen, size_t repeatCnt);
+
+char *round_string_replace(RoundString *str, char *fromStr[], char *toStr[], size_t fromStrCnt);
+
+size_t round_string_getmemorysize(RoundString *str);
                                                                                                                                              
 #ifdef  __cplusplus
 }
