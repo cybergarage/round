@@ -23,7 +23,7 @@ BOOST_AUTO_TEST_CASE(ScriptListMap)
   RoundScript *script[ROUND_TEST_MAP_SIZE];
   char name[32];
 
-  // Add engines
+  // Add scripts
   
   for (int n=0; n<ROUND_TEST_MAP_SIZE; n++) {
     script[n] = round_script_new();
@@ -36,7 +36,7 @@ BOOST_AUTO_TEST_CASE(ScriptListMap)
   
   BOOST_CHECK_EQUAL(ROUND_TEST_MAP_SIZE, round_script_map_size(map));
 
-  // Get engines
+  // Get scripts
   
   for (int n=0; n<ROUND_TEST_MAP_SIZE; n++) {
     snprintf(name, sizeof(name), "%d", n);
@@ -45,7 +45,7 @@ BOOST_AUTO_TEST_CASE(ScriptListMap)
   
   BOOST_CHECK_EQUAL(ROUND_TEST_MAP_SIZE, round_script_map_size(map));
 
-  // Remove engines
+  // Remove scripts
   
   for (int n=0; n<ROUND_TEST_MAP_SIZE; n++) {
     snprintf(name, sizeof(name), "%d", n);
