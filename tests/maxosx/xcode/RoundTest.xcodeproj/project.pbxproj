@@ -131,7 +131,6 @@
 		217993091B4A5A6B00A158CD /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				21D427EF1B9F0B1A00BBBD41 /* ErrorTest.cpp */,
 				21F6D9991B9983A500714056 /* script */,
 				21EA96E01B99105E00E00841 /* NodeListTest.cpp */,
 				21EA96E11B99105E00E00841 /* NodeTest.cpp */,
@@ -147,6 +146,7 @@
 				2166EF8A1B9D2E5E002FE45D /* ScriptEngineMapTest.cpp */,
 				2166EF8B1B9D2E5E002FE45D /* ScriptEngineTest.cpp */,
 				21852FB11B9DB0A800C7F878 /* MapTest.cpp */,
+				21D427EF1B9F0B1A00BBBD41 /* ErrorTest.cpp */,
 			);
 			name = Sources;
 			sourceTree = "<group>";

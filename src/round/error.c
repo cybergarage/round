@@ -27,8 +27,7 @@ RoundError *round_error_new(void)
   err->msg = round_string_new();
   err->detailMsg = round_string_new();
   
-  round_error_setcode(err, 0);
-  round_error_setdetailcode(err, 0);
+  round_error_clear(err);
   
   return err;
 }
@@ -61,6 +60,8 @@ bool round_error_clear(RoundError *err)
 
   round_string_clear(err->msg);
   round_string_clear(err->detailMsg);
+  round_error_setcode(err, 0);
+  round_error_setdetailcode(err, 0);
   
   return true;
 }
