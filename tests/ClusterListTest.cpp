@@ -20,14 +20,14 @@ BOOST_AUTO_TEST_CASE(ClusterList)
   BOOST_CHECK(clusters);
   BOOST_CHECK_EQUAL(0, round_clusterlist_size(clusters));
   
-  RoundCluster *cluster[ROUND_TEST_LIST_CNT];
-  for (int n=0; n<ROUND_TEST_LIST_CNT; n++) {
+  RoundCluster *cluster[ROUND_TEST_MAP_SIZE];
+  for (int n=0; n<ROUND_TEST_MAP_SIZE; n++) {
     cluster[n] = round_cluster_new();
     BOOST_CHECK(round_clusterlist_add(clusters, cluster[n]));
     BOOST_CHECK_EQUAL((n+1), round_clusterlist_size(clusters));
   }
   
-  BOOST_CHECK_EQUAL(ROUND_TEST_LIST_CNT, round_clusterlist_size(clusters));
+  BOOST_CHECK_EQUAL(ROUND_TEST_MAP_SIZE, round_clusterlist_size(clusters));
   
   BOOST_CHECK(round_clusterlist_delete(clusters));
 }

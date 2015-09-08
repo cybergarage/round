@@ -103,6 +103,21 @@ bool round_script_engine_delete(RoundScriptEngine *engine)
 }
 
 /****************************************
+ * round_script_engine_isvalid
+ ****************************************/
+
+bool round_script_engine_isvalid(RoundScriptEngine *engine)
+{
+  if (!engine)
+    return false;
+  
+  if (round_strlen(engine->lang) <= 0)
+    return false;
+  
+  return true;
+}
+
+/****************************************
  * round_script_engine_setresult
  ****************************************/
 

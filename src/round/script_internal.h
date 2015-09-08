@@ -59,9 +59,6 @@ typedef struct {
 RoundScript *round_script_new();
 bool round_script_delete(RoundScript *script);
 
-#define round_script_next(script) ((RoundScript*)round_list_next((RoundList *)script))
-#define round_script_remove(script) round_list_remove((RoundList *)script)
-
 #define round_script_setlanguage(script, value) round_strloc(value, &script->lang)
 #define round_script_getlanguage(script) (script->lang)
 
@@ -79,10 +76,12 @@ bool round_script_isvalid(RoundScript *script);
  ****************************************/
 
 RoundScriptMap *round_script_map_new();
+
 #define round_script_map_delete(map) round_map_delete(map)
 #define round_script_map_size(map) round_map_size(map)
 #define round_script_map_set(map, script) round_map_setobject(map, script->name, script)
 #define round_script_map_get(map, name) ((RoundScript*)round_map_getobjectbykey(map, name))
+#define round_script_map_remove(map, name) round_map_removeobjectbykey(map, name)
   
 /****************************************
  * Function (Script Engine)
@@ -98,6 +97,8 @@ bool round_script_engine_unlock(RoundScriptEngine *engine);
 #define round_script_engine_setlanguage(engine, value) round_strloc(value, &engine->lang)
 #define round_script_engine_getlanguage(engine) (engine->lang)
 
+bool round_script_engine_isvalid(RoundScriptEngine *engine);
+  
 bool round_script_engine_setresult(RoundScriptEngine *engine, const char *value);
 const char *round_script_engine_getresult(RoundScriptEngine *engine);
   
@@ -113,6 +114,7 @@ RoundScriptEngineMap *round_script_engine_map_new();
 #define round_script_engine_map_size(map) round_map_size(map)
 #define round_script_engine_map_set(map, eng) round_map_setobject(map, eng->lang, eng)
 #define round_script_engine_map_get(map, name) ((RoundScriptEngine*)round_map_getobjectbykey(map, name))
+#define round_script_engine_map_remove(map, name) round_map_removeobjectbykey(map, name)
 
 /****************************************
  * Function (Script Manager)
@@ -124,6 +126,9 @@ bool round_script_manager_delete(RoundScriptManager *mgr);
 bool round_script_manager_addscript(RoundScriptManager *mgr, RoundScript *script);
 RoundScript *round_script_manager_getscriptbyname(RoundScriptManager *mgr, const char *name);
 
+bool round_script_manager_addengine(RoundScriptManager *mgr, RoundScriptEngine *engine);
+RoundScriptEngine *round_script_manager_getenginebyname(RoundScriptManager *mgr, const char *name);
+  
 #ifdef  __cplusplus
 }
 #endif

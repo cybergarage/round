@@ -11,6 +11,6 @@
 #ifndef _ROUNDC_TEST_H_
 #define _ROUNDC_TEST_H_
 
-#define ROUND_TEST_LIST_CNT 10
+#define ROUND_TEST_MAP_SIZE 10
 
 #endif

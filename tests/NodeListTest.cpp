@@ -20,14 +20,14 @@ BOOST_AUTO_TEST_CASE(NodeList)
   BOOST_CHECK(nodes);
   BOOST_CHECK_EQUAL(0, round_nodelist_size(nodes));
   
-  RoundNode *node[ROUND_TEST_LIST_CNT];
-  for (int n=0; n<ROUND_TEST_LIST_CNT; n++) {
+  RoundNode *node[ROUND_TEST_MAP_SIZE];
+  for (int n=0; n<ROUND_TEST_MAP_SIZE; n++) {
     node[n] = round_node_new();
     BOOST_CHECK(round_nodelist_add(nodes, node[n]));
     BOOST_CHECK_EQUAL((n+1), round_nodelist_size(nodes));
   }
   
-  BOOST_CHECK_EQUAL(ROUND_TEST_LIST_CNT, round_nodelist_size(nodes));
+  BOOST_CHECK_EQUAL(ROUND_TEST_MAP_SIZE, round_nodelist_size(nodes));
   
   BOOST_CHECK(round_nodelist_delete(nodes));
 }
