@@ -34,6 +34,7 @@
 		219A8E2B1B9AF54D004ED802 /* ruby.h in Headers */ = {isa = PBXBuildFile; fileRef = 219A8E241B9AF54D004ED802 /* ruby.h */; };
 		219A8E2D1B9AF607004ED802 /* script_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 219A8E2C1B9AF607004ED802 /* script_internal.h */; };
 		219A8E2F1B9B0103004ED802 /* Ruby.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 219A8E2E1B9B0103004ED802 /* Ruby.framework */; };
+		21D427E71B9EFD5900BBBD41 /* string.c in Sources */ = {isa = PBXBuildFile; fileRef = 21D427E61B9EFD5900BBBD41 /* string.c */; };
 		21EA96CD1B990AF800E00841 /* cluster_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 21EA96CA1B990AF800E00841 /* cluster_internal.h */; };
 		21EA96CE1B990AF800E00841 /* cluster_list.c in Sources */ = {isa = PBXBuildFile; fileRef = 21EA96CB1B990AF800E00841 /* cluster_list.c */; };
 		21EA96CF1B990AF800E00841 /* cluster.c in Sources */ = {isa = PBXBuildFile; fileRef = 21EA96CC1B990AF800E00841 /* cluster.c */; };
@@ -43,7 +44,7 @@
 		21EA96D91B990C3B00E00841 /* node.c in Sources */ = {isa = PBXBuildFile; fileRef = 21EA96D61B990C3B00E00841 /* node.c */; };
 		21EA96DB1B990CF400E00841 /* node.h in Headers */ = {isa = PBXBuildFile; fileRef = 21EA96DA1B990CF400E00841 /* node.h */; };
 		21EAA2A51B9931B10002CFF0 /* strings.h in Headers */ = {isa = PBXBuildFile; fileRef = 21EAA2A31B9931B10002CFF0 /* strings.h */; };
-		21EAA2A61B9931B10002CFF0 /* strings.c in Sources */ = {isa = PBXBuildFile; fileRef = 21EAA2A41B9931B10002CFF0 /* strings.c */; };
+		21EAA2A61B9931B10002CFF0 /* string_func.c in Sources */ = {isa = PBXBuildFile; fileRef = 21EAA2A41B9931B10002CFF0 /* string_func.c */; };
 		21F6D9AF1B99848000714056 /* js_engine.c in Sources */ = {isa = PBXBuildFile; fileRef = 21F6D9AA1B99848000714056 /* js_engine.c */; };
 		21F6D9B01B99848000714056 /* js_sm_engine.c in Sources */ = {isa = PBXBuildFile; fileRef = 21F6D9AB1B99848000714056 /* js_sm_engine.c */; };
 		21F6D9B11B99848000714056 /* lua_engine.c in Sources */ = {isa = PBXBuildFile; fileRef = 21F6D9AC1B99848000714056 /* lua_engine.c */; };
@@ -83,6 +84,7 @@
 		219A8E241B9AF54D004ED802 /* ruby.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ruby.h; sourceTree = "<group>"; };
 		219A8E2C1B9AF607004ED802 /* script_internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = script_internal.h; path = ../../../src/round/script_internal.h; sourceTree = "<group>"; };
 		219A8E2E1B9B0103004ED802 /* Ruby.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Ruby.framework; path = System/Library/Frameworks/Ruby.framework; sourceTree = SDKROOT; };
+		21D427E61B9EFD5900BBBD41 /* string.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = string.c; path = ../../../src/round/util/string.c; sourceTree = "<group>"; };
 		21EA96CA1B990AF800E00841 /* cluster_internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cluster_internal.h; path = ../../../src/round/cluster_internal.h; sourceTree = "<group>"; };
 		21EA96CB1B990AF800E00841 /* cluster_list.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = cluster_list.c; path = ../../../src/round/cluster_list.c; sourceTree = "<group>"; };
 		21EA96CC1B990AF800E00841 /* cluster.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = cluster.c; path = ../../../src/round/cluster.c; sourceTree = "<group>"; };
@@ -92,7 +94,7 @@
 		21EA96D61B990C3B00E00841 /* node.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = node.c; path = ../../../src/round/node.c; sourceTree = "<group>"; };
 		21EA96DA1B990CF400E00841 /* node.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = node.h; path = ../../../include/round/node.h; sourceTree = "<group>"; };
 		21EAA2A31B9931B10002CFF0 /* strings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = strings.h; path = ../../../src/round/util/strings.h; sourceTree = "<group>"; };
-		21EAA2A41B9931B10002CFF0 /* strings.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = strings.c; path = ../../../src/round/util/strings.c; sourceTree = "<group>"; };
+		21EAA2A41B9931B10002CFF0 /* string_func.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = string_func.c; path = ../../../src/round/util/string_func.c; sourceTree = "<group>"; };
 		21F6D9AA1B99848000714056 /* js_engine.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = js_engine.c; sourceTree = "<group>"; };
 		21F6D9AB1B99848000714056 /* js_sm_engine.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = js_sm_engine.c; sourceTree = "<group>"; };
 		21F6D9AC1B99848000714056 /* lua_engine.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lua_engine.c; sourceTree = "<group>"; };
@@ -197,7 +199,8 @@
 				21FBE36E1B9DC803000C2512 /* map_object.c */,
 				21FBE36D1B9DC803000C2512 /* map_object_list.c */,
 				21EAA2A31B9931B10002CFF0 /* strings.h */,
-				21EAA2A41B9931B10002CFF0 /* strings.c */,
+				21D427E61B9EFD5900BBBD41 /* string.c */,
+				21EAA2A41B9931B10002CFF0 /* string_func.c */,
 				2178B3641B98BEAE00B9D86B /* list.c */,
 				2178B3651B98BEAE00B9D86B /* list.h */,
 				2178B3661B98BEAE00B9D86B /* mutex.c */,
@@ -316,7 +319,7 @@
 				21EA96D91B990C3B00E00841 /* node.c in Sources */,
 				2178B36B1B98BEAE00B9D86B /* list.c in Sources */,
 				21F6D9AF1B99848000714056 /* js_engine.c in Sources */,
-				21EAA2A61B9931B10002CFF0 /* strings.c in Sources */,
+				21EAA2A61B9931B10002CFF0 /* string_func.c in Sources */,
 				211E45CD1B98157400CF0088 /* client.c in Sources */,
 				21FBE3701B9DC803000C2512 /* map_object.c in Sources */,
 				211E45D81B98192600CF0088 /* finder.c in Sources */,
@@ -334,6 +337,7 @@
 				21F6D9B21B99848000714056 /* ruby_engine.c in Sources */,
 				21F6D9B01B99848000714056 /* js_sm_engine.c in Sources */,
 				21EA96CE1B990AF800E00841 /* cluster_list.c in Sources */,
+				21D427E71B9EFD5900BBBD41 /* string.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
