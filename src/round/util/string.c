@@ -26,11 +26,12 @@ RoundString *round_string_new(void)
   
   str = (RoundString *)malloc(sizeof(RoundString));
   
-  if (NULL != str) {
-    str->value = NULL;
-    str->memSize = 0;
-    str->valueSize = 0;
-  }
+  if (!str)
+    return NULL;
+
+  str->value = NULL;
+  str->memSize = 0;
+  str->valueSize = 0;
   
   return str;
 }
@@ -39,100 +40,119 @@ RoundString *round_string_new(void)
  * round_string_delete
  ****************************************/
 
-void round_string_delete(RoundString *str)
+bool round_string_delete(RoundString *str)
 {
-  if (NULL != str) {
-    round_string_clear(str);
-    free(str);
-  }
+  if (!str)
+    return false;
+
+  round_string_clear(str);
+  
+  free(str);
+  
+  return true;
 }
 
 /****************************************
  * round_string_delete
  ****************************************/
 
-void round_string_clear(RoundString *str)
+bool round_string_clear(RoundString *str)
 {
-  if (NULL != str) {
-    if (str->value != NULL) {
-      free(str->value);
-      str->value = NULL;
-      str->memSize = 0;
-      str->valueSize = 0;
-    }
+  if (!str)
+    return false;
+
+  if (str->value) {
+    free(str->value);
+    str->value = NULL;
   }
+
+  str->memSize = 0;
+  str->valueSize = 0;
+
+  return true;
 }
 
 /****************************************
  * round_string_setvalue
  ****************************************/
 
-void round_string_setvalue(RoundString *str, const char *value)
+bool round_string_setvalue(RoundString *str, const char *value)
 {
-  if (NULL != str) {
-    if (value != NULL)
-      round_string_setnvalue(str, value, round_strlen(value));
-  }
+  if (!str)
+    return false;
+
+  if (!value)
+    return false;
+
+  return round_string_setnvalue(str, value, round_strlen(value));
 }
 
 /****************************************
  * round_string_setintvalue
  ****************************************/
 
-void round_string_setintvalue(RoundString *str, int value)
+bool round_string_setintvalue(RoundString *str, int value)
 {
   char buf[ROUNDC_STRING_INTEGER_BUFLEN];
-  
-  round_string_setvalue(str, round_int2str(value, buf, sizeof(buf)));
+  return round_string_setvalue(str, round_int2str(value, buf, sizeof(buf)));
 }
 
 /****************************************
  * round_string_setlongvalue
  ****************************************/
 
-void round_string_setlongvalue(RoundString *str, long value)
+bool round_string_setlongvalue(RoundString *str, long value)
 {
   char buf[ROUNDC_STRING_LONG_BUFLEN];
-  
-  round_string_setvalue(str, round_long2str(value, buf, sizeof(buf)));
+  return round_string_setvalue(str, round_long2str(value, buf, sizeof(buf)));
 }
 
 /****************************************
  * round_string_setnvalue
  ****************************************/
 
-void round_string_setnvalue(RoundString *str, const char *value, size_t len)
+bool round_string_setnvalue(RoundString *str, const char *value, size_t len)
 {
-  if (NULL != str) {
-    round_string_clear(str);
-    if (value != NULL) {
-      str->valueSize = len;
-      str->memSize = str->valueSize + 1;
-      str->value = (char *)malloc(str->memSize * sizeof(char));
-      
-      if ( NULL == str->value ) {
-        return;
-      }
-      
-      /* memcpy works better with non-zero-terminated data than strncpy */
-      memcpy(str->value, value, len);
-      str->value[len] = '\0';
-    }
-  }
+  if (!str)
+    return false;
+
+  if (!round_string_clear(str))
+    return false;
+
+  if (!value)
+    return true;
+  
+  str->valueSize = len;
+  str->memSize = str->valueSize + 1;
+
+  str->value = (char *)malloc(str->memSize * sizeof(char));
+  if (!str->value)
+    return false;
+  
+  /* memcpy works better with non-zero-terminated data than strncpy */
+  memcpy(str->value, value, len);
+  str->value[len] = '\0';
+  
+  return true;
 }
 
 /****************************************
  * round_string_setpointervalue
  ****************************************/
 
-void round_string_setpointervalue(RoundString *str, char *value, size_t len)
+bool round_string_setpointervalue(RoundString *str, char *value, size_t len)
 {
-  if (NULL != str) {
-    round_string_clear(str);
-    str->value = value;
-    str->valueSize = len;
-    str->memSize = str->valueSize + 1;
-  }
+  if (!str)
+    return false;
+
+  if (!round_string_clear(str))
+    return false;
+
+  str->value = value;
+  str->valueSize = len;
+  str->memSize = str->valueSize + 1;
+
+  return true;
 }
 
 /****************************************
@@ -141,7 +161,9 @@ void round_string_setpointervalue(RoundString *str, char *value, size_t len)
 
 char *round_string_getvalue(RoundString *str)
 {
-  return (NULL != str) ? str->value : NULL;
+  if (!str)
+    return NULL;
+  return str->value;
 }
 
 /****************************************
@@ -150,9 +172,8 @@ char *round_string_getvalue(RoundString *str)
 
 size_t round_string_getmemorysize(RoundString *str)
 {
-  if (NULL == str)
+  if (!str)
     return 0;
-  
   return str->memSize;
 }
 
@@ -162,10 +183,10 @@ size_t round_string_getmemorysize(RoundString *str)
 
 size_t round_string_length(RoundString *str)
 {
-  if (NULL == str)
+  if (!str)
     return 0;
   
-  if (str->value == NULL)
+  if (!str->value)
     return 0;
   
   return str->valueSize;
@@ -189,7 +210,7 @@ char *round_string_naddvalue(RoundString *str, const char *value, size_t valueLe
   char *newValue = NULL;
   size_t newMemSize = 0;
   
-  if (NULL == str)
+  if (!str)
     return NULL;
   
   if (value == NULL || valueLen <= 0) {
@@ -269,7 +290,7 @@ char *round_string_replace(RoundString *str, char *fromStr[], char *toStr[], siz
   RoundString *repValue = NULL;
   bool isReplaced = false;
   
-  if (NULL == str )
+  if (!str)
     return NULL;
   
   repValue = round_string_new();
