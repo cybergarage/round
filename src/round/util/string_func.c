@@ -46,7 +46,7 @@ char *round_strdup(const char *str)
 
 bool round_strloc(const char *str, char **buf)
 {
-  if (!str || !buf)
+  if (!buf)
     return false;
     
   if (*buf) {
