@@ -128,3 +128,16 @@ bool round_script_manager_removeengine(RoundScriptManager *mgr, const char *name
   return round_script_engine_map_remove(mgr->engineMap, name);
 }
 
+
+/****************************************
+ * round_script_manager_run
+ ****************************************/
+
+bool round_script_manager_run(RoundScriptManager *mgr, const char *method, const char *jsonParam)
+{
+  if (!mgr)
+    return false;
+  
+  return false;
+}
+
