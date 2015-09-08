@@ -23,15 +23,41 @@ RoundMap *round_map_new()
   if (!map)
     return NULL;
   
-  map->table = calloc(ROUND_UTIL_MAP_TABLE_SIZE, sizeof(RoundList *));
-  if (!map->table) {
-    round_map_delete(map);
-    return NULL;
-  }
-  
+  map->table = NULL;
   map->mapObjDestFunc = NULL;
-
+  
+  // Set Default
+  
+  round_map_settablesize(map, ROUND_MAP_DEFAULT_TABLE_SIZE);
+  round_map_setmaphashfunc(map, ROUND_MAP_DEFAULT_HASH_FUNC);
+  
   return map;
+}
+
+/****************************************
+ * round_map_cleartable
+ ****************************************/
+
+bool round_map_cleartable(RoundMap *map)
+{
+  size_t n;
+  
+  if (!map)
+    return false;
+  
+  if (map->table) {
+    for (n = 0; n<map->tableSize; n++) {
+      if (!map->table[n])
+        continue;
+      round_map_objectlist_delete(map->table[n]);
+    }
+    free(map->table);
+    map->table = NULL;
+  }
+    
+  map->tableSize = 0;
+
+  return true;
 }
 
 /****************************************
@@ -40,22 +66,36 @@ RoundMap *round_map_new()
 
 bool round_map_delete(RoundMap *map)
 {
-  size_t n;
-  
   if (!map)
     return false;
   
-  if (map->table) {
-    for (n = 0; n<ROUND_UTIL_MAP_TABLE_SIZE; n++) {
-      if (!map->table[n])
-        continue;
-      round_map_objectlist_delete(map->table[n]);
-    }
-    free(map->table);
-    map->table = NULL;
-  }
+  round_map_cleartable(map);
   
   free(map);
+  
+  return true;
+}
+
+/****************************************
+ * round_map_settablesize
+ ****************************************/
+
+bool round_map_settablesize(RoundMap *map, size_t size)
+{
+  if (!map)
+    return false;
+  
+  if (size <= 0)
+    return false;
+  
+  round_map_cleartable(map);
+  
+  map->table = calloc(size, sizeof(RoundList *));
+  if (!map->table) {
+    return false;
+  }
+  
+  map->tableSize = size;
   
   return true;
 }
@@ -72,7 +112,7 @@ size_t round_map_size(RoundMap *map)
     return 0;
 
   mapSize = 0;
-  for (n=0; n<ROUND_UTIL_MAP_TABLE_SIZE; n++) {
+  for (n=0; n<map->tableSize; n++) {
     if (!map->table[n])
       continue;
     mapSize += round_map_objectlist_size(map->table[n]);
@@ -93,7 +133,7 @@ double round_map_getefficiency(RoundMap *map)
     return 0.0;
   
   mapCnt = tableCnt = 0;
-  for (n=0; n<ROUND_UTIL_MAP_TABLE_SIZE; n++) {
+  for (n=0; n<map->tableSize; n++) {
     if (!map->table[n])
       continue;
     mapCnt += round_map_objectlist_size(map->table[n]);
@@ -103,6 +143,34 @@ double round_map_getefficiency(RoundMap *map)
   return ((double)tableCnt/(double)mapCnt);
 }
 
+/****************************************
+ * round_map_printdistribution
+ ****************************************/
+
+void round_map_printdistribution(RoundMap *map)
+{
+  size_t mapCnt, tableCnt, tableMapCnt, n;
+  
+  if (!map || !map->table)
+    return;
+  
+  printf("=== map distribution ===\n");
+  printf("size : %ld\n", map->tableSize);
+  
+  mapCnt = tableCnt = 0;
+  for (n=0; n<map->tableSize; n++) {
+    if (!map->table[n])
+      continue;
+    tableMapCnt = round_map_objectlist_size(map->table[n]);
+    if (tableMapCnt == 0)
+      continue;
+    printf("[%ld] : %ld\n", n, tableMapCnt);
+    mapCnt += tableMapCnt;
+    tableCnt++;
+  }
+
+  printf("use : %ld\n", tableCnt);
+}
 
 /****************************************
  * round_map_getkeycode
@@ -110,20 +178,10 @@ double round_map_getefficiency(RoundMap *map)
 
 size_t round_map_getkeycode(RoundMap *map, const char *key)
 {
-  size_t keyCode, keySize, n;
+  if (!map || !map->mapHashFunc)
+    return 0;
   
-  keyCode = 0;
-  
-  keySize = round_strlen(key);
-  for (n=0; n<keySize; n++) {
-    // TODO : Optimaze hash alogorithm
-    keyCode += (ROUND_UTIL_MAP_TABLE_SIZE - key[n]);
-    if ((SIZE_MAX/2) < keyCode) {
-      keyCode = keyCode % ROUND_UTIL_MAP_TABLE_SIZE;
-    }
-  }
-  
-  return keyCode % ROUND_UTIL_MAP_TABLE_SIZE;
+  return map->mapHashFunc(key) % map->tableSize;
 }
 
 /****************************************

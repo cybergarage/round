@@ -23,13 +23,15 @@ extern "C" {
  * Define
  ****************************************/
 
-#define ROUND_UTIL_MAP_TABLE_SIZE 4096
+#define ROUND_MAP_DEFAULT_TABLE_SIZE 4096
+#define ROUND_MAP_DEFAULT_HASH_FUNC round_map_getasciihash
   
 /****************************************
  * Data Type
  ****************************************/
 
 typedef void (*ROUND_MAP_OBJECT_DESTRUCTOR)(void *);
+typedef size_t (*ROUND_MAP_HASH_FUNC)(const char *);
 
 typedef struct _RoundMapObject {
   bool headFlag;
@@ -38,13 +40,16 @@ typedef struct _RoundMapObject {
 
   char *key;
   void *obj;
+
   ROUND_MAP_OBJECT_DESTRUCTOR objDestFunc;
 } RoundMapObject, RoundMapObjectList;
   
   
 typedef struct {
   RoundMapObjectList **table;
+  size_t tableSize;
   ROUND_MAP_OBJECT_DESTRUCTOR mapObjDestFunc;
+  ROUND_MAP_HASH_FUNC mapHashFunc;
 } RoundMap;
 
 /****************************************
@@ -96,10 +101,23 @@ bool round_map_removeobjectbykey(RoundMap *map, const char *key);
 size_t round_map_getkeycode(RoundMap *map, const char *key);
 RoundMapObject *round_map_getmapobjectbykey(RoundMap *map, const char *key);
 
+bool round_map_settablesize(RoundMap *map, size_t value);
+#define round_map_gettablesize(map) (map->tableSize)
+  
+#define round_map_setmaphashfunc(map, func) (map->mapHashFunc = func)
+#define round_map_getmaphashfunc(map) (map->mapHashFunc)
+  
 #define round_map_setmapobjectdestructor(map, func) (map->mapObjDestFunc = func)
 #define round_map_getmapobjectdestructor(map) (map->mapObjDestFunc)
   
 double round_map_getefficiency(RoundMap *map);
+void round_map_printdistribution(RoundMap *map);
+
+/****************************************
+ * Function (Hash)
+ ****************************************/
+
+size_t round_map_getasciihash(const char *key);
 
 #ifdef  __cplusplus
 } /* extern "C" */

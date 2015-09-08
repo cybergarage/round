@@ -19,54 +19,59 @@ BOOST_AUTO_TEST_CASE(MapNew)
   
   BOOST_CHECK_EQUAL(round_map_size(map), 0);
   
+  size_t tableSize = round_map_gettablesize(map);
+  
   RoundMapObject *mapObj;
   char key[64];
   
   // Add key objects
   
-  for (int n=0; n<ROUND_UTIL_MAP_TABLE_SIZE; n++) {
-    snprintf(key, sizeof(key), "%08X%08X", n, (ROUND_UTIL_MAP_TABLE_SIZE - n));
+  for (size_t n=0; n<tableSize; n++) {
+    snprintf(key, sizeof(key), "%ld", n);
     mapObj = round_map_object_new();
     round_map_object_setkey(mapObj, key);
     BOOST_CHECK(round_map_addmapobject(map, mapObj));
     BOOST_CHECK_EQUAL(round_map_size(map), (n+1));
   }
 
-  BOOST_CHECK_EQUAL(round_map_size(map), ROUND_UTIL_MAP_TABLE_SIZE);
+  BOOST_CHECK_EQUAL(round_map_size(map), tableSize);
 
   // Check map distribution
 
   double mapDist = round_map_getefficiency(map);
   BOOST_WARN(0.5f < mapDist);
+#ifdef DEBUG
+  round_map_printdistribution(map);
+#endif
   
   // Get key objects
   
-  for (int n=0; n<ROUND_UTIL_MAP_TABLE_SIZE; n++) {
-    snprintf(key, sizeof(key), "%08X%08X", n, (ROUND_UTIL_MAP_TABLE_SIZE - n));
+  for (size_t n=0; n<tableSize; n++) {
+    snprintf(key, sizeof(key), "%ld", n);
     mapObj = round_map_getmapobjectbykey(map, key);
     BOOST_CHECK(mapObj);
   }
   
-  BOOST_CHECK_EQUAL(round_map_size(map), ROUND_UTIL_MAP_TABLE_SIZE);
+  BOOST_CHECK_EQUAL(round_map_size(map), tableSize);
   
   // Add same key objects
   
-  for (int n=0; n<ROUND_UTIL_MAP_TABLE_SIZE; n++) {
-    snprintf(key, sizeof(key), "%08X%08X", n, (ROUND_UTIL_MAP_TABLE_SIZE - n));
+  for (size_t n=0; n<tableSize; n++) {
+    snprintf(key, sizeof(key), "%ld", n);
     mapObj = round_map_object_new();
     round_map_object_setkey(mapObj, key);
     BOOST_CHECK(round_map_addmapobject(map, mapObj));
-    BOOST_CHECK_EQUAL(round_map_size(map), ROUND_UTIL_MAP_TABLE_SIZE);
+    BOOST_CHECK_EQUAL(round_map_size(map), tableSize);
   }
   
-  BOOST_CHECK_EQUAL(round_map_size(map), ROUND_UTIL_MAP_TABLE_SIZE);
+  BOOST_CHECK_EQUAL(round_map_size(map), tableSize);
   
   // Remove key objects
   
-  for (int n=0; n<ROUND_UTIL_MAP_TABLE_SIZE; n++) {
-    snprintf(key, sizeof(key), "%08X%08X", n, (ROUND_UTIL_MAP_TABLE_SIZE - n));
+  for (size_t n=0; n<tableSize; n++) {
+    snprintf(key, sizeof(key), "%ld", n);
     BOOST_CHECK(round_map_removeobjectbykey(map, key));
-    BOOST_CHECK_EQUAL(round_map_size(map), (ROUND_UTIL_MAP_TABLE_SIZE-(n+1)));
+    BOOST_CHECK_EQUAL(round_map_size(map), (tableSize-(n+1)));
   }
 
   BOOST_CHECK_EQUAL(round_map_size(map), 0);
