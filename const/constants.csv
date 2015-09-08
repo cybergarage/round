@@ -15,6 +15,14 @@ finder_upnp_action_getconnectioninfo,"GetConnectionInfo"
 rpc_http_endpoint,"/rpc"
 rpc_http_content_type,"application/json"
 
+# HTTP Status Code
+rpc_http_status_code_ok,200 
+rpc_http_status_code_moved_permanently,301 
+rpc_http_status_code_bad_request,400 
+rpc_http_status_code_not_found,404 
+rpc_http_status_code_not_acceptable,406 
+rpc_http_status_code_internal_server_error,500
+
 # Node Status
 node_status_unknown,0
 node_status_stop,1
