@@ -15,7 +15,7 @@
 
 BOOST_AUTO_TEST_CASE(ScriptListMap)
 {
-  RoundScriptMap *map = round_script_map_new();
+  RoundMap *map = round_script_map_new();
   
   BOOST_CHECK(map);
   BOOST_CHECK_EQUAL(0, round_script_map_size(map));
@@ -27,6 +27,7 @@ BOOST_AUTO_TEST_CASE(ScriptListMap)
   
   for (int n=0; n<ROUND_TEST_MAP_SIZE; n++) {
     script[n] = round_script_new();
+    BOOST_CHECK(script[n]);
     BOOST_CHECK(!round_script_map_set(map, script[n]));
     snprintf(name, sizeof(name), "%d", n);
     round_script_setname(script[n], name);

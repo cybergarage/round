@@ -49,36 +49,31 @@ bool round_script_engine_init(RoundScriptEngine *engine)
   }
   
   engine->lang = NULL;
-  engine->result = NULL;
-  engine->error = NULL;
+  round_script_engine_setexecutefunc(engine, NULL);
+  round_script_engine_setdestructor(engine, NULL);
   
   return true;
 }
 
 /****************************************
- * round_script_engine_clear
+ * round_script_engine_destory
  ****************************************/
 
-bool round_script_engine_clear(RoundScriptEngine *engine)
+bool round_script_engine_destory(RoundScriptEngine *engine)
 {
   if (!engine)
     return false;
+  
+  if (engine->mutex) {
+    round_mutex_delete(engine->mutex);
+    engine->mutex = NULL;
+  }
   
   if (engine->lang) {
     free(engine->lang);
     engine->lang = NULL;
   }
   
-  if (engine->result) {
-    free(engine->result);
-    engine->result = NULL;
-  }
-
-  if (engine->error) {
-    free(engine->error);
-    engine->error = NULL;
-  }
-
   return true;
 }
 
@@ -91,12 +86,9 @@ bool round_script_engine_delete(RoundScriptEngine *engine)
   if (!engine)
     return false;
   
-  if (!round_script_engine_clear(engine))
-    return false;
-  
-  if (engine->mutex) {
-    round_mutex_delete(engine->mutex);
-    engine->mutex = NULL;
+  if (engine->destFunc) {
+      if (!engine->destFunc(engine))
+        return false;
   }
 
   return true;
@@ -115,70 +107,4 @@ bool round_script_engine_isvalid(RoundScriptEngine *engine)
     return false;
   
   return true;
-}
-
-/****************************************
- * round_script_engine_setresult
- ****************************************/
-
-bool round_script_engine_setresult(RoundScriptEngine *engine, const char *value)
-{
-  if (!engine)
-    return false;
-  return round_strloc(value, &engine->result);
-}
-
-/****************************************
- * round_script_engine_getresult
- ****************************************/
-
-const char *round_script_engine_getresult(RoundScriptEngine *engine)
-{
-  if (!engine)
-    return NULL;
-  return engine->result;
-}
-
-/****************************************
- * round_script_engine_seterror
- ****************************************/
-
-bool round_script_engine_seterror(RoundScriptEngine *engine, const char *value)
-{
-  if (!engine)
-    return false;
-  return round_strloc(value, &engine->error);
-}
-
-/****************************************
- * round_script_engine_geterror
- ****************************************/
-
-const char *round_script_engine_geterror(RoundScriptEngine *engine)
-{
-  if (!engine)
-    return NULL;
-  return engine->error;
-}
-
-/****************************************
- * round_script_engine_lock
- ****************************************/
-
-bool round_script_engine_lock(RoundScriptEngine *engine)
-{
-  if (!engine)
-    return false;
-  return round_mutex_lock(engine->mutex);
-}
-
-/****************************************
- * round_script_engine_unlock
- ****************************************/
-
-bool round_script_engine_unlock(RoundScriptEngine *engine)
-{
-  if (!engine)
-    return false;
-  return round_mutex_unlock(engine->mutex);
 }

@@ -50,32 +50,33 @@ static JSClass RoundJSGlobalClass = {
 * round_js_sm_engine_new
 ****************************************/
 
-bool round_js_sm_engine_init(RoundJavaScriptEngine *jsEngine) {
-  if (!jsEngine)
+bool round_js_sm_engine_init(RoundJavaScriptEngine *engine)
+{
+  if (!engine)
     return NULL;
 
   JS_SetCStringsAreUTF8();
   
-  jsEngine->cx = NULL;
-  jsEngine->rt = NULL;
-  jsEngine->obj = NULL;
+  engine->cx = NULL;
+  engine->rt = NULL;
+  engine->obj = NULL;
   
-  jsEngine->rt = JS_NewRuntime(8L * 1024L * 1024L);
-  if (!jsEngine->rt)
+  engine->rt = JS_NewRuntime(8L * 1024L * 1024L);
+  if (!engine->rt)
     return false;
   
-  jsEngine->cx = JS_NewContext(jsEngine->rt, 8192);
-  if (!jsEngine->cx)
+  engine->cx = JS_NewContext(engine->rt, 8192);
+  if (!engine->cx)
     return false;
   
-  JS_SetErrorReporter(jsEngine->cx, RoundJSReportError);
+  JS_SetErrorReporter(engine->cx, RoundJSReportError);
   
   // Obsolete since JSAPI 16
-  jsEngine->obj = JS_NewCompartmentAndGlobalObject(jsEngine->cx, &RoundJSGlobalClass, NULL);
-  if (!jsEngine->obj)
+  engine->obj = JS_NewCompartmentAndGlobalObject(engine->cx, &RoundJSGlobalClass, NULL);
+  if (!engine->obj)
     return false;
   
-  JS_InitStandardClasses(jsEngine->cx, jsEngine->obj);
+  JS_InitStandardClasses(engine->cx, engine->obj);
   
   return true;
 }
@@ -84,16 +85,17 @@ bool round_js_sm_engine_init(RoundJavaScriptEngine *jsEngine) {
  * round_js_engine_delete
  ****************************************/
 
-bool round_js_sm_engine_destroy(RoundJavaScriptEngine *jsEngine) {
-  if (!jsEngine)
+bool round_js_sm_engine_destroy(RoundJavaScriptEngine *engine)
+{
+  if (!engine)
     return false;
   
-  if (jsEngine->cx) {
-    JS_DestroyContext(jsEngine->cx);
+  if (engine->cx) {
+    JS_DestroyContext(engine->cx);
   }
   
-  if (jsEngine->rt) {
-    JS_DestroyRuntime(jsEngine->rt);
+  if (engine->rt) {
+    JS_DestroyRuntime(engine->rt);
   }
   
   JS_ShutDown();
@@ -105,11 +107,12 @@ bool round_js_sm_engine_destroy(RoundJavaScriptEngine *jsEngine) {
  * round_js_sm_engine_setfunctions
  ****************************************/
 
-bool round_js_sm_engine_setfunctions(RoundJavaScriptEngine *jsEngine, JSFunctionSpec *funcs) {
-  if (!jsEngine)
+bool round_js_sm_engine_setfunctions(RoundJavaScriptEngine *engine, JSFunctionSpec *funcs)
+{
+  if (!engine)
     return false;
 
-  JS_DefineFunctions(jsEngine->cx, jsEngine->obj, funcs);
+  JS_DefineFunctions(engine->cx, engine->obj, funcs);
   
   return true;
 }
@@ -118,25 +121,26 @@ bool round_js_sm_engine_setfunctions(RoundJavaScriptEngine *jsEngine, JSFunction
  * round_js_engine_run
  ****************************************/
 
-bool round_js_sm_engine_run(RoundJavaScriptEngine *jsEngine, const char *source, size_t sourceLen, char **result) {
+bool round_js_sm_engine_run(RoundJavaScriptEngine *engine, const char *source, size_t sourceLen, RoundString *result, RoundError *err)
+{
   jsval rval;
   JSBool ok;
   
-  if (!jsEngine)
+  if (!engine)
     return false;
   
-  if (!jsEngine->rt || !jsEngine->cx)
+  if (!engine->rt || !engine->cx)
     return false;
   
-  gCurrentJsEngine = jsEngine;
-  ok = JS_EvaluateScript(jsEngine->cx, jsEngine->obj, source, (uintN)sourceLen, "", 0, &rval);
+  gCurrentJsEngine = engine;
+  ok = JS_EvaluateScript(engine->cx, engine->obj, source, (uintN)sourceLen, "", 0, &rval);
   gCurrentJsEngine = NULL;
   
   if (ok) {
-    JSString *rstr = JS_ValueToString(jsEngine->cx, rval);
+    JSString *rstr = JS_ValueToString(engine->cx, rval);
     if (rstr) {
       if (result) {
-        round_strloc(JS_EncodeString(jsEngine->cx, rstr), result);
+        round_string_setvalue(result, JS_EncodeString(engine->cx, rstr));
       }
     }
   }

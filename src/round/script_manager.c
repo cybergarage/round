@@ -9,6 +9,8 @@
  ******************************************************************/
 
 #include <stdlib.h>
+#include <round/const.h>
+#include <round/error_internal.h>
 #include <round/script_internal.h>
 
 /****************************************
@@ -128,16 +130,41 @@ bool round_script_manager_removeengine(RoundScriptManager *mgr, const char *name
   return round_script_engine_map_remove(mgr->engineMap, name);
 }
 
-
 /****************************************
- * round_script_manager_run
+ * round_script_manager_execmethod
  ****************************************/
 
-bool round_script_manager_run(RoundScriptManager *mgr, const char *method, const char *jsonParam)
+bool round_script_manager_execmethod(RoundScriptManager *mgr, const char *method, const char *param, RoundString *result, RoundError *err)
 {
+  RoundScript *script;
+  RoundScriptEngine *engine;
+
   if (!mgr)
     return false;
   
+  script = round_script_manager_getscript(mgr, method);
+  if (!script) {
+    round_error_setjsonrpcerrorcode(err, ROUNDC_RPC_ERROR_CODE_METHOD_NOT_FOUND);
+    return false;
+  }
+
+  engine = round_script_manager_getengine(mgr, round_script_getlanguage(script));
+  if (!script) {
+    round_error_setjsonrpcerrorcode(err, ROUNDC_RPC_ERROR_CODE_SCRIPT_ENGINE_NOT_FOUND);
+    return false;
+  }
+  
+  /*
+ }
+ 
+ const ScriptEngine *scriptEngine = this->engines.getEngine(scriptLang);
+ if (!scriptEngine) {
+ RPC::JSON::ErrorCodeToError(RPC::JSON::ErrorCodeScriptEngineInternalError, error);
+ return false;
+ }
+ 
+ return scriptEngine->run(script, params, results, error);
+*/
+ 
   return false;
 }
-

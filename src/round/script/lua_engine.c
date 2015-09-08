@@ -15,83 +15,45 @@
 * round_lua_engine_new
 ****************************************/
 
-RoundLuaEngine *round_lua_engine_new() {
-  RoundLuaEngine *luaEngine;
+RoundLuaEngine *round_lua_engine_new()
+{
+  RoundLuaEngine *engine;
   
-  luaEngine = (RoundLuaEngine *)calloc(1, sizeof(RoundLuaEngine));
-  if (!luaEngine)
+  engine = (RoundLuaEngine *)calloc(1, sizeof(RoundLuaEngine));
+  if (!engine)
     return NULL;
 
-  if (!round_script_engine_init((RoundScriptEngine *)luaEngine)) {
-    round_lua_engine_delete(luaEngine);
+  if (!round_script_engine_init((RoundScriptEngine *)engine)) {
+    round_lua_engine_delete(engine);
     return NULL;
   }
 
+  round_script_engine_setexecutefunc(engine, round_lua_engine_run);
+  round_script_engine_setdestructor(engine, round_lua_engine_delete);
+  
 #if defined(ROUND_SUPPORT_LUA)
-  luaEngine->luaState = luaL_newstate();
-  luaL_openlibs(luaEngine->luaState);
+  engine->luaState = luaL_newstate();
+  luaL_openlibs(engine->luaState);
 #endif
   
-  return luaEngine;
+  return engine;
 }
 
 /****************************************
  * round_lua_engine_delete
  ****************************************/
 
-bool round_lua_engine_delete(RoundLuaEngine *luaEngine) {
-  if (!luaEngine)
+bool round_lua_engine_delete(RoundLuaEngine *engine)
+{
+  if (!engine)
     return false;
   
-  return round_script_engine_delete((RoundScriptEngine *)luaEngine);
-}
-
-/****************************************
- * round_lua_engine_setresult
- ****************************************/
-
-bool round_lua_engine_setresult(RoundLuaEngine *luaEngine, const char *value) {
-  return round_script_engine_setresult((RoundScriptEngine *)luaEngine, value);
-}
-
-/****************************************
- * round_lua_engine_getresult
- ****************************************/
-
-const char *round_lua_engine_getresult(RoundLuaEngine *luaEngine) {
-  return round_script_engine_getresult((RoundScriptEngine *)luaEngine);
-}
-
-/****************************************
- * round_lua_engine_seterror
- ****************************************/
-
-bool round_lua_engine_seterror(RoundLuaEngine *luaEngine, const char *value) {
-  return round_script_engine_seterror((RoundScriptEngine *)luaEngine, value);
-}
-
-/****************************************
- * round_lua_engine_geterror
- ****************************************/
-
-const char *round_lua_engine_geterror(RoundLuaEngine *luaEngine) {
-  return round_script_engine_geterror((RoundScriptEngine *)luaEngine);
-}
-
-/****************************************
- * round_lua_engine_lock
- ****************************************/
-
-bool round_lua_engine_lock(RoundLuaEngine *luaEngine) {
-  return round_script_engine_lock((RoundScriptEngine *)luaEngine);
-}
-
-/****************************************
- * round_lua_engine_unlock
- ****************************************/
-
-bool round_lua_engine_unlock(RoundLuaEngine *luaEngine) {
-  return round_script_engine_unlock((RoundScriptEngine *)luaEngine);
+  if (!round_script_engine_destory((RoundScriptEngine *)engine))
+    return false;
+  
+  free(engine);
+  
+  return true;
 }
 
 /****************************************
@@ -100,10 +62,9 @@ bool round_lua_engine_unlock(RoundLuaEngine *luaEngine) {
 
 #if defined(ROUND_SUPPORT_LUA)
 
-bool round_lua_engine_register(RoundLuaEngine *luaEngine, const char *name, lua_CFunction func) {
-
-  lua_register(luaEngine->luaState, name, func);
-  
+bool round_lua_engine_register(RoundLuaEngine *engine, const char *name, lua_CFunction func)
+{
+  lua_register(engine->luaState, name, func);
   return true;
 }
 
@@ -115,30 +76,31 @@ bool round_lua_engine_register(RoundLuaEngine *luaEngine, const char *name, lua_
 
 #if defined(ROUND_SUPPORT_LUA)
 
-bool round_lua_engine_popresult(RoundLuaEngine *luaEngine) {
+bool round_lua_engine_popresult(RoundLuaEngine *engine, RoundString *result)
+{
   char strbuf[128];
   
-  int nStack = lua_gettop(luaEngine->luaState);
+  int nStack = lua_gettop(engine->luaState);
   if (nStack <= 0)
     return false;
   
-  if (lua_isstring(luaEngine->luaState, -1)) {
-    round_lua_engine_setresult(luaEngine, lua_tostring(luaEngine->luaState, -1));
-    lua_pop(luaEngine->luaState, 1);
+  if (lua_isstring(engine->luaState, -1)) {
+    round_string_setvalue(result, lua_tostring(engine->luaState, -1));
+    lua_pop(engine->luaState, 1);
     return true;
   }
   
-  if (lua_isboolean(luaEngine->luaState, -1)) {
-    round_lua_engine_setresult(luaEngine, lua_toboolean(luaEngine->luaState, -1) ? "true" : "false");
-    lua_pop(luaEngine->luaState, 1);
+  if (lua_isboolean(engine->luaState, -1)) {
+    round_string_setvalue(result, lua_toboolean(engine->luaState, -1) ? "true" : "false");
+    lua_pop(engine->luaState, 1);
     return true;
   }
   
-  if (lua_isnumber(luaEngine->luaState, -1)) {
-    double dresult = lua_tonumber(luaEngine->luaState, -1);
+  if (lua_isnumber(engine->luaState, -1)) {
+    double dresult = lua_tonumber(engine->luaState, -1);
     sprintf(strbuf,"%lf", dresult);
-    round_lua_engine_setresult(luaEngine, strbuf);
-    lua_pop(luaEngine->luaState, 1);
+    round_string_setvalue(result, strbuf);
+    lua_pop(engine->luaState, 1);
     return true;
   }
   
@@ -153,13 +115,16 @@ bool round_lua_engine_popresult(RoundLuaEngine *luaEngine) {
 
 #if defined(ROUND_SUPPORT_LUA)
 
-bool round_lua_engine_poperror(RoundLuaEngine *luaEngine) {
-  int nStack = lua_gettop(luaEngine->luaState);
+bool round_lua_engine_poperror(RoundLuaEngine *engine, RoundError *err)
+{
+  int nStack = lua_gettop(engine->luaState);
   if (nStack <= 0)
     return false;
   
-  round_lua_engine_seterror(luaEngine, lua_tostring(luaEngine->luaState, -1));
-  lua_pop(luaEngine->luaState, 1);
+  round_error_setjsonrpcerrorcode(err, ROUNDC_RPC_ERROR_CODE_SCRIPT_RUNTIME_ERROR);
+  round_error_setdetailmessage(err, lua_tostring(engine->luaState, -1));
+  
+  lua_pop(engine->luaState, 1);
   
   return true;
 }
@@ -170,45 +135,50 @@ bool round_lua_engine_poperror(RoundLuaEngine *luaEngine) {
  * round_lua_engine_run
  ****************************************/
 
-bool round_lua_engine_run(RoundLuaEngine *luaEngine, const char *source, const char *func, const char *param) {
-  if (!luaEngine)
+//bool round_lua_engine_run(RoundLuaEngine *engine, const char *source, const char *func, const char *param) {
+bool round_lua_engine_run(RoundLuaEngine *engine, RoundScript *script, const char *param, RoundString *result, RoundError *err)
+{
+  const char *source;
+  const char *method;
+  
+  if (!engine)
     return false;
   
-  if (!round_script_engine_clear((RoundScriptEngine *)luaEngine))
-    return false;
-
+  source = round_script_getsource(script);
+  method = round_script_getname(script);
+  
 #if defined(ROUND_SUPPORT_LUA)
-  int nStack = lua_gettop(luaEngine->luaState);
+  int nStack = lua_gettop(engine->luaState);
   
-  if (luaL_loadstring(luaEngine->luaState, source) != 0) {
-    round_lua_engine_poperror(luaEngine);
+  if (luaL_loadstring(engine->luaState, source) != 0) {
+    round_lua_engine_poperror(engine, err);
     return false;
   }
   
-  nStack = lua_gettop(luaEngine->luaState);
+  nStack = lua_gettop(engine->luaState);
   
-  if(lua_pcall(luaEngine->luaState, 0, 0, 0) != 0) {
-    round_lua_engine_poperror(luaEngine);
+  if(lua_pcall(engine->luaState, 0, 0, 0) != 0) {
+    round_lua_engine_poperror(engine, err);
     return false;
   }
   
-  nStack = lua_gettop(luaEngine->luaState);
+  nStack = lua_gettop(engine->luaState);
   
-  lua_getglobal(luaEngine->luaState, func);
-  lua_pushstring(luaEngine->luaState, param);
+  lua_getglobal(engine->luaState, method);
+  lua_pushstring(engine->luaState, param);
   
-  nStack = lua_gettop(luaEngine->luaState);
+  nStack = lua_gettop(engine->luaState);
   
-  int callResult = lua_pcall(luaEngine->luaState, 1, 1, 0);
-  nStack = lua_gettop(luaEngine->luaState);
+  int callResult = lua_pcall(engine->luaState, 1, 1, 0);
+  nStack = lua_gettop(engine->luaState);
   if (callResult == 0) {
-    round_lua_engine_popresult(luaEngine);
+    round_lua_engine_popresult(engine, result);
   }
   else {
-    round_lua_engine_poperror(luaEngine);
+    round_lua_engine_poperror(engine, err);
   }
   
-  nStack = lua_gettop(luaEngine->luaState);
+  nStack = lua_gettop(engine->luaState);
   
   return (callResult == 0) ? true : false;
 

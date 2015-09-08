@@ -31,6 +31,7 @@ BOOST_AUTO_TEST_CASE(ScriptManagerNew)
   
   for (int n=0; n<ROUND_TEST_MAP_SIZE; n++) {
     script[n] = round_script_new();
+    BOOST_CHECK(script[n]);
     BOOST_CHECK(!round_script_manager_addscript(mgr, script[n]));
     snprintf(name, sizeof(name), "%d", n);
     round_script_setname(script[n], name);
@@ -40,6 +41,7 @@ BOOST_AUTO_TEST_CASE(ScriptManagerNew)
     BOOST_CHECK_EQUAL((n+1), round_script_manager_getscriptsize(mgr));
 
     engine[n] = round_script_engine_new();
+    BOOST_CHECK(engine[n]);
     BOOST_CHECK(!round_script_manager_addengine(mgr, engine[n]));
     snprintf(lang, sizeof(lang), "%d", n);
     round_script_engine_setlanguage(engine[n], lang);

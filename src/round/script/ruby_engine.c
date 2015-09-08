@@ -21,97 +21,58 @@
 
 RoundRubyEngine *round_ruby_engine_new()
 {
-  RoundRubyEngine *rubyEngine;
+  RoundRubyEngine *engine;
   
-  rubyEngine = (RoundRubyEngine *)calloc(1, sizeof(RoundRubyEngine));
-  if (!rubyEngine)
+  engine = (RoundRubyEngine *)calloc(1, sizeof(RoundRubyEngine));
+  if (!engine)
     return NULL;
 
-  if (!round_script_engine_init((RoundScriptEngine *)rubyEngine)) {
-    round_ruby_engine_delete(rubyEngine);
+  if (!round_script_engine_init((RoundScriptEngine *)engine)) {
+    round_ruby_engine_delete(engine);
     return NULL;
   }
  
+  round_script_engine_setexecutefunc(engine, round_ruby_engine_run);
+  round_script_engine_setdestructor(engine, round_ruby_engine_delete);
+  
 #if defined(ROUND_SUPPORT_RUBY)
   ruby_init();
   ruby_init_loadpath();
 #elif defined(ROUND_SUPPORT_MRUBY)
-  rubyEngine->mrb = mrb_open() ;
+  engine->mrb = mrb_open() ;
 #endif
   
-  return rubyEngine;
+  return engine;
 }
 
 /****************************************
  * round_ruby_engine_delete
  ****************************************/
 
-bool round_ruby_engine_delete(RoundRubyEngine *rubyEngine) {
-  if (!rubyEngine)
+bool round_ruby_engine_delete(RoundRubyEngine *engine) {
+  if (!engine)
     return false;
 
 #if defined(ROUND_SUPPORT_RUBY)
   ruby_cleanup(0);
 #elif defined(ROUND_SUPPORT_MRUBY)
-  mrb_close(rubyEngine->mrb);
+  mrb_close(engine->mrb);
 #endif
   
-  return round_script_engine_delete((RoundScriptEngine *)rubyEngine);
-}
-
-/****************************************
- * round_ruby_engine_setresult
- ****************************************/
-
-bool round_ruby_engine_setresult(RoundRubyEngine *rubyEngine, const char *value) {
-  return round_script_engine_setresult((RoundScriptEngine *)rubyEngine, value);
-}
-
-/****************************************
- * round_ruby_engine_getresult
- ****************************************/
-
-const char *round_ruby_engine_getresult(RoundRubyEngine *rubyEngine) {
-  return round_script_engine_getresult((RoundScriptEngine *)rubyEngine);
-}
-
-/****************************************
- * round_ruby_engine_seterror
- ****************************************/
-
-bool round_ruby_engine_seterror(RoundRubyEngine *rubyEngine, const char *value) {
-  return round_script_engine_seterror((RoundScriptEngine *)rubyEngine, value);
-}
-
-/****************************************
- * round_ruby_engine_geterror
- ****************************************/
-
-const char *round_ruby_engine_geterror(RoundRubyEngine *rubyEngine) {
-  return round_script_engine_geterror((RoundScriptEngine *)rubyEngine);
-}
-
-/****************************************
- * round_ruby_engine_lock
- ****************************************/
-
-bool round_ruby_engine_lock(RoundRubyEngine *rubyEngine) {
-  return round_script_engine_lock((RoundScriptEngine *)rubyEngine);
-}
-
-/****************************************
- * round_ruby_engine_unlock
- ****************************************/
-
-bool round_ruby_engine_unlock(RoundRubyEngine *rubyEngine) {
-  return round_script_engine_unlock((RoundScriptEngine *)rubyEngine);
+  if (!round_script_engine_destory((RoundScriptEngine *)engine))
+    return false;
+  
+  free(engine);
+  
+  return true;
 }
 
 /****************************************
  * round_ruby_engine_run
  ****************************************/
 
-bool round_ruby_engine_run(RoundRubyEngine *rubyEngine, const char *source, const char *func, const char *param) {
+bool round_ruby_engine_run(RoundRubyEngine *engine, RoundScript *script, const char *param, RoundString *result, RoundError *err)
+  {
   return false;
 }
 
@@ -119,24 +80,24 @@ bool round_ruby_engine_run(RoundRubyEngine *rubyEngine, const char *source, cons
  * round_ruby_engine_run
  ****************************************/
 
-bool round_ruby_engine_run_code(RoundRubyEngine *rubyEngine, const char *code)
+bool round_ruby_engine_run_code(RoundRubyEngine *engine, const char *code)
 {
 #if defined(ROUND_SUPPORT_RUBY)
   int evalState;
 #endif
   
-  if (!rubyEngine)
+  if (!engine)
     return false;
 
 #if defined(ROUND_SUPPORT_RUBY)
   rb_eval_string_protect(code, &evalState);
   if (evalState) {
-    round_ruby_engine_seterror(rubyEngine, rb_string_value_cstr((volatile VALUE * )rb_errinfo));
+    round_ruby_engine_seterror(engine, rb_string_value_cstr((volatile VALUE * )rb_errinfo));
   }
 
   return true;
 #elif defined(ROUND_SUPPORT_MRUBY)
-  mrb_load_string(rubyEngine->mrb, code);
+  mrb_load_string(engine->mrb, code);
   return true;
 #endif
 

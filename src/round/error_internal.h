@@ -38,7 +38,9 @@ typedef struct {
 /****************************************
 * Function
 ****************************************/
-  
+
+bool round_error_setjsonrpcerrorcode(RoundError *err, int rpcErrCode);
+
 #ifdef  __cplusplus
 }
 #endif

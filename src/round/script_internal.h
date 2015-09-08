@@ -16,6 +16,8 @@
 #endif
 
 #include <round/typedef.h>
+#include <round/const.h>
+#include <round/error_internal.h>
 #include <round/util/mutex.h>
 #include <round/util/strings.h>
 #include <round/util/map.h>
@@ -35,21 +37,20 @@ typedef struct {
   size_t codeSize;
 } RoundScript;
 
-typedef RoundMap RoundScriptMap;
-
+typedef bool (*ROUND_SCRIPT_ENGINE_EXECFUNC)(void *engine, RoundScript *script, const char *param, RoundString *result, RoundError *err);
+typedef bool (*ROUND_SCRIPT_ENGINE_DESTRUCTOR)(void *engine);
+  
 typedef struct {
   RoundMutex *mutex;
   char *lang;
-  char *result;
-  char *error;
+  ROUND_SCRIPT_ENGINE_EXECFUNC execFunc;
+  ROUND_SCRIPT_ENGINE_DESTRUCTOR destFunc;
 } RoundScriptEngine;
-
-typedef RoundMap RoundScriptEngineMap;
 
 typedef struct {
   RoundMutex *mutex;
-  RoundScriptMap *scriptMap;
-  RoundScriptEngineMap *engineMap;
+  RoundMap *scriptMap;
+  RoundMap *engineMap;
 } RoundScriptManager;
 
 /****************************************
@@ -67,6 +68,7 @@ bool round_script_delete(RoundScript *script);
 
 bool round_script_setcode(RoundScript *script, byte *code, size_t codeLen);
 #define round_script_getcode(script) (script->code)
+#define round_script_getsource(script) ((const char *)script->code)
 #define round_script_getcodeSize(script) (script->codeSize)
 
 bool round_script_isvalid(RoundScript *script);
@@ -75,7 +77,7 @@ bool round_script_isvalid(RoundScript *script);
  * Function (Script Map)
  ****************************************/
 
-RoundScriptMap *round_script_map_new();
+RoundMap *round_script_map_new();
 
 #define round_script_map_delete(map) round_map_delete(map)
 #define round_script_map_size(map) round_map_size(map)
@@ -89,27 +91,26 @@ RoundScriptMap *round_script_map_new();
   
 RoundScriptEngine *round_script_engine_new();
 bool round_script_engine_init(RoundScriptEngine *engine);
-bool round_script_engine_clear(RoundScriptEngine *engine);
+bool round_script_engine_destory(RoundScriptEngine *engine);
 bool round_script_engine_delete(RoundScriptEngine *engine);
-bool round_script_engine_lock(RoundScriptEngine *engine);
-bool round_script_engine_unlock(RoundScriptEngine *engine);
+
+#define round_script_engine_lock(engine) round_mutex_lock(engine->mutex)
+#define round_script_engine_unlock(engine) round_mutex_unlock(engine->mutex)
   
 #define round_script_engine_setlanguage(engine, value) round_strloc(value, &engine->lang)
 #define round_script_engine_getlanguage(engine) (engine->lang)
 
+#define round_script_engine_setexecutefunc(engine, func) (engine->execFunc = (ROUND_SCRIPT_ENGINE_EXECFUNC)func)
+#define round_script_engine_setdestructor(engine, func) (engine->destFunc = (ROUND_SCRIPT_ENGINE_DESTRUCTOR)func)
+
 bool round_script_engine_isvalid(RoundScriptEngine *engine);
-  
-bool round_script_engine_setresult(RoundScriptEngine *engine, const char *value);
-const char *round_script_engine_getresult(RoundScriptEngine *engine);
-  
-bool round_script_engine_seterror(RoundScriptEngine *engine, const char *value);
-const char *round_script_engine_geterror(RoundScriptEngine *engine);
+bool round_script_engine_execscript(RoundScriptEngine *engine, RoundScript *script, const char *param, RoundString *result, RoundError *err);
   
 /****************************************
  * Function (Script Engine Map)
  ****************************************/
   
-RoundScriptEngineMap *round_script_engine_map_new();
+RoundMap *round_script_engine_map_new();
 #define round_script_engine_map_delete(map) round_map_delete(map)
 #define round_script_engine_map_size(map) round_map_size(map)
 #define round_script_engine_map_set(map, eng) round_map_setobject(map, eng->lang, eng)

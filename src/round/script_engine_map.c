@@ -15,9 +15,9 @@
  * round_script_engine_map_new
  ****************************************/
 
-RoundScriptEngineMap *round_script_engine_map_new()
+RoundMap *round_script_engine_map_new()
 {
-  RoundScriptMap *map;
+  RoundMap *map;
   
   map = round_map_new();
   if (!map)

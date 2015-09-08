@@ -16,103 +16,63 @@
 
 RoundJavaScriptEngine *round_js_engine_new()
 {
-  RoundJavaScriptEngine *jsEngine;
+  RoundJavaScriptEngine *engine;
   
-  jsEngine = (RoundJavaScriptEngine *)calloc(1, sizeof(RoundJavaScriptEngine));
-  if (!jsEngine)
+  engine = (RoundJavaScriptEngine *)calloc(1, sizeof(RoundJavaScriptEngine));
+  if (!engine)
     return NULL;
 
-  if (!round_script_engine_init((RoundScriptEngine *)jsEngine)) {
-    round_js_engine_delete(jsEngine);
+  if (!round_script_engine_init((RoundScriptEngine *)engine)) {
+    round_js_engine_delete(engine);
     return NULL;
   }
   
 #if defined(ROUND_SUPPORT_JS_SM)
-  if (!round_js_sm_engine_init(jsEngine)) {
-    round_js_engine_delete(jsEngine);
+  if (!round_js_sm_engine_init(engine)) {
+    round_js_engine_delete(engine);
     return NULL;
   }
 #endif
-      
-  return jsEngine;
+  
+  round_script_engine_setexecutefunc(engine, round_js_engine_run);
+  round_script_engine_setdestructor(engine, round_js_engine_delete);
+
+  return engine;
 }
 
 /****************************************
  * round_js_engine_delete
  ****************************************/
 
-bool round_js_engine_delete(RoundJavaScriptEngine *jsEngine) {
-  if (!jsEngine)
+bool round_js_engine_delete(RoundJavaScriptEngine *engine) {
+  if (!engine)
     return false;
   
 #if defined(ROUND_SUPPORT_JS_SM)
-  round_js_sm_engine_destroy(jsEngine);
+  round_js_sm_engine_destroy(engine);
 #endif
 
-  return round_script_engine_delete((RoundScriptEngine *)jsEngine);
-}
-
-/****************************************
- * round_js_engine_setresult
- ****************************************/
-
-bool round_js_engine_setresult(RoundJavaScriptEngine *jsEngine, const char *value) {
-  return round_script_engine_setresult((RoundScriptEngine *)jsEngine, value);
-}
-
-/****************************************
- * round_js_engine_getresult
- ****************************************/
-
-const char *round_js_engine_getresult(RoundJavaScriptEngine *jsEngine) {
-  return round_script_engine_getresult((RoundScriptEngine *)jsEngine);
-}
-
-/****************************************
- * round_js_engine_seterror
- ****************************************/
-
-bool round_js_engine_seterror(RoundJavaScriptEngine *jsEngine, const char *value) {
-  return round_script_engine_seterror((RoundScriptEngine *)jsEngine, value);
-}
-
-/****************************************
- * round_js_engine_geterror
- ****************************************/
-
-const char *round_js_engine_geterror(RoundJavaScriptEngine *jsEngine) {
-  return round_script_engine_geterror((RoundScriptEngine *)jsEngine);
-}
-
-/****************************************
- * round_js_engine_lock
- ****************************************/
-
-bool round_js_engine_lock(RoundJavaScriptEngine *jsEngine) {
-  return round_script_engine_lock((RoundScriptEngine *)jsEngine);
-}
-
-/****************************************
- * round_js_engine_unlock
- ****************************************/
-
-bool round_js_engine_unlock(RoundJavaScriptEngine *jsEngine) {
-  return round_script_engine_unlock((RoundScriptEngine *)jsEngine);
+  if (!round_script_engine_destory((RoundScriptEngine *)engine))
+    return false;
+  
+  free(engine);
+  
+  return true;
 }
 
 /****************************************
  * round_js_engine_run
  ****************************************/
 
-bool round_js_engine_run(RoundJavaScriptEngine *jsEngine, const char *source) {
-  if (!jsEngine)
+bool round_js_engine_run(RoundJavaScriptEngine *engine, RoundScript *script, const char *param, RoundString *result, RoundError *err)
+{
+  if (!engine)
     return false;
   
-  if (!round_script_engine_clear((RoundScriptEngine *)jsEngine))
-    return false;
+  // TODO : Create source code
   
 #if defined(ROUND_SUPPORT_JS_SM)
-  return round_js_sm_engine_run(jsEngine, source, round_strlen(source), &jsEngine->result);
+  return round_js_sm_engine_run(engine, "", 0, result, err);
 #endif
   
   return false;

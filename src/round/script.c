@@ -86,12 +86,13 @@ bool round_script_setcode(RoundScript *script, byte *code, size_t codeSize)
   if (!code || (codeSize == 0))
     return true;
   
-  script->code = (byte *)malloc(codeSize);
+  script->code = (byte *)malloc(codeSize+1);
   if (!script->code)
     return false;
   
-  
   memcpy(script->code, code, codeSize);
+  script->code[codeSize] = '\0';
+  
   script->codeSize = codeSize;
   
   return true;
