@@ -119,12 +119,21 @@ bool round_ruby_engine_run(RoundRubyEngine *rubyEngine, const char *source, cons
  * round_ruby_engine_run
  ****************************************/
 
-bool round_ruby_engine_run_code(RoundRubyEngine *rubyEngine, const char *code) {
+bool round_ruby_engine_run_code(RoundRubyEngine *rubyEngine, const char *code)
+{
+#if defined(ROUND_SUPPORT_RUBY)
+  int evalState;
+#endif
+  
   if (!rubyEngine)
     return false;
 
 #if defined(ROUND_SUPPORT_RUBY)
-  ruby_cleanup(0);
+  rb_eval_string_protect(code, &evalState);
+  if (evalState) {
+    round_ruby_engine_seterror(rubyEngine, rb_string_value_cstr((volatile VALUE * )rb_errinfo));
+  }
+
   return true;
 #elif defined(ROUND_SUPPORT_MRUBY)
   mrb_load_string(rubyEngine->mrb, code);
