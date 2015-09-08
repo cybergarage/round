@@ -34,6 +34,8 @@ round_mpi_sources = \
 	../../src/round/script_engine_map.c \
 	../../src/round/script_manager.c \
 	../../src/round/script_map.c \
+	../../src/round/util/json.c \
+	../../src/round/util/json_object.c \
 	../../src/round/util/list.c \
 	../../src/round/util/map.c \
 	../../src/round/util/map_hash.c \

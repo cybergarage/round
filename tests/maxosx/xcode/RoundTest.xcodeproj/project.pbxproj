@@ -18,6 +18,7 @@
 		2172C4C11B9AF3CB0032BE98 /* Ruby.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2172C4C01B9AF3CB0032BE98 /* Ruby.framework */; };
 		21852FB21B9DB0A800C7F878 /* MapTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21852FB11B9DB0A800C7F878 /* MapTest.cpp */; };
 		21A762ED1B96F82400D29732 /* RoundTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21A762EC1B96F82400D29732 /* RoundTest.cpp */; };
+		21C482481B9F5A240087380C /* JSONTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21C482471B9F5A240087380C /* JSONTest.cpp */; };
 		21D427F01B9F0B1A00BBBD41 /* ErrorTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D427EF1B9F0B1A00BBBD41 /* ErrorTest.cpp */; };
 		21EA96DE1B99104E00E00841 /* ClusterListTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21EA96DC1B99104E00E00841 /* ClusterListTest.cpp */; };
 		21EA96DF1B99104E00E00841 /* ClusterTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21EA96DD1B99104E00E00841 /* ClusterTest.cpp */; };
@@ -71,6 +72,7 @@
 		2172C4C01B9AF3CB0032BE98 /* Ruby.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Ruby.framework; path = System/Library/Frameworks/Ruby.framework; sourceTree = SDKROOT; };
 		21852FB11B9DB0A800C7F878 /* MapTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MapTest.cpp; path = ../../MapTest.cpp; sourceTree = "<group>"; };
 		21A762EC1B96F82400D29732 /* RoundTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RoundTest.cpp; path = ../../RoundTest.cpp; sourceTree = "<group>"; };
+		21C482471B9F5A240087380C /* JSONTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = JSONTest.cpp; path = ../../JSONTest.cpp; sourceTree = "<group>"; };
 		21D427EF1B9F0B1A00BBBD41 /* ErrorTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ErrorTest.cpp; path = ../../ErrorTest.cpp; sourceTree = "<group>"; };
 		21EA96DC1B99104E00E00841 /* ClusterListTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ClusterListTest.cpp; path = ../../ClusterListTest.cpp; sourceTree = "<group>"; };
 		21EA96DD1B99104E00E00841 /* ClusterTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ClusterTest.cpp; path = ../../ClusterTest.cpp; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 				2166EF8B1B9D2E5E002FE45D /* ScriptEngineTest.cpp */,
 				21852FB11B9DB0A800C7F878 /* MapTest.cpp */,
 				21D427EF1B9F0B1A00BBBD41 /* ErrorTest.cpp */,
+				21C482471B9F5A240087380C /* JSONTest.cpp */,
 			);
 			name = Sources;
 			sourceTree = "<group>";
@@ -250,6 +253,7 @@
 				21EA96E21B99105E00E00841 /* NodeListTest.cpp in Sources */,
 				21A762ED1B96F82400D29732 /* RoundTest.cpp in Sources */,
 				212A954E1B9BD24700EC9A71 /* ScriptTest.cpp in Sources */,
+				21C482481B9F5A240087380C /* JSONTest.cpp in Sources */,
 				21EA96DF1B99104E00E00841 /* ClusterTest.cpp in Sources */,
 				2166EF8D1B9D2E5E002FE45D /* ScriptEngineTest.cpp in Sources */,
 			);
