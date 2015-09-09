@@ -19,8 +19,8 @@
 #include <round/const.h>
 #include <round/util/mutex.h>
 #include <round/util/map.h>
-#include <round/method_internal.h>
-#include <round/script_internal.h>
+#include <round/method.h>
+#include <round/script.h>
 
 #ifdef  __cplusplus
 extern "C" {

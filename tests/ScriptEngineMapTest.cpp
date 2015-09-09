@@ -11,7 +11,7 @@
 #include <boost/test/unit_test.hpp>
 
 #include "RoundTest.h"
-#include <round/script_internal.h>
+#include <round/script.h>
 
 BOOST_AUTO_TEST_CASE(ScriptEngineListAdd)
 {

@@ -11,8 +11,8 @@
 #ifndef _ROUNDC_JAVSCRIPT_ENGINE_H_
 #define _ROUNDC_JAVSCRIPT_ENGINE_H_
 
-#include <round/script_internal.h>
-#include <round/method_internal.h>
+#include <round/script.h>
+#include <round/method.h>
 
 #if defined(ROUND_SUPPORT_JS_SM)
 #include <js/jsapi.h>
