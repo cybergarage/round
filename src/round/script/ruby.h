@@ -28,7 +28,9 @@
 extern "C" {
 #endif
 
-typedef struct _RoundRubyEngine {
+#define RoundRubyEngineLanguage "ruby"
+  
+typedef struct {
   RoundMutex *mutex;
   char *lang;
   ROUND_SCRIPT_ENGINE_EXECFUNC execFunc;

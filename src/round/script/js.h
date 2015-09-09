@@ -22,7 +22,9 @@
 extern "C" {
 #endif
 
-typedef struct _RoundJavaScriptEngine {
+#define RoundJavaScriptEngineLanguage "js"
+  
+typedef struct {
   RoundMutex *mutex;
   char *lang;
   ROUND_SCRIPT_ENGINE_EXECFUNC execFunc;
@@ -37,15 +39,6 @@ typedef struct _RoundJavaScriptEngine {
 
 RoundJavaScriptEngine *round_js_engine_new();
 bool round_js_engine_delete(RoundJavaScriptEngine *engine);
-
-bool round_js_engine_lock(RoundJavaScriptEngine *engine);
-bool round_js_engine_unlock(RoundJavaScriptEngine *engine);
-  
-bool round_js_engine_setresult(RoundJavaScriptEngine *engine, const char *value);
-const char *round_js_engine_getresult(RoundJavaScriptEngine *engine);
-
-bool round_js_engine_seterror(RoundJavaScriptEngine *engine, const char *value);
-const char *round_js_engine_geterror(RoundJavaScriptEngine *engine);
 
 #if defined(ROUND_SUPPORT_JS_SM)
 bool round_js_sm_engine_init(RoundJavaScriptEngine *engine);

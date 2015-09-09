@@ -33,7 +33,8 @@ RoundJavaScriptEngine *round_js_engine_new()
     return NULL;
   }
 #endif
-  
+
+  round_script_engine_setlanguage(engine, RoundJavaScriptEngineLanguage);
   round_script_engine_setexecutefunc(engine, round_js_engine_run);
   round_script_engine_setdestructor(engine, round_js_engine_delete);
 

@@ -32,6 +32,7 @@ RoundRubyEngine *round_ruby_engine_new()
     return NULL;
   }
  
+  round_script_engine_setlanguage(engine, RoundRubyEngineLanguage);
   round_script_engine_setexecutefunc(engine, round_ruby_engine_run);
   round_script_engine_setdestructor(engine, round_ruby_engine_delete);
   

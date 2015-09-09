@@ -24,7 +24,9 @@ extern "C" {
 #include <lauxlib.h>
 #endif
 
-typedef struct _RoundLuaEngine {
+#define RoundLuaEngineLanguage "lua"
+  
+typedef struct {
   RoundMutex *mutex;
   char *lang;
   ROUND_SCRIPT_ENGINE_EXECFUNC execFunc;
