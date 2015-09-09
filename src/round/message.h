@@ -26,9 +26,7 @@ extern "C" {
  ****************************************/
 
 typedef struct _RoundMessage {
-  bool headFlag;
-  struct _RoundMessage *prev;
-  struct _RoundMessage *next;
+  ROUND_LIST_MEMBERS
   
   byte *data;
   size_t dataLen;

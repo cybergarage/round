@@ -27,10 +27,13 @@ typedef void (*ROUND_LIST_DESTRUCTORFUNC)(void *);
  * Data Type
  ****************************************/
 
-typedef struct _RoundList {
-  bool headFlag;
-  struct _RoundList *prev;
+#define ROUND_LIST_MEMBERS \
+  bool headFlag; \
+  struct _RoundList *prev; \
   struct _RoundList *next;
+  
+typedef struct _RoundList {
+  ROUND_LIST_MEMBERS
 } RoundList;
 
 /****************************************

@@ -36,10 +36,8 @@ extern "C" {
  ****************************************/
 
 typedef struct _RoundThread {
-  bool headFlag;
-  struct _RoundThread *prev;
-  struct _RoundThread *next;
-    
+  ROUND_LIST_MEMBERS
+  
   bool runnableFlag;
 
 #if defined(WIN32)
