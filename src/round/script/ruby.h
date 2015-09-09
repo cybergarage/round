@@ -11,8 +11,8 @@
 #ifndef _ROUNDC_RUBY_ENGINE_H_
 #define _ROUNDC_RUBY_ENGINE_H_
 
-#include <round/script_internal.h>
-#include <round/method_internal.h>
+#include <round/script.h>
+#include <round/method.h>
 
 #if defined(ROUND_SUPPORT_RUBY)
 #if defined(__APPLE__)

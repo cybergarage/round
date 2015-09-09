@@ -11,7 +11,7 @@
 #include <stdlib.h>
 #include <round/const.h>
 #include <round/error_internal.h>
-#include <round/method_internal.h>
+#include <round/method.h>
 
 /****************************************
  * round_method_manager_new

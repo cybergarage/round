@@ -9,7 +9,7 @@
  ******************************************************************/
 
 #include <stdlib.h>
-#include <round/method_internal.h>
+#include <round/method.h>
 
 /****************************************
  * round_method_map_new
