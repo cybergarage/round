@@ -200,18 +200,31 @@ RoundJSONObject *round_json_getobjectforpath(RoundJSON *json, const char *pathSt
     return NULL;
   
   token = round_strtok(path, ROUND_JSON_PATH_DELIM, &ptr);
-  
   if (!token)
     return NULL;
   
 #if defined(ROUND_USE_JSON_PARSER_JANSSON)
 
-  if (!json_is_object(rootJson))
-    return NULL;
-  
-  tokenJson = NULL;
-  
+  tokenJson = rootJson;
   while (token) {
+    if (json_is_object(tokenJson)) {
+      tokenJson = round_jansson_map_getobject(tokenJson, token);
+    }
+    else if (json_is_array(tokenJson)) {
+      if (round_isnumeric(token)) {
+        tokenJson = round_jansson_array_getobject(tokenJson, round_str2int(token));
+      }
+      else {
+        tokenJson = NULL;
+      }
+    }
+    else {
+      tokenJson = NULL;
+    }
+    
+    if (!tokenJson)
+      return NULL;
+    
     token = round_strtok(NULL, ROUND_JSON_PATH_DELIM, &ptr);
   }
 
