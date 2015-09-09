@@ -10,6 +10,10 @@
 
 #include <round/util/json.h>
 
+#if defined(ROUND_USE_JSON_PARSER_JANSSON)
+#include <jansson.h>
+#endif
+
 /****************************************
 * round_json_new
 ****************************************/
@@ -38,4 +42,13 @@ bool round_json_delete(RoundJSON *json)
   free(json);
   
   return true;
+}
+
+/****************************************
+ * round_json_parse
+ ****************************************/
+
+bool round_json_parse(RoundJSON *json, const char *jsonStr, RoundError *err)
+{
+  return false;
 }
