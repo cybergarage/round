@@ -62,6 +62,11 @@ bool round_json_delete(RoundJSON *json);
 RoundJSONObject *round_json_getrootobject(RoundJSON *json);
 RoundJSONObject *round_json_getobjectforpath(RoundJSON *json, const char *path);
 
+bool round_json_getstringforpath(RoundJSON *json, const char *path, const char **value);
+bool round_json_getintforpath(RoundJSON *json, const char *path, int *value);
+bool round_json_getrealforpath(RoundJSON *json, const char *path, double *value);
+bool round_json_getboolforpath(RoundJSON *json, const char *path, bool *value);
+
 /****************************************
  * Functions (JSON Object)
  ****************************************/
@@ -79,6 +84,11 @@ bool round_json_object_istype(RoundJSONObject *obj, int type);
 #define round_json_object_isreal(obj) round_json_object_istype(obj, ROUND_JSON_REAL)
 #define round_json_object_isbool(obj) round_json_object_istype(obj, ROUND_JSON_BOOL)
 
+bool round_json_object_getstring(RoundJSONObject *obj, const char **value);
+bool round_json_object_getinteger(RoundJSONObject *obj, int *value);
+bool round_json_object_getreal(RoundJSONObject *obj, double *value);
+bool round_json_object_getbool(RoundJSONObject *obj, bool *value);
+  
 #ifdef  __cplusplus
 } /* extern "C" */
 #endif

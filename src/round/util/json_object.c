@@ -82,7 +82,7 @@ int round_json_object_gettype(RoundJSONObject *obj)
 }
 
 /****************************************
- * round_json_object_delete
+ * round_json_object_istype
  ****************************************/
 
 bool round_json_object_istype(RoundJSONObject *obj, int type)
@@ -90,4 +90,72 @@ bool round_json_object_istype(RoundJSONObject *obj, int type)
   if (!obj)
     return false;
   return (round_json_object_gettype(obj) == type) ? true : false;
+}
+
+/****************************************
+ * round_json_object_getstring
+ ****************************************/
+
+bool round_json_object_getstring(RoundJSONObject *obj, const char **value)
+{
+  if (!obj)
+    return false;
+
+  if (!round_json_object_isstring(obj))
+    return false;
+  
+  *value = json_string_value(obj->jsonObj);
+  
+  return true;
+}
+
+/****************************************
+ * round_json_object_getinteger
+ ****************************************/
+
+bool round_json_object_getinteger(RoundJSONObject *obj, int *value)
+{
+  if (!obj)
+    return false;
+  
+  if (!round_json_object_isinteger(obj))
+    return false;
+  
+  *value = (int)json_integer_value(obj->jsonObj);
+  
+  return true;
+}
+
+/****************************************
+ * round_json_object_getreal
+ ****************************************/
+
+bool round_json_object_getreal(RoundJSONObject *obj, double *value)
+{
+  if (!obj)
+    return false;
+  
+  if (!round_json_object_isreal(obj))
+    return false;
+  
+  *value = json_real_value(obj->jsonObj);
+  
+  return true;
+}
+
+/****************************************
+ * round_json_object_getbool
+ ****************************************/
+
+bool round_json_object_getbool(RoundJSONObject *obj, bool *value)
+{
+  if (!obj)
+    return false;
+  
+  if (!round_json_object_isbool(obj))
+    return false;
+  
+  *value = (json_integer_value(obj->jsonObj) != 0) ? true  : false;
+  
+  return true;
 }

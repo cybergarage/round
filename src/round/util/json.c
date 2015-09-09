@@ -99,9 +99,11 @@ bool round_json_parse(RoundJSON *json, const char *jsonStr, RoundError *err)
 #if defined(ROUND_USE_JSON_PARSER_JANSSON)
   json_t *jsonRes = json_loads(jsonStr, 0, &jsonErr);
   if (!jsonRes) {
-    round_error_setcode(err, jsonErr.line);
-    snprintf(errMsg, sizeof(errMsg), "Error : Line %d , Pos %d, %s", jsonErr.line, jsonErr.position, jsonErr.text);
-    round_error_setmessage(err, errMsg);
+    if (err) {
+      round_error_setcode(err, jsonErr.line);
+      snprintf(errMsg, sizeof(errMsg), "Error : Line %d , Pos %d, %s", jsonErr.line, jsonErr.position, jsonErr.text);
+      round_error_setmessage(err, errMsg);
+    }
     return false;
   }
   
@@ -115,9 +117,68 @@ bool round_json_parse(RoundJSON *json, const char *jsonStr, RoundError *err)
   round_json_object_setjanssonobject(jsonObj, jsonRes);
 #endif
   
-  return false;
+  return true;
 }
 
+/****************************************
+ * round_json_getstringforpath
+ ****************************************/
+
+bool round_json_getstringforpath(RoundJSON *json, const char *path, const char **value)
+{
+  RoundJSONObject *jsonObj;
+  
+  jsonObj = round_json_getobjectforpath(json, path);
+  if (!jsonObj)
+    return false;
+  
+  return round_json_object_getstring(jsonObj, value);
+}
+
+/****************************************
+ * round_json_getintforpath
+ ****************************************/
+
+bool round_json_getintforpath(RoundJSON *json, const char *path, int *value)
+{
+  RoundJSONObject *jsonObj;
+  
+  jsonObj = round_json_getobjectforpath(json, path);
+  if (!jsonObj)
+    return false;
+  
+  return round_json_object_getinteger(jsonObj, value);
+}
+
+/****************************************
+ * round_json_getrealforpath
+ ****************************************/
+
+bool round_json_getrealforpath(RoundJSON *json, const char *path, double *value)
+{
+  RoundJSONObject *jsonObj;
+  
+  jsonObj = round_json_getobjectforpath(json, path);
+  if (!jsonObj)
+    return false;
+  
+  return round_json_object_getreal(jsonObj, value);
+}
+
+/****************************************
+ * round_json_getboolforpath
+ ****************************************/
+
+bool round_json_getboolforpath(RoundJSON *json, const char *path, bool *value)
+{
+  RoundJSONObject *jsonObj;
+  
+  jsonObj = round_json_getobjectforpath(json, path);
+  if (!jsonObj)
+    return false;
+  
+  return round_json_object_getbool(jsonObj, value);
+}
 
 /****************************************
  * round_json_getobjectforpath
