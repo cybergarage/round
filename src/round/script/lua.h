@@ -27,11 +27,7 @@ extern "C" {
 #define RoundLuaEngineLanguage "lua"
   
 typedef struct {
-  RoundMutex *mutex;
-  char *lang;
-  int opt;
-  ROUND_SCRIPT_ENGINE_EXECFUNC execFunc;
-  ROUND_SCRIPT_ENGINE_DESTRUCTOR destFunc;
+  ROUND_SCRIPT_ENGINE_MEMBERS
 
 #if defined(ROUND_SUPPORT_LUA)
   lua_State *luaState;

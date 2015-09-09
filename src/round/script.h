@@ -32,14 +32,16 @@ extern "C" {
 
 typedef bool (*ROUND_SCRIPT_ENGINE_EXECFUNC)(void *engine, void *script, const char *param, RoundString *result, RoundError *err);
 typedef bool (*ROUND_SCRIPT_ENGINE_DESTRUCTOR)(void *engine);
-  
-typedef struct {
-  RoundMutex *mutex;
-  char *lang;
-  int opt;
-  ROUND_SCRIPT_ENGINE_EXECFUNC execFunc;
+
+#define ROUND_SCRIPT_ENGINE_MEMBERS \
+  RoundMutex *mutex; \
+  char *lang; \
+  int opt; \
+  ROUND_SCRIPT_ENGINE_EXECFUNC execFunc; \
   ROUND_SCRIPT_ENGINE_DESTRUCTOR destFunc;
-  
+
+typedef struct {
+  ROUND_SCRIPT_ENGINE_MEMBERS  
 } RoundScriptEngine;
 
 /****************************************
