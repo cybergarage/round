@@ -12,6 +12,7 @@
 #define _ROUNDC_RUBY_ENGINE_H_
 
 #include <round/script_internal.h>
+#include <round/method_internal.h>
 
 #if defined(ROUND_SUPPORT_RUBY)
 #if defined(__APPLE__)
@@ -32,6 +33,7 @@ typedef struct _RoundRubyEngine {
   char *lang;
   ROUND_SCRIPT_ENGINE_EXECFUNC execFunc;
   ROUND_SCRIPT_ENGINE_DESTRUCTOR destFunc;
+
 #if defined(ROUND_SUPPORT_MRUBY)
   mrb_state *mrb;
 #endif
@@ -49,7 +51,7 @@ const char *round_ruby_engine_getresult(RoundRubyEngine *engine);
 bool round_ruby_engine_seterror(RoundRubyEngine *engine, const char *value);
 const char *round_ruby_engine_geterror(RoundRubyEngine *engine);
 
-bool round_ruby_engine_run(RoundRubyEngine *engine, RoundScript *script, const char *param, RoundString *result, RoundError *err);
+bool round_ruby_engine_run(RoundRubyEngine *engine, RoundMethod *method, const char *param, RoundString *result, RoundError *err);
   
 #ifdef  __cplusplus
 }

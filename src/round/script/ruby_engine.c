@@ -71,7 +71,7 @@ bool round_ruby_engine_delete(RoundRubyEngine *engine) {
  * round_ruby_engine_run
  ****************************************/
 
-bool round_ruby_engine_run(RoundRubyEngine *engine, RoundScript *script, const char *param, RoundString *result, RoundError *err)
+bool round_ruby_engine_run(RoundRubyEngine *engine, RoundMethod *method, const char *param, RoundString *result, RoundError *err)
   {
   return false;
 }
