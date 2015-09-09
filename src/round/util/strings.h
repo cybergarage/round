@@ -60,6 +60,7 @@ char *round_strncpy(char *str1, const char *str2, size_t cnt);
 char *round_strncat(char *str1, const char *str2, size_t cnt);
 bool round_strloc(const char *str, char **buf);
   
+bool round_isnumeric(const char *str);
 const char *round_int2str(int value, char *buf, size_t bufSize);
 const char *round_long2str(long value, char *buf, size_t bufSize);
 const char *round_float2str(float value, char *buf, size_t bufSize);
