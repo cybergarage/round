@@ -419,7 +419,7 @@ const char *round_ssizet2str(ssize_t value, char *buf, size_t bufSize)
  * round_strtok
  ****************************************/
 
-char *round_strtok(char *s1, const char *s2)
+char *round_strtok(char *s1, const char *s2, char **ptr)
 {
-  return strtok(s1, s2);
+  return strtok_r(s1, s2, ptr);
 }
