@@ -420,6 +420,7 @@
 					"-DROUND_SUPPORT_JS_SM",
 					"-DROUND_SUPPORT_LUA",
 					"-DROUND_SUPPORT_RUBY",
+					"-DROUND_USE_JSON_PARSER_JANSSON",
 				);
 				SDKROOT = macosx;
 			};
@@ -467,6 +468,7 @@
 					"-DROUND_SUPPORT_JS_SM",
 					"-DROUND_SUPPORT_LUA",
 					"-DROUND_SUPPORT_RUBY",
+					"-DROUND_USE_JSON_PARSER_JANSSON",
 				);
 				SDKROOT = macosx;
 			};

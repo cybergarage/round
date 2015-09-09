@@ -12,6 +12,7 @@
 #define _ROUNDC_UTIL_JSON_H_
 
 #include <round/typedef.h>
+#include <round/error.h>
 
 #ifdef  __cplusplus
 extern "C" {
@@ -23,17 +24,18 @@ extern "C" {
 
 typedef struct {
   bool headFlag;
-} RoundJSON;
-
-typedef struct {
- bool headFlag;
 } RoundJSONObject;
   
+typedef struct {
+  bool headFlag;
+} RoundJSON;
+
 /****************************************
  * Functions (JSON)
  ****************************************/
 
 RoundJSON *round_json_new(void);
+bool round_json_parse(RoundJSON *json, const char *jsonStr, RoundError *err);
 bool round_json_delete(RoundJSON *json);
 
 /****************************************
