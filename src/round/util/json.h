@@ -14,29 +14,53 @@
 #include <round/typedef.h>
 #include <round/error.h>
 
+#if defined(ROUND_USE_JSON_PARSER_JANSSON)
+#include <jansson.h>
+#endif
+
 #ifdef  __cplusplus
 extern "C" {
 #endif
 
 /****************************************
+ * Constant
+ ****************************************/
+
+enum {
+ROUND_JSON_UNKOWN = 0,
+ROUND_JSON_MAP,
+ROUND_JSON_ARRAY,
+ROUND_JSON_NULL,
+ROUND_JSON_STRING,
+ROUND_JSON_INTEGER,
+ROUND_JSON_REAL,
+ROUND_JSON_TRUE,
+ROUND_JSON_FALSE,
+ROUND_JSON_BOOL,
+};
+  
+#define ROUND_JSON_PATH_DELIM "/"
+
+/****************************************
  * Data Type
  ****************************************/
 
-typedef struct {
-  bool headFlag;
-} RoundJSONObject;
+#if !defined(_ROUNDC_UTIL_JSON_INTERNAL_H_)
+typedef void RoundJSONObject;
+typedef void RoundJSON;
+#endif
   
-typedef struct {
-  bool headFlag;
-} RoundJSON;
-
 /****************************************
  * Functions (JSON)
  ****************************************/
 
 RoundJSON *round_json_new(void);
 bool round_json_parse(RoundJSON *json, const char *jsonStr, RoundError *err);
+bool round_json_clear(RoundJSON *json);
 bool round_json_delete(RoundJSON *json);
+
+RoundJSONObject *round_json_getrootobject(RoundJSON *json);
+RoundJSONObject *round_json_getobjectforpath(RoundJSON *json, const char *path);
 
 /****************************************
  * Functions (JSON Object)
@@ -44,7 +68,17 @@ bool round_json_delete(RoundJSON *json);
 
 RoundJSONObject *round_json_object_new(void);
 bool round_json_object_delete(RoundJSONObject *obj);
-  
+
+int round_json_object_gettype(RoundJSONObject *obj);
+bool round_json_object_istype(RoundJSONObject *obj, int type);
+
+#define round_json_object_ismap(obj) round_json_object_istype(obj, ROUND_JSON_MAP)
+#define round_json_object_isarray(obj) round_json_object_istype(obj, ROUND_JSON_ARRAY)
+#define round_json_object_isstring(obj) round_json_object_istype(obj, ROUND_JSON_STRING)
+#define round_json_object_isinteger(obj) round_json_object_istype(obj, ROUND_JSON_INTEGER)
+#define round_json_object_isreal(obj) round_json_object_istype(obj, ROUND_JSON_REAL)
+#define round_json_object_isbool(obj) round_json_object_istype(obj, ROUND_JSON_BOOL)
+
 #ifdef  __cplusplus
 } /* extern "C" */
 #endif
