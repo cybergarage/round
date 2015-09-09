@@ -22,6 +22,9 @@ roundtest_SOURCES = \
 	..//FinderTest.cpp \
 	..//JSONTest.cpp \
 	..//MapTest.cpp \
+	..//MethodManagerTest.cpp \
+	..//MethodMapTest.cpp \
+	..//MethodTest.cpp \
 	..//NodeListTest.cpp \
 	..//NodeTest.cpp \
 	..//RoundTest.cpp \
@@ -30,9 +33,7 @@ roundtest_SOURCES = \
 	..//script/RubyEngineTest.cpp \
 	..//ScriptEngineMapTest.cpp \
 	..//ScriptEngineTest.cpp \
-	..//ScriptManagerTest.cpp \
-	..//ScriptMapTest.cpp \
-	..//ScriptTest.cpp
+	..//StringTest.cpp
 #if HAVE_LIBTOOL
 #roundtest_LDADD = @HTTP_LIBS@ @XML_LIBS@ ../../lib/unix/libround.la
 #else

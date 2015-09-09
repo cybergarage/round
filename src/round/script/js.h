@@ -12,6 +12,7 @@
 #define _ROUNDC_JAVSCRIPT_ENGINE_H_
 
 #include <round/script_internal.h>
+#include <round/method_internal.h>
 
 #if defined(ROUND_SUPPORT_JS_SM)
 #include <js/jsapi.h>
@@ -26,6 +27,7 @@ typedef struct _RoundJavaScriptEngine {
   char *lang;
   ROUND_SCRIPT_ENGINE_EXECFUNC execFunc;
   ROUND_SCRIPT_ENGINE_DESTRUCTOR destFunc;
+
 #if defined(ROUND_SUPPORT_JS_SM)
   JSRuntime *rt;
   JSContext *cx;
@@ -52,7 +54,7 @@ bool round_js_sm_engine_setfunctions(RoundJavaScriptEngine *engine, JSFunctionSp
   bool round_js_sm_engine_run(RoundJavaScriptEngine *engine, const char *source, size_t sourceLen, RoundString *result, RoundError *err);
 #endif
 
-bool round_js_engine_run(RoundJavaScriptEngine *engine, RoundScript *script, const char *param, RoundString *result, RoundError *err);
+bool round_js_engine_run(RoundJavaScriptEngine *engine, RoundMethod *method, const char *param, RoundString *result, RoundError *err);
   
 #ifdef  __cplusplus
 }

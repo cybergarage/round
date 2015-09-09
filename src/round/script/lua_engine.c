@@ -135,17 +135,16 @@ bool round_lua_engine_poperror(RoundLuaEngine *engine, RoundError *err)
  * round_lua_engine_run
  ****************************************/
 
-//bool round_lua_engine_run(RoundLuaEngine *engine, const char *source, const char *func, const char *param) {
-bool round_lua_engine_run(RoundLuaEngine *engine, RoundScript *script, const char *param, RoundString *result, RoundError *err)
+bool round_lua_engine_run(RoundLuaEngine *engine, RoundMethod *method, const char *param, RoundString *result, RoundError *err)
 {
   const char *source;
-  const char *method;
+  const char *name;
   
   if (!engine)
     return false;
   
-  source = round_script_getsource(script);
-  method = round_script_getname(script);
+  name = round_method_getname(method);
+  source = round_method_getsource(method);
   
 #if defined(ROUND_SUPPORT_LUA)
   int nStack = lua_gettop(engine->luaState);
@@ -164,7 +163,7 @@ bool round_lua_engine_run(RoundLuaEngine *engine, RoundScript *script, const cha
   
   nStack = lua_gettop(engine->luaState);
   
-  lua_getglobal(engine->luaState, method);
+  lua_getglobal(engine->luaState, name);
   lua_pushstring(engine->luaState, param);
   
   nStack = lua_gettop(engine->luaState);

@@ -10,14 +10,14 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include <round/script_internal.h>
+#include <round/method_internal.h>
 
-BOOST_AUTO_TEST_CASE(ScriptNew)
+BOOST_AUTO_TEST_CASE(MethodNew)
 {
-  RoundScript *sc = round_script_new();
-  BOOST_CHECK(sc);
+  RoundMethod *method = round_method_new();
+  BOOST_CHECK(method);
   
-  BOOST_CHECK_EQUAL(round_script_isvalid(sc), false);
+  BOOST_CHECK_EQUAL(round_method_isvalid(method), false);
   
-  BOOST_CHECK(round_script_delete(sc));
+  BOOST_CHECK(round_method_delete(method));
 }

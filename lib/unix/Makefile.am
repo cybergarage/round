@@ -23,17 +23,17 @@ round_mpi_sources = \
 	../../src/round/error.c \
 	../../src/round/error_rpc.c \
 	../../src/round/finder.c \
+	../../src/round/method.c \
+	../../src/round/method_manager.c \
+	../../src/round/method_map.c \
 	../../src/round/node.c \
 	../../src/round/node_list.c \
 	../../src/round/script/js_engine.c \
 	../../src/round/script/js_sm_engine.c \
 	../../src/round/script/lua_engine.c \
 	../../src/round/script/ruby_engine.c \
-	../../src/round/script.c \
 	../../src/round/script_engine.c \
 	../../src/round/script_engine_map.c \
-	../../src/round/script_manager.c \
-	../../src/round/script_map.c \
 	../../src/round/util/json.c \
 	../../src/round/util/json_object.c \
 	../../src/round/util/list.c \

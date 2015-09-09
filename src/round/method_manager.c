@@ -11,36 +11,36 @@
 #include <stdlib.h>
 #include <round/const.h>
 #include <round/error_internal.h>
-#include <round/script_internal.h>
+#include <round/method_internal.h>
 
 /****************************************
- * round_script_manager_new
+ * round_method_manager_new
  ****************************************/
 
-RoundScriptManager *round_script_manager_new()
+RoundMethodManager *round_method_manager_new()
 {
-  RoundScriptManager *mgr;
+  RoundMethodManager *mgr;
   
-  mgr = (RoundScriptManager *)malloc(sizeof(RoundScriptManager));
+  mgr = (RoundMethodManager *)malloc(sizeof(RoundMethodManager));
   if (!mgr)
     return NULL;
   
-  mgr->scriptMap  = round_script_map_new();
+  mgr->methodMap  = round_method_map_new();
   mgr->engineMap = round_script_engine_map_new();
   
   return mgr;  
 }
 
 /****************************************
- * round_script_manager_delete
+ * round_method_manager_delete
  ****************************************/
 
-bool round_script_manager_delete(RoundScriptManager *mgr)
+bool round_method_manager_delete(RoundMethodManager *mgr)
 {
   if (!mgr)
     return false;
   
-  round_script_map_delete(mgr->scriptMap);
+  round_method_map_delete(mgr->methodMap);
   round_script_engine_map_delete(mgr->engineMap);
   
   free(mgr);
@@ -49,51 +49,51 @@ bool round_script_manager_delete(RoundScriptManager *mgr)
 }
 
 /****************************************
- * round_script_manager_delete
+ * round_method_manager_delete
  ****************************************/
 
-bool round_script_manager_addscript(RoundScriptManager *mgr, RoundScript *script)
+bool round_method_manager_addmethod(RoundMethodManager *mgr, RoundMethod *method)
 {
   if (!mgr)
     return false;
   
-  if (!round_script_isvalid(script))
+  if (!round_method_isvalid(method))
     return false;
   
-  round_script_map_remove(mgr->scriptMap, round_script_getname(script));
+  round_method_map_remove(mgr->methodMap, round_method_getname(method));
 
-  return round_script_map_set(mgr->scriptMap, script);
+  return round_method_map_set(mgr->methodMap, method);
 }
 
 /****************************************
- * round_script_manager_getscript
+ * round_method_manager_getmethod
  ****************************************/
 
-RoundScript *round_script_manager_getscript(RoundScriptManager *mgr, const char *name)
+RoundMethod *round_method_manager_getmethod(RoundMethodManager *mgr, const char *name)
 {
   if (!mgr)
     return NULL;
   
-  return round_script_map_get(mgr->scriptMap, name);
+  return round_method_map_get(mgr->methodMap, name);
 }
 
 /****************************************
- * round_script_manager_removescript
+ * round_method_manager_removemethod
  ****************************************/
 
-bool round_script_manager_removescript(RoundScriptManager *mgr, const char *name)
+bool round_method_manager_removemethod(RoundMethodManager *mgr, const char *name)
 {
   if (!mgr)
     return false;
   
-  return round_script_map_remove(mgr->scriptMap, name);
+  return round_method_map_remove(mgr->methodMap, name);
 }
 
 /****************************************
- * round_script_manager_addengine
+ * round_method_manager_addengine
  ****************************************/
 
-bool round_script_manager_addengine(RoundScriptManager *mgr, RoundScriptEngine *engine)
+bool round_method_manager_addengine(RoundMethodManager *mgr, RoundScriptEngine *engine)
 {
   if (!mgr)
     return false;
@@ -107,10 +107,10 @@ bool round_script_manager_addengine(RoundScriptManager *mgr, RoundScriptEngine *
 }
 
 /****************************************
- * round_script_manager_getengine
+ * round_method_manager_getengine
  ****************************************/
 
-RoundScriptEngine *round_script_manager_getengine(RoundScriptManager *mgr, const char *name)
+RoundScriptEngine *round_method_manager_getengine(RoundMethodManager *mgr, const char *name)
 {
   if (!mgr)
     return NULL;
@@ -119,10 +119,10 @@ RoundScriptEngine *round_script_manager_getengine(RoundScriptManager *mgr, const
 }
 
 /****************************************
- * round_script_manager_removeengine
+ * round_method_manager_removeengine
  ****************************************/
 
-bool round_script_manager_removeengine(RoundScriptManager *mgr, const char *name)
+bool round_method_manager_removeengine(RoundMethodManager *mgr, const char *name)
 {
   if (!mgr)
     return false;
@@ -131,25 +131,25 @@ bool round_script_manager_removeengine(RoundScriptManager *mgr, const char *name
 }
 
 /****************************************
- * round_script_manager_execmethod
+ * round_method_manager_execmethod
  ****************************************/
 
-bool round_script_manager_execmethod(RoundScriptManager *mgr, const char *method, const char *param, RoundString *result, RoundError *err)
+bool round_method_manager_execmethod(RoundMethodManager *mgr, const char *name, const char *param, RoundString *result, RoundError *err)
 {
-  RoundScript *script;
+  RoundMethod *method;
   RoundScriptEngine *engine;
 
   if (!mgr)
     return false;
   
-  script = round_script_manager_getscript(mgr, method);
-  if (!script) {
+  method = round_method_manager_getmethod(mgr, name);
+  if (!method) {
     round_error_setjsonrpcerrorcode(err, ROUNDC_RPC_ERROR_CODE_METHOD_NOT_FOUND);
     return false;
   }
 
-  engine = round_script_manager_getengine(mgr, round_script_getlanguage(script));
-  if (!script) {
+  engine = round_method_manager_getengine(mgr, round_method_getlanguage(method));
+  if (!method) {
     round_error_setjsonrpcerrorcode(err, ROUNDC_RPC_ERROR_CODE_SCRIPT_ENGINE_NOT_FOUND);
     return false;
   }
@@ -157,13 +157,13 @@ bool round_script_manager_execmethod(RoundScriptManager *mgr, const char *method
   /*
  }
  
- const ScriptEngine *scriptEngine = this->engines.getEngine(scriptLang);
- if (!scriptEngine) {
+ const ScriptEngine *methodEngine = this->engines.getEngine(methodLang);
+ if (!methodEngine) {
  RPC::JSON::ErrorCodeToError(RPC::JSON::ErrorCodeScriptEngineInternalError, error);
  return false;
  }
  
- return scriptEngine->run(script, params, results, error);
+ return methodEngine->run(method, params, results, error);
 */
  
   return false;

@@ -12,6 +12,7 @@
 #define _ROUNDC_LUA_ENGINE_H_
 
 #include <round/script_internal.h>
+#include <round/method_internal.h>
 
 #ifdef  __cplusplus
 extern "C" {
@@ -28,6 +29,7 @@ typedef struct _RoundLuaEngine {
   char *lang;
   ROUND_SCRIPT_ENGINE_EXECFUNC execFunc;
   ROUND_SCRIPT_ENGINE_DESTRUCTOR destFunc;
+
 #if defined(ROUND_SUPPORT_LUA)
   lua_State *luaState;
 #endif
@@ -36,7 +38,7 @@ typedef struct _RoundLuaEngine {
 RoundLuaEngine *round_lua_engine_new();
 bool round_lua_engine_delete(RoundLuaEngine *engine);
 
-bool round_lua_engine_run(RoundLuaEngine *engine, RoundScript *script, const char *param, RoundString *result, RoundError *err);
+bool round_lua_engine_run(RoundLuaEngine *engine, RoundMethod *method, const char *param, RoundString *result, RoundError *err);
 
 #if defined(ROUND_SUPPORT_LUA)
 bool round_lua_engine_register(RoundLuaEngine *engine, const char *name, lua_CFunction func);

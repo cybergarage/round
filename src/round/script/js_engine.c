@@ -64,7 +64,7 @@ bool round_js_engine_delete(RoundJavaScriptEngine *engine) {
  * round_js_engine_run
  ****************************************/
 
-bool round_js_engine_run(RoundJavaScriptEngine *engine, RoundScript *script, const char *param, RoundString *result, RoundError *err)
+bool round_js_engine_run(RoundJavaScriptEngine *engine, RoundMethod *method, const char *param, RoundString *result, RoundError *err)
 {
   if (!engine)
     return false;

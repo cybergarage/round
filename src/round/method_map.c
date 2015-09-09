@@ -9,13 +9,13 @@
  ******************************************************************/
 
 #include <stdlib.h>
-#include <round/script_internal.h>
+#include <round/method_internal.h>
 
 /****************************************
- * round_script_map_new
+ * round_method_map_new
  ****************************************/
 
-RoundMap *round_script_map_new()
+RoundMap *round_method_map_new()
 {
   RoundMap *map;
   
@@ -23,7 +23,7 @@ RoundMap *round_script_map_new()
   if (!map)
     return NULL;
   
-  round_map_setmapobjectdestructor(map, (ROUND_MAP_OBJECT_DESTRUCTOR)round_script_delete);
+  round_map_setmapobjectdestructor(map, (ROUND_MAP_OBJECT_DESTRUCTOR)round_method_delete);
   
   return map;
 }
