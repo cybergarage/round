@@ -23,9 +23,7 @@ extern "C" {
  ****************************************/
 
 typedef struct _RoundNode {
-  bool headFlag;
-  struct _RoundNode *prev;
-  struct _RoundNode *next;
+  ROUND_LIST_MEMBERS
 } RoundNode, RoundNodeList;
 
 /****************************************
