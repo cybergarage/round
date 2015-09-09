@@ -319,6 +319,7 @@
 					"-lmruby",
 					"-llua",
 					"-lmozjs185",
+					"-ljansson",
 				);
 				SDKROOT = macosx;
 			};
@@ -366,6 +367,7 @@
 					"-lmruby",
 					"-llua",
 					"-lmozjs185",
+					"-ljansson",
 				);
 				SDKROOT = macosx;
 			};
@@ -393,6 +395,7 @@
 					"-lmozjs185",
 					"-llua",
 					"-lmruby",
+					"-ljansson",
 				);
 				PRODUCT_NAME = RoundTest;
 			};
@@ -420,6 +423,7 @@
 					"-lmozjs185",
 					"-llua",
 					"-lmruby",
+					"-ljansson",
 				);
 				PRODUCT_NAME = RoundTest;
 			};
