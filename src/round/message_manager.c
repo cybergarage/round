@@ -8,7 +8,7 @@
  *
  ******************************************************************/
 
-#include <round/util/message.h>
+#include <round/message.h>
 
 /****************************************
 * round_message_manager_new
@@ -23,7 +23,9 @@ RoundMessageManager *round_message_manager_new(void)
   if (!mgr)
     return NULL;
 
-  mgr->queue = round_message_queue_new();
+  mgr->queue = round_queue_new();
+  mgr->sem = round_semaphore_new(0);
+  mgr->mutex = round_mutex_new();
   
   return mgr;
 }
@@ -39,7 +41,9 @@ bool round_message_manager_delete(RoundMessageManager *mgr)
   
   round_message_manager_clear(mgr);
 
-  round_message_queue_delete(mgr->queue);
+  round_queue_delete(mgr->queue);
+  round_semaphore_delete(mgr->sem);
+  round_mutex_delete(mgr->mutex);
   
   free(mgr);
   
@@ -55,7 +59,40 @@ bool round_message_manager_clear(RoundMessageManager *mgr)
   if (!mgr)
     return false;
 
-  round_message_queue_clear(mgr->queue);
+  round_semaphore_reset(mgr->sem);
+
+  return true;
+}
+
+bool round_message_manager_pushmessage(RoundMessageManager *mgr, RoundMessage *msg)
+{
+  if (!mgr)
+    return false;
+  
+  round_mutex_lock(mgr->mutex);
+  round_queue_push(mgr->queue, (RoundQueueObject *)msg);
+  round_mutex_unlock(mgr->mutex);
+
+  round_semaphore_post(mgr->sem);
   
   return true;
+  
+}
+
+bool round_message_manager_waitmessage(RoundMessageManager *mgr, RoundMessage **msg)
+{
+  bool isSuccess;
+  
+  if (!mgr)
+    return false;
+  
+  *msg = NULL;
+  if  (!round_semaphore_wait(mgr->sem))
+    return false;
+  
+  round_mutex_lock(mgr->mutex);
+  isSuccess = round_queue_pop(mgr->queue, (RoundQueueObject **)msg);
+  round_mutex_unlock(mgr->mutex);
+
+  return isSuccess;
 }
