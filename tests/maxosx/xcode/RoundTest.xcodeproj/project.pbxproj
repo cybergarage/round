@@ -18,6 +18,9 @@
 		2172C4C11B9AF3CB0032BE98 /* Ruby.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2172C4C01B9AF3CB0032BE98 /* Ruby.framework */; };
 		21852FB21B9DB0A800C7F878 /* MapTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21852FB11B9DB0A800C7F878 /* MapTest.cpp */; };
 		21A762ED1B96F82400D29732 /* RoundTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21A762EC1B96F82400D29732 /* RoundTest.cpp */; };
+		21A776B41BA0666C009BDB36 /* MessageTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21A776B31BA0666C009BDB36 /* MessageTest.cpp */; };
+		21A776C01BA071C7009BDB36 /* QueueTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21A776BF1BA071C7009BDB36 /* QueueTest.cpp */; };
+		21A776C41BA08A48009BDB36 /* SemaphoreTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21A776C31BA08A48009BDB36 /* SemaphoreTest.cpp */; };
 		21C482481B9F5A240087380C /* JSONTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21C482471B9F5A240087380C /* JSONTest.cpp */; };
 		21C61E661B9FE949007384B6 /* StringTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21C61E651B9FE949007384B6 /* StringTest.cpp */; };
 		21D427F01B9F0B1A00BBBD41 /* ErrorTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D427EF1B9F0B1A00BBBD41 /* ErrorTest.cpp */; };
@@ -73,6 +76,9 @@
 		2172C4C01B9AF3CB0032BE98 /* Ruby.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Ruby.framework; path = System/Library/Frameworks/Ruby.framework; sourceTree = SDKROOT; };
 		21852FB11B9DB0A800C7F878 /* MapTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MapTest.cpp; path = ../../MapTest.cpp; sourceTree = "<group>"; };
 		21A762EC1B96F82400D29732 /* RoundTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RoundTest.cpp; path = ../../RoundTest.cpp; sourceTree = "<group>"; };
+		21A776B31BA0666C009BDB36 /* MessageTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MessageTest.cpp; path = ../../MessageTest.cpp; sourceTree = "<group>"; };
+		21A776BF1BA071C7009BDB36 /* QueueTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = QueueTest.cpp; path = ../../QueueTest.cpp; sourceTree = "<group>"; };
+		21A776C31BA08A48009BDB36 /* SemaphoreTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SemaphoreTest.cpp; path = ../../SemaphoreTest.cpp; sourceTree = "<group>"; };
 		21C482471B9F5A240087380C /* JSONTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = JSONTest.cpp; path = ../../JSONTest.cpp; sourceTree = "<group>"; };
 		21C61E651B9FE949007384B6 /* StringTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StringTest.cpp; path = ../../StringTest.cpp; sourceTree = "<group>"; };
 		21D427EF1B9F0B1A00BBBD41 /* ErrorTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ErrorTest.cpp; path = ../../ErrorTest.cpp; sourceTree = "<group>"; };
@@ -153,6 +159,9 @@
 				21D427EF1B9F0B1A00BBBD41 /* ErrorTest.cpp */,
 				21C482471B9F5A240087380C /* JSONTest.cpp */,
 				21C61E651B9FE949007384B6 /* StringTest.cpp */,
+				21A776B31BA0666C009BDB36 /* MessageTest.cpp */,
+				21A776BF1BA071C7009BDB36 /* QueueTest.cpp */,
+				21A776C31BA08A48009BDB36 /* SemaphoreTest.cpp */,
 			);
 			name = Sources;
 			sourceTree = "<group>";
@@ -245,9 +254,12 @@
 				21F6D99E1B9983A500714056 /* LuaEngineTest.cpp in Sources */,
 				212A954B1B9BD1A400EC9A71 /* MethodMapTest.cpp in Sources */,
 				212A954C1B9BD1A400EC9A71 /* MethodManagerTest.cpp in Sources */,
+				21A776C41BA08A48009BDB36 /* SemaphoreTest.cpp in Sources */,
 				211E45D21B98188600CF0088 /* ClientTest.cpp in Sources */,
+				21A776B41BA0666C009BDB36 /* MessageTest.cpp in Sources */,
 				211E45D41B9818E300CF0088 /* FinderTest.cpp in Sources */,
 				21F6D99F1B9983A500714056 /* RubyEngineTest.cpp in Sources */,
+				21A776C01BA071C7009BDB36 /* QueueTest.cpp in Sources */,
 				21C61E661B9FE949007384B6 /* StringTest.cpp in Sources */,
 				21EA96DE1B99104E00E00841 /* ClusterListTest.cpp in Sources */,
 				21EA96E31B99105E00E00841 /* NodeTest.cpp in Sources */,
