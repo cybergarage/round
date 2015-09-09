@@ -76,7 +76,7 @@ const char *round_ssizet2str(ssize_t value, char *buf, size_t bufSize);
 #define round_str2sizet(value) ((size_t)(value ? atol(value) : 0))
 #define round_str2ssizet(value) ((ssize_t)(value ? atol(value) : 0))
 
-char *round_strtok(char *s1, const char *s2);
+char *round_strtok(char *s1, const char *s2, char **ptr);
   
 /****************************************
 * Data Type
