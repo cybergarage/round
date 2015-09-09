@@ -24,19 +24,20 @@
 char *round_strdup(const char *str)
 {
 #if !defined(HAVE_STRDUP)
- char *cpStrBuf;
+ char *cpStr;
 #endif
 
-  if (str == NULL)
+  if (!str)
     return NULL;
 
 #if defined(HAVE_STRDUP)
   return strdup(str);
 #else
-  cpStrBuf = (char *)malloc(strlen(str)+1);
-  if ( NULL != cpStrBuf )
-    strcpy(cpStrBuf, str);
-  return cpStrBuf;
+  cpStr = (char *)malloc(strlen(str)+1);
+  if (!cpStr)
+    return NULL;
+  strcpy(cpStr, str);
+  return cpStr;
 #endif
 }
 
