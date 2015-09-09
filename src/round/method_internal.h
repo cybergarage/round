@@ -35,6 +35,7 @@ typedef struct {
   char *name;
   byte *code;
   size_t codeSize;
+  int opt;
 } RoundMethod;
   
 typedef struct {
@@ -60,6 +61,10 @@ bool round_method_setcode(RoundMethod *method, byte *code, size_t codeLen);
 #define round_method_getcode(method) (method->code)
 #define round_method_getsource(method) ((const char *)method->code)
 #define round_method_getcodeSize(method) (method->codeSize)
+  
+#define round_method_setoption(method, value) (method->opt = value)
+#define round_method_getoption(method) (method->opt)
+#define round_method_enableoption(method, value) (method->opt & value)
   
 bool round_method_isvalid(RoundMethod *method);
   

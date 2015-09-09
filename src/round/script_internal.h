@@ -36,8 +36,10 @@ typedef bool (*ROUND_SCRIPT_ENGINE_DESTRUCTOR)(void *engine);
 typedef struct {
   RoundMutex *mutex;
   char *lang;
+  int opt;
   ROUND_SCRIPT_ENGINE_EXECFUNC execFunc;
   ROUND_SCRIPT_ENGINE_DESTRUCTOR destFunc;
+  
 } RoundScriptEngine;
 
 /****************************************
@@ -54,6 +56,10 @@ bool round_script_engine_delete(RoundScriptEngine *engine);
   
 #define round_script_engine_setlanguage(engine, value) round_strloc(value, &engine->lang)
 #define round_script_engine_getlanguage(engine) (engine->lang)
+
+#define round_script_engine_setoption(engine, value) (engine->opt = value)
+#define round_script_engine_getoption(engine) (engine->opt)
+#define round_script_engine_enableoption(engine, value) (engine->opt & value)
 
 #define round_script_engine_setexecutefunc(engine, func) (engine->execFunc = (ROUND_SCRIPT_ENGINE_EXECFUNC)func)
 #define round_script_engine_setdestructor(engine, func) (engine->destFunc = (ROUND_SCRIPT_ENGINE_DESTRUCTOR)func)

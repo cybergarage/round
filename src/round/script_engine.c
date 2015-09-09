@@ -49,6 +49,7 @@ bool round_script_engine_init(RoundScriptEngine *engine)
   }
   
   engine->lang = NULL;
+  round_script_engine_setoption(engine, 0);
   round_script_engine_setexecutefunc(engine, NULL);
   round_script_engine_setdestructor(engine, NULL);
   
