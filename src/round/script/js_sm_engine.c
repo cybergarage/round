@@ -25,10 +25,6 @@ static void RoundJSReportError(JSContext *cx, const char *message, JSErrorReport
           (unsigned int) report->lineno,
           message);
 
-  if (gCurrentJsEngine) {
-    round_js_engine_seterror(gCurrentJsEngine, errmsg);
-  }
-  
   fprintf(stderr, "%s\n", errmsg);
 }
 

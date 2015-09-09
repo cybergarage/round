@@ -28,6 +28,7 @@ RoundLuaEngine *round_lua_engine_new()
     return NULL;
   }
 
+  round_script_engine_setlanguage(engine, RoundLuaEngineLanguage);
   round_script_engine_setexecutefunc(engine, round_lua_engine_run);
   round_script_engine_setdestructor(engine, round_lua_engine_delete);
   
