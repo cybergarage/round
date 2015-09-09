@@ -332,6 +332,29 @@ char *round_strncat(char *str1, const char *str2, size_t cnt)
 }
 
 /****************************************
+ * round_isnumeric
+ ****************************************/
+
+bool round_isnumeric(const char *str)
+{
+  if (!str)
+    return false;
+  
+  if (*str == '\0')
+    return false;
+  
+  while (*str != '\0') {
+    if (*str < '0')
+      return false;
+    if ('9' < *str)
+      return false;
+    str++;
+  }
+  
+  return true;
+}
+
+/****************************************
 * round_int2str
 ****************************************/
 
