@@ -31,7 +31,7 @@ extern "C" {
 #define RoundRubyEngineLanguage "ruby"
   
 typedef struct {
-  ROUND_SCRIPT_ENGINE_MEMBERS
+  ROUND_SCRIPT_ENGINE_STRUCT_MEMBERS
 
 #if defined(ROUND_SUPPORT_MRUBY)
   mrb_state *mrb;

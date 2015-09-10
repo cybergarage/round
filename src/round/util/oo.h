@@ -27,7 +27,7 @@ typedef bool (*ROUND_OO_DESCENDANT_DESTORYFUNC)(void *);
  * Macros
  ****************************************/
 
-#define ROUND_OO_MEMBERS \
+#define ROUND_OO_STRUCT_MEMBERS \
 ROUND_OO_DESCENDANT_DESTORYFUNC descDestroyFunc;
 
 #define round_oo_setdescendantdestoroyfunc(obj, func) (obj->descDestroyFunc = (ROUND_OO_DESCENDANT_DESTORYFUNC)func)
