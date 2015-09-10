@@ -30,7 +30,7 @@ RoundLuaEngine *round_lua_engine_new()
 
   round_script_engine_setlanguage(engine, RoundLuaEngineLanguage);
   round_script_engine_setexecutefunc(engine, round_lua_engine_run);
-  round_script_engine_setdestoryfunc(engine, round_lua_engine_destory);
+  round_oo_setdescendantdestoroyfunc(engine, round_lua_engine_destory);
   
 #if defined(ROUND_SUPPORT_LUA)
   engine->luaState = luaL_newstate();

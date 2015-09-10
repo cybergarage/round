@@ -23,6 +23,8 @@ round_mpi_sources = \
 	../../src/round/error.c \
 	../../src/round/error_rpc.c \
 	../../src/round/finder.c \
+	../../src/round/message.c \
+	../../src/round/message_manager.c \
 	../../src/round/method.c \
 	../../src/round/method_manager.c \
 	../../src/round/method_map.c \
@@ -42,10 +44,14 @@ round_mpi_sources = \
 	../../src/round/util/map_object.c \
 	../../src/round/util/map_object_list.c \
 	../../src/round/util/mutex.c \
+	../../src/round/util/queue.c \
+	../../src/round/util/queue_object.c \
+	../../src/round/util/semaphore.c \
 	../../src/round/util/string.c \
 	../../src/round/util/string_func.c \
 	../../src/round/util/thread.c \
-	../../src/round/util/thread_list.c
+	../../src/round/util/thread_list.c \
+	../../src/round/util/timer.c
 
 #if HAVE_LIBTOOL
 #libround_la_SOURCES = \

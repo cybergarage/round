@@ -51,7 +51,7 @@ bool round_script_engine_init(RoundScriptEngine *engine)
   engine->lang = NULL;
   round_script_engine_setoption(engine, 0);
   round_script_engine_setexecutefunc(engine, NULL);
-  round_script_engine_setdestoryfunc(engine, NULL);
+  round_oo_setdescendantdestoroyfunc(engine, NULL);
   
   return true;
 }
@@ -87,10 +87,8 @@ bool round_script_engine_delete(RoundScriptEngine *engine)
   if (!engine)
     return false;
   
-  if (engine->destoryFunc) {
-      if (!engine->destoryFunc(engine))
-        return false;
-  }
+  if (!round_oo_execdescendantdestoroy(engine))
+    return false;
 
   if (!round_script_engine_destory(engine))
     return false;
