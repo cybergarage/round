@@ -33,15 +33,15 @@ extern "C" {
 
 typedef bool (*ROUND_SCRIPT_ENGINE_EXECFUNC)(void *engine, void *script, const char *param, RoundString *result, RoundError *err);
 
-#define ROUND_SCRIPT_ENGINE_MEMBERS \
+#define ROUND_SCRIPT_ENGINE_STRUCT_MEMBERS \
   RoundMutex *mutex; \
   char *lang; \
   int opt; \
-  ROUND_OO_MEMBERS \
+  ROUND_OO_STRUCT_MEMBERS \
   ROUND_SCRIPT_ENGINE_EXECFUNC execFunc;
 
 typedef struct {
-  ROUND_SCRIPT_ENGINE_MEMBERS  
+  ROUND_SCRIPT_ENGINE_STRUCT_MEMBERS  
 } RoundScriptEngine;
 
 /****************************************

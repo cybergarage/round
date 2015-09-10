@@ -25,7 +25,7 @@ extern "C" {
 #define RoundJavaScriptEngineLanguage "js"
   
 typedef struct {
-  ROUND_SCRIPT_ENGINE_MEMBERS
+  ROUND_SCRIPT_ENGINE_STRUCT_MEMBERS
 
 #if defined(ROUND_SUPPORT_JS_SM)
   JSRuntime *rt;
