@@ -51,18 +51,31 @@ bool round_message_manager_delete(RoundMessageManager *mgr)
 }
 
 /****************************************
- * round_message_manager_delete
+ * round_message_manager_clear
  ****************************************/
 
 bool round_message_manager_clear(RoundMessageManager *mgr)
 {
+  RoundMessage *msg;
+  
   if (!mgr)
     return false;
+
+  // TODO : Serialize none executed message
+  while (round_queue_pop(mgr->queue, (RoundQueueObject **)&msg)) {
+    if (!msg)
+      continue;
+    round_message_delete(msg);
+  }
 
   round_semaphore_reset(mgr->sem);
 
   return true;
 }
+
+/****************************************
+ * round_message_manager_pushmessage
+ ****************************************/
 
 bool round_message_manager_pushmessage(RoundMessageManager *mgr, RoundMessage *msg)
 {
@@ -78,6 +91,10 @@ bool round_message_manager_pushmessage(RoundMessageManager *mgr, RoundMessage *m
   return true;
   
 }
+
+/****************************************
+ * round_message_manager_waitmessage
+ ****************************************/
 
 bool round_message_manager_waitmessage(RoundMessageManager *mgr, RoundMessage **msg)
 {
