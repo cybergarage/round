@@ -12,6 +12,8 @@
 #define _ROUNDC_CLASS_H_
 
 #include <round/typedef.h>
+#include <round/error.h>
+#include <round/util/json.h>
 
 #ifdef  __cplusplus
 extern "C" {
@@ -51,6 +53,12 @@ RoundNode *round_node_new(void);
 void round_node_delete(RoundNode *node);
 RoundNode *round_node_next(RoundNode *node);
 
+bool round_node_getrequestaddress(RoundNode *node, const char **address, RoundError *err);
+bool round_node_getrequestport(RoundNode *node, int *port, RoundError *err);
+bool round_node_getclustername(RoundNode *node, const char **address, RoundError *err);
+  
+bool round_node_postmessage(RoundJSONObject *reqObj, RoundJSONObject *resObj, RoundError *err);
+  
 #ifdef  __cplusplus
 } /* extern C */
 #endif

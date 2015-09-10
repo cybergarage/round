@@ -13,6 +13,7 @@
 
 #include <round/typedef.h>
 #include <round/util/list.h>
+#include <round/util/json.h>
 
 #ifdef  __cplusplus
 extern "C" {
