@@ -35,6 +35,7 @@ typedef struct {
 } RoundJavaScriptEngine;
 
 RoundJavaScriptEngine *round_js_engine_new();
+bool round_js_engine_destroy(RoundJavaScriptEngine *engine);
 bool round_js_engine_delete(RoundJavaScriptEngine *engine);
 
 #if defined(ROUND_SUPPORT_JS_SM)

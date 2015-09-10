@@ -36,9 +36,25 @@ RoundJavaScriptEngine *round_js_engine_new()
 
   round_script_engine_setlanguage(engine, RoundJavaScriptEngineLanguage);
   round_script_engine_setexecutefunc(engine, round_js_engine_run);
-  round_script_engine_setdestructor(engine, round_js_engine_delete);
+  round_script_engine_setdestoryfunc(engine, round_js_engine_destroy);
 
   return engine;
+}
+
+/****************************************
+ * round_js_engine_destroy
+ ****************************************/
+
+bool round_js_engine_destroy(RoundJavaScriptEngine *engine)
+{
+  if (!engine)
+    return false;
+  
+#if defined(ROUND_SUPPORT_JS_SM)
+  round_js_sm_engine_destroy(engine);
+#endif
+  
+  return true;
 }
 
 /****************************************
@@ -49,10 +65,9 @@ bool round_js_engine_delete(RoundJavaScriptEngine *engine) {
   if (!engine)
     return false;
   
-#if defined(ROUND_SUPPORT_JS_SM)
-  round_js_sm_engine_destroy(engine);
-#endif
-
+  if (!round_js_engine_destroy(engine))
+    return false;
+  
   if (!round_script_engine_destory((RoundScriptEngine *)engine))
     return false;
   
