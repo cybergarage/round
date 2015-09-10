@@ -30,7 +30,7 @@ RoundLuaEngine *round_lua_engine_new()
 
   round_script_engine_setlanguage(engine, RoundLuaEngineLanguage);
   round_script_engine_setexecutefunc(engine, round_lua_engine_run);
-  round_script_engine_setdestructor(engine, round_lua_engine_delete);
+  round_script_engine_setdestoryfunc(engine, round_lua_engine_destory);
   
 #if defined(ROUND_SUPPORT_LUA)
   engine->luaState = luaL_newstate();
@@ -41,12 +41,27 @@ RoundLuaEngine *round_lua_engine_new()
 }
 
 /****************************************
+ * round_lua_engine_destory
+ ****************************************/
+
+bool round_lua_engine_destory(RoundLuaEngine *engine)
+{
+  if (!engine)
+    return false;
+  
+  return true;
+}
+
+/****************************************
  * round_lua_engine_delete
  ****************************************/
 
 bool round_lua_engine_delete(RoundLuaEngine *engine)
 {
   if (!engine)
+    return false;
+  
+  if (!round_lua_engine_destory(engine))
     return false;
   
   if (!round_script_engine_destory((RoundScriptEngine *)engine))

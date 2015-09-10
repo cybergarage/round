@@ -51,7 +51,7 @@ bool round_script_engine_init(RoundScriptEngine *engine)
   engine->lang = NULL;
   round_script_engine_setoption(engine, 0);
   round_script_engine_setexecutefunc(engine, NULL);
-  round_script_engine_setdestructor(engine, NULL);
+  round_script_engine_setdestoryfunc(engine, NULL);
   
   return true;
 }
@@ -87,11 +87,14 @@ bool round_script_engine_delete(RoundScriptEngine *engine)
   if (!engine)
     return false;
   
-  if (engine->destFunc) {
-      if (!engine->destFunc(engine))
+  if (engine->destoryFunc) {
+      if (!engine->destoryFunc(engine))
         return false;
   }
 
+  if (!round_script_engine_destory(engine))
+    return false;
+  
   return true;
 }
 

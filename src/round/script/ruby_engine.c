@@ -34,7 +34,7 @@ RoundRubyEngine *round_ruby_engine_new()
  
   round_script_engine_setlanguage(engine, RoundRubyEngineLanguage);
   round_script_engine_setexecutefunc(engine, round_ruby_engine_run);
-  round_script_engine_setdestructor(engine, round_ruby_engine_delete);
+  round_script_engine_setdestoryfunc(engine, round_ruby_engine_destory);
   
 #if defined(ROUND_SUPPORT_RUBY)
   ruby_init();
@@ -47,6 +47,24 @@ RoundRubyEngine *round_ruby_engine_new()
 }
 
 /****************************************
+ * round_ruby_engine_destory
+ ****************************************/
+
+bool round_ruby_engine_destory(RoundRubyEngine *engine)
+{
+  if (!engine)
+    return false;
+  
+#if defined(ROUND_SUPPORT_RUBY)
+  ruby_cleanup(0);
+#elif defined(ROUND_SUPPORT_MRUBY)
+  mrb_close(engine->mrb);
+#endif
+  
+  return true;
+}
+
+/****************************************
  * round_ruby_engine_delete
  ****************************************/
 
@@ -54,11 +72,8 @@ bool round_ruby_engine_delete(RoundRubyEngine *engine) {
   if (!engine)
     return false;
 
-#if defined(ROUND_SUPPORT_RUBY)
-  ruby_cleanup(0);
-#elif defined(ROUND_SUPPORT_MRUBY)
-  mrb_close(engine->mrb);
-#endif
+  if (!round_ruby_engine_destory(engine))
+    return false;
   
   if (!round_script_engine_destory((RoundScriptEngine *)engine))
     return false;
@@ -72,8 +87,7 @@ bool round_ruby_engine_delete(RoundRubyEngine *engine) {
  * round_ruby_engine_run
  ****************************************/
 
-bool round_ruby_engine_run(RoundRubyEngine *engine, RoundMethod *method, const char *param, RoundString *result, RoundError *err)
-  {
+bool round_ruby_engine_run(RoundRubyEngine *engine, RoundMethod *method, const char *param, RoundString *result, RoundError *err) {
   return false;
 }
 
