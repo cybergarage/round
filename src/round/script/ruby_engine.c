@@ -15,7 +15,7 @@
 #include "mruby/compile.h"
 #endif
 
-#/****************************************
+/****************************************
 * round_ruby_engine_new
 ****************************************/
 
@@ -34,7 +34,7 @@ RoundRubyEngine *round_ruby_engine_new()
  
   round_script_engine_setlanguage(engine, RoundRubyEngineLanguage);
   round_script_engine_setexecutefunc(engine, round_ruby_engine_run);
-  round_script_engine_setdestoryfunc(engine, round_ruby_engine_destory);
+  round_oo_setdescendantdestoroyfunc(engine, round_ruby_engine_destory);
   
 #if defined(ROUND_SUPPORT_RUBY)
   ruby_init();

@@ -22,18 +22,23 @@ roundtest_SOURCES = \
 	..//FinderTest.cpp \
 	..//JSONTest.cpp \
 	..//MapTest.cpp \
+	..//MessageTest.cpp \
 	..//MethodManagerTest.cpp \
 	..//MethodMapTest.cpp \
 	..//MethodTest.cpp \
 	..//NodeListTest.cpp \
 	..//NodeTest.cpp \
+	..//QueueTest.cpp \
 	..//RoundTest.cpp \
 	..//script/JsEngineTest.cpp \
 	..//script/LuaEngineTest.cpp \
 	..//script/RubyEngineTest.cpp \
 	..//ScriptEngineMapTest.cpp \
 	..//ScriptEngineTest.cpp \
-	..//StringTest.cpp
+	..//SemaphoreTest.cpp \
+	..//StringTest.cpp \
+	..//util/mutex_test.cpp \
+	..//util/string_test.cpp
 #if HAVE_LIBTOOL
 #roundtest_LDADD = @HTTP_LIBS@ @XML_LIBS@ ../../lib/unix/libround.la
 #else

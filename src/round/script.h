@@ -18,6 +18,7 @@
 #include <round/typedef.h>
 #include <round/const.h>
 #include <round/error_internal.h>
+#include <round/util/oo.h>
 #include <round/util/mutex.h>
 #include <round/util/strings.h>
 #include <round/util/map.h>
@@ -31,14 +32,13 @@ extern "C" {
  ****************************************/
 
 typedef bool (*ROUND_SCRIPT_ENGINE_EXECFUNC)(void *engine, void *script, const char *param, RoundString *result, RoundError *err);
-typedef bool (*ROUND_SCRIPT_ENGINE_DESTORYFUNC)(void *engine);
 
 #define ROUND_SCRIPT_ENGINE_MEMBERS \
   RoundMutex *mutex; \
   char *lang; \
   int opt; \
-  ROUND_SCRIPT_ENGINE_EXECFUNC execFunc; \
-  ROUND_SCRIPT_ENGINE_DESTORYFUNC destoryFunc;
+  ROUND_OO_MEMBERS \
+  ROUND_SCRIPT_ENGINE_EXECFUNC execFunc;
 
 typedef struct {
   ROUND_SCRIPT_ENGINE_MEMBERS  
@@ -64,7 +64,6 @@ bool round_script_engine_delete(RoundScriptEngine *engine);
 #define round_script_engine_enableoption(engine, value) (engine->opt & value)
 
 #define round_script_engine_setexecutefunc(engine, func) (engine->execFunc = (ROUND_SCRIPT_ENGINE_EXECFUNC)func)
-#define round_script_engine_setdestoryfunc(engine, func) (engine->destoryFunc = (ROUND_SCRIPT_ENGINE_DESTORYFUNC)func)
 
 bool round_script_engine_isvalid(RoundScriptEngine *engine);
   
