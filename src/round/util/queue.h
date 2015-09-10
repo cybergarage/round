@@ -23,11 +23,11 @@ extern "C" {
  ****************************************/
 
 typedef struct _RoundQueue {
-  ROUND_LIST_MEMBERS
+  ROUND_LIST_STRUCT_MEMBERS
 } RoundQueue;
 
 typedef struct _RoundQueueObject {
-  ROUND_LIST_MEMBERS
+  ROUND_LIST_STRUCT_MEMBERS
   
   void *userData;
 } RoundQueueObject;

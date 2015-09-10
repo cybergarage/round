@@ -26,7 +26,7 @@ extern "C" {
  ****************************************/
 
 typedef struct _RoundMessage {
-  ROUND_LIST_MEMBERS
+  ROUND_LIST_STRUCT_MEMBERS
   
   byte *data;
   size_t dataLen;

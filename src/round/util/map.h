@@ -34,7 +34,7 @@ typedef void (*ROUND_MAP_OBJECT_DESTRUCTOR)(void *);
 typedef size_t (*ROUND_MAP_HASH_FUNC)(const char *);
 
 typedef struct _RoundMapObject {
-  ROUND_LIST_MEMBERS
+  ROUND_LIST_STRUCT_MEMBERS
 
   char *key;
   void *obj;
