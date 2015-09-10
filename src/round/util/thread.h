@@ -36,7 +36,7 @@ extern "C" {
  ****************************************/
 
 typedef struct _RoundThread {
-  ROUND_LIST_MEMBERS
+  ROUND_LIST_STRUCT_MEMBERS
   
   bool runnableFlag;
 

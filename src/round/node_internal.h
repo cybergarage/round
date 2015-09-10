@@ -23,7 +23,7 @@ extern "C" {
  ****************************************/
 
 typedef struct _RoundNode {
-  ROUND_LIST_MEMBERS
+  ROUND_LIST_STRUCT_MEMBERS
 } RoundNode, RoundNodeList;
 
 /****************************************
