@@ -12,8 +12,9 @@
 #include <signal.h>
 #endif
 
-#include <round/util/thread.h>
 #include <string.h>
+#include <round/util/thread.h>
+#include <round/util/timer.h>
 
 static void round_sig_handler(int sign);
 
@@ -151,6 +152,8 @@ bool round_thread_stop(RoundThread *thread)
     WaitForSingleObject(thread->hThread, INFINITE);
 #else
     pthread_kill(thread->pThread, 0);
+    /* Now we wait one second for thread termination instead of using pthread_join */
+    round_sleep(ROUND_THREAD_MIN_SLEEP);
 #endif
   }
 
