@@ -33,6 +33,8 @@
 		2178B3711B98BEAE00B9D86B /* thread.h in Headers */ = {isa = PBXBuildFile; fileRef = 2178B36A1B98BEAE00B9D86B /* thread.h */; };
 		21852FB51B9DB11000C7F878 /* map.c in Sources */ = {isa = PBXBuildFile; fileRef = 21852FB31B9DB11000C7F878 /* map.c */; };
 		21852FB61B9DB11000C7F878 /* map.h in Headers */ = {isa = PBXBuildFile; fileRef = 21852FB41B9DB11000C7F878 /* map.h */; };
+		218569A81BAFFE9F00861B9B /* native.h in Headers */ = {isa = PBXBuildFile; fileRef = 218569A61BAFFE9F00861B9B /* native.h */; settings = {ASSET_TAGS = (); }; };
+		218569A91BAFFE9F00861B9B /* native_engine.c in Sources */ = {isa = PBXBuildFile; fileRef = 218569A71BAFFE9F00861B9B /* native_engine.c */; settings = {ASSET_TAGS = (); }; };
 		218EE9661B9AE73300960009 /* finder.h in Headers */ = {isa = PBXBuildFile; fileRef = 218EE9651B9AE73300960009 /* finder.h */; };
 		219A8E251B9AF54D004ED802 /* js.h in Headers */ = {isa = PBXBuildFile; fileRef = 219A8E1E1B9AF54D004ED802 /* js.h */; };
 		219A8E2A1B9AF54D004ED802 /* lua.h in Headers */ = {isa = PBXBuildFile; fileRef = 219A8E231B9AF54D004ED802 /* lua.h */; };
@@ -103,6 +105,8 @@
 		2178B36A1B98BEAE00B9D86B /* thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = thread.h; path = ../../../src/round/util/thread.h; sourceTree = "<group>"; };
 		21852FB31B9DB11000C7F878 /* map.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = map.c; path = ../../../src/round/util/map.c; sourceTree = "<group>"; };
 		21852FB41B9DB11000C7F878 /* map.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = map.h; path = ../../../src/round/util/map.h; sourceTree = "<group>"; };
+		218569A61BAFFE9F00861B9B /* native.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = native.h; sourceTree = "<group>"; };
+		218569A71BAFFE9F00861B9B /* native_engine.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = native_engine.c; sourceTree = "<group>"; };
 		218EE9651B9AE73300960009 /* finder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = finder.h; path = ../../../include/round/finder.h; sourceTree = "<group>"; };
 		219A8E1E1B9AF54D004ED802 /* js.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = js.h; sourceTree = "<group>"; };
 		219A8E231B9AF54D004ED802 /* lua.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lua.h; sourceTree = "<group>"; };
@@ -283,6 +287,8 @@
 		21F6D9A91B99848000714056 /* script */ = {
 			isa = PBXGroup;
 			children = (
+				218569A61BAFFE9F00861B9B /* native.h */,
+				218569A71BAFFE9F00861B9B /* native_engine.c */,
 				219A8E1E1B9AF54D004ED802 /* js.h */,
 				219A8E231B9AF54D004ED802 /* lua.h */,
 				219A8E241B9AF54D004ED802 /* ruby.h */,
@@ -302,6 +308,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				218569A81BAFFE9F00861B9B /* native.h in Headers */,
 				21A776BE1BA06DC2009BDB36 /* message.h in Headers */,
 				219A8E251B9AF54D004ED802 /* js.h in Headers */,
 				211E45DA1B981A6300CF0088 /* typedef.h in Headers */,
@@ -391,6 +398,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				218569A91BAFFE9F00861B9B /* native_engine.c in Sources */,
 				2148E5D91B9DFDAF0021CE7B /* method_map.c in Sources */,
 				21F6D9B11B99848000714056 /* lua_engine.c in Sources */,
 				21A776CC1BA0939F009BDB36 /* timer.c in Sources */,
