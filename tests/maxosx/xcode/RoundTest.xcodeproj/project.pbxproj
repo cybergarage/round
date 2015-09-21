@@ -24,6 +24,7 @@
 		21C482481B9F5A240087380C /* JSONTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21C482471B9F5A240087380C /* JSONTest.cpp */; };
 		21C61E661B9FE949007384B6 /* StringTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21C61E651B9FE949007384B6 /* StringTest.cpp */; };
 		21D427F01B9F0B1A00BBBD41 /* ErrorTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D427EF1B9F0B1A00BBBD41 /* ErrorTest.cpp */; };
+		21E6E5751BB01AA7006E853D /* Base64Test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21E6E5741BB01AA7006E853D /* Base64Test.cpp */; settings = {ASSET_TAGS = (); }; };
 		21EA96DE1B99104E00E00841 /* ClusterListTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21EA96DC1B99104E00E00841 /* ClusterListTest.cpp */; };
 		21EA96DF1B99104E00E00841 /* ClusterTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21EA96DD1B99104E00E00841 /* ClusterTest.cpp */; };
 		21EA96E21B99105E00E00841 /* NodeListTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21EA96E01B99105E00E00841 /* NodeListTest.cpp */; };
@@ -82,6 +83,7 @@
 		21C482471B9F5A240087380C /* JSONTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = JSONTest.cpp; path = ../../JSONTest.cpp; sourceTree = "<group>"; };
 		21C61E651B9FE949007384B6 /* StringTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StringTest.cpp; path = ../../StringTest.cpp; sourceTree = "<group>"; };
 		21D427EF1B9F0B1A00BBBD41 /* ErrorTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ErrorTest.cpp; path = ../../ErrorTest.cpp; sourceTree = "<group>"; };
+		21E6E5741BB01AA7006E853D /* Base64Test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Base64Test.cpp; path = ../../Base64Test.cpp; sourceTree = "<group>"; };
 		21EA96DC1B99104E00E00841 /* ClusterListTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ClusterListTest.cpp; path = ../../ClusterListTest.cpp; sourceTree = "<group>"; };
 		21EA96DD1B99104E00E00841 /* ClusterTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ClusterTest.cpp; path = ../../ClusterTest.cpp; sourceTree = "<group>"; };
 		21EA96E01B99105E00E00841 /* NodeListTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = NodeListTest.cpp; path = ../../NodeListTest.cpp; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 				21A776B31BA0666C009BDB36 /* MessageTest.cpp */,
 				21A776BF1BA071C7009BDB36 /* QueueTest.cpp */,
 				21A776C31BA08A48009BDB36 /* SemaphoreTest.cpp */,
+				21E6E5741BB01AA7006E853D /* Base64Test.cpp */,
 			);
 			name = Sources;
 			sourceTree = "<group>";
@@ -250,6 +253,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21E6E5751BB01AA7006E853D /* Base64Test.cpp in Sources */,
 				21D427F01B9F0B1A00BBBD41 /* ErrorTest.cpp in Sources */,
 				21F6D99E1B9983A500714056 /* LuaEngineTest.cpp in Sources */,
 				212A954B1B9BD1A400EC9A71 /* MethodMapTest.cpp in Sources */,
