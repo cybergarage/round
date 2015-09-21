@@ -124,7 +124,6 @@ bool Round::set_method::exec(LocalNode *node, const NodeRequest *nodeReq, NodeRe
     return false;
   }
   
-
   /*
   // Encode
   int encodeType = Script::ENCODING_NONE;
@@ -140,4 +139,3 @@ bool Round::set_method::exec(LocalNode *node, const NodeRequest *nodeReq, NodeRe
   
   return true;
 }
- 
