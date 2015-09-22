@@ -53,9 +53,9 @@ RoundNode *round_node_new(void);
 bool round_node_delete(RoundNode *node);
 RoundNode *round_node_next(RoundNode *node);
 
-bool round_node_getrequestaddress(RoundNode *node, const char **address, RoundError *err);
-bool round_node_getrequestport(RoundNode *node, int *port, RoundError *err);
-bool round_node_getclustername(RoundNode *node, const char **address, RoundError *err);
+bool round_node_getaddress(RoundNode *node, const char **addr, RoundError *err);
+bool round_node_getport(RoundNode *node, int *port, RoundError *err);
+bool round_node_getcluster(RoundNode *node, const char **cluster, RoundError *err);
   
 bool round_node_postmessage(RoundJSONObject *reqObj, RoundJSONObject *resObj, RoundError *err);
   

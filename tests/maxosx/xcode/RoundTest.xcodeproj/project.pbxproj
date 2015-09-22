@@ -168,12 +168,9 @@
 				21A776B31BA0666C009BDB36 /* MessageTest.cpp */,
 				21A776BF1BA071C7009BDB36 /* QueueTest.cpp */,
 				21A776C31BA08A48009BDB36 /* SemaphoreTest.cpp */,
-<<<<<<< HEAD
 				218569B41BB0D69400861B9B /* LocalNodeTest.cpp */,
 				218569B21BB0D68800861B9B /* RemoteNodeTest.cpp */,
-=======
 				21E6E5741BB01AA7006E853D /* Base64Test.cpp */,
->>>>>>> 6dcd7419d7e341d94dfce3b862441b0cdb11aa40
 			);
 			name = Sources;
 			sourceTree = "<group>";

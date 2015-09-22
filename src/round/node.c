@@ -40,6 +40,10 @@ bool round_node_init(RoundNode *node)
   round_list_node_init((RoundList *)node);
 
   round_oo_setdescendantdestoroyfunc(node, NULL);
+ 
+  node->addr = round_string_new();
+  node->port = 0;
+  node->cluster = round_string_new();
   
   return true;
 }
@@ -74,6 +78,9 @@ bool round_node_destroy(RoundNode *node)
   
   round_list_remove((RoundList *)node);
   
+  round_string_delete(node->addr);
+  round_string_delete(node->cluster);
+  
   return true;
 }
 
@@ -87,30 +94,92 @@ RoundNode *round_node_next(RoundNode *node)
 }
 
 /****************************************
- * round_node_getrequestaddress
+ * round_node_setaddress
  ****************************************/
 
-bool round_node_getrequestaddress(RoundNode *node, const char **address, RoundError *err)
+bool round_node_setaddress(RoundNode *node, const char *addr)
 {
-  return false;
+  if (!node)
+    return false;
+  
+  return round_string_setvalue(node->addr, addr);
 }
 
 /****************************************
- * round_node_getrequestport
+ * round_node_getaddress
  ****************************************/
 
-bool round_node_getrequestport(RoundNode *node, int *port, RoundError *err)
+bool round_node_getaddress(RoundNode *node, const char **addr, RoundError *err)
 {
-  return false;
+  if (!node)
+    return false;
+  
+  if (round_string_length(node->addr) <= 0)
+    return false;
+  
+  *addr = round_string_getvalue(node->addr);
+  
+  return true;
 }
 
 /****************************************
- * round_node_getclustername
+ * round_node_setport
  ****************************************/
 
-bool round_node_getclustername(RoundNode *node, const char **address, RoundError *err)
+bool round_node_setport(RoundNode *node, int port)
 {
-  return false;
+  if (!node)
+    return false;
+  
+  node->port = port;
+  
+  return true;
+}
+
+/****************************************
+ * round_node_getport
+ ****************************************/
+
+bool round_node_getport(RoundNode *node, int *port, RoundError *err)
+{
+  if (!node)
+    return false;
+  
+  if (node->port <= 0)
+    return false;
+
+  *port = node->port;
+  
+  return true;
+}
+
+/****************************************
+ * round_node_setcluster
+ ****************************************/
+
+bool round_node_setcluster(RoundNode *node, const char *cluster)
+{
+  if (!node)
+    return false;
+  
+  return round_string_setvalue(node->cluster, cluster);
+}
+
+/****************************************
+ * round_node_getcluster
+ ****************************************/
+
+bool round_node_getcluster(RoundNode *node, const char **cluster, RoundError *err)
+{
+  if (!node)
+    return false;
+  
+  if (round_string_length(node->cluster) <= 0)
+    return false;
+  
+  *cluster = round_string_getvalue(node->cluster);
+  
+  return true;
 }
 
 /****************************************
