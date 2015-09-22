@@ -15,6 +15,7 @@
 #include <round/util/oo.h>
 #include <round/util/list.h>
 #include <round/util/json.h>
+#include <round/util/strings.h>
 
 #ifdef  __cplusplus
 extern "C" {
@@ -26,7 +27,10 @@ extern "C" {
 
 #define ROUND_NODE_STRUCT_MEMBERS \
   ROUND_LIST_STRUCT_MEMBERS \
-  ROUND_OO_STRUCT_MEMBERS
+  ROUND_OO_STRUCT_MEMBERS \
+  RoundString *addr; \
+  int port; \
+  RoundString *cluster;
 
 typedef struct {
   ROUND_NODE_STRUCT_MEMBERS
@@ -54,6 +58,10 @@ bool round_node_init(RoundNode *node);
 bool round_node_destroy(RoundNode *node);
 
 #define round_node_remove(node) round_list_remove((RoundList *)node)
+
+bool round_node_setaddress(RoundNode *node, const char *addr);
+bool round_node_setport(RoundNode *node, int port);
+bool round_node_setcluster(RoundNode *node, const char *cluster);
 
 /****************************************
  * Function (LocalNode)
