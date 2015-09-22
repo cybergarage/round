@@ -34,17 +34,17 @@ BOOST_AUTO_TEST_CASE(NodeBaseMember)
   int port;
   const char *cluster;
   
-  BOOST_CHECK(!round_node_getaddress(node, &addr, &err));
-  BOOST_CHECK(!round_node_getport(node, &port, &err));
-  BOOST_CHECK(!round_node_getcluster(node, &cluster, &err));
+  BOOST_CHECK(!round_node_getaddress(node, &addr, err));
+  BOOST_CHECK(!round_node_getport(node, &port, err));
+  BOOST_CHECK(!round_node_getcluster(node, &cluster, err));
 
   BOOST_CHECK(round_node_setaddress(node, TEST_NODE_ADDR));
   BOOST_CHECK(round_node_setport(node, TEST_NODE_PORT));
   BOOST_CHECK(round_node_setcluster(node, TEST_NODE_CLUSTER));
 
-  BOOST_CHECK(round_node_getaddress(node, &addr, &err));
-  BOOST_CHECK(round_node_getport(node, &port, &err));
-  BOOST_CHECK(round_node_getcluster(node, &cluster, &err));
+  BOOST_CHECK(round_node_getaddress(node, &addr, err));
+  BOOST_CHECK(round_node_getport(node, &port, err));
+  BOOST_CHECK(round_node_getcluster(node, &cluster, err));
   
   BOOST_CHECK_EQUAL(addr, TEST_NODE_ADDR);
   BOOST_CHECK_EQUAL(port, TEST_NODE_PORT);
