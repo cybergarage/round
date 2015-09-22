@@ -117,7 +117,6 @@ bool Round::set_method::exec(LocalNode *node, const NodeRequest *nodeReq, NodeRe
     return false;
   }
   
-
   /*
    #define ROUNDC_SYSTEM_METHOD_PARAM_ENCODE "encode"
    #define ROUNDC_SYSTEM_METHOD_PARAM_BASE64 "base64"
@@ -135,4 +134,3 @@ bool Round::set_method::exec(LocalNode *node, const NodeRequest *nodeReq, NodeRe
   
   return true;
 }
- 
