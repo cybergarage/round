@@ -23,23 +23,58 @@ RoundNode *round_node_new(void)
   if (!node)
     return NULL;
 
+  round_node_init(node);
+  
+  return node;
+}
+
+/****************************************
+ * round_node_init
+ ****************************************/
+
+bool round_node_init(RoundNode *node)
+{
+  if (!node)
+    return false;
+  
   round_list_node_init((RoundList *)node);
 
-  return node;
+  round_oo_setdescendantdestoroyfunc(node, NULL);
+  
+  return true;
 }
 
 /****************************************
 * round_node_delete
 ****************************************/
 
-void round_node_delete(RoundNode *node)
+bool round_node_delete(RoundNode *node)
 {
   if (!node)
-    return;
+    return false;
   
-  round_list_remove((RoundList *)node);
+  if (!round_oo_execdescendantdestoroy(node))
+    return false;
+
+  round_node_destroy(node);
 
   free(node);
+  
+  return true;
+}
+
+/****************************************
+ * round_node_destroy
+ ****************************************/
+
+bool round_node_destroy(RoundNode *node)
+{
+  if (!node)
+    return false;
+  
+  round_list_remove((RoundList *)node);
+  
+  return true;
 }
 
 /****************************************

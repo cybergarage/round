@@ -10,12 +10,12 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include <round/node.h>
+#include <round/node_internal.h>
 
-BOOST_AUTO_TEST_CASE(NodeNew)
+BOOST_AUTO_TEST_CASE(LocalNodeNew)
 {
-  RoundNode *node = round_node_new();
+  RoundLocalNode *node = round_local_node_new();
   BOOST_CHECK(node);
   
-  BOOST_CHECK(round_node_delete(node));
+  BOOST_CHECK(round_local_node_delete(node));
 }

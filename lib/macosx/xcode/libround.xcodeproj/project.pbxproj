@@ -35,6 +35,8 @@
 		21852FB61B9DB11000C7F878 /* map.h in Headers */ = {isa = PBXBuildFile; fileRef = 21852FB41B9DB11000C7F878 /* map.h */; };
 		218569A81BAFFE9F00861B9B /* native.h in Headers */ = {isa = PBXBuildFile; fileRef = 218569A61BAFFE9F00861B9B /* native.h */; settings = {ASSET_TAGS = (); }; };
 		218569A91BAFFE9F00861B9B /* native_engine.c in Sources */ = {isa = PBXBuildFile; fileRef = 218569A71BAFFE9F00861B9B /* native_engine.c */; settings = {ASSET_TAGS = (); }; };
+		218569B01BB0D66A00861B9B /* remote_node.c in Sources */ = {isa = PBXBuildFile; fileRef = 218569AE1BB0D66A00861B9B /* remote_node.c */; settings = {ASSET_TAGS = (); }; };
+		218569B11BB0D66A00861B9B /* local_node.c in Sources */ = {isa = PBXBuildFile; fileRef = 218569AF1BB0D66A00861B9B /* local_node.c */; settings = {ASSET_TAGS = (); }; };
 		218EE9661B9AE73300960009 /* finder.h in Headers */ = {isa = PBXBuildFile; fileRef = 218EE9651B9AE73300960009 /* finder.h */; };
 		219A8E251B9AF54D004ED802 /* js.h in Headers */ = {isa = PBXBuildFile; fileRef = 219A8E1E1B9AF54D004ED802 /* js.h */; };
 		219A8E2A1B9AF54D004ED802 /* lua.h in Headers */ = {isa = PBXBuildFile; fileRef = 219A8E231B9AF54D004ED802 /* lua.h */; };
@@ -107,6 +109,8 @@
 		21852FB41B9DB11000C7F878 /* map.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = map.h; path = ../../../src/round/util/map.h; sourceTree = "<group>"; };
 		218569A61BAFFE9F00861B9B /* native.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = native.h; sourceTree = "<group>"; };
 		218569A71BAFFE9F00861B9B /* native_engine.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = native_engine.c; sourceTree = "<group>"; };
+		218569AE1BB0D66A00861B9B /* remote_node.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = remote_node.c; path = ../../../src/round/remote_node.c; sourceTree = "<group>"; };
+		218569AF1BB0D66A00861B9B /* local_node.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = local_node.c; path = ../../../src/round/local_node.c; sourceTree = "<group>"; };
 		218EE9651B9AE73300960009 /* finder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = finder.h; path = ../../../include/round/finder.h; sourceTree = "<group>"; };
 		219A8E1E1B9AF54D004ED802 /* js.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = js.h; sourceTree = "<group>"; };
 		219A8E231B9AF54D004ED802 /* lua.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lua.h; sourceTree = "<group>"; };
@@ -190,6 +194,8 @@
 			children = (
 				21F6D9A91B99848000714056 /* script */,
 				2178B3631B98BE7B00B9D86B /* util */,
+				218569AE1BB0D66A00861B9B /* remote_node.c */,
+				218569AF1BB0D66A00861B9B /* local_node.c */,
 				21A776B91BA06DC2009BDB36 /* message_manager.c */,
 				21A776BA1BA06DC2009BDB36 /* message.c */,
 				21A776BB1BA06DC2009BDB36 /* message.h */,
@@ -413,6 +419,7 @@
 				2148E5E01B9F1A7D0021CE7B /* error_rpc.c in Sources */,
 				2178B36F1B98BEAE00B9D86B /* thread_list.c in Sources */,
 				21EA96D81B990C3B00E00841 /* node_list.c in Sources */,
+				218569B01BB0D66A00861B9B /* remote_node.c in Sources */,
 				21A776C21BA07345009BDB36 /* queue_object.c in Sources */,
 				215E6B471B9E75EA00AAA203 /* map_hash.c in Sources */,
 				2148E5D81B9DFDAF0021CE7B /* script_engine_map.c in Sources */,
@@ -434,6 +441,7 @@
 				21EA96CE1B990AF800E00841 /* cluster_list.c in Sources */,
 				21D427E71B9EFD5900BBBD41 /* string.c in Sources */,
 				21A776BD1BA06DC2009BDB36 /* message.c in Sources */,
+				218569B11BB0D66A00861B9B /* local_node.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
