@@ -95,13 +95,6 @@ bool Round::set_method::exec(LocalNode *node, const NodeRequest *nodeReq, NodeRe
     round_json_delete(json);
     return false;
   }
-/*
-#define ROUNDC_SYSTEM_METHOD_PARAM_NAME "name"
-#define ROUNDC_SYSTEM_METHOD_PARAM_LANGUAGE "language"
-#define ROUNDC_SYSTEM_METHOD_PARAM_CODE "code"
-#define ROUNDC_SYSTEM_METHOD_PARAM_ENCODE "encode"
-#define ROUNDC_SYSTEM_METHOD_PARAM_BASE64 "base64"
-*/
   
   if (!round_json_getstringforpath(json, ROUNDC_SYSTEM_METHOD_PARAM_NAME, &name)) {
     round_json_delete(json);
@@ -126,6 +119,8 @@ bool Round::set_method::exec(LocalNode *node, const NodeRequest *nodeReq, NodeRe
   
 
   /*
+   #define ROUNDC_SYSTEM_METHOD_PARAM_ENCODE "encode"
+   #define ROUNDC_SYSTEM_METHOD_PARAM_BASE64 "base64"
   // Encode
   int encodeType = Script::ENCODING_NONE;
   std::string encodeTypeStr;

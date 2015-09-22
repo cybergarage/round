@@ -46,11 +46,11 @@ typedef void RoundNode;
 #endif
   
 /****************************************
- * Function
+ * Function (Node)
  ****************************************/
 
 RoundNode *round_node_new(void);
-void round_node_delete(RoundNode *node);
+bool round_node_delete(RoundNode *node);
 RoundNode *round_node_next(RoundNode *node);
 
 bool round_node_getrequestaddress(RoundNode *node, const char **address, RoundError *err);

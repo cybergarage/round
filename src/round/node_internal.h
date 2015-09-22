@@ -12,6 +12,7 @@
 #define _ROUNDC_NODE_INTERNAL_H_
 
 #include <round/typedef.h>
+#include <round/util/oo.h>
 #include <round/util/list.h>
 #include <round/util/json.h>
 
@@ -23,9 +24,21 @@ extern "C" {
  * Data Type
  ****************************************/
 
-typedef struct _RoundNode {
-  ROUND_LIST_STRUCT_MEMBERS
+#define ROUND_NODE_STRUCT_MEMBERS \
+  ROUND_LIST_STRUCT_MEMBERS \
+  ROUND_OO_STRUCT_MEMBERS
+
+typedef struct {
+  ROUND_NODE_STRUCT_MEMBERS
 } RoundNode, RoundNodeList;
+
+typedef struct {
+  ROUND_NODE_STRUCT_MEMBERS
+} RoundRemoteNode;
+
+typedef struct {
+  ROUND_NODE_STRUCT_MEMBERS
+} RoundLocalNode;
 
 /****************************************
  * Public Header
@@ -34,10 +47,29 @@ typedef struct _RoundNode {
 #include <round/node.h>
   
 /****************************************
- * Function
+ * Function (Node)
  ****************************************/
 
+bool round_node_init(RoundNode *node);
+bool round_node_destroy(RoundNode *node);
+
 #define round_node_remove(node) round_list_remove((RoundList *)node)
+
+/****************************************
+ * Function (LocalNode)
+ ****************************************/
+  
+RoundLocalNode *round_local_node_new(void);
+bool round_local_node_destory(RoundLocalNode *node);
+bool round_local_node_delete(RoundLocalNode *node);
+
+/****************************************
+ * Function (RemoteNode)
+ ****************************************/
+  
+RoundRemoteNode *round_remote_node_new(void);
+bool round_remote_node_destory(RoundRemoteNode *node);
+bool round_remote_node_delete(RoundRemoteNode *node);
 
 /****************************************
  * Function (Node List)

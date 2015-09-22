@@ -17,6 +17,8 @@
 		2166EF8D1B9D2E5E002FE45D /* ScriptEngineTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2166EF8B1B9D2E5E002FE45D /* ScriptEngineTest.cpp */; };
 		2172C4C11B9AF3CB0032BE98 /* Ruby.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2172C4C01B9AF3CB0032BE98 /* Ruby.framework */; };
 		21852FB21B9DB0A800C7F878 /* MapTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21852FB11B9DB0A800C7F878 /* MapTest.cpp */; };
+		218569B31BB0D68800861B9B /* RemoteNodeTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 218569B21BB0D68800861B9B /* RemoteNodeTest.cpp */; settings = {ASSET_TAGS = (); }; };
+		218569B51BB0D69400861B9B /* LocalNodeTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 218569B41BB0D69400861B9B /* LocalNodeTest.cpp */; settings = {ASSET_TAGS = (); }; };
 		21A762ED1B96F82400D29732 /* RoundTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21A762EC1B96F82400D29732 /* RoundTest.cpp */; };
 		21A776B41BA0666C009BDB36 /* MessageTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21A776B31BA0666C009BDB36 /* MessageTest.cpp */; };
 		21A776C01BA071C7009BDB36 /* QueueTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21A776BF1BA071C7009BDB36 /* QueueTest.cpp */; };
@@ -75,6 +77,8 @@
 		2166EF8E1B9D3394002FE45D /* RoundTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RoundTest.h; path = ../../RoundTest.h; sourceTree = "<group>"; };
 		2172C4C01B9AF3CB0032BE98 /* Ruby.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Ruby.framework; path = System/Library/Frameworks/Ruby.framework; sourceTree = SDKROOT; };
 		21852FB11B9DB0A800C7F878 /* MapTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MapTest.cpp; path = ../../MapTest.cpp; sourceTree = "<group>"; };
+		218569B21BB0D68800861B9B /* RemoteNodeTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RemoteNodeTest.cpp; path = ../../RemoteNodeTest.cpp; sourceTree = "<group>"; };
+		218569B41BB0D69400861B9B /* LocalNodeTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LocalNodeTest.cpp; path = ../../LocalNodeTest.cpp; sourceTree = "<group>"; };
 		21A762EC1B96F82400D29732 /* RoundTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RoundTest.cpp; path = ../../RoundTest.cpp; sourceTree = "<group>"; };
 		21A776B31BA0666C009BDB36 /* MessageTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MessageTest.cpp; path = ../../MessageTest.cpp; sourceTree = "<group>"; };
 		21A776BF1BA071C7009BDB36 /* QueueTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = QueueTest.cpp; path = ../../QueueTest.cpp; sourceTree = "<group>"; };
@@ -162,6 +166,8 @@
 				21A776B31BA0666C009BDB36 /* MessageTest.cpp */,
 				21A776BF1BA071C7009BDB36 /* QueueTest.cpp */,
 				21A776C31BA08A48009BDB36 /* SemaphoreTest.cpp */,
+				218569B41BB0D69400861B9B /* LocalNodeTest.cpp */,
+				218569B21BB0D68800861B9B /* RemoteNodeTest.cpp */,
 			);
 			name = Sources;
 			sourceTree = "<group>";
@@ -260,6 +266,8 @@
 				211E45D41B9818E300CF0088 /* FinderTest.cpp in Sources */,
 				21F6D99F1B9983A500714056 /* RubyEngineTest.cpp in Sources */,
 				21A776C01BA071C7009BDB36 /* QueueTest.cpp in Sources */,
+				218569B31BB0D68800861B9B /* RemoteNodeTest.cpp in Sources */,
+				218569B51BB0D69400861B9B /* LocalNodeTest.cpp in Sources */,
 				21C61E661B9FE949007384B6 /* StringTest.cpp in Sources */,
 				21EA96DE1B99104E00E00841 /* ClusterListTest.cpp in Sources */,
 				21EA96E31B99105E00E00841 /* NodeTest.cpp in Sources */,
