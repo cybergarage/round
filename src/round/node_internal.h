@@ -12,10 +12,9 @@
 #define _ROUNDC_NODE_INTERNAL_H_
 
 #include <round/typedef.h>
-#include <round/error_internal.h>
 #include <round/util/oo.h>
 #include <round/util/list.h>
-#include <round/util/json.h>
+#include <round/util/json_internal.h>
 #include <round/util/strings.h>
 
 #include <round/script.h>

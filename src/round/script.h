@@ -53,8 +53,8 @@ bool round_script_engine_init(RoundScriptEngine *engine);
 bool round_script_engine_destory(RoundScriptEngine *engine);
 bool round_script_engine_delete(RoundScriptEngine *engine);
 
-#define round_script_engine_lock(engine) round_mutex_lock(engine->mutex)
-#define round_script_engine_unlock(engine) round_mutex_unlock(engine->mutex)
+bool round_script_engine_lock(RoundScriptEngine *engine);
+bool round_script_engine_unlock(RoundScriptEngine *engine);
   
 #define round_script_engine_setlanguage(engine, value) round_strloc(value, &engine->lang)
 #define round_script_engine_getlanguage(engine) (engine->lang)

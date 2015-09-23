@@ -12,7 +12,8 @@
 #define _ROUNDC_UTIL_JSON_INTERNAL_H_
 
 #include <round/typedef.h>
-#include <round/error.h>
+#include <round/platform.h>
+#include <round/error_internal.h>
 
 #if defined(ROUND_USE_JSON_PARSER_JANSSON)
 #include <jansson.h>
