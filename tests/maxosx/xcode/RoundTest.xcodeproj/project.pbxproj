@@ -13,6 +13,7 @@
 		212A954C1B9BD1A400EC9A71 /* MethodManagerTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 212A954A1B9BD1A400EC9A71 /* MethodManagerTest.cpp */; };
 		212A954E1B9BD24700EC9A71 /* MethodTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 212A954D1B9BD24700EC9A71 /* MethodTest.cpp */; };
 		2137D3F11B998AEF00652E68 /* liblibround.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2137D3EE1B998ADD00652E68 /* liblibround.a */; };
+		215A078E1BB2FB9400E9702F /* ServerTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 215A078D1BB2FB9400E9702F /* ServerTest.cpp */; settings = {ASSET_TAGS = (); }; };
 		2166EF8C1B9D2E5E002FE45D /* ScriptEngineMapTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2166EF8A1B9D2E5E002FE45D /* ScriptEngineMapTest.cpp */; };
 		2166EF8D1B9D2E5E002FE45D /* ScriptEngineTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2166EF8B1B9D2E5E002FE45D /* ScriptEngineTest.cpp */; };
 		2172C4C11B9AF3CB0032BE98 /* Ruby.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2172C4C01B9AF3CB0032BE98 /* Ruby.framework */; };
@@ -73,6 +74,7 @@
 		212A95491B9BD1A400EC9A71 /* MethodMapTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MethodMapTest.cpp; path = ../../MethodMapTest.cpp; sourceTree = "<group>"; };
 		212A954A1B9BD1A400EC9A71 /* MethodManagerTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MethodManagerTest.cpp; path = ../../MethodManagerTest.cpp; sourceTree = "<group>"; };
 		212A954D1B9BD24700EC9A71 /* MethodTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MethodTest.cpp; path = ../../MethodTest.cpp; sourceTree = "<group>"; };
+		215A078D1BB2FB9400E9702F /* ServerTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ServerTest.cpp; path = ../../ServerTest.cpp; sourceTree = "<group>"; };
 		2166EF8A1B9D2E5E002FE45D /* ScriptEngineMapTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ScriptEngineMapTest.cpp; path = ../../ScriptEngineMapTest.cpp; sourceTree = "<group>"; };
 		2166EF8B1B9D2E5E002FE45D /* ScriptEngineTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ScriptEngineTest.cpp; path = ../../ScriptEngineTest.cpp; sourceTree = "<group>"; };
 		2166EF8E1B9D3394002FE45D /* RoundTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RoundTest.h; path = ../../RoundTest.h; sourceTree = "<group>"; };
@@ -171,6 +173,7 @@
 				218569B41BB0D69400861B9B /* LocalNodeTest.cpp */,
 				218569B21BB0D68800861B9B /* RemoteNodeTest.cpp */,
 				21E6E5741BB01AA7006E853D /* Base64Test.cpp */,
+				215A078D1BB2FB9400E9702F /* ServerTest.cpp */,
 			);
 			name = Sources;
 			sourceTree = "<group>";
@@ -263,6 +266,7 @@
 				21D427F01B9F0B1A00BBBD41 /* ErrorTest.cpp in Sources */,
 				21F6D99E1B9983A500714056 /* LuaEngineTest.cpp in Sources */,
 				212A954B1B9BD1A400EC9A71 /* MethodMapTest.cpp in Sources */,
+				215A078E1BB2FB9400E9702F /* ServerTest.cpp in Sources */,
 				212A954C1B9BD1A400EC9A71 /* MethodManagerTest.cpp in Sources */,
 				21A776C41BA08A48009BDB36 /* SemaphoreTest.cpp in Sources */,
 				211E45D21B98188600CF0088 /* ClientTest.cpp in Sources */,
