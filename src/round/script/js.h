@@ -13,6 +13,7 @@
 
 #include <round/script.h>
 #include <round/method.h>
+#include <round/platform.h>
 
 #if defined(ROUND_SUPPORT_JS_SM)
 #include <js/jsapi.h>
@@ -38,11 +39,14 @@ RoundJavaScriptEngine *round_js_engine_new();
 bool round_js_engine_destroy(RoundJavaScriptEngine *engine);
 bool round_js_engine_delete(RoundJavaScriptEngine *engine);
 
+#define round_js_engine_lock(engine) round_script_engine_lock((RoundScriptEngine *)engine)
+#define round_js_engine_unlock(engine) round_script_engine_unlock((RoundScriptEngine *)engine)
+
 #if defined(ROUND_SUPPORT_JS_SM)
 bool round_js_sm_engine_init(RoundJavaScriptEngine *engine);
 bool round_js_sm_engine_destroy(RoundJavaScriptEngine *engine);
 bool round_js_sm_engine_setfunctions(RoundJavaScriptEngine *engine, JSFunctionSpec *funcs);
-  bool round_js_sm_engine_run(RoundJavaScriptEngine *engine, const char *source, size_t sourceLen, RoundString *result, RoundError *err);
+bool round_js_sm_engine_run(RoundJavaScriptEngine *engine, const char *source, size_t sourceLen, RoundString *result, RoundError *err);
 #endif
 
 bool round_js_engine_run(RoundJavaScriptEngine *engine, RoundMethod *method, const char *param, RoundString *result, RoundError *err);

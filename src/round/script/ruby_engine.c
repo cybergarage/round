@@ -107,7 +107,7 @@ bool round_ruby_engine_run_code(RoundRubyEngine *engine, const char *code)
 #if defined(ROUND_SUPPORT_RUBY)
   rb_eval_string_protect(code, &evalState);
   if (evalState) {
-    round_ruby_engine_seterror(engine, rb_string_value_cstr((volatile VALUE * )rb_errinfo));
+    //round_ruby_engine_seterror(engine, rb_string_value_cstr((volatile VALUE * )rb_errinfo));
   }
 
   return true;

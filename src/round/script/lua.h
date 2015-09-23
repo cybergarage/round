@@ -13,6 +13,7 @@
 
 #include <round/script.h>
 #include <round/method.h>
+#include <round/platform.h>
 
 #ifdef  __cplusplus
 extern "C" {
@@ -40,6 +41,9 @@ bool round_lua_engine_delete(RoundLuaEngine *engine);
 
 bool round_lua_engine_run(RoundLuaEngine *engine, RoundMethod *method, const char *param, RoundString *result, RoundError *err);
 
+#define round_lua_engine_lock(engine) round_script_engine_lock((RoundScriptEngine *)engine)
+#define round_lua_engine_unlock(engine) round_script_engine_unlock((RoundScriptEngine *)engine)
+  
 #if defined(ROUND_SUPPORT_LUA)
 bool round_lua_engine_register(RoundLuaEngine *engine, const char *name, lua_CFunction func);
 #endif

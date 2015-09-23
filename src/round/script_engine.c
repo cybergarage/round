@@ -97,6 +97,30 @@ bool round_script_engine_delete(RoundScriptEngine *engine)
 }
 
 /****************************************
+ * round_script_engine_lock
+ ****************************************/
+
+bool round_script_engine_lock(RoundScriptEngine *engine)
+{
+  if (!engine)
+    return false;
+
+  return round_mutex_lock(engine->mutex);
+}
+
+/****************************************
+ * round_script_engine_unlock
+ ****************************************/
+
+bool round_script_engine_unlock(RoundScriptEngine *engine)
+{
+  if (!engine)
+    return false;
+
+  return round_mutex_unlock(engine->mutex);
+}
+
+/****************************************
  * round_script_engine_isvalid
  ****************************************/
 

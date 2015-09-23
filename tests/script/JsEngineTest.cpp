@@ -25,13 +25,27 @@ BOOST_AUTO_TEST_CASE(JavaScriptEngineTest) {
   jsEngine = round_js_engine_new();
   BOOST_CHECK(jsEngine);
   
+  RoundMethod *method = round_method_new();
+  /*
+  round_method_setname(method, LUA_ECHO_FUNC);
+  round_method_setcode(method, (byte *)LUA_ECHO_CODE.c_str(), LUA_ECHO_CODE.size());
+   */
+  
+  RoundString *result = round_string_new();
+  RoundError *err = round_error_new();
+  
   for (int n=0; n<SCRIPT_ECHO_LOOP; n++) {
     BOOST_CHECK(round_js_engine_lock(jsEngine));
+   /*
     BOOST_CHECK(round_js_engine_run(jsEngine, SCRIPT_ECHO_SCRIPT.c_str()));
     BOOST_CHECK(round_streq(SCRIPT_ECHO_RESULT, round_js_engine_getresult(jsEngine)));
+   */
     BOOST_CHECK(round_js_engine_unlock(jsEngine));
   }
   
+  BOOST_CHECK(round_method_delete(method));
+  BOOST_CHECK(round_string_delete(result));
+  BOOST_CHECK(round_error_delete(err));
   BOOST_CHECK(round_js_engine_delete(jsEngine));
 }
 

@@ -27,7 +27,7 @@ extern "C" {
  * Data Types
  ****************************************/
 
-typedef struct _RoundMutex {
+typedef struct {
 #if defined(WIN32)
   HANDLE  mutexID;
 #else

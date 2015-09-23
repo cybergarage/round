@@ -13,6 +13,7 @@
 
 #include <round/script.h>
 #include <round/method.h>
+#include <round/platform.h>
 
 #if defined(ROUND_SUPPORT_RUBY)
 #if defined(__APPLE__)
