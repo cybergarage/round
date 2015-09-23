@@ -16,8 +16,10 @@
 #include <round/util/list.h>
 #include <round/util/json_internal.h>
 #include <round/util/strings.h>
-
+#include <round/server.h>
 #include <round/script.h>
+
+#include <round/method.h>
 
 #ifdef  __cplusplus
 extern "C" {
@@ -44,6 +46,9 @@ typedef struct {
 
 typedef struct {
   ROUND_NODE_STRUCT_MEMBERS
+  
+  RoundMethodManager *methodMgr;
+  RoundServer *server;
 } RoundLocalNode;
 
 /****************************************
@@ -70,12 +75,17 @@ bool round_node_setcluster(RoundNode *node, const char *cluster);
  ****************************************/
   
 RoundLocalNode *round_local_node_new(void);
+bool round_local_node_init(RoundLocalNode *node);
+bool round_local_node_initscriptengines(RoundLocalNode *node);
 bool round_local_node_destory(RoundLocalNode *node);
 bool round_local_node_delete(RoundLocalNode *node);
 
 bool round_local_node_start(RoundLocalNode *node);
 bool round_local_node_stop(RoundLocalNode *node);
 
+bool round_local_node_setmethod(RoundLocalNode *node, RoundMethod *method);
+bool round_local_node_addengine(RoundLocalNode *node, RoundScriptEngine *engine);
+  
 /****************************************
  * Function (RemoteNode)
  ****************************************/
