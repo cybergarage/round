@@ -27,6 +27,14 @@ extern "C" {
 #endif
 
 /****************************************
+ * Constants
+ ****************************************/
+
+enum {
+RoundMethodFinal = 0x01
+};
+
+/****************************************
  * Data Type
  ****************************************/
 
@@ -65,7 +73,12 @@ bool round_method_setcode(RoundMethod *method, byte *code, size_t codeLen);
 #define round_method_setoption(method, value) (method->opt = value)
 #define round_method_getoption(method) (method->opt)
 #define round_method_enableoption(method, value) (method->opt & value)
+#define round_method_setflag(method, flag, value) (value ? (method->opt |= flag) : (method->opt ^= flag))
+#define round_method_isenabled(method, flag) (method->opt & flag)
   
+#define round_method_setfinal(method, value) round_method_setflag(method, RoundMethodFinal, value)
+#define round_method_isfinal(method) round_method_isenabled(method, RoundMethodFinal)
+
 bool round_method_isvalid(RoundMethod *method);
   
 /****************************************
