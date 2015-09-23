@@ -138,9 +138,22 @@ bool round_local_node_stop(RoundLocalNode *node)
 
 bool round_local_node_setmethod(RoundLocalNode *node, RoundMethod *method)
 {
+  const char *methodName;
+  RoundMethod *exMethod;
+  
   if (!node)
     return false;
   
+  methodName = round_method_getname(method);
+  
+  exMethod = round_method_manager_getmethod(node->methodMgr, methodName);
+  if (exMethod) {
+    if (round_method_isfinal(method))
+      return false;
+    round_method_manager_removemethod(node->methodMgr, methodName);
+    round_method_delete(exMethod);
+  }
+
   if (!round_method_manager_addmethod(node->methodMgr, method))
     return false;
   
