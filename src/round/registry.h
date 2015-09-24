@@ -30,9 +30,13 @@ typedef struct {
   RoundString *key;
   RoundString *value;
 } RoundRegistry;
-  
+
+typedef struct {
+  RoundMap *map;
+} RoundRegistryManager;
+
 /****************************************
- * Function (Method)
+ * Function
  ****************************************/
   
 RoundRegistry *round_registry_new();
@@ -45,7 +49,7 @@ bool round_registry_delete(RoundRegistry *registry);
 #define round_registry_getvalue(reg) round_string_getvalue(reg->value)
 
 /****************************************
- * Function
+ * Function (Map)
  ****************************************/
   
 RoundMap *round_registry_map_new();
@@ -56,6 +60,18 @@ RoundMap *round_registry_map_new();
 #define round_registry_map_get(map, name) ((RoundRegistry*)round_map_getobjectbykey(map, name))
 #define round_registry_map_remove(map, name) round_map_removeobjectbykey(map, name)
 
+/****************************************
+ * Function (Manager)
+ ****************************************/
+  
+RoundRegistryManager *round_registry_manager_new();
+bool round_registry_manager_delete(RoundRegistryManager *mgr);
+  
+#define round_registry_manager_set(mgr, reg) round_registry_map_set(mgr->map, reg)
+#define round_registry_manager_get(mgr, name) round_registry_map_get(mgr->map, name)
+#define round_registry_manager_remove(mgr, name) round_registry_map_remove(mgr->map, name)
+#define round_registry_manager_size(mgr) round_registry_map_size(mgr->map)
+  
 #ifdef  __cplusplus
 }
 #endif
