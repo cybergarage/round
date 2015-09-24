@@ -52,7 +52,8 @@ bool round_script_engine_init(RoundScriptEngine *engine)
   round_script_engine_setoption(engine, 0);
   round_script_engine_setexecutefunc(engine, NULL);
   round_oo_setdescendantdestoroyfunc(engine, NULL);
-  
+  round_script_engine_setlocalnode(engine, NULL);
+
   return true;
 }
 

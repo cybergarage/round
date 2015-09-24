@@ -78,12 +78,17 @@ bool round_native_engine_delete(RoundNativeEngine *engine) {
 
 bool round_native_engine_run(RoundNativeEngine *engine, RoundMethod *method, const char *param, RoundString *result, RoundError *err)
 {
+  RoundLocalNode *node;
   ROUND_SCRIPT_NATIVE_ENGINE_FUNC nativeFunc;
+
+  node = round_script_engine_getlocalnode(engine);
+  if (!node)
+    return false;
   
   nativeFunc = (ROUND_SCRIPT_NATIVE_ENGINE_FUNC)round_method_getuserdata(method);
   
   if (!nativeFunc)
     return false;
   
-  return nativeFunc(NULL, param, result, err);
+  return nativeFunc(node, param, result, err);
 }

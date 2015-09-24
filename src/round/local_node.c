@@ -171,5 +171,7 @@ bool round_local_node_addengine(RoundLocalNode *node, RoundScriptEngine *engine)
   if (!round_method_manager_addengine(node->methodMgr, engine))
     return false;
   
+  round_script_engine_setlocalnode(engine, node);
+
   return true;
 }
