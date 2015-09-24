@@ -67,7 +67,7 @@ bool round_method_isvalid(RoundMethod *method)
   if (method->codeSize <= 0)
     return false;
 
-    return true;
+  return true;
 }
 
 /****************************************
