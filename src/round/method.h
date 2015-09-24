@@ -19,6 +19,7 @@
 #include <round/const.h>
 #include <round/util/mutex.h>
 #include <round/util/map.h>
+#include <round/util/option.h>
 #include <round/method.h>
 #include <round/script.h>
 
@@ -43,7 +44,7 @@ typedef struct {
   char *name;
   byte *code;
   size_t codeSize;
-  int opt;
+  RoundOption opt;
 } RoundMethod;
   
 typedef struct {
@@ -70,11 +71,10 @@ bool round_method_setcode(RoundMethod *method, byte *code, size_t codeLen);
 #define round_method_getsource(method) ((const char *)method->code)
 #define round_method_getcodeSize(method) (method->codeSize)
   
-#define round_method_setoption(method, value) (method->opt = value)
-#define round_method_getoption(method) (method->opt)
-#define round_method_enableoption(method, value) (method->opt & value)
-#define round_method_setflag(method, flag, value) (value ? (method->opt |= flag) : (method->opt ^= flag))
-#define round_method_isenabled(method, flag) (method->opt & flag)
+#define round_method_setoption(method, value) round_option_set(method->opt, value)
+#define round_method_getoption(method) round_option_get(method->opt)
+#define round_method_setflag(method, flag, value) round_option_setflag(method->opt, flag, value)
+#define round_method_isenabled(method, flag) round_option_isenabled(method->opt, flag)
   
 #define round_method_setfinal(method, value) round_method_setflag(method, RoundMethodFinal, value)
 #define round_method_isfinal(method) round_method_isenabled(method, RoundMethodFinal)

@@ -151,7 +151,6 @@ bool round_local_node_setmethod(RoundLocalNode *node, RoundMethod *method)
     if (round_method_isfinal(method))
       return false;
     round_method_manager_removemethod(node->methodMgr, methodName);
-    round_method_delete(exMethod);
   }
 
   if (!round_method_manager_addmethod(node->methodMgr, method))

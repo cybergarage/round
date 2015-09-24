@@ -22,6 +22,7 @@
 #include <round/util/mutex.h>
 #include <round/util/strings.h>
 #include <round/util/map.h>
+#include <round/util/option.h>
 
 #ifdef  __cplusplus
 extern "C" {
@@ -36,7 +37,7 @@ typedef bool (*ROUND_SCRIPT_ENGINE_EXECFUNC)(void *engine, void *script, const c
 #define ROUND_SCRIPT_ENGINE_STRUCT_MEMBERS \
   RoundMutex *mutex; \
   char *lang; \
-  int opt; \
+  RoundOption opt; \
   ROUND_OO_STRUCT_MEMBERS \
   ROUND_SCRIPT_ENGINE_EXECFUNC execFunc;
 
@@ -59,9 +60,10 @@ bool round_script_engine_unlock(RoundScriptEngine *engine);
 #define round_script_engine_setlanguage(engine, value) round_strloc(value, &engine->lang)
 #define round_script_engine_getlanguage(engine) (engine->lang)
 
-#define round_script_engine_setoption(engine, value) (engine->opt = value)
-#define round_script_engine_getoption(engine) (engine->opt)
-#define round_script_engine_enableoption(engine, value) (engine->opt & value)
+#define round_script_engine_setoption(engine, value) round_option_set(engine->opt, value)
+#define round_script_engine_getoption(engine) round_option_get(engine->opt)
+#define round_script_engine_setoptionflag(engine, value) round_option_setflag(engine->opt, value)
+#define round_script_engine_isoptionflagenabled(engine, value) round_option_isenabled(engine->opt, value)
 
 #define round_script_engine_setexecutefunc(engine, func) (engine->execFunc = (ROUND_SCRIPT_ENGINE_EXECFUNC)func)
 
