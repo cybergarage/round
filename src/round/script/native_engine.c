@@ -80,9 +80,10 @@ bool round_native_engine_run(RoundNativeEngine *engine, RoundMethod *method, con
 {
   ROUND_SCRIPT_NATIVE_ENGINE_FUNC nativeFunc;
   
-  //nativeFunc = round_method_getnativefunc(method);
+  nativeFunc = (ROUND_SCRIPT_NATIVE_ENGINE_FUNC)round_method_getuserdata(method);
   
-  nativeFunc(NULL, param, result, err);
+  if (!nativeFunc)
+    return false;
   
-  return false;
+  return nativeFunc(NULL, param, result, err);
 }

@@ -82,7 +82,7 @@ bool round_method_setcode(RoundMethod *method, byte *code, size_t codeLen);
 
 #define round_method_setuserdata(method, value) (method->userData = (void *)value)
 #define round_method_getuserdata(method) (method->userData)
-  
+
 bool round_method_isvalid(RoundMethod *method);
   
 /****************************************
