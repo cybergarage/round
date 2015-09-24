@@ -26,6 +26,9 @@
 		21606BF71B9FC8EB000463A8 /* json_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 21606BF61B9FC8EB000463A8 /* json_internal.h */; };
 		21606BFA1BA029A0000463A8 /* method.h in Headers */ = {isa = PBXBuildFile; fileRef = 21606BF91BA029A0000463A8 /* method.h */; };
 		2160B88C1BB3AF9E002026E3 /* option.h in Headers */ = {isa = PBXBuildFile; fileRef = 2160B88B1BB3AF9E002026E3 /* option.h */; settings = {ASSET_TAGS = (); }; };
+		2160B8911BB3B59F002026E3 /* set_method.c in Sources */ = {isa = PBXBuildFile; fileRef = 2160B88F1BB3B59F002026E3 /* set_method.c */; settings = {ASSET_TAGS = (); }; };
+		2160B8921BB3B59F002026E3 /* system_method.h in Headers */ = {isa = PBXBuildFile; fileRef = 2160B8901BB3B59F002026E3 /* system_method.h */; settings = {ASSET_TAGS = (); }; };
+		2160B8941BB3B9F7002026E3 /* system_method.c in Sources */ = {isa = PBXBuildFile; fileRef = 2160B8931BB3B9F7002026E3 /* system_method.c */; settings = {ASSET_TAGS = (); }; };
 		216611791BA135450097BB98 /* oo.h in Headers */ = {isa = PBXBuildFile; fileRef = 216611781BA135450097BB98 /* oo.h */; };
 		2178B3621B98986200B9D86B /* const.h in Headers */ = {isa = PBXBuildFile; fileRef = 2178B3611B98986200B9D86B /* const.h */; };
 		2178B36B1B98BEAE00B9D86B /* list.c in Sources */ = {isa = PBXBuildFile; fileRef = 2178B3641B98BEAE00B9D86B /* list.c */; };
@@ -106,6 +109,9 @@
 		21606BF61B9FC8EB000463A8 /* json_internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = json_internal.h; path = ../../../src/round/util/json_internal.h; sourceTree = "<group>"; };
 		21606BF91BA029A0000463A8 /* method.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = method.h; path = ../../../src/round/method.h; sourceTree = "<group>"; };
 		2160B88B1BB3AF9E002026E3 /* option.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = option.h; path = ../../../src/round/util/option.h; sourceTree = "<group>"; };
+		2160B88F1BB3B59F002026E3 /* set_method.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = set_method.c; sourceTree = "<group>"; };
+		2160B8901BB3B59F002026E3 /* system_method.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = system_method.h; sourceTree = "<group>"; };
+		2160B8931BB3B9F7002026E3 /* system_method.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = system_method.c; sourceTree = "<group>"; };
 		216611781BA135450097BB98 /* oo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = oo.h; path = ../../../src/round/util/oo.h; sourceTree = "<group>"; };
 		2178B3611B98986200B9D86B /* const.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = const.h; path = ../../../include/round/const.h; sourceTree = "<group>"; };
 		2178B3641B98BEAE00B9D86B /* list.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = list.c; path = ../../../src/round/util/list.c; sourceTree = "<group>"; };
@@ -256,6 +262,17 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		2160B88E1BB3B59F002026E3 /* method */ = {
+			isa = PBXGroup;
+			children = (
+				2160B8931BB3B9F7002026E3 /* system_method.c */,
+				2160B88F1BB3B59F002026E3 /* set_method.c */,
+				2160B8901BB3B59F002026E3 /* system_method.h */,
+			);
+			name = method;
+			path = ../../../src/round/method;
+			sourceTree = "<group>";
+		};
 		21678EE11A8D50BD00AE79AA /* Headers */ = {
 			isa = PBXGroup;
 			children = (
@@ -267,6 +284,7 @@
 		21678EF51A8D510900AE79AA /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				2160B88E1BB3B59F002026E3 /* method */,
 				211E45CB1B98155300CF0088 /* round */,
 			);
 			name = Sources;
@@ -362,6 +380,7 @@
 				219A8E2D1B9AF607004ED802 /* script.h in Headers */,
 				21EA96CD1B990AF800E00841 /* cluster_internal.h in Headers */,
 				210E7BA31BA145F600343445 /* json.h in Headers */,
+				2160B8921BB3B59F002026E3 /* system_method.h in Headers */,
 				21852FB61B9DB11000C7F878 /* map.h in Headers */,
 				216611791BA135450097BB98 /* oo.h in Headers */,
 				21D427EA1B9F00B700BBBD41 /* error.h in Headers */,
@@ -435,6 +454,7 @@
 				2178B36B1B98BEAE00B9D86B /* list.c in Sources */,
 				21F6D9AF1B99848000714056 /* js_engine.c in Sources */,
 				215A078C1BB2FA8000E9702F /* server.c in Sources */,
+				2160B8941BB3B9F7002026E3 /* system_method.c in Sources */,
 				21EAA2A61B9931B10002CFF0 /* string_func.c in Sources */,
 				211E45CD1B98157400CF0088 /* client.c in Sources */,
 				21FBE3701B9DC803000C2512 /* map_object.c in Sources */,
@@ -444,6 +464,7 @@
 				21EA96D81B990C3B00E00841 /* node_list.c in Sources */,
 				218569B01BB0D66A00861B9B /* remote_node.c in Sources */,
 				21A776C21BA07345009BDB36 /* queue_object.c in Sources */,
+				2160B8911BB3B59F002026E3 /* set_method.c in Sources */,
 				215E6B471B9E75EA00AAA203 /* map_hash.c in Sources */,
 				21E6E5721BB01A49006E853D /* base64.c in Sources */,
 				2148E5D81B9DFDAF0021CE7B /* script_engine_map.c in Sources */,

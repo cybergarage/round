@@ -80,7 +80,7 @@ bool round_method_setcode(RoundMethod *method, byte *code, size_t codeLen);
 #define round_method_setfinal(method, value) round_method_setflag(method, RoundMethodFinal, value)
 #define round_method_isfinal(method) round_method_isenabled(method, RoundMethodFinal)
 
-#define round_method_setuserdata(method, value) (method->userData = value)
+#define round_method_setuserdata(method, value) (method->userData = (void *)value)
 #define round_method_getuserdata(method) (method->userData)
   
 bool round_method_isvalid(RoundMethod *method);
