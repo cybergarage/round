@@ -32,7 +32,8 @@ extern "C" {
  ****************************************/
 
 enum {
-RoundMethodFinal = 0x01
+RoundMethodFinal = 0x01,
+RoundMethodStatic = 0x02,
 };
 
 /****************************************
@@ -76,10 +77,15 @@ bool round_method_setcode(RoundMethod *method, byte *code, size_t codeLen);
 #define round_method_getoption(method) round_option_get(method->opt)
 #define round_method_setflag(method, flag, value) round_option_setflag(method->opt, flag, value)
 #define round_method_isenabled(method, flag) round_option_isenabled(method->opt, flag)
+#define round_method_isdisabled(method, flag) round_option_isdisabled(method->opt, flag)
   
 #define round_method_setfinal(method, value) round_method_setflag(method, RoundMethodFinal, value)
 #define round_method_isfinal(method) round_method_isenabled(method, RoundMethodFinal)
 
+#define round_method_setstatic(method, value) round_method_setflag(method, RoundMethodStatic, value)
+#define round_method_isstatic(method) round_method_isenabled(method, RoundMethodStatic)
+#define round_method_isdynamic(method) round_method_isdisabled(method, RoundMethodStatic)
+  
 #define round_method_setuserdata(method, value) (method->userData = (void *)value)
 #define round_method_getuserdata(method) (method->userData)
 

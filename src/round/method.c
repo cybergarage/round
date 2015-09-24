@@ -60,13 +60,14 @@ bool round_method_isvalid(RoundMethod *method)
 
   if (round_strlen(method->name) <= 0)
     return false;
-  
-  if (!method->code)
-    return false;
-  
-  if (method->codeSize <= 0)
-    return false;
 
+  if (round_method_isdynamic(method)) {
+    if (!method->code)
+      return false;
+    if (method->codeSize <= 0)
+      return false;
+  }
+  
   return true;
 }
 
