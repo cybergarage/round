@@ -32,14 +32,15 @@ extern "C" {
  * Data Type
  ****************************************/
 
-typedef bool (*ROUND_SCRIPT_ENGINE_EXECFUNC)(void *engine, void *script, const char *param, RoundString *result, RoundError *err);
+typedef bool (*ROUND_SCRIPT_ENGINE_EXECFUNC)(void *engine, void *method, const char *param, RoundString *result, RoundError *err);
 
 #define ROUND_SCRIPT_ENGINE_STRUCT_MEMBERS \
   RoundMutex *mutex; \
   char *lang; \
   RoundOption opt; \
   ROUND_OO_STRUCT_MEMBERS \
-  ROUND_SCRIPT_ENGINE_EXECFUNC execFunc;
+  ROUND_SCRIPT_ENGINE_EXECFUNC execFunc; \
+  void *node;
 
 typedef struct {
   ROUND_SCRIPT_ENGINE_STRUCT_MEMBERS  
@@ -66,6 +67,9 @@ bool round_script_engine_unlock(RoundScriptEngine *engine);
 #define round_script_engine_isoptionflagenabled(engine, value) round_option_isenabled(engine->opt, value)
 
 #define round_script_engine_setexecutefunc(engine, func) (engine->execFunc = (ROUND_SCRIPT_ENGINE_EXECFUNC)func)
+
+#define round_script_engine_setlocalnode(engine, value) (engine->node = value)
+#define round_script_engine_getlocalnode(engine) ((RoundLocalNode *)engine->node)
 
 bool round_script_engine_isvalid(RoundScriptEngine *engine);
   
