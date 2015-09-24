@@ -73,5 +73,7 @@ bool round_system_method_setmethod(RoundLocalNode *node, const char *param, Roun
     round_method_delete(newMethod);
   }
   
+  round_json_delete(json);
+  
   return isAdded;
 }
