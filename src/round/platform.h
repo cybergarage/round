@@ -28,7 +28,7 @@ extern "C" {
 
 #define ROUND_SUPPORT_JS_SM
 #define ROUND_SUPPORT_LUA
-#define ROUND_SUPPORT_RUBY
+//#define ROUND_SUPPORT_RUBY
 #define ROUND_USE_JSON_PARSER_JANSSON
 
 #endif

@@ -14,6 +14,7 @@
 #include <round/script/js.h>
 #include <round/script/lua.h>
 #include <round/script/ruby.h>
+#include <round/method/system_method.h>
 
 /****************************************
 * round_local_node_new
@@ -46,10 +47,19 @@ bool round_local_node_init(RoundLocalNode *node)
   round_oo_setdescendantdestoroyfunc(node, round_local_node_destory);
   
   node->server = round_server_new();
+  if (!node->server)
+    return false;
+  
   node->methodMgr = round_method_manager_new();
+  if (!node->methodMgr)
+    return false;
   
-  round_local_node_initscriptengines(node);
+  if (!round_local_node_initscriptengines(node))
+    return false;
   
+  if (!round_local_node_initsystemmethods(node))
+    return false;
+
   return true;
 }
 
@@ -59,21 +69,40 @@ bool round_local_node_init(RoundLocalNode *node)
 
 bool round_local_node_initscriptengines(RoundLocalNode *node)
 {
-  round_local_node_addengine(node, (RoundScriptEngine *)round_native_engine_new());
+  bool areAllEnginesAdded;
+  
+  areAllEnginesAdded = true;
+  
+  areAllEnginesAdded &= round_local_node_addengine(node, (RoundScriptEngine *)round_native_engine_new());
   
 #if defined(ROUND_SUPPORT_JS_SM)
-  round_local_node_addengine(node, (RoundScriptEngine *)round_js_engine_new());
+  areAllEnginesAdded &= round_local_node_addengine(node, (RoundScriptEngine *)round_js_engine_new());
 #endif
   
 #if defined(ROUND_SUPPORT_LUA)
-  round_local_node_addengine(node, (RoundScriptEngine *)round_lua_engine_new());
+  areAllEnginesAdded &= round_local_node_addengine(node, (RoundScriptEngine *)round_lua_engine_new());
 #endif
   
 #if defined(ROUND_SUPPORT_RUBY)
-  round_local_node_addengine(node, (RoundScriptEngine *)round_ruby_engine_new());
+  areAllEnginesAdded &= round_local_node_addengine(node, (RoundScriptEngine *)round_ruby_engine_new());
 #endif
   
-  return true;
+  return areAllEnginesAdded;
+}
+
+/****************************************
+ * round_local_node_initsystemmethods
+ ****************************************/
+
+bool round_local_node_initsystemmethods(RoundLocalNode *node)
+{
+  bool areAllMethodsAdded;
+  
+  areAllMethodsAdded = true;
+  areAllMethodsAdded &= round_local_node_setmethod(node, round_system_method_setmethod_new());
+  areAllMethodsAdded &= round_local_node_setmethod(node, round_system_method_removemethod_new());
+
+  return areAllMethodsAdded;
 }
 
 /****************************************
@@ -148,7 +177,7 @@ bool round_local_node_setmethod(RoundLocalNode *node, RoundMethod *method)
   
   exMethod = round_method_manager_getmethod(node->methodMgr, methodName);
   if (exMethod) {
-    if (round_method_isfinal(method))
+    if (round_method_isfinal(exMethod))
       return false;
     round_method_manager_removemethod(node->methodMgr, methodName);
   }
@@ -157,6 +186,45 @@ bool round_local_node_setmethod(RoundLocalNode *node, RoundMethod *method)
     return false;
   
   return true;
+}
+
+/****************************************
+ * round_local_node_removemethod
+ ****************************************/
+
+bool round_local_node_removemethod(RoundLocalNode *node, const char *name)
+{
+  RoundMethod *method;
+  
+  if (!node)
+    return false;
+  
+  method = round_method_manager_getmethod(node->methodMgr, name);
+  if (!method)
+    return false;
+  
+  if (round_method_isfinal(method))
+    return false;
+  
+  return round_method_manager_removemethod(node->methodMgr, name);
+}
+
+/****************************************
+ * round_local_node_isfinalmethod
+ ****************************************/
+
+bool round_local_node_isfinalmethod(RoundLocalNode *node, const char *name)
+{
+  RoundMethod *method;
+  
+  if (!node)
+    return false;
+  
+  method = round_method_manager_getmethod(node->methodMgr, name);
+  if (!method)
+    return false;
+  
+  return round_method_isfinal(method);
 }
 
 /****************************************

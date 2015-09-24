@@ -75,8 +75,11 @@ bool round_node_setcluster(RoundNode *node, const char *cluster);
  ****************************************/
   
 RoundLocalNode *round_local_node_new(void);
+
 bool round_local_node_init(RoundLocalNode *node);
+bool round_local_node_initsystemmethods(RoundLocalNode *node);
 bool round_local_node_initscriptengines(RoundLocalNode *node);
+
 bool round_local_node_destory(RoundLocalNode *node);
 bool round_local_node_delete(RoundLocalNode *node);
 
@@ -84,6 +87,9 @@ bool round_local_node_start(RoundLocalNode *node);
 bool round_local_node_stop(RoundLocalNode *node);
 
 bool round_local_node_setmethod(RoundLocalNode *node, RoundMethod *method);
+bool round_local_node_removemethod(RoundLocalNode *node, const char *name);
+bool round_local_node_isfinalmethod(RoundLocalNode *node, const char *name);
+
 bool round_local_node_addengine(RoundLocalNode *node, RoundScriptEngine *engine);
   
 /****************************************
