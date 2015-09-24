@@ -104,12 +104,6 @@ RoundMap *round_method_map_new();
 #define round_method_map_remove(map, name) round_map_removeobjectbykey(map, name)
 
 /****************************************
- * Function (Script Engine)
- ****************************************/
-  
-bool round_script_engine_execscript(RoundScriptEngine *engine, RoundMethod *method, const char *param, RoundString *result, RoundError *err);
-
-/****************************************
  * Function (Method Manager)
  ****************************************/
   
@@ -126,6 +120,8 @@ RoundScriptEngine *round_method_manager_getengine(RoundMethodManager *mgr, const
 bool round_method_manager_removeengine(RoundMethodManager *mgr, const char *name);
 #define round_method_manager_getenginsize(mgr) round_map_size(mgr->engineMap)
   
+bool round_method_manager_execmethod(RoundMethodManager *mgr, const char *name, const char *param, RoundString *result, RoundError *err);
+
 #ifdef  __cplusplus
 }
 #endif

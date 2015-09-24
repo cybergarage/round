@@ -243,3 +243,16 @@ bool round_local_node_addengine(RoundLocalNode *node, RoundScriptEngine *engine)
 
   return true;
 }
+
+/****************************************
+ * round_local_node_execmethod
+ ****************************************/
+
+bool round_local_node_execmethod(RoundLocalNode *node, const char *name, const char *param, RoundString *result, RoundError *err)
+{
+  if (!node)
+    return false;
+  
+  return round_method_manager_execmethod(node->methodMgr, name, param, result, err);
+}
+
