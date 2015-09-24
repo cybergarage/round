@@ -33,9 +33,6 @@ bool round_native_engine_delete(RoundNativeEngine *engine);
   
 bool round_native_engine_run(RoundNativeEngine *engine, RoundMethod *method, const char *param, RoundString *result, RoundError *err);
 
-#define round_method_setnativefunc(method, func) round_method_setuserdata(method->userData, func)
-#define round_method_getnativefunc(method) ((ROUND_SCRIPT_NATIVE_ENGINE_FUNC)(round_method_getuserdata(method->userData)))
-  
 #ifdef  __cplusplus
 }
 #endif
