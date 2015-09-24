@@ -91,7 +91,9 @@ bool round_local_node_removemethod(RoundLocalNode *node, const char *name);
 bool round_local_node_isfinalmethod(RoundLocalNode *node, const char *name);
 
 bool round_local_node_addengine(RoundLocalNode *node, RoundScriptEngine *engine);
-  
+
+bool round_local_node_execmethod(RoundLocalNode *node, const char *method, const char *param, RoundString *result, RoundError *err);
+
 /****************************************
  * Function (RemoteNode)
  ****************************************/

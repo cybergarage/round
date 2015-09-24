@@ -138,6 +138,7 @@ bool round_method_manager_execmethod(RoundMethodManager *mgr, const char *name, 
 {
   RoundMethod *method;
   RoundScriptEngine *engine;
+  ROUND_SCRIPT_ENGINE_EXECFUNC execFunc;
 
   if (!mgr)
     return false;
@@ -154,17 +155,11 @@ bool round_method_manager_execmethod(RoundMethodManager *mgr, const char *name, 
     return false;
   }
   
-  /*
- }
- 
- const ScriptEngine *methodEngine = this->engines.getEngine(methodLang);
- if (!methodEngine) {
- RPC::JSON::ErrorCodeToError(RPC::JSON::ErrorCodeScriptEngineInternalError, error);
- return false;
- }
- 
- return methodEngine->run(method, params, results, error);
-*/
- 
-  return false;
+  execFunc = round_script_engine_getexecutefunc(engine);
+  if (!execFunc) {
+    round_error_setjsonrpcerrorcode(err, ROUNDC_RPC_ERROR_CODE_SCRIPT_ENGINE_NOT_FOUND);
+    return false;
+  }
+  
+  return execFunc(engine, method, param, result, err);
 }
