@@ -28,6 +28,7 @@ RoundMethod *round_method_new()
   method->code = NULL;
   method->codeSize = 0;
   method->opt = 0;
+  method->userData = NULL;
   
   return method;
 }
