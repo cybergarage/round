@@ -13,6 +13,7 @@
 
 #include <round/script.h>
 #include <round/method.h>
+#include <round/node_internal.h>
 
 #ifdef  __cplusplus
 extern "C" {
@@ -23,12 +24,17 @@ extern "C" {
 typedef struct {
   ROUND_SCRIPT_ENGINE_STRUCT_MEMBERS
 } RoundNativeEngine;
-  
+
+typedef bool (*ROUND_SCRIPT_NATIVE_ENGINE_FUNC)(RoundLocalNode *, const char *, RoundString *, RoundError *);
+
 RoundNativeEngine *round_native_engine_new();
 bool round_native_engine_destory(RoundNativeEngine *engine);
 bool round_native_engine_delete(RoundNativeEngine *engine);
   
 bool round_native_engine_run(RoundNativeEngine *engine, RoundMethod *method, const char *param, RoundString *result, RoundError *err);
+
+#define round_method_setnativefunc(method, func) round_method_setuserdata(method->userData, func)
+#define round_method_getnativefunc(method) ((ROUND_SCRIPT_NATIVE_ENGINE_FUNC)(round_method_getuserdata(method->userData)))
   
 #ifdef  __cplusplus
 }
