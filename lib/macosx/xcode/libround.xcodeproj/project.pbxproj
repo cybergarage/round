@@ -35,6 +35,8 @@
 		2160B8941BB3B9F7002026E3 /* system_method.c in Sources */ = {isa = PBXBuildFile; fileRef = 2160B8931BB3B9F7002026E3 /* system_method.c */; settings = {ASSET_TAGS = (); }; };
 		216611791BA135450097BB98 /* oo.h in Headers */ = {isa = PBXBuildFile; fileRef = 216611781BA135450097BB98 /* oo.h */; };
 		216D19C51BB4743A0007B331 /* registry_manager.c in Sources */ = {isa = PBXBuildFile; fileRef = 216D19C41BB4743A0007B331 /* registry_manager.c */; settings = {ASSET_TAGS = (); }; };
+		216D19CC1BB4B3570007B331 /* clock.h in Headers */ = {isa = PBXBuildFile; fileRef = 216D19CA1BB4B3570007B331 /* clock.h */; settings = {ASSET_TAGS = (); }; };
+		216D19CD1BB4B3570007B331 /* clock.c in Sources */ = {isa = PBXBuildFile; fileRef = 216D19CB1BB4B3570007B331 /* clock.c */; settings = {ASSET_TAGS = (); }; };
 		2178B3621B98986200B9D86B /* const.h in Headers */ = {isa = PBXBuildFile; fileRef = 2178B3611B98986200B9D86B /* const.h */; };
 		2178B36B1B98BEAE00B9D86B /* list.c in Sources */ = {isa = PBXBuildFile; fileRef = 2178B3641B98BEAE00B9D86B /* list.c */; };
 		2178B36C1B98BEAE00B9D86B /* list.h in Headers */ = {isa = PBXBuildFile; fileRef = 2178B3651B98BEAE00B9D86B /* list.h */; };
@@ -123,6 +125,8 @@
 		2160B8931BB3B9F7002026E3 /* system_method.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = system_method.c; sourceTree = "<group>"; };
 		216611781BA135450097BB98 /* oo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = oo.h; path = ../../../src/round/util/oo.h; sourceTree = "<group>"; };
 		216D19C41BB4743A0007B331 /* registry_manager.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = registry_manager.c; path = ../../../src/round/registry_manager.c; sourceTree = "<group>"; };
+		216D19CA1BB4B3570007B331 /* clock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = clock.h; path = ../../../src/round/clock.h; sourceTree = "<group>"; };
+		216D19CB1BB4B3570007B331 /* clock.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = clock.c; path = ../../../src/round/clock.c; sourceTree = "<group>"; };
 		2178B3611B98986200B9D86B /* const.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = const.h; path = ../../../include/round/const.h; sourceTree = "<group>"; };
 		2178B3641B98BEAE00B9D86B /* list.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = list.c; path = ../../../src/round/util/list.c; sourceTree = "<group>"; };
 		2178B3651B98BEAE00B9D86B /* list.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = list.h; path = ../../../src/round/util/list.h; sourceTree = "<group>"; };
@@ -220,10 +224,8 @@
 		211E45CB1B98155300CF0088 /* round */ = {
 			isa = PBXGroup;
 			children = (
-				216D19C41BB4743A0007B331 /* registry_manager.c */,
-				215A079B1BB4681000E9702F /* registry_map.c */,
-				215A07951BB4662700E9702F /* registry.h */,
-				215A07961BB4662700E9702F /* registry.c */,
+				216D19CA1BB4B3570007B331 /* clock.h */,
+				216D19CB1BB4B3570007B331 /* clock.c */,
 				211E45CF1B9816F300CF0088 /* client_internal.h */,
 				211E45CC1B98157400CF0088 /* client.c */,
 				21EA96CA1B990AF800E00841 /* cluster_internal.h */,
@@ -238,6 +240,7 @@
 				21A776B91BA06DC2009BDB36 /* message_manager.c */,
 				21A776BA1BA06DC2009BDB36 /* message.c */,
 				21A776BB1BA06DC2009BDB36 /* message.h */,
+				2160B88E1BB3B59F002026E3 /* method */,
 				212A95431B9BCA4200EC9A71 /* method_manager.c */,
 				2148E5D71B9DFDAF0021CE7B /* method_map.c */,
 				212A95441B9BCA4200EC9A71 /* method.c */,
@@ -246,6 +249,10 @@
 				21EA96D51B990C3B00E00841 /* node_list.c */,
 				21EA96D61B990C3B00E00841 /* node.c */,
 				215A07871BB2EAA500E9702F /* platform.h */,
+				216D19C41BB4743A0007B331 /* registry_manager.c */,
+				215A079B1BB4681000E9702F /* registry_map.c */,
+				215A07961BB4662700E9702F /* registry.c */,
+				215A07951BB4662700E9702F /* registry.h */,
 				218569AE1BB0D66A00861B9B /* remote_node.c */,
 				21F6D9A91B99848000714056 /* script */,
 				2148E5D61B9DFDAF0021CE7B /* script_engine_map.c */,
@@ -299,7 +306,6 @@
 		21678EF51A8D510900AE79AA /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				2160B88E1BB3B59F002026E3 /* method */,
 				211E45CB1B98155300CF0088 /* round */,
 			);
 			name = Sources;
@@ -400,6 +406,7 @@
 				21852FB61B9DB11000C7F878 /* map.h in Headers */,
 				216611791BA135450097BB98 /* oo.h in Headers */,
 				21D427EA1B9F00B700BBBD41 /* error.h in Headers */,
+				216D19CC1BB4B3570007B331 /* clock.h in Headers */,
 				218EE9661B9AE73300960009 /* finder.h in Headers */,
 				219A8E2B1B9AF54D004ED802 /* ruby.h in Headers */,
 			);
@@ -498,6 +505,7 @@
 				21F6D9B31B99848000714056 /* script_engine.c in Sources */,
 				21FBE36F1B9DC803000C2512 /* map_object_list.c in Sources */,
 				2178B3701B98BEAE00B9D86B /* thread.c in Sources */,
+				216D19CD1BB4B3570007B331 /* clock.c in Sources */,
 				21C482441B9F5A100087380C /* json_object.c in Sources */,
 				21EA96CF1B990AF800E00841 /* cluster.c in Sources */,
 				21F6D9B21B99848000714056 /* ruby_engine.c in Sources */,
