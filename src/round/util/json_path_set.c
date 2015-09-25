@@ -57,6 +57,8 @@ bool round_json_map_setobjectforpath(RoundJSON *json, const char *pathStr, const
   char *path, *token, *ptr;
   char **tokens;
   size_t n, tokenCnt;
+  bool isAdded;
+  
 #if defined(ROUND_USE_JSON_PARSER_JANSSON)
   json_t *rootJson, *parentJson;
 #endif
@@ -96,16 +98,54 @@ bool round_json_map_setobjectforpath(RoundJSON *json, const char *pathStr, const
 #endif
   
   for (n=0; n<(tokenCnt-1); n++) {
+#if defined(ROUND_USE_JSON_PARSER_JANSSON)
     if (round_json_ismaptoken(tokens[n])) {
-      parentJson = round_jansson_map_getobject(parentJson, tokens[n]);
-    }
-    else if (round_json_isarraytoken(tokens[n])) {
-      parentJson = round_jansson_array_getobject(parentJson, round_str2int(tokens[n]));
-      if (!parentJson) {
+      if (json_is_object(parentJson)) {
         parentJson = round_jansson_map_getobject(parentJson, tokens[n]);
+        if (!parentJson) {
+          json_object_set(parentJson, tokens[n], json_object());
+          parentJson = round_jansson_map_getobject(parentJson, tokens[n]);
+        }
       }
     }
+    else if (round_json_isarraytoken(tokens[n])) {
+      if (json_is_array(parentJson)) {
+        parentJson = round_jansson_array_getobject(parentJson, round_str2int(tokens[n]));
+        if (!parentJson) {
+          json_array_set(parentJson, round_str2int(tokens[n]), json_array());
+          parentJson = round_jansson_array_getobject(parentJson, round_str2int(tokens[n]));
+        }
+      }
+      else if (json_is_object(parentJson)) {
+        parentJson = round_jansson_map_getobject(parentJson, tokens[n]);
+        if (!parentJson) {
+          json_object_set(parentJson, tokens[n], json_object());
+          parentJson = round_jansson_map_getobject(parentJson, tokens[n]);
+        }
+      }
+    }
+#endif
+    
+    if (!parentJson)
+      return false;
   }
+  
+  isAdded = false;
+  
+#if defined(ROUND_USE_JSON_PARSER_JANSSON)
+  if (json_is_object(parentJson)) {
+    if (round_json_ismaptoken(tokens[(tokenCnt - 1)])) {
+      json_array_set(parentJson, round_str2int(tokens[n]), obj->jsonObj);
+      isAdded = true;
+    }
+  }
+  else if (json_is_array(parentJson)) {
+    if (round_json_isarraytoken(tokens[(tokenCnt - 1)])) {
+      json_array_set(parentJson, round_str2int(tokens[(tokenCnt - 1)]), obj->jsonObj);
+      isAdded = true;
+    }
+  }
+#endif
   
   for (n=0; n<tokenCnt; n++) {
     free(tokens[n]);
@@ -115,5 +155,5 @@ bool round_json_map_setobjectforpath(RoundJSON *json, const char *pathStr, const
     free(tokens);
   }
 
-  return json->pathObj;
+  return isAdded;
 }

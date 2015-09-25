@@ -10,175 +10,82 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include <round/util/json.h>
-#include <round/util/strings.h>
+#include <round/util/json_internal.h>
 
 BOOST_AUTO_TEST_SUITE(json)
 
-////////////////////////////////////////////////////////////
-// Array
-////////////////////////////////////////////////////////////
-
-BOOST_AUTO_TEST_CASE(JSONParseIntArray)
+BOOST_AUTO_TEST_CASE(JsonMapObjNew)
 {
-  RoundJSON *json = round_json_new();
-  BOOST_CHECK(json);
+  RoundJSONObject *obj = round_json_map_new();
+  BOOST_CHECK(obj);
+  BOOST_CHECK(round_json_object_ismap(obj));
   
-  BOOST_CHECK(round_json_parse(json, "[0, 1, 2]", NULL));
-
-  char path[8];
-  for (int n=0; n<3; n++) {
-    int value;
-    sprintf(path, "%d", n);
-    BOOST_CHECK(round_json_getintforpath(json, path, &value));
-    BOOST_CHECK_EQUAL(value, n);
-  }
-  
-  BOOST_CHECK(round_json_delete(json));
+  BOOST_CHECK(round_json_object_delete(obj));
 }
 
-BOOST_AUTO_TEST_CASE(JSONParseStrArray)
+BOOST_AUTO_TEST_CASE(JsonArrayObjNew)
 {
-  RoundJSON *json = round_json_new();
-  BOOST_CHECK(json);
+  RoundJSONObject *obj = round_json_array_new();
+  BOOST_CHECK(obj);
+  BOOST_CHECK(round_json_object_isarray(obj));
   
-  BOOST_CHECK(round_json_parse(json, "[\"milk\", \"bread\", \"eggs\"]", NULL));
-  
-  const char *value;
-  
-  BOOST_CHECK(round_json_getstringforpath(json, "0", &value));
-  BOOST_CHECK_EQUAL("milk", value);
-  
-  BOOST_CHECK(round_json_getstringforpath(json, "1", &value));
-  BOOST_CHECK_EQUAL("bread", value);
-
-  BOOST_CHECK(round_json_getstringforpath(json, "2", &value));
-  BOOST_CHECK_EQUAL("eggs", value);
-  
-  BOOST_CHECK(round_json_delete(json));
+  BOOST_CHECK(round_json_object_delete(obj));
 }
 
-BOOST_AUTO_TEST_CASE(JSONParseStrArrayWithSpace)
+BOOST_AUTO_TEST_CASE(JsonStringObjNew)
 {
-  RoundJSON *json = round_json_new();
-  BOOST_CHECK(json);
+  const char *val = "test";
+  const char *objVal;
   
-  BOOST_CHECK(round_json_parse(json, "[\"name\", \"John Smith\"]", NULL));
+  RoundJSONObject *obj = round_json_string_new(val);
+  BOOST_CHECK(obj);
+  BOOST_CHECK(round_json_object_isstring(obj));
+  BOOST_CHECK(round_json_object_getstring(obj, &objVal));
+  BOOST_CHECK_EQUAL(objVal, val);
   
-  const char *value;
-  
-  BOOST_CHECK(round_json_getstringforpath(json, "0", &value));
-  BOOST_CHECK_EQUAL("name", value);
-  
-  BOOST_CHECK(round_json_getstringforpath(json, "1", &value));
-  BOOST_CHECK_EQUAL("John Smith", value);
-  
-  BOOST_CHECK(round_json_delete(json));
+  BOOST_CHECK(round_json_object_delete(obj));
 }
 
-////////////////////////////////////////////////////////////
-// Dictionary
-////////////////////////////////////////////////////////////
-
-BOOST_AUTO_TEST_CASE(JSONParseIntDict)
+BOOST_AUTO_TEST_CASE(JsonIntegerObjNew)
 {
-  RoundJSON *json = round_json_new();
-  BOOST_CHECK(json);
+  int val = 123456;
+  int objVal;
   
-  BOOST_CHECK(round_json_parse(json, "{\"a\": 1, \"b\": 2, \"c\": 3}", NULL));
+  RoundJSONObject *obj = round_json_integer_new(val);
+  BOOST_CHECK(obj);
+  BOOST_CHECK(round_json_object_isinteger(obj));
+  BOOST_CHECK(round_json_object_getinteger(obj, &objVal));
+  BOOST_CHECK_EQUAL(objVal, val);
   
-  int value;
-  
-  BOOST_CHECK(round_json_getintforpath(json, "a", &value));
-  BOOST_CHECK_EQUAL(1, value);
-  
-  BOOST_CHECK(round_json_getintforpath(json, "b", &value));
-  BOOST_CHECK_EQUAL(2, value);
-  
-  BOOST_CHECK(round_json_getintforpath(json, "c", &value));
-  BOOST_CHECK_EQUAL(3, value);
-  
-  BOOST_CHECK(round_json_delete(json));
+  BOOST_CHECK(round_json_object_delete(obj));
 }
 
-BOOST_AUTO_TEST_CASE(JSONParseStrDict)
+BOOST_AUTO_TEST_CASE(JsonReadObjNew)
 {
-  RoundJSON *json = round_json_new();
-  BOOST_CHECK(json);
+  double val = 1.0;
+  double objVal;
   
-  BOOST_CHECK(round_json_parse(json, "{\"name\": \"John Smith\", \"age\": 32}", NULL));
-
-  union MixValue {
-    const char *s;
-    int i;
-  };
-  union MixValue value;
+  RoundJSONObject *obj = round_json_real_new(val);
+  BOOST_CHECK(obj);
+  BOOST_CHECK(round_json_object_isreal(obj));
+  BOOST_CHECK(round_json_object_getreal(obj, &objVal));
+  BOOST_CHECK_EQUAL(objVal, val);
   
-  BOOST_CHECK(round_json_getstringforpath(json, "name", &value.s));
-  BOOST_CHECK_EQUAL("John Smith", value.s);
-  
-  BOOST_CHECK(round_json_getintforpath(json, "age", &value.i));
-  BOOST_CHECK_EQUAL(32, value.i);
-  
-  BOOST_CHECK(round_json_delete(json));
+  BOOST_CHECK(round_json_object_delete(obj));
 }
 
-////////////////////////////////////////////////////////////
-// Dictionary in Array
-////////////////////////////////////////////////////////////
-
-BOOST_AUTO_TEST_CASE(JSONParseDictInArray)
+BOOST_AUTO_TEST_CASE(JsonBoolObjNew)
 {
-  RoundJSON *json = round_json_new();
-  BOOST_CHECK(json);
+  bool val = true;
+  bool objVal;
   
-  BOOST_CHECK(round_json_parse(json, "[ {\"age\": 32,\"name\":\"John Smith\"},{\"age\": 31,\"name\":\"John Lennon\"} ]", NULL));
+  RoundJSONObject *obj = round_json_bool_new(val);
+  BOOST_CHECK(obj);
+  BOOST_CHECK(round_json_object_isbool(obj));
+  BOOST_CHECK(round_json_object_getbool(obj, &objVal));
+  BOOST_CHECK_EQUAL(objVal, val);
   
-  union MixValue {
-    const char *s;
-    int i;
-  };
-  union MixValue value;
-  
-  BOOST_CHECK(round_json_getstringforpath(json, "0/name", &value.s));
-  BOOST_CHECK_EQUAL("John Smith", value.s);
-  
-  BOOST_CHECK(round_json_getintforpath(json, "0/age", &value.i));
-  BOOST_CHECK_EQUAL(32, value.i);
-  
-  BOOST_CHECK(round_json_getstringforpath(json, "1/name", &value.s));
-  BOOST_CHECK_EQUAL("John Lennon", value.s);
-  
-  BOOST_CHECK(round_json_getintforpath(json, "1/age", &value.i));
-  BOOST_CHECK_EQUAL(31, value.i);
-  
-  BOOST_CHECK(round_json_delete(json));
-}
-
-////////////////////////////////////////////////////////////
-// Array in Dictionary
-////////////////////////////////////////////////////////////
-
-BOOST_AUTO_TEST_CASE(JSONParseArrayInDict)
-{
-  RoundJSON *json = round_json_new();
-  BOOST_CHECK(json);
-  
-  BOOST_CHECK(round_json_parse(json, "{\"phoneNumber\": [\"212 555-1234\", \"646 555-4567\"]}", NULL));
-  
-  union MixValue {
-    const char *s;
-    int i;
-  };
-  const char *value;
-  
-  BOOST_CHECK(round_json_getstringforpath(json, "phoneNumber/0", &value));
-  BOOST_CHECK_EQUAL("212 555-1234", value);
-  
-  BOOST_CHECK(round_json_getstringforpath(json, "phoneNumber/1", &value));
-  BOOST_CHECK_EQUAL("646 555-4567", value);
-  
-  BOOST_CHECK(round_json_delete(json));
+  BOOST_CHECK(round_json_object_delete(obj));
 }
 
 BOOST_AUTO_TEST_SUITE_END()
