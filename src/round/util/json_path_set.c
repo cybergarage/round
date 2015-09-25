@@ -18,16 +18,34 @@
 
 bool round_json_setstringforpath(RoundJSON *json, const char *path, const char *value)
 {
-  return false;
+  RoundJSONObject *obj;
+  
+  obj = round_json_string_new(value);
+  if (round_json_map_setobjectforpath(json, path, obj)) {
+    obj->jsonObj = NULL;
+  }
+  
+  round_json_object_delete(obj);
+  
+  return true;
 }
 
 /****************************************
- * round_json_setintforpath
+ * round_json_setintegerforpath
  ****************************************/
 
-bool round_json_setintforpath(RoundJSON *json, const char *path, int value)
+bool round_json_setintegerforpath(RoundJSON *json, const char *path, int value)
 {
-  return false;
+  RoundJSONObject *obj;
+  
+  obj = round_json_integer_new(value);
+  if (round_json_map_setobjectforpath(json, path, obj)) {
+    obj->jsonObj = NULL;
+  }
+  
+  round_json_object_delete(obj);
+  
+  return true;
 }
 
 /****************************************
@@ -36,7 +54,16 @@ bool round_json_setintforpath(RoundJSON *json, const char *path, int value)
 
 bool round_json_setrealforpath(RoundJSON *json, const char *path, double value)
 {
-  return false;
+  RoundJSONObject *obj;
+
+  obj = round_json_real_new(value);
+  if (round_json_map_setobjectforpath(json, path, obj)) {
+    obj->jsonObj = NULL;
+  }
+  
+  round_json_object_delete(obj);
+  
+  return true;
 }
 
 /****************************************
@@ -45,14 +72,23 @@ bool round_json_setrealforpath(RoundJSON *json, const char *path, double value)
 
 bool round_json_setboolforpath(RoundJSON *json, const char *path, bool value)
 {
-  return false;
+  RoundJSONObject *obj;
+  
+  obj = round_json_bool_new(value);
+  if (round_json_map_setobjectforpath(json, path, obj)) {
+    obj->jsonObj = NULL;
+  }
+  
+  round_json_object_delete(obj);
+  
+  return true;
 }
 
 /****************************************
- * round_json_setobjectforpath
+ * round_json_object_setobjectforpath
  ****************************************/
 
-bool round_json_map_setobjectforpath(RoundJSON *json, const char *pathStr, const char *key, RoundJSONObject *obj)
+bool round_json_object_setobjectforpath(RoundJSONObject *parentObj, const char *pathStr, RoundJSONObject *obj)
 {
   char *path, *token, *ptr;
   char **tokens;
@@ -60,42 +96,35 @@ bool round_json_map_setobjectforpath(RoundJSON *json, const char *pathStr, const
   bool isAdded;
   
 #if defined(ROUND_USE_JSON_PARSER_JANSSON)
-  json_t *rootJson, *parentJson;
+  json_t *parentJson;
 #endif
   
-  if (!json || !pathStr)
-    return NULL;
-
-  if (!json->rootObj)
-    return NULL;
+  if (!parentObj || !pathStr || !obj)
+    return false;
   
 #if defined(ROUND_USE_JSON_PARSER_JANSSON)
-  rootJson = json->rootObj->jsonObj;
-  if (!rootJson)
-    return NULL;
+  parentJson = parentObj->jsonObj;
+  if (!parentJson)
+    return false;
 #endif
-
+  
   path = round_strdup(pathStr);
   if (!path)
-    return NULL;
+    return false;
   
   token = round_strtok(path, ROUND_JSON_PATH_DELIM, &ptr);
   if (!token)
-    return NULL;
-
+    return false;
+  
   tokenCnt = 0;
   tokens = NULL;
-
+  
   while (token) {
     tokenCnt++;
     tokens = (char **)realloc(tokens, (sizeof(char *) * tokenCnt));
     tokens[tokenCnt-1] = round_strdup(token);
     token = round_strtok(NULL, ROUND_JSON_PATH_DELIM, &ptr);
   }
-
-#if defined(ROUND_USE_JSON_PARSER_JANSSON)
-  parentJson = rootJson;
-#endif
   
   for (n=0; n<(tokenCnt-1); n++) {
 #if defined(ROUND_USE_JSON_PARSER_JANSSON)
@@ -124,25 +153,26 @@ bool round_json_map_setobjectforpath(RoundJSON *json, const char *pathStr, const
         }
       }
     }
-#endif
-    
     if (!parentJson)
-      return false;
+      break;
+#endif
   }
   
   isAdded = false;
   
 #if defined(ROUND_USE_JSON_PARSER_JANSSON)
-  if (json_is_object(parentJson)) {
-    if (round_json_ismaptoken(tokens[(tokenCnt - 1)])) {
-      json_array_set(parentJson, round_str2int(tokens[n]), obj->jsonObj);
-      isAdded = true;
+  if (parentJson) {
+    if (json_is_object(parentJson)) {
+      if (round_json_ismaptoken(tokens[(tokenCnt - 1)])) {
+        json_array_set(parentJson, round_str2int(tokens[n]), obj->jsonObj);
+        isAdded = true;
+      }
     }
-  }
-  else if (json_is_array(parentJson)) {
-    if (round_json_isarraytoken(tokens[(tokenCnt - 1)])) {
-      json_array_set(parentJson, round_str2int(tokens[(tokenCnt - 1)]), obj->jsonObj);
-      isAdded = true;
+    else if (json_is_array(parentJson)) {
+      if (round_json_isarraytoken(tokens[(tokenCnt - 1)])) {
+        json_array_set(parentJson, round_str2int(tokens[(tokenCnt - 1)]), obj->jsonObj);
+        isAdded = true;
+      }
     }
   }
 #endif
@@ -150,10 +180,25 @@ bool round_json_map_setobjectforpath(RoundJSON *json, const char *pathStr, const
   for (n=0; n<tokenCnt; n++) {
     free(tokens[n]);
   }
-
+  
   if (tokens) {
     free(tokens);
   }
-
+  
   return isAdded;
+}
+
+/****************************************
+ * round_json_setobjectforpath
+ ****************************************/
+
+bool round_json_map_setobjectforpath(RoundJSON *json, const char *pathStr, RoundJSONObject *obj)
+{
+  if (!json || !pathStr || !obj)
+    return false;
+
+  if (!json->rootObj)
+    return false;
+  
+  return round_json_object_setobjectforpath(json->rootObj, pathStr, obj);
 }
