@@ -55,9 +55,10 @@ bool round_json_setboolforpath(RoundJSON *json, const char *path, bool value)
 bool round_json_map_setobjectforpath(RoundJSON *json, const char *pathStr, const char *key, RoundJSONObject *obj)
 {
   char *path, *token, *ptr;
-
+  char **tokens;
+  size_t n, tokenCnt;
 #if defined(ROUND_USE_JSON_PARSER_JANSSON)
-  json_t *rootJson, *tokenJson;
+  json_t *rootJson, *parentJson;
 #endif
   
   if (!json || !pathStr)
@@ -79,13 +80,40 @@ bool round_json_map_setobjectforpath(RoundJSON *json, const char *pathStr, const
   token = round_strtok(path, ROUND_JSON_PATH_DELIM, &ptr);
   if (!token)
     return NULL;
-  #if defined(ROUND_USE_JSON_PARSER_JANSSON)
 
-  tokenJson = rootJson;
+  tokenCnt = 0;
+  tokens = NULL;
+
   while (token) {
+    tokenCnt++;
+    tokens = (char **)realloc(tokens, (sizeof(char *) * tokenCnt));
+    tokens[tokenCnt-1] = round_strdup(token);
     token = round_strtok(NULL, ROUND_JSON_PATH_DELIM, &ptr);
   }
+
+#if defined(ROUND_USE_JSON_PARSER_JANSSON)
+  parentJson = rootJson;
 #endif
+  
+  for (n=0; n<(tokenCnt-1); n++) {
+    if (round_json_ismaptoken(tokens[n])) {
+      parentJson = round_jansson_map_getobject(parentJson, tokens[n]);
+    }
+    else if (round_json_isarraytoken(tokens[n])) {
+      parentJson = round_jansson_array_getobject(parentJson, round_str2int(tokens[n]));
+      if (!parentJson) {
+        parentJson = round_jansson_map_getobject(parentJson, tokens[n]);
+      }
+    }
+  }
+  
+  for (n=0; n<tokenCnt; n++) {
+    free(tokens[n]);
+  }
+
+  if (tokens) {
+    free(tokens);
+  }
 
   return json->pathObj;
 }
