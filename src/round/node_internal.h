@@ -18,6 +18,8 @@
 #include <round/util/strings.h>
 #include <round/server.h>
 #include <round/script.h>
+#include <round/clock.h>
+#include <round/registry.h>
 
 #include <round/method.h>
 
@@ -34,7 +36,8 @@ extern "C" {
   ROUND_OO_STRUCT_MEMBERS \
   RoundString *addr; \
   int port; \
-  RoundString *cluster;
+  RoundString *cluster; \
+  RoundClock *clock;
 
 typedef struct {
   ROUND_NODE_STRUCT_MEMBERS
@@ -48,6 +51,7 @@ typedef struct {
   ROUND_NODE_STRUCT_MEMBERS
   
   RoundMethodManager *methodMgr;
+  RoundRegistryManager *regMgr;
   RoundServer *server;
 } RoundLocalNode;
 
