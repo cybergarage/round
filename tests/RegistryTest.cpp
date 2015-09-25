@@ -13,6 +13,38 @@
 #include "RoundTest.h"
 #include <round/registry.h>
 
+BOOST_AUTO_TEST_CASE(RegistryMember)
+{
+  RoundRegistry *reg = round_registry_new();
+  BOOST_CHECK(reg);
+  
+  char key[32], val[32];
+  clock_t ts, lts;
+
+  snprintf(key, sizeof(key), "key%ld", time(NULL));
+  BOOST_CHECK(round_registry_setkey(reg, key));
+  BOOST_CHECK_EQUAL(round_registry_getkey(reg), key);
+  
+  snprintf(val, sizeof(val), "val%ld", time(NULL));
+  BOOST_CHECK(round_registry_setvalue(reg, val));
+  BOOST_CHECK_EQUAL(round_registry_getvalue(reg), val);
+  
+  ts = time(NULL) + 100;
+  round_registry_setts(reg, ts);
+  BOOST_CHECK_EQUAL(round_registry_getts(reg), ts);
+  
+  lts = time(NULL) - 100;
+  round_registry_setlts(reg, lts);
+  BOOST_CHECK_EQUAL(round_registry_getlts(reg), lts);
+  
+  BOOST_CHECK_EQUAL(round_registry_getkey(reg), key);
+  BOOST_CHECK_EQUAL(round_registry_getvalue(reg), val);
+  BOOST_CHECK_EQUAL(round_registry_getts(reg), ts);
+  BOOST_CHECK_EQUAL(round_registry_getlts(reg), lts);
+
+  BOOST_CHECK(round_registry_delete(reg));
+}
+
 BOOST_AUTO_TEST_CASE(RegistryManager)
 {
   RoundRegistryManager *mgr = round_registry_manager_new();

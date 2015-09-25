@@ -74,6 +74,8 @@ bool round_node_setaddress(RoundNode *node, const char *addr);
 bool round_node_setport(RoundNode *node, int port);
 bool round_node_setcluster(RoundNode *node, const char *cluster);
 
+#define round_node_getclockvalue(node) round_clock_getvalue(node->clock)
+  
 /****************************************
  * Function (LocalNode)
  ****************************************/
@@ -98,6 +100,12 @@ bool round_local_node_addengine(RoundLocalNode *node, RoundScriptEngine *engine)
 
 bool round_local_node_execmethod(RoundLocalNode *node, const char *method, const char *param, RoundString *result, RoundError *err);
 
+bool round_local_node_setregistry(RoundLocalNode *node, const char *key, const char *val);
+RoundRegistry *round_local_node_getregistry(RoundLocalNode *node, const char *key);
+bool round_local_node_removeregistry(RoundLocalNode *node, const char *key);
+
+#define round_local_node_getclockvalue(node) round_clock_getvalue(node->clock)
+  
 /****************************************
  * Function (RemoteNode)
  ****************************************/

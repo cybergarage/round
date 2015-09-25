@@ -16,7 +16,8 @@ round_client_headers = \
 	./round/finder.h \
 	./round/node.h \
 	./round/round.h \
-	./round/typedef.h
+	./round/typedef.h \
+	./round/util/json.h
 
 nobase_include_HEADERS = \
 	$(round_client_headers)

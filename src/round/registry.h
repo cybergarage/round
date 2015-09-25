@@ -29,6 +29,8 @@ extern "C" {
 typedef struct {
   RoundString *key;
   RoundString *value;
+  clock_t ts;
+  clock_t lts;
 } RoundRegistry;
 
 typedef struct {
@@ -48,7 +50,13 @@ bool round_registry_delete(RoundRegistry *registry);
 #define round_registry_setvalue(reg, val) round_string_setvalue(reg->value, val)
 #define round_registry_getvalue(reg) round_string_getvalue(reg->value)
 
-/****************************************
+#define round_registry_setts(reg, val) (reg->ts = val)
+#define round_registry_getts(reg) (reg->ts)
+
+#define round_registry_setlts(reg, val) (reg->lts = val)
+#define round_registry_getlts(reg) (reg->lts)
+
+  /****************************************
  * Function (Map)
  ****************************************/
   

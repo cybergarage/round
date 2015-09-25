@@ -15,12 +15,15 @@ AM_CPPFLAGS = -I$(top_srcdir)/include -I$(top_srcdir)/src -I../
 	..//RoundTest.h
 
 roundtest_SOURCES = \
+	..//Base64Test.cpp \
 	..//ClientTest.cpp \
+	..//ClockTest.cpp \
 	..//ClusterListTest.cpp \
 	..//ClusterTest.cpp \
 	..//ErrorTest.cpp \
 	..//FinderTest.cpp \
 	..//JSONTest.cpp \
+	..//LocalNodeTest.cpp \
 	..//MapTest.cpp \
 	..//MessageTest.cpp \
 	..//MethodManagerTest.cpp \
@@ -29,6 +32,8 @@ roundtest_SOURCES = \
 	..//NodeListTest.cpp \
 	..//NodeTest.cpp \
 	..//QueueTest.cpp \
+	..//RegistryTest.cpp \
+	..//RemoteNodeTest.cpp \
 	..//RoundTest.cpp \
 	..//script/JsEngineTest.cpp \
 	..//script/LuaEngineTest.cpp \
@@ -36,6 +41,7 @@ roundtest_SOURCES = \
 	..//ScriptEngineMapTest.cpp \
 	..//ScriptEngineTest.cpp \
 	..//SemaphoreTest.cpp \
+	..//ServerTest.cpp \
 	..//StringTest.cpp \
 	..//util/mutex_test.cpp \
 	..//util/string_test.cpp
