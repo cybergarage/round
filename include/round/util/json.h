@@ -60,12 +60,6 @@ bool round_json_clear(RoundJSON *json);
 bool round_json_delete(RoundJSON *json);
 
 RoundJSONObject *round_json_getrootobject(RoundJSON *json);
-RoundJSONObject *round_json_getobjectforpath(RoundJSON *json, const char *path);
-
-bool round_json_getstringforpath(RoundJSON *json, const char *path, const char **value);
-bool round_json_getintforpath(RoundJSON *json, const char *path, int *value);
-bool round_json_getrealforpath(RoundJSON *json, const char *path, double *value);
-bool round_json_getboolforpath(RoundJSON *json, const char *path, bool *value);
 
 /****************************************
  * Functions (JSON Object)
@@ -88,7 +82,23 @@ bool round_json_object_getstring(RoundJSONObject *obj, const char **value);
 bool round_json_object_getinteger(RoundJSONObject *obj, int *value);
 bool round_json_object_getreal(RoundJSONObject *obj, double *value);
 bool round_json_object_getbool(RoundJSONObject *obj, bool *value);
+
+/****************************************
+ * Functions (JSON Path)
+ ****************************************/
+
+RoundJSONObject *round_json_getobjectforpath(RoundJSON *json, const char *path);
   
+bool round_json_getstringforpath(RoundJSON *json, const char *path, const char **value);
+bool round_json_getintforpath(RoundJSON *json, const char *path, int *value);
+bool round_json_getrealforpath(RoundJSON *json, const char *path, double *value);
+bool round_json_getboolforpath(RoundJSON *json, const char *path, bool *value);
+
+bool round_json_setstringforpath(RoundJSON *json, const char *path, const char *value);
+bool round_json_setintforpath(RoundJSON *json, const char *path, int value);
+bool round_json_setrealforpath(RoundJSON *json, const char *path, double value);
+bool round_json_setboolforpath(RoundJSON *json, const char *path, bool value);
+
 #ifdef  __cplusplus
 } /* extern "C" */
 #endif
