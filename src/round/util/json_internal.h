@@ -58,9 +58,11 @@ typedef struct {
  * Functions (JSON Path)
  ****************************************/
 
+#define round_json_ismaptoken(token) (!round_isnumeric(token))
+#define round_json_isarraytoken(token) round_isnumeric(token)
+  
 bool round_json_map_setobjectforpath(RoundJSON *json, const char *path, const char *key, RoundJSONObject *obj);
 
-  
 #ifdef  __cplusplus
 } /* extern "C" */
 #endif

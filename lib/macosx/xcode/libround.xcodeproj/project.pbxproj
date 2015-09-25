@@ -19,7 +19,8 @@
 		21346A7E1BB4FA6B00B5F3A6 /* get_registry.c in Sources */ = {isa = PBXBuildFile; fileRef = 21346A7B1BB4FA6B00B5F3A6 /* get_registry.c */; settings = {ASSET_TAGS = (); }; };
 		21346A7F1BB4FA6B00B5F3A6 /* remove_registry.c in Sources */ = {isa = PBXBuildFile; fileRef = 21346A7C1BB4FA6B00B5F3A6 /* remove_registry.c */; settings = {ASSET_TAGS = (); }; };
 		21346A801BB4FA6B00B5F3A6 /* set_registry.c in Sources */ = {isa = PBXBuildFile; fileRef = 21346A7D1BB4FA6B00B5F3A6 /* set_registry.c */; settings = {ASSET_TAGS = (); }; };
-		21346A821BB50AE300B5F3A6 /* json_path.c in Sources */ = {isa = PBXBuildFile; fileRef = 21346A811BB50AE300B5F3A6 /* json_path.c */; settings = {ASSET_TAGS = (); }; };
+		21346A821BB50AE300B5F3A6 /* json_path_get.c in Sources */ = {isa = PBXBuildFile; fileRef = 21346A811BB50AE300B5F3A6 /* json_path_get.c */; settings = {ASSET_TAGS = (); }; };
+		213931781BB54B9900C93773 /* json_path_set.c in Sources */ = {isa = PBXBuildFile; fileRef = 213931771BB54B9900C93773 /* json_path_set.c */; settings = {ASSET_TAGS = (); }; };
 		2148E5D81B9DFDAF0021CE7B /* script_engine_map.c in Sources */ = {isa = PBXBuildFile; fileRef = 2148E5D61B9DFDAF0021CE7B /* script_engine_map.c */; };
 		2148E5D91B9DFDAF0021CE7B /* method_map.c in Sources */ = {isa = PBXBuildFile; fileRef = 2148E5D71B9DFDAF0021CE7B /* method_map.c */; };
 		2148E5E01B9F1A7D0021CE7B /* error_rpc.c in Sources */ = {isa = PBXBuildFile; fileRef = 2148E5DF1B9F1A7D0021CE7B /* error_rpc.c */; };
@@ -113,7 +114,8 @@
 		21346A7B1BB4FA6B00B5F3A6 /* get_registry.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = get_registry.c; sourceTree = "<group>"; };
 		21346A7C1BB4FA6B00B5F3A6 /* remove_registry.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = remove_registry.c; sourceTree = "<group>"; };
 		21346A7D1BB4FA6B00B5F3A6 /* set_registry.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = set_registry.c; sourceTree = "<group>"; };
-		21346A811BB50AE300B5F3A6 /* json_path.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = json_path.c; path = ../../../src/round/util/json_path.c; sourceTree = "<group>"; };
+		21346A811BB50AE300B5F3A6 /* json_path_get.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = json_path_get.c; path = ../../../src/round/util/json_path_get.c; sourceTree = "<group>"; };
+		213931771BB54B9900C93773 /* json_path_set.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = json_path_set.c; path = ../../../src/round/util/json_path_set.c; sourceTree = "<group>"; };
 		2148E5D61B9DFDAF0021CE7B /* script_engine_map.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = script_engine_map.c; path = ../../../src/round/script_engine_map.c; sourceTree = "<group>"; };
 		2148E5D71B9DFDAF0021CE7B /* method_map.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = method_map.c; path = ../../../src/round/method_map.c; sourceTree = "<group>"; };
 		2148E5DF1B9F1A7D0021CE7B /* error_rpc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = error_rpc.c; path = ../../../src/round/error_rpc.c; sourceTree = "<group>"; };
@@ -329,7 +331,8 @@
 				21E6E5711BB01A49006E853D /* base64.h */,
 				21606BF61B9FC8EB000463A8 /* json_internal.h */,
 				21C482411B9F5A100087380C /* json_object.c */,
-				21346A811BB50AE300B5F3A6 /* json_path.c */,
+				21346A811BB50AE300B5F3A6 /* json_path_get.c */,
+				213931771BB54B9900C93773 /* json_path_set.c */,
 				21C482421B9F5A100087380C /* json.c */,
 				2178B3641B98BEAE00B9D86B /* list.c */,
 				2178B3651B98BEAE00B9D86B /* list.h */,
@@ -485,8 +488,9 @@
 				21F6D9B11B99848000714056 /* lua_engine.c in Sources */,
 				21A776CC1BA0939F009BDB36 /* timer.c in Sources */,
 				212A95451B9BCA4200EC9A71 /* method_manager.c in Sources */,
+				213931781BB54B9900C93773 /* json_path_set.c in Sources */,
 				21EA96D91B990C3B00E00841 /* node.c in Sources */,
-				21346A821BB50AE300B5F3A6 /* json_path.c in Sources */,
+				21346A821BB50AE300B5F3A6 /* json_path_get.c in Sources */,
 				215A079C1BB4681000E9702F /* registry_map.c in Sources */,
 				2178B36B1B98BEAE00B9D86B /* list.c in Sources */,
 				21F6D9AF1B99848000714056 /* js_engine.c in Sources */,
