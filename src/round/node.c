@@ -23,7 +23,10 @@ RoundNode *round_node_new(void)
   if (!node)
     return NULL;
 
-  round_node_init(node);
+  if (!round_node_init(node)) {
+    round_node_delete(node);
+    return NULL;
+  }
   
   return node;
 }
@@ -44,6 +47,11 @@ bool round_node_init(RoundNode *node)
   node->addr = round_string_new();
   node->port = 0;
   node->cluster = round_string_new();
+
+  node->clock = round_clock_new();
+  
+  if (!node->addr || !node->cluster || !node->clock)
+    return false;
   
   return true;
 }
@@ -80,6 +88,7 @@ bool round_node_destroy(RoundNode *node)
   
   round_string_delete(node->addr);
   round_string_delete(node->cluster);
+  round_clock_delete(node->clock);
   
   return true;
 }

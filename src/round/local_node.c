@@ -47,11 +47,10 @@ bool round_local_node_init(RoundLocalNode *node)
   round_oo_setdescendantdestoroyfunc(node, round_local_node_destory);
   
   node->server = round_server_new();
-  if (!node->server)
-    return false;
-  
   node->methodMgr = round_method_manager_new();
-  if (!node->methodMgr)
+  node->regMgr = round_registry_manager_new();
+
+  if (!node->server || !node->methodMgr || !node->regMgr)
     return false;
   
   if (!round_local_node_initscriptengines(node))
@@ -115,6 +114,7 @@ bool round_local_node_destory(RoundLocalNode *node)
     return false;
   
   round_method_manager_delete(node->methodMgr);
+  round_registry_manager_delete(node->regMgr);
   round_server_delete(node->server);
 
   return true;
