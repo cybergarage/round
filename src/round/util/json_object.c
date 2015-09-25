@@ -27,6 +27,8 @@ RoundJSONObject *round_json_object_new(void)
   obj->jsonObj = NULL;
 #endif
   
+  obj->dumpedStr = NULL;
+  
   return obj;
 }
 
@@ -45,7 +47,12 @@ bool round_json_object_delete(RoundJSONObject *obj)
     obj->jsonObj = NULL;
   }
 #endif
-  
+
+  if (obj->dumpedStr) {
+    free(obj->dumpedStr);
+    obj->dumpedStr = NULL;
+  }
+
   free(obj);
   
   return true;
@@ -278,4 +285,26 @@ bool round_json_object_getbool(RoundJSONObject *obj, bool *value)
   *value = json_boolean_value(obj->jsonObj) ? true  : false;
   
   return true;
+}
+
+/****************************************
+ * round_json_object_tostring
+ ****************************************/
+
+bool round_json_object_tostring(RoundJSONObject *obj, const char **str)
+{
+  if (!obj)
+    return false;
+
+#if defined(ROUND_USE_JSON_PARSER_JANSSON)
+  if (!obj->jsonObj)
+    return false;
+  obj->dumpedStr = json_dumps(obj->jsonObj, JSON_INDENT(2));
+  if (!obj->dumpedStr)
+    return false;
+  *str = obj->dumpedStr;
+  return true;
+#else
+  return false;
+#endif
 }

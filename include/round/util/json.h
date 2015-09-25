@@ -90,6 +90,8 @@ bool round_json_object_getinteger(RoundJSONObject *obj, int *value);
 bool round_json_object_getreal(RoundJSONObject *obj, double *value);
 bool round_json_object_getbool(RoundJSONObject *obj, bool *value);
 
+bool round_json_object_tostring(RoundJSONObject *obj, const char **str);
+
 /****************************************
  * Functions (JSON Map)
  ****************************************/
