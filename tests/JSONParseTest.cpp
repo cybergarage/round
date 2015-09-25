@@ -30,7 +30,7 @@ BOOST_AUTO_TEST_CASE(JSONParseIntArray)
   for (int n=0; n<3; n++) {
     int value;
     sprintf(path, "%d", n);
-    BOOST_CHECK(round_json_getintforpath(json, path, &value));
+    BOOST_CHECK(round_json_getintegerforpath(json, path, &value));
     BOOST_CHECK_EQUAL(value, n);
   }
   
@@ -89,13 +89,13 @@ BOOST_AUTO_TEST_CASE(JSONParseIntDict)
   
   int value;
   
-  BOOST_CHECK(round_json_getintforpath(json, "a", &value));
+  BOOST_CHECK(round_json_getintegerforpath(json, "a", &value));
   BOOST_CHECK_EQUAL(1, value);
   
-  BOOST_CHECK(round_json_getintforpath(json, "b", &value));
+  BOOST_CHECK(round_json_getintegerforpath(json, "b", &value));
   BOOST_CHECK_EQUAL(2, value);
   
-  BOOST_CHECK(round_json_getintforpath(json, "c", &value));
+  BOOST_CHECK(round_json_getintegerforpath(json, "c", &value));
   BOOST_CHECK_EQUAL(3, value);
   
   BOOST_CHECK(round_json_delete(json));
@@ -117,7 +117,7 @@ BOOST_AUTO_TEST_CASE(JSONParseStrDict)
   BOOST_CHECK(round_json_getstringforpath(json, "name", &value.s));
   BOOST_CHECK_EQUAL("John Smith", value.s);
   
-  BOOST_CHECK(round_json_getintforpath(json, "age", &value.i));
+  BOOST_CHECK(round_json_getintegerforpath(json, "age", &value.i));
   BOOST_CHECK_EQUAL(32, value.i);
   
   BOOST_CHECK(round_json_delete(json));
@@ -143,13 +143,13 @@ BOOST_AUTO_TEST_CASE(JSONParseDictInArray)
   BOOST_CHECK(round_json_getstringforpath(json, "0/name", &value.s));
   BOOST_CHECK_EQUAL("John Smith", value.s);
   
-  BOOST_CHECK(round_json_getintforpath(json, "0/age", &value.i));
+  BOOST_CHECK(round_json_getintegerforpath(json, "0/age", &value.i));
   BOOST_CHECK_EQUAL(32, value.i);
   
   BOOST_CHECK(round_json_getstringforpath(json, "1/name", &value.s));
   BOOST_CHECK_EQUAL("John Lennon", value.s);
   
-  BOOST_CHECK(round_json_getintforpath(json, "1/age", &value.i));
+  BOOST_CHECK(round_json_getintegerforpath(json, "1/age", &value.i));
   BOOST_CHECK_EQUAL(31, value.i);
   
   BOOST_CHECK(round_json_delete(json));
