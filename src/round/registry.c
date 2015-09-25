@@ -22,6 +22,9 @@ bool round_registry_init(RoundRegistry *reg)
   if (!reg->key || !reg->value)
     return false;
   
+  round_registry_setts(reg, 0);
+  round_registry_setlts(reg, 0);
+
   return true;
 }
 

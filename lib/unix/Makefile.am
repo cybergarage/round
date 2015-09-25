@@ -18,24 +18,39 @@ AM_CFLAGS = -I$(top_builddir)/include -I$(top_builddir)/src
 
 round_mpi_sources = \
 	../../src/round/client.c \
+	../../src/round/clock.c \
 	../../src/round/cluster.c \
 	../../src/round/cluster_list.c \
 	../../src/round/error.c \
 	../../src/round/error_rpc.c \
 	../../src/round/finder.c \
+	../../src/round/local_node.c \
 	../../src/round/message.c \
 	../../src/round/message_manager.c \
+	../../src/round/method/get_registry.c \
+	../../src/round/method/remove_method.c \
+	../../src/round/method/remove_registry.c \
+	../../src/round/method/set_method.c \
+	../../src/round/method/set_registry.c \
+	../../src/round/method/system_method.c \
 	../../src/round/method.c \
 	../../src/round/method_manager.c \
 	../../src/round/method_map.c \
 	../../src/round/node.c \
 	../../src/round/node_list.c \
+	../../src/round/registry.c \
+	../../src/round/registry_manager.c \
+	../../src/round/registry_map.c \
+	../../src/round/remote_node.c \
 	../../src/round/script/js_engine.c \
 	../../src/round/script/js_sm_engine.c \
 	../../src/round/script/lua_engine.c \
+	../../src/round/script/native_engine.c \
 	../../src/round/script/ruby_engine.c \
 	../../src/round/script_engine.c \
 	../../src/round/script_engine_map.c \
+	../../src/round/server.c \
+	../../src/round/util/base64.c \
 	../../src/round/util/json.c \
 	../../src/round/util/json_object.c \
 	../../src/round/util/list.c \

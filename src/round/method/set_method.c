@@ -22,8 +22,7 @@ bool round_system_method_setmethod(RoundLocalNode *node, const char *param, Roun
   size_t codeLen;
   RoundMethod *newMethod;
   bool isAdded;
-  
-  
+
   json = round_json_new();
   
   if (round_json_parse(json, param, err)) {

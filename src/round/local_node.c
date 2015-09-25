@@ -98,8 +98,13 @@ bool round_local_node_initsystemmethods(RoundLocalNode *node)
   bool areAllMethodsAdded;
   
   areAllMethodsAdded = true;
+  
   areAllMethodsAdded &= round_local_node_setmethod(node, round_system_method_setmethod_new());
   areAllMethodsAdded &= round_local_node_setmethod(node, round_system_method_removemethod_new());
+  
+  areAllMethodsAdded &= round_local_node_setmethod(node, round_system_method_setregistry_new());
+  areAllMethodsAdded &= round_local_node_setmethod(node, round_system_method_getregistry_new());
+  areAllMethodsAdded &= round_local_node_setmethod(node, round_system_method_removeregistry_new());
 
   return areAllMethodsAdded;
 }
@@ -256,3 +261,56 @@ bool round_local_node_execmethod(RoundLocalNode *node, const char *name, const c
   return round_method_manager_execmethod(node->methodMgr, name, param, result, err);
 }
 
+/****************************************
+ * round_local_node_setregistry
+ ****************************************/
+
+bool round_local_node_setregistry(RoundLocalNode *node, const char *key, const char *val)
+{
+  RoundRegistry *reg;
+  
+  if (!node)
+    return false;
+
+  reg = round_registry_manager_get(node->regMgr, key);
+  if (!reg) {
+    reg = round_registry_new();
+    if (!reg)
+      return false;
+    if (round_registry_manager_set(node->regMgr, reg)) {
+      round_registry_delete(reg);
+      return false;
+    }
+    round_registry_setkey(reg, key);
+  }
+
+  round_registry_setvalue(reg, val);
+  round_registry_setts(reg, time(NULL));
+  round_registry_setlts(reg, round_node_getclockvalue(node));
+  
+  return true;
+}
+
+/****************************************
+ * round_local_node_getregistry
+ ****************************************/
+
+RoundRegistry *round_local_node_getregistry(RoundLocalNode *node, const char *key)
+{
+  if (!node)
+    return false;
+
+  return round_registry_manager_get(node->regMgr, key);
+}
+
+/****************************************
+ * round_local_node_removeregistry
+ ****************************************/
+
+bool round_local_node_removeregistry(RoundLocalNode *node, const char *key)
+{
+  if (!node)
+    return false;
+  
+  return round_registry_manager_remove(node->regMgr, key);
+}
