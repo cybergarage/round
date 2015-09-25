@@ -54,6 +54,11 @@ typedef struct {
 #define round_json_object_setjanssonobject(obj, value) (obj->jsonObj = value)
 #endif
 
+#if defined(ROUND_USE_JSON_PARSER_JANSSON)
+json_t *round_jansson_map_getobject(json_t *jsonMap, const char *name);
+json_t *round_jansson_array_getobject(json_t *jsonArray, size_t n);
+#endif
+  
 /****************************************
  * Functions (JSON Path)
  ****************************************/

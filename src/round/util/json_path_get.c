@@ -72,7 +72,7 @@ bool round_json_getboolforpath(RoundJSON *json, const char *path, bool *value)
 }
 
 /****************************************
- * round_json_getobjectforpath
+ * round_jansson_map_getobject
  ****************************************/
 
 #if defined(ROUND_USE_JSON_PARSER_JANSSON)
@@ -99,6 +99,14 @@ json_t *round_jansson_map_getobject(json_t *jsonMap, const char *name) {
   return NULL;
 }
   
+#endif
+
+/****************************************
+ * round_jansson_array_getobject
+ ****************************************/
+
+#if defined(ROUND_USE_JSON_PARSER_JANSSON)
+
 json_t *round_jansson_array_getobject(json_t *jsonArray, size_t n)
 {
   size_t jsonIdx;
@@ -126,7 +134,12 @@ json_t *round_jansson_array_getobject(json_t *jsonArray, size_t n)
 
   return NULL;
 }
+
 #endif
+
+/****************************************
+ * round_json_getobjectforpath
+ ****************************************/
 
 RoundJSONObject *round_json_getobjectforpath(RoundJSON *json, const char *pathStr)
 {
@@ -156,9 +169,11 @@ RoundJSONObject *round_json_getobjectforpath(RoundJSON *json, const char *pathSt
     return NULL;
   
 #if defined(ROUND_USE_JSON_PARSER_JANSSON)
-
   tokenJson = rootJson;
+#endif
+  
   while (token) {
+#if defined(ROUND_USE_JSON_PARSER_JANSSON)
     if (json_is_object(tokenJson)) {
       tokenJson = round_jansson_map_getobject(tokenJson, token);
     }
@@ -176,10 +191,11 @@ RoundJSONObject *round_json_getobjectforpath(RoundJSON *json, const char *pathSt
     
     if (!tokenJson)
       return NULL;
-    
+#endif
     token = round_strtok(NULL, ROUND_JSON_PATH_DELIM, &ptr);
   }
 
+#if defined(ROUND_USE_JSON_PARSER_JANSSON)
   round_json_object_setjanssonobject(json->pathObj, tokenJson);
 #endif
 
