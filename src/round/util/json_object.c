@@ -82,6 +82,126 @@ int round_json_object_gettype(RoundJSONObject *obj)
 }
 
 /****************************************
+ * round_json_map_new
+ ****************************************/
+
+RoundJSONObject *round_json_map_new(void)
+{
+  RoundJSONObject *obj;
+  
+  obj = round_json_object_new();
+  
+  if (!obj)
+    return NULL;
+  
+#if defined(ROUND_USE_JSON_PARSER_JANSSON)
+  obj->jsonObj = json_object();
+#endif
+  
+  return obj;
+}
+
+/****************************************
+ * round_json_array_new
+ ****************************************/
+
+RoundJSONObject *round_json_array_new(void)
+{
+  RoundJSONObject *obj;
+  
+  obj = round_json_object_new();
+  
+  if (!obj)
+    return NULL;
+  
+#if defined(ROUND_USE_JSON_PARSER_JANSSON)
+  obj->jsonObj = json_array();
+#endif
+  
+  return obj;
+}
+
+/****************************************
+ * round_json_string_new
+ ****************************************/
+
+RoundJSONObject *round_json_string_new(const char *value)
+{
+  RoundJSONObject *obj;
+  
+  obj = round_json_object_new();
+  
+  if (!obj)
+    return NULL;
+  
+#if defined(ROUND_USE_JSON_PARSER_JANSSON)
+  obj->jsonObj = json_string(value);
+#endif
+  
+  return obj;
+}
+
+/****************************************
+ * round_json_integer_new
+ ****************************************/
+
+RoundJSONObject *round_json_integer_new(int value)
+{
+  RoundJSONObject *obj;
+  
+  obj = round_json_object_new();
+  
+  if (!obj)
+    return NULL;
+  
+#if defined(ROUND_USE_JSON_PARSER_JANSSON)
+  obj->jsonObj = json_integer(value);
+#endif
+  
+  return obj;
+}
+
+/****************************************
+ * round_json_real_new
+ ****************************************/
+
+RoundJSONObject *round_json_real_new(double value)
+{
+  RoundJSONObject *obj;
+  
+  obj = round_json_object_new();
+  
+  if (!obj)
+    return NULL;
+  
+#if defined(ROUND_USE_JSON_PARSER_JANSSON)
+  obj->jsonObj = json_real(value);
+#endif
+  
+  return obj;
+}
+
+/****************************************
+ * round_json_bool_new
+ ****************************************/
+
+RoundJSONObject *round_json_bool_new(bool value)
+{
+  RoundJSONObject *obj;
+  
+  obj = round_json_object_new();
+  
+  if (!obj)
+    return NULL;
+  
+#if defined(ROUND_USE_JSON_PARSER_JANSSON)
+  obj->jsonObj = value ? json_true() : json_false();
+#endif
+  
+  return obj;
+}
+
+/****************************************
  * round_json_object_istype
  ****************************************/
 
@@ -155,7 +275,7 @@ bool round_json_object_getbool(RoundJSONObject *obj, bool *value)
   if (!round_json_object_isbool(obj))
     return false;
   
-  *value = (json_integer_value(obj->jsonObj) != 0) ? true  : false;
+  *value = json_boolean_value(obj->jsonObj) ? true  : false;
   
   return true;
 }
