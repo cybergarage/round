@@ -14,32 +14,29 @@
  * round_system_method_setmethod
  ****************************************/
 
-bool round_system_method_setregistry(RoundLocalNode *node, const char *param, RoundString *result, RoundError *err)
+bool round_system_method_setregistry(RoundLocalNode *node, RoundJSONObject *param, RoundJSONObject **result, RoundError *err)
 {
-  RoundJSON *json;
   const char *key, *val;
-  bool isUpdated;
   
-  json = round_json_new();
-  
-  if (round_json_parse(json, param, err)) {
-    round_json_delete(json);
+  if (!round_json_object_ismap(param)) {
+    round_error_setjsonrpcerrorcode(err, ROUNDC_RPC_ERROR_CODE_INVALID_PARAMS);
     return false;
   }
   
-  if (!round_json_getstringforpath(json, ROUNDC_SYSTEM_METHOD_PARAM_KEY, &key)) {
-    round_json_delete(json);
+  if (!round_json_map_getstring(param, ROUNDC_SYSTEM_METHOD_PARAM_KEY, &key)) {
+    round_error_setjsonrpcerrorcode(err, ROUNDC_RPC_ERROR_CODE_INVALID_PARAMS);
     return false;
   }
   
-  if (!round_json_getstringforpath(json, ROUNDC_SYSTEM_METHOD_PARAM_VALUE, &val)) {
-    round_json_delete(json);
+  if (!round_json_map_getstring(param, ROUNDC_SYSTEM_METHOD_PARAM_VALUE, &val)) {
+    round_error_setjsonrpcerrorcode(err, ROUNDC_RPC_ERROR_CODE_INVALID_PARAMS);
     return false;
   }
 
-  isUpdated = round_local_node_setregistry(node, key, val);
+  if (!round_local_node_setregistry(node, key, val)) {
+    round_error_setjsonrpcerrorcode(err, ROUNDC_RPC_ERROR_CODE_INTERNAL_ERROR);
+    return false;
+  }
   
-  round_json_delete(json);
-  
-  return isUpdated;
+  return true;
 }

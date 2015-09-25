@@ -14,32 +14,29 @@
  * round_system_method_removemethod
  ****************************************/
 
-bool round_system_method_removemethod(RoundLocalNode *node, const char *param, RoundString *result, RoundError *err)
+bool round_system_method_removemethod(RoundLocalNode *node, RoundJSONObject *param, RoundJSONObject **result, RoundError *err)
 {
-  RoundJSON *json;
   const char *name;
-  bool isRemoved;
   
-  json = round_json_new();
-  
-  if (round_json_parse(json, param, err)) {
-    round_json_delete(json);
+  if (!round_json_object_ismap(param)) {
+    round_error_setjsonrpcerrorcode(err, ROUNDC_RPC_ERROR_CODE_INVALID_PARAMS);
     return false;
   }
   
-  if (!round_json_getstringforpath(json, ROUNDC_SYSTEM_METHOD_PARAM_NAME, &name)) {
-    round_json_delete(json);
+  if (!round_json_map_getstring(param, ROUNDC_SYSTEM_METHOD_PARAM_NAME, &name)) {
+    round_error_setjsonrpcerrorcode(err, ROUNDC_RPC_ERROR_CODE_INVALID_PARAMS);
     return false;
   }
 
   if (round_local_node_isfinalmethod(node, name)) {
-    round_json_delete(json);
+    round_error_setjsonrpcerrorcode(err, ROUNDC_RPC_ERROR_CODE_INVALID_PARAMS);
     return false;
   }
 
-  isRemoved = round_local_node_removemethod(node, name);
+  if (!round_local_node_removemethod(node, name)) {
+    round_error_setjsonrpcerrorcode(err, ROUNDC_RPC_ERROR_CODE_INTERNAL_ERROR);
+    return false;
+  }
 
-  round_json_delete(json);
-
-  return isRemoved;
+  return true;
 }
