@@ -31,6 +31,7 @@ typedef struct {
 #if defined(ROUND_USE_JSON_PARSER_JANSSON)
   json_t *jsonObj;
 #endif
+  char *dumpedStr;
 } RoundJSONObject;
   
 typedef struct {
