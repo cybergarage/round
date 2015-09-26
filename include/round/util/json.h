@@ -84,6 +84,7 @@ bool round_json_object_istype(RoundJSONObject *obj, int type);
 #define round_json_object_isinteger(obj) round_json_object_istype(obj, ROUND_JSON_INTEGER)
 #define round_json_object_isreal(obj) round_json_object_istype(obj, ROUND_JSON_REAL)
 #define round_json_object_isbool(obj) round_json_object_istype(obj, ROUND_JSON_BOOL)
+#define round_json_object_isnull(obj) round_json_object_istype(obj, ROUND_JSON_NULL)
 
 bool round_json_object_getstring(RoundJSONObject *obj, const char **value);
 bool round_json_object_getinteger(RoundJSONObject *obj, long *value);

@@ -228,6 +228,11 @@ bool round_json_object_getstring(RoundJSONObject *obj, const char **value)
   if (!obj)
     return false;
 
+  if (round_json_object_isnull(obj)) {
+    *value = NULL;
+    return true;
+  }
+  
   if (!round_json_object_isstring(obj))
     return false;
   
