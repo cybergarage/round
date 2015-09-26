@@ -30,7 +30,7 @@ bool round_json_getstringforpath(RoundJSON *json, const char *path, const char *
  * round_json_getintegerforpath
  ****************************************/
 
-bool round_json_getintegerforpath(RoundJSON *json, const char *path, int *value)
+bool round_json_getintegerforpath(RoundJSON *json, const char *path, long *value)
 {
   RoundJSONObject *jsonObj;
   

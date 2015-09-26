@@ -53,7 +53,7 @@ bool round_json_map_getstring(RoundJSONObject *obj, const char *key, const char 
  * round_json_map_getinteger
  ****************************************/
 
-bool round_json_map_getinteger(RoundJSONObject *obj, const char *key, int *value)
+bool round_json_map_getinteger(RoundJSONObject *obj, const char *key, long *value)
 {
 #if defined(ROUND_USE_JSON_PARSER_JANSSON)
   json_t *keyJson;
@@ -130,7 +130,7 @@ bool round_json_map_setstring(RoundJSONObject *obj, const char *key, const char 
  * round_json_map_setinteger
  ****************************************/
 
-bool round_json_map_setinteger(RoundJSONObject *obj, const char *key, int value)
+bool round_json_map_setinteger(RoundJSONObject *obj, const char *key, long value)
 {
   RoundJSONObject *valObj;
   

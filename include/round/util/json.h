@@ -71,7 +71,7 @@ bool round_json_object_delete(RoundJSONObject *obj);
 RoundJSONObject *round_json_map_new(void);
 RoundJSONObject *round_json_array_new(void);
 RoundJSONObject *round_json_string_new(const char *value);
-RoundJSONObject *round_json_integer_new(int value);
+RoundJSONObject *round_json_integer_new(long value);
 RoundJSONObject *round_json_real_new(double value);
 RoundJSONObject *round_json_bool_new(bool value);
 
@@ -86,7 +86,7 @@ bool round_json_object_istype(RoundJSONObject *obj, int type);
 #define round_json_object_isbool(obj) round_json_object_istype(obj, ROUND_JSON_BOOL)
 
 bool round_json_object_getstring(RoundJSONObject *obj, const char **value);
-bool round_json_object_getinteger(RoundJSONObject *obj, int *value);
+bool round_json_object_getinteger(RoundJSONObject *obj, long *value);
 bool round_json_object_getreal(RoundJSONObject *obj, double *value);
 bool round_json_object_getbool(RoundJSONObject *obj, bool *value);
 
@@ -97,12 +97,12 @@ bool round_json_object_tostring(RoundJSONObject *obj, const char **str);
  ****************************************/
 
 bool round_json_map_getstring(RoundJSONObject *obj, const char *key, const char **value);
-bool round_json_map_getinteger(RoundJSONObject *obj, const char *key, int *value);
+bool round_json_map_getinteger(RoundJSONObject *obj, const char *key, long *value);
 bool round_json_map_getreal(RoundJSONObject *obj, const char *key, double *value);
 bool round_json_map_getbool(RoundJSONObject *obj, const char *key, bool *value);
   
 bool round_json_map_setstring(RoundJSONObject *obj, const char *key, const char *value);
-bool round_json_map_setinteger(RoundJSONObject *obj, const char *key, int value);
+bool round_json_map_setinteger(RoundJSONObject *obj, const char *key, long value);
 bool round_json_map_setreal(RoundJSONObject *obj, const char *key, double value);
 bool round_json_map_setbool(RoundJSONObject *obj, const char *key, bool value);
 bool round_json_map_setobject(RoundJSONObject *obj, const char *key, RoundJSONObject *value);
@@ -114,12 +114,12 @@ bool round_json_map_setobject(RoundJSONObject *obj, const char *key, RoundJSONOb
 RoundJSONObject *round_json_getobjectforpath(RoundJSON *json, const char *path);
   
 bool round_json_getstringforpath(RoundJSON *json, const char *path, const char **value);
-bool round_json_getintegerforpath(RoundJSON *json, const char *path, int *value);
+bool round_json_getintegerforpath(RoundJSON *json, const char *path, long *value);
 bool round_json_getrealforpath(RoundJSON *json, const char *path, double *value);
 bool round_json_getboolforpath(RoundJSON *json, const char *path, bool *value);
 
 bool round_json_setstringforpath(RoundJSON *json, const char *path, const char *value);
-bool round_json_setintegerforpath(RoundJSON *json, const char *path, int value);
+bool round_json_setintegerforpath(RoundJSON *json, const char *path, long value);
 bool round_json_setrealforpath(RoundJSON *json, const char *path, double value);
 bool round_json_setboolforpath(RoundJSON *json, const char *path, bool value);
 

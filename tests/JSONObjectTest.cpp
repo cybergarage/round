@@ -48,8 +48,8 @@ BOOST_AUTO_TEST_CASE(JsonStringObjNew)
 
 BOOST_AUTO_TEST_CASE(JsonIntegerObjNew)
 {
-  int val = 123456;
-  int objVal;
+  long val = 123456;
+  long objVal;
   
   RoundJSONObject *obj = round_json_integer_new(val);
   BOOST_CHECK(obj);
