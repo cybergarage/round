@@ -39,10 +39,19 @@ bool round_json_map_getstring(RoundJSONObject *obj, const char *key, const char 
   json_t *keyJson;
   
   keyJson = round_json_map_getobject(obj, key);
-  if (!keyJson || (json_typeof(keyJson) != JSON_STRING))
+  if (!keyJson)
     return false;
   
+  if (json_typeof(keyJson) == JSON_NULL) {
+    *value = NULL;
+    return true;
+  }
+  
+  if (json_typeof(keyJson) != JSON_STRING)
+    return false;
+
   *value = json_string_value(keyJson);
+
   return true;
 #else
   return false;

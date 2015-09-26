@@ -142,7 +142,7 @@ RoundJSONObject *round_json_string_new(const char *value)
     return NULL;
   
 #if defined(ROUND_USE_JSON_PARSER_JANSSON)
-  obj->jsonObj = json_string(value);
+  obj->jsonObj = value ? json_string(value) : json_null();
 #endif
   
   return obj;
