@@ -248,7 +248,7 @@ bool round_json_object_getinteger(RoundJSONObject *obj, long *value)
   if (!round_json_object_isinteger(obj))
     return false;
   
-  *value = (int)json_integer_value(obj->jsonObj);
+  *value = json_integer_value(obj->jsonObj);
   
   return true;
 }

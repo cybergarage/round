@@ -71,7 +71,7 @@ bool round_json_map_getinteger(RoundJSONObject *obj, const char *key, long *valu
   if (!keyJson || (json_typeof(keyJson) != JSON_INTEGER))
     return false;
   
-  *value = (int)json_integer_value(keyJson);
+  *value = json_integer_value(keyJson);
   return true;
 #else
   return false;
