@@ -34,6 +34,12 @@ extern "C" {
 #define ROUNDC_NODE_STATUS_ACTIVE 3
 #define ROUNDC_NODE_STATUS_TERMINATING 4
 #define ROUNDC_NODE_STATUS_PROMICE 5
+#define ROUNDC_JSON_RPC_VERSION "jsonrpc"
+#define ROUNDC_JSON_RPC_METHOD "method"
+#define ROUNDC_JSON_RPC_PARAMS "params"
+#define ROUNDC_JSON_RPC_ID "id"
+#define ROUNDC_JSON_RPC_DEST "dest"
+#define ROUNDC_JSON_RPC_TS "ts"
 #define ROUNDC_SYSTEM_METHOD_POST_JOB "post_job"
 #define ROUNDC_SYSTEM_METHOD_SET_METHOD "set_method"
 #define ROUNDC_SYSTEM_METHOD_SET_ALIAS "set_alias"
