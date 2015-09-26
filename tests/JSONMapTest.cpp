@@ -34,8 +34,8 @@ BOOST_AUTO_TEST_CASE(JsonMapSetString)
 BOOST_AUTO_TEST_CASE(JsonMapSetInt)
 {
   const char *key = "testKey";
-  int val = 123456;
-  int objVal;
+  long val = 123456;
+  long objVal;
   
   RoundJSONObject *obj = round_json_map_new();
   BOOST_CHECK(obj);

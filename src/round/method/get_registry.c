@@ -16,7 +16,6 @@
 
 bool round_system_method_getregistry(RoundLocalNode *node, RoundJSONObject *param, RoundJSONObject **result, RoundError *err)
 {
-  RoundJSON *json;
   const char *key;
   RoundRegistry *reg;
   
@@ -32,7 +31,7 @@ bool round_system_method_getregistry(RoundLocalNode *node, RoundJSONObject *para
   
   reg = round_local_node_getregistry(node, key);
   if (!reg) {
-    round_json_delete(json);
+    round_error_setjsonrpcerrorcode(err, ROUNDC_RPC_ERROR_CODE_INVALID_PARAMS);
     return false;
   }
   

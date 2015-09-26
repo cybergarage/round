@@ -152,7 +152,7 @@ RoundJSONObject *round_json_string_new(const char *value)
  * round_json_integer_new
  ****************************************/
 
-RoundJSONObject *round_json_integer_new(int value)
+RoundJSONObject *round_json_integer_new(long value)
 {
   RoundJSONObject *obj;
   
@@ -240,7 +240,7 @@ bool round_json_object_getstring(RoundJSONObject *obj, const char **value)
  * round_json_object_getinteger
  ****************************************/
 
-bool round_json_object_getinteger(RoundJSONObject *obj, int *value)
+bool round_json_object_getinteger(RoundJSONObject *obj, long *value)
 {
   if (!obj)
     return false;

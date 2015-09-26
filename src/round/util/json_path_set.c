@@ -34,7 +34,7 @@ bool round_json_setstringforpath(RoundJSON *json, const char *path, const char *
  * round_json_setintegerforpath
  ****************************************/
 
-bool round_json_setintegerforpath(RoundJSON *json, const char *path, int value)
+bool round_json_setintegerforpath(RoundJSON *json, const char *path, long value)
 {
   RoundJSONObject *obj;
   

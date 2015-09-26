@@ -28,7 +28,7 @@ BOOST_AUTO_TEST_CASE(JSONParseIntArray)
 
   char path[8];
   for (int n=0; n<3; n++) {
-    int value;
+    long value;
     sprintf(path, "%d", n);
     BOOST_CHECK(round_json_getintegerforpath(json, path, &value));
     BOOST_CHECK_EQUAL(value, n);
@@ -87,7 +87,7 @@ BOOST_AUTO_TEST_CASE(JSONParseIntDict)
   
   BOOST_CHECK(round_json_parse(json, "{\"a\": 1, \"b\": 2, \"c\": 3}", NULL));
   
-  int value;
+  long value;
   
   BOOST_CHECK(round_json_getintegerforpath(json, "a", &value));
   BOOST_CHECK_EQUAL(1, value);
@@ -110,7 +110,7 @@ BOOST_AUTO_TEST_CASE(JSONParseStrDict)
 
   union MixValue {
     const char *s;
-    int i;
+    long i;
   };
   union MixValue value;
   
@@ -136,7 +136,7 @@ BOOST_AUTO_TEST_CASE(JSONParseDictInArray)
   
   union MixValue {
     const char *s;
-    int i;
+    long i;
   };
   union MixValue value;
   
