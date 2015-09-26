@@ -31,6 +31,14 @@ node_status_active,3
 node_status_terminating,4
 node_status_promice,5
 
+# JSON RPC members
+json_rpc_version,"jsonrpc"
+json_rpc_method,"method"
+json_rpc_params,"params"
+json_rpc_id,"id"
+json_rpc_dest,"dest"
+json_rpc_ts,"ts"
+
 # System Methods
 system_method_post_job,"post_job"
 system_method_set_method,"set_method"
