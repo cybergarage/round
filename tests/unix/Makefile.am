@@ -22,7 +22,9 @@ roundtest_SOURCES = \
 	..//ClusterTest.cpp \
 	..//ErrorTest.cpp \
 	..//FinderTest.cpp \
-	..//JSONTest.cpp \
+	..//JSONMapTest.cpp \
+	..//JSONObjectTest.cpp \
+	..//JSONParseTest.cpp \
 	..//LocalNodeTest.cpp \
 	..//MapTest.cpp \
 	..//MessageTest.cpp \
