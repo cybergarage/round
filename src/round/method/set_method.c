@@ -14,7 +14,7 @@
  * round_system_method_setmethod
  ****************************************/
 
-bool round_system_method_setmethod(RoundLocalNode *node, RoundJSONObject *param, RoundJSONObject **result, RoundError *err)
+bool round_system_method_setmethod(RoundLocalNode *node, RoundJSONObject *params, RoundJSONObject **result, RoundError *err)
 {
   const char *name, *lang;
   byte *code;
@@ -22,22 +22,22 @@ bool round_system_method_setmethod(RoundLocalNode *node, RoundJSONObject *param,
   RoundMethod *newMethod;
   bool isAdded;
 
-  if (!round_json_object_ismap(param)) {
+  if (!round_json_object_ismap(params)) {
     round_error_setjsonrpcerrorcode(err, ROUNDC_RPC_ERROR_CODE_INVALID_PARAMS);
     return false;
   }
   
-  if (!round_json_map_getstring(param, ROUNDC_SYSTEM_METHOD_PARAM_NAME, &name)) {
+  if (!round_json_map_getstring(params, ROUNDC_SYSTEM_METHOD_PARAM_NAME, &name)) {
     round_error_setjsonrpcerrorcode(err, ROUNDC_RPC_ERROR_CODE_INVALID_PARAMS);
     return false;
   }
   
-  if (!round_json_map_getstring(param, ROUNDC_SYSTEM_METHOD_PARAM_LANGUAGE, &lang)) {
+  if (!round_json_map_getstring(params, ROUNDC_SYSTEM_METHOD_PARAM_LANGUAGE, &lang)) {
     round_error_setjsonrpcerrorcode(err, ROUNDC_RPC_ERROR_CODE_INVALID_PARAMS);
     return false;
   }
   
-  if (!round_json_map_getstring(param, ROUNDC_SYSTEM_METHOD_PARAM_CODE, (const char **)&code)) {
+  if (!round_json_map_getstring(params, ROUNDC_SYSTEM_METHOD_PARAM_CODE, (const char **)&code)) {
     round_error_setjsonrpcerrorcode(err, ROUNDC_RPC_ERROR_CODE_INVALID_PARAMS);
     return false;
   }

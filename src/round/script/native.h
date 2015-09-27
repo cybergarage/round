@@ -32,7 +32,7 @@ RoundNativeEngine *round_native_engine_new();
 bool round_native_engine_destory(RoundNativeEngine *engine);
 bool round_native_engine_delete(RoundNativeEngine *engine);
   
-bool round_native_engine_run(RoundNativeEngine *engine, RoundMethod *method, RoundJSONObject *param, RoundJSONObject **result, RoundError *err);
+bool round_native_engine_run(RoundNativeEngine *engine, RoundMethod *method, RoundJSONObject *params, RoundJSONObject **result, RoundError *err);
 
 #ifdef  __cplusplus
 }

@@ -134,7 +134,7 @@ bool round_method_manager_removeengine(RoundMethodManager *mgr, const char *name
  * round_method_manager_execmethod
  ****************************************/
 
-bool round_method_manager_execmethod(RoundMethodManager *mgr, const char *name, const char *param, RoundString *result, RoundError *err)
+bool round_method_manager_execmethod(RoundMethodManager *mgr, const char *name, RoundJSONObject *params, RoundJSONObject **result, RoundError *err)
 {
   RoundMethod *method;
   RoundScriptEngine *engine;
@@ -161,5 +161,5 @@ bool round_method_manager_execmethod(RoundMethodManager *mgr, const char *name, 
     return false;
   }
   
-  return execFunc(engine, method, param, result, err);
+  return execFunc(engine, method, params, result, err);
 }

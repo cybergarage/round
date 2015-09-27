@@ -23,6 +23,7 @@
 #include <round/util/strings.h>
 #include <round/util/map.h>
 #include <round/util/option.h>
+#include <round/util/json_internal.h>
 
 #ifdef  __cplusplus
 extern "C" {
@@ -32,7 +33,7 @@ extern "C" {
  * Data Type
  ****************************************/
 
-typedef bool (*ROUND_SCRIPT_ENGINE_EXECFUNC)(void *engine, void *method, const char *param, RoundString *result, RoundError *err);
+typedef bool (*ROUND_SCRIPT_ENGINE_EXECFUNC)(void *engine, void *method, RoundJSONObject *params, RoundJSONObject **result, RoundError *err);
 
 #define ROUND_SCRIPT_ENGINE_STRUCT_MEMBERS \
   RoundMutex *mutex; \

@@ -15,7 +15,6 @@
  * round_json_setstringforpath
  ****************************************/
 
-
 bool round_json_setstringforpath(RoundJSON *json, const char *path, const char *value)
 {
   RoundJSONObject *obj;
