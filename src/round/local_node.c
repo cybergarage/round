@@ -250,18 +250,6 @@ bool round_local_node_addengine(RoundLocalNode *node, RoundScriptEngine *engine)
 }
 
 /****************************************
- * round_local_node_execmethod
- ****************************************/
-
-bool round_local_node_execmethod(RoundLocalNode *node, const char *name, const char *param, RoundString *result, RoundError *err)
-{
-  if (!node)
-    return false;
-  
-  return round_method_manager_execmethod(node->methodMgr, name, param, result, err);
-}
-
-/****************************************
  * round_local_node_setregistry
  ****************************************/
 
@@ -313,4 +301,164 @@ bool round_local_node_removeregistry(RoundLocalNode *node, const char *key)
     return false;
   
   return round_registry_manager_remove(node->regMgr, key);
+}
+
+/****************************************
+ * round_local_node_postmessage
+ ****************************************/
+
+bool round_local_node_postmessage(RoundNode *node, RoundJSONObject *reqObj, RoundJSONObject *resObj, RoundError *err)
+{
+  return true;
+}
+
+/****************************************
+ * round_local_node_execmessage
+ ****************************************/
+
+bool round_local_node_execmessage(RoundNode *node, RoundJSONObject *reqObj, RoundJSONObject *resObj, RoundError *err)
+{
+  if (!node || !reqObj || !resObj || !err) {
+    round_error_setjsonrpcerrorcode(err, ROUNDC_RPC_ERROR_CODE_INTERNAL_ERROR);
+    return false;
+  }
+/*
+  // Check dest
+  
+  if (!nodeReq->isDestValid()) {
+    setError(RPC::JSON::ErrorCodeInvalidParams, error);
+    return false;
+  }
+  
+  bool isDestHash = nodeReq->isDestHash();
+  if (isDestHash) {
+    std::string nodeHash;
+    if (nodeReq->getDest(&nodeHash)) {
+      NodeGraph *nodeGraph = getNodeGraph();
+      if (!nodeGraph->isHandleNode(this, nodeHash)) {
+        setError(RPC::JSON::ErrorCodeMovedPermanently, error);
+        return false;
+      }
+    }
+  }
+  */
+  // Update local clock
+
+  /*
+  clock_t remoteTs;
+  if (nodeRes->getTimestamp(&remoteTs)) {
+    setRemoteClock(remoteTs);
+  }
+  else {
+    incrementLocalClock();
+  }
+
+   // Exec Method (One node)
+  
+  bool isDestOne = nodeReq->isDestOne();
+  if (isDestOne) {
+    return execMethod(nodeReq, nodeRes, error);
+  }
+  
+  // Exec Method (Multi node)
+  
+  JSONArray *batchArray = new JSONArray();
+  nodeRes->setResult(batchArray);
+  
+  Error thisNodeError;
+  NodeResponse *thisNodeRes = new NodeResponse();
+  execMethod(nodeReq, thisNodeRes, &thisNodeError);
+  thisNodeRes->setDest(this);
+  batchArray->add(thisNodeRes);
+  
+  NodeList otherNodes;
+  if (nodeReq->isDestAll()) {
+    getAllOtherNodes(&otherNodes);
+  }
+  else if (nodeReq->hasQuorum()) {
+    size_t quorum;
+    if (nodeReq->getQuorum(&quorum)) {
+      getQuorumNodes(&otherNodes, quorum);
+    }
+  }
+  for (NodeList::iterator node = otherNodes.begin(); node != otherNodes.end(); node++) {
+    Error otherNodeError;
+    NodeResponse *otherNodeRes = new NodeResponse();
+    (*node)->postMessage(nodeReq, otherNodeRes, &otherNodeError);
+    otherNodeRes->setDest((*node));
+    batchArray->add(otherNodeRes);
+  }
+ */
+  
+  return true;
+}
+
+/****************************************
+ * round_local_node_execmethod
+ ****************************************/
+
+bool round_local_node_execmethod(RoundLocalNode *node, RoundJSONObject *reqMap, RoundJSONObject *resMap, RoundError *err)
+{
+  const char *msgId, *method, *params;
+  bool isSuccess;
+  RoundJSONObject *jsonParams, *jsonResult;
+
+  if (!node) {
+    round_error_setjsonrpcerrorcode(err, ROUNDC_RPC_ERROR_CODE_INTERNAL_ERROR);
+    return false;
+  }
+  
+  // Set id and ts parameter
+  
+  if (round_json_rpc_getid(reqMap, &msgId)) {
+    round_json_rpc_setid(resMap, msgId);
+  }
+  round_json_rpc_settimestamp(resMap, round_node_getclockvalue(node));
+
+  // Exec Message
+  
+  if (round_json_rpc_getmethod(reqMap, &method) && (0 < round_strlen(method))) {
+    round_error_setjsonrpcerrorcode(err, ROUNDC_RPC_ERROR_CODE_METHOD_NOT_FOUND);
+    return false;
+  }
+
+  round_json_rpc_getparams(reqMap, &params);
+  
+  jsonResult = NULL;
+  isSuccess = round_method_manager_execmethod(node->methodMgr, method, jsonParams, &jsonResult, err);
+
+  if (jsonResult) {
+    round_json_object_delete(jsonResult);
+  }
+
+/*
+  bool isMethodExecuted = false;
+  bool isMethodSuccess = false;
+  
+  if (isAliasMethod(name)) {
+    isMethodExecuted = true;
+    isMethodSuccess = execAliasMethod(nodeReq, nodeRes, error);
+  }
+  
+  if (!isMethodExecuted) {
+    setError(RPC::JSON::ErrorCodeMethodNotFound, error);
+    return false;
+  }
+  
+  if (!isMethodSuccess)
+    return false;
+  
+  if (!hasRoute(name)) {
+    return true;
+  }
+  
+  NodeResponse routeNodeRes;
+  if (!execRoute(name, nodeRes, &routeNodeRes, error)) {
+    return false;
+  }
+  
+  nodeRes->set(&routeNodeRes);
+*/
+
+  return isSuccess;
 }

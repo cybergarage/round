@@ -76,7 +76,7 @@ bool round_native_engine_delete(RoundNativeEngine *engine) {
  * round_native_engine_run
  ****************************************/
 
-bool round_native_engine_run(RoundNativeEngine *engine, RoundMethod *method, RoundJSONObject *param, RoundJSONObject **result, RoundError *err)
+bool round_native_engine_run(RoundNativeEngine *engine, RoundMethod *method, RoundJSONObject *params, RoundJSONObject **result, RoundError *err)
 {
   RoundLocalNode *node;
   ROUND_SCRIPT_NATIVE_ENGINE_FUNC nativeFunc;
@@ -90,5 +90,5 @@ bool round_native_engine_run(RoundNativeEngine *engine, RoundMethod *method, Rou
   if (!nativeFunc)
     return false;
   
-  return nativeFunc(node, param, result, err);
+  return nativeFunc(node, params, result, err);
 }

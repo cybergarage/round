@@ -195,7 +195,7 @@ bool round_node_getcluster(RoundNode *node, const char **cluster, RoundError *er
  * round_node_postmessage
  ****************************************/
 
-bool round_node_postmessage(RoundJSONObject *reqObj, RoundJSONObject *resObj, RoundError *err)
+bool round_node_postmessage(RoundNode *node, RoundJSONObject *reqObj, RoundJSONObject *resObj, RoundError *err)
 {
   return false;
 }

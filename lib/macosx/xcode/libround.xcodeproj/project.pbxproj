@@ -43,6 +43,8 @@
 		216D19CC1BB4B3570007B331 /* clock.h in Headers */ = {isa = PBXBuildFile; fileRef = 216D19CA1BB4B3570007B331 /* clock.h */; settings = {ASSET_TAGS = (); }; };
 		216D19CD1BB4B3570007B331 /* clock.c in Sources */ = {isa = PBXBuildFile; fileRef = 216D19CB1BB4B3570007B331 /* clock.c */; settings = {ASSET_TAGS = (); }; };
 		216D19D51BB5A4480007B331 /* json_map.c in Sources */ = {isa = PBXBuildFile; fileRef = 216D19D41BB5A4480007B331 /* json_map.c */; settings = {ASSET_TAGS = (); }; };
+		21785DDD1BB762910098DD1A /* json_rpc.h in Headers */ = {isa = PBXBuildFile; fileRef = 21785DDC1BB762910098DD1A /* json_rpc.h */; settings = {ASSET_TAGS = (); }; };
+		21785DDF1BB79E0A0098DD1A /* json_rpc.h in Headers */ = {isa = PBXBuildFile; fileRef = 21785DDE1BB79E0A0098DD1A /* json_rpc.h */; settings = {ASSET_TAGS = (); }; };
 		2178B3621B98986200B9D86B /* const.h in Headers */ = {isa = PBXBuildFile; fileRef = 2178B3611B98986200B9D86B /* const.h */; };
 		2178B36B1B98BEAE00B9D86B /* list.c in Sources */ = {isa = PBXBuildFile; fileRef = 2178B3641B98BEAE00B9D86B /* list.c */; };
 		2178B36C1B98BEAE00B9D86B /* list.h in Headers */ = {isa = PBXBuildFile; fileRef = 2178B3651B98BEAE00B9D86B /* list.h */; };
@@ -139,6 +141,8 @@
 		216D19CA1BB4B3570007B331 /* clock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = clock.h; path = ../../../src/round/clock.h; sourceTree = "<group>"; };
 		216D19CB1BB4B3570007B331 /* clock.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = clock.c; path = ../../../src/round/clock.c; sourceTree = "<group>"; };
 		216D19D41BB5A4480007B331 /* json_map.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = json_map.c; path = ../../../src/round/util/json_map.c; sourceTree = "<group>"; };
+		21785DDC1BB762910098DD1A /* json_rpc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = json_rpc.h; path = ../../../src/round/util/json_rpc.h; sourceTree = "<group>"; };
+		21785DDE1BB79E0A0098DD1A /* json_rpc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = json_rpc.h; path = ../../../include/round/util/json_rpc.h; sourceTree = "<group>"; };
 		2178B3611B98986200B9D86B /* const.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = const.h; path = ../../../include/round/const.h; sourceTree = "<group>"; };
 		2178B3641B98BEAE00B9D86B /* list.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = list.c; path = ../../../src/round/util/list.c; sourceTree = "<group>"; };
 		2178B3651B98BEAE00B9D86B /* list.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = list.h; path = ../../../src/round/util/list.h; sourceTree = "<group>"; };
@@ -212,6 +216,7 @@
 		210E7BA11BA145E200343445 /* util */ = {
 			isa = PBXGroup;
 			children = (
+				21785DDE1BB79E0A0098DD1A /* json_rpc.h */,
 				210E7BA21BA145F600343445 /* json.h */,
 			);
 			name = util;
@@ -336,6 +341,7 @@
 				21C482411B9F5A100087380C /* json_object.c */,
 				21346A811BB50AE300B5F3A6 /* json_path_get.c */,
 				213931771BB54B9900C93773 /* json_path_set.c */,
+				21785DDC1BB762910098DD1A /* json_rpc.h */,
 				21C482421B9F5A100087380C /* json.c */,
 				2178B3641B98BEAE00B9D86B /* list.c */,
 				2178B3651B98BEAE00B9D86B /* list.h */,
@@ -411,12 +417,14 @@
 				21F6D9B51B99857700714056 /* round.h in Headers */,
 				2178B36C1B98BEAE00B9D86B /* list.h in Headers */,
 				21A776CB1BA0939F009BDB36 /* timer.h in Headers */,
+				21785DDF1BB79E0A0098DD1A /* json_rpc.h in Headers */,
 				21B763DF1BA05ED1003C29F3 /* queue.h in Headers */,
 				2178B3711B98BEAE00B9D86B /* thread.h in Headers */,
 				21EA96D71B990C3B00E00841 /* node_internal.h in Headers */,
 				211E45D71B98192600CF0088 /* finder_internal.h in Headers */,
 				21A776C71BA08A7C009BDB36 /* semaphore.h in Headers */,
 				215A078B1BB2FA8000E9702F /* server.h in Headers */,
+				21785DDD1BB762910098DD1A /* json_rpc.h in Headers */,
 				219A8E2D1B9AF607004ED802 /* script.h in Headers */,
 				21EA96CD1B990AF800E00841 /* cluster_internal.h in Headers */,
 				210E7BA31BA145F600343445 /* json.h in Headers */,

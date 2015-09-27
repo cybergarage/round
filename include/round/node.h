@@ -14,12 +14,12 @@
 #include <round/typedef.h>
 #include <round/error.h>
 #include <round/util/json.h>
+#include <round/util/json_rpc.h>
 
 #ifdef  __cplusplus
 extern "C" {
 #endif
 
-  
 /****************************************
  * Constant
  ****************************************/
@@ -57,7 +57,7 @@ bool round_node_getaddress(RoundNode *node, const char **addr, RoundError *err);
 bool round_node_getport(RoundNode *node, int *port, RoundError *err);
 bool round_node_getcluster(RoundNode *node, const char **cluster, RoundError *err);
   
-bool round_node_postmessage(RoundJSONObject *reqObj, RoundJSONObject *resObj, RoundError *err);
+bool round_node_postmessage(RoundNode *node, RoundJSONObject *reqObj, RoundJSONObject *resObj, RoundError *err);
   
 #ifdef  __cplusplus
 } /* extern C */
