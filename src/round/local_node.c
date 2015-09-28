@@ -401,7 +401,7 @@ bool round_local_node_execmethod(RoundLocalNode *node, RoundJSONObject *reqMap, 
 {
   const char *msgId, *method, *params;
   bool isSuccess;
-  RoundJSONObject *jsonParams, *jsonResult;
+  RoundJSONObject *jsonResult;
 
   if (!node) {
     round_error_setjsonrpcerrorcode(err, ROUNDC_RPC_ERROR_CODE_INTERNAL_ERROR);
@@ -423,9 +423,8 @@ bool round_local_node_execmethod(RoundLocalNode *node, RoundJSONObject *reqMap, 
   }
 
   round_json_rpc_getparams(reqMap, &params);
-  
   jsonResult = NULL;
-  isSuccess = round_method_manager_execmethod(node->methodMgr, method, jsonParams, &jsonResult, err);
+  isSuccess = round_method_manager_execmethod(node->methodMgr, method, params, &jsonResult, err);
 
   if (isSuccess) {
     if (jsonResult) {

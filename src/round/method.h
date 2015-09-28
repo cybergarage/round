@@ -121,7 +121,7 @@ RoundScriptEngine *round_method_manager_getengine(RoundMethodManager *mgr, const
 bool round_method_manager_removeengine(RoundMethodManager *mgr, const char *name);
 #define round_method_manager_getenginsize(mgr) round_map_size(mgr->engineMap)
   
-bool round_method_manager_execmethod(RoundMethodManager *mgr, const char *name, RoundJSONObject *params, RoundJSONObject **result, RoundError *err);
+bool round_method_manager_execmethod(RoundMethodManager *mgr, const char *name, const char *params, RoundJSONObject **result, RoundError *err);
 
 #ifdef  __cplusplus
 }
