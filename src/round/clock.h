@@ -51,6 +51,7 @@ bool round_clock_delete(RoundClock *clk);
 bool round_clock_clear(RoundClock *clk);
 
 bool round_clock_setvalue(RoundClock *clk, clock_t value);
+bool round_clock_setremotevalue(RoundClock *clk, clock_t value);
 clock_t round_clock_getvalue(RoundClock *clk);
 clock_t round_clock_increment(RoundClock *clk);
 RoundClockOrder round_clock_compare(RoundClock *clk1, RoundClock *clk2);

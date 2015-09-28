@@ -47,6 +47,29 @@ BOOST_AUTO_TEST_CASE(ClockIncrement)
   BOOST_CHECK(round_clock_delete(clk));
 }
 
+BOOST_AUTO_TEST_CASE(ClockSetRemote)
+{
+  RoundClock *clk = round_clock_new();
+  BOOST_CHECK(clk);
+  
+  clock_t startClk, currClk, remoteClk;
+
+  startClk = time(NULL);
+  round_clock_setvalue(clk, startClk);
+  currClk = round_clock_getvalue(clk);
+  BOOST_CHECK_EQUAL(currClk, startClk);
+
+  remoteClk = startClk + (ROUNDC_CLOCK_INCREMENT_VALUE - 10);
+  round_clock_setremotevalue(clk, remoteClk);
+  currClk = round_clock_getvalue(clk);
+  BOOST_CHECK_EQUAL(currClk, (startClk + ROUNDC_CLOCK_INCREMENT_VALUE));
+  
+  remoteClk = startClk + (ROUNDC_CLOCK_INCREMENT_VALUE * 10);
+  round_clock_setremotevalue(clk, remoteClk);
+  currClk = round_clock_getvalue(clk);
+  BOOST_CHECK_EQUAL(currClk, (remoteClk + ROUNDC_CLOCK_INCREMENT_VALUE));
+}
+
 BOOST_AUTO_TEST_CASE(ClockCompare) {
   time_t timeValue = time(NULL);
   
