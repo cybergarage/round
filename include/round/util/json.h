@@ -109,6 +109,14 @@ bool round_json_map_setbool(RoundJSONObject *obj, const char *key, bool value);
 bool round_json_map_setobject(RoundJSONObject *obj, const char *key, RoundJSONObject *value);
 
 /****************************************
+ * Functions (JSON Map)
+ ****************************************/
+  
+size_t round_json_array_size(RoundJSONObject *obj);
+RoundJSONObject *round_json_array_get(RoundJSONObject *obj, size_t idx);
+bool round_json_array_append(RoundJSONObject *obj, RoundJSONObject *valObj);
+
+/****************************************
  * Functions (JSON Path)
  ****************************************/
 

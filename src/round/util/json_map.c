@@ -196,7 +196,7 @@ bool round_json_map_setobjectpointer(RoundJSONObject *obj, const char *key, Roun
     return false;
 
 #if defined(ROUND_USE_JSON_PARSER_JANSSON)
-  if (!obj->jsonObj || !valObj->jsonObj)
+  if (!valObj->jsonObj)
     return false;
   
   return (json_object_set(obj->jsonObj, key, valObj->jsonObj) == 0) ? true : false;
@@ -215,7 +215,7 @@ bool round_json_map_setobject(RoundJSONObject *obj, const char *key, RoundJSONOb
     return false;
   
 #if defined(ROUND_USE_JSON_PARSER_JANSSON)
-  if (!obj->jsonObj || !valObj->jsonObj)
+  if (!valObj->jsonObj)
     return false;
   
   return (json_object_set_new(obj->jsonObj, key, valObj->jsonObj) == 0) ? true : false;
