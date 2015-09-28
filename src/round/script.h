@@ -33,7 +33,7 @@ extern "C" {
  * Data Type
  ****************************************/
 
-typedef bool (*ROUND_SCRIPT_ENGINE_EXECFUNC)(void *engine, void *method, RoundJSONObject *params, RoundJSONObject **result, RoundError *err);
+typedef bool (*ROUND_SCRIPT_ENGINE_EXECFUNC)(void *engine, void *method, const char *params, RoundJSONObject **result, RoundError *err);
 
 #define ROUND_SCRIPT_ENGINE_STRUCT_MEMBERS \
   RoundMutex *mutex; \

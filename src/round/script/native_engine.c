@@ -76,19 +76,48 @@ bool round_native_engine_delete(RoundNativeEngine *engine) {
  * round_native_engine_run
  ****************************************/
 
-bool round_native_engine_run(RoundNativeEngine *engine, RoundMethod *method, RoundJSONObject *params, RoundJSONObject **result, RoundError *err)
+bool round_native_engine_run(RoundNativeEngine *engine, RoundMethod *method, const char *params, RoundJSONObject **result, RoundError *err)
 {
   RoundLocalNode *node;
   ROUND_SCRIPT_NATIVE_ENGINE_FUNC nativeFunc;
-
+  RoundJSON *json;
+  RoundJSONObject *jsonParams;
+  bool isExecuted;
+  
   node = round_script_engine_getlocalnode(engine);
-  if (!node)
+  if (!node) {
+    round_error_setjsonrpcerrorcode(err, ROUNDC_RPC_ERROR_CODE_INTERNAL_ERROR);
     return false;
+  }
   
   nativeFunc = (ROUND_SCRIPT_NATIVE_ENGINE_FUNC)round_method_getuserdata(method);
-  
-  if (!nativeFunc)
+  if (!nativeFunc) {
+    round_error_setjsonrpcerrorcode(err, ROUNDC_RPC_ERROR_CODE_METHOD_NOT_FOUND);
     return false;
+  }
   
-  return nativeFunc(node, params, result, err);
+  json = round_json_new();
+  if (!json) {
+    round_error_setjsonrpcerrorcode(err, ROUNDC_RPC_ERROR_CODE_INTERNAL_ERROR);
+    return false;
+  }
+  
+  if (!round_json_parse(json, params, err)) {
+    round_error_setjsonrpcerrorcode(err, ROUNDC_RPC_ERROR_CODE_INVALID_PARAMS);
+    round_json_delete(json);
+    return false;
+  }
+  
+  jsonParams =round_json_getrootobject(json);
+  if (!jsonParams) {
+    round_error_setjsonrpcerrorcode(err, ROUNDC_RPC_ERROR_CODE_INVALID_PARAMS);
+    round_json_delete(json);
+    return false;
+  }
+  
+  isExecuted = nativeFunc(node, jsonParams, result, err);
+
+  round_json_delete(json);
+  
+  return isExecuted;
 }
