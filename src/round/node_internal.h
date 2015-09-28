@@ -76,6 +76,9 @@ bool round_node_setaddress(RoundNode *node, const char *addr);
 bool round_node_setport(RoundNode *node, int port);
 bool round_node_setcluster(RoundNode *node, const char *cluster);
 
+#define round_node_setclockvalue(node, value) round_clock_setvalue(node->clock, value)
+#define round_node_setremoteclockvalue(node, value) round_clock_setremotevalue(node->clock, value)
+#define round_node_incrementclock(node) round_clock_increment(node->clock)
 #define round_node_getclockvalue(node) round_clock_getvalue(node->clock)
   
 /****************************************
