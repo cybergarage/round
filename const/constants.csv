@@ -38,6 +38,10 @@ json_rpc_params,"params"
 json_rpc_id,"id"
 json_rpc_dest,"dest"
 json_rpc_ts,"ts"
+json_rpc_result,"result"
+json_rpc_error,"error"
+json_rpc_code,"code"
+json_rpc_message,"message"
 
 # System Methods
 system_method_post_job,"post_job"
