@@ -11,6 +11,25 @@
 #include <round/util/json_internal.h>
 
 /****************************************
+ * round_json_object_init
+ ****************************************/
+
+bool round_json_object_init(RoundJSONObject *obj)
+{
+  if (!obj)
+    return false;
+  
+#if defined(ROUND_USE_JSON_PARSER_JANSSON)
+  obj->jsonObj = NULL;
+#endif
+  
+  obj->childObj = (RoundJSONObject *)calloc(1, sizeof(RoundJSONObject));
+  obj->dumpedStr = NULL;
+  
+  return true;
+}
+
+/****************************************
  * round_json_object_new
  ****************************************/
 
@@ -23,11 +42,10 @@ RoundJSONObject *round_json_object_new(void)
   if (!obj)
     return NULL;
 
-#if defined(ROUND_USE_JSON_PARSER_JANSSON)
-  obj->jsonObj = NULL;
-#endif
-  
-  obj->dumpedStr = NULL;
+  if (!round_json_object_init(obj)) {
+    round_json_object_delete(obj);
+    return NULL;
+  }
   
   return obj;
 }
@@ -48,6 +66,11 @@ bool round_json_object_delete(RoundJSONObject *obj)
   }
 #endif
 
+  if (obj->childObj) {
+    free(obj->childObj);
+    obj->childObj = NULL;
+  }
+  
   if (obj->dumpedStr) {
     free(obj->dumpedStr);
     obj->dumpedStr = NULL;

@@ -27,10 +27,11 @@ extern "C" {
  * Data Type
  ****************************************/
 
-typedef struct {
+typedef struct _RoundJSONObject {
 #if defined(ROUND_USE_JSON_PARSER_JANSSON)
   json_t *jsonObj;
 #endif
+  struct _RoundJSONObject *childObj;
   char *dumpedStr;
 } RoundJSONObject;
   
