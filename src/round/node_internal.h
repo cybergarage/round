@@ -20,6 +20,7 @@
 #include <round/script.h>
 #include <round/clock.h>
 #include <round/registry.h>
+#include <round/message.h>
 
 #include <round/method.h>
 
@@ -52,6 +53,7 @@ typedef struct {
   
   RoundMethodManager *methodMgr;
   RoundRegistryManager *regMgr;
+  RoundMessageManager *msgMgr;
   RoundServer *server;
 } RoundLocalNode;
 

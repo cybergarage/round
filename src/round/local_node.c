@@ -313,87 +313,6 @@ bool round_local_node_postmessage(RoundNode *node, RoundJSONObject *reqObj, Roun
 }
 
 /****************************************
- * round_local_node_execmessage
- ****************************************/
-
-bool round_local_node_execmessage(RoundNode *node, RoundJSONObject *reqObj, RoundJSONObject *resObj, RoundError *err)
-{
-  if (!node || !reqObj || !resObj || !err) {
-    round_error_setjsonrpcerrorcode(err, ROUNDC_RPC_ERROR_CODE_INTERNAL_ERROR);
-    return false;
-  }
-/*
-  // Check dest
-  
-  if (!nodeReq->isDestValid()) {
-    setError(RPC::JSON::ErrorCodeInvalidParams, error);
-    return false;
-  }
-  
-  bool isDestHash = nodeReq->isDestHash();
-  if (isDestHash) {
-    std::string nodeHash;
-    if (nodeReq->getDest(&nodeHash)) {
-      NodeGraph *nodeGraph = getNodeGraph();
-      if (!nodeGraph->isHandleNode(this, nodeHash)) {
-        setError(RPC::JSON::ErrorCodeMovedPermanently, error);
-        return false;
-      }
-    }
-  }
-  */
-  // Update local clock
-
-  /*
-  clock_t remoteTs;
-  if (nodeRes->getTimestamp(&remoteTs)) {
-    setRemoteClock(remoteTs);
-  }
-  else {
-    incrementLocalClock();
-  }
-
-   // Exec Method (One node)
-  
-  bool isDestOne = nodeReq->isDestOne();
-  if (isDestOne) {
-    return execMethod(nodeReq, nodeRes, error);
-  }
-  
-  // Exec Method (Multi node)
-  
-  JSONArray *batchArray = new JSONArray();
-  nodeRes->setResult(batchArray);
-  
-  Error thisNodeError;
-  NodeResponse *thisNodeRes = new NodeResponse();
-  execMethod(nodeReq, thisNodeRes, &thisNodeError);
-  thisNodeRes->setDest(this);
-  batchArray->add(thisNodeRes);
-  
-  NodeList otherNodes;
-  if (nodeReq->isDestAll()) {
-    getAllOtherNodes(&otherNodes);
-  }
-  else if (nodeReq->hasQuorum()) {
-    size_t quorum;
-    if (nodeReq->getQuorum(&quorum)) {
-      getQuorumNodes(&otherNodes, quorum);
-    }
-  }
-  for (NodeList::iterator node = otherNodes.begin(); node != otherNodes.end(); node++) {
-    Error otherNodeError;
-    NodeResponse *otherNodeRes = new NodeResponse();
-    (*node)->postMessage(nodeReq, otherNodeRes, &otherNodeError);
-    otherNodeRes->setDest((*node));
-    batchArray->add(otherNodeRes);
-  }
- */
-  
-  return true;
-}
-
-/****************************************
  * round_local_node_execmethod
  ****************************************/
 
@@ -466,4 +385,107 @@ bool round_local_node_execmethod(RoundLocalNode *node, RoundJSONObject *reqMap, 
 */
 
   return isSuccess;
+}
+
+/****************************************
+ * round_local_node_execmessage
+ ****************************************/
+
+bool round_local_node_execmessage(RoundNode *node, RoundMessage *msg, RoundJSONObject *resObj, RoundError *err)
+{
+  RoundJSON *json;
+  const char *msgContent;
+  
+  if (!node || !msg || !resObj || !err) {
+    round_error_setjsonrpcerrorcode(err, ROUNDC_RPC_ERROR_CODE_INTERNAL_ERROR);
+    return false;
+  }
+  
+  msgContent = round_message_getstring(msg);
+  if (!msgContent) {
+    round_error_setjsonrpcerrorcode(err, ROUNDC_RPC_ERROR_CODE_INVALID_REQUEST);
+    return false;
+  }
+  
+  json = round_json_new();
+  if (!json) {
+    round_error_setjsonrpcerrorcode(err, ROUNDC_RPC_ERROR_CODE_INTERNAL_ERROR);
+    return false;
+  }
+
+  if (round_json_parse(json, msgContent, err)) {
+    round_error_setjsonrpcerrorcode(err, ROUNDC_RPC_ERROR_CODE_INVALID_REQUEST);
+    round_json_delete(json);
+    return false;
+  }
+
+  /*
+   // Check dest
+   
+   if (!nodeReq->isDestValid()) {
+   setError(RPC::JSON::ErrorCodeInvalidParams, error);
+   return false;
+   }
+   
+   bool isDestHash = nodeReq->isDestHash();
+   if (isDestHash) {
+   std::string nodeHash;
+   if (nodeReq->getDest(&nodeHash)) {
+   NodeGraph *nodeGraph = getNodeGraph();
+   if (!nodeGraph->isHandleNode(this, nodeHash)) {
+   setError(RPC::JSON::ErrorCodeMovedPermanently, error);
+   return false;
+   }
+   }
+   }
+   */
+  // Update local clock
+  
+  /*
+   clock_t remoteTs;
+   if (nodeRes->getTimestamp(&remoteTs)) {
+   setRemoteClock(remoteTs);
+   }
+   else {
+   incrementLocalClock();
+   }
+   
+   // Exec Method (One node)
+   
+   bool isDestOne = nodeReq->isDestOne();
+   if (isDestOne) {
+   return execMethod(nodeReq, nodeRes, error);
+   }
+   
+   // Exec Method (Multi node)
+   
+   JSONArray *batchArray = new JSONArray();
+   nodeRes->setResult(batchArray);
+   
+   Error thisNodeError;
+   NodeResponse *thisNodeRes = new NodeResponse();
+   execMethod(nodeReq, thisNodeRes, &thisNodeError);
+   thisNodeRes->setDest(this);
+   batchArray->add(thisNodeRes);
+   
+   NodeList otherNodes;
+   if (nodeReq->isDestAll()) {
+   getAllOtherNodes(&otherNodes);
+   }
+   else if (nodeReq->hasQuorum()) {
+   size_t quorum;
+   if (nodeReq->getQuorum(&quorum)) {
+   getQuorumNodes(&otherNodes, quorum);
+   }
+   }
+   for (NodeList::iterator node = otherNodes.begin(); node != otherNodes.end(); node++) {
+   Error otherNodeError;
+   NodeResponse *otherNodeRes = new NodeResponse();
+   (*node)->postMessage(nodeReq, otherNodeRes, &otherNodeError);
+   otherNodeRes->setDest((*node));
+   batchArray->add(otherNodeRes);
+   }
+   */
+  
+  return true;
 }

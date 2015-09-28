@@ -56,6 +56,7 @@ round_mpi_sources = \
 	../../src/round/util/json_object.c \
 	../../src/round/util/json_path_get.c \
 	../../src/round/util/json_path_set.c \
+	../../src/round/util/json_rpc.c \
 	../../src/round/util/list.c \
 	../../src/round/util/map.c \
 	../../src/round/util/map_hash.c \
