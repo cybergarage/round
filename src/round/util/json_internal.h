@@ -50,7 +50,9 @@ typedef struct {
  ****************************************/
 
 #define round_json_setrootobject(json, obj) (json->rootObj = obj)
-  
+
+bool round_json_map_setobjectpointer(RoundJSONObject *obj, const char *key, RoundJSONObject *valObj);
+
 #if defined(ROUND_USE_JSON_PARSER_JANSSON)
 #define round_json_object_setjanssonobject(obj, value) (obj->jsonObj = value)
 #endif

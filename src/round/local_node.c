@@ -427,8 +427,14 @@ bool round_local_node_execmethod(RoundLocalNode *node, RoundJSONObject *reqMap, 
   jsonResult = NULL;
   isSuccess = round_method_manager_execmethod(node->methodMgr, method, jsonParams, &jsonResult, err);
 
-  if (jsonResult) {
-    round_json_object_delete(jsonResult);
+  if (isSuccess) {
+    if (jsonResult) {
+      round_json_rpc_setresult(resMap, jsonResult);
+      round_json_object_delete(jsonResult);
+    }
+  }
+  else {
+    round_json_rpc_seterror(resMap, err);
   }
 
 /*
