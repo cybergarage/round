@@ -13,6 +13,8 @@
 #include "RoundTest.h"
 #include <round/method.h>
 
+BOOST_AUTO_TEST_SUITE(method)
+
 BOOST_AUTO_TEST_CASE(MethodManagerNew)
 {
   RoundMethodManager *mgr = round_method_manager_new();
@@ -84,3 +86,5 @@ BOOST_AUTO_TEST_CASE(MethodManagerNew)
   
   BOOST_CHECK(round_method_manager_delete(mgr));
 }
+
+BOOST_AUTO_TEST_SUITE_END()

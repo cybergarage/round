@@ -13,6 +13,8 @@
 #include "RoundTest.h"
 #include <round/method.h>
 
+BOOST_AUTO_TEST_SUITE(method)
+
 BOOST_AUTO_TEST_CASE(MethodMap)
 {
   RoundMap *map = round_method_map_new();
@@ -59,3 +61,5 @@ BOOST_AUTO_TEST_CASE(MethodMap)
   
   BOOST_CHECK(round_method_map_delete(map));
 }
+
+BOOST_AUTO_TEST_SUITE_END()
