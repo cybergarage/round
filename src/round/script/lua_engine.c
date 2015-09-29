@@ -160,7 +160,7 @@ bool round_lua_engine_run(RoundLuaEngine *engine, RoundMethod *method, const cha
     return false;
   
   name = round_method_getname(method);
-  source = round_method_getsource(method);
+  source = round_method_getstringcode(method);
   
 #if defined(ROUND_SUPPORT_LUA)
   int nStack = lua_gettop(engine->luaState);

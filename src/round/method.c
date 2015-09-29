@@ -23,6 +23,7 @@ RoundMethod *round_method_new()
   if (!method)
     return NULL;
   
+  method->module = NULL;
   method->name = NULL;
   method->lang = NULL;
   method->code = NULL;
@@ -43,6 +44,22 @@ bool round_method_delete(RoundMethod *method)
     return false;
   
   round_method_setcode(method, NULL, 0);
+  
+  if (method->module) {
+    free(method->module);
+  }
+  
+  if (method->name) {
+    free(method->name);
+  }
+  
+  if (method->lang) {
+    free(method->lang);
+  }
+
+  if (method->code) {
+    free(method->code);
+  }
   
   free(method);
   
@@ -69,6 +86,42 @@ bool round_method_isvalid(RoundMethod *method)
   }
   
   return true;
+}
+
+/****************************************
+ * round_method_setmodule
+ ****************************************/
+
+bool round_method_setmodule(RoundMethod *method, const char *module)
+{
+  if (!method)
+    return false;
+
+  return round_strloc(module, &method->module);
+}
+
+/****************************************
+ * round_method_setname
+ ****************************************/
+
+bool round_method_setname(RoundMethod *method, const char *name)
+{
+  if (!method)
+    return false;
+  
+  return round_strloc(name, &method->name);
+}
+
+/****************************************
+ * round_method_setlanguage
+ ****************************************/
+
+bool round_method_setlanguage(RoundMethod *method, const char *lang)
+{
+  if (!method)
+    return false;
+  
+  return round_strloc(lang, &method->lang);
 }
 
 /****************************************
@@ -99,4 +152,13 @@ bool round_method_setcode(RoundMethod *method, byte *code, size_t codeSize)
   method->codeSize = codeSize;
   
   return true;
+}
+
+/****************************************
+ * round_method_setstringcode
+ ****************************************/
+
+bool round_method_setstringcode(RoundMethod *method, const char *code)
+{
+  return round_method_setcode(method, (byte *)code, round_strlen(code)+1);
 }

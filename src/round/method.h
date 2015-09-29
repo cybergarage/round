@@ -42,8 +42,9 @@ RoundMethodStatic = 0x02,
  ****************************************/
 
 typedef struct {
-  char *lang;
+  char *module;
   char *name;
+  char *lang;
   byte *code;
   size_t codeSize;
   RoundOption opt;
@@ -63,17 +64,21 @@ typedef struct {
 RoundMethod *round_method_new();
 bool round_method_delete(RoundMethod *method);
   
-#define round_method_setlanguage(method, value) round_strloc(value, &method->lang)
-#define round_method_getlanguage(method) (method->lang)
-  
-#define round_method_setname(method, value) round_strloc(value, &method->name)
+bool round_method_setmodule(RoundMethod *method, const char *module);
+#define round_method_getmodule(method) (method->module)
+
+bool round_method_setname(RoundMethod *method, const char *name);
 #define round_method_getname(method) (method->name)
-  
+
+bool round_method_setlanguage(RoundMethod *method, const char *lang);
+#define round_method_getlanguage(method) (method->lang)
+
 bool round_method_setcode(RoundMethod *method, byte *code, size_t codeLen);
+bool round_method_setstringcode(RoundMethod *method, const char *code);
 #define round_method_getcode(method) (method->code)
-#define round_method_getsource(method) ((const char *)method->code)
-#define round_method_getcodeSize(method) (method->codeSize)
-  
+#define round_method_getstringcode(method) ((const char *)method->code)
+#define round_method_getcodesize(method) (method->codeSize)
+
 #define round_method_setoption(method, value) round_option_set(method->opt, value)
 #define round_method_getoption(method) round_option_get(method->opt)
 #define round_method_setflag(method, flag, value) round_option_setflag(method->opt, flag, value)
