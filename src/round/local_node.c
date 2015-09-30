@@ -49,10 +49,14 @@ bool round_local_node_init(RoundLocalNode *node)
   node->server = round_server_new();
   node->methodMgr = round_method_manager_new();
   node->regMgr = round_registry_manager_new();
+  node->threads = round_threadlist_new();
 
-  if (!node->server || !node->methodMgr || !node->regMgr)
+  if (!node->server || !node->methodMgr || !node->regMgr || !node->threads)
     return false;
   
+  if (!round_local_node_initthreads(node))
+    return false;
+
   if (!round_local_node_initscriptengines(node))
     return false;
   
@@ -60,6 +64,15 @@ bool round_local_node_init(RoundLocalNode *node)
     return false;
 
   return true;
+}
+
+/****************************************
+ * round_local_node_initthreads
+ ****************************************/
+
+bool round_local_node_initthreads(RoundLocalNode *node)
+{
+  return false;
 }
 
 /****************************************
@@ -121,6 +134,7 @@ bool round_local_node_destory(RoundLocalNode *node)
   round_method_manager_delete(node->methodMgr);
   round_registry_manager_delete(node->regMgr);
   round_server_delete(node->server);
+  round_threadlist_delete(node->threads);
 
   return true;
 }
