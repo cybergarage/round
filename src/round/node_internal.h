@@ -16,6 +16,7 @@
 #include <round/util/list.h>
 #include <round/util/json_internal.h>
 #include <round/util/strings.h>
+#include <round/util/thread.h>
 #include <round/server.h>
 #include <round/script.h>
 #include <round/clock.h>
@@ -54,6 +55,7 @@ typedef struct {
   RoundMethodManager *methodMgr;
   RoundRegistryManager *regMgr;
   RoundMessageManager *msgMgr;
+  RoundThreadList *threads;
   RoundServer *server;
 } RoundLocalNode;
 
@@ -90,6 +92,7 @@ RoundLocalNode *round_local_node_new(void);
 bool round_local_node_init(RoundLocalNode *node);
 bool round_local_node_initsystemmethods(RoundLocalNode *node);
 bool round_local_node_initscriptengines(RoundLocalNode *node);
+bool round_local_node_initthreads(RoundLocalNode *node);
 
 bool round_local_node_destory(RoundLocalNode *node);
 bool round_local_node_delete(RoundLocalNode *node);
