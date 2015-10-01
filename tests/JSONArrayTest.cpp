@@ -36,7 +36,7 @@ BOOST_AUTO_TEST_CASE(JsonArrayAppendObject)
     BOOST_CHECK(cobj);
     BOOST_CHECK(round_json_object_isinteger(cobj));
     BOOST_CHECK(round_json_object_getinteger(cobj, &objVal));
-    BOOST_CHECK_EQUAL(objVal, (n+1));
+    BOOST_CHECK_EQUAL(objVal, n);
   }
   
   BOOST_CHECK_EQUAL(round_json_array_size(obj), TEST_LOOP_CNT);

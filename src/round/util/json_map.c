@@ -211,6 +211,11 @@ bool round_json_map_setobjectpointer(RoundJSONObject *obj, const char *key, Roun
 
 bool round_json_map_setobject(RoundJSONObject *obj, const char *key, RoundJSONObject *valObj)
 {
+  bool isAdded = false;
+#if defined(ROUND_USE_JSON_PARSER_JANSSON)
+  json_t *copyJsonObj;
+#endif
+
   if (!round_json_object_ismap(obj))
     return false;
   
@@ -218,8 +223,14 @@ bool round_json_map_setobject(RoundJSONObject *obj, const char *key, RoundJSONOb
   if (!valObj->jsonObj)
     return false;
   
-  return (json_object_set_new(obj->jsonObj, key, valObj->jsonObj) == 0) ? true : false;
-#else
-  return false;
+  copyJsonObj = json_copy(valObj->jsonObj);
+  if (!copyJsonObj)
+    return false;
+  
+  isAdded = (json_object_set(obj->jsonObj, key, valObj->jsonObj) == 0) ? true : false;
+
+  json_decref(copyJsonObj);
 #endif
+  
+  return isAdded;
 }

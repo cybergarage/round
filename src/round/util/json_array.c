@@ -51,16 +51,28 @@ RoundJSONObject *round_json_array_get(RoundJSONObject *obj, size_t idx)
 
 bool round_json_array_append(RoundJSONObject *obj, RoundJSONObject *valObj)
 {
+  bool isAdded = false;
+#if defined(ROUND_USE_JSON_PARSER_JANSSON)
+  json_t *copyJsonObj;
+#endif
+  
   if (!round_json_object_isarray(obj))
     return false;
   
 #if defined(ROUND_USE_JSON_PARSER_JANSSON)
   if (!valObj->jsonObj)
     return false;
+
+  copyJsonObj = json_copy(valObj->jsonObj);
+  if (!copyJsonObj)
+    return false;
   
-  return (json_array_append_new(obj->jsonObj, valObj->jsonObj) == 0) ? true : false;
-#else
-  return false;
+  isAdded = (json_array_append(obj->jsonObj, copyJsonObj) == 0) ? true : false;
+  json_decref(copyJsonObj);
+
+  return isAdded;
 #endif
+
+  return isAdded;
 }
 
