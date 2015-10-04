@@ -49,7 +49,7 @@ typedef struct _RoundThread {
 
   void (*action)(struct _RoundThread *);
   void *userData;
-} RoundThread, RoundThreadList;
+} RoundThread, RoundThreadManager;
 
 typedef void (*RoundThreadFunc)(RoundThread *);
 
@@ -77,17 +77,17 @@ void *round_thread_getuserdata(RoundThread *thread);
 * Function (Thread List)
 ****************************************/
 
-RoundThreadList *round_threadlist_new();
-void round_threadlist_delete(RoundThreadList *threadList);
+RoundThreadManager *round_thread_manager_new();
+void round_thread_manager_delete(RoundThreadManager *threadMgr);
 
-#define round_threadlist_clear(threadList) round_list_clear((RoundList *)threadList, (ROUND_LIST_DESTRUCTORFUNC)round_thread_delete)
-#define round_threadlist_size(threadList) round_list_size((RoundList *)threadList)
-#define round_threadlist_gets(threadList) (RoundThread *)round_list_next((RoundList *)threadList)
-#define round_threadlist_add(threadList, thread) round_list_add((RoundList *)threadList, (RoundList *)thread)
-#define round_threadlist_remove(thread) round_list_remove((RoundList *)thread)
+#define round_thread_manager_clear(threadMgr) round_list_clear((RoundList *)threadMgr, (ROUND_LIST_DESTRUCTORFUNC)round_thread_delete)
+#define round_thread_manager_size(threadMgr) round_list_size((RoundList *)threadMgr)
+#define round_thread_manager_gets(threadMgr) (RoundThread *)round_list_next((RoundList *)threadMgr)
+#define round_thread_manager_add(threadMgr, thread) round_list_add((RoundList *)threadMgr, (RoundList *)thread)
+#define round_thread_manager_remove(thread) round_list_remove((RoundList *)thread)
 
-bool round_threadlist_start(RoundThreadList *threadList);
-bool round_threadlist_stop(RoundThreadList *threadList);
+bool round_thread_manager_start(RoundThreadManager *threadMgr);
+bool round_thread_manager_stop(RoundThreadManager *threadMgr);
 
 #ifdef  __cplusplus
 
