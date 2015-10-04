@@ -31,6 +31,7 @@ typedef struct _RoundMessage {
   byte *data;
   size_t dataLen;
   
+  RoundSemaphore *sem;
   void *userData;
 } RoundMessage;
 
@@ -60,6 +61,12 @@ bool round_message_setstring(RoundMessage *msg, const char *str);
 
 #define round_message_next(msg) (RoundMessage *)round_list_next((RoundList *)msg)
 #define round_message_remove(msg) round_list_remove((RoundList *)msg)
+
+bool round_message_setnotifyenabled(RoundMessage *msg, bool flag);
+bool round_message_isnotifyenabled(RoundMessage *msg);
+bool round_message_notify(RoundMessage *msg);
+bool round_message_waitnotify(RoundMessage *msg);
+bool round_message_timedwaitnotify(RoundMessage *msg, time_t timeoutSec);
   
 /****************************************
  * Function (Message Manager)

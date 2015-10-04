@@ -18,7 +18,38 @@
 
 BOOST_AUTO_TEST_SUITE(message)
 
-BOOST_AUTO_TEST_CASE(MessageManager) {
+BOOST_AUTO_TEST_CASE(MessageNew)
+{
+  RoundMessage *msg = round_message_new();
+  BOOST_CHECK(msg);
+
+  BOOST_CHECK_EQUAL(round_message_isnotifyenabled(msg), false);
+  
+  BOOST_CHECK(round_message_delete(msg));
+}
+
+BOOST_AUTO_TEST_CASE(MessageSemaphore)
+{
+  RoundMessage *msg = round_message_new();
+  BOOST_CHECK(msg);
+  
+  BOOST_CHECK_EQUAL(round_message_isnotifyenabled(msg), false);
+  BOOST_CHECK_EQUAL(round_message_setnotifyenabled(msg, true), true);
+  BOOST_CHECK_EQUAL(round_message_isnotifyenabled(msg), true);
+  
+  BOOST_CHECK_EQUAL(round_message_notify(msg), true);
+  BOOST_CHECK_EQUAL(round_message_waitnotify(msg), true);
+  
+  BOOST_CHECK_EQUAL(round_message_timedwaitnotify(msg, 1), false);
+  
+  BOOST_CHECK_EQUAL(round_message_notify(msg), true);
+  BOOST_CHECK_EQUAL(round_message_waitnotify(msg), true);
+  
+  BOOST_CHECK(round_message_delete(msg));
+}
+
+BOOST_AUTO_TEST_CASE(MessageManager)
+{
   RoundMessageManager *mgr = round_message_manager_new();
 
   char data[32];
@@ -55,7 +86,8 @@ void RoundMsgPushThread(RoundThread *thread)
   }
 }
 
-BOOST_AUTO_TEST_CASE(MessageManagerThread) {
+BOOST_AUTO_TEST_CASE(MessageManagerThread)
+{
   RoundMessageManager *mgr = round_message_manager_new();
 
   RoundThread *thread = round_thread_new();
