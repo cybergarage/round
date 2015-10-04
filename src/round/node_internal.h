@@ -60,6 +60,11 @@ typedef struct {
   RoundServer *server;
 } RoundLocalNode;
 
+typedef struct {
+  RoundJSONObject **resObj;
+  RoundError *err;
+} RoundLocalMessageData;
+
 /****************************************
  * Public Header
  ****************************************/
@@ -115,12 +120,24 @@ bool round_local_node_setregistry(RoundLocalNode *node, const char *key, const c
 RoundRegistry *round_local_node_getregistry(RoundLocalNode *node, const char *key);
 bool round_local_node_removeregistry(RoundLocalNode *node, const char *key);
 
-void local_node_message_thread(RoundThread *thread);
+void round_local_node_message_thread(RoundThread *thread);
   
 #define round_local_node_getclockvalue(node) round_clock_getvalue(node->clock)
+#define round_local_node_getrequesttimeout(node) round_node_getrequesttimeout((RoundNode *)node)
 
 /****************************************
- * Function (RemoteNode)
+ * Function (Local Node Message)
+ ****************************************/
+
+RoundMessage *round_local_node_message_new();
+bool round_local_node_message_delete(RoundMessage *msg);
+bool round_local_node_message_seterror(RoundMessage *msg, RoundError *err);
+RoundError *errround_local_node_message_geterror(RoundMessage *msg);
+bool round_local_node_message_setresponsejsonobject(RoundMessage *msg, RoundJSONObject *resObj);
+RoundJSONObject *round_local_node_message_getresponsejsonobject(RoundMessage *msg);
+  
+/****************************************
+ * Function (Remot eNode)
  ****************************************/
   
 RoundRemoteNode *round_remote_node_new(void);

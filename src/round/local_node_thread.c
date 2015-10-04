@@ -11,10 +11,10 @@
 #include <round/node_internal.h>
 
 /****************************************
-* local_node_message_thread
+* round_local_node_message_thread
 ****************************************/
 
-void local_node_message_thread(RoundThread *thread)
+void round_local_node_message_thread(RoundThread *thread)
 {
   RoundLocalNode *node;
   RoundMessage *msg;
@@ -42,8 +42,13 @@ void local_node_message_thread(RoundThread *thread)
 
     round_local_node_execmessage(node, msg, &resObj, err);
 
-    if (resObj) {
-      round_json_object_delete(resObj);
+    if (round_message_isnotifyenabled(msg)) {
+      round_message_notify(msg);
+    }
+    else {
+      if (resObj) {
+        round_json_object_delete(resObj);
+      }
     }
 
     round_message_delete(msg);

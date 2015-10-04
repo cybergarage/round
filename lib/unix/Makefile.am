@@ -25,6 +25,7 @@ round_mpi_sources = \
 	../../src/round/error_rpc.c \
 	../../src/round/finder.c \
 	../../src/round/local_node.c \
+	../../src/round/local_node_thread.c \
 	../../src/round/message.c \
 	../../src/round/message_manager.c \
 	../../src/round/method/get_registry.c \
@@ -52,6 +53,7 @@ round_mpi_sources = \
 	../../src/round/server.c \
 	../../src/round/util/base64.c \
 	../../src/round/util/json.c \
+	../../src/round/util/json_array.c \
 	../../src/round/util/json_map.c \
 	../../src/round/util/json_object.c \
 	../../src/round/util/json_path_get.c \
@@ -69,7 +71,7 @@ round_mpi_sources = \
 	../../src/round/util/string.c \
 	../../src/round/util/string_func.c \
 	../../src/round/util/thread.c \
-	../../src/round/util/thread_list.c \
+	../../src/round/util/thread_manager.c \
 	../../src/round/util/timer.c
 
 #if HAVE_LIBTOOL
