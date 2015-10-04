@@ -95,7 +95,7 @@ bool round_message_setdata(RoundMessage *msg, byte *data, size_t dataLen)
  * round_message_setstring
  ****************************************/
 
-bool round_message_setstring(RoundMessage *msg, char *str)
+bool round_message_setstring(RoundMessage *msg, const char *str)
 {
   return round_message_setdata(msg, (byte *)str, (round_strlen(str)+1));
 }
