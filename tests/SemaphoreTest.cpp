@@ -17,7 +17,7 @@
 BOOST_AUTO_TEST_SUITE(semaphore)
 
 BOOST_AUTO_TEST_CASE(RoundSemaphoreBasicTest) {
-  RoundSemaphore *sem = round_semaphore_new(1);
+  RoundSemaphore *sem = round_semaphore_new(0);
   BOOST_CHECK(sem);
   
   BOOST_CHECK_EQUAL(round_semaphore_post(sem), true);
@@ -80,6 +80,21 @@ BOOST_AUTO_TEST_CASE(RoundSemaphoreThreadTest)
 
   BOOST_CHECK(round_thread_stop(thread));
   BOOST_CHECK(round_thread_delete(thread));
+  BOOST_CHECK(round_semaphore_delete(sem));
+}
+
+BOOST_AUTO_TEST_CASE(RoundSemaphoreTimeoutTest) {
+  RoundSemaphore *sem = round_semaphore_new(0);
+  BOOST_CHECK(sem);
+  
+  BOOST_CHECK_EQUAL(round_semaphore_post(sem), true);
+  BOOST_CHECK_EQUAL(round_semaphore_wait(sem), true);
+  
+  BOOST_CHECK_EQUAL(round_semaphore_timedwait(sem, 1), false);
+  
+  BOOST_CHECK_EQUAL(round_semaphore_post(sem), true);
+  BOOST_CHECK_EQUAL(round_semaphore_wait(sem), true);
+  
   BOOST_CHECK(round_semaphore_delete(sem));
 }
 
