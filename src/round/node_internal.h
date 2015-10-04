@@ -39,7 +39,8 @@ extern "C" {
   RoundString *addr; \
   int port; \
   RoundString *cluster; \
-  RoundClock *clock;
+  RoundClock *clock; \
+  time_t requestTimeout;
 
 typedef struct {
   ROUND_NODE_STRUCT_MEMBERS
@@ -113,8 +114,6 @@ bool round_local_node_execmessage(RoundLocalNode *node, RoundMessage *msg, Round
 bool round_local_node_setregistry(RoundLocalNode *node, const char *key, const char *val);
 RoundRegistry *round_local_node_getregistry(RoundLocalNode *node, const char *key);
 bool round_local_node_removeregistry(RoundLocalNode *node, const char *key);
-
-bool round_local_node_postmessage(RoundLocalNode *node, RoundJSONObject *reqObj, RoundJSONObject **resObj, RoundError *err);
 
 void local_node_message_thread(RoundThread *thread);
   
