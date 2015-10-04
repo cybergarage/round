@@ -49,7 +49,7 @@ bool round_message_delete(RoundMessage *msg);
 bool round_message_clear(RoundMessage *msg);
 
 bool round_message_setdata(RoundMessage *msg, byte *data, size_t dataLen);
-bool round_message_setstring(RoundMessage *msg, char *str);
+bool round_message_setstring(RoundMessage *msg, const char *str);
 
 #define round_message_getdata(msg)  (msg->data)
 #define round_message_getstring(msg)  ((const char *)msg->data)
