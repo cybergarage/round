@@ -55,7 +55,7 @@ typedef struct {
   RoundMethodManager *methodMgr;
   RoundRegistryManager *regMgr;
   RoundMessageManager *msgMgr;
-  RoundThreadList *threads;
+  RoundThreadManager *threads;
   RoundServer *server;
 } RoundLocalNode;
 

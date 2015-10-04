@@ -49,7 +49,7 @@ bool round_local_node_init(RoundLocalNode *node)
   node->server = round_server_new();
   node->methodMgr = round_method_manager_new();
   node->regMgr = round_registry_manager_new();
-  node->threads = round_threadlist_new();
+  node->threads = round_thread_manager_new();
 
   if (!node->server || !node->methodMgr || !node->regMgr || !node->threads)
     return false;
@@ -134,7 +134,7 @@ bool round_local_node_destory(RoundLocalNode *node)
   round_method_manager_delete(node->methodMgr);
   round_registry_manager_delete(node->regMgr);
   round_server_delete(node->server);
-  round_threadlist_delete(node->threads);
+  round_thread_manager_delete(node->threads);
 
   return true;
 }
