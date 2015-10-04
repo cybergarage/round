@@ -57,6 +57,9 @@ bool round_node_getaddress(RoundNode *node, const char **addr, RoundError *err);
 bool round_node_getport(RoundNode *node, int *port, RoundError *err);
 bool round_node_getcluster(RoundNode *node, const char **cluster, RoundError *err);
   
+bool round_node_setrequesttimeout(RoundNode *node, time_t value);
+time_t round_node_getrequesttimeout(RoundNode *node);
+
 bool round_node_postmessage(RoundNode *node, RoundJSONObject *reqObj, RoundJSONObject *resObj, RoundError *err);
   
 #ifdef  __cplusplus

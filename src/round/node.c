@@ -47,11 +47,12 @@ bool round_node_init(RoundNode *node)
   node->addr = round_string_new();
   node->port = 0;
   node->cluster = round_string_new();
-
   node->clock = round_clock_new();
   
   if (!node->addr || !node->cluster || !node->clock)
     return false;
+
+  round_node_setrequesttimeout(node, ROUNDC_JSON_RPC_REQUEST_TIMEOUT_SEC);
   
   return true;
 }
@@ -189,6 +190,32 @@ bool round_node_getcluster(RoundNode *node, const char **cluster, RoundError *er
   *cluster = round_string_getvalue(node->cluster);
   
   return true;
+}
+
+/****************************************
+ * round_node_setrequesttimeout
+ ****************************************/
+
+bool round_node_setrequesttimeout(RoundNode *node, time_t value)
+{
+  if (!node)
+    return false;
+
+  node->requestTimeout = value;
+  
+  return true;
+}
+
+/****************************************
+ * round_node_getrequesttimeout
+ ****************************************/
+
+time_t round_node_getrequesttimeout(RoundNode *node)
+{
+  if (!node)
+    return 0;
+  
+  return node->requestTimeout;
 }
 
 /****************************************
