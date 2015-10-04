@@ -88,6 +88,7 @@ void round_thread_manager_delete(RoundThreadManager *threadMgr);
 
 bool round_thread_manager_start(RoundThreadManager *threadMgr);
 bool round_thread_manager_stop(RoundThreadManager *threadMgr);
+bool round_thread_manager_isrunning(RoundThreadManager *threadMgr);
 
 #ifdef  __cplusplus
 
