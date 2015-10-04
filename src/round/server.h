@@ -34,6 +34,7 @@ bool round_server_delete(RoundServer *server);
 
 bool round_server_start(RoundServer *server);
 bool round_server_stop(RoundServer *server);
+bool round_server_isrunning(RoundServer *server);
 
 #ifdef  __cplusplus
 } /* extern C */

@@ -49,9 +49,9 @@ bool round_local_node_init(RoundLocalNode *node)
   node->server = round_server_new();
   node->methodMgr = round_method_manager_new();
   node->regMgr = round_registry_manager_new();
-  node->threads = round_thread_manager_new();
+  node->threadMgr = round_thread_manager_new();
 
-  if (!node->server || !node->methodMgr || !node->regMgr || !node->threads)
+  if (!node->server || !node->methodMgr || !node->regMgr || !node->threadMgr)
     return false;
   
   if (!round_local_node_initthreads(node))
@@ -72,7 +72,22 @@ bool round_local_node_init(RoundLocalNode *node)
 
 bool round_local_node_initthreads(RoundLocalNode *node)
 {
-  return false;
+  RoundThreadFunc threadFuncs[] = {local_node_message_thread};
+  RoundThread *thread;
+  size_t n, threadFuncCnt;
+  
+  threadFuncCnt = sizeof(threadFuncs) / sizeof(RoundThreadFunc);
+  for (n=0; n<threadFuncCnt; n++) {
+    thread = round_thread_new();
+    if (!thread)
+      return false;
+    round_thread_setuserdata(thread, node);
+    round_thread_setaction(thread, threadFuncs[n]);
+    if (!round_thread_manager_add(node->threadMgr, thread))
+      return false;
+  }
+  
+  return true;
 }
 
 /****************************************
@@ -134,7 +149,7 @@ bool round_local_node_destory(RoundLocalNode *node)
   round_method_manager_delete(node->methodMgr);
   round_registry_manager_delete(node->regMgr);
   round_server_delete(node->server);
-  round_thread_manager_delete(node->threads);
+  round_thread_manager_delete(node->threadMgr);
 
   return true;
 }
@@ -162,8 +177,18 @@ bool round_local_node_delete(RoundLocalNode *node)
 
 bool round_local_node_start(RoundLocalNode *node)
 {
+  bool isSuccess = true;
+  
   if (!node)
     return false;
+
+  isSuccess &= round_server_start(node->server);
+  isSuccess &= round_thread_manager_start(node->threadMgr);
+  
+  if (!isSuccess) {
+    round_local_node_stop(node);
+    return false;
+  }
 
   return true;
 }
@@ -174,7 +199,30 @@ bool round_local_node_start(RoundLocalNode *node)
 
 bool round_local_node_stop(RoundLocalNode *node)
 {
+  bool isSuccess = true;
+  
   if (!node)
+    return false;
+
+  isSuccess &= round_server_stop(node->server);
+  isSuccess &= round_thread_manager_stop(node->threadMgr);
+
+  return isSuccess;
+}
+
+/****************************************
+ * round_local_node_isrunning
+ ****************************************/
+
+bool round_local_node_isrunning(RoundLocalNode *node)
+{
+  if (!node)
+    return false;
+
+  if (!round_server_isrunning(node->server))
+    return false;
+  
+  if (!round_thread_manager_isrunning(node->threadMgr))
     return false;
 
   return true;
@@ -315,15 +363,6 @@ bool round_local_node_removeregistry(RoundLocalNode *node, const char *key)
     return false;
   
   return round_registry_manager_remove(node->regMgr, key);
-}
-
-/****************************************
- * round_local_node_postmessage
- ****************************************/
-
-bool round_local_node_postmessage(RoundNode *node, RoundJSONObject *reqObj, RoundJSONObject *resObj, RoundError *err)
-{
-  return true;
 }
 
 /****************************************
@@ -558,4 +597,45 @@ bool round_local_node_execmessage(RoundLocalNode *node, RoundMessage *msg, Round
   }
 
   return round_local_node_seterrorresponse(node, ROUNDC_RPC_ERROR_CODE_INTERNAL_ERROR, err, resObj);
+}
+
+/****************************************
+ * round_local_node_postmessage
+ ****************************************/
+
+bool round_local_node_postmessage(RoundLocalNode *node, RoundJSONObject *reqObj, RoundJSONObject **resObj, RoundError *err)
+{
+  RoundMessage *msg;
+  const char *reqStr;
+  
+  if (!node) {
+    round_local_node_seterrorresponse(node, ROUNDC_RPC_ERROR_CODE_INTERNAL_ERROR, err, resObj);
+    return false;
+  }
+
+  if (!reqObj || !resObj || !err) {
+    round_local_node_seterrorresponse(node, ROUNDC_RPC_ERROR_CODE_INVALID_PARAMS, err, resObj);
+    return false;
+  }
+
+  reqStr = NULL;
+  if (!round_json_object_tostring(reqObj, &reqStr) || (0 < round_strlen(reqStr))) {
+    round_local_node_seterrorresponse(node, ROUNDC_RPC_ERROR_CODE_INVALID_PARAMS, err, resObj);
+    return false;
+  }
+  
+  msg = round_message_new();
+  if (!msg) {
+    return false;
+  }
+  round_message_setstring(msg, reqStr);
+
+  if (!round_message_manager_pushmessage(node->msgMgr, msg)) {
+    round_message_delete(msg);
+    round_local_node_seterrorresponse(node, ROUNDC_RPC_ERROR_CODE_INTERNAL_ERROR, err, resObj);
+    return false;
+  }
+  
+
+  return false;
 }
