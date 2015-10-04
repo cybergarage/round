@@ -43,6 +43,9 @@ json_rpc_error,"error"
 json_rpc_code,"code"
 json_rpc_message,"message"
 
+# JSON RPC parameters 
+json_rpc_request_timeout_sec,60
+
 # System Methods
 system_method_post_job,"post_job"
 system_method_set_method,"set_method"
