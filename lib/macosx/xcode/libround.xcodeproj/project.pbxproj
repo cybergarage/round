@@ -67,6 +67,7 @@
 		219A8E2D1B9AF607004ED802 /* script.h in Headers */ = {isa = PBXBuildFile; fileRef = 219A8E2C1B9AF607004ED802 /* script.h */; };
 		219A8E2F1B9B0103004ED802 /* Ruby.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 219A8E2E1B9B0103004ED802 /* Ruby.framework */; };
 		21A4C2171BC0A4C10030BD12 /* local_node_thread.c in Sources */ = {isa = PBXBuildFile; fileRef = 21A4C2161BC0A4C10030BD12 /* local_node_thread.c */; settings = {ASSET_TAGS = (); }; };
+		21A4C21D1BC10E6E0030BD12 /* local_node_message.c in Sources */ = {isa = PBXBuildFile; fileRef = 21A4C21C1BC10E6E0030BD12 /* local_node_message.c */; settings = {ASSET_TAGS = (); }; };
 		21A776BC1BA06DC2009BDB36 /* message_manager.c in Sources */ = {isa = PBXBuildFile; fileRef = 21A776B91BA06DC2009BDB36 /* message_manager.c */; };
 		21A776BD1BA06DC2009BDB36 /* message.c in Sources */ = {isa = PBXBuildFile; fileRef = 21A776BA1BA06DC2009BDB36 /* message.c */; };
 		21A776BE1BA06DC2009BDB36 /* message.h in Headers */ = {isa = PBXBuildFile; fileRef = 21A776BB1BA06DC2009BDB36 /* message.h */; };
@@ -167,6 +168,7 @@
 		219A8E2C1B9AF607004ED802 /* script.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = script.h; path = ../../../src/round/script.h; sourceTree = "<group>"; };
 		219A8E2E1B9B0103004ED802 /* Ruby.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Ruby.framework; path = System/Library/Frameworks/Ruby.framework; sourceTree = SDKROOT; };
 		21A4C2161BC0A4C10030BD12 /* local_node_thread.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = local_node_thread.c; path = ../../../src/round/local_node_thread.c; sourceTree = "<group>"; };
+		21A4C21C1BC10E6E0030BD12 /* local_node_message.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = local_node_message.c; path = ../../../src/round/local_node_message.c; sourceTree = "<group>"; };
 		21A776B91BA06DC2009BDB36 /* message_manager.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = message_manager.c; path = ../../../src/round/message_manager.c; sourceTree = "<group>"; };
 		21A776BA1BA06DC2009BDB36 /* message.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = message.c; path = ../../../src/round/message.c; sourceTree = "<group>"; };
 		21A776BB1BA06DC2009BDB36 /* message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = message.h; path = ../../../src/round/message.h; sourceTree = "<group>"; };
@@ -257,6 +259,7 @@
 				21D427EB1B9F010A00BBBD41 /* error.c */,
 				211E45D51B98192600CF0088 /* finder_internal.h */,
 				211E45D61B98192600CF0088 /* finder.c */,
+				21A4C21C1BC10E6E0030BD12 /* local_node_message.c */,
 				21A4C2161BC0A4C10030BD12 /* local_node_thread.c */,
 				218569AF1BB0D66A00861B9B /* local_node.c */,
 				21A776B91BA06DC2009BDB36 /* message_manager.c */,
@@ -502,6 +505,7 @@
 				218569A91BAFFE9F00861B9B /* native_engine.c in Sources */,
 				2148E5D91B9DFDAF0021CE7B /* method_map.c in Sources */,
 				21F6D9B11B99848000714056 /* lua_engine.c in Sources */,
+				21A4C21D1BC10E6E0030BD12 /* local_node_message.c in Sources */,
 				21A776CC1BA0939F009BDB36 /* timer.c in Sources */,
 				212A95451B9BCA4200EC9A71 /* method_manager.c in Sources */,
 				213931781BB54B9900C93773 /* json_path_set.c in Sources */,
