@@ -112,6 +112,8 @@ bool round_local_node_setregistry(RoundLocalNode *node, const char *key, const c
 RoundRegistry *round_local_node_getregistry(RoundLocalNode *node, const char *key);
 bool round_local_node_removeregistry(RoundLocalNode *node, const char *key);
 
+void local_node_message_thread(RoundThread *thread);
+  
 #define round_local_node_getclockvalue(node) round_clock_getvalue(node->clock)
   
 /****************************************
