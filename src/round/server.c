@@ -63,3 +63,15 @@ bool round_server_stop(RoundServer *server)
   
   return true;
 }
+
+/****************************************
+ * round_server_isrunning
+ ****************************************/
+
+bool round_server_isrunning(RoundServer *server)
+{
+  if (!server)
+    return false;
+  
+  return true;
+}
