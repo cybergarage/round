@@ -73,8 +73,26 @@ bool round_thread_manager_stop(RoundThreadManager *threadMgr)
   if (!threadMgr)
     return false;
   
-  for (thread = round_thread_manager_gets(threadMgr); thread != NULL; thread = round_thread_next(thread))
+  for (thread = round_thread_manager_gets(threadMgr); thread != NULL; thread = round_thread_next(thread)) {
     round_thread_stop(thread);
+  }
 
   return true;
 }
+
+/****************************************
+ * round_thread_manager_isrunning
+ ****************************************/
+
+bool round_thread_manager_isrunning(RoundThreadManager *threadMgr)
+{
+  RoundThreadManager *thread;
+  
+  for (thread = round_thread_manager_gets(threadMgr); thread != NULL; thread = round_thread_next(thread)) {
+    if (!round_thread_isrunning(thread))
+      return false;
+  }
+  
+  return true;
+}
+
