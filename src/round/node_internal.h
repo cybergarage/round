@@ -33,6 +33,8 @@ extern "C" {
  * Data Type
  ****************************************/
 
+typedef bool (*ROUND_NODE_POSTMESSAGE_FUNC)(void *node, RoundJSONObject *reqObj, RoundJSONObject *resObj, RoundError *err);
+
 #define ROUND_NODE_STRUCT_MEMBERS \
   ROUND_LIST_STRUCT_MEMBERS \
   ROUND_OO_STRUCT_MEMBERS \
@@ -40,7 +42,8 @@ extern "C" {
   int port; \
   RoundString *cluster; \
   RoundClock *clock; \
-  time_t requestTimeout;
+  time_t requestTimeout; \
+  ROUND_NODE_POSTMESSAGE_FUNC postMsg;
 
 typedef struct {
   ROUND_NODE_STRUCT_MEMBERS
@@ -75,6 +78,8 @@ typedef struct {
  * Function (Node)
  ****************************************/
 
+RoundNode *round_node_new(void);
+
 bool round_node_init(RoundNode *node);
 bool round_node_destroy(RoundNode *node);
 
@@ -88,7 +93,10 @@ bool round_node_setcluster(RoundNode *node, const char *cluster);
 #define round_node_setremoteclockvalue(node, value) round_clock_setremotevalue(node->clock, value)
 #define round_node_incrementclock(node) round_clock_increment(node->clock)
 #define round_node_getclockvalue(node) round_clock_getvalue(node->clock)
-  
+
+#define round_node_setpostmessagefunc(node, func) (node->postMsg = (ROUND_NODE_POSTMESSAGE_FUNC)func)
+#define round_node_getpostmessagefunc(node) (node->postMsg)
+
 /****************************************
  * Function (LocalNode)
  ****************************************/
@@ -113,7 +121,7 @@ bool round_local_node_isfinalmethod(RoundLocalNode *node, const char *name);
 
 bool round_local_node_addengine(RoundLocalNode *node, RoundScriptEngine *engine);
 
-bool round_local_node_execmethod(RoundLocalNode *node, RoundJSONObject *reqObj, RoundJSONObject *resObj, RoundError *err);
+bool round_local_node_postmessage(RoundLocalNode *node, RoundJSONObject *reqObj, RoundJSONObject *resObj, RoundError *err);
 bool round_local_node_execmessage(RoundLocalNode *node, RoundMessage *msg, RoundJSONObject **resObj, RoundError *err);
 
 bool round_local_node_setregistry(RoundLocalNode *node, const char *key, const char *val);
@@ -132,9 +140,9 @@ void round_local_node_message_thread(RoundThread *thread);
 RoundMessage *round_local_node_message_new();
 bool round_local_node_message_delete(RoundMessage *msg);
 bool round_local_node_message_seterror(RoundMessage *msg, RoundError *err);
-RoundError *errround_local_node_message_geterror(RoundMessage *msg);
-bool round_local_node_message_setresponsejsonobject(RoundMessage *msg, RoundJSONObject *resObj);
-RoundJSONObject *round_local_node_message_getresponsejsonobject(RoundMessage *msg);
+RoundError *round_local_node_message_geterror(RoundMessage *msg);
+bool round_local_node_message_setresponsejsonobject(RoundMessage *msg, RoundJSONObject **resObj);
+RoundJSONObject **round_local_node_message_getresponsejsonobject(RoundMessage *msg);
   
 /****************************************
  * Function (Remot eNode)
@@ -143,6 +151,7 @@ RoundJSONObject *round_local_node_message_getresponsejsonobject(RoundMessage *ms
 RoundRemoteNode *round_remote_node_new(void);
 bool round_remote_node_destory(RoundRemoteNode *node);
 bool round_remote_node_delete(RoundRemoteNode *node);
+bool round_remote_node_postmessage(RoundLocalNode *node, RoundJSONObject *reqMap, RoundJSONObject *resMap, RoundError *err);
 
 /****************************************
  * Function (Node List)

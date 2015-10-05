@@ -18,5 +18,8 @@ BOOST_AUTO_TEST_CASE(LocalNodeMessageNew)
   RoundMessage *msg = round_local_node_message_new();
   BOOST_CHECK(msg);
   
+  BOOST_CHECK_EQUAL(round_local_node_message_geterror(msg), (RoundError *)NULL);
+  BOOST_CHECK_EQUAL(round_local_node_message_getresponsejsonobject(msg), (RoundJSONObject **)NULL);
+  
   BOOST_CHECK(round_local_node_message_delete(msg));
 }

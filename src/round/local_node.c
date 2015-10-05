@@ -53,6 +53,8 @@ bool round_local_node_init(RoundLocalNode *node)
 
   if (!node->server || !node->methodMgr || !node->regMgr || !node->threadMgr)
     return false;
+
+  round_node_setpostmessagefunc(node, round_local_node_postmessage);
   
   if (!round_local_node_initthreads(node))
     return false;
@@ -366,10 +368,10 @@ bool round_local_node_removeregistry(RoundLocalNode *node, const char *key)
 }
 
 /****************************************
- * round_local_node_execmethod
+ * round_local_node_postmessage
  ****************************************/
 
-bool round_local_node_execmethod(RoundLocalNode *node, RoundJSONObject *reqMap, RoundJSONObject *resMap, RoundError *err)
+bool round_local_node_postmessage(RoundLocalNode *node, RoundJSONObject *reqMap, RoundJSONObject *resMap, RoundError *err)
 {
   const char *msgId, *method, *params;
   long ts;
@@ -517,11 +519,13 @@ bool round_local_node_execmethod(RoundLocalNode *node, RoundJSONObject *reqMap, 
 
 bool round_local_node_seterrorresponse(RoundLocalNode *node, int rpcErrCode, RoundError *err, RoundJSONObject **resObj)
 {
-  if (!node || !err)
+  if (!node)
     return false;
   
-  round_error_setjsonrpcerrorcode(err, rpcErrCode);
-
+  if (err) {
+    round_error_setjsonrpcerrorcode(err, rpcErrCode);
+  }
+  
   *resObj = round_json_map_new();
   round_json_rpc_seterror(*resObj, err);
   
@@ -574,7 +578,7 @@ bool round_local_node_execmessage(RoundLocalNode *node, RoundMessage *msg, Round
   
   if (round_json_object_ismap(reqObj)) {
     *resObj = round_json_map_new();
-    if (!round_local_node_execmethod(node, reqObj, *resObj, err)) {
+    if (!round_local_node_postmessage(node, reqObj, *resObj, err)) {
       round_json_rpc_seterror(*resObj, err);
     }
     return true;
@@ -588,7 +592,7 @@ bool round_local_node_execmessage(RoundLocalNode *node, RoundMessage *msg, Round
     for (n=0; n<msgArrayCnt; n++) {
       msgArrayObj = round_json_array_get(reqObj, n);
       resArrayObj = round_json_map_new();
-      if (!round_local_node_execmethod(node, reqObj, resArrayObj, err)) {
+      if (!round_local_node_postmessage(node, reqObj, resArrayObj, err)) {
         round_json_rpc_seterror(resArrayObj, err);
       }
       round_json_array_append(*resObj, resArrayObj);
@@ -600,10 +604,10 @@ bool round_local_node_execmessage(RoundLocalNode *node, RoundMessage *msg, Round
 }
 
 /****************************************
- * round_local_node_postmessage
+ * round_local_node_postrequest
  ****************************************/
 
-bool round_local_node_postmessage(RoundLocalNode *node, RoundMessage *msg, RoundJSONObject **resObj, RoundError *err)
+bool round_local_node_postrequest(RoundLocalNode *node, RoundMessage *msg, RoundJSONObject **resObj, RoundError *err)
 {
   if (!msg) {
     round_local_node_seterrorresponse(node, ROUNDC_RPC_ERROR_CODE_INVALID_PARAMS, err, resObj);
@@ -628,6 +632,9 @@ bool round_local_node_postmessage(RoundLocalNode *node, RoundMessage *msg, Round
     return false;
   }
   
+  round_local_node_message_seterror(msg, err);
+  round_local_node_message_setresponsejsonobject(msg, resObj);
+  
   if (!round_message_manager_pushmessage(node->msgMgr, msg)) {
     round_message_delete(msg);
     round_local_node_seterrorresponse(node, ROUNDC_RPC_ERROR_CODE_INTERNAL_ERROR, err, resObj);
@@ -644,10 +651,10 @@ bool round_local_node_postmessage(RoundLocalNode *node, RoundMessage *msg, Round
 }
 
 /****************************************
- * round_local_node_postjsonmessage
+ * round_local_node_postjsonrequest
  ****************************************/
 
-bool round_local_node_postjsonmessage(RoundLocalNode *node, RoundJSONObject *reqObj, RoundJSONObject **resObj, RoundError *err)
+bool round_local_node_postjsonrequest(RoundLocalNode *node, RoundJSONObject *reqObj, RoundJSONObject **resObj, RoundError *err)
 {
   RoundMessage *msg;
   const char *reqStr;
@@ -668,12 +675,12 @@ bool round_local_node_postjsonmessage(RoundLocalNode *node, RoundJSONObject *req
     return false;
   }
   
-  msg = round_message_new();
+  msg = round_local_node_message_new();
   if (!msg) {
     round_local_node_seterrorresponse(node, ROUNDC_RPC_ERROR_CODE_INTERNAL_ERROR, err, resObj);
     return false;
   }
   round_message_setstring(msg, reqStr);
 
-  return round_local_node_postmessage(node, msg, resObj, err);
+  return round_local_node_postrequest(node, msg, resObj, err);
 }
