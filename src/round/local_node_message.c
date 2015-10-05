@@ -80,7 +80,7 @@ bool round_local_node_message_seterror(RoundMessage *msg, RoundError *err)
  * round_local_node_message_geterror
  ****************************************/
 
-RoundError *errround_local_node_message_geterror(RoundMessage *msg)
+RoundError *round_local_node_message_geterror(RoundMessage *msg)
 {
   RoundLocalMessageData *msgData;
   
@@ -98,7 +98,7 @@ RoundError *errround_local_node_message_geterror(RoundMessage *msg)
  * round_local_node_message_setresponsejsonobject
  ****************************************/
 
-bool round_local_node_message_setresponsejsonobject(RoundMessage *msg, RoundJSONObject *resObj)
+bool round_local_node_message_setresponsejsonobject(RoundMessage *msg, RoundJSONObject **resObj)
 {
   RoundLocalMessageData *msgData;
   
@@ -109,7 +109,7 @@ bool round_local_node_message_setresponsejsonobject(RoundMessage *msg, RoundJSON
   if (!msgData)
     return false;
   
-  *msgData->resObj = resObj;
+  msgData->resObj = resObj;
   
   return true;
 }
@@ -118,7 +118,7 @@ bool round_local_node_message_setresponsejsonobject(RoundMessage *msg, RoundJSON
  * round_local_node_message_getresponsejsonobject
  ****************************************/
 
-RoundJSONObject *round_local_node_message_getresponsejsonobject(RoundMessage *msg)
+RoundJSONObject **round_local_node_message_getresponsejsonobject(RoundMessage *msg)
 {
   RoundLocalMessageData *msgData;
   
@@ -129,5 +129,5 @@ RoundJSONObject *round_local_node_message_getresponsejsonobject(RoundMessage *ms
   if (!msgData)
     return NULL;
   
-  return *msgData->resObj;
+  return msgData->resObj;
 }

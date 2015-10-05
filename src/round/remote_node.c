@@ -26,6 +26,8 @@ RoundRemoteNode *round_remote_node_new(void)
   round_node_init((RoundNode *)node);
   round_oo_setdescendantdestoroyfunc(node, round_remote_node_destory);
 
+  round_node_setpostmessagefunc(node, round_remote_node_postmessage);
+  
   return node;
 }
 
@@ -56,4 +58,13 @@ bool round_remote_node_delete(RoundRemoteNode *node)
   free(node);
   
   return true;
+}
+
+/****************************************
+ * round_remote_node_postmessage
+ ****************************************/
+
+bool round_remote_node_postmessage(RoundLocalNode *node, RoundJSONObject *reqMap, RoundJSONObject *resMap, RoundError *err)
+{
+  return false;
 }

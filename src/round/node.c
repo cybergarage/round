@@ -32,6 +32,24 @@ RoundNode *round_node_new(void)
 }
 
 /****************************************
+ * round_node_local_new
+ ****************************************/
+
+RoundNode *round_node_local_new(void)
+{
+  return (RoundNode *)round_local_node_new();
+}
+
+/****************************************
+ * round_node_remote_new
+ ****************************************/
+
+RoundNode *round_node_remote_new(void)
+{
+  return (RoundNode *)round_remote_node_new();
+}
+
+/****************************************
  * round_node_init
  ****************************************/
 
