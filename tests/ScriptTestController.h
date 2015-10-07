@@ -11,6 +11,8 @@
 #ifndef _ROUNDCC_TESTSCRIPT_H_
 #define _ROUNDCC_TESTSCRIPT_H_
 
+#include <round/method.h>
+
 #include "RoundTest.h"
 
 namespace Round {
@@ -124,7 +126,7 @@ const std::string JS_INVALID_FUNCTION = \
 
 const std::string RPC_SET_ECHO = \
   "{\"jsonrpc\": \"2.0\"," \
-   "\"method\": \"" ROUNDCC_SYSTEM_METHOD_SET_METHOD "\","
+   "\"method\": \"" ROUNDC_SYSTEM_METHOD_SET_METHOD "\","
    "\"params\": {" \
        "\"language\": \"" RPC_SET_ECHO_LANG "\", " \
        "\"name\": \"" RPC_SET_ECHO_NAME "\", " \
@@ -133,7 +135,7 @@ const std::string RPC_SET_ECHO = \
 
 const std::string RPC_REMOVE_ECHO = \
   "{\"jsonrpc\": \"2.0\"," \
-  "\"method\": \"" ROUNDCC_SYSTEM_METHOD_REMOVE_METHOD "\","
+  "\"method\": \"" ROUNDC_SYSTEM_METHOD_REMOVE_METHOD "\","
   "\"params\": {" \
   "\"name\": \"" RPC_SET_ECHO_NAME "\"" \
   "}, \"id\": 1}";
@@ -150,7 +152,7 @@ const std::string RPC_RUN_ECHO = \
   
 const std::string RPC_SET_HELLO = \
   "{\"jsonrpc\": \"2.0\"," \
-  "\"method\": \"" ROUNDCC_SYSTEM_METHOD_SET_ALIAS "\","
+  "\"method\": \"" ROUNDC_SYSTEM_METHOD_SET_ALIAS "\","
   "\"params\": {" \
     "\"name\": \"" RPC_ALIAS_HELLO_NAME "\", " \
     "\"method\": \"" RPC_SET_ECHO_NAME "\", " \
@@ -159,7 +161,7 @@ const std::string RPC_SET_HELLO = \
   
 const std::string RPC_REMOVE_HELLO = \
   "{\"jsonrpc\": \"2.0\"," \
-  "\"method\": \"" ROUNDCC_SYSTEM_METHOD_REMOVE_ALIAS "\","
+  "\"method\": \"" ROUNDC_SYSTEM_METHOD_REMOVE_ALIAS "\","
   "\"params\": {" \
   "\"name\": \"" RPC_ALIAS_HELLO_NAME "\"" \
   "}, \"id\": 1}";
@@ -181,7 +183,7 @@ const std::string RPC_RUN_HELLO = \
 
 const std::string RPC_SET_ECHO_HELLO = \
   "{\"jsonrpc\": \"2.0\"," \
-  "\"method\": \"" ROUNDCC_SYSTEM_METHOD_SET_METHOD "\","
+  "\"method\": \"" ROUNDC_SYSTEM_METHOD_SET_METHOD "\","
   "\"params\": {" \
   "\"language\": \"" RPC_ECHO_HELLO_LANG "\", " \
   "\"name\": \"" RPC_ECHO_HELLO_NAME "\", " \
@@ -190,14 +192,14 @@ const std::string RPC_SET_ECHO_HELLO = \
 
 const std::string RPC_REMOVE_ECHO_HELLO = \
   "{\"jsonrpc\": \"2.0\"," \
-  "\"method\": \"" ROUNDCC_SYSTEM_METHOD_REMOVE_METHOD "\","
+  "\"method\": \"" ROUNDC_SYSTEM_METHOD_REMOVE_METHOD "\","
   "\"params\": {" \
   "\"name\": \"" RPC_ECHO_HELLO_NAME "\"" \
   "}, \"id\": 1}";
 
 const std::string RPC_SET_ECHO_HELLO_ROUTE = \
   "{\"jsonrpc\": \"2.0\"," \
-  "\"method\": \"" ROUNDCC_SYSTEM_METHOD_SET_ROUTE "\","
+  "\"method\": \"" ROUNDC_SYSTEM_METHOD_SET_ROUTE "\","
   "\"params\": {" \
   "\"name\": \"" RPC_ECHO_HELLO_NAME "\"," \
   "\"src\": \"" RPC_SET_ECHO_NAME "\"," \
@@ -206,7 +208,7 @@ const std::string RPC_SET_ECHO_HELLO_ROUTE = \
 
 const std::string RPC_REMOVE_ECHO_HELLO_ROUTE = \
   "{\"jsonrpc\": \"2.0\"," \
-  "\"method\": \"" ROUNDCC_SYSTEM_METHOD_REMOVE_ROUTE "\","
+  "\"method\": \"" ROUNDC_SYSTEM_METHOD_REMOVE_ROUTE "\","
   "\"params\": {" \
   "\"name\": \"" RPC_ECHO_HELLO_NAME "\"" \
   "}, \"id\": 1}";
@@ -248,9 +250,9 @@ class ScriptTestController {
   ScriptTestController() {
   }
     
-  void runEchoMethodTest(Round::ScriptManager *scriptMgr);
-  void runSumMethodTest(Round::ScriptManager *scriptMgr);
-  void runCounterMethodTest(Round::ScriptManager *scriptMgr);
+  void runEchoMethodTest(RoundMethodManager *scriptMgr);
+  void runSumMethodTest(RoundMethodManager *scriptMgr);
+  void runCounterMethodTest(RoundMethodManager *scriptMgr);
 };
 
 }
