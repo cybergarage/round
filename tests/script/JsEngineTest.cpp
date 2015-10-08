@@ -12,6 +12,8 @@
 #include <string>
 #include <round/script/js.h>
 
+#include "ScriptTestController.h"
+
 #if defined(ROUND_SUPPORT_JS_SM)
 
 BOOST_AUTO_TEST_CASE(JavaScriptEngineTest) {
@@ -47,6 +49,46 @@ BOOST_AUTO_TEST_CASE(JavaScriptEngineTest) {
   BOOST_CHECK(round_string_delete(result));
   BOOST_CHECK(round_error_delete(err));
   BOOST_CHECK(round_js_engine_delete(jsEngine));
+}
+
+BOOST_AUTO_TEST_CASE(JavaScriptEngineEchoTest)
+{
+  RoundMethodManager *methodMgr = round_method_manager_new();
+  BOOST_CHECK(methodMgr);
+  
+  RoundJavaScriptEngine *jsEngine = round_js_engine_new();
+  BOOST_CHECK(jsEngine);
+
+  BOOST_CHECK(round_method_manager_addengine(methodMgr, (RoundScriptEngine *)jsEngine));
+    
+  //BOOST_CHECK(scriptMgr.setScript(Test::SCRIPT_ECHO_NAME, JavaScriptEngine::LANGUAGE, Round::Test::JS_ECHO_CODE, Script::ENCODING_NONE, &err));
+  //BOOST_CHECK(scriptMgr.hasScript(Test::SCRIPT_ECHO_NAME));
+  
+  Round::Test::ScriptTestController scriptTestController;
+  scriptTestController.runEchoMethodTest(methodMgr);
+
+  BOOST_CHECK(round_js_engine_delete(jsEngine));
+  BOOST_CHECK(round_method_manager_delete(methodMgr));
+}
+
+BOOST_AUTO_TEST_CASE(JavaScriptEngineSumTest)
+{
+  RoundMethodManager *methodMgr = round_method_manager_new();
+  BOOST_CHECK(methodMgr);
+  
+  RoundJavaScriptEngine *jsEngine = round_js_engine_new();
+  BOOST_CHECK(jsEngine);
+  
+  BOOST_CHECK(round_method_manager_addengine(methodMgr, (RoundScriptEngine *)jsEngine));
+  
+  //BOOST_CHECK(scriptMgr.setScript(new Script(JavaScriptEngine::LANGUAGE, Test::SCRIPT_SUM_NAME, Test::JS_SUM_CODE)));
+  //BOOST_CHECK(scriptMgr.hasScript(Test::SCRIPT_SUM_NAME));
+  
+  Round::Test::ScriptTestController scriptTestController;
+  scriptTestController.runSumMethodTest(methodMgr);
+  
+  BOOST_CHECK(round_js_engine_delete(jsEngine));
+  BOOST_CHECK(round_method_manager_delete(methodMgr));
 }
 
 #endif
