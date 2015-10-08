@@ -67,7 +67,6 @@ BOOST_AUTO_TEST_CASE(JavaScriptEngineEchoTest)
   Round::Test::ScriptTestController scriptTestController;
   scriptTestController.runEchoMethodTest(methodMgr);
 
-  BOOST_CHECK(round_js_engine_delete(jsEngine));
   BOOST_CHECK(round_method_manager_delete(methodMgr));
 }
 
@@ -87,7 +86,6 @@ BOOST_AUTO_TEST_CASE(JavaScriptEngineSumTest)
   Round::Test::ScriptTestController scriptTestController;
   scriptTestController.runSumMethodTest(methodMgr);
   
-  BOOST_CHECK(round_js_engine_delete(jsEngine));
   BOOST_CHECK(round_method_manager_delete(methodMgr));
 }
 
