@@ -31,6 +31,7 @@ BOOST_AUTO_TEST_CASE(MapNew)
     mapObj = round_map_object_new();
     round_map_object_setkey(mapObj, key);
     BOOST_CHECK(round_map_addmapobject(map, mapObj));
+    BOOST_CHECK(round_map_haskey(map, key));
     BOOST_CHECK_EQUAL(round_map_size(map), (n+1));
   }
 
@@ -71,6 +72,7 @@ BOOST_AUTO_TEST_CASE(MapNew)
   for (size_t n=0; n<tableSize; n++) {
     snprintf(key, sizeof(key), "%ld", n);
     BOOST_CHECK(round_map_removeobjectbykey(map, key));
+    BOOST_CHECK_EQUAL(round_map_haskey(map, key), false);
     BOOST_CHECK_EQUAL(round_map_size(map), (tableSize-(n+1)));
   }
 
