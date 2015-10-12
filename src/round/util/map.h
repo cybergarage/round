@@ -94,6 +94,7 @@ size_t round_map_size(RoundMap *map);
 
 bool round_map_addmapobject(RoundMap *map, RoundMapObject *obj);
 bool round_map_setobject(RoundMap *map, const char *key, void *object);
+bool round_map_haskey(RoundMap *map, const char *key);
 void *round_map_getobjectbykey(RoundMap *map, const char *key);
 bool round_map_removeobjectbykey(RoundMap *map, const char *key);
 size_t round_map_getkeycode(RoundMap *map, const char *key);

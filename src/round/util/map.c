@@ -260,6 +260,15 @@ bool round_map_removeobjectbykey(RoundMap *map, const char *key)
 }
 
 /****************************************
+ * round_map_haskey
+ ****************************************/
+
+bool round_map_haskey(RoundMap *map, const char *key)
+{
+  return round_map_getmapobjectbykey(map, key) ? true : false;
+}
+
+/****************************************
  * round_map_getmapobjectbykey
  ****************************************/
 
