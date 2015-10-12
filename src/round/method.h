@@ -106,6 +106,7 @@ RoundMap *round_method_map_new();
 #define round_method_map_delete(map) round_map_delete(map)
 #define round_method_map_size(map) round_map_size(map)
 #define round_method_map_set(map, method) round_map_setobject(map, method->name, method)
+#define round_method_map_has(map, name) ((RoundMethod*)round_map_haskey(map, name))
 #define round_method_map_get(map, name) ((RoundMethod*)round_map_getobjectbykey(map, name))
 #define round_method_map_remove(map, name) round_map_removeobjectbykey(map, name)
 
@@ -117,6 +118,7 @@ RoundMethodManager *round_method_manager_new();
 bool round_method_manager_delete(RoundMethodManager *mgr);
 
 bool round_method_manager_addmethod(RoundMethodManager *mgr, RoundMethod *method);
+bool round_method_manager_hasmethod(RoundMethodManager *mgr, const char *name);
 RoundMethod *round_method_manager_getmethod(RoundMethodManager *mgr, const char *name);
 bool round_method_manager_removemethod(RoundMethodManager *mgr, const char *name);
 #define round_method_manager_getmethodsize(mgr) round_map_size(mgr->methodMap)
