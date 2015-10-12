@@ -60,9 +60,9 @@ BOOST_AUTO_TEST_CASE(JavaScriptEngineEchoTest)
   BOOST_CHECK(jsEngine);
 
   BOOST_CHECK(round_method_manager_addengine(methodMgr, (RoundScriptEngine *)jsEngine));
-    
-  //BOOST_CHECK(scriptMgr.setScript(Test::SCRIPT_ECHO_NAME, JavaScriptEngine::LANGUAGE, Round::Test::JS_ECHO_CODE, Script::ENCODING_NONE, &err));
-  //BOOST_CHECK(scriptMgr.hasScript(Test::SCRIPT_ECHO_NAME));
+  
+  BOOST_CHECK(round_method_manager_addmethod(methodMgr,Round::Test::CreateTestMethod(Round::Test::SCRIPT_ECHO_NAME, RoundJavaScriptEngineLanguage, Round::Test::JS_ECHO_CODE)));
+  BOOST_CHECK(round_method_manager_hasmethod(methodMgr, Round::Test::SCRIPT_ECHO_NAME));
   
   Round::Test::ScriptTestController scriptTestController;
   scriptTestController.runEchoMethodTest(methodMgr);

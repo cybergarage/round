@@ -22,6 +22,19 @@
 using namespace std;
 using namespace Round;
 
+RoundMethod *Round::Test::CreateTestMethod(const char *name, const char *lang, const char *stringCode)
+{
+  RoundMethod *method = round_method_new();
+  if (!method)
+    return NULL;
+  
+  round_method_setname(method, name);
+  round_method_setlanguage(method, lang);
+  round_method_setstringcode(method, stringCode);
+
+  return method;
+}
+
 void Round::Test::ScriptTestController::runEchoMethodTest(RoundMethodManager *scriptMgr) {
   std::vector<std::string> params;
   

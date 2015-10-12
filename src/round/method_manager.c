@@ -66,6 +66,15 @@ bool round_method_manager_addmethod(RoundMethodManager *mgr, RoundMethod *method
 }
 
 /****************************************
+ * round_method_manager_hasmethod
+ ****************************************/
+
+bool round_method_manager_hasmethod(RoundMethodManager *mgr, const char *name)
+{
+  return round_method_map_has(mgr->methodMap, name);
+}
+
+/****************************************
  * round_method_manager_getmethod
  ****************************************/
 

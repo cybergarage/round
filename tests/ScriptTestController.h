@@ -19,23 +19,23 @@ namespace Round {
  
 namespace Test {
 
-const std::string SCRIPT_ECHO_NAME = "echo";
-const std::string SCRIPT_SUM_NAME = "sum";
-const std::string SCRIPT_COUNTER_NAME = "Counter"; // Only Java Platform
-const std::string SCRIPT_SETCOUNTER_NAME = "set_counter";
-const std::string SCRIPT_INCCOUNTER_NAME = "inc_counter";
-const std::string SCRIPT_GETCOUNTER_NAME = "get_counter";
+static const char *SCRIPT_ECHO_NAME = "echo";
+static const char *SCRIPT_SUM_NAME = "sum";
+static const char *SCRIPT_COUNTER_NAME = "Counter"; // Only Java Platform
+static const char *SCRIPT_SETCOUNTER_NAME = "set_counter";
+static const char *SCRIPT_INCCOUNTER_NAME = "inc_counter";
+static const char *SCRIPT_GETCOUNTER_NAME = "get_counter";
 
 ////////////////////////////////////////////////////////////
 // JavaScript
 ////////////////////////////////////////////////////////////
 
-const std::string JS_ECHO_CODE = \
+static const char *JS_ECHO_CODE = \
   "function echo(params) {"\
   "  return params;"\
   "}";
 
-const std::string JS_SUM_CODE = \
+static const char *JS_SUM_CODE = \
   "function sum(params) {"\
   "  var sum = 0;"\
   "  for (i = 0; i < params.length; i++) {"\
@@ -44,21 +44,21 @@ const std::string JS_SUM_CODE = \
   "  return sum;"\
   "}";
 
-const std::string JS_SETCOUNTER_CODE = \
+static const char *JS_SETCOUNTER_CODE = \
   "var global = new Function(\"return this\")();"\
   "function set_counter(params) {"\
   "  global.counter = params;"\
   "  return global.counter;"\
   "}";
   
-const std::string JS_INCREMENTCOUNTER_CODE = \
+static const char *JS_INCREMENTCOUNTER_CODE = \
   "var global = new Function(\"return this\")();"\
   "function inc_counter(params) {"\
   "  global.counter++;"\
   "  return global.counter;"\
   "}";
   
-const std::string JS_GETCOUNTER_CODE = \
+static const char *JS_GETCOUNTER_CODE = \
   "var global = new Function(\"return this\")();"\
   "function get_counter(params) {"\
   "  return global.counter;"\
@@ -68,34 +68,34 @@ const std::string JS_GETCOUNTER_CODE = \
 // Java
 ////////////////////////////////////////////////////////////
 
-const std::string JAVA_ECHO_SOURCE = "round/tests/scripts/echo.java";
-const std::string JAVA_ECHO_CODE = "yv66vgAAADIADwoAAwAMBwANBwAOAQAGPGluaXQ+AQADKClWAQAEQ29kZQEAD0xpbmVOdW1iZXJUYWJsZQEADnByb2Nlc3NNZXNzYWdlAQAmKExqYXZhL2xhbmcvU3RyaW5nOylMamF2YS9sYW5nL1N0cmluZzsBAApTb3VyY2VGaWxlAQAJZWNoby5qYXZhDAAEAAUBAARlY2hvAQAQamF2YS9sYW5nL09iamVjdAAhAAIAAwAAAAAAAgABAAQABQABAAYAAAAhAAEAAQAAAAUqtwABsQAAAAEABwAAAAoAAgAAAAIABAADAAEACAAJAAEABgAAABoAAQACAAAAAiuwAAAAAQAHAAAABgABAAAABQABAAoAAAACAAs=";
+static const char *JAVA_ECHO_SOURCE = "round/tests/scripts/echo.java";
+static const char *JAVA_ECHO_CODE = "yv66vgAAADIADwoAAwAMBwANBwAOAQAGPGluaXQ+AQADKClWAQAEQ29kZQEAD0xpbmVOdW1iZXJUYWJsZQEADnByb2Nlc3NNZXNzYWdlAQAmKExqYXZhL2xhbmcvU3RyaW5nOylMamF2YS9sYW5nL1N0cmluZzsBAApTb3VyY2VGaWxlAQAJZWNoby5qYXZhDAAEAAUBAARlY2hvAQAQamF2YS9sYW5nL09iamVjdAAhAAIAAwAAAAAAAgABAAQABQABAAYAAAAhAAEAAQAAAAUqtwABsQAAAAEABwAAAAoAAgAAAAIABAADAAEACAAJAAEABgAAABoAAQACAAAAAiuwAAAAAQAHAAAABgABAAAABQABAAoAAAACAAs=";
 
-const std::string JAVA_SUM_SOURCE = "round/tests/scripts/sum.java";
-const std::string JAVA_SUM_CODE = "yv66vgAAADIAKQoACQAXBwAYCAAZCgACABoHABsKABwAHQoAAgAeBwAfBwAgAQAGPGluaXQ+AQADKClWAQAEQ29kZQEAD0xpbmVOdW1iZXJUYWJsZQEADnByb2Nlc3NNZXNzYWdlAQAmKExqYXZhL2xhbmcvU3RyaW5nOylMamF2YS9sYW5nL1N0cmluZzsBAA1TdGFja01hcFRhYmxlBwAfBwAYBwAhBwAbAQAKU291cmNlRmlsZQEACHN1bS5qYXZhDAAKAAsBABBqYXZhL2xhbmcvU3RyaW5nAQAGW14wLTldDAAiACMBABNqYXZhL2xhbmcvRXhjZXB0aW9uBwAkDAAlACYMACcAKAEAA3N1bQEAEGphdmEvbGFuZy9PYmplY3QBABNbTGphdmEvbGFuZy9TdHJpbmc7AQAFc3BsaXQBACcoTGphdmEvbGFuZy9TdHJpbmc7KVtMamF2YS9sYW5nL1N0cmluZzsBABFqYXZhL2xhbmcvSW50ZWdlcgEACHBhcnNlSW50AQAVKExqYXZhL2xhbmcvU3RyaW5nOylJAQAHdmFsdWVPZgEAFShJKUxqYXZhL2xhbmcvU3RyaW5nOwAhAAgACQAAAAAAAgABAAoACwABAAwAAAAhAAEAAQAAAAUqtwABsQAAAAEADQAAAAoAAgAAAAQABAAFAAEADgAPAAEADAAAAKcAAwAGAAAANgO9AAJNKxIDtgAETacABE4DPgM2BBUELL6iABgdLBUEMrgABmA+pwAFOgWEBAGn/+cduAAHsAACAAUADAAPAAUAHAAmACkABQACAA0AAAAmAAkAAAAHAAUACQAMAAoAEAALABIADAAcAA4AJgAPACsADAAxABEAEAAAACMABv8ADwADBwARBwASBwATAAEHABQA/QAEAQFTBwAUAfoABQABABUAAAACABY=";
+static const char *JAVA_SUM_SOURCE = "round/tests/scripts/sum.java";
+static const char *JAVA_SUM_CODE = "yv66vgAAADIAKQoACQAXBwAYCAAZCgACABoHABsKABwAHQoAAgAeBwAfBwAgAQAGPGluaXQ+AQADKClWAQAEQ29kZQEAD0xpbmVOdW1iZXJUYWJsZQEADnByb2Nlc3NNZXNzYWdlAQAmKExqYXZhL2xhbmcvU3RyaW5nOylMamF2YS9sYW5nL1N0cmluZzsBAA1TdGFja01hcFRhYmxlBwAfBwAYBwAhBwAbAQAKU291cmNlRmlsZQEACHN1bS5qYXZhDAAKAAsBABBqYXZhL2xhbmcvU3RyaW5nAQAGW14wLTldDAAiACMBABNqYXZhL2xhbmcvRXhjZXB0aW9uBwAkDAAlACYMACcAKAEAA3N1bQEAEGphdmEvbGFuZy9PYmplY3QBABNbTGphdmEvbGFuZy9TdHJpbmc7AQAFc3BsaXQBACcoTGphdmEvbGFuZy9TdHJpbmc7KVtMamF2YS9sYW5nL1N0cmluZzsBABFqYXZhL2xhbmcvSW50ZWdlcgEACHBhcnNlSW50AQAVKExqYXZhL2xhbmcvU3RyaW5nOylJAQAHdmFsdWVPZgEAFShJKUxqYXZhL2xhbmcvU3RyaW5nOwAhAAgACQAAAAAAAgABAAoACwABAAwAAAAhAAEAAQAAAAUqtwABsQAAAAEADQAAAAoAAgAAAAQABAAFAAEADgAPAAEADAAAAKcAAwAGAAAANgO9AAJNKxIDtgAETacABE4DPgM2BBUELL6iABgdLBUEMrgABmA+pwAFOgWEBAGn/+cduAAHsAACAAUADAAPAAUAHAAmACkABQACAA0AAAAmAAkAAAAHAAUACQAMAAoAEAALABIADAAcAA4AJgAPACsADAAxABEAEAAAACMABv8ADwADBwARBwASBwATAAEHABQA/QAEAQFTBwAUAfoABQABABUAAAACABY=";
 
-const std::string JAVA_COUNTER_SOURCE = "round/tests/scripts/Counter.java";
-const std::string JAVA_COUNTER_CODE = "yv66vgAAADIAFwoABAATCQADABQHABUHABYBAAV2YWx1ZQEAAUkBAAY8aW5pdD4BAAMoKVYBAARDb2RlAQAPTGluZU51bWJlclRhYmxlAQAKU2V0Q291bnRlcgEABChJKVYBABBJbmNyZW1lbnRDb3VudGVyAQAKR2V0Q291bnRlcgEAAygpSQEACDxjbGluaXQ+AQAKU291cmNlRmlsZQEADENvdW50ZXIuamF2YQwABwAIDAAFAAYBAAdDb3VudGVyAQAQamF2YS9sYW5nL09iamVjdAAxAAMABAAAAAEACQAFAAYAAAAFAAEABwAIAAEACQAAAB0AAQABAAAABSq3AAGxAAAAAQAKAAAABgABAAAAAQApAAsADAABAAkAAAAhAAEAAQAAAAUaswACsQAAAAEACgAAAAoAAgAAAAYABAAHACkADQAIAAEACQAAACUAAgAAAAAACbIAAgRgswACsQAAAAEACgAAAAoAAgAAAAoACAALACkADgAPAAEACQAAABwAAQAAAAAABLIAAqwAAAABAAoAAAAGAAEAAAAOAAgAEAAIAAEACQAAAB0AAQAAAAAABQOzAAKxAAAAAQAKAAAABgABAAAAAwABABEAAAACABI=";
+static const char *JAVA_COUNTER_SOURCE = "round/tests/scripts/Counter.java";
+static const char *JAVA_COUNTER_CODE = "yv66vgAAADIAFwoABAATCQADABQHABUHABYBAAV2YWx1ZQEAAUkBAAY8aW5pdD4BAAMoKVYBAARDb2RlAQAPTGluZU51bWJlclRhYmxlAQAKU2V0Q291bnRlcgEABChJKVYBABBJbmNyZW1lbnRDb3VudGVyAQAKR2V0Q291bnRlcgEAAygpSQEACDxjbGluaXQ+AQAKU291cmNlRmlsZQEADENvdW50ZXIuamF2YQwABwAIDAAFAAYBAAdDb3VudGVyAQAQamF2YS9sYW5nL09iamVjdAAxAAMABAAAAAEACQAFAAYAAAAFAAEABwAIAAEACQAAAB0AAQABAAAABSq3AAGxAAAAAQAKAAAABgABAAAAAQApAAsADAABAAkAAAAhAAEAAQAAAAUaswACsQAAAAEACgAAAAoAAgAAAAYABAAHACkADQAIAAEACQAAACUAAgAAAAAACbIAAgRgswACsQAAAAEACgAAAAoAAgAAAAoACAALACkADgAPAAEACQAAABwAAQAAAAAABLIAAqwAAAABAAoAAAAGAAEAAAAOAAgAEAAIAAEACQAAAB0AAQAAAAAABQOzAAKxAAAAAQAKAAAABgABAAAAAwABABEAAAACABI=";
 
-const std::string JAVA_SETCOUNTER_SOURCE = "round/tests/scripts/set_counter.java";
-const std::string JAVA_SETCOUNTER_CODE = "yv66vgAAADIAJQoABwASCgATABQJABUAFgcAFwoAGAAZBwAaBwAbAQAGPGluaXQ+AQADKClWAQAEQ29kZQEAD0xpbmVOdW1iZXJUYWJsZQEADnByb2Nlc3NNZXNzYWdlAQAmKExqYXZhL2xhbmcvU3RyaW5nOylMamF2YS9sYW5nL1N0cmluZzsBAA1TdGFja01hcFRhYmxlBwAXAQAKU291cmNlRmlsZQEAEHNldF9jb3VudGVyLmphdmEMAAgACQcAHAwAHQAeBwAfDAAgACEBABNqYXZhL2xhbmcvRXhjZXB0aW9uBwAiDAAjACQBAAtzZXRfY291bnRlcgEAEGphdmEvbGFuZy9PYmplY3QBABFqYXZhL2xhbmcvSW50ZWdlcgEACHBhcnNlSW50AQAVKExqYXZhL2xhbmcvU3RyaW5nOylJAQAHQ291bnRlcgEABXZhbHVlAQABSQEAEGphdmEvbGFuZy9TdHJpbmcBAAd2YWx1ZU9mAQAVKEkpTGphdmEvbGFuZy9TdHJpbmc7ACEABgAHAAAAAAACAAEACAAJAAEACgAAACEAAQABAAAABSq3AAGxAAAAAQALAAAACgACAAAABQAEAAYAAQAMAA0AAQAKAAAATQABAAMAAAAUK7gAAj0cswADpwAETbIAA7gABbAAAQAAAAkADAAEAAIACwAAABIABAAAAAoABQALAAkADAANAA4ADgAAAAcAAkwHAA8AAAEAEAAAAAIAEQ==";
+static const char *JAVA_SETCOUNTER_SOURCE = "round/tests/scripts/set_counter.java";
+static const char *JAVA_SETCOUNTER_CODE = "yv66vgAAADIAJQoABwASCgATABQJABUAFgcAFwoAGAAZBwAaBwAbAQAGPGluaXQ+AQADKClWAQAEQ29kZQEAD0xpbmVOdW1iZXJUYWJsZQEADnByb2Nlc3NNZXNzYWdlAQAmKExqYXZhL2xhbmcvU3RyaW5nOylMamF2YS9sYW5nL1N0cmluZzsBAA1TdGFja01hcFRhYmxlBwAXAQAKU291cmNlRmlsZQEAEHNldF9jb3VudGVyLmphdmEMAAgACQcAHAwAHQAeBwAfDAAgACEBABNqYXZhL2xhbmcvRXhjZXB0aW9uBwAiDAAjACQBAAtzZXRfY291bnRlcgEAEGphdmEvbGFuZy9PYmplY3QBABFqYXZhL2xhbmcvSW50ZWdlcgEACHBhcnNlSW50AQAVKExqYXZhL2xhbmcvU3RyaW5nOylJAQAHQ291bnRlcgEABXZhbHVlAQABSQEAEGphdmEvbGFuZy9TdHJpbmcBAAd2YWx1ZU9mAQAVKEkpTGphdmEvbGFuZy9TdHJpbmc7ACEABgAHAAAAAAACAAEACAAJAAEACgAAACEAAQABAAAABSq3AAGxAAAAAQALAAAACgACAAAABQAEAAYAAQAMAA0AAQAKAAAATQABAAMAAAAUK7gAAj0cswADpwAETbIAA7gABbAAAQAAAAkADAAEAAIACwAAABIABAAAAAoABQALAAkADAANAA4ADgAAAAcAAkwHAA8AAAEAEAAAAAIAEQ==";
 
-const std::string JAVA_GETCOUNTER_SOURCE = "round/tests/scripts/get_counter.java";
-const std::string JAVA_GETCOUNTER_CODE = "yv66vgAAADIAGwoABQAOCQAPABAKABEAEgcAEwcAFAEABjxpbml0PgEAAygpVgEABENvZGUBAA9MaW5lTnVtYmVyVGFibGUBAA5wcm9jZXNzTWVzc2FnZQEAJihMamF2YS9sYW5nL1N0cmluZzspTGphdmEvbGFuZy9TdHJpbmc7AQAKU291cmNlRmlsZQEAEGdldF9jb3VudGVyLmphdmEMAAYABwcAFQwAFgAXBwAYDAAZABoBAAtnZXRfY291bnRlcgEAEGphdmEvbGFuZy9PYmplY3QBAAdDb3VudGVyAQAFdmFsdWUBAAFJAQAQamF2YS9sYW5nL1N0cmluZwEAB3ZhbHVlT2YBABUoSSlMamF2YS9sYW5nL1N0cmluZzsAIQAEAAUAAAAAAAIAAQAGAAcAAQAIAAAAIQABAAEAAAAFKrcAAbEAAAABAAkAAAAKAAIAAAAFAAQABgABAAoACwABAAgAAAAfAAEAAgAAAAeyAAK4AAOwAAAAAQAJAAAABgABAAAACQABAAwAAAACAA0=";
+static const char *JAVA_GETCOUNTER_SOURCE = "round/tests/scripts/get_counter.java";
+static const char *JAVA_GETCOUNTER_CODE = "yv66vgAAADIAGwoABQAOCQAPABAKABEAEgcAEwcAFAEABjxpbml0PgEAAygpVgEABENvZGUBAA9MaW5lTnVtYmVyVGFibGUBAA5wcm9jZXNzTWVzc2FnZQEAJihMamF2YS9sYW5nL1N0cmluZzspTGphdmEvbGFuZy9TdHJpbmc7AQAKU291cmNlRmlsZQEAEGdldF9jb3VudGVyLmphdmEMAAYABwcAFQwAFgAXBwAYDAAZABoBAAtnZXRfY291bnRlcgEAEGphdmEvbGFuZy9PYmplY3QBAAdDb3VudGVyAQAFdmFsdWUBAAFJAQAQamF2YS9sYW5nL1N0cmluZwEAB3ZhbHVlT2YBABUoSSlMamF2YS9sYW5nL1N0cmluZzsAIQAEAAUAAAAAAAIAAQAGAAcAAQAIAAAAIQABAAEAAAAFKrcAAbEAAAABAAkAAAAKAAIAAAAFAAQABgABAAoACwABAAgAAAAfAAEAAgAAAAeyAAK4AAOwAAAAAQAJAAAABgABAAAACQABAAwAAAACAA0=";
 
-const std::string JAVA_INCCOUNTER_SOURCE = "round/tests/scripts/inc_counter.java";
-const std::string JAVA_INCCOUNTER_CODE = "yv66vgAAADIAGwoABQAOCQAPABAKABEAEgcAEwcAFAEABjxpbml0PgEAAygpVgEABENvZGUBAA9MaW5lTnVtYmVyVGFibGUBAA5wcm9jZXNzTWVzc2FnZQEAJihMamF2YS9sYW5nL1N0cmluZzspTGphdmEvbGFuZy9TdHJpbmc7AQAKU291cmNlRmlsZQEAEGluY19jb3VudGVyLmphdmEMAAYABwcAFQwAFgAXBwAYDAAZABoBAAtpbmNfY291bnRlcgEAEGphdmEvbGFuZy9PYmplY3QBAAdDb3VudGVyAQAFdmFsdWUBAAFJAQAQamF2YS9sYW5nL1N0cmluZwEAB3ZhbHVlT2YBABUoSSlMamF2YS9sYW5nL1N0cmluZzsAIQAEAAUAAAAAAAIAAQAGAAcAAQAIAAAAIQABAAEAAAAFKrcAAbEAAAABAAkAAAAKAAIAAAAFAAQABgABAAoACwABAAgAAAArAAIAAgAAAA+yAAIEYLMAArIAArgAA7AAAAABAAkAAAAKAAIAAAAJAAgACgABAAwAAAACAA0=";
+static const char *JAVA_INCCOUNTER_SOURCE = "round/tests/scripts/inc_counter.java";
+static const char *JAVA_INCCOUNTER_CODE = "yv66vgAAADIAGwoABQAOCQAPABAKABEAEgcAEwcAFAEABjxpbml0PgEAAygpVgEABENvZGUBAA9MaW5lTnVtYmVyVGFibGUBAA5wcm9jZXNzTWVzc2FnZQEAJihMamF2YS9sYW5nL1N0cmluZzspTGphdmEvbGFuZy9TdHJpbmc7AQAKU291cmNlRmlsZQEAEGluY19jb3VudGVyLmphdmEMAAYABwcAFQwAFgAXBwAYDAAZABoBAAtpbmNfY291bnRlcgEAEGphdmEvbGFuZy9PYmplY3QBAAdDb3VudGVyAQAFdmFsdWUBAAFJAQAQamF2YS9sYW5nL1N0cmluZwEAB3ZhbHVlT2YBABUoSSlMamF2YS9sYW5nL1N0cmluZzsAIQAEAAUAAAAAAAIAAQAGAAcAAQAIAAAAIQABAAEAAAAFKrcAAbEAAAABAAkAAAAKAAIAAAAFAAQABgABAAoACwABAAgAAAArAAIAAgAAAA+yAAIEYLMAArIAArgAA7AAAAABAAkAAAAKAAIAAAAJAAgACgABAAwAAAACAA0=";
 
 ////////////////////////////////////////////////////////////
 // Lua
 ////////////////////////////////////////////////////////////
 
-const std::string LUA_ECHO_CODE = \
+static const char *LUA_ECHO_CODE = \
 "function echo(params)\n"\
 "  return params\n"\
 "end";
   
-const std::string LUA_SUM_CODE = \
+static const char *LUA_SUM_CODE = \
 "function sum(jsonParams)\n"\
 "  local json = require(\"json\")\n"\
 "  local params = json.decode(jsonParams)\n"\
@@ -110,7 +110,7 @@ const std::string LUA_SUM_CODE = \
 // Method Requests
 ////////////////////////////////////////////////////////////
 
-const std::string JS_INVALID_FUNCTION = \
+static const char *JS_INVALID_FUNCTION = \
   "function echo(params) {"\
   "  return params;";
 
@@ -124,7 +124,7 @@ const std::string JS_INVALID_FUNCTION = \
 // set_method
 ////////////////////////////////////////////////
 
-const std::string RPC_SET_ECHO = \
+static const char *RPC_SET_ECHO = \
   "{\"jsonrpc\": \"2.0\"," \
    "\"method\": \"" ROUNDC_SYSTEM_METHOD_SET_METHOD "\","
    "\"params\": {" \
@@ -133,14 +133,14 @@ const std::string RPC_SET_ECHO = \
        "\"code\": \"" RPC_SET_ECHO_CODE "\"" \
    "}, \"id\": 1}";
 
-const std::string RPC_REMOVE_ECHO = \
+static const char *RPC_REMOVE_ECHO = \
   "{\"jsonrpc\": \"2.0\"," \
   "\"method\": \"" ROUNDC_SYSTEM_METHOD_REMOVE_METHOD "\","
   "\"params\": {" \
   "\"name\": \"" RPC_SET_ECHO_NAME "\"" \
   "}, \"id\": 1}";
   
-const std::string RPC_RUN_ECHO = \
+static const char *RPC_RUN_ECHO = \
   "{\"jsonrpc\": \"2.0\"," \
    "\"method\": \"" RPC_SET_ECHO_NAME "\"," \
    "\"params\": " RPC_SET_ECHO_PARAMS "," \
@@ -150,7 +150,7 @@ const std::string RPC_RUN_ECHO = \
 // Alias (Hello)
 ////////////////////////////////////////////////
   
-const std::string RPC_SET_HELLO = \
+static const char *RPC_SET_HELLO = \
   "{\"jsonrpc\": \"2.0\"," \
   "\"method\": \"" ROUNDC_SYSTEM_METHOD_SET_ALIAS "\","
   "\"params\": {" \
@@ -159,14 +159,14 @@ const std::string RPC_SET_HELLO = \
     "\"defaults\": \"" RPC_SET_ECHO_PARAMS "\"" \
   "}, \"id\": 1}";
   
-const std::string RPC_REMOVE_HELLO = \
+static const char *RPC_REMOVE_HELLO = \
   "{\"jsonrpc\": \"2.0\"," \
   "\"method\": \"" ROUNDC_SYSTEM_METHOD_REMOVE_ALIAS "\","
   "\"params\": {" \
   "\"name\": \"" RPC_ALIAS_HELLO_NAME "\"" \
   "}, \"id\": 1}";
   
-const std::string RPC_RUN_HELLO = \
+static const char *RPC_RUN_HELLO = \
   "{\"jsonrpc\": \"2.0\"," \
   "\"method\": \"" RPC_ALIAS_HELLO_NAME "\"," \
   "\"id\": 1}";
@@ -181,7 +181,7 @@ const std::string RPC_RUN_HELLO = \
 #define RPC_ECHO_HELLO_CODE   "function " RPC_ECHO_HELLO_NAME "(params) {return '" RPC_ECHO_HELLO_PREFIX "'+ params;}"
 #define RPC_ECHO_HELLO_PARAM "Round"
 
-const std::string RPC_SET_ECHO_HELLO = \
+static const char *RPC_SET_ECHO_HELLO = \
   "{\"jsonrpc\": \"2.0\"," \
   "\"method\": \"" ROUNDC_SYSTEM_METHOD_SET_METHOD "\","
   "\"params\": {" \
@@ -190,14 +190,14 @@ const std::string RPC_SET_ECHO_HELLO = \
   "\"code\": \"" RPC_ECHO_HELLO_CODE "\"" \
   "}, \"id\": 1}";
 
-const std::string RPC_REMOVE_ECHO_HELLO = \
+static const char *RPC_REMOVE_ECHO_HELLO = \
   "{\"jsonrpc\": \"2.0\"," \
   "\"method\": \"" ROUNDC_SYSTEM_METHOD_REMOVE_METHOD "\","
   "\"params\": {" \
   "\"name\": \"" RPC_ECHO_HELLO_NAME "\"" \
   "}, \"id\": 1}";
 
-const std::string RPC_SET_ECHO_HELLO_ROUTE = \
+static const char *RPC_SET_ECHO_HELLO_ROUTE = \
   "{\"jsonrpc\": \"2.0\"," \
   "\"method\": \"" ROUNDC_SYSTEM_METHOD_SET_ROUTE "\","
   "\"params\": {" \
@@ -206,14 +206,14 @@ const std::string RPC_SET_ECHO_HELLO_ROUTE = \
   "\"dest\": \"" RPC_ECHO_HELLO_NAME "\"" \
   "}, \"id\": 1}";
 
-const std::string RPC_REMOVE_ECHO_HELLO_ROUTE = \
+static const char *RPC_REMOVE_ECHO_HELLO_ROUTE = \
   "{\"jsonrpc\": \"2.0\"," \
   "\"method\": \"" ROUNDC_SYSTEM_METHOD_REMOVE_ROUTE "\","
   "\"params\": {" \
   "\"name\": \"" RPC_ECHO_HELLO_NAME "\"" \
   "}, \"id\": 1}";
 
-const std::string RPC_RUN_ROUTE_ECHO = \
+static const char *RPC_RUN_ROUTE_ECHO = \
   "{\"jsonrpc\": \"2.0\"," \
   "\"method\": \"" RPC_SET_ECHO_NAME "\"," \
   "\"params\": \"" RPC_ECHO_HELLO_PARAM "\"," \
@@ -223,7 +223,7 @@ const std::string RPC_RUN_ROUTE_ECHO = \
 // RPC
 ////////////////////////////////////////////////
 
-const std::string RPC_RUN_BATCH_ECHO = \
+static const char *RPC_RUN_BATCH_ECHO = \
   "[" \
   "{\"jsonrpc\": \"2.0\"," \
   "\"method\": \"" RPC_SET_ECHO_NAME "\"," \
@@ -235,7 +235,7 @@ const std::string RPC_RUN_BATCH_ECHO = \
   "\"id\": 1}" \
   "]";
   
-const std::string RPC_SET_SETMETHOD = \
+static const char *RPC_SET_SETMETHOD = \
   "{\"jsonrpc\": \"2.0\"," \
   "\"method\": \"set_method\","
   "\"params\": {" \
@@ -244,9 +244,11 @@ const std::string RPC_SET_SETMETHOD = \
   "\"code\": \"" RPC_SET_ECHO_CODE "\"" \
   "}, \"id\": 1}";
 
+RoundMethod *CreateTestMethod(const char *name, const char *lang, const char *stringCode);
+
 class ScriptTestController {
  public:
-    
+  
   ScriptTestController() {
   }
     
