@@ -80,8 +80,8 @@ BOOST_AUTO_TEST_CASE(JavaScriptEngineSumTest)
   
   BOOST_CHECK(round_method_manager_addengine(methodMgr, (RoundScriptEngine *)jsEngine));
   
-  //BOOST_CHECK(scriptMgr.setScript(new Script(JavaScriptEngine::LANGUAGE, Test::SCRIPT_SUM_NAME, Test::JS_SUM_CODE)));
-  //BOOST_CHECK(scriptMgr.hasScript(Test::SCRIPT_SUM_NAME));
+  BOOST_CHECK(round_method_manager_addmethod(methodMgr,Round::Test::CreateTestMethod(Round::Test::SCRIPT_SUM_NAME, RoundJavaScriptEngineLanguage, Round::Test::JS_SUM_CODE)));
+  BOOST_CHECK(round_method_manager_hasmethod(methodMgr, Round::Test::SCRIPT_SUM_NAME));
   
   Round::Test::ScriptTestController scriptTestController;
   scriptTestController.runSumMethodTest(methodMgr);

@@ -65,15 +65,17 @@ void Round::Test::ScriptTestController::runEchoMethodTest(RoundMethodManager *sc
   params.push_back("{\"key0\":\"value0\",\"key1\":\"value1\"}");
   params.push_back("{\"key0\":\"value0\",\"key1\":\"value1\",\"key2\":\"value2\"}");
   
-  /*
+  //bool round_method_manager_execmethod(RoundMethodManager *mgr, const char *name, const char *params, RoundJSONObject **result, RoundError *err);
+
+  RoundJSONObject *resultObj;
+  RoundError *err = round_error_new();
   std::string results;
-  Error error;
   for (std::vector<std::string>::iterator echoParamIt = params.begin(); echoParamIt != params.end(); echoParamIt++) {
     std::string &echoParam = *echoParamIt;
-    BOOST_CHECK(scriptMgr->execMethod(Test::SCRIPT_ECHO_NAME, echoParam, &results, &error));
+    BOOST_CHECK(round_method_manager_execmethod(scriptMgr, Round::Test::SCRIPT_ECHO_NAME, echoParam.c_str(), &resultObj, err));
+    BOOST_CHECK(resultObj);
     BOOST_CHECK_EQUAL(echoParam.compare(results), 0);
   }
-   */
 }
 
 void Round::Test::ScriptTestController::runSumMethodTest(RoundMethodManager *scriptMgr) {
