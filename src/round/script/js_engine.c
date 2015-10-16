@@ -80,15 +80,17 @@ bool round_js_engine_delete(RoundJavaScriptEngine *engine) {
  * round_js_engine_run
  ****************************************/
 
-bool round_js_engine_run(RoundJavaScriptEngine *engine, RoundMethod *method, const char *param, RoundString *result, RoundError *err)
+bool round_js_engine_run(RoundJavaScriptEngine *engine, RoundMethod *method, const char *param, RoundJSONObject **jsonResult, RoundError *err)
 {
+  RoundString *strResut;
+  
   if (!engine)
     return false;
   
   // TODO : Create source code
   
 #if defined(ROUND_SUPPORT_JS_SM)
-  return round_js_sm_engine_run(engine, "", 0, result, err);
+  return round_js_sm_engine_run(engine, "", 0, strResut, err);
 #endif
   
   return false;
