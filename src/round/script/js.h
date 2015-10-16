@@ -49,7 +49,7 @@ bool round_js_sm_engine_setfunctions(RoundJavaScriptEngine *engine, JSFunctionSp
 bool round_js_sm_engine_run(RoundJavaScriptEngine *engine, const char *source, size_t sourceLen, RoundString *result, RoundError *err);
 #endif
 
-bool round_js_engine_run(RoundJavaScriptEngine *engine, RoundMethod *method, const char *param, RoundString *result, RoundError *err);
+bool round_js_engine_run(RoundJavaScriptEngine *engine, RoundMethod *method, const char *param, RoundJSONObject **jsonResult, RoundError *err);
   
 #ifdef  __cplusplus
 }
