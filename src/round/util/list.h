@@ -49,6 +49,9 @@ typedef struct _RoundOrderedList {
  * Functions
  ****************************************/
 
+RoundList *round_list_header_new();
+RoundList *round_list_node_new();
+  
 bool round_list_header_init(RoundList *list);
 bool round_list_node_init(RoundList *list);
 
@@ -67,6 +70,7 @@ RoundList *round_list_next_circular(RoundList *list);
 RoundList *round_list_next(RoundList *list);
 
 bool round_list_clear(RoundList *headList, ROUND_LIST_DESTRUCTORFUNC dstructorFunc);
+bool round_list_delete(RoundList *headList);
 
 /****************************************
  * Functions

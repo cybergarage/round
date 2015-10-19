@@ -16,29 +16,29 @@
 
 RoundNodeList *round_nodelist_new(void)
 {
-  RoundNodeList *nodeses;
+  RoundNodeList *nodes;
 
-  nodeses = (RoundNodeList *)malloc(sizeof(RoundNodeList));
-  if (!nodeses)
+  nodes = (RoundNodeList *)malloc(sizeof(RoundNodeList));
+  if (!nodes)
     return NULL;
 
-  round_list_header_init((RoundList *)nodeses);
+  round_list_header_init((RoundList *)nodes);
 
-  return nodeses;
+  return nodes;
 }
 
 /****************************************
 * round_nodelist_delete
 ****************************************/
 
-bool round_nodelist_delete(RoundNodeList *nodeses)
+bool round_nodelist_delete(RoundNodeList *nodes)
 {
-  if (!nodeses)
+  if (!nodes)
     return false;
   
-  round_nodelist_clear(nodeses);
+  round_nodelist_clear(nodes);
 
-  free(nodeses);
+  free(nodes);
   
   return true;
 }
