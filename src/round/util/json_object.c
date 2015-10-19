@@ -310,7 +310,7 @@ bool round_json_object_getbool(RoundJSONObject *obj, bool *value)
   if (!round_json_object_isbool(obj))
     return false;
   
-  *value = json_boolean_value(obj->jsonObj) ? true  : false;
+  //*value = json_boolean_value(obj->jsonObj) ? true  : false;
   
   return true;
 }

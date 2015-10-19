@@ -111,7 +111,7 @@ bool round_json_map_getbool(RoundJSONObject *obj, const char *key, bool *value)
   if (!keyJson || ((json_typeof(keyJson) != JSON_TRUE) && (json_typeof(keyJson) != JSON_FALSE)))
     return false;
   
-  *value = json_boolean_value(keyJson) ? true  : false;
+  //*value = json_boolean_value(keyJson) ? true  : false;
   return true;
 #else
   return false;
