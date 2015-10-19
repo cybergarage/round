@@ -25,6 +25,7 @@ round_mpi_sources = \
 	../../src/round/error_rpc.c \
 	../../src/round/finder.c \
 	../../src/round/local_node.c \
+	../../src/round/local_node_message.c \
 	../../src/round/local_node_thread.c \
 	../../src/round/message.c \
 	../../src/round/message_manager.c \
@@ -60,6 +61,7 @@ round_mpi_sources = \
 	../../src/round/util/json_path_set.c \
 	../../src/round/util/json_rpc.c \
 	../../src/round/util/list.c \
+	../../src/round/util/list_ordered.c \
 	../../src/round/util/map.c \
 	../../src/round/util/map_hash.c \
 	../../src/round/util/map_object.c \

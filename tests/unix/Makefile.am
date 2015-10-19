@@ -12,29 +12,28 @@ noinst_PROGRAMS = roundtest
 
 AM_CPPFLAGS = -I$(top_srcdir)/include -I$(top_srcdir)/src -I../
 
-	..//RoundTest.h
+	..//RoundTest.h \
+	..//ScriptTestController.h
 
 roundtest_SOURCES = \
-	..//Base64Test.cpp \
 	..//ClientTest.cpp \
 	..//ClockTest.cpp \
 	..//ClusterListTest.cpp \
 	..//ClusterTest.cpp \
 	..//ErrorTest.cpp \
 	..//FinderTest.cpp \
-	..//JSONArrayTest.cpp \
-	..//JSONMapTest.cpp \
-	..//JSONObjectTest.cpp \
-	..//JSONParseTest.cpp \
+	..//json/JSONArrayTest.cpp \
+	..//json/JSONMapTest.cpp \
+	..//json/JSONObjectTest.cpp \
+	..//json/JSONParseTest.cpp \
+	..//LocalNodeMessageTest.cpp \
 	..//LocalNodeTest.cpp \
-	..//MapTest.cpp \
 	..//MessageTest.cpp \
 	..//MethodManagerTest.cpp \
 	..//MethodMapTest.cpp \
 	..//MethodTest.cpp \
 	..//NodeListTest.cpp \
 	..//NodeTest.cpp \
-	..//QueueTest.cpp \
 	..//RegistryTest.cpp \
 	..//RemoteNodeTest.cpp \
 	..//RoundTest.cpp \
@@ -43,11 +42,15 @@ roundtest_SOURCES = \
 	..//script/RubyEngineTest.cpp \
 	..//ScriptEngineMapTest.cpp \
 	..//ScriptEngineTest.cpp \
-	..//SemaphoreTest.cpp \
+	..//ScriptTestController.cpp \
 	..//ServerTest.cpp \
-	..//StringTest.cpp \
-	..//util/mutex_test.cpp \
-	..//util/string_test.cpp
+	..//util/Base64Test.cpp \
+	..//util/ListOrderedTest.cpp \
+	..//util/ListTest.cpp \
+	..//util/MapTest.cpp \
+	..//util/QueueTest.cpp \
+	..//util/SemaphoreTest.cpp \
+	..//util/StringTest.cpp
 #if HAVE_LIBTOOL
 #roundtest_LDADD = @HTTP_LIBS@ @XML_LIBS@ ../../lib/unix/libround.la
 #else

@@ -61,6 +61,7 @@
 		218569B11BB0D66A00861B9B /* local_node.c in Sources */ = {isa = PBXBuildFile; fileRef = 218569AF1BB0D66A00861B9B /* local_node.c */; settings = {ASSET_TAGS = (); }; };
 		218EE9661B9AE73300960009 /* finder.h in Headers */ = {isa = PBXBuildFile; fileRef = 218EE9651B9AE73300960009 /* finder.h */; };
 		21954ADE1BB9A6250092B1C9 /* json_array.c in Sources */ = {isa = PBXBuildFile; fileRef = 21954ADD1BB9A6250092B1C9 /* json_array.c */; settings = {ASSET_TAGS = (); }; };
+		2195A3DA1BD50D8800DF5436 /* list_ordered.c in Sources */ = {isa = PBXBuildFile; fileRef = 2195A3D91BD50D8800DF5436 /* list_ordered.c */; settings = {ASSET_TAGS = (); }; };
 		219A8E251B9AF54D004ED802 /* js.h in Headers */ = {isa = PBXBuildFile; fileRef = 219A8E1E1B9AF54D004ED802 /* js.h */; };
 		219A8E2A1B9AF54D004ED802 /* lua.h in Headers */ = {isa = PBXBuildFile; fileRef = 219A8E231B9AF54D004ED802 /* lua.h */; };
 		219A8E2B1B9AF54D004ED802 /* ruby.h in Headers */ = {isa = PBXBuildFile; fileRef = 219A8E241B9AF54D004ED802 /* ruby.h */; };
@@ -162,6 +163,7 @@
 		218569AF1BB0D66A00861B9B /* local_node.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = local_node.c; path = ../../../src/round/local_node.c; sourceTree = "<group>"; };
 		218EE9651B9AE73300960009 /* finder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = finder.h; path = ../../../include/round/finder.h; sourceTree = "<group>"; };
 		21954ADD1BB9A6250092B1C9 /* json_array.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = json_array.c; path = ../../../src/round/util/json_array.c; sourceTree = "<group>"; };
+		2195A3D91BD50D8800DF5436 /* list_ordered.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = list_ordered.c; path = ../../../src/round/util/list_ordered.c; sourceTree = "<group>"; };
 		219A8E1E1B9AF54D004ED802 /* js.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = js.h; sourceTree = "<group>"; };
 		219A8E231B9AF54D004ED802 /* lua.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lua.h; sourceTree = "<group>"; };
 		219A8E241B9AF54D004ED802 /* ruby.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ruby.h; sourceTree = "<group>"; };
@@ -352,6 +354,7 @@
 				213931771BB54B9900C93773 /* json_path_set.c */,
 				217F6DE21BB8FA360006B90C /* json_rpc.c */,
 				21C482421B9F5A100087380C /* json.c */,
+				2195A3D91BD50D8800DF5436 /* list_ordered.c */,
 				2178B3641B98BEAE00B9D86B /* list.c */,
 				2178B3651B98BEAE00B9D86B /* list.h */,
 				215E6B461B9E75EA00AAA203 /* map_hash.c */,
@@ -557,6 +560,7 @@
 				21A4C2171BC0A4C10030BD12 /* local_node_thread.c in Sources */,
 				21EA96CE1B990AF800E00841 /* cluster_list.c in Sources */,
 				21D427E71B9EFD5900BBBD41 /* string.c in Sources */,
+				2195A3DA1BD50D8800DF5436 /* list_ordered.c in Sources */,
 				21A776BD1BA06DC2009BDB36 /* message.c in Sources */,
 				218569B11BB0D66A00861B9B /* local_node.c in Sources */,
 			);

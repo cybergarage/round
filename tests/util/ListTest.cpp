@@ -8,13 +8,10 @@
  *
  ******************************************************************/
 
+#include <boost/test/unit_test.hpp>
+
 #include <round/util/list.h>
 
-/****************************************
-* round_ordered_list_add
-****************************************/
-
-bool round_ordered_list_add(RoundList *headList, RoundList *list)
+BOOST_AUTO_TEST_CASE(ListNew)
 {
-  return false;
 }
