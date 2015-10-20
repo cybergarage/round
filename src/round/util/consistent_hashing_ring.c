@@ -8,8 +8,8 @@
  *
  ******************************************************************/
 
-#include <round/util/strings.h>
 #include <round/util/consistent_hashing.h>
+#include <round/util/strings.h>
 
 /****************************************
  * round_consistenthashing_ring_new
@@ -29,7 +29,7 @@ RoundConsistentHashingRing *round_consistenthashing_ring_new()
     return false;
   }
   
-  round_ordered_list_setcmpfunc(ring->orderedList, round_consistenthashing_ring_comp);
+  round_ordered_list_setcmpfunc(ring->orderedList, round_consistenthashing_node_comp);
   round_consistenthashing_ring_setnodedestructor(ring, NULL);
   
   return ring;
@@ -144,25 +144,5 @@ RoundConsistentHashingNode *round_consistenthashing_ring_getlastnode(RoundConsis
   if (ringSize <= 0)
     return NULL;
   return round_consistenthashing_ring_getnode(ring, (ringSize-1));
-}
-
-/****************************************
- * round_consistenthashing_ring_comp
- ****************************************/
-
-int round_consistenthashing_ring_comp(RoundConsistentHashingNode *thisNode, RoundConsistentHashingNode *otherNode)
-{
-  const char *thisHash, *otherHash;
-  
-  if (!thisNode || !otherNode)
-    return 0;
-
-  thisHash =round_consistenthashing_node_gethash(thisNode);
-  otherHash =round_consistenthashing_node_gethash(otherNode);
-  
-  if (!thisHash || !otherHash)
-    return 0;
-  
-  return round_strcmp(thisHash, otherHash) * -1;
 }
 
