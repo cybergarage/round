@@ -19,20 +19,32 @@ extern "C" {
 #endif
 
 /****************************************
+ * Define
+ ****************************************/
+  
+typedef const char *(*ROUND_CONSISTENTHASH_HASHFUNC)(const void *);
+
+/****************************************
  * Data Type
  ****************************************/
 
-typedef RoundOrderedList RoundConsistentHashingRing;
+typedef struct {
+  RoundOrderedList *orderedList;
+  ROUND_CONSISTENTHASH_HASHFUNC nodeHashFunc;
+} RoundConsistentHashingRing;
 
 /****************************************
  * Functions
  ****************************************/
 
-#define round_consistenthashing_ring_new() round_ordered_list_new()
-#define round_consistenthashing_ring_delete(ring) round_ordered_list_delete(ring)
-#define round_consistenthashing_ring_size(ring) round_ordered_list_size(ring)
-#define round_consistenthashing_ring_setcmpfunc(ring,func) round_ordered_list_setcmpfunc(ring,func)
+RoundConsistentHashingRing *round_consistenthashing_ring_new();
+bool round_consistenthashing_ring_delete(RoundConsistentHashingRing *ring);
 
+#define round_consistenthashing_ring_size(ring) round_ordered_list_size(ring->orderedList)
+#define round_consistenthashing_ring_setnodehashfunc(ring,func) (ring->nodeHashFunc = func)
+
+int *round_consistenthashing_ring_comp(const void *, const void *);
+  
 #ifdef  __cplusplus
 } /* extern "C" */
 #endif
