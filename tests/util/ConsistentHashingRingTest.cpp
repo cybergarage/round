@@ -379,7 +379,7 @@ BOOST_AUTO_TEST_CASE(ConsistentHashGraphHandleTest) {
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(8)), round_consistenthashing_ring_getnodeindex(ring, node8));
   
   for (int n = 0; n < conNodeCount; n++) {
- round_test_consistenthashing_node_delete(nodes[n]);
+ ////////round_test_consistenthashing_node_delete(nodes[n]);
   }
 
  BOOST_CHECK(round_consistenthashing_ring_delete(ring));
