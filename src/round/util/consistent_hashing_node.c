@@ -9,6 +9,7 @@
  ******************************************************************/
 
 #include <round/util/consistent_hashing.h>
+#include <round/util/strings.h>
 
 /****************************************
  * round_consistenthashing_node_init
@@ -34,4 +35,34 @@ const char *round_consistenthashing_node_gethash(RoundConsistentHashingNode *nod
   if (!node || !node->hashFunc)
     return NULL;  
   return node->hashFunc(node);
+}
+
+
+/****************************************
+ * round_consistenthashing_node_comp
+ ****************************************/
+
+int round_consistenthashing_node_comp(RoundConsistentHashingNode *thisNode, RoundConsistentHashingNode *otherNode)
+{
+  const char *thisHash, *otherHash;
+  
+  if (!thisNode || !otherNode)
+    return 0;
+  
+  thisHash =round_consistenthashing_node_gethash(thisNode);
+  otherHash =round_consistenthashing_node_gethash(otherNode);
+  
+  if (!thisHash || !otherHash)
+    return 0;
+  
+  return round_strcmp(thisHash, otherHash) * -1;
+}
+
+/****************************************
+ * round_consistenthashing_node_equals
+ ****************************************/
+
+bool round_consistenthashing_node_equals(void *thisNode, void *otherNode)
+{
+  return (round_consistenthashing_node_comp(thisNode, otherNode) == RoundListNodeCompareSame) ? true : false;
 }

@@ -62,8 +62,6 @@ RoundConsistentHashingNode *round_consistenthashing_ring_getlastnode(RoundConsis
 
 bool round_consistenthashing_ring_clear(RoundConsistentHashingRing *ring);
   
-int round_consistenthashing_ring_comp(RoundConsistentHashingNode *thisNode, RoundConsistentHashingNode *otherNode);
-  
 /****************************************
  * Functions (Node)
  ****************************************/
@@ -77,6 +75,9 @@ bool round_consistenthashing_node_init(RoundConsistentHashingNode *node);
   
 #define round_consistenthashing_node_sethashfunc(node,func) (node->hashFunc = (ROUND_CONSISTENTHASH_NODE_HASHFUNC)func)
 const char *round_consistenthashing_node_gethash(RoundConsistentHashingNode *node);
+
+int round_consistenthashing_node_comp(RoundConsistentHashingNode *thisNode, RoundConsistentHashingNode *otherNode);
+bool round_consistenthashing_node_equals(void *thisNode, void *otherNode);
   
 #ifdef  __cplusplus
 } /* extern "C" */

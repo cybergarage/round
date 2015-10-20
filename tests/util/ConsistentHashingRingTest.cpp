@@ -129,30 +129,26 @@ BOOST_AUTO_TEST_CASE(ConsistentHashGraphAddTest) {
  BOOST_CHECK(round_consistenthashing_ring_delete(ring));
 }
 
-/*
 BOOST_AUTO_TEST_CASE(ConsistentHashGraphEqualsTest) {
   const int conNodeCount = 9;
   RoundConsistentHashingRing *ring = round_consistenthashing_ring_new();
   RoundTestConsistentHashingNode *nodes[conNodeCount];
   
   for (int n = 0; n < conNodeCount; n++) {
-  nodes[n] = round_test_consistenthashing_node_new(n+1);
-  BOOST_CHECK(round_consistenthashing_ring_addnode(ring, nodes[n]));
+    nodes[n] = round_test_consistenthashing_node_new(n+1);
+    BOOST_CHECK(round_consistenthashing_ring_addnode(ring, nodes[n]));
   }
   
   for (int i = 0; i < conNodeCount; i++) {
-  for (int j = 0; j < conNodeCount; j++) {
-    BOOST_CHECK_EQUAL(nodes[i]->equals(nodes[j]), ((i == j) ? true : false));
-  }
+    for (int j = 0; j < conNodeCount; j++) {
+      BOOST_CHECK_EQUAL(round_consistenthashing_node_equals(nodes[i], nodes[j]), ((i == j) ? true : false));
+    }
   }
   
-  for (int n = 0; n < conNodeCount; n++) {
- round_test_consistenthashing_node_delete(nodes[n]);
-  }
-
- BOOST_CHECK(round_consistenthashing_ring_delete(ring));
+  BOOST_CHECK(round_consistenthashing_ring_delete(ring));
 }
 
+/*
 BOOST_AUTO_TEST_CASE(ConsistentHashGraphHandleTest) {
   const int conNodeCount = 4;
   RoundConsistentHashingRing *ring = round_consistenthashing_ring_new();
