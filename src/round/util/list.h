@@ -24,6 +24,12 @@ extern "C" {
 typedef void (*ROUND_LIST_DESTRUCTORFUNC)(void *);
 typedef int (*ROUND_ORDERED_LIST_COMPAREFUNC)(const void *, const void *);
 
+enum {
+  RoundListNodeCompareSame = 0,
+  RoundListNodeCompareLess = -1,
+  RoundListNodeCompareGreater = 1,
+};
+  
 /****************************************
  * Data Type
  ****************************************/
@@ -35,10 +41,10 @@ typedef int (*ROUND_ORDERED_LIST_COMPAREFUNC)(const void *, const void *);
   
 typedef struct _RoundList {
   ROUND_LIST_STRUCT_MEMBERS
-} RoundList;
+} RoundList, RoundListNode;
 
 typedef struct {
-  RoundList *list;
+  RoundList *sortedList;
   ROUND_ORDERED_LIST_COMPAREFUNC cmpFunc;
 } RoundOrderedList;
 
@@ -46,55 +52,61 @@ typedef struct {
  * Functions
  ****************************************/
 
-RoundList *round_list_header_new();
-RoundList *round_list_node_new();
+RoundList *round_list_new();
+RoundListNode *round_list_node_new();
   
 bool round_list_header_init(RoundList *list);
-bool round_list_node_init(RoundList *list);
+bool round_list_node_init(RoundListNode *list);
 
-bool round_list_insert(RoundList *prevList, RoundList *list);
-bool round_list_add(RoundList *headList, RoundList *list);
-bool round_list_remove(RoundList *list);
+bool round_list_insert(RoundListNode *prevNode, RoundListNode *node);
 
-size_t round_list_size(RoundList *headList);
+bool round_list_add(RoundList *list, RoundListNode *node);
+bool round_list_addfirst(RoundList *list, RoundListNode *node);
+bool round_list_addlast(RoundList *list, RoundListNode *node);
+#define round_list_add(list,node) round_list_addlast(list,node)
 
-RoundList *round_list_gets(RoundList *headList);
-RoundList *round_list_get(RoundList *headList, int index);
+bool round_list_remove(RoundListNode *node);
 
-RoundList *round_list_prev_circular(RoundList *list);
-RoundList *round_list_prev(RoundList *list);
-RoundList *round_list_next_circular(RoundList *list);
-RoundList *round_list_next(RoundList *list);
+size_t round_list_size(RoundList *list);
 
-bool round_list_clear(RoundList *headList, ROUND_LIST_DESTRUCTORFUNC dstructorFunc);
-bool round_list_delete(RoundList *headList);
+RoundListNode *round_list_get(RoundList *list, int index);
+RoundListNode *round_list_getfirst(RoundList *list);
+RoundListNode *round_list_getlast(RoundList *list);
+#define round_list_gets(list) round_list_getfirst(list)
+
+RoundListNode *round_list_prev_circular(RoundListNode *node);
+RoundListNode *round_list_prev(RoundListNode *node);
+RoundListNode *round_list_next_circular(RoundListNode *node);
+RoundListNode *round_list_next(RoundListNode *node);
+
+bool round_list_clear(RoundList *list, ROUND_LIST_DESTRUCTORFUNC dstructorFunc);
+bool round_list_delete(RoundList *list);
+bool round_list_node_delete(RoundList *node);
 
 /****************************************
  * Functions
  ****************************************/
 
 RoundOrderedList *round_ordered_list_new();
+bool round_ordered_list_delete(RoundOrderedList *list);
 
-#define round_ordered_list_header_init(list) round_list_header_init(list)
-#define round_ordered_list_node_init(list) round_list_node_init(list)
+#define round_ordered_list_setcmpfunc(list,func) (list->cmpFunc = (ROUND_ORDERED_LIST_COMPAREFUNC)func)
+  
+bool round_ordered_list_add(RoundOrderedList *list, RoundListNode *node);
 
-#define round_ordered_list_setcmpfunc(headList,func) (headList->cmpFunc = func)
+#define round_ordered_list_remove(node) round_list_remove(node)
+#define round_ordered_list_size(list) round_list_size(list->sortedList)
   
-bool round_ordered_list_add(RoundList *headList, RoundList *list);
-
-#define round_ordered_list_remove(list) round_list_remove(list)
-
-#define round_ordered_list_size(headList) round_list_size(headList)
+#define round_ordered_list_gets(list) round_list_gets(list->sortedList)
+#define round_ordered_list_get(list,index) round_list_get(list->sortedList,index)
+#define round_ordered_list_getlast(list) round_list_getlast(list->sortedList)
   
-#define round_ordered_list_gets(headList) round_list_gets(headList)
-#define round_ordered_list_get(headList,index) round_list_get(headList,index)
+#define round_ordered_list_prev_circular(node) round_list_prev_circular(node)
+#define round_ordered_list_prev(node) round_list_prev(node)
+#define round_ordered_list_next_circular(node) round_list_next_circular(node)
+#define round_ordered_list_next(node) round_list_next(node)
   
-#define round_ordered_list_prev_circular(list) round_list_prev_circular(list)
-#define round_ordered_list_prev(list) round_list_prev(list)
-#define round_ordered_list_next_circular(list) round_list_next_circular(list)
-#define round_ordered_list_next(list) round_list_next(list)
-  
-#define round_ordered_list_clear(headList, dstructorFunc) round_list_clear(headList, dstructorFunc)
+#define round_ordered_list_clear(list, dstructorFunc) round_list_clear(list->sortedList, dstructorFunc)
 
 #ifdef  __cplusplus
 } /* extern "C" */

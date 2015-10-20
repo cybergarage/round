@@ -31,14 +31,14 @@ RoundNodeList *round_nodelist_new(void)
 * round_nodelist_delete
 ****************************************/
 
-bool round_nodelist_delete(RoundNodeList *nodes)
+bool round_nodelist_delete(RoundNodeList *list)
 {
-  if (!nodes)
+  if (!list)
     return false;
   
-  round_nodelist_clear(nodes);
+  round_nodelist_clear(list);
 
-  free(nodes);
+  free(list);
   
   return true;
 }
