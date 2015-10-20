@@ -45,6 +45,7 @@ roundtest_SOURCES = \
 	..//ScriptTestController.cpp \
 	..//ServerTest.cpp \
 	..//util/Base64Test.cpp \
+	..//util/ConsistentHashingRingTest.cpp \
 	..//util/ListOrderedTest.cpp \
 	..//util/ListTest.cpp \
 	..//util/MapTest.cpp \

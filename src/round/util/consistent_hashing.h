@@ -30,6 +30,8 @@ typedef RoundOrderedList RoundConsistentHashingRing;
 
 #define round_consistenthashing_ring_new() round_ordered_list_new()
 #define round_consistenthashing_ring_delete(ring) round_ordered_list_delete(ring)
+#define round_consistenthashing_ring_size(ring) round_ordered_list_size(ring)
+#define round_consistenthashing_ring_setcmpfunc(ring,func) round_ordered_list_setcmpfunc(ring,func)
 
 #ifdef  __cplusplus
 } /* extern "C" */
