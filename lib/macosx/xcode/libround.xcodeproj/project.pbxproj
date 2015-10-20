@@ -14,7 +14,7 @@
 		211E45D71B98192600CF0088 /* finder_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 211E45D51B98192600CF0088 /* finder_internal.h */; };
 		211E45D81B98192600CF0088 /* finder.c in Sources */ = {isa = PBXBuildFile; fileRef = 211E45D61B98192600CF0088 /* finder.c */; };
 		211E45DA1B981A6300CF0088 /* typedef.h in Headers */ = {isa = PBXBuildFile; fileRef = 211E45D91B981A6300CF0088 /* typedef.h */; };
-		212708291BD662B400000985 /* consistent_hashing.c in Sources */ = {isa = PBXBuildFile; fileRef = 212708271BD662B400000985 /* consistent_hashing.c */; settings = {ASSET_TAGS = (); }; };
+		212708291BD662B400000985 /* consistent_hashing_ring.c in Sources */ = {isa = PBXBuildFile; fileRef = 212708271BD662B400000985 /* consistent_hashing_ring.c */; settings = {ASSET_TAGS = (); }; };
 		2127082A1BD662B400000985 /* consistent_hashing.h in Headers */ = {isa = PBXBuildFile; fileRef = 212708281BD662B400000985 /* consistent_hashing.h */; settings = {ASSET_TAGS = (); }; };
 		212A95451B9BCA4200EC9A71 /* method_manager.c in Sources */ = {isa = PBXBuildFile; fileRef = 212A95431B9BCA4200EC9A71 /* method_manager.c */; };
 		212A95461B9BCA4200EC9A71 /* method.c in Sources */ = {isa = PBXBuildFile; fileRef = 212A95441B9BCA4200EC9A71 /* method.c */; };
@@ -26,6 +26,7 @@
 		2148E5D81B9DFDAF0021CE7B /* script_engine_map.c in Sources */ = {isa = PBXBuildFile; fileRef = 2148E5D61B9DFDAF0021CE7B /* script_engine_map.c */; };
 		2148E5D91B9DFDAF0021CE7B /* method_map.c in Sources */ = {isa = PBXBuildFile; fileRef = 2148E5D71B9DFDAF0021CE7B /* method_map.c */; };
 		2148E5E01B9F1A7D0021CE7B /* error_rpc.c in Sources */ = {isa = PBXBuildFile; fileRef = 2148E5DF1B9F1A7D0021CE7B /* error_rpc.c */; };
+		21505E3D1BD698820042B6E1 /* consistent_hashing_node.c in Sources */ = {isa = PBXBuildFile; fileRef = 21505E3C1BD698820042B6E1 /* consistent_hashing_node.c */; settings = {ASSET_TAGS = (); }; };
 		215A07881BB2EAA500E9702F /* platform.h in Headers */ = {isa = PBXBuildFile; fileRef = 215A07871BB2EAA500E9702F /* platform.h */; settings = {ASSET_TAGS = (); }; };
 		215A078B1BB2FA8000E9702F /* server.h in Headers */ = {isa = PBXBuildFile; fileRef = 215A07891BB2FA8000E9702F /* server.h */; settings = {ASSET_TAGS = (); }; };
 		215A078C1BB2FA8000E9702F /* server.c in Sources */ = {isa = PBXBuildFile; fileRef = 215A078A1BB2FA8000E9702F /* server.c */; settings = {ASSET_TAGS = (); }; };
@@ -117,7 +118,7 @@
 		211E45D51B98192600CF0088 /* finder_internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = finder_internal.h; path = ../../../src/round/finder_internal.h; sourceTree = "<group>"; };
 		211E45D61B98192600CF0088 /* finder.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = finder.c; path = ../../../src/round/finder.c; sourceTree = "<group>"; };
 		211E45D91B981A6300CF0088 /* typedef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = typedef.h; path = ../../../include/round/typedef.h; sourceTree = "<group>"; };
-		212708271BD662B400000985 /* consistent_hashing.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = consistent_hashing.c; path = ../../../src/round/util/consistent_hashing.c; sourceTree = "<group>"; };
+		212708271BD662B400000985 /* consistent_hashing_ring.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = consistent_hashing_ring.c; path = ../../../src/round/util/consistent_hashing_ring.c; sourceTree = "<group>"; };
 		212708281BD662B400000985 /* consistent_hashing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = consistent_hashing.h; path = ../../../src/round/util/consistent_hashing.h; sourceTree = "<group>"; };
 		212A95431B9BCA4200EC9A71 /* method_manager.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = method_manager.c; path = ../../../src/round/method_manager.c; sourceTree = "<group>"; };
 		212A95441B9BCA4200EC9A71 /* method.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = method.c; path = ../../../src/round/method.c; sourceTree = "<group>"; };
@@ -130,6 +131,7 @@
 		2148E5D61B9DFDAF0021CE7B /* script_engine_map.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = script_engine_map.c; path = ../../../src/round/script_engine_map.c; sourceTree = "<group>"; };
 		2148E5D71B9DFDAF0021CE7B /* method_map.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = method_map.c; path = ../../../src/round/method_map.c; sourceTree = "<group>"; };
 		2148E5DF1B9F1A7D0021CE7B /* error_rpc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = error_rpc.c; path = ../../../src/round/error_rpc.c; sourceTree = "<group>"; };
+		21505E3C1BD698820042B6E1 /* consistent_hashing_node.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = consistent_hashing_node.c; path = ../../../src/round/util/consistent_hashing_node.c; sourceTree = "<group>"; };
 		215A07871BB2EAA500E9702F /* platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = platform.h; path = ../../../src/round/platform.h; sourceTree = "<group>"; };
 		215A07891BB2FA8000E9702F /* server.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = server.h; path = ../../../src/round/server.h; sourceTree = "<group>"; };
 		215A078A1BB2FA8000E9702F /* server.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = server.c; path = ../../../src/round/server.c; sourceTree = "<group>"; };
@@ -350,7 +352,8 @@
 			children = (
 				21E6E5701BB01A49006E853D /* base64.c */,
 				21E6E5711BB01A49006E853D /* base64.h */,
-				212708271BD662B400000985 /* consistent_hashing.c */,
+				21505E3C1BD698820042B6E1 /* consistent_hashing_node.c */,
+				212708271BD662B400000985 /* consistent_hashing_ring.c */,
 				212708281BD662B400000985 /* consistent_hashing.h */,
 				21954ADD1BB9A6250092B1C9 /* json_array.c */,
 				21606BF61B9FC8EB000463A8 /* json_internal.h */,
@@ -518,6 +521,7 @@
 				21A4C21D1BC10E6E0030BD12 /* local_node_message.c in Sources */,
 				21A776CC1BA0939F009BDB36 /* timer.c in Sources */,
 				212A95451B9BCA4200EC9A71 /* method_manager.c in Sources */,
+				21505E3D1BD698820042B6E1 /* consistent_hashing_node.c in Sources */,
 				213931781BB54B9900C93773 /* json_path_set.c in Sources */,
 				21954ADE1BB9A6250092B1C9 /* json_array.c in Sources */,
 				21EA96D91B990C3B00E00841 /* node.c in Sources */,
@@ -550,7 +554,7 @@
 				217F6DE31BB8FA360006B90C /* json_rpc.c in Sources */,
 				212A95461B9BCA4200EC9A71 /* method.c in Sources */,
 				21852FB51B9DB11000C7F878 /* map.c in Sources */,
-				212708291BD662B400000985 /* consistent_hashing.c in Sources */,
+				212708291BD662B400000985 /* consistent_hashing_ring.c in Sources */,
 				21B763DD1BA05ED1003C29F3 /* queue.c in Sources */,
 				21D427EC1B9F010A00BBBD41 /* error.c in Sources */,
 				2178B36D1B98BEAE00B9D86B /* mutex.c in Sources */,
