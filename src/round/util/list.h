@@ -37,12 +37,9 @@ typedef struct _RoundList {
   ROUND_LIST_STRUCT_MEMBERS
 } RoundList;
 
-#define ROUND_ORDERED_LIST_STRUCT_MEMBERS \
-  ROUND_LIST_STRUCT_MEMBERS \
+typedef struct {
+  RoundList *list;
   ROUND_ORDERED_LIST_COMPAREFUNC cmpFunc;
-  
-typedef struct _RoundOrderedList {
-  ROUND_ORDERED_LIST_STRUCT_MEMBERS
 } RoundOrderedList;
 
 /****************************************
@@ -75,7 +72,9 @@ bool round_list_delete(RoundList *headList);
 /****************************************
  * Functions
  ****************************************/
-  
+
+RoundOrderedList *round_ordered_list_new();
+
 #define round_ordered_list_header_init(list) round_list_header_init(list)
 #define round_ordered_list_node_init(list) round_list_node_init(list)
 

@@ -14,6 +14,15 @@
  * round_ordered_list_add
  ****************************************/
 
+RoundOrderedList *round_ordered_list_new()
+{
+  return NULL;
+}
+
+/****************************************
+ * round_ordered_list_add
+ ****************************************/
+
 bool round_ordered_list_add(RoundList *headList, RoundList *list)
 {
   return false;
