@@ -22,7 +22,7 @@ extern "C" {
  ****************************************/
 
 typedef void (*ROUND_LIST_DESTRUCTORFUNC)(void *);
-typedef int (*ROUND_ORDERED_LIST_COMPAREFUNC)(const void *, const void *);
+typedef int (*ROUND_ORDERED_LIST_COMPAREFUNC)(void *, void *);
 
 enum {
   RoundListNodeCompareSame = 0,
@@ -69,7 +69,7 @@ bool round_list_remove(RoundListNode *node);
 
 size_t round_list_size(RoundList *list);
 
-RoundListNode *round_list_get(RoundList *list, int index);
+RoundListNode *round_list_get(RoundList *list, size_t index);
 RoundListNode *round_list_getfirst(RoundList *list);
 RoundListNode *round_list_getlast(RoundList *list);
 #define round_list_gets(list) round_list_getfirst(list)

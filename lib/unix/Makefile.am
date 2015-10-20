@@ -53,7 +53,8 @@ round_mpi_sources = \
 	../../src/round/script_engine_map.c \
 	../../src/round/server.c \
 	../../src/round/util/base64.c \
-	../../src/round/util/consistent_hashing.c \
+	../../src/round/util/consistent_hashing_node.c \
+	../../src/round/util/consistent_hashing_ring.c \
 	../../src/round/util/json.c \
 	../../src/round/util/json_array.c \
 	../../src/round/util/json_map.c \

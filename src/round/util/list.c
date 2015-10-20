@@ -151,10 +151,10 @@ RoundListNode *round_list_getlast(RoundList *list)
  * round_list_get
  ****************************************/
 
-RoundListNode *round_list_get(RoundList *list, int index)
+RoundListNode *round_list_get(RoundList *list, size_t index)
 {
   RoundList *node;
-  int n;
+  size_t n;
   
   if (!list)
     return NULL;
@@ -317,20 +317,20 @@ RoundListNode *round_list_next(RoundListNode *node)
 
 bool round_list_clear(RoundList *headList, ROUND_LIST_DESTRUCTORFUNC dstructorFunc)
 {
-  RoundList *list;
+  RoundList *node;
   
   if (!headList)
     return false;
   
-  list = round_list_next(headList);
-  while(list != NULL) {
-    round_list_remove(list);
+  node = round_list_next(headList);
+  while(node != NULL) {
+    round_list_remove(node);
     if (dstructorFunc){
-      dstructorFunc(list);
+      dstructorFunc(node);
     } else {
-      free(list);
+      free(node);
     }
-    list = round_list_next(headList);
+    node = round_list_next(headList);
   }
   
   return true;
