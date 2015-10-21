@@ -30,11 +30,18 @@ bool round_consistenthashing_node_init(RoundConsistentHashingNode *node)
  * round_consistenthashing_node_gethash
  ****************************************/
 
-const char *round_consistenthashing_node_gethash(RoundConsistentHashingNode *node)
+const char *round_consistenthashing_node_gethash(void *node)
 {
-  if (!node || !node->hashFunc)
-    return NULL;  
-  return node->hashFunc(node);
+  ROUND_CONSISTENTHASH_NODE_HASHFUNC hashFunc;
+  
+  if (!node)
+    return NULL;
+  
+  hashFunc = ((RoundConsistentHashingNode *)node)->hashFunc;
+  if (!hashFunc)
+    return NULL;
+  
+  return hashFunc(node);
 }
 
 /****************************************
