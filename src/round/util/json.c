@@ -67,7 +67,7 @@ bool round_json_clear(RoundJSON *json)
 }
 
 /****************************************
- * round_json_parse
+ * round_json_getrootobject
  ****************************************/
 
 RoundJSONObject *round_json_getrootobject(RoundJSON *json)
@@ -76,6 +76,23 @@ RoundJSONObject *round_json_getrootobject(RoundJSON *json)
     return NULL;
   
   return json->rootObj;
+}
+
+/****************************************
+ * round_json_poprootobject
+ ****************************************/
+
+RoundJSONObject *round_json_poprootobject(RoundJSON *json)
+{
+  RoundJSONObject *rootObj;
+  
+  if (!json)
+    return NULL;
+  
+  rootObj = json->rootObj;
+  json->rootObj = NULL;
+  
+  return rootObj;
 }
 
 /****************************************
