@@ -483,7 +483,6 @@ BOOST_AUTO_TEST_CASE(ConsistentHashGraphOffsetNodeTest) {
   BOOST_CHECK(round_consistenthashing_ring_delete(ring));
 }
 
-/*
 BOOST_AUTO_TEST_CASE(ConsistentHashGraphFowardDistanceTest) {
   const int conNodeCount = 9;
   RoundConsistentHashingRing *ring = round_consistenthashing_ring_new();
@@ -494,100 +493,96 @@ BOOST_AUTO_TEST_CASE(ConsistentHashGraphFowardDistanceTest) {
     round_consistenthashing_ring_addnode(ring, nodes[n]);
   }
   
-  BOOST_CHECK_EQUAL(coHashGraph.getForwardNodeDistance(nodes[0], nodes[0]),  0);
-  BOOST_CHECK_EQUAL(coHashGraph.getForwardNodeDistance(nodes[0], nodes[1]),  1);
-  BOOST_CHECK_EQUAL(coHashGraph.getForwardNodeDistance(nodes[0], nodes[2]),  2);
-  BOOST_CHECK_EQUAL(coHashGraph.getForwardNodeDistance(nodes[0], nodes[3]),  3);
-  BOOST_CHECK_EQUAL(coHashGraph.getForwardNodeDistance(nodes[0], nodes[4]),  4);
-  BOOST_CHECK_EQUAL(coHashGraph.getForwardNodeDistance(nodes[0], nodes[5]),  5);
-  BOOST_CHECK_EQUAL(coHashGraph.getForwardNodeDistance(nodes[0], nodes[6]),  6);
-  BOOST_CHECK_EQUAL(coHashGraph.getForwardNodeDistance(nodes[0], nodes[7]),  7);
-  BOOST_CHECK_EQUAL(coHashGraph.getForwardNodeDistance(nodes[0], nodes[8]),  8);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(ring, nodes[0], nodes[0]),  0);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(ring, nodes[0], nodes[1]),  1);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(ring, nodes[0], nodes[2]),  2);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(ring, nodes[0], nodes[3]),  3);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(ring, nodes[0], nodes[4]),  4);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(ring, nodes[0], nodes[5]),  5);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(ring, nodes[0], nodes[6]),  6);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(ring, nodes[0], nodes[7]),  7);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(ring, nodes[0], nodes[8]),  8);
   
-  BOOST_CHECK_EQUAL(coHashGraph.getForwardNodeDistance(nodes[1], nodes[0]),  8);
-  BOOST_CHECK_EQUAL(coHashGraph.getForwardNodeDistance(nodes[1], nodes[1]),  0);
-  BOOST_CHECK_EQUAL(coHashGraph.getForwardNodeDistance(nodes[1], nodes[2]),  1);
-  BOOST_CHECK_EQUAL(coHashGraph.getForwardNodeDistance(nodes[1], nodes[3]),  2);
-  BOOST_CHECK_EQUAL(coHashGraph.getForwardNodeDistance(nodes[1], nodes[4]),  3);
-  BOOST_CHECK_EQUAL(coHashGraph.getForwardNodeDistance(nodes[1], nodes[5]),  4);
-  BOOST_CHECK_EQUAL(coHashGraph.getForwardNodeDistance(nodes[1], nodes[6]),  5);
-  BOOST_CHECK_EQUAL(coHashGraph.getForwardNodeDistance(nodes[1], nodes[7]),  6);
-  BOOST_CHECK_EQUAL(coHashGraph.getForwardNodeDistance(nodes[1], nodes[8]),  7);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(ring, nodes[1], nodes[0]),  8);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(ring, nodes[1], nodes[1]),  0);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(ring, nodes[1], nodes[2]),  1);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(ring, nodes[1], nodes[3]),  2);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(ring, nodes[1], nodes[4]),  3);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(ring, nodes[1], nodes[5]),  4);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(ring, nodes[1], nodes[6]),  5);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(ring, nodes[1], nodes[7]),  6);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(ring, nodes[1], nodes[8]),  7);
   
-  BOOST_CHECK_EQUAL(coHashGraph.getForwardNodeDistance(nodes[2], nodes[0]),  7);
-  BOOST_CHECK_EQUAL(coHashGraph.getForwardNodeDistance(nodes[2], nodes[1]),  8);
-  BOOST_CHECK_EQUAL(coHashGraph.getForwardNodeDistance(nodes[2], nodes[2]),  0);
-  BOOST_CHECK_EQUAL(coHashGraph.getForwardNodeDistance(nodes[2], nodes[3]),  1);
-  BOOST_CHECK_EQUAL(coHashGraph.getForwardNodeDistance(nodes[2], nodes[4]),  2);
-  BOOST_CHECK_EQUAL(coHashGraph.getForwardNodeDistance(nodes[2], nodes[5]),  3);
-  BOOST_CHECK_EQUAL(coHashGraph.getForwardNodeDistance(nodes[2], nodes[6]),  4);
-  BOOST_CHECK_EQUAL(coHashGraph.getForwardNodeDistance(nodes[2], nodes[7]),  5);
-  BOOST_CHECK_EQUAL(coHashGraph.getForwardNodeDistance(nodes[2], nodes[8]),  6);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(ring, nodes[2], nodes[0]),  7);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(ring, nodes[2], nodes[1]),  8);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(ring, nodes[2], nodes[2]),  0);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(ring, nodes[2], nodes[3]),  1);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(ring, nodes[2], nodes[4]),  2);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(ring, nodes[2], nodes[5]),  3);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(ring, nodes[2], nodes[6]),  4);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(ring, nodes[2], nodes[7]),  5);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(ring, nodes[2], nodes[8]),  6);
   
-  BOOST_CHECK_EQUAL(coHashGraph.getForwardNodeDistance(nodes[3], nodes[0]),  6);
-  BOOST_CHECK_EQUAL(coHashGraph.getForwardNodeDistance(nodes[3], nodes[1]),  7);
-  BOOST_CHECK_EQUAL(coHashGraph.getForwardNodeDistance(nodes[3], nodes[2]),  8);
-  BOOST_CHECK_EQUAL(coHashGraph.getForwardNodeDistance(nodes[3], nodes[3]),  0);
-  BOOST_CHECK_EQUAL(coHashGraph.getForwardNodeDistance(nodes[3], nodes[4]),  1);
-  BOOST_CHECK_EQUAL(coHashGraph.getForwardNodeDistance(nodes[3], nodes[5]),  2);
-  BOOST_CHECK_EQUAL(coHashGraph.getForwardNodeDistance(nodes[3], nodes[6]),  3);
-  BOOST_CHECK_EQUAL(coHashGraph.getForwardNodeDistance(nodes[3], nodes[7]),  4);
-  BOOST_CHECK_EQUAL(coHashGraph.getForwardNodeDistance(nodes[3], nodes[8]),  5);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(ring, nodes[3], nodes[0]),  6);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(ring, nodes[3], nodes[1]),  7);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(ring, nodes[3], nodes[2]),  8);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(ring, nodes[3], nodes[3]),  0);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(ring, nodes[3], nodes[4]),  1);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(ring, nodes[3], nodes[5]),  2);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(ring, nodes[3], nodes[6]),  3);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(ring, nodes[3], nodes[7]),  4);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(ring, nodes[3], nodes[8]),  5);
   
-  BOOST_CHECK_EQUAL(coHashGraph.getForwardNodeDistance(nodes[4], nodes[0]),  5);
-  BOOST_CHECK_EQUAL(coHashGraph.getForwardNodeDistance(nodes[4], nodes[1]),  6);
-  BOOST_CHECK_EQUAL(coHashGraph.getForwardNodeDistance(nodes[4], nodes[2]),  7);
-  BOOST_CHECK_EQUAL(coHashGraph.getForwardNodeDistance(nodes[4], nodes[3]),  8);
-  BOOST_CHECK_EQUAL(coHashGraph.getForwardNodeDistance(nodes[4], nodes[4]),  0);
-  BOOST_CHECK_EQUAL(coHashGraph.getForwardNodeDistance(nodes[4], nodes[5]),  1);
-  BOOST_CHECK_EQUAL(coHashGraph.getForwardNodeDistance(nodes[4], nodes[6]),  2);
-  BOOST_CHECK_EQUAL(coHashGraph.getForwardNodeDistance(nodes[4], nodes[7]),  3);
-  BOOST_CHECK_EQUAL(coHashGraph.getForwardNodeDistance(nodes[4], nodes[8]),  4);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(ring, nodes[4], nodes[0]),  5);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(ring, nodes[4], nodes[1]),  6);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(ring, nodes[4], nodes[2]),  7);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(ring, nodes[4], nodes[3]),  8);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(ring, nodes[4], nodes[4]),  0);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(ring, nodes[4], nodes[5]),  1);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(ring, nodes[4], nodes[6]),  2);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(ring, nodes[4], nodes[7]),  3);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(ring, nodes[4], nodes[8]),  4);
   
-  BOOST_CHECK_EQUAL(coHashGraph.getForwardNodeDistance(nodes[5], nodes[0]),  4);
-  BOOST_CHECK_EQUAL(coHashGraph.getForwardNodeDistance(nodes[5], nodes[1]),  5);
-  BOOST_CHECK_EQUAL(coHashGraph.getForwardNodeDistance(nodes[5], nodes[2]),  6);
-  BOOST_CHECK_EQUAL(coHashGraph.getForwardNodeDistance(nodes[5], nodes[3]),  7);
-  BOOST_CHECK_EQUAL(coHashGraph.getForwardNodeDistance(nodes[5], nodes[4]),  8);
-  BOOST_CHECK_EQUAL(coHashGraph.getForwardNodeDistance(nodes[5], nodes[5]),  0);
-  BOOST_CHECK_EQUAL(coHashGraph.getForwardNodeDistance(nodes[5], nodes[6]),  1);
-  BOOST_CHECK_EQUAL(coHashGraph.getForwardNodeDistance(nodes[5], nodes[7]),  2);
-  BOOST_CHECK_EQUAL(coHashGraph.getForwardNodeDistance(nodes[5], nodes[8]),  3);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(ring, nodes[5], nodes[0]),  4);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(ring, nodes[5], nodes[1]),  5);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(ring, nodes[5], nodes[2]),  6);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(ring, nodes[5], nodes[3]),  7);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(ring, nodes[5], nodes[4]),  8);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(ring, nodes[5], nodes[5]),  0);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(ring, nodes[5], nodes[6]),  1);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(ring, nodes[5], nodes[7]),  2);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(ring, nodes[5], nodes[8]),  3);
   
-  BOOST_CHECK_EQUAL(coHashGraph.getForwardNodeDistance(nodes[6], nodes[0]),  3);
-  BOOST_CHECK_EQUAL(coHashGraph.getForwardNodeDistance(nodes[6], nodes[1]),  4);
-  BOOST_CHECK_EQUAL(coHashGraph.getForwardNodeDistance(nodes[6], nodes[2]),  5);
-  BOOST_CHECK_EQUAL(coHashGraph.getForwardNodeDistance(nodes[6], nodes[3]),  6);
-  BOOST_CHECK_EQUAL(coHashGraph.getForwardNodeDistance(nodes[6], nodes[4]),  7);
-  BOOST_CHECK_EQUAL(coHashGraph.getForwardNodeDistance(nodes[6], nodes[5]),  8);
-  BOOST_CHECK_EQUAL(coHashGraph.getForwardNodeDistance(nodes[6], nodes[6]),  0);
-  BOOST_CHECK_EQUAL(coHashGraph.getForwardNodeDistance(nodes[6], nodes[7]),  1);
-  BOOST_CHECK_EQUAL(coHashGraph.getForwardNodeDistance(nodes[6], nodes[8]),  2);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(ring, nodes[6], nodes[0]),  3);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(ring, nodes[6], nodes[1]),  4);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(ring, nodes[6], nodes[2]),  5);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(ring, nodes[6], nodes[3]),  6);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(ring, nodes[6], nodes[4]),  7);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(ring, nodes[6], nodes[5]),  8);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(ring, nodes[6], nodes[6]),  0);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(ring, nodes[6], nodes[7]),  1);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(ring, nodes[6], nodes[8]),  2);
   
-  BOOST_CHECK_EQUAL(coHashGraph.getForwardNodeDistance(nodes[7], nodes[0]),  2);
-  BOOST_CHECK_EQUAL(coHashGraph.getForwardNodeDistance(nodes[7], nodes[1]),  3);
-  BOOST_CHECK_EQUAL(coHashGraph.getForwardNodeDistance(nodes[7], nodes[2]),  4);
-  BOOST_CHECK_EQUAL(coHashGraph.getForwardNodeDistance(nodes[7], nodes[3]),  5);
-  BOOST_CHECK_EQUAL(coHashGraph.getForwardNodeDistance(nodes[7], nodes[4]),  6);
-  BOOST_CHECK_EQUAL(coHashGraph.getForwardNodeDistance(nodes[7], nodes[5]),  7);
-  BOOST_CHECK_EQUAL(coHashGraph.getForwardNodeDistance(nodes[7], nodes[6]),  8);
-  BOOST_CHECK_EQUAL(coHashGraph.getForwardNodeDistance(nodes[7], nodes[7]),  0);
-  BOOST_CHECK_EQUAL(coHashGraph.getForwardNodeDistance(nodes[7], nodes[8]),  1);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(ring, nodes[7], nodes[0]),  2);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(ring, nodes[7], nodes[1]),  3);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(ring, nodes[7], nodes[2]),  4);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(ring, nodes[7], nodes[3]),  5);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(ring, nodes[7], nodes[4]),  6);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(ring, nodes[7], nodes[5]),  7);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(ring, nodes[7], nodes[6]),  8);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(ring, nodes[7], nodes[7]),  0);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(ring, nodes[7], nodes[8]),  1);
   
-  BOOST_CHECK_EQUAL(coHashGraph.getForwardNodeDistance(nodes[8], nodes[0]),  1);
-  BOOST_CHECK_EQUAL(coHashGraph.getForwardNodeDistance(nodes[8], nodes[1]),  2);
-  BOOST_CHECK_EQUAL(coHashGraph.getForwardNodeDistance(nodes[8], nodes[2]),  3);
-  BOOST_CHECK_EQUAL(coHashGraph.getForwardNodeDistance(nodes[8], nodes[3]),  4);
-  BOOST_CHECK_EQUAL(coHashGraph.getForwardNodeDistance(nodes[8], nodes[4]),  5);
-  BOOST_CHECK_EQUAL(coHashGraph.getForwardNodeDistance(nodes[8], nodes[5]),  6);
-  BOOST_CHECK_EQUAL(coHashGraph.getForwardNodeDistance(nodes[8], nodes[6]),  7);
-  BOOST_CHECK_EQUAL(coHashGraph.getForwardNodeDistance(nodes[8], nodes[7]),  8);
-  BOOST_CHECK_EQUAL(coHashGraph.getForwardNodeDistance(nodes[8], nodes[8]),  0);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(ring, nodes[8], nodes[0]),  1);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(ring, nodes[8], nodes[1]),  2);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(ring, nodes[8], nodes[2]),  3);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(ring, nodes[8], nodes[3]),  4);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(ring, nodes[8], nodes[4]),  5);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(ring, nodes[8], nodes[5]),  6);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(ring, nodes[8], nodes[6]),  7);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(ring, nodes[8], nodes[7]),  8);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(ring, nodes[8], nodes[8]),  0);
   
-  for (int n = 0; n < conNodeCount; n++) {
-    round_test_consistenthashing_node_delete(nodes[n]);
-  }
- 
  BOOST_CHECK(round_consistenthashing_ring_delete(ring));
 }
 
@@ -601,100 +596,96 @@ BOOST_AUTO_TEST_CASE(ConsistentHashGraphBackfowardDistanceTest) {
   round_consistenthashing_ring_addnode(ring, nodes[n]);
   }
   
-  BOOST_CHECK_EQUAL(coHashGraph.getBackwardNodeDistance(nodes[0], nodes[0]),  0);
-  BOOST_CHECK_EQUAL(coHashGraph.getBackwardNodeDistance(nodes[0], nodes[1]), -8);
-  BOOST_CHECK_EQUAL(coHashGraph.getBackwardNodeDistance(nodes[0], nodes[2]), -7);
-  BOOST_CHECK_EQUAL(coHashGraph.getBackwardNodeDistance(nodes[0], nodes[3]), -6);
-  BOOST_CHECK_EQUAL(coHashGraph.getBackwardNodeDistance(nodes[0], nodes[4]), -5);
-  BOOST_CHECK_EQUAL(coHashGraph.getBackwardNodeDistance(nodes[0], nodes[5]), -4);
-  BOOST_CHECK_EQUAL(coHashGraph.getBackwardNodeDistance(nodes[0], nodes[6]), -3);
-  BOOST_CHECK_EQUAL(coHashGraph.getBackwardNodeDistance(nodes[0], nodes[7]), -2);
-  BOOST_CHECK_EQUAL(coHashGraph.getBackwardNodeDistance(nodes[0], nodes[8]), -1);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(ring, nodes[0], nodes[0]),  0);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(ring, nodes[0], nodes[1]), -8);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(ring, nodes[0], nodes[2]), -7);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(ring, nodes[0], nodes[3]), -6);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(ring, nodes[0], nodes[4]), -5);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(ring, nodes[0], nodes[5]), -4);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(ring, nodes[0], nodes[6]), -3);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(ring, nodes[0], nodes[7]), -2);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(ring, nodes[0], nodes[8]), -1);
   
-  BOOST_CHECK_EQUAL(coHashGraph.getBackwardNodeDistance(nodes[1], nodes[0]), -1);
-  BOOST_CHECK_EQUAL(coHashGraph.getBackwardNodeDistance(nodes[1], nodes[1]),  0);
-  BOOST_CHECK_EQUAL(coHashGraph.getBackwardNodeDistance(nodes[1], nodes[2]), -8);
-  BOOST_CHECK_EQUAL(coHashGraph.getBackwardNodeDistance(nodes[1], nodes[3]), -7);
-  BOOST_CHECK_EQUAL(coHashGraph.getBackwardNodeDistance(nodes[1], nodes[4]), -6);
-  BOOST_CHECK_EQUAL(coHashGraph.getBackwardNodeDistance(nodes[1], nodes[5]), -5);
-  BOOST_CHECK_EQUAL(coHashGraph.getBackwardNodeDistance(nodes[1], nodes[6]), -4);
-  BOOST_CHECK_EQUAL(coHashGraph.getBackwardNodeDistance(nodes[1], nodes[7]), -3);
-  BOOST_CHECK_EQUAL(coHashGraph.getBackwardNodeDistance(nodes[1], nodes[8]), -2);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(ring, nodes[1], nodes[0]), -1);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(ring, nodes[1], nodes[1]),  0);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(ring, nodes[1], nodes[2]), -8);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(ring, nodes[1], nodes[3]), -7);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(ring, nodes[1], nodes[4]), -6);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(ring, nodes[1], nodes[5]), -5);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(ring, nodes[1], nodes[6]), -4);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(ring, nodes[1], nodes[7]), -3);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(ring, nodes[1], nodes[8]), -2);
   
-  BOOST_CHECK_EQUAL(coHashGraph.getBackwardNodeDistance(nodes[2], nodes[0]), -2);
-  BOOST_CHECK_EQUAL(coHashGraph.getBackwardNodeDistance(nodes[2], nodes[1]), -1);
-  BOOST_CHECK_EQUAL(coHashGraph.getBackwardNodeDistance(nodes[2], nodes[2]),  0);
-  BOOST_CHECK_EQUAL(coHashGraph.getBackwardNodeDistance(nodes[2], nodes[3]), -8);
-  BOOST_CHECK_EQUAL(coHashGraph.getBackwardNodeDistance(nodes[2], nodes[4]), -7);
-  BOOST_CHECK_EQUAL(coHashGraph.getBackwardNodeDistance(nodes[2], nodes[5]), -6);
-  BOOST_CHECK_EQUAL(coHashGraph.getBackwardNodeDistance(nodes[2], nodes[6]), -5);
-  BOOST_CHECK_EQUAL(coHashGraph.getBackwardNodeDistance(nodes[2], nodes[7]), -4);
-  BOOST_CHECK_EQUAL(coHashGraph.getBackwardNodeDistance(nodes[2], nodes[8]), -3);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(ring, nodes[2], nodes[0]), -2);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(ring, nodes[2], nodes[1]), -1);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(ring, nodes[2], nodes[2]),  0);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(ring, nodes[2], nodes[3]), -8);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(ring, nodes[2], nodes[4]), -7);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(ring, nodes[2], nodes[5]), -6);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(ring, nodes[2], nodes[6]), -5);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(ring, nodes[2], nodes[7]), -4);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(ring, nodes[2], nodes[8]), -3);
   
-  BOOST_CHECK_EQUAL(coHashGraph.getBackwardNodeDistance(nodes[3], nodes[0]), -3);
-  BOOST_CHECK_EQUAL(coHashGraph.getBackwardNodeDistance(nodes[3], nodes[1]), -2);
-  BOOST_CHECK_EQUAL(coHashGraph.getBackwardNodeDistance(nodes[3], nodes[2]), -1);
-  BOOST_CHECK_EQUAL(coHashGraph.getBackwardNodeDistance(nodes[3], nodes[3]),  0);
-  BOOST_CHECK_EQUAL(coHashGraph.getBackwardNodeDistance(nodes[3], nodes[4]), -8);
-  BOOST_CHECK_EQUAL(coHashGraph.getBackwardNodeDistance(nodes[3], nodes[5]), -7);
-  BOOST_CHECK_EQUAL(coHashGraph.getBackwardNodeDistance(nodes[3], nodes[6]), -6);
-  BOOST_CHECK_EQUAL(coHashGraph.getBackwardNodeDistance(nodes[3], nodes[7]), -5);
-  BOOST_CHECK_EQUAL(coHashGraph.getBackwardNodeDistance(nodes[3], nodes[8]), -4);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(ring, nodes[3], nodes[0]), -3);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(ring, nodes[3], nodes[1]), -2);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(ring, nodes[3], nodes[2]), -1);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(ring, nodes[3], nodes[3]),  0);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(ring, nodes[3], nodes[4]), -8);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(ring, nodes[3], nodes[5]), -7);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(ring, nodes[3], nodes[6]), -6);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(ring, nodes[3], nodes[7]), -5);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(ring, nodes[3], nodes[8]), -4);
   
-  BOOST_CHECK_EQUAL(coHashGraph.getBackwardNodeDistance(nodes[4], nodes[0]), -4);
-  BOOST_CHECK_EQUAL(coHashGraph.getBackwardNodeDistance(nodes[4], nodes[1]), -3);
-  BOOST_CHECK_EQUAL(coHashGraph.getBackwardNodeDistance(nodes[4], nodes[2]), -2);
-  BOOST_CHECK_EQUAL(coHashGraph.getBackwardNodeDistance(nodes[4], nodes[3]), -1);
-  BOOST_CHECK_EQUAL(coHashGraph.getBackwardNodeDistance(nodes[4], nodes[4]),  0);
-  BOOST_CHECK_EQUAL(coHashGraph.getBackwardNodeDistance(nodes[4], nodes[5]), -8);
-  BOOST_CHECK_EQUAL(coHashGraph.getBackwardNodeDistance(nodes[4], nodes[6]), -7);
-  BOOST_CHECK_EQUAL(coHashGraph.getBackwardNodeDistance(nodes[4], nodes[7]), -6);
-  BOOST_CHECK_EQUAL(coHashGraph.getBackwardNodeDistance(nodes[4], nodes[8]), -5);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(ring, nodes[4], nodes[0]), -4);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(ring, nodes[4], nodes[1]), -3);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(ring, nodes[4], nodes[2]), -2);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(ring, nodes[4], nodes[3]), -1);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(ring, nodes[4], nodes[4]),  0);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(ring, nodes[4], nodes[5]), -8);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(ring, nodes[4], nodes[6]), -7);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(ring, nodes[4], nodes[7]), -6);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(ring, nodes[4], nodes[8]), -5);
   
-  BOOST_CHECK_EQUAL(coHashGraph.getBackwardNodeDistance(nodes[5], nodes[0]), -5);
-  BOOST_CHECK_EQUAL(coHashGraph.getBackwardNodeDistance(nodes[5], nodes[1]), -4);
-  BOOST_CHECK_EQUAL(coHashGraph.getBackwardNodeDistance(nodes[5], nodes[2]), -3);
-  BOOST_CHECK_EQUAL(coHashGraph.getBackwardNodeDistance(nodes[5], nodes[3]), -2);
-  BOOST_CHECK_EQUAL(coHashGraph.getBackwardNodeDistance(nodes[5], nodes[4]), -1);
-  BOOST_CHECK_EQUAL(coHashGraph.getBackwardNodeDistance(nodes[5], nodes[5]),  0);
-  BOOST_CHECK_EQUAL(coHashGraph.getBackwardNodeDistance(nodes[5], nodes[6]), -8);
-  BOOST_CHECK_EQUAL(coHashGraph.getBackwardNodeDistance(nodes[5], nodes[7]), -7);
-  BOOST_CHECK_EQUAL(coHashGraph.getBackwardNodeDistance(nodes[5], nodes[8]), -6);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(ring, nodes[5], nodes[0]), -5);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(ring, nodes[5], nodes[1]), -4);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(ring, nodes[5], nodes[2]), -3);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(ring, nodes[5], nodes[3]), -2);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(ring, nodes[5], nodes[4]), -1);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(ring, nodes[5], nodes[5]),  0);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(ring, nodes[5], nodes[6]), -8);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(ring, nodes[5], nodes[7]), -7);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(ring, nodes[5], nodes[8]), -6);
   
-  BOOST_CHECK_EQUAL(coHashGraph.getBackwardNodeDistance(nodes[6], nodes[0]), -6);
-  BOOST_CHECK_EQUAL(coHashGraph.getBackwardNodeDistance(nodes[6], nodes[1]), -5);
-  BOOST_CHECK_EQUAL(coHashGraph.getBackwardNodeDistance(nodes[6], nodes[2]), -4);
-  BOOST_CHECK_EQUAL(coHashGraph.getBackwardNodeDistance(nodes[6], nodes[3]), -3);
-  BOOST_CHECK_EQUAL(coHashGraph.getBackwardNodeDistance(nodes[6], nodes[4]), -2);
-  BOOST_CHECK_EQUAL(coHashGraph.getBackwardNodeDistance(nodes[6], nodes[5]), -1);
-  BOOST_CHECK_EQUAL(coHashGraph.getBackwardNodeDistance(nodes[6], nodes[6]),  0);
-  BOOST_CHECK_EQUAL(coHashGraph.getBackwardNodeDistance(nodes[6], nodes[7]), -8);
-  BOOST_CHECK_EQUAL(coHashGraph.getBackwardNodeDistance(nodes[6], nodes[8]), -7);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(ring, nodes[6], nodes[0]), -6);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(ring, nodes[6], nodes[1]), -5);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(ring, nodes[6], nodes[2]), -4);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(ring, nodes[6], nodes[3]), -3);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(ring, nodes[6], nodes[4]), -2);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(ring, nodes[6], nodes[5]), -1);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(ring, nodes[6], nodes[6]),  0);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(ring, nodes[6], nodes[7]), -8);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(ring, nodes[6], nodes[8]), -7);
   
-  BOOST_CHECK_EQUAL(coHashGraph.getBackwardNodeDistance(nodes[7], nodes[0]), -7);
-  BOOST_CHECK_EQUAL(coHashGraph.getBackwardNodeDistance(nodes[7], nodes[1]), -6);
-  BOOST_CHECK_EQUAL(coHashGraph.getBackwardNodeDistance(nodes[7], nodes[2]), -5);
-  BOOST_CHECK_EQUAL(coHashGraph.getBackwardNodeDistance(nodes[7], nodes[3]), -4);
-  BOOST_CHECK_EQUAL(coHashGraph.getBackwardNodeDistance(nodes[7], nodes[4]), -3);
-  BOOST_CHECK_EQUAL(coHashGraph.getBackwardNodeDistance(nodes[7], nodes[5]), -2);
-  BOOST_CHECK_EQUAL(coHashGraph.getBackwardNodeDistance(nodes[7], nodes[6]), -1);
-  BOOST_CHECK_EQUAL(coHashGraph.getBackwardNodeDistance(nodes[7], nodes[7]),  0);
-  BOOST_CHECK_EQUAL(coHashGraph.getBackwardNodeDistance(nodes[7], nodes[8]), -8);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(ring, nodes[7], nodes[0]), -7);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(ring, nodes[7], nodes[1]), -6);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(ring, nodes[7], nodes[2]), -5);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(ring, nodes[7], nodes[3]), -4);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(ring, nodes[7], nodes[4]), -3);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(ring, nodes[7], nodes[5]), -2);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(ring, nodes[7], nodes[6]), -1);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(ring, nodes[7], nodes[7]),  0);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(ring, nodes[7], nodes[8]), -8);
   
-  BOOST_CHECK_EQUAL(coHashGraph.getBackwardNodeDistance(nodes[8], nodes[0]), -8);
-  BOOST_CHECK_EQUAL(coHashGraph.getBackwardNodeDistance(nodes[8], nodes[1]), -7);
-  BOOST_CHECK_EQUAL(coHashGraph.getBackwardNodeDistance(nodes[8], nodes[2]), -6);
-  BOOST_CHECK_EQUAL(coHashGraph.getBackwardNodeDistance(nodes[8], nodes[3]), -5);
-  BOOST_CHECK_EQUAL(coHashGraph.getBackwardNodeDistance(nodes[8], nodes[4]), -4);
-  BOOST_CHECK_EQUAL(coHashGraph.getBackwardNodeDistance(nodes[8], nodes[5]), -3);
-  BOOST_CHECK_EQUAL(coHashGraph.getBackwardNodeDistance(nodes[8], nodes[6]), -2);
-  BOOST_CHECK_EQUAL(coHashGraph.getBackwardNodeDistance(nodes[8], nodes[7]), -1);
-  BOOST_CHECK_EQUAL(coHashGraph.getBackwardNodeDistance(nodes[8], nodes[8]),  0);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(ring, nodes[8], nodes[0]), -8);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(ring, nodes[8], nodes[1]), -7);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(ring, nodes[8], nodes[2]), -6);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(ring, nodes[8], nodes[3]), -5);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(ring, nodes[8], nodes[4]), -4);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(ring, nodes[8], nodes[5]), -3);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(ring, nodes[8], nodes[6]), -2);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(ring, nodes[8], nodes[7]), -1);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(ring, nodes[8], nodes[8]),  0);
   
-  for (int n = 0; n < conNodeCount; n++) {
-    round_test_consistenthashing_node_delete(nodes[n]);
-  }
- 
   BOOST_CHECK(round_consistenthashing_ring_delete(ring));
 }
 
@@ -710,105 +701,101 @@ BOOST_AUTO_TEST_CASE(ConsistentHashGraphMinDistanceTest) {
   
   for (int i = 0; i < conNodeCount; i++) {
     for (int j = 0; j < conNodeCount; j++) {
-      off_t distance = coHashGraph.getMinNodeDistance(nodes[i], nodes[j]);
+      off_t distance = round_consistenthashing_ring_getminnodedistance(ring, nodes[i], nodes[j]);
       BOOST_CHECK(distance <= (conNodeCount/2));
     }
   }
   
-  BOOST_CHECK_EQUAL(coHashGraph.getMinNodeDistance(nodes[0], nodes[0]),  0);
-  BOOST_CHECK_EQUAL(coHashGraph.getMinNodeDistance(nodes[0], nodes[1]),  1);
-  BOOST_CHECK_EQUAL(coHashGraph.getMinNodeDistance(nodes[0], nodes[2]),  2);
-  BOOST_CHECK_EQUAL(coHashGraph.getMinNodeDistance(nodes[0], nodes[3]),  3);
-  BOOST_CHECK_EQUAL(coHashGraph.getMinNodeDistance(nodes[0], nodes[4]),  4);
-  BOOST_CHECK_EQUAL(coHashGraph.getMinNodeDistance(nodes[0], nodes[5]), -4);
-  BOOST_CHECK_EQUAL(coHashGraph.getMinNodeDistance(nodes[0], nodes[6]), -3);
-  BOOST_CHECK_EQUAL(coHashGraph.getMinNodeDistance(nodes[0], nodes[7]), -2);
-  BOOST_CHECK_EQUAL(coHashGraph.getMinNodeDistance(nodes[0], nodes[8]), -1);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getminnodedistance(ring, nodes[0], nodes[0]),  0);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getminnodedistance(ring, nodes[0], nodes[1]),  1);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getminnodedistance(ring, nodes[0], nodes[2]),  2);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getminnodedistance(ring, nodes[0], nodes[3]),  3);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getminnodedistance(ring, nodes[0], nodes[4]),  4);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getminnodedistance(ring, nodes[0], nodes[5]), -4);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getminnodedistance(ring, nodes[0], nodes[6]), -3);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getminnodedistance(ring, nodes[0], nodes[7]), -2);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getminnodedistance(ring, nodes[0], nodes[8]), -1);
   
-  BOOST_CHECK_EQUAL(coHashGraph.getMinNodeDistance(nodes[1], nodes[0]), -1);
-  BOOST_CHECK_EQUAL(coHashGraph.getMinNodeDistance(nodes[1], nodes[1]),  0);
-  BOOST_CHECK_EQUAL(coHashGraph.getMinNodeDistance(nodes[1], nodes[2]),  1);
-  BOOST_CHECK_EQUAL(coHashGraph.getMinNodeDistance(nodes[1], nodes[3]),  2);
-  BOOST_CHECK_EQUAL(coHashGraph.getMinNodeDistance(nodes[1], nodes[4]),  3);
-  BOOST_CHECK_EQUAL(coHashGraph.getMinNodeDistance(nodes[1], nodes[5]),  4);
-  BOOST_CHECK_EQUAL(coHashGraph.getMinNodeDistance(nodes[1], nodes[6]), -4);
-  BOOST_CHECK_EQUAL(coHashGraph.getMinNodeDistance(nodes[1], nodes[7]), -3);
-  BOOST_CHECK_EQUAL(coHashGraph.getMinNodeDistance(nodes[1], nodes[8]), -2);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getminnodedistance(ring, nodes[1], nodes[0]), -1);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getminnodedistance(ring, nodes[1], nodes[1]),  0);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getminnodedistance(ring, nodes[1], nodes[2]),  1);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getminnodedistance(ring, nodes[1], nodes[3]),  2);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getminnodedistance(ring, nodes[1], nodes[4]),  3);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getminnodedistance(ring, nodes[1], nodes[5]),  4);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getminnodedistance(ring, nodes[1], nodes[6]), -4);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getminnodedistance(ring, nodes[1], nodes[7]), -3);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getminnodedistance(ring, nodes[1], nodes[8]), -2);
   
-  BOOST_CHECK_EQUAL(coHashGraph.getMinNodeDistance(nodes[2], nodes[0]), -2);
-  BOOST_CHECK_EQUAL(coHashGraph.getMinNodeDistance(nodes[2], nodes[1]), -1);
-  BOOST_CHECK_EQUAL(coHashGraph.getMinNodeDistance(nodes[2], nodes[2]),  0);
-  BOOST_CHECK_EQUAL(coHashGraph.getMinNodeDistance(nodes[2], nodes[3]),  1);
-  BOOST_CHECK_EQUAL(coHashGraph.getMinNodeDistance(nodes[2], nodes[4]),  2);
-  BOOST_CHECK_EQUAL(coHashGraph.getMinNodeDistance(nodes[2], nodes[5]),  3);
-  BOOST_CHECK_EQUAL(coHashGraph.getMinNodeDistance(nodes[2], nodes[6]),  4);
-  BOOST_CHECK_EQUAL(coHashGraph.getMinNodeDistance(nodes[2], nodes[7]), -4);
-  BOOST_CHECK_EQUAL(coHashGraph.getMinNodeDistance(nodes[2], nodes[8]), -3);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getminnodedistance(ring, nodes[2], nodes[0]), -2);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getminnodedistance(ring, nodes[2], nodes[1]), -1);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getminnodedistance(ring, nodes[2], nodes[2]),  0);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getminnodedistance(ring, nodes[2], nodes[3]),  1);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getminnodedistance(ring, nodes[2], nodes[4]),  2);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getminnodedistance(ring, nodes[2], nodes[5]),  3);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getminnodedistance(ring, nodes[2], nodes[6]),  4);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getminnodedistance(ring, nodes[2], nodes[7]), -4);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getminnodedistance(ring, nodes[2], nodes[8]), -3);
   
-  BOOST_CHECK_EQUAL(coHashGraph.getMinNodeDistance(nodes[3], nodes[0]), -3);
-  BOOST_CHECK_EQUAL(coHashGraph.getMinNodeDistance(nodes[3], nodes[1]), -2);
-  BOOST_CHECK_EQUAL(coHashGraph.getMinNodeDistance(nodes[3], nodes[2]), -1);
-  BOOST_CHECK_EQUAL(coHashGraph.getMinNodeDistance(nodes[3], nodes[3]),  0);
-  BOOST_CHECK_EQUAL(coHashGraph.getMinNodeDistance(nodes[3], nodes[4]),  1);
-  BOOST_CHECK_EQUAL(coHashGraph.getMinNodeDistance(nodes[3], nodes[5]),  2);
-  BOOST_CHECK_EQUAL(coHashGraph.getMinNodeDistance(nodes[3], nodes[6]),  3);
-  BOOST_CHECK_EQUAL(coHashGraph.getMinNodeDistance(nodes[3], nodes[7]),  4);
-  BOOST_CHECK_EQUAL(coHashGraph.getMinNodeDistance(nodes[3], nodes[8]), -4);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getminnodedistance(ring, nodes[3], nodes[0]), -3);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getminnodedistance(ring, nodes[3], nodes[1]), -2);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getminnodedistance(ring, nodes[3], nodes[2]), -1);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getminnodedistance(ring, nodes[3], nodes[3]),  0);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getminnodedistance(ring, nodes[3], nodes[4]),  1);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getminnodedistance(ring, nodes[3], nodes[5]),  2);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getminnodedistance(ring, nodes[3], nodes[6]),  3);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getminnodedistance(ring, nodes[3], nodes[7]),  4);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getminnodedistance(ring, nodes[3], nodes[8]), -4);
   
-  BOOST_CHECK_EQUAL(coHashGraph.getMinNodeDistance(nodes[4], nodes[0]), -4);
-  BOOST_CHECK_EQUAL(coHashGraph.getMinNodeDistance(nodes[4], nodes[1]), -3);
-  BOOST_CHECK_EQUAL(coHashGraph.getMinNodeDistance(nodes[4], nodes[2]), -2);
-  BOOST_CHECK_EQUAL(coHashGraph.getMinNodeDistance(nodes[4], nodes[3]), -1);
-  BOOST_CHECK_EQUAL(coHashGraph.getMinNodeDistance(nodes[4], nodes[4]),  0);
-  BOOST_CHECK_EQUAL(coHashGraph.getMinNodeDistance(nodes[4], nodes[5]),  1);
-  BOOST_CHECK_EQUAL(coHashGraph.getMinNodeDistance(nodes[4], nodes[6]),  2);
-  BOOST_CHECK_EQUAL(coHashGraph.getMinNodeDistance(nodes[4], nodes[7]),  3);
-  BOOST_CHECK_EQUAL(coHashGraph.getMinNodeDistance(nodes[4], nodes[8]),  4);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getminnodedistance(ring, nodes[4], nodes[0]), -4);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getminnodedistance(ring, nodes[4], nodes[1]), -3);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getminnodedistance(ring, nodes[4], nodes[2]), -2);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getminnodedistance(ring, nodes[4], nodes[3]), -1);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getminnodedistance(ring, nodes[4], nodes[4]),  0);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getminnodedistance(ring, nodes[4], nodes[5]),  1);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getminnodedistance(ring, nodes[4], nodes[6]),  2);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getminnodedistance(ring, nodes[4], nodes[7]),  3);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getminnodedistance(ring, nodes[4], nodes[8]),  4);
   
-  BOOST_CHECK_EQUAL(coHashGraph.getMinNodeDistance(nodes[5], nodes[0]),  4);
-  BOOST_CHECK_EQUAL(coHashGraph.getMinNodeDistance(nodes[5], nodes[1]), -4);
-  BOOST_CHECK_EQUAL(coHashGraph.getMinNodeDistance(nodes[5], nodes[2]), -3);
-  BOOST_CHECK_EQUAL(coHashGraph.getMinNodeDistance(nodes[5], nodes[3]), -2);
-  BOOST_CHECK_EQUAL(coHashGraph.getMinNodeDistance(nodes[5], nodes[4]), -1);
-  BOOST_CHECK_EQUAL(coHashGraph.getMinNodeDistance(nodes[5], nodes[5]),  0);
-  BOOST_CHECK_EQUAL(coHashGraph.getMinNodeDistance(nodes[5], nodes[6]),  1);
-  BOOST_CHECK_EQUAL(coHashGraph.getMinNodeDistance(nodes[5], nodes[7]),  2);
-  BOOST_CHECK_EQUAL(coHashGraph.getMinNodeDistance(nodes[5], nodes[8]),  3);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getminnodedistance(ring, nodes[5], nodes[0]),  4);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getminnodedistance(ring, nodes[5], nodes[1]), -4);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getminnodedistance(ring, nodes[5], nodes[2]), -3);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getminnodedistance(ring, nodes[5], nodes[3]), -2);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getminnodedistance(ring, nodes[5], nodes[4]), -1);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getminnodedistance(ring, nodes[5], nodes[5]),  0);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getminnodedistance(ring, nodes[5], nodes[6]),  1);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getminnodedistance(ring, nodes[5], nodes[7]),  2);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getminnodedistance(ring, nodes[5], nodes[8]),  3);
   
-  BOOST_CHECK_EQUAL(coHashGraph.getMinNodeDistance(nodes[6], nodes[0]),  3);
-  BOOST_CHECK_EQUAL(coHashGraph.getMinNodeDistance(nodes[6], nodes[1]),  4);
-  BOOST_CHECK_EQUAL(coHashGraph.getMinNodeDistance(nodes[6], nodes[2]), -4);
-  BOOST_CHECK_EQUAL(coHashGraph.getMinNodeDistance(nodes[6], nodes[3]), -3);
-  BOOST_CHECK_EQUAL(coHashGraph.getMinNodeDistance(nodes[6], nodes[4]), -2);
-  BOOST_CHECK_EQUAL(coHashGraph.getMinNodeDistance(nodes[6], nodes[5]), -1);
-  BOOST_CHECK_EQUAL(coHashGraph.getMinNodeDistance(nodes[6], nodes[6]),  0);
-  BOOST_CHECK_EQUAL(coHashGraph.getMinNodeDistance(nodes[6], nodes[7]),  1);
-  BOOST_CHECK_EQUAL(coHashGraph.getMinNodeDistance(nodes[6], nodes[8]),  2);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getminnodedistance(ring, nodes[6], nodes[0]),  3);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getminnodedistance(ring, nodes[6], nodes[1]),  4);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getminnodedistance(ring, nodes[6], nodes[2]), -4);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getminnodedistance(ring, nodes[6], nodes[3]), -3);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getminnodedistance(ring, nodes[6], nodes[4]), -2);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getminnodedistance(ring, nodes[6], nodes[5]), -1);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getminnodedistance(ring, nodes[6], nodes[6]),  0);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getminnodedistance(ring, nodes[6], nodes[7]),  1);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getminnodedistance(ring, nodes[6], nodes[8]),  2);
   
-  BOOST_CHECK_EQUAL(coHashGraph.getMinNodeDistance(nodes[7], nodes[0]),  2);
-  BOOST_CHECK_EQUAL(coHashGraph.getMinNodeDistance(nodes[7], nodes[1]),  3);
-  BOOST_CHECK_EQUAL(coHashGraph.getMinNodeDistance(nodes[7], nodes[2]),  4);
-  BOOST_CHECK_EQUAL(coHashGraph.getMinNodeDistance(nodes[7], nodes[3]), -4);
-  BOOST_CHECK_EQUAL(coHashGraph.getMinNodeDistance(nodes[7], nodes[4]), -3);
-  BOOST_CHECK_EQUAL(coHashGraph.getMinNodeDistance(nodes[7], nodes[5]), -2);
-  BOOST_CHECK_EQUAL(coHashGraph.getMinNodeDistance(nodes[7], nodes[6]), -1);
-  BOOST_CHECK_EQUAL(coHashGraph.getMinNodeDistance(nodes[7], nodes[7]),  0);
-  BOOST_CHECK_EQUAL(coHashGraph.getMinNodeDistance(nodes[7], nodes[8]),  1);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getminnodedistance(ring, nodes[7], nodes[0]),  2);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getminnodedistance(ring, nodes[7], nodes[1]),  3);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getminnodedistance(ring, nodes[7], nodes[2]),  4);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getminnodedistance(ring, nodes[7], nodes[3]), -4);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getminnodedistance(ring, nodes[7], nodes[4]), -3);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getminnodedistance(ring, nodes[7], nodes[5]), -2);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getminnodedistance(ring, nodes[7], nodes[6]), -1);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getminnodedistance(ring, nodes[7], nodes[7]),  0);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getminnodedistance(ring, nodes[7], nodes[8]),  1);
   
-  BOOST_CHECK_EQUAL(coHashGraph.getMinNodeDistance(nodes[8], nodes[0]),  1);
-  BOOST_CHECK_EQUAL(coHashGraph.getMinNodeDistance(nodes[8], nodes[1]),  2);
-  BOOST_CHECK_EQUAL(coHashGraph.getMinNodeDistance(nodes[8], nodes[2]),  3);
-  BOOST_CHECK_EQUAL(coHashGraph.getMinNodeDistance(nodes[8], nodes[3]),  4);
-  BOOST_CHECK_EQUAL(coHashGraph.getMinNodeDistance(nodes[8], nodes[4]), -4);
-  BOOST_CHECK_EQUAL(coHashGraph.getMinNodeDistance(nodes[8], nodes[5]), -3);
-  BOOST_CHECK_EQUAL(coHashGraph.getMinNodeDistance(nodes[8], nodes[6]), -2);
-  BOOST_CHECK_EQUAL(coHashGraph.getMinNodeDistance(nodes[8], nodes[7]), -1);
-  BOOST_CHECK_EQUAL(coHashGraph.getMinNodeDistance(nodes[8], nodes[8]),  0);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getminnodedistance(ring, nodes[8], nodes[0]),  1);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getminnodedistance(ring, nodes[8], nodes[1]),  2);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getminnodedistance(ring, nodes[8], nodes[2]),  3);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getminnodedistance(ring, nodes[8], nodes[3]),  4);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getminnodedistance(ring, nodes[8], nodes[4]), -4);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getminnodedistance(ring, nodes[8], nodes[5]), -3);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getminnodedistance(ring, nodes[8], nodes[6]), -2);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getminnodedistance(ring, nodes[8], nodes[7]), -1);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getminnodedistance(ring, nodes[8], nodes[8]),  0);
   
-  for (int n = 0; n < conNodeCount; n++) {
-    round_test_consistenthashing_node_delete(nodes[n]);
-  }
- 
   BOOST_CHECK(round_consistenthashing_ring_delete(ring));
 }
 
@@ -818,25 +805,19 @@ BOOST_AUTO_TEST_CASE(ConsistentHashGraphIsHandleNodeTest) {
   RoundTestConsistentHashingNode *nodes[conNodeCount];
   
   for (int n = 0; n < conNodeCount; n++) {
-  nodes[n] = round_test_consistenthashing_node_new(n+1);
-  round_consistenthashing_ring_addnode(ring, nodes[n]);
+    nodes[n] = round_test_consistenthashing_node_new(n+1);
+    round_consistenthashing_ring_addnode(ring, nodes[n]);
   }
   
   for (int i = 0; i < conNodeCount; i++) {
-  for (int j = 0; j < conNodeCount; j++) {
-    std::string hashCode;
-    BOOST_CHECK(nodes[j]->getHashCode(&hashCode));
-    BOOST_CHECK_EQUAL(coHashGraph.isHandleNode(nodes[i], hashCode), (i == j));
-  }
+    for (int j = 0; j < conNodeCount; j++) {
+      const char *hashCode = round_consistenthashing_node_gethash(nodes[j]);
+      BOOST_CHECK_EQUAL(round_consistenthashing_ring_ishandlenode(ring, nodes[i], hashCode), (i == j));
+    }
   }
   
-  for (int n = 0; n < conNodeCount; n++) {
- round_test_consistenthashing_node_delete(nodes[n]);
-  }
- 
- BOOST_CHECK(round_consistenthashing_ring_delete(ring));
+  BOOST_CHECK(round_consistenthashing_ring_delete(ring));
 }
-*/
 
 BOOST_AUTO_TEST_SUITE_END()
 
