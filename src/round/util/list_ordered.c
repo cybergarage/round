@@ -59,7 +59,7 @@ bool round_ordered_list_add(RoundOrderedList *list, RoundListNode *newNode)
   if (!list || !list->cmpFunc)
     return false;
   
-  // TODO : Fix O(n) algorithm
+  // TODO : Fix the O(n) algorithm
   
   for (node = round_ordered_list_getlast(list); node != NULL; node = round_list_prev(node)) {
     if (list->cmpFunc(node, newNode) == RoundListNodeCompareGreater) {

@@ -62,6 +62,10 @@ ssize_t round_consistenthashing_ring_getnodeindex(RoundConsistentHashingRing *ri
 bool round_consistenthashing_ring_islastnode(RoundConsistentHashingRing *ring, void *node);
 RoundConsistentHashingNode *round_consistenthashing_ring_getlastnode(RoundConsistentHashingRing *ring);
 
+RoundConsistentHashingNode *round_consistenthashing_ring_getoffsetnode(RoundConsistentHashingRing *ring, void *node, off_t offset);
+RoundConsistentHashingNode *round_consistenthashing_ring_getnextnode(RoundConsistentHashingRing *ring, void *node);
+RoundConsistentHashingNode *round_consistenthashing_ring_getprevnode(RoundConsistentHashingRing *ring, void *node);
+
 bool round_consistenthashing_ring_clear(RoundConsistentHashingRing *ring);
   
 /****************************************
@@ -71,16 +75,18 @@ bool round_consistenthashing_ring_clear(RoundConsistentHashingRing *ring);
 bool round_consistenthashing_node_init(RoundConsistentHashingNode *node);
 
 #define round_consistenthashing_node_remove(node) round_list_remove((RoundListNode *)node)
-#define round_consistenthashing_node_prev_circular(node) ((RoundConsistentHashingNode *)round_list_prev_circular((RoundListNode *)node))
+#define round_consistenthashing_node_prevcircular(node) ((RoundConsistentHashingNode *)round_list_prev_circular((RoundListNode *)node))
 #define round_consistenthashing_node_prev(node) ((RoundConsistentHashingNode *)round_list_prev((RoundListNode *)node))
-#define round_consistenthashing_node_next_circular(node) ((RoundConsistentHashingNode *)round_list_next_circular((RoundListNode *)node))
+#define round_consistenthashing_node_nextcircular(node) ((RoundConsistentHashingNode *)round_list_next_circular((RoundListNode *)node))
 #define round_consistenthashing_node_next(node) ((RoundConsistentHashingNode *)round_list_next((RoundListNode *)node))
   
 #define round_consistenthashing_node_sethashfunc(node,func) (node->hashFunc = (ROUND_CONSISTENTHASH_NODE_HASHFUNC)func)
 const char *round_consistenthashing_node_gethash(RoundConsistentHashingNode *node);
 
-int round_consistenthashing_node_comp(RoundConsistentHashingNode *thisNode, RoundConsistentHashingNode *otherNode);
-bool round_consistenthashing_node_equals(void *thisNode, void *otherNode);
+int round_consistenthashing_node_compfunc(RoundConsistentHashingNode *thisNode, RoundConsistentHashingNode *otherNode);
+#define round_consistenthashing_node_comp(thisNode,otherNode) round_consistenthashing_node_compfunc((RoundConsistentHashingNode *)thisNode, (RoundConsistentHashingNode *)otherNode)
+
+  bool round_consistenthashing_node_equals(void *thisNode, void *otherNode);
   
 #ifdef  __cplusplus
 } /* extern "C" */
