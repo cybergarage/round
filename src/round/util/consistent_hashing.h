@@ -78,6 +78,7 @@ bool round_consistenthashing_ring_clear(RoundConsistentHashingRing *ring);
  ****************************************/
   
 bool round_consistenthashing_node_init(RoundConsistentHashingNode *node);
+bool round_consistenthashing_node_destroy(RoundConsistentHashingNode *node);
 
 #define round_consistenthashing_node_remove(node) round_list_remove((RoundListNode *)node)
 #define round_consistenthashing_node_prevcircular(node) ((RoundConsistentHashingNode *)round_list_prev_circular((RoundListNode *)node))
