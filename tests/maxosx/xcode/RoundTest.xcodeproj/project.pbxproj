@@ -10,6 +10,10 @@
 		211E45D21B98188600CF0088 /* ClientTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 211E45D11B98188600CF0088 /* ClientTest.cpp */; };
 		211E45D41B9818E300CF0088 /* FinderTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 211E45D31B9818E300CF0088 /* FinderTest.cpp */; };
 		2127082C1BD6640300000985 /* ConsistentHashingRingTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2127082B1BD6640300000985 /* ConsistentHashingRingTest.cpp */; settings = {ASSET_TAGS = (); }; };
+		2127083A1BD7995A00000985 /* JSONArrayTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 212708361BD7995A00000985 /* JSONArrayTest.cpp */; settings = {ASSET_TAGS = (); }; };
+		2127083B1BD7995A00000985 /* JSONMapTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 212708371BD7995A00000985 /* JSONMapTest.cpp */; settings = {ASSET_TAGS = (); }; };
+		2127083C1BD7995A00000985 /* JSONObjectTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 212708381BD7995A00000985 /* JSONObjectTest.cpp */; settings = {ASSET_TAGS = (); }; };
+		2127083D1BD7995A00000985 /* JSONParseTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 212708391BD7995A00000985 /* JSONParseTest.cpp */; settings = {ASSET_TAGS = (); }; };
 		212A954B1B9BD1A400EC9A71 /* MethodMapTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 212A95491B9BD1A400EC9A71 /* MethodMapTest.cpp */; };
 		212A954C1B9BD1A400EC9A71 /* MethodManagerTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 212A954A1B9BD1A400EC9A71 /* MethodManagerTest.cpp */; };
 		212A954E1B9BD24700EC9A71 /* MethodTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 212A954D1B9BD24700EC9A71 /* MethodTest.cpp */; };
@@ -78,6 +82,10 @@
 		211E45D11B98188600CF0088 /* ClientTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ClientTest.cpp; path = ../../ClientTest.cpp; sourceTree = "<group>"; };
 		211E45D31B9818E300CF0088 /* FinderTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FinderTest.cpp; path = ../../FinderTest.cpp; sourceTree = "<group>"; };
 		2127082B1BD6640300000985 /* ConsistentHashingRingTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ConsistentHashingRingTest.cpp; path = ../../util/ConsistentHashingRingTest.cpp; sourceTree = "<group>"; };
+		212708361BD7995A00000985 /* JSONArrayTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = JSONArrayTest.cpp; path = ../../json/JSONArrayTest.cpp; sourceTree = "<group>"; };
+		212708371BD7995A00000985 /* JSONMapTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = JSONMapTest.cpp; path = ../../json/JSONMapTest.cpp; sourceTree = "<group>"; };
+		212708381BD7995A00000985 /* JSONObjectTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = JSONObjectTest.cpp; path = ../../json/JSONObjectTest.cpp; sourceTree = "<group>"; };
+		212708391BD7995A00000985 /* JSONParseTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = JSONParseTest.cpp; path = ../../json/JSONParseTest.cpp; sourceTree = "<group>"; };
 		212A95491B9BD1A400EC9A71 /* MethodMapTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MethodMapTest.cpp; path = ../../MethodMapTest.cpp; sourceTree = "<group>"; };
 		212A954A1B9BD1A400EC9A71 /* MethodManagerTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MethodManagerTest.cpp; path = ../../MethodManagerTest.cpp; sourceTree = "<group>"; };
 		212A954D1B9BD24700EC9A71 /* MethodTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MethodTest.cpp; path = ../../MethodTest.cpp; sourceTree = "<group>"; };
@@ -142,6 +150,17 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		212708351BD7993D00000985 /* json */ = {
+			isa = PBXGroup;
+			children = (
+				212708361BD7995A00000985 /* JSONArrayTest.cpp */,
+				212708371BD7995A00000985 /* JSONMapTest.cpp */,
+				212708381BD7995A00000985 /* JSONObjectTest.cpp */,
+				212708391BD7995A00000985 /* JSONParseTest.cpp */,
+			);
+			name = json;
+			sourceTree = "<group>";
+		};
 		2137D3EA1B998ADB00652E68 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -162,6 +181,7 @@
 		217993091B4A5A6B00A158CD /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				212708351BD7993D00000985 /* json */,
 				2195A3DB1BD50DD600DF5436 /* util */,
 				21563A101BC419AB004D33EA /* ScriptTestController.cpp */,
 				21563A111BC419AB004D33EA /* ScriptTestController.h */,
@@ -291,6 +311,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2195A3E81BD50DF000DF5436 /* SemaphoreTest.cpp in Sources */,
+				2127083C1BD7995A00000985 /* JSONObjectTest.cpp in Sources */,
 				2195A3E71BD50DF000DF5436 /* QueueTest.cpp in Sources */,
 				215A079A1BB4663C00E9702F /* RegistryTest.cpp in Sources */,
 				21D427F01B9F0B1A00BBBD41 /* ErrorTest.cpp in Sources */,
@@ -303,8 +324,10 @@
 				2127082C1BD6640300000985 /* ConsistentHashingRingTest.cpp in Sources */,
 				211E45D21B98188600CF0088 /* ClientTest.cpp in Sources */,
 				21563A121BC419AB004D33EA /* ScriptTestController.cpp in Sources */,
+				2127083A1BD7995A00000985 /* JSONArrayTest.cpp in Sources */,
 				21A776B41BA0666C009BDB36 /* MessageTest.cpp in Sources */,
 				216D19CF1BB4B37C0007B331 /* ClockTest.cpp in Sources */,
+				2127083B1BD7995A00000985 /* JSONMapTest.cpp in Sources */,
 				211E45D41B9818E300CF0088 /* FinderTest.cpp in Sources */,
 				21F6D99F1B9983A500714056 /* RubyEngineTest.cpp in Sources */,
 				218569B31BB0D68800861B9B /* RemoteNodeTest.cpp in Sources */,
@@ -322,6 +345,7 @@
 				21EA96DF1B99104E00E00841 /* ClusterTest.cpp in Sources */,
 				2166EF8D1B9D2E5E002FE45D /* ScriptEngineTest.cpp in Sources */,
 				21A4C21F1BC112DE0030BD12 /* LocalNodeMessageTest.cpp in Sources */,
+				2127083D1BD7995A00000985 /* JSONParseTest.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
