@@ -12,6 +12,8 @@
 
 #include <round/util/strings.h>
 
+BOOST_AUTO_TEST_SUITE(string)
+
 BOOST_AUTO_TEST_CASE(IsNumeric)
 {
   BOOST_CHECK_EQUAL(round_isnumeric(NULL), false);
@@ -28,3 +30,35 @@ BOOST_AUTO_TEST_CASE(IsNumeric)
   BOOST_CHECK_EQUAL(round_isnumeric("12"), true);
   BOOST_CHECK_EQUAL(round_isnumeric("1234567890"), true);
 }
+
+BOOST_AUTO_TEST_CASE(StringReplace)
+{
+  std::vector<std::string> strings;
+  std::vector<std::string> froms;
+  std::vector<std::string> tos;
+  std::vector<std::string> expects;
+  /*
+  strings.push_back("123456789");
+  froms.push_back("");
+  tos.push_back("");
+  expects.push_back("123456789");
+  
+  strings.push_back("123456789");
+  froms.push_back("5");
+  tos.push_back("a");
+  expects.push_back("1234a6789");
+  */
+  strings.push_back("523456785");
+  froms.push_back("5");
+  tos.push_back("b");
+  expects.push_back("b234b678b");
+  
+  size_t testCnt = strings.size();
+  for (size_t n = 0; n < testCnt; n++) {
+    char *result = round_strreplace(strings[n].c_str(), froms[n].c_str(), tos[n].c_str());
+    BOOST_CHECK_EQUAL(expects[n].compare(result), 0);
+  }
+}
+
+BOOST_AUTO_TEST_SUITE_END()
+

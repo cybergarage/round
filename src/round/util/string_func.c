@@ -446,3 +446,53 @@ char *round_strtok(char *s1, const char *s2, char **ptr)
 {
   return strtok_r(s1, s2, ptr);
 }
+
+/****************************************
+ * round_strreplace
+ ****************************************/
+
+char *round_strreplace(const char *str, const char *orgToken, const char *repToken)
+{
+  size_t strLen = round_strlen(str);
+  if (strLen <= 0) {
+    char *repStr = (char *)malloc(1);
+    repStr[0] = '\0';
+    return repStr;
+  }
+
+  size_t orgTokenLen = round_strlen(orgToken);
+  size_t repTokenLen = round_strlen(repToken);
+  size_t tokenDiffLen = repTokenLen - orgTokenLen;
+
+  char *repStr = (char *)malloc(strLen + 1);
+  size_t repStrLen = strLen;
+  
+  ssize_t lastCopiedIdx = 0;
+  ssize_t copiedLen = 0;
+  
+  ssize_t orgTokenIdx = round_strstr(str, orgToken);
+  while (0 <= orgTokenIdx) {
+    if (tokenDiffLen != 0) {
+      repStrLen += tokenDiffLen;
+      repStr = (char *)realloc(repStr, repStrLen + 1);
+    }
+    
+    size_t copyLen = (orgTokenIdx - lastCopiedIdx);
+    memcpy((repStr + copiedLen), (str + lastCopiedIdx), copyLen);
+    copiedLen += copyLen;
+    repStr[copiedLen] = '\0';
+    memcpy((repStr + copiedLen), repToken, repTokenLen);
+    copiedLen += repTokenLen;
+    repStr[copiedLen] = '\0';
+    
+    lastCopiedIdx = orgTokenIdx + orgTokenLen;
+    orgTokenIdx = round_strstr((str + lastCopiedIdx), orgToken);
+  }
+  
+  size_t leftLen = (strLen - lastCopiedIdx);
+  memcpy((repStr + copiedLen), (str + lastCopiedIdx), leftLen);
+  copiedLen += leftLen;
+  repStr[copiedLen] = '\0';
+  
+  return repStr;
+}
