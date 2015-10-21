@@ -181,4 +181,24 @@ BOOST_AUTO_TEST_CASE(JSONParseArrayInDict)
   BOOST_CHECK(round_json_delete(json));
 }
 
+////////////////////////////////////////////////////////////
+// Other
+////////////////////////////////////////////////////////////
+
+BOOST_AUTO_TEST_CASE(JSONParsePopObject)
+{
+  RoundJSON *json = round_json_new();
+  BOOST_CHECK(json);
+  
+  BOOST_CHECK(round_json_parse(json, "[0, 1, 2]", NULL));
+
+  RoundJSONObject *rootObj = round_json_poprootobject(json);
+  BOOST_CHECK(rootObj);
+  BOOST_CHECK(!round_json_getrootobject(json));
+  
+  BOOST_CHECK(round_json_delete(json));
+
+  BOOST_CHECK(round_json_object_delete(rootObj));
+}
+
 BOOST_AUTO_TEST_SUITE_END()

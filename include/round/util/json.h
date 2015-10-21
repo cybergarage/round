@@ -60,6 +60,7 @@ bool round_json_clear(RoundJSON *json);
 bool round_json_delete(RoundJSON *json);
 
 RoundJSONObject *round_json_getrootobject(RoundJSON *json);
+RoundJSONObject *round_json_poprootobject(RoundJSON *json);
 
 /****************************************
  * Functions (JSON Object)
