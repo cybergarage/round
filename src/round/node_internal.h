@@ -17,6 +17,7 @@
 #include <round/util/json_internal.h>
 #include <round/util/strings.h>
 #include <round/util/thread.h>
+#include <round/util/consistent_hashing.h>
 #include <round/server.h>
 #include <round/script.h>
 #include <round/clock.h>
@@ -36,7 +37,7 @@ extern "C" {
 typedef bool (*ROUND_NODE_POSTMESSAGE_FUNC)(void *node, RoundJSONObject *reqObj, RoundJSONObject *resObj, RoundError *err);
 
 #define ROUND_NODE_STRUCT_MEMBERS \
-  ROUND_LIST_STRUCT_MEMBERS \
+  ROUND_CONSISTENTHASHING_NODE_STRUCT_MEMBERS \
   ROUND_OO_STRUCT_MEMBERS \
   RoundString *addr; \
   int port; \

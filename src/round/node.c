@@ -58,8 +58,7 @@ bool round_node_init(RoundNode *node)
   if (!node)
     return false;
   
-  round_list_node_init((RoundList *)node);
-
+  round_consistenthashing_node_init((RoundConsistentHashingNode *)node);
   round_oo_setdescendantdestoroyfunc(node, NULL);
  
   node->addr = round_string_new();
@@ -103,8 +102,8 @@ bool round_node_destroy(RoundNode *node)
   if (!node)
     return false;
   
-  round_list_remove((RoundList *)node);
-  
+  round_consistenthashing_node_destroy((RoundConsistentHashingNode *)node);
+
   round_string_delete(node->addr);
   round_string_delete(node->cluster);
   round_clock_delete(node->clock);

@@ -321,9 +321,18 @@ bool round_json_object_getbool(RoundJSONObject *obj, bool *value)
 
 bool round_json_object_tostring(RoundJSONObject *obj, const char **str)
 {
+  const char *jsonObjStr;
+  
   if (!obj)
     return false;
 
+  if (round_json_object_isstring(obj)) {
+    round_json_object_getstring(obj, &jsonObjStr);
+    obj->dumpedStr = round_strdup(jsonObjStr);
+    *str = obj->dumpedStr;
+    return true;
+  }
+  
 #if defined(ROUND_USE_JSON_PARSER_JANSSON)
   if (!obj->jsonObj)
     return false;

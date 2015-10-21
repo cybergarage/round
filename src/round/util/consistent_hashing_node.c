@@ -27,6 +27,20 @@ bool round_consistenthashing_node_init(RoundConsistentHashingNode *node)
 }
 
 /****************************************
+ * round_consistenthashing_node_destroy
+ ****************************************/
+
+bool round_consistenthashing_node_destroy(RoundConsistentHashingNode *node)
+{
+  if (!node)
+    return false;
+
+  round_list_remove((RoundList *)node);
+  
+  return true;
+}
+
+/****************************************
  * round_consistenthashing_node_gethash
  ****************************************/
 
