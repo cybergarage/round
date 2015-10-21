@@ -5,6 +5,9 @@
 # System constants
 system_trigger_timer_precision,0.1
 
+# ASCII
+ENDL,"\n"
+
 # Finder (UPnP)
 finder_upnp_device_type,"urn:cybergarage-org:device:round:1"
 finder_upnp_service_type,"urn:cybergarage-org:service:round:1"
