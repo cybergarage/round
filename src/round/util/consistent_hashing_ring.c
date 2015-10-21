@@ -146,3 +146,37 @@ RoundConsistentHashingNode *round_consistenthashing_ring_getlastnode(RoundConsis
   return round_consistenthashing_ring_getnode(ring, (ringSize-1));
 }
 
+
+/****************************************
+ * round_consistenthashing_ring_gethandlenode
+ ****************************************/
+
+RoundConsistentHashingNode *round_consistenthashing_ring_gethandlenode(RoundConsistentHashingRing *ring, const char *hashCode)
+{
+  RoundConsistentHashingRing *hadleNode = NULL;
+  
+  /*
+  for (Round::ConsistentHashGraph::const_iterator node = begin(); node != end(); node++) {
+    Round::ConsistentHashGraph::const_iterator nextNode = node + 1;
+    if (nextNode == end())
+      break;
+    std::string nodeHashCode;
+    std::string nextNodeHashCode;
+    if ((*node)->getHashCode(&nodeHashCode) == false)
+      continue;
+    if ((*nextNode)->getHashCode(&nextNodeHashCode) == false)
+      continue;
+    if ((nodeHashCode <= hashCode) && (hashCode < nextNodeHashCode)) {
+      hadleNode = *node;
+      break;
+    }
+  }
+  
+  if (!hadleNode && (0 < size()))
+    hadleNode = at(size()-1);
+    
+    return hadleNode;
+   */
+   return NULL;
+}
+
