@@ -29,7 +29,7 @@ RoundConsistentHashingRing *round_consistenthashing_ring_new()
     return false;
   }
   
-  round_ordered_list_setcmpfunc(ring->orderedList, round_consistenthashing_node_comp);
+  round_ordered_list_setcmpfunc(ring->orderedList, round_consistenthashing_node_compfunc);
   round_consistenthashing_ring_setnodedestructor(ring, NULL);
   
   return ring;
@@ -127,8 +127,15 @@ ssize_t round_consistenthashing_ring_getnodeindex(RoundConsistentHashingRing *ri
 bool round_consistenthashing_ring_islastnode(RoundConsistentHashingRing *ring, void *node)
 {
   ssize_t ringSize, nodeIdx;
-  nodeIdx = round_consistenthashing_ring_getnodeindex(ring, node);
+  
   ringSize = round_consistenthashing_ring_size(ring);
+  if (ringSize <= 0)
+    return false;
+  
+  nodeIdx = round_consistenthashing_ring_getnodeindex(ring, node);
+  if (nodeIdx < 0)
+    return false;
+  
   return (nodeIdx == (ringSize-1)) ? true : false;
 }
 
@@ -146,37 +153,77 @@ RoundConsistentHashingNode *round_consistenthashing_ring_getlastnode(RoundConsis
   return round_consistenthashing_ring_getnode(ring, (ringSize-1));
 }
 
-
 /****************************************
  * round_consistenthashing_ring_gethandlenode
  ****************************************/
 
 RoundConsistentHashingNode *round_consistenthashing_ring_gethandlenode(RoundConsistentHashingRing *ring, const char *hashCode)
 {
-  RoundConsistentHashingRing *hadleNode = NULL;
+  RoundConsistentHashingNode *node, *nextNode;
+  const char *nodeHashCode, *nextNodeHashCode;
   
-  /*
-  for (Round::ConsistentHashGraph::const_iterator node = begin(); node != end(); node++) {
-    Round::ConsistentHashGraph::const_iterator nextNode = node + 1;
-    if (nextNode == end())
+  // TODO : Fix the O(n) algorithm
+
+  for (node = round_consistenthashing_ring_getnodes(ring); node; node = round_consistenthashing_node_next(node)) {
+    nextNode = round_consistenthashing_node_next(node);
+    if (!nextNode)
       break;
-    std::string nodeHashCode;
-    std::string nextNodeHashCode;
-    if ((*node)->getHashCode(&nodeHashCode) == false)
+    
+    nodeHashCode = round_consistenthashing_node_gethash(node);
+    if (round_strcmp(hashCode, nodeHashCode) < 0)
       continue;
-    if ((*nextNode)->getHashCode(&nextNodeHashCode) == false)
+    
+    nextNodeHashCode = round_consistenthashing_node_gethash(nextNode);
+    if (round_strcmp(hashCode, nextNodeHashCode) >= 0)
       continue;
-    if ((nodeHashCode <= hashCode) && (hashCode < nextNodeHashCode)) {
-      hadleNode = *node;
-      break;
-    }
+    
+    return node;
   }
   
-  if (!hadleNode && (0 < size()))
-    hadleNode = at(size()-1);
-    
-    return hadleNode;
-   */
-   return NULL;
+  return round_consistenthashing_ring_getlastnode(ring);
 }
 
+
+/****************************************
+ * round_consistenthashing_ring_getoffsetnode
+ ****************************************/
+
+RoundConsistentHashingNode *round_consistenthashing_ring_getoffsetnode(RoundConsistentHashingRing *ring, void *node, off_t offset)
+{
+  ssize_t ringSize, nodeIndex, offsetNodeIndex;
+
+  nodeIndex = round_consistenthashing_ring_getnodeindex(ring, node);
+  if (nodeIndex < 0)
+    return NULL;
+  
+  ringSize = round_consistenthashing_ring_size(ring);
+  
+  offsetNodeIndex = nodeIndex + offset;
+  if (offsetNodeIndex < 0) {
+    while (offsetNodeIndex < 0) {
+      offsetNodeIndex += ringSize;
+    }
+    offsetNodeIndex = offsetNodeIndex % ringSize;
+  }
+  offsetNodeIndex = offsetNodeIndex % ringSize;
+  
+  return round_consistenthashing_ring_getnode(ring, offsetNodeIndex);
+}
+
+/****************************************
+ * round_consistenthashing_ring_getnextnode
+ ****************************************/
+
+RoundConsistentHashingNode *round_consistenthashing_ring_getnextnode(RoundConsistentHashingRing *ring, void *node)
+{
+  return round_consistenthashing_ring_getoffsetnode(ring, node, 1);
+}
+
+/****************************************
+ * round_consistenthashing_ring_getprevnode
+ ****************************************/
+
+RoundConsistentHashingNode *round_consistenthashing_ring_getprevnode(RoundConsistentHashingRing *ring, void *node)
+{
+  return round_consistenthashing_ring_getoffsetnode(ring, node, -1);
+}

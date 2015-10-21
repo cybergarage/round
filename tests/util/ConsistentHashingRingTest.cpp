@@ -155,6 +155,40 @@ BOOST_AUTO_TEST_CASE(ConsistentHashGraphEqualsTest) {
   BOOST_CHECK(round_consistenthashing_ring_delete(ring));
 }
 
+BOOST_AUTO_TEST_CASE(ConsistentHashGraphCompareTest) {
+  const int conNodeCount = 4;
+  RoundTestConsistentHashingNode *nodes[conNodeCount];
+  
+  RoundTestConsistentHashingNode *node2 = nodes[0] = round_test_consistenthashing_node_new(2);
+  RoundTestConsistentHashingNode *node4 = nodes[1] = round_test_consistenthashing_node_new(4);
+  RoundTestConsistentHashingNode *node6 = nodes[2] = round_test_consistenthashing_node_new(6);
+  RoundTestConsistentHashingNode *node8 = nodes[3] = round_test_consistenthashing_node_new(8);
+  
+  BOOST_CHECK_EQUAL(round_consistenthashing_node_comp(node2, node2), RoundListNodeCompareSame);
+  BOOST_CHECK_EQUAL(round_consistenthashing_node_comp(node2, node4), RoundListNodeCompareGreater);
+  BOOST_CHECK_EQUAL(round_consistenthashing_node_comp(node2, node6), RoundListNodeCompareGreater);
+  BOOST_CHECK_EQUAL(round_consistenthashing_node_comp(node2, node8), RoundListNodeCompareGreater);
+  
+  BOOST_CHECK_EQUAL(round_consistenthashing_node_comp(node4, node2), RoundListNodeCompareLess);
+  BOOST_CHECK_EQUAL(round_consistenthashing_node_comp(node4, node4), RoundListNodeCompareSame);
+  BOOST_CHECK_EQUAL(round_consistenthashing_node_comp(node4, node6), RoundListNodeCompareGreater);
+  BOOST_CHECK_EQUAL(round_consistenthashing_node_comp(node4, node8), RoundListNodeCompareGreater);
+  
+  BOOST_CHECK_EQUAL(round_consistenthashing_node_comp(node6, node2), RoundListNodeCompareLess);
+  BOOST_CHECK_EQUAL(round_consistenthashing_node_comp(node6, node4), RoundListNodeCompareLess);
+  BOOST_CHECK_EQUAL(round_consistenthashing_node_comp(node6, node6), RoundListNodeCompareSame);
+  BOOST_CHECK_EQUAL(round_consistenthashing_node_comp(node6, node8), RoundListNodeCompareGreater);
+  
+  BOOST_CHECK_EQUAL(round_consistenthashing_node_comp(node8, node2), RoundListNodeCompareLess);
+  BOOST_CHECK_EQUAL(round_consistenthashing_node_comp(node8, node4), RoundListNodeCompareLess);
+  BOOST_CHECK_EQUAL(round_consistenthashing_node_comp(node8, node6), RoundListNodeCompareLess);
+  BOOST_CHECK_EQUAL(round_consistenthashing_node_comp(node8, node8), RoundListNodeCompareSame);
+  
+  for (int n = 0; n < conNodeCount; n++) {
+    round_test_consistenthashing_node_delete(nodes[n]);
+  }
+}
+
 BOOST_AUTO_TEST_CASE(ConsistentHashGraphHandleTest) {
   const int conNodeCount = 4;
   RoundConsistentHashingRing *ring = round_consistenthashing_ring_new();
@@ -388,80 +422,76 @@ BOOST_AUTO_TEST_CASE(ConsistentHashGraphHandleTest) {
   BOOST_CHECK(round_consistenthashing_ring_delete(ring));
 }
 
-/*
 BOOST_AUTO_TEST_CASE(ConsistentHashGraphOffsetNodeTest) {
   const int conNodeCount = 9;
   RoundConsistentHashingRing *ring = round_consistenthashing_ring_new();
-  RoundTestConsistentHashingNode *nodes[conNodeCount];
+  RoundConsistentHashingNode *nodes[conNodeCount];
   
   for (int n = 0; n < conNodeCount; n++) {
-  nodes[n] = round_test_consistenthashing_node_new(n+1);
-  round_consistenthashing_ring_addnode(ring, nodes[n]);
+    nodes[n] = (RoundConsistentHashingNode *)round_test_consistenthashing_node_new(n+1);
+    round_consistenthashing_ring_addnode(ring, nodes[n]);
   }
   
   for (int baseOffset = 0; baseOffset <= conNodeCount; baseOffset+=conNodeCount) {
-  // +1
-  for (int n = 0; n < (conNodeCount-1); n++) {
-    BOOST_CHECK_EQUAL(coHashGraph.getNextNode(nodes[n]), nodes[n+1]);
-    BOOST_CHECK_EQUAL(coHashGraph.getOffsetNode(nodes[n], (+1 + baseOffset)), nodes[n+1]);
+    // +1
+    for (int n = 0; n < (conNodeCount-1); n++) {
+      BOOST_CHECK_EQUAL(round_consistenthashing_node_next(nodes[n]), nodes[n+1]);
+      BOOST_CHECK_EQUAL(round_consistenthashing_ring_getoffsetnode(ring, nodes[n], (+1 + baseOffset)), nodes[n+1]);
+    }
+    BOOST_CHECK_EQUAL(round_consistenthashing_node_nextcircular(nodes[conNodeCount -1]), nodes[0]);
+    BOOST_CHECK_EQUAL(round_consistenthashing_ring_getoffsetnode(ring, nodes[conNodeCount -1], (+1 + baseOffset)), nodes[0]);
+    
+    // (+2 +  baseOffset)
+    for (int n = 0; n < (conNodeCount -2); n++) {
+      BOOST_CHECK_EQUAL(round_consistenthashing_ring_getoffsetnode(ring, nodes[n], (+2 +  baseOffset)), nodes[n+2]);
+    }
+    BOOST_CHECK_EQUAL(round_consistenthashing_ring_getoffsetnode(ring, nodes[conNodeCount-2], (+2 +  baseOffset)), nodes[0]);
+    BOOST_CHECK_EQUAL(round_consistenthashing_ring_getoffsetnode(ring, nodes[conNodeCount-1], (+2 +  baseOffset)), nodes[1]);
+    
+    // (+3+  baseOffset)
+    for (int n = 0; n < (conNodeCount -3); n++) {
+      BOOST_CHECK_EQUAL(round_consistenthashing_ring_getoffsetnode(ring, nodes[n], (+3 +  baseOffset)), nodes[n+3]);
+    }
+    BOOST_CHECK_EQUAL(round_consistenthashing_ring_getoffsetnode(ring, nodes[conNodeCount - 3], (+3+  baseOffset)), nodes[0]);
+    BOOST_CHECK_EQUAL(round_consistenthashing_ring_getoffsetnode(ring, nodes[conNodeCount - 2], (+3+  baseOffset)), nodes[1]);
+    BOOST_CHECK_EQUAL(round_consistenthashing_ring_getoffsetnode(ring, nodes[conNodeCount - 1], (+3+  baseOffset)), nodes[2]);
+    
+    // (-1 -  baseOffset)
+    BOOST_CHECK_EQUAL(round_consistenthashing_ring_getprevnode(ring, nodes[0]), nodes[conNodeCount -1]);
+    BOOST_CHECK_EQUAL(round_consistenthashing_ring_getoffsetnode(ring, nodes[0], (-1 -  baseOffset)), nodes[conNodeCount-1]);
+    for (int n=1; n < conNodeCount; n++) {
+      BOOST_CHECK_EQUAL(round_consistenthashing_ring_getprevnode(ring, nodes[n]), nodes[n-1]);
+      BOOST_CHECK_EQUAL(round_consistenthashing_ring_getoffsetnode(ring, nodes[n], (-1 -  baseOffset)), nodes[n-1]);
+    }
+    
+    // (-2 -  baseOffset)
+    BOOST_CHECK_EQUAL(round_consistenthashing_ring_getoffsetnode(ring, nodes[0], (-2 -  baseOffset)), nodes[conNodeCount-2]);
+    BOOST_CHECK_EQUAL(round_consistenthashing_ring_getoffsetnode(ring, nodes[1], (-2 -  baseOffset)), nodes[conNodeCount-1]);
+    for (int n=2; n < conNodeCount; n++) {
+      BOOST_CHECK_EQUAL(round_consistenthashing_ring_getoffsetnode(ring, nodes[n], (-2 -  baseOffset)), nodes[n-2]);
+    }
+    
+    // (-3 -  baseOffset)
+    BOOST_CHECK_EQUAL(round_consistenthashing_ring_getoffsetnode(ring, nodes[0], (-3 -  baseOffset)), nodes[conNodeCount-3]);
+    BOOST_CHECK_EQUAL(round_consistenthashing_ring_getoffsetnode(ring, nodes[1], (-3 -  baseOffset)), nodes[conNodeCount-2]);
+    BOOST_CHECK_EQUAL(round_consistenthashing_ring_getoffsetnode(ring, nodes[2], (-3 -  baseOffset)), nodes[conNodeCount-1]);
+    for (int n=3; n < conNodeCount; n++) {
+      BOOST_CHECK_EQUAL(round_consistenthashing_ring_getoffsetnode(ring, nodes[n], (-3 -  baseOffset)), nodes[n-3]);
+    }
   }
-  BOOST_CHECK_EQUAL(coHashGraph.getNextNode(nodes[conNodeCount -1]), nodes[0]);
-  BOOST_CHECK_EQUAL(coHashGraph.getOffsetNode(nodes[conNodeCount -1], (+1 + baseOffset)), nodes[0]);
   
-  // (+2 +  baseOffset)
-  for (int n = 0; n < (conNodeCount -2); n++) {
-    BOOST_CHECK_EQUAL(coHashGraph.getOffsetNode(nodes[n], (+2 +  baseOffset)), nodes[n+2]);
-  }
-  BOOST_CHECK_EQUAL(coHashGraph.getOffsetNode(nodes[conNodeCount-2], (+2 +  baseOffset)), nodes[0]);
-  BOOST_CHECK_EQUAL(coHashGraph.getOffsetNode(nodes[conNodeCount-1], (+2 +  baseOffset)), nodes[1]);
-  
-  // (+3+  baseOffset)
-  for (int n = 0; n < (conNodeCount -3); n++) {
-    BOOST_CHECK_EQUAL(coHashGraph.getOffsetNode(nodes[n], (+3 +  baseOffset)), nodes[n+3]);
-  }
-  BOOST_CHECK_EQUAL(coHashGraph.getOffsetNode(nodes[conNodeCount - 3], (+3+  baseOffset)), nodes[0]);
-  BOOST_CHECK_EQUAL(coHashGraph.getOffsetNode(nodes[conNodeCount - 2], (+3+  baseOffset)), nodes[1]);
-  BOOST_CHECK_EQUAL(coHashGraph.getOffsetNode(nodes[conNodeCount - 1], (+3+  baseOffset)), nodes[2]);
-  
-  // (-1 -  baseOffset)
-  BOOST_CHECK_EQUAL(coHashGraph.getPrevNode(nodes[0]), nodes[conNodeCount -1]);
-  BOOST_CHECK_EQUAL(coHashGraph.getOffsetNode(nodes[0], (-1 -  baseOffset)), nodes[conNodeCount-1]);
-  for (int n=1; n < conNodeCount; n++) {
-    BOOST_CHECK_EQUAL(coHashGraph.getPrevNode(nodes[n]), nodes[n-1]);
-    BOOST_CHECK_EQUAL(coHashGraph.getOffsetNode(nodes[n], (-1 -  baseOffset)), nodes[n-1]);
-  }
-  
-  // (-2 -  baseOffset)
-  BOOST_CHECK_EQUAL(coHashGraph.getOffsetNode(nodes[0], (-2 -  baseOffset)), nodes[conNodeCount-2]);
-  BOOST_CHECK_EQUAL(coHashGraph.getOffsetNode(nodes[1], (-2 -  baseOffset)), nodes[conNodeCount-1]);
-  for (int n=2; n < conNodeCount; n++) {
-    BOOST_CHECK_EQUAL(coHashGraph.getOffsetNode(nodes[n], (-2 -  baseOffset)), nodes[n-2]);
-  }
-  
-  // (-3 -  baseOffset)
-  BOOST_CHECK_EQUAL(coHashGraph.getOffsetNode(nodes[0], (-3 -  baseOffset)), nodes[conNodeCount-3]);
-  BOOST_CHECK_EQUAL(coHashGraph.getOffsetNode(nodes[1], (-3 -  baseOffset)), nodes[conNodeCount-2]);
-  BOOST_CHECK_EQUAL(coHashGraph.getOffsetNode(nodes[2], (-3 -  baseOffset)), nodes[conNodeCount-1]);
-  for (int n=3; n < conNodeCount; n++) {
-    BOOST_CHECK_EQUAL(coHashGraph.getOffsetNode(nodes[n], (-3 -  baseOffset)), nodes[n-3]);
-  }
-  }
-  
-  for (int n = 0; n < conNodeCount; n++) {
- round_test_consistenthashing_node_delete(nodes[n]);
-  }
- 
- BOOST_CHECK(round_consistenthashing_ring_delete(ring));
+  BOOST_CHECK(round_consistenthashing_ring_delete(ring));
 }
 
+/*
 BOOST_AUTO_TEST_CASE(ConsistentHashGraphFowardDistanceTest) {
   const int conNodeCount = 9;
   RoundConsistentHashingRing *ring = round_consistenthashing_ring_new();
   RoundTestConsistentHashingNode *nodes[conNodeCount];
   
   for (int n = 0; n < conNodeCount; n++) {
-  nodes[n] = round_test_consistenthashing_node_new(n+1);
-  round_consistenthashing_ring_addnode(ring, nodes[n]);
+    nodes[n] = round_test_consistenthashing_node_new(n+1);
+    round_consistenthashing_ring_addnode(ring, nodes[n]);
   }
   
   BOOST_CHECK_EQUAL(coHashGraph.getForwardNodeDistance(nodes[0], nodes[0]),  0);
@@ -555,7 +585,7 @@ BOOST_AUTO_TEST_CASE(ConsistentHashGraphFowardDistanceTest) {
   BOOST_CHECK_EQUAL(coHashGraph.getForwardNodeDistance(nodes[8], nodes[8]),  0);
   
   for (int n = 0; n < conNodeCount; n++) {
- round_test_consistenthashing_node_delete(nodes[n]);
+    round_test_consistenthashing_node_delete(nodes[n]);
   }
  
  BOOST_CHECK(round_consistenthashing_ring_delete(ring));
@@ -662,10 +692,10 @@ BOOST_AUTO_TEST_CASE(ConsistentHashGraphBackfowardDistanceTest) {
   BOOST_CHECK_EQUAL(coHashGraph.getBackwardNodeDistance(nodes[8], nodes[8]),  0);
   
   for (int n = 0; n < conNodeCount; n++) {
- round_test_consistenthashing_node_delete(nodes[n]);
+    round_test_consistenthashing_node_delete(nodes[n]);
   }
  
- BOOST_CHECK(round_consistenthashing_ring_delete(ring));
+  BOOST_CHECK(round_consistenthashing_ring_delete(ring));
 }
 
 BOOST_AUTO_TEST_CASE(ConsistentHashGraphMinDistanceTest) {
@@ -674,15 +704,15 @@ BOOST_AUTO_TEST_CASE(ConsistentHashGraphMinDistanceTest) {
   RoundTestConsistentHashingNode *nodes[conNodeCount];
   
   for (int n = 0; n < conNodeCount; n++) {
-  nodes[n] = round_test_consistenthashing_node_new(n+1);
-  round_consistenthashing_ring_addnode(ring, nodes[n]);
+    nodes[n] = round_test_consistenthashing_node_new(n+1);
+    round_consistenthashing_ring_addnode(ring, nodes[n]);
   }
   
   for (int i = 0; i < conNodeCount; i++) {
-  for (int j = 0; j < conNodeCount; j++) {
-    off_t distance = coHashGraph.getMinNodeDistance(nodes[i], nodes[j]);
-    BOOST_CHECK(distance <= (conNodeCount/2));
-  }
+    for (int j = 0; j < conNodeCount; j++) {
+      off_t distance = coHashGraph.getMinNodeDistance(nodes[i], nodes[j]);
+      BOOST_CHECK(distance <= (conNodeCount/2));
+    }
   }
   
   BOOST_CHECK_EQUAL(coHashGraph.getMinNodeDistance(nodes[0], nodes[0]),  0);
@@ -776,10 +806,10 @@ BOOST_AUTO_TEST_CASE(ConsistentHashGraphMinDistanceTest) {
   BOOST_CHECK_EQUAL(coHashGraph.getMinNodeDistance(nodes[8], nodes[8]),  0);
   
   for (int n = 0; n < conNodeCount; n++) {
- round_test_consistenthashing_node_delete(nodes[n]);
+    round_test_consistenthashing_node_delete(nodes[n]);
   }
  
- BOOST_CHECK(round_consistenthashing_ring_delete(ring));
+  BOOST_CHECK(round_consistenthashing_ring_delete(ring));
 }
 
 BOOST_AUTO_TEST_CASE(ConsistentHashGraphIsHandleNodeTest) {
@@ -806,7 +836,6 @@ BOOST_AUTO_TEST_CASE(ConsistentHashGraphIsHandleNodeTest) {
  
  BOOST_CHECK(round_consistenthashing_ring_delete(ring));
 }
-
 */
 
 BOOST_AUTO_TEST_SUITE_END()

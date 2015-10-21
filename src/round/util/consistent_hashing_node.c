@@ -37,14 +37,14 @@ const char *round_consistenthashing_node_gethash(RoundConsistentHashingNode *nod
   return node->hashFunc(node);
 }
 
-
 /****************************************
- * round_consistenthashing_node_comp
+ * round_consistenthashing_node_compfunc
  ****************************************/
 
-int round_consistenthashing_node_comp(RoundConsistentHashingNode *thisNode, RoundConsistentHashingNode *otherNode)
+int round_consistenthashing_node_compfunc(RoundConsistentHashingNode *thisNode, RoundConsistentHashingNode *otherNode)
 {
   const char *thisHash, *otherHash;
+  int strCmp;
   
   if (!thisNode || !otherNode)
     return 0;
@@ -55,7 +55,12 @@ int round_consistenthashing_node_comp(RoundConsistentHashingNode *thisNode, Roun
   if (!thisHash || !otherHash)
     return 0;
   
-  return round_strcmp(thisHash, otherHash) * -1;
+  strCmp = round_strcmp(thisHash, otherHash);
+  
+  if (strCmp == 0)
+    return RoundListNodeCompareSame;
+  
+  return (0 < strCmp) ? RoundListNodeCompareLess : RoundListNodeCompareGreater;
 }
 
 /****************************************
