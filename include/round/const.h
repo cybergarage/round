@@ -16,6 +16,7 @@ extern "C" {
 #endif
 
 #define ROUNDC_SYSTEM_TRIGGER_TIMER_PRECISION 0.1
+#define ROUNDC_ENDL "\n"
 #define ROUNDC_FINDER_UPNP_DEVICE_TYPE "urn:cybergarage-org:device:round:1"
 #define ROUNDC_FINDER_UPNP_SERVICE_TYPE "urn:cybergarage-org:service:round:1"
 #define ROUNDC_FINDER_UPNP_ACTION_GETPRODUCTINFO "GetProductInfo"
