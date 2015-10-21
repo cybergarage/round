@@ -21,6 +21,13 @@ const char *round_test_consistenthashing_node_gethash(RoundTestConsistentHashing
   return node->hashCode;
 }
 
+RoundConsistentHashingNode *round_test_consistenthashing_ring_gethandlenode(RoundConsistentHashingRing *ring, int value)
+{
+  char hashCode[2];
+  sprintf(hashCode, "%d", value);
+  return round_consistenthashing_ring_gethandlenode(ring, hashCode);
+}
+
 RoundTestConsistentHashingNode *round_test_consistenthashing_node_new(int value)
 {
   RoundTestConsistentHashingNode *node;
@@ -148,7 +155,6 @@ BOOST_AUTO_TEST_CASE(ConsistentHashGraphEqualsTest) {
   BOOST_CHECK(round_consistenthashing_ring_delete(ring));
 }
 
-/*
 BOOST_AUTO_TEST_CASE(ConsistentHashGraphHandleTest) {
   const int conNodeCount = 4;
   RoundConsistentHashingRing *ring = round_consistenthashing_ring_new();
@@ -159,232 +165,230 @@ BOOST_AUTO_TEST_CASE(ConsistentHashGraphHandleTest) {
   RoundTestConsistentHashingNode *node6 = nodes[2] = round_test_consistenthashing_node_new(6);
   RoundTestConsistentHashingNode *node8 = nodes[3] = round_test_consistenthashing_node_new(8);
   
-  for (int n = 0; n < conNodeCount; n++)
-  round_consistenthashing_ring_addnode(ring, nodes[n]);
-  
+  for (int n = 0; n < conNodeCount; n++) {
+    round_consistenthashing_ring_addnode(ring, nodes[n]);
+  }
+ 
   // 2-4-6-8
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(0)), round_consistenthashing_ring_getnodeindex(ring, node8));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(1)), round_consistenthashing_ring_getnodeindex(ring, node8));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(2)), round_consistenthashing_ring_getnodeindex(ring, node2));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(3)), round_consistenthashing_ring_getnodeindex(ring, node2));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(4)), round_consistenthashing_ring_getnodeindex(ring, node4));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(5)), round_consistenthashing_ring_getnodeindex(ring, node4));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(6)), round_consistenthashing_ring_getnodeindex(ring, node6));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(7)), round_consistenthashing_ring_getnodeindex(ring, node6));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(8)), round_consistenthashing_ring_getnodeindex(ring, node8));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 0)), round_consistenthashing_ring_getnodeindex(ring, node8));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 1)), round_consistenthashing_ring_getnodeindex(ring, node8));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 2)), round_consistenthashing_ring_getnodeindex(ring, node2));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 3)), round_consistenthashing_ring_getnodeindex(ring, node2));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 4)), round_consistenthashing_ring_getnodeindex(ring, node4));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 5)), round_consistenthashing_ring_getnodeindex(ring, node4));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 6)), round_consistenthashing_ring_getnodeindex(ring, node6));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 7)), round_consistenthashing_ring_getnodeindex(ring, node6));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 8)), round_consistenthashing_ring_getnodeindex(ring, node8));
   
   // 4-6-8
-  coHashGraph.removeNode(node2);
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(0)), round_consistenthashing_ring_getnodeindex(ring, node8));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(1)), round_consistenthashing_ring_getnodeindex(ring, node8));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(2)), round_consistenthashing_ring_getnodeindex(ring, node8));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(3)), round_consistenthashing_ring_getnodeindex(ring, node8));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(4)), round_consistenthashing_ring_getnodeindex(ring, node4));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(5)), round_consistenthashing_ring_getnodeindex(ring, node4));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(6)), round_consistenthashing_ring_getnodeindex(ring, node6));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(7)), round_consistenthashing_ring_getnodeindex(ring, node6));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(8)), round_consistenthashing_ring_getnodeindex(ring, node8));
+  round_consistenthashing_node_remove(node2);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 0)), round_consistenthashing_ring_getnodeindex(ring, node8));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 1)), round_consistenthashing_ring_getnodeindex(ring, node8));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 2)), round_consistenthashing_ring_getnodeindex(ring, node8));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 3)), round_consistenthashing_ring_getnodeindex(ring, node8));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 4)), round_consistenthashing_ring_getnodeindex(ring, node4));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 5)), round_consistenthashing_ring_getnodeindex(ring, node4));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 6)), round_consistenthashing_ring_getnodeindex(ring, node6));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 7)), round_consistenthashing_ring_getnodeindex(ring, node6));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 8)), round_consistenthashing_ring_getnodeindex(ring, node8));
   
   // 2-4-6-8
   round_consistenthashing_ring_addnode(ring, node2);
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(0)), round_consistenthashing_ring_getnodeindex(ring, node8));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(1)), round_consistenthashing_ring_getnodeindex(ring, node8));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(2)), round_consistenthashing_ring_getnodeindex(ring, node2));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(3)), round_consistenthashing_ring_getnodeindex(ring, node2));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(4)), round_consistenthashing_ring_getnodeindex(ring, node4));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(5)), round_consistenthashing_ring_getnodeindex(ring, node4));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(6)), round_consistenthashing_ring_getnodeindex(ring, node6));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(7)), round_consistenthashing_ring_getnodeindex(ring, node6));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(8)), round_consistenthashing_ring_getnodeindex(ring, node8));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 0)), round_consistenthashing_ring_getnodeindex(ring, node8));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 1)), round_consistenthashing_ring_getnodeindex(ring, node8));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 2)), round_consistenthashing_ring_getnodeindex(ring, node2));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 3)), round_consistenthashing_ring_getnodeindex(ring, node2));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 4)), round_consistenthashing_ring_getnodeindex(ring, node4));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 5)), round_consistenthashing_ring_getnodeindex(ring, node4));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 6)), round_consistenthashing_ring_getnodeindex(ring, node6));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 7)), round_consistenthashing_ring_getnodeindex(ring, node6));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 8)), round_consistenthashing_ring_getnodeindex(ring, node8));
   
   // 2-6-8
-  coHashGraph.removeNode(node4);
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(0)), round_consistenthashing_ring_getnodeindex(ring, node8));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(1)), round_consistenthashing_ring_getnodeindex(ring, node8));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(2)), round_consistenthashing_ring_getnodeindex(ring, node2));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(3)), round_consistenthashing_ring_getnodeindex(ring, node2));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(4)), round_consistenthashing_ring_getnodeindex(ring, node2));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(5)), round_consistenthashing_ring_getnodeindex(ring, node2));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(6)), round_consistenthashing_ring_getnodeindex(ring, node6));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(7)), round_consistenthashing_ring_getnodeindex(ring, node6));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(8)), round_consistenthashing_ring_getnodeindex(ring, node8));
+  round_consistenthashing_node_remove(node4);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 0)), round_consistenthashing_ring_getnodeindex(ring, node8));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 1)), round_consistenthashing_ring_getnodeindex(ring, node8));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 2)), round_consistenthashing_ring_getnodeindex(ring, node2));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 3)), round_consistenthashing_ring_getnodeindex(ring, node2));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 4)), round_consistenthashing_ring_getnodeindex(ring, node2));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 5)), round_consistenthashing_ring_getnodeindex(ring, node2));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 6)), round_consistenthashing_ring_getnodeindex(ring, node6));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 7)), round_consistenthashing_ring_getnodeindex(ring, node6));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 8)), round_consistenthashing_ring_getnodeindex(ring, node8));
   
   // 2-4-6-8
   round_consistenthashing_ring_addnode(ring, node4);
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(0)), round_consistenthashing_ring_getnodeindex(ring, node8));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(1)), round_consistenthashing_ring_getnodeindex(ring, node8));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(2)), round_consistenthashing_ring_getnodeindex(ring, node2));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(3)), round_consistenthashing_ring_getnodeindex(ring, node2));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(4)), round_consistenthashing_ring_getnodeindex(ring, node4));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(5)), round_consistenthashing_ring_getnodeindex(ring, node4));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(6)), round_consistenthashing_ring_getnodeindex(ring, node6));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(7)), round_consistenthashing_ring_getnodeindex(ring, node6));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(8)), round_consistenthashing_ring_getnodeindex(ring, node8));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 0)), round_consistenthashing_ring_getnodeindex(ring, node8));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 1)), round_consistenthashing_ring_getnodeindex(ring, node8));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 2)), round_consistenthashing_ring_getnodeindex(ring, node2));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 3)), round_consistenthashing_ring_getnodeindex(ring, node2));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 4)), round_consistenthashing_ring_getnodeindex(ring, node4));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 5)), round_consistenthashing_ring_getnodeindex(ring, node4));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 6)), round_consistenthashing_ring_getnodeindex(ring, node6));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 7)), round_consistenthashing_ring_getnodeindex(ring, node6));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 8)), round_consistenthashing_ring_getnodeindex(ring, node8));
   
   // 2-4-8
-  coHashGraph.removeNode(node6);
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(0)), round_consistenthashing_ring_getnodeindex(ring, node8));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(1)), round_consistenthashing_ring_getnodeindex(ring, node8));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(2)), round_consistenthashing_ring_getnodeindex(ring, node2));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(3)), round_consistenthashing_ring_getnodeindex(ring, node2));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(4)), round_consistenthashing_ring_getnodeindex(ring, node4));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(5)), round_consistenthashing_ring_getnodeindex(ring, node4));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(6)), round_consistenthashing_ring_getnodeindex(ring, node4));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(7)), round_consistenthashing_ring_getnodeindex(ring, node4));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(8)), round_consistenthashing_ring_getnodeindex(ring, node8));
+  round_consistenthashing_node_remove(node6);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 0)), round_consistenthashing_ring_getnodeindex(ring, node8));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 1)), round_consistenthashing_ring_getnodeindex(ring, node8));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 2)), round_consistenthashing_ring_getnodeindex(ring, node2));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 3)), round_consistenthashing_ring_getnodeindex(ring, node2));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 4)), round_consistenthashing_ring_getnodeindex(ring, node4));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 5)), round_consistenthashing_ring_getnodeindex(ring, node4));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 6)), round_consistenthashing_ring_getnodeindex(ring, node4));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 7)), round_consistenthashing_ring_getnodeindex(ring, node4));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 8)), round_consistenthashing_ring_getnodeindex(ring, node8));
   
   // 2-4-6-8
   round_consistenthashing_ring_addnode(ring, node6);
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(0)), round_consistenthashing_ring_getnodeindex(ring, node8));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(1)), round_consistenthashing_ring_getnodeindex(ring, node8));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(2)), round_consistenthashing_ring_getnodeindex(ring, node2));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(3)), round_consistenthashing_ring_getnodeindex(ring, node2));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(4)), round_consistenthashing_ring_getnodeindex(ring, node4));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(5)), round_consistenthashing_ring_getnodeindex(ring, node4));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(6)), round_consistenthashing_ring_getnodeindex(ring, node6));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(7)), round_consistenthashing_ring_getnodeindex(ring, node6));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(8)), round_consistenthashing_ring_getnodeindex(ring, node8));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 0)), round_consistenthashing_ring_getnodeindex(ring, node8));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 1)), round_consistenthashing_ring_getnodeindex(ring, node8));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 2)), round_consistenthashing_ring_getnodeindex(ring, node2));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 3)), round_consistenthashing_ring_getnodeindex(ring, node2));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 4)), round_consistenthashing_ring_getnodeindex(ring, node4));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 5)), round_consistenthashing_ring_getnodeindex(ring, node4));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 6)), round_consistenthashing_ring_getnodeindex(ring, node6));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 7)), round_consistenthashing_ring_getnodeindex(ring, node6));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 8)), round_consistenthashing_ring_getnodeindex(ring, node8));
   
   // 2-4-6
-  coHashGraph.removeNode(node8);
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(0)), round_consistenthashing_ring_getnodeindex(ring, node6));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(1)), round_consistenthashing_ring_getnodeindex(ring, node6));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(2)), round_consistenthashing_ring_getnodeindex(ring, node2));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(3)), round_consistenthashing_ring_getnodeindex(ring, node2));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(4)), round_consistenthashing_ring_getnodeindex(ring, node4));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(5)), round_consistenthashing_ring_getnodeindex(ring, node4));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(6)), round_consistenthashing_ring_getnodeindex(ring, node6));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(7)), round_consistenthashing_ring_getnodeindex(ring, node6));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(8)), round_consistenthashing_ring_getnodeindex(ring, node6));
+  round_consistenthashing_node_remove(node8);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 0)), round_consistenthashing_ring_getnodeindex(ring, node6));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 1)), round_consistenthashing_ring_getnodeindex(ring, node6));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 2)), round_consistenthashing_ring_getnodeindex(ring, node2));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 3)), round_consistenthashing_ring_getnodeindex(ring, node2));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 4)), round_consistenthashing_ring_getnodeindex(ring, node4));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 5)), round_consistenthashing_ring_getnodeindex(ring, node4));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 6)), round_consistenthashing_ring_getnodeindex(ring, node6));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 7)), round_consistenthashing_ring_getnodeindex(ring, node6));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 8)), round_consistenthashing_ring_getnodeindex(ring, node6));
   
   // 2-4-6-8
   round_consistenthashing_ring_addnode(ring, node8);
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(0)), round_consistenthashing_ring_getnodeindex(ring, node8));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(1)), round_consistenthashing_ring_getnodeindex(ring, node8));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(2)), round_consistenthashing_ring_getnodeindex(ring, node2));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(3)), round_consistenthashing_ring_getnodeindex(ring, node2));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(4)), round_consistenthashing_ring_getnodeindex(ring, node4));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(5)), round_consistenthashing_ring_getnodeindex(ring, node4));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(6)), round_consistenthashing_ring_getnodeindex(ring, node6));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(7)), round_consistenthashing_ring_getnodeindex(ring, node6));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(8)), round_consistenthashing_ring_getnodeindex(ring, node8));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 0)), round_consistenthashing_ring_getnodeindex(ring, node8));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 1)), round_consistenthashing_ring_getnodeindex(ring, node8));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 2)), round_consistenthashing_ring_getnodeindex(ring, node2));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 3)), round_consistenthashing_ring_getnodeindex(ring, node2));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 4)), round_consistenthashing_ring_getnodeindex(ring, node4));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 5)), round_consistenthashing_ring_getnodeindex(ring, node4));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 6)), round_consistenthashing_ring_getnodeindex(ring, node6));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 7)), round_consistenthashing_ring_getnodeindex(ring, node6));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 8)), round_consistenthashing_ring_getnodeindex(ring, node8));
   
   // 2-6
-  coHashGraph.removeNode(node4);
-  coHashGraph.removeNode(node8);
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(0)), round_consistenthashing_ring_getnodeindex(ring, node6));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(1)), round_consistenthashing_ring_getnodeindex(ring, node6));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(2)), round_consistenthashing_ring_getnodeindex(ring, node2));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(3)), round_consistenthashing_ring_getnodeindex(ring, node2));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(4)), round_consistenthashing_ring_getnodeindex(ring, node2));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(5)), round_consistenthashing_ring_getnodeindex(ring, node2));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(6)), round_consistenthashing_ring_getnodeindex(ring, node6));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(7)), round_consistenthashing_ring_getnodeindex(ring, node6));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(8)), round_consistenthashing_ring_getnodeindex(ring, node6));
+  round_consistenthashing_node_remove(node4);
+  round_consistenthashing_node_remove(node8);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 0)), round_consistenthashing_ring_getnodeindex(ring, node6));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 1)), round_consistenthashing_ring_getnodeindex(ring, node6));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 2)), round_consistenthashing_ring_getnodeindex(ring, node2));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 3)), round_consistenthashing_ring_getnodeindex(ring, node2));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 4)), round_consistenthashing_ring_getnodeindex(ring, node2));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 5)), round_consistenthashing_ring_getnodeindex(ring, node2));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 6)), round_consistenthashing_ring_getnodeindex(ring, node6));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 7)), round_consistenthashing_ring_getnodeindex(ring, node6));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 8)), round_consistenthashing_ring_getnodeindex(ring, node6));
   
   // 2-4-6-8
   round_consistenthashing_ring_addnode(ring, node4);
   round_consistenthashing_ring_addnode(ring, node8);
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(0)), round_consistenthashing_ring_getnodeindex(ring, node8));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(1)), round_consistenthashing_ring_getnodeindex(ring, node8));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(2)), round_consistenthashing_ring_getnodeindex(ring, node2));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(3)), round_consistenthashing_ring_getnodeindex(ring, node2));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(4)), round_consistenthashing_ring_getnodeindex(ring, node4));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(5)), round_consistenthashing_ring_getnodeindex(ring, node4));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(6)), round_consistenthashing_ring_getnodeindex(ring, node6));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(7)), round_consistenthashing_ring_getnodeindex(ring, node6));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(8)), round_consistenthashing_ring_getnodeindex(ring, node8));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 0)), round_consistenthashing_ring_getnodeindex(ring, node8));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 1)), round_consistenthashing_ring_getnodeindex(ring, node8));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 2)), round_consistenthashing_ring_getnodeindex(ring, node2));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 3)), round_consistenthashing_ring_getnodeindex(ring, node2));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 4)), round_consistenthashing_ring_getnodeindex(ring, node4));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 5)), round_consistenthashing_ring_getnodeindex(ring, node4));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 6)), round_consistenthashing_ring_getnodeindex(ring, node6));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 7)), round_consistenthashing_ring_getnodeindex(ring, node6));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 8)), round_consistenthashing_ring_getnodeindex(ring, node8));
   
   // 4-8
-  coHashGraph.removeNode(node2);
-  coHashGraph.removeNode(node6);
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(0)), round_consistenthashing_ring_getnodeindex(ring, node8));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(1)), round_consistenthashing_ring_getnodeindex(ring, node8));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(2)), round_consistenthashing_ring_getnodeindex(ring, node8));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(3)), round_consistenthashing_ring_getnodeindex(ring, node8));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(4)), round_consistenthashing_ring_getnodeindex(ring, node4));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(5)), round_consistenthashing_ring_getnodeindex(ring, node4));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(6)), round_consistenthashing_ring_getnodeindex(ring, node4));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(7)), round_consistenthashing_ring_getnodeindex(ring, node4));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(8)), round_consistenthashing_ring_getnodeindex(ring, node8));
+  round_consistenthashing_node_remove(node2);
+  round_consistenthashing_node_remove(node6);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 0)), round_consistenthashing_ring_getnodeindex(ring, node8));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 1)), round_consistenthashing_ring_getnodeindex(ring, node8));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 2)), round_consistenthashing_ring_getnodeindex(ring, node8));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 3)), round_consistenthashing_ring_getnodeindex(ring, node8));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 4)), round_consistenthashing_ring_getnodeindex(ring, node4));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 5)), round_consistenthashing_ring_getnodeindex(ring, node4));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 6)), round_consistenthashing_ring_getnodeindex(ring, node4));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 7)), round_consistenthashing_ring_getnodeindex(ring, node4));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 8)), round_consistenthashing_ring_getnodeindex(ring, node8));
   
   // 2-4-6-8
   round_consistenthashing_ring_addnode(ring, node2);
   round_consistenthashing_ring_addnode(ring, node6);
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(0)), round_consistenthashing_ring_getnodeindex(ring, node8));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(1)), round_consistenthashing_ring_getnodeindex(ring, node8));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(2)), round_consistenthashing_ring_getnodeindex(ring, node2));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(3)), round_consistenthashing_ring_getnodeindex(ring, node2));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(4)), round_consistenthashing_ring_getnodeindex(ring, node4));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(5)), round_consistenthashing_ring_getnodeindex(ring, node4));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(6)), round_consistenthashing_ring_getnodeindex(ring, node6));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(7)), round_consistenthashing_ring_getnodeindex(ring, node6));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(8)), round_consistenthashing_ring_getnodeindex(ring, node8));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 0)), round_consistenthashing_ring_getnodeindex(ring, node8));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 1)), round_consistenthashing_ring_getnodeindex(ring, node8));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 2)), round_consistenthashing_ring_getnodeindex(ring, node2));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 3)), round_consistenthashing_ring_getnodeindex(ring, node2));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 4)), round_consistenthashing_ring_getnodeindex(ring, node4));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 5)), round_consistenthashing_ring_getnodeindex(ring, node4));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 6)), round_consistenthashing_ring_getnodeindex(ring, node6));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 7)), round_consistenthashing_ring_getnodeindex(ring, node6));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 8)), round_consistenthashing_ring_getnodeindex(ring, node8));
   
   
   // 2
-  coHashGraph.removeNode(node4);
-  coHashGraph.removeNode(node6);
-  coHashGraph.removeNode(node8);
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(0)), round_consistenthashing_ring_getnodeindex(ring, node2));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(1)), round_consistenthashing_ring_getnodeindex(ring, node2));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(2)), round_consistenthashing_ring_getnodeindex(ring, node2));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(3)), round_consistenthashing_ring_getnodeindex(ring, node2));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(4)), round_consistenthashing_ring_getnodeindex(ring, node2));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(5)), round_consistenthashing_ring_getnodeindex(ring, node2));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(6)), round_consistenthashing_ring_getnodeindex(ring, node2));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(7)), round_consistenthashing_ring_getnodeindex(ring, node2));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(8)), round_consistenthashing_ring_getnodeindex(ring, node2));
+  round_consistenthashing_node_remove(node4);
+  round_consistenthashing_node_remove(node6);
+  round_consistenthashing_node_remove(node8);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 0)), round_consistenthashing_ring_getnodeindex(ring, node2));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 1)), round_consistenthashing_ring_getnodeindex(ring, node2));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 2)), round_consistenthashing_ring_getnodeindex(ring, node2));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 3)), round_consistenthashing_ring_getnodeindex(ring, node2));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 4)), round_consistenthashing_ring_getnodeindex(ring, node2));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 5)), round_consistenthashing_ring_getnodeindex(ring, node2));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 6)), round_consistenthashing_ring_getnodeindex(ring, node2));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 7)), round_consistenthashing_ring_getnodeindex(ring, node2));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 8)), round_consistenthashing_ring_getnodeindex(ring, node2));
   
   // 2-4-6-8
   round_consistenthashing_ring_addnode(ring, node4);
   round_consistenthashing_ring_addnode(ring, node6);
   round_consistenthashing_ring_addnode(ring, node8);
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(0)), round_consistenthashing_ring_getnodeindex(ring, node8));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(1)), round_consistenthashing_ring_getnodeindex(ring, node8));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(2)), round_consistenthashing_ring_getnodeindex(ring, node2));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(3)), round_consistenthashing_ring_getnodeindex(ring, node2));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(4)), round_consistenthashing_ring_getnodeindex(ring, node4));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(5)), round_consistenthashing_ring_getnodeindex(ring, node4));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(6)), round_consistenthashing_ring_getnodeindex(ring, node6));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(7)), round_consistenthashing_ring_getnodeindex(ring, node6));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(8)), round_consistenthashing_ring_getnodeindex(ring, node8));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 0)), round_consistenthashing_ring_getnodeindex(ring, node8));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 1)), round_consistenthashing_ring_getnodeindex(ring, node8));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 2)), round_consistenthashing_ring_getnodeindex(ring, node2));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 3)), round_consistenthashing_ring_getnodeindex(ring, node2));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 4)), round_consistenthashing_ring_getnodeindex(ring, node4));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 5)), round_consistenthashing_ring_getnodeindex(ring, node4));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 6)), round_consistenthashing_ring_getnodeindex(ring, node6));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 7)), round_consistenthashing_ring_getnodeindex(ring, node6));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 8)), round_consistenthashing_ring_getnodeindex(ring, node8));
   
   // 8
-  coHashGraph.removeNode(node2);
-  coHashGraph.removeNode(node4);
-  coHashGraph.removeNode(node6);
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(0)), round_consistenthashing_ring_getnodeindex(ring, node8));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(1)), round_consistenthashing_ring_getnodeindex(ring, node8));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(2)), round_consistenthashing_ring_getnodeindex(ring, node8));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(3)), round_consistenthashing_ring_getnodeindex(ring, node8));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(4)), round_consistenthashing_ring_getnodeindex(ring, node8));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(5)), round_consistenthashing_ring_getnodeindex(ring, node8));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(6)), round_consistenthashing_ring_getnodeindex(ring, node8));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(7)), round_consistenthashing_ring_getnodeindex(ring, node8));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(8)), round_consistenthashing_ring_getnodeindex(ring, node8));
+  round_consistenthashing_node_remove(node2);
+  round_consistenthashing_node_remove(node4);
+  round_consistenthashing_node_remove(node6);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 0)), round_consistenthashing_ring_getnodeindex(ring, node8));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 1)), round_consistenthashing_ring_getnodeindex(ring, node8));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 2)), round_consistenthashing_ring_getnodeindex(ring, node8));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 3)), round_consistenthashing_ring_getnodeindex(ring, node8));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 4)), round_consistenthashing_ring_getnodeindex(ring, node8));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 5)), round_consistenthashing_ring_getnodeindex(ring, node8));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 6)), round_consistenthashing_ring_getnodeindex(ring, node8));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 7)), round_consistenthashing_ring_getnodeindex(ring, node8));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 8)), round_consistenthashing_ring_getnodeindex(ring, node8));
   
   // 2-4-6-8
   round_consistenthashing_ring_addnode(ring, node2);
   round_consistenthashing_ring_addnode(ring, node4);
   round_consistenthashing_ring_addnode(ring, node6);
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(0)), round_consistenthashing_ring_getnodeindex(ring, node8));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(1)), round_consistenthashing_ring_getnodeindex(ring, node8));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(2)), round_consistenthashing_ring_getnodeindex(ring, node2));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(3)), round_consistenthashing_ring_getnodeindex(ring, node2));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(4)), round_consistenthashing_ring_getnodeindex(ring, node4));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(5)), round_consistenthashing_ring_getnodeindex(ring, node4));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(6)), round_consistenthashing_ring_getnodeindex(ring, node6));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(7)), round_consistenthashing_ring_getnodeindex(ring, node6));
-  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, coHashGraph.getHandleNode(8)), round_consistenthashing_ring_getnodeindex(ring, node8));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 0)), round_consistenthashing_ring_getnodeindex(ring, node8));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 1)), round_consistenthashing_ring_getnodeindex(ring, node8));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 2)), round_consistenthashing_ring_getnodeindex(ring, node2));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 3)), round_consistenthashing_ring_getnodeindex(ring, node2));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 4)), round_consistenthashing_ring_getnodeindex(ring, node4));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 5)), round_consistenthashing_ring_getnodeindex(ring, node4));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 6)), round_consistenthashing_ring_getnodeindex(ring, node6));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 7)), round_consistenthashing_ring_getnodeindex(ring, node6));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 8)), round_consistenthashing_ring_getnodeindex(ring, node8));
   
-  for (int n = 0; n < conNodeCount; n++) {
- ////////round_test_consistenthashing_node_delete(nodes[n]);
-  }
-
- BOOST_CHECK(round_consistenthashing_ring_delete(ring));
+  BOOST_CHECK(round_consistenthashing_ring_delete(ring));
 }
 
+/*
 BOOST_AUTO_TEST_CASE(ConsistentHashGraphOffsetNodeTest) {
   const int conNodeCount = 9;
   RoundConsistentHashingRing *ring = round_consistenthashing_ring_new();

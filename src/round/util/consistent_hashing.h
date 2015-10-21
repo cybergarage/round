@@ -53,6 +53,8 @@ bool round_consistenthashing_ring_delete(RoundConsistentHashingRing *ring);
 #define round_consistenthashing_ring_getnodes(ring) ((RoundConsistentHashingNode *)round_ordered_list_gets(ring->orderedList))
 #define round_consistenthashing_ring_getnode(ring,idx) ((RoundConsistentHashingNode *)round_ordered_list_get(ring->orderedList,idx))
 
+RoundConsistentHashingNode *round_consistenthashing_ring_gethandlenode(RoundConsistentHashingRing *ring, const char *hashCode);
+
 bool round_consistenthashing_ring_addnode(RoundConsistentHashingRing *ring, void *node);
 bool round_consistenthashing_ring_hasnode(RoundConsistentHashingRing *ring, void *node);
 ssize_t round_consistenthashing_ring_getnodeindex(RoundConsistentHashingRing *ring, void *node);
@@ -68,6 +70,7 @@ bool round_consistenthashing_ring_clear(RoundConsistentHashingRing *ring);
   
 bool round_consistenthashing_node_init(RoundConsistentHashingNode *node);
 
+#define round_consistenthashing_node_remove(node) round_list_remove((RoundListNode *)node)
 #define round_consistenthashing_node_prev_circular(node) ((RoundConsistentHashingNode *)round_list_prev_circular((RoundListNode *)node))
 #define round_consistenthashing_node_prev(node) ((RoundConsistentHashingNode *)round_list_prev((RoundListNode *)node))
 #define round_consistenthashing_node_next_circular(node) ((RoundConsistentHashingNode *)round_list_next_circular((RoundListNode *)node))
