@@ -37,21 +37,47 @@ BOOST_AUTO_TEST_CASE(StringReplace)
   std::vector<std::string> froms;
   std::vector<std::string> tos;
   std::vector<std::string> expects;
-  /*
+
+  // from == null
+  
   strings.push_back("123456789");
   froms.push_back("");
   tos.push_back("");
   expects.push_back("123456789");
   
+  // from == org
+   
   strings.push_back("123456789");
   froms.push_back("5");
   tos.push_back("a");
   expects.push_back("1234a6789");
-  */
+
+  strings.push_back("123456789");
+  froms.push_back("456");
+  tos.push_back("abc");
+  expects.push_back("123abc789");
   strings.push_back("523456785");
   froms.push_back("5");
   tos.push_back("b");
   expects.push_back("b234b678b");
+ 
+  // from < org
+   
+  strings.push_back("123456789");
+  froms.push_back("5");
+  tos.push_back("abc");
+  expects.push_back("1234abc6789");
+  
+  strings.push_back("523456785");
+  froms.push_back("5");
+  tos.push_back("abc");
+  expects.push_back("abc234abc678abc");
+  
+  // from > org
+  strings.push_back("123456789");
+  froms.push_back("456");
+  tos.push_back("a");
+  expects.push_back("123a789");
   
   size_t testCnt = strings.size();
   for (size_t n = 0; n < testCnt; n++) {
