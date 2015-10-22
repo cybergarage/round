@@ -670,7 +670,7 @@ bool round_local_node_postjsonrequest(RoundLocalNode *node, RoundJSONObject *req
   }
 
   reqStr = NULL;
-  if (!round_json_object_tostring(reqObj, &reqStr) || (0 < round_strlen(reqStr))) {
+  if (!round_json_object_tocompactstring(reqObj, &reqStr) || (0 < round_strlen(reqStr))) {
     round_local_node_seterrorresponse(node, ROUNDC_RPC_ERROR_CODE_INVALID_PARAMS, err, resObj);
     return false;
   }

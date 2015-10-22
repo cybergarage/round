@@ -16,6 +16,7 @@
 
 #include <round/round.h>
 #include <round/script.h>
+#include <round/util/strings.h>
 
 #include "ScriptTestController.h"
 
@@ -65,11 +66,9 @@ void Round::Test::ScriptTestController::runEchoMethodTest(RoundMethodManager *sc
   params.push_back("{\"key0\":\"value0\",\"key1\":\"value1\"}");
   params.push_back("{\"key0\":\"value0\",\"key1\":\"value1\",\"key2\":\"value2\"}");
   
-  //bool round_method_manager_execmethod(RoundMethodManager *mgr, const char *name, const char *params, RoundJSONObject **result, RoundError *err);
-
   RoundJSONObject *resultObj;
   RoundError *err = round_error_new();
-  const char *resultStr;
+
   for (std::vector<std::string>::iterator echoParamIt = params.begin(); echoParamIt != params.end(); echoParamIt++) {
     std::string &echoParam = *echoParamIt;
     bool isSuccess;
@@ -81,16 +80,20 @@ void Round::Test::ScriptTestController::runEchoMethodTest(RoundMethodManager *sc
     if (!resultObj)
       continue;
     
-    resultStr = NULL;
-    BOOST_CHECK(round_json_object_tostring(resultObj, &resultStr));
+    const char *resultStr = NULL;
+    BOOST_CHECK(round_json_object_tostring(resultObj, (RoundJSONOptionFormatCompact|RoundJSONOptionFormatSort), &resultStr));
     BOOST_CHECK(resultStr);
     
     if (resultStr) {
-      BOOST_CHECK_EQUAL(echoParam.c_str(), resultStr);
+      char *compackResultStr = round_strreplace(resultStr, " ", "");
+      BOOST_CHECK_EQUAL(echoParam.c_str(), compackResultStr);
+      free(compackResultStr);
     }
     
     round_json_object_delete(resultObj);
   }
+  
+  round_error_delete(err);
 }
 
 void Round::Test::ScriptTestController::runSumMethodTest(RoundMethodManager *scriptMgr) {
