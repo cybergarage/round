@@ -38,14 +38,21 @@ BOOST_AUTO_TEST_CASE(StringReplace)
   std::vector<std::string> tos;
   std::vector<std::string> expects;
 
-  // from == null
+  // str == ""
+  
+  strings.push_back("");
+  froms.push_back("");
+  tos.push_back("");
+  expects.push_back("");
+  
+  // from == ""
   
   strings.push_back("123456789");
   froms.push_back("");
   tos.push_back("");
   expects.push_back("123456789");
   
-  // from == org
+  // from == to
    
   strings.push_back("123456789");
   froms.push_back("5");
@@ -61,7 +68,7 @@ BOOST_AUTO_TEST_CASE(StringReplace)
   tos.push_back("b");
   expects.push_back("b234b678b");
  
-  // from < org
+  // from < to
    
   strings.push_back("123456789");
   froms.push_back("5");
@@ -73,11 +80,25 @@ BOOST_AUTO_TEST_CASE(StringReplace)
   tos.push_back("abc");
   expects.push_back("abc234abc678abc");
   
-  // from > org
+  // from > to
   strings.push_back("123456789");
   froms.push_back("456");
   tos.push_back("a");
   expects.push_back("123a789");
+  
+  // to == ""
+  
+  strings.push_back("123456789");
+  froms.push_back("5");
+  tos.push_back("");
+  expects.push_back("12346789");
+  
+  strings.push_back("123456789");
+  froms.push_back("456");
+  tos.push_back("");
+  expects.push_back("123789");
+
+  // Test
   
   size_t testCnt = strings.size();
   for (size_t n = 0; n < testCnt; n++) {
