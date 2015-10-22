@@ -72,7 +72,10 @@ void Round::Test::ScriptTestController::runEchoMethodTest(RoundMethodManager *sc
   const char *resultStr;
   for (std::vector<std::string>::iterator echoParamIt = params.begin(); echoParamIt != params.end(); echoParamIt++) {
     std::string &echoParam = *echoParamIt;
-    BOOST_CHECK(round_method_manager_execmethod(scriptMgr, Round::Test::SCRIPT_ECHO_NAME, echoParam.c_str(), &resultObj, err));
+    bool isSuccess;
+    BOOST_CHECK(isSuccess = round_method_manager_execmethod(scriptMgr, Round::Test::SCRIPT_ECHO_NAME, echoParam.c_str(), &resultObj, err));
+    if (!isSuccess)
+      continue;
     BOOST_CHECK(resultObj);
     
     if (!resultObj)

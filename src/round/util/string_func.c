@@ -460,16 +460,19 @@ char *round_strreplace(const char *str, const char *orgToken, const char *repTok
     return repStr;
   }
 
+  char *repStr = (char *)malloc(strLen + 1);
+  
   size_t orgTokenLen = round_strlen(orgToken);
+  if (orgTokenLen <= 0) {
+    memcpy(repStr, str, (strLen + 1));
+    return repStr;
+  }
+  
   size_t repTokenLen = round_strlen(repToken);
   size_t tokenDiffLen = repTokenLen - orgTokenLen;
-
-  char *repStr = (char *)malloc(strLen + 1);
-  size_t repStrLen = strLen;
-  
   ssize_t lastCopiedIdx = 0;
   ssize_t copiedLen = 0;
-  
+  size_t repStrLen = strLen;
   ssize_t orgTokenIdx = round_strstr(str, orgToken);
   while (0 <= orgTokenIdx) {
     if (tokenDiffLen != 0) {
@@ -478,7 +481,10 @@ char *round_strreplace(const char *str, const char *orgToken, const char *repTok
     }
     
     size_t copyLen = (orgTokenIdx - lastCopiedIdx);
-    memcpy((repStr + copiedLen), (str + lastCopiedIdx), copyLen);
+    if (0 < copyLen) {
+      memcpy((repStr + copiedLen), (str + lastCopiedIdx), copyLen);
+    }
+    
     copiedLen += copyLen;
     repStr[copiedLen] = '\0';
     memcpy((repStr + copiedLen), repToken, repTokenLen);
@@ -487,6 +493,9 @@ char *round_strreplace(const char *str, const char *orgToken, const char *repTok
     
     lastCopiedIdx = orgTokenIdx + orgTokenLen;
     orgTokenIdx = round_strstr((str + lastCopiedIdx), orgToken);
+    if (0 < orgTokenIdx) {
+      orgTokenIdx += lastCopiedIdx;
+    }
   }
   
   size_t leftLen = (strLen - lastCopiedIdx);
