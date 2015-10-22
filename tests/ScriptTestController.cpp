@@ -75,8 +75,8 @@ void Round::Test::ScriptTestController::runEchoMethodTest(RoundMethodManager *sc
     BOOST_CHECK(isSuccess = round_method_manager_execmethod(scriptMgr, Round::Test::SCRIPT_ECHO_NAME, echoParam.c_str(), &resultObj, err));
     if (!isSuccess)
       continue;
-    BOOST_CHECK(resultObj);
     
+    BOOST_CHECK(resultObj);
     if (!resultObj)
       continue;
     
@@ -124,14 +124,26 @@ void Round::Test::ScriptTestController::runSumMethodTest(RoundMethodManager *scr
   params.push_back("[0,10,20,30,40,50,60,70,80,90]");
   results.push_back("450");
   
+  RoundJSONObject *resultObj;
+  RoundError *err = round_error_new();
+  
   size_t nParams = params.size();
   for (size_t n = 0; n < nParams; n++) {
-/*
-    std::string result;
-    Error error;
-    BOOST_CHECK(scriptMgr->execMethod(Test::SCRIPT_SUM_NAME, params[n], &result, &error));
-    BOOST_CHECK_EQUAL(result.compare(results[n]), 0);
-*/
+    bool isSuccess;
+    BOOST_CHECK(isSuccess = round_method_manager_execmethod(scriptMgr, Round::Test::SCRIPT_SUM_NAME, params[n].c_str(), &resultObj, err));
+    if (!isSuccess)
+      continue;
+    
+    BOOST_CHECK(resultObj);
+    if (!resultObj)
+      continue;
+
+    const char *resultStr = NULL;
+    BOOST_CHECK(round_json_object_tostring(resultObj, (RoundJSONOptionFormatCompact|RoundJSONOptionFormatSort), &resultStr));
+    BOOST_CHECK(resultStr);
+    BOOST_CHECK_EQUAL(results[n].c_str(), resultStr);
+    
+    round_json_object_delete(resultObj);
   }
 }
 
