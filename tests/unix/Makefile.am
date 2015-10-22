@@ -20,6 +20,7 @@ roundtest_SOURCES = \
 	..//ClockTest.cpp \
 	..//ClusterListTest.cpp \
 	..//ClusterTest.cpp \
+	..//DigestTest.cpp \
 	..//ErrorTest.cpp \
 	..//FinderTest.cpp \
 	..//json/JSONArrayTest.cpp \
@@ -49,8 +50,10 @@ roundtest_SOURCES = \
 	..//util/ListOrderedTest.cpp \
 	..//util/ListTest.cpp \
 	..//util/MapTest.cpp \
+	..//util/MutexTest.cpp \
 	..//util/QueueTest.cpp \
 	..//util/SemaphoreTest.cpp \
+	..//util/string_test.cpp \
 	..//util/StringTest.cpp
 #if HAVE_LIBTOOL
 #roundtest_LDADD = @HTTP_LIBS@ @XML_LIBS@ ../../lib/unix/libround.la
