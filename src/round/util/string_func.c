@@ -498,9 +498,9 @@ char *round_strreplace(const char *str, const char *orgToken, const char *repTok
     }
   }
   
-  size_t leftLen = (strLen - lastCopiedIdx);
-  memcpy((repStr + copiedLen), (str + lastCopiedIdx), leftLen);
-  copiedLen += leftLen;
+  size_t leftStrLen = (strLen - lastCopiedIdx);
+  memcpy((repStr + copiedLen), (str + lastCopiedIdx), leftStrLen);
+  copiedLen += leftStrLen;
   repStr[copiedLen] = '\0';
   
   return repStr;
