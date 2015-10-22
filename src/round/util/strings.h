@@ -112,6 +112,7 @@ char *round_string_getvalue(RoundString *str);
 #define round_string_getfloatvalue(str) mupnp_str2float(round_string_getvalue(str))
 #define round_string_getdoublevalue(str) mupnp_str2double(round_string_getvalue(str))
 	
+bool round_string_equals(RoundString *str1, RoundString *str2);
 size_t round_string_length(RoundString *str);
 
 char *round_string_addvalue(RoundString *str, const char *value);
@@ -120,6 +121,7 @@ char *round_string_addrepvalue(RoundString *str, const char *value, size_t repea
 char *round_string_naddrepvalue(RoundString *str, const char *value, size_t valueLen, size_t repeatCnt);
 
 char *round_string_replace(RoundString *str, char *fromStr[], char *toStr[], size_t fromStrCnt);
+
 
 size_t round_string_getmemorysize(RoundString *str);
                                                                                                                                              
