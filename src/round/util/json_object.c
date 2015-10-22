@@ -319,7 +319,7 @@ bool round_json_object_getbool(RoundJSONObject *obj, bool *value)
  * round_json_object_tostring
  ****************************************/
 
-bool round_json_object_tostring(RoundJSONObject *obj, const char **str)
+bool round_json_object_tostring(RoundJSONObject *obj,  RoundOption opt, const char **str)
 {
   const char *jsonObjStr;
   
@@ -336,7 +336,16 @@ bool round_json_object_tostring(RoundJSONObject *obj, const char **str)
 #if defined(ROUND_USE_JSON_PARSER_JANSSON)
   if (!obj->jsonObj)
     return false;
-  obj->dumpedStr = json_dumps(obj->jsonObj, JSON_INDENT(2));
+  
+  int dumpOpt = 0;
+  if (!(opt & RoundJSONOptionFormatCompact)) {
+    dumpOpt |= JSON_INDENT(2);
+  }
+  if ((opt & RoundJSONOptionFormatSort)) {
+    dumpOpt |= JSON_PRESERVE_ORDER;
+  }
+  
+  obj->dumpedStr = json_dumps(obj->jsonObj, dumpOpt);
   if (!obj->dumpedStr)
     return false;
   *str = obj->dumpedStr;

@@ -24,6 +24,8 @@ RoundJSON *round_json_new(void)
   
   json->pathObj = round_json_object_new();
   json->rootObj = NULL;
+  
+  round_json_setoption(json, 0);
 
   return json;
 }
@@ -38,7 +40,6 @@ bool round_json_delete(RoundJSON *json)
     return false;
   
   round_json_clear(json);
-
   round_json_object_delete(json->pathObj);
 
   free(json);
@@ -60,9 +61,32 @@ bool round_json_clear(RoundJSON *json)
     json->rootObj = NULL;
   }
 
+  round_json_setoption(json, 0);
   round_json_object_setjanssonobject(json->pathObj, NULL);
 
   return true;
+}
+
+/****************************************
+ * round_json_setoption
+ ****************************************/
+
+bool round_json_setoption(RoundJSON *json, int value)
+{
+  if (!json)
+    return false;
+  return round_option_set(json->opt, value);
+}
+
+/****************************************
+ * round_json_getoption
+ ****************************************/
+
+int round_json_getoption(RoundJSON *json)
+{
+  if (!json)
+    return 0;
+  return round_option_get(json->opt);
 }
 
 /****************************************
