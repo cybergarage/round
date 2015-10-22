@@ -17,14 +17,13 @@
 
 RoundJSON *round_json_new(void)
 {
-  RoundJSON *json;
-  
-  json = (RoundJSON *)malloc(sizeof(RoundJSON));
+  RoundJSON *json = (RoundJSON *)malloc(sizeof(RoundJSON));
   
   if (!json)
     return NULL;
   
   json->pathObj = round_json_object_new();
+  json->rootObj = NULL;
 
   return json;
 }
@@ -84,12 +83,10 @@ RoundJSONObject *round_json_getrootobject(RoundJSON *json)
 
 RoundJSONObject *round_json_poprootobject(RoundJSON *json)
 {
-  RoundJSONObject *rootObj;
-  
   if (!json)
     return NULL;
   
-  rootObj = json->rootObj;
+  RoundJSONObject *rootObj = json->rootObj;
   json->rootObj = NULL;
   
   return rootObj;
@@ -101,12 +98,6 @@ RoundJSONObject *round_json_poprootobject(RoundJSON *json)
 
 bool round_json_parse(RoundJSON *json, const char *jsonStr, RoundError *err)
 {
-  RoundJSONObject *jsonObj;
-  char errMsg[128];
-#if defined(ROUND_USE_JSON_PARSER_JANSSON)
-  json_error_t jsonErr;
-#endif
-
   if (!json || !jsonStr)
     return false;
   
@@ -114,6 +105,9 @@ bool round_json_parse(RoundJSON *json, const char *jsonStr, RoundError *err)
     return false;
   
 #if defined(ROUND_USE_JSON_PARSER_JANSSON)
+  char errMsg[128];
+  json_error_t jsonErr;
+  
   json_t *jsonRes = json_loads(jsonStr, 0, &jsonErr);
   if (!jsonRes) {
     if (err) {
@@ -124,7 +118,7 @@ bool round_json_parse(RoundJSON *json, const char *jsonStr, RoundError *err)
     return false;
   }
   
-  jsonObj = round_json_object_new();
+  RoundJSONObject *jsonObj = round_json_object_new();
   if (!jsonObj) {
     json_decref(jsonRes);
     return false;
