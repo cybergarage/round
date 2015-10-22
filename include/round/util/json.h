@@ -13,6 +13,7 @@
 
 #include <round/typedef.h>
 #include <round/error.h>
+#include <round/util/option.h>
 
 #if defined(ROUND_USE_JSON_PARSER_JANSSON)
 #include <jansson.h>
@@ -27,20 +28,25 @@ extern "C" {
  ****************************************/
 
 enum {
-ROUND_JSON_UNKOWN = 0,
-ROUND_JSON_MAP,
-ROUND_JSON_ARRAY,
-ROUND_JSON_NULL,
-ROUND_JSON_STRING,
-ROUND_JSON_INTEGER,
-ROUND_JSON_REAL,
-ROUND_JSON_TRUE,
-ROUND_JSON_FALSE,
-ROUND_JSON_BOOL,
+  ROUND_JSON_UNKOWN = 0,
+  ROUND_JSON_MAP,
+  ROUND_JSON_ARRAY,
+  ROUND_JSON_NULL,
+  ROUND_JSON_STRING,
+  ROUND_JSON_INTEGER,
+  ROUND_JSON_REAL,
+  ROUND_JSON_TRUE,
+  ROUND_JSON_FALSE,
+  ROUND_JSON_BOOL,
+};
+  
+enum {
+  RoundJSONOptionFormatCompact = 0x01,
+  RoundJSONOptionFormatSort    = 0x02,
 };
   
 #define ROUND_JSON_PATH_DELIM "/"
-
+  
 /****************************************
  * Data Type
  ****************************************/
@@ -62,6 +68,9 @@ bool round_json_delete(RoundJSON *json);
 RoundJSONObject *round_json_getrootobject(RoundJSON *json);
 RoundJSONObject *round_json_poprootobject(RoundJSON *json);
 
+bool round_json_setoption(RoundJSON *json, int value);
+int round_json_getoption(RoundJSON *json);
+  
 /****************************************
  * Functions (JSON Object)
  ****************************************/
@@ -92,7 +101,8 @@ bool round_json_object_getinteger(RoundJSONObject *obj, long *value);
 bool round_json_object_getreal(RoundJSONObject *obj, double *value);
 bool round_json_object_getbool(RoundJSONObject *obj, bool *value);
 
-bool round_json_object_tostring(RoundJSONObject *obj, const char **str);
+bool round_json_object_tostring(RoundJSONObject *obj, RoundOption opt, const char **str);
+#define round_json_object_tocompactstring(obj, str) round_json_object_tostring(obj,RoundJSONOptionFormatCompact,str)
 
 /****************************************
  * Functions (JSON Map)

@@ -14,6 +14,7 @@
 #include <round/typedef.h>
 #include <round/platform.h>
 #include <round/error_internal.h>
+#include <round/util/option.h>
 
 #if defined(ROUND_USE_JSON_PARSER_JANSSON)
 #include <jansson.h>
@@ -38,6 +39,7 @@ typedef struct _RoundJSONObject {
 typedef struct {
   RoundJSONObject *rootObj;
   RoundJSONObject *pathObj;
+  RoundOption opt;
 } RoundJSON;
 
 /****************************************
