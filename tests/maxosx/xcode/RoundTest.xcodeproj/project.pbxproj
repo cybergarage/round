@@ -37,6 +37,8 @@
 		21A4C21F1BC112DE0030BD12 /* LocalNodeMessageTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21A4C21E1BC112DE0030BD12 /* LocalNodeMessageTest.cpp */; settings = {ASSET_TAGS = (); }; };
 		21A762ED1B96F82400D29732 /* RoundTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21A762EC1B96F82400D29732 /* RoundTest.cpp */; };
 		21A776B41BA0666C009BDB36 /* MessageTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21A776B31BA0666C009BDB36 /* MessageTest.cpp */; };
+		21C887741BD8F00700449F5D /* DigestTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21C887731BD8F00700449F5D /* DigestTest.cpp */; settings = {ASSET_TAGS = (); }; };
+		21C887771BD9115400449F5D /* MutexTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21C887751BD9115400449F5D /* MutexTest.cpp */; settings = {ASSET_TAGS = (); }; };
 		21D427F01B9F0B1A00BBBD41 /* ErrorTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D427EF1B9F0B1A00BBBD41 /* ErrorTest.cpp */; };
 		21EA96DE1B99104E00E00841 /* ClusterListTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21EA96DC1B99104E00E00841 /* ClusterListTest.cpp */; };
 		21EA96DF1B99104E00E00841 /* ClusterTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21EA96DD1B99104E00E00841 /* ClusterTest.cpp */; };
@@ -110,6 +112,8 @@
 		21A4C21E1BC112DE0030BD12 /* LocalNodeMessageTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LocalNodeMessageTest.cpp; path = ../../LocalNodeMessageTest.cpp; sourceTree = "<group>"; };
 		21A762EC1B96F82400D29732 /* RoundTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RoundTest.cpp; path = ../../RoundTest.cpp; sourceTree = "<group>"; };
 		21A776B31BA0666C009BDB36 /* MessageTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MessageTest.cpp; path = ../../MessageTest.cpp; sourceTree = "<group>"; };
+		21C887731BD8F00700449F5D /* DigestTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DigestTest.cpp; path = ../../DigestTest.cpp; sourceTree = "<group>"; };
+		21C887751BD9115400449F5D /* MutexTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MutexTest.cpp; path = ../../util/MutexTest.cpp; sourceTree = "<group>"; };
 		21D427EF1B9F0B1A00BBBD41 /* ErrorTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ErrorTest.cpp; path = ../../ErrorTest.cpp; sourceTree = "<group>"; };
 		21EA96DC1B99104E00E00841 /* ClusterListTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ClusterListTest.cpp; path = ../../ClusterListTest.cpp; sourceTree = "<group>"; };
 		21EA96DD1B99104E00E00841 /* ClusterTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ClusterTest.cpp; path = ../../ClusterTest.cpp; sourceTree = "<group>"; };
@@ -214,6 +218,8 @@
 		2195A3DB1BD50DD600DF5436 /* util */ = {
 			isa = PBXGroup;
 			children = (
+				21C887751BD9115400449F5D /* MutexTest.cpp */,
+				21C887731BD8F00700449F5D /* DigestTest.cpp */,
 				2127082B1BD6640300000985 /* ConsistentHashingRingTest.cpp */,
 				2195A3DC1BD50DF000DF5436 /* Base64Test.cpp */,
 				2195A3DD1BD50DF000DF5436 /* ListOrderedTest.cpp */,
@@ -317,6 +323,7 @@
 				21D427F01B9F0B1A00BBBD41 /* ErrorTest.cpp in Sources */,
 				2195A3E51BD50DF000DF5436 /* ListTest.cpp in Sources */,
 				21F6D99E1B9983A500714056 /* LuaEngineTest.cpp in Sources */,
+				21C887771BD9115400449F5D /* MutexTest.cpp in Sources */,
 				212A954B1B9BD1A400EC9A71 /* MethodMapTest.cpp in Sources */,
 				215A078E1BB2FB9400E9702F /* ServerTest.cpp in Sources */,
 				2195A3E61BD50DF000DF5436 /* MapTest.cpp in Sources */,
@@ -334,6 +341,7 @@
 				218569B51BB0D69400861B9B /* LocalNodeTest.cpp in Sources */,
 				21EA96DE1B99104E00E00841 /* ClusterListTest.cpp in Sources */,
 				2195A3E41BD50DF000DF5436 /* ListOrderedTest.cpp in Sources */,
+				21C887741BD8F00700449F5D /* DigestTest.cpp in Sources */,
 				21EA96E31B99105E00E00841 /* NodeTest.cpp in Sources */,
 				2166EF8C1B9D2E5E002FE45D /* ScriptEngineMapTest.cpp in Sources */,
 				21F6D99D1B9983A500714056 /* JsEngineTest.cpp in Sources */,
