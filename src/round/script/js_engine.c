@@ -88,12 +88,11 @@ bool round_js_engine_getsoucecode(RoundJavaScriptEngine *engine, RoundMethod *me
   round_string_addvalue(jsSource, round_method_getstringcode(method));
   round_string_addvalue(jsSource, ROUNDC_ENDL);
   
-  // FIXME : Support escaping
-  //std::string jsonParams = boost::algorithm::replace_all_copy(params, "\"", "\\\"");
-  
+  char *jsonParams = round_strreplace(param, "\"", "\\\"");
   round_string_addvalue(jsSource, "var jsonParams = \"");
-  round_string_addvalue(jsSource, param ? param : "\"\"");
+  round_string_addvalue(jsSource, jsonParams ? jsonParams : "\"\"");
   round_string_addvalue(jsSource, "\";" ROUNDC_ENDL);
+  free(jsonParams);
   
   round_string_addvalue(jsSource, "var params = jsonParams;" ROUNDC_ENDL);
   round_string_addvalue(jsSource, "if (0 < jsonParams.length) {" ROUNDC_ENDL);

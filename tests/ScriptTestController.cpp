@@ -86,7 +86,7 @@ void Round::Test::ScriptTestController::runEchoMethodTest(RoundMethodManager *sc
     BOOST_CHECK(resultStr);
     
     if (resultStr) {
-      BOOST_CHECK_EQUAL(echoParam.compare(resultStr), 0);
+      BOOST_CHECK_EQUAL(echoParam.c_str(), resultStr);
     }
     
     round_json_object_delete(resultObj);
