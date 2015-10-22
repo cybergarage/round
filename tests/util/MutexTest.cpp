@@ -11,7 +11,8 @@
 #include <boost/test/unit_test.hpp>
 #include <roundc/round.h>
 
-BOOST_AUTO_TEST_CASE(MutexTest) {
+BOOST_AUTO_TEST_CASE(MutexTest)
+{
   RoundMutex *mutex;
   
   mutex = round_mutex_new();
