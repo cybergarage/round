@@ -9,7 +9,9 @@
 ******************************************************************/
 
 #include <boost/test/unit_test.hpp>
-#include <roundc/round.h>
+#include <round/round.h>
+
+BOOST_AUTO_TEST_SUITE(mutex)
 
 BOOST_AUTO_TEST_CASE(MutexTest)
 {
@@ -21,3 +23,5 @@ BOOST_AUTO_TEST_CASE(MutexTest)
   BOOST_CHECK(round_mutex_unlock(mutex));
   BOOST_CHECK(round_mutex_delete(mutex));
 }
+
+BOOST_AUTO_TEST_SUITE_END()

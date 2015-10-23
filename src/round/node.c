@@ -132,9 +132,10 @@ bool round_node_setaddress(RoundNode *node, const char *addr)
   if (!node)
     return false;
   
-  round_node_cleardigest(node);
+  if (!round_string_setvalue(node->addr, addr))
+    return false;
   
-  return round_string_setvalue(node->addr, addr);
+  return round_node_updatedigest(node);
 }
 
 /****************************************
@@ -163,11 +164,9 @@ bool round_node_setport(RoundNode *node, int port)
   if (!node)
     return false;
   
-  round_node_cleardigest(node);
-  
   node->port = port;
   
-  return true;
+  return round_node_updatedigest(node);
 }
 
 /****************************************
@@ -188,13 +187,37 @@ bool round_node_getport(RoundNode *node, int *port, RoundError *err)
 }
 
 /****************************************
- * round_node_setcluster
+ * round_node_updatedigest
+ ****************************************/
+
+bool round_node_updatedigest(RoundNode *node)
+{
+  if (!node)
+    return false;
+  
+  char seed[32];
+  snprintf(seed, sizeof(seed), "%s:%d", round_string_getvalue(node->addr), node->port);
+  
+  char *digest;
+  if (!round_node_digest(seed, &digest))
+    return false;
+  
+  round_node_setdigest(node, digest);
+  free(digest);
+  
+  return true;
+}
+
+/****************************************
+ * round_node_getdigest
  ****************************************/
 
 const char *round_node_getdigest(RoundNode *node)
 {
-  //#define round_node_digest(str,buf) round_sha256_digest(str,buf)
-  return "";
+  if (!node)
+    return "";
+  
+  return round_string_getvalue(node->digest);
 }
 
 /****************************************
