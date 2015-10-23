@@ -70,6 +70,7 @@ bool round_node_init(RoundNode *node)
     return false;
 
   round_node_setrequesttimeout(node, ROUNDC_JSON_RPC_REQUEST_TIMEOUT_SEC);
+  round_consistenthashing_node_sethashfunc(node, round_node_hashfunc);
   
   return true;
 }
@@ -178,6 +179,16 @@ bool round_node_getport(RoundNode *node, int *port, RoundError *err)
   *port = node->port;
   
   return true;
+}
+
+/****************************************
+ * round_node_setcluster
+ ****************************************/
+
+const char *round_node_hashfunc(RoundNode *node)
+{
+  //#define round_node_digest(str,buf) round_sha256_digest(str,buf)
+  return "";
 }
 
 /****************************************
