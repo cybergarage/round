@@ -42,7 +42,7 @@
 		21D427F01B9F0B1A00BBBD41 /* ErrorTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D427EF1B9F0B1A00BBBD41 /* ErrorTest.cpp */; };
 		21EA96DE1B99104E00E00841 /* ClusterListTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21EA96DC1B99104E00E00841 /* ClusterListTest.cpp */; };
 		21EA96DF1B99104E00E00841 /* ClusterTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21EA96DD1B99104E00E00841 /* ClusterTest.cpp */; };
-		21EA96E21B99105E00E00841 /* NodeListTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21EA96E01B99105E00E00841 /* NodeListTest.cpp */; };
+		21EA96E21B99105E00E00841 /* NodeRingTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21EA96E01B99105E00E00841 /* NodeRingTest.cpp */; };
 		21EA96E31B99105E00E00841 /* NodeTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21EA96E11B99105E00E00841 /* NodeTest.cpp */; };
 		21F6D99D1B9983A500714056 /* JsEngineTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21F6D99A1B9983A500714056 /* JsEngineTest.cpp */; };
 		21F6D99E1B9983A500714056 /* LuaEngineTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21F6D99B1B9983A500714056 /* LuaEngineTest.cpp */; };
@@ -117,7 +117,7 @@
 		21D427EF1B9F0B1A00BBBD41 /* ErrorTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ErrorTest.cpp; path = ../../ErrorTest.cpp; sourceTree = "<group>"; };
 		21EA96DC1B99104E00E00841 /* ClusterListTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ClusterListTest.cpp; path = ../../ClusterListTest.cpp; sourceTree = "<group>"; };
 		21EA96DD1B99104E00E00841 /* ClusterTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ClusterTest.cpp; path = ../../ClusterTest.cpp; sourceTree = "<group>"; };
-		21EA96E01B99105E00E00841 /* NodeListTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = NodeListTest.cpp; path = ../../NodeListTest.cpp; sourceTree = "<group>"; };
+		21EA96E01B99105E00E00841 /* NodeRingTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = NodeRingTest.cpp; path = ../../NodeRingTest.cpp; sourceTree = "<group>"; };
 		21EA96E11B99105E00E00841 /* NodeTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = NodeTest.cpp; path = ../../NodeTest.cpp; sourceTree = "<group>"; };
 		21F6D99A1B9983A500714056 /* JsEngineTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JsEngineTest.cpp; sourceTree = "<group>"; };
 		21F6D99B1B9983A500714056 /* LuaEngineTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LuaEngineTest.cpp; sourceTree = "<group>"; };
@@ -201,7 +201,7 @@
 				212A954A1B9BD1A400EC9A71 /* MethodManagerTest.cpp */,
 				212A95491B9BD1A400EC9A71 /* MethodMapTest.cpp */,
 				212A954D1B9BD24700EC9A71 /* MethodTest.cpp */,
-				21EA96E01B99105E00E00841 /* NodeListTest.cpp */,
+				21EA96E01B99105E00E00841 /* NodeRingTest.cpp */,
 				21EA96E11B99105E00E00841 /* NodeTest.cpp */,
 				215A07991BB4663C00E9702F /* RegistryTest.cpp */,
 				218569B21BB0D68800861B9B /* RemoteNodeTest.cpp */,
@@ -345,7 +345,7 @@
 				21EA96E31B99105E00E00841 /* NodeTest.cpp in Sources */,
 				2166EF8C1B9D2E5E002FE45D /* ScriptEngineMapTest.cpp in Sources */,
 				21F6D99D1B9983A500714056 /* JsEngineTest.cpp in Sources */,
-				21EA96E21B99105E00E00841 /* NodeListTest.cpp in Sources */,
+				21EA96E21B99105E00E00841 /* NodeRingTest.cpp in Sources */,
 				2195A3E91BD50DF000DF5436 /* StringTest.cpp in Sources */,
 				2195A3E31BD50DF000DF5436 /* Base64Test.cpp in Sources */,
 				21A762ED1B96F82400D29732 /* RoundTest.cpp in Sources */,

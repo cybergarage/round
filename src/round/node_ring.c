@@ -11,14 +11,14 @@
 #include <round/node_internal.h>
 
 /****************************************
-* round_nodelist_new
+* round_node_ring_new
 ****************************************/
 
-RoundNodeList *round_nodelist_new(void)
+RoundNodeRing *round_node_ring_new(void)
 {
-  RoundNodeList *nodes;
+  RoundNodeRing *nodes;
 
-  nodes = (RoundNodeList *)malloc(sizeof(RoundNodeList));
+  nodes = (RoundNodeRing *)malloc(sizeof(RoundNodeRing));
   if (!nodes)
     return NULL;
 
@@ -28,15 +28,15 @@ RoundNodeList *round_nodelist_new(void)
 }
 
 /****************************************
-* round_nodelist_delete
+* round_node_ring_delete
 ****************************************/
 
-bool round_nodelist_delete(RoundNodeList *list)
+bool round_node_ring_delete(RoundNodeRing *list)
 {
   if (!list)
     return false;
   
-  round_nodelist_clear(list);
+  round_node_ring_clear(list);
 
   free(list);
   
