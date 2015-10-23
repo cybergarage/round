@@ -99,6 +99,7 @@ bool round_node_setcluster(RoundNode *node, const char *cluster);
 #define round_node_getpostmessagefunc(node) (node->postMsg)
 
 #define round_node_digest(str,buf) round_sha256_digest(str,buf)
+const char *round_node_hashfunc(RoundNode *node);
 
 /****************************************
  * Function (LocalNode)
