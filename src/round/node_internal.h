@@ -41,6 +41,7 @@ typedef bool (*ROUND_NODE_POSTMESSAGE_FUNC)(void *node, RoundJSONObject *reqObj,
   ROUND_OO_STRUCT_MEMBERS \
   RoundString *addr; \
   int port; \
+  RoundString *digest; \
   RoundString *cluster; \
   RoundClock *clock; \
   time_t requestTimeout; \
@@ -99,7 +100,8 @@ bool round_node_setcluster(RoundNode *node, const char *cluster);
 #define round_node_getpostmessagefunc(node) (node->postMsg)
 
 #define round_node_digest(str,buf) round_sha256_digest(str,buf)
-const char *round_node_hashfunc(RoundNode *node);
+#define round_node_cleardigest(node) round_string_clear(node->digest)
+const char *round_node_getdigest(RoundNode *node);
 
 /****************************************
  * Function (LocalNode)

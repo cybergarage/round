@@ -42,6 +42,7 @@ BOOST_AUTO_TEST_CASE(NewStringTest)
   BOOST_CHECK(str);
   
   BOOST_CHECK_EQUAL(round_string_length(str), 0);
+  BOOST_CHECK_EQUAL(round_string_hasvalue(str), false);
   
   srand((unsigned int)time(NULL));
   
@@ -49,6 +50,7 @@ BOOST_AUTO_TEST_CASE(NewStringTest)
     snprintf(buf, sizeof(buf), "%d%d", n, rand());
     BOOST_CHECK(round_string_setvalue(str, buf));
     BOOST_CHECK_EQUAL(round_string_length(str), strlen(buf));
+    BOOST_CHECK_EQUAL(round_string_hasvalue(str), true);
     BOOST_CHECK_EQUAL(strcmp(round_string_getvalue(str), buf), 0);
   }
   
@@ -58,13 +60,19 @@ BOOST_AUTO_TEST_CASE(NewStringTest)
     snprintf(buf, sizeof(buf), "%d", n);
     BOOST_CHECK(round_string_setvalue(str, buf));
     BOOST_CHECK_EQUAL(round_string_length(str), strlen(buf));
+    BOOST_CHECK_EQUAL(round_string_hasvalue(str), true);
     BOOST_CHECK_EQUAL(strcmp(round_string_getvalue(str), buf), 0);
     
     snprintf(buf, sizeof(buf), "%d", rnd);
     BOOST_CHECK(round_string_addvalue(str, buf));
     snprintf(buf, sizeof(buf), "%d%d", n, rnd);
     BOOST_CHECK_EQUAL(strcmp(round_string_getvalue(str), buf), 0);
+    BOOST_CHECK_EQUAL(round_string_hasvalue(str), true);
   }
+  
+  BOOST_CHECK(round_string_clear(str));
+  BOOST_CHECK_EQUAL(round_string_length(str), 0);
+  BOOST_CHECK_EQUAL(round_string_hasvalue(str), false);
   
   BOOST_CHECK(round_string_delete(str));
 }

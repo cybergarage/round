@@ -112,8 +112,10 @@ char *round_string_getvalue(RoundString *str);
 #define round_string_getfloatvalue(str) mupnp_str2float(round_string_getvalue(str))
 #define round_string_getdoublevalue(str) mupnp_str2double(round_string_getvalue(str))
 	
-bool round_string_equals(RoundString *str1, RoundString *str2);
 size_t round_string_length(RoundString *str);
+#define round_string_hasvalue(str) (0 < round_string_length(str))
+
+bool round_string_equals(RoundString *str1, RoundString *str2);
 
 char *round_string_addvalue(RoundString *str, const char *value);
 char *round_string_naddvalue(RoundString *str, const char *value, size_t valueLen);

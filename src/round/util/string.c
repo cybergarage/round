@@ -192,7 +192,6 @@ size_t round_string_length(RoundString *str)
   return str->valueSize;
 }
 
-
 /****************************************
  * round_string_equals
  ****************************************/

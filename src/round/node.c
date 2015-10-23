@@ -63,6 +63,7 @@ bool round_node_init(RoundNode *node)
  
   node->addr = round_string_new();
   node->port = 0;
+  node->digest = round_string_new();
   node->cluster = round_string_new();
   node->clock = round_clock_new();
   
@@ -70,7 +71,7 @@ bool round_node_init(RoundNode *node)
     return false;
 
   round_node_setrequesttimeout(node, ROUNDC_JSON_RPC_REQUEST_TIMEOUT_SEC);
-  round_consistenthashing_node_sethashfunc(node, round_node_hashfunc);
+  round_consistenthashing_node_sethashfunc(node, round_node_getdigest);
   
   return true;
 }
@@ -106,6 +107,7 @@ bool round_node_destroy(RoundNode *node)
   round_consistenthashing_node_destroy((RoundConsistentHashingNode *)node);
 
   round_string_delete(node->addr);
+  round_string_delete(node->digest);
   round_string_delete(node->cluster);
   round_clock_delete(node->clock);
   
@@ -129,6 +131,8 @@ bool round_node_setaddress(RoundNode *node, const char *addr)
 {
   if (!node)
     return false;
+  
+  round_node_cleardigest(node);
   
   return round_string_setvalue(node->addr, addr);
 }
@@ -159,6 +163,8 @@ bool round_node_setport(RoundNode *node, int port)
   if (!node)
     return false;
   
+  round_node_cleardigest(node);
+  
   node->port = port;
   
   return true;
@@ -185,7 +191,7 @@ bool round_node_getport(RoundNode *node, int *port, RoundError *err)
  * round_node_setcluster
  ****************************************/
 
-const char *round_node_hashfunc(RoundNode *node)
+const char *round_node_getdigest(RoundNode *node)
 {
   //#define round_node_digest(str,buf) round_sha256_digest(str,buf)
   return "";
