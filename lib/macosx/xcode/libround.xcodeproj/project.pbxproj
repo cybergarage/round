@@ -97,7 +97,7 @@
 		21EA96CF1B990AF800E00841 /* cluster.c in Sources */ = {isa = PBXBuildFile; fileRef = 21EA96CC1B990AF800E00841 /* cluster.c */; };
 		21EA96D11B990B1100E00841 /* cluster.h in Headers */ = {isa = PBXBuildFile; fileRef = 21EA96D01B990B1100E00841 /* cluster.h */; };
 		21EA96D71B990C3B00E00841 /* node_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 21EA96D41B990C3B00E00841 /* node_internal.h */; };
-		21EA96D81B990C3B00E00841 /* node_list.c in Sources */ = {isa = PBXBuildFile; fileRef = 21EA96D51B990C3B00E00841 /* node_list.c */; };
+		21EA96D81B990C3B00E00841 /* node_ring.c in Sources */ = {isa = PBXBuildFile; fileRef = 21EA96D51B990C3B00E00841 /* node_ring.c */; };
 		21EA96D91B990C3B00E00841 /* node.c in Sources */ = {isa = PBXBuildFile; fileRef = 21EA96D61B990C3B00E00841 /* node.c */; };
 		21EA96DB1B990CF400E00841 /* node.h in Headers */ = {isa = PBXBuildFile; fileRef = 21EA96DA1B990CF400E00841 /* node.h */; };
 		21EAA2A51B9931B10002CFF0 /* strings.h in Headers */ = {isa = PBXBuildFile; fileRef = 21EAA2A31B9931B10002CFF0 /* strings.h */; };
@@ -204,7 +204,7 @@
 		21EA96CC1B990AF800E00841 /* cluster.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = cluster.c; path = ../../../src/round/cluster.c; sourceTree = "<group>"; };
 		21EA96D01B990B1100E00841 /* cluster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cluster.h; path = ../../../include/round/cluster.h; sourceTree = "<group>"; };
 		21EA96D41B990C3B00E00841 /* node_internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = node_internal.h; path = ../../../src/round/node_internal.h; sourceTree = "<group>"; };
-		21EA96D51B990C3B00E00841 /* node_list.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = node_list.c; path = ../../../src/round/node_list.c; sourceTree = "<group>"; };
+		21EA96D51B990C3B00E00841 /* node_ring.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = node_ring.c; path = ../../../src/round/node_ring.c; sourceTree = "<group>"; };
 		21EA96D61B990C3B00E00841 /* node.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = node.c; path = ../../../src/round/node.c; sourceTree = "<group>"; };
 		21EA96DA1B990CF400E00841 /* node.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = node.h; path = ../../../include/round/node.h; sourceTree = "<group>"; };
 		21EAA2A31B9931B10002CFF0 /* strings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = strings.h; path = ../../../src/round/util/strings.h; sourceTree = "<group>"; };
@@ -283,7 +283,7 @@
 				21606BF91BA029A0000463A8 /* method.h */,
 				212A95441B9BCA4200EC9A71 /* method.c */,
 				21EA96D41B990C3B00E00841 /* node_internal.h */,
-				21EA96D51B990C3B00E00841 /* node_list.c */,
+				21EA96D51B990C3B00E00841 /* node_ring.c */,
 				21EA96D61B990C3B00E00841 /* node.c */,
 				215A07871BB2EAA500E9702F /* platform.h */,
 				216D19C41BB4743A0007B331 /* registry_manager.c */,
@@ -547,7 +547,7 @@
 				2148E5E01B9F1A7D0021CE7B /* error_rpc.c in Sources */,
 				2178B36F1B98BEAE00B9D86B /* thread_manager.c in Sources */,
 				216D19C51BB4743A0007B331 /* registry_manager.c in Sources */,
-				21EA96D81B990C3B00E00841 /* node_list.c in Sources */,
+				21EA96D81B990C3B00E00841 /* node_ring.c in Sources */,
 				218569B01BB0D66A00861B9B /* remote_node.c in Sources */,
 				21A776C21BA07345009BDB36 /* queue_object.c in Sources */,
 				2160B8911BB3B59F002026E3 /* set_method.c in Sources */,

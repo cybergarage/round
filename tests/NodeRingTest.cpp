@@ -13,21 +13,21 @@
 #include "RoundTest.h"
 #include <round/node_internal.h>
 
-BOOST_AUTO_TEST_CASE(NodeList)
+BOOST_AUTO_TEST_CASE(NodeRingAdd)
 {
-  RoundNodeList *nodes = round_nodelist_new();
+  RoundNodeRing *nodes = round_node_ring_new();
   
   BOOST_CHECK(nodes);
-  BOOST_CHECK_EQUAL(0, round_nodelist_size(nodes));
+  BOOST_CHECK_EQUAL(0, round_node_ring_size(nodes));
   
   RoundNode *node[ROUND_TEST_MAP_SIZE];
   for (int n=0; n<ROUND_TEST_MAP_SIZE; n++) {
     node[n] = round_node_new();
-    BOOST_CHECK(round_nodelist_add(nodes, node[n]));
-    BOOST_CHECK_EQUAL((n+1), round_nodelist_size(nodes));
+    BOOST_CHECK(round_node_ring_add(nodes, node[n]));
+    BOOST_CHECK_EQUAL((n+1), round_node_ring_size(nodes));
   }
   
-  BOOST_CHECK_EQUAL(ROUND_TEST_MAP_SIZE, round_nodelist_size(nodes));
+  BOOST_CHECK_EQUAL(ROUND_TEST_MAP_SIZE, round_node_ring_size(nodes));
   
-  BOOST_CHECK(round_nodelist_delete(nodes));
+  BOOST_CHECK(round_node_ring_delete(nodes));
 }

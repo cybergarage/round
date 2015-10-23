@@ -50,7 +50,7 @@ typedef bool (*ROUND_NODE_POSTMESSAGE_FUNC)(void *node, RoundJSONObject *reqObj,
 
 typedef struct {
   ROUND_NODE_STRUCT_MEMBERS
-} RoundNode, RoundNodeList;
+} RoundNode, RoundNodeRing;
 
 typedef struct {
   ROUND_NODE_STRUCT_MEMBERS
@@ -166,13 +166,13 @@ bool round_remote_node_postmessage(RoundLocalNode *node, RoundJSONObject *reqMap
  * Function (Node List)
  ****************************************/
   
-RoundNodeList *round_nodelist_new(void);
-bool round_nodelist_delete(RoundNodeList *nodes);
+RoundNodeRing *round_node_ring_new(void);
+bool round_node_ring_delete(RoundNodeRing *nodes);
   
-#define round_nodelist_clear(nodes) round_list_clear((RoundList *)nodes, (ROUND_LIST_DESTRUCTORFUNC)round_node_delete)
-#define round_nodelist_size(nodes) round_list_size((RoundList *)nodes)
-#define round_nodelist_gets(nodes) (RoundNode *)round_list_next((RoundList *)nodes)
-#define round_nodelist_add(nodes,node) round_list_add((RoundList *)nodes, (RoundList *)node)
+#define round_node_ring_clear(nodes) round_list_clear((RoundList *)nodes, (ROUND_LIST_DESTRUCTORFUNC)round_node_delete)
+#define round_node_ring_size(nodes) round_list_size((RoundList *)nodes)
+#define round_node_ring_gets(nodes) (RoundNode *)round_list_next((RoundList *)nodes)
+#define round_node_ring_add(nodes,node) round_list_add((RoundList *)nodes, (RoundList *)node)
 
 #ifdef  __cplusplus
 } /* extern C */
