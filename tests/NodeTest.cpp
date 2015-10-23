@@ -10,7 +10,10 @@
 
 #include <boost/test/unit_test.hpp>
 
+#include <round/const.h>
 #include <round/node_internal.h>
+
+BOOST_AUTO_TEST_SUITE(node)
 
 BOOST_AUTO_TEST_CASE(NodeNew)
 {
@@ -56,3 +59,45 @@ BOOST_AUTO_TEST_CASE(NodeBaseMember)
   
   BOOST_CHECK(round_node_delete(node));
 }
+
+BOOST_AUTO_TEST_CASE(NodeHash)
+{
+  RoundNode *node = round_node_new();
+  BOOST_CHECK(node);
+
+  char nodeHash[4][ROUNDC_NODE_DIGEST_LENGTH] = {"", "", "", ""};
+    
+  BOOST_CHECK_EQUAL(round_node_hasdigest(node), false);
+  round_strcpy(nodeHash[0], round_node_getdigest(node));
+  BOOST_CHECK_EQUAL(round_strlen(nodeHash[0]), 0);
+    
+  BOOST_CHECK_EQUAL(round_node_setaddress(node, "127.0.0.1"), true);
+  BOOST_CHECK_EQUAL(round_node_hasdigest(node), true);
+  round_strcpy(nodeHash[1], round_node_getdigest(node));
+  BOOST_CHECK_EQUAL(round_strlen(nodeHash[1]), ROUNDC_NODE_DIGEST_LENGTH);
+  
+  BOOST_CHECK_EQUAL(round_node_setport(node, 80), true);
+  BOOST_CHECK_EQUAL(round_node_hasdigest(node), true);
+  round_strcpy(nodeHash[1], round_node_getdigest(node));
+  BOOST_CHECK_EQUAL(round_strlen(nodeHash[1]), ROUNDC_NODE_DIGEST_LENGTH);
+  BOOST_CHECK(round_strcmp(nodeHash[1], nodeHash[0]) != 0);
+  
+  BOOST_CHECK_EQUAL(round_node_setaddress(node, "localhost"), true);
+  BOOST_CHECK_EQUAL(round_node_hasdigest(node), true);
+  round_strcpy(nodeHash[2], round_node_getdigest(node));
+  BOOST_CHECK_EQUAL(round_strlen(nodeHash[2]), ROUNDC_NODE_DIGEST_LENGTH);
+  BOOST_CHECK(round_strcmp(nodeHash[2], nodeHash[0]) != 0);
+  BOOST_CHECK(round_strcmp(nodeHash[2], nodeHash[1]) != 0);
+  
+  BOOST_CHECK_EQUAL(round_node_setport(node, 8080), true);
+  BOOST_CHECK_EQUAL(round_node_hasdigest(node), true);
+  round_strcpy(nodeHash[3], round_node_getdigest(node));
+  BOOST_CHECK_EQUAL(round_strlen(nodeHash[3]), ROUNDC_NODE_DIGEST_LENGTH);
+  BOOST_CHECK(round_strcmp(nodeHash[3], nodeHash[0]) != 0);
+  BOOST_CHECK(round_strcmp(nodeHash[3], nodeHash[1]) != 0);
+  BOOST_CHECK(round_strcmp(nodeHash[3], nodeHash[2]) != 0);
+  
+  BOOST_CHECK(round_node_delete(node));
+}
+
+BOOST_AUTO_TEST_SUITE_END()

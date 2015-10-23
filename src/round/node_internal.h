@@ -18,6 +18,7 @@
 #include <round/util/strings.h>
 #include <round/util/thread.h>
 #include <round/util/consistent_hashing.h>
+#include <round/util/digest.h>
 #include <round/server.h>
 #include <round/script.h>
 #include <round/clock.h>
@@ -100,8 +101,10 @@ bool round_node_setcluster(RoundNode *node, const char *cluster);
 #define round_node_getpostmessagefunc(node) (node->postMsg)
 
 #define round_node_digest(str,buf) round_sha256_digest(str,buf)
-#define round_node_cleardigest(node) round_string_clear(node->digest)
+bool round_node_updatedigest(RoundNode *node);
 const char *round_node_getdigest(RoundNode *node);
+#define round_node_setdigest(node, value) round_string_setvalue(node->digest, value)
+#define round_node_hasdigest(node) round_string_hasvalue(node->digest)
 
 /****************************************
  * Function (LocalNode)

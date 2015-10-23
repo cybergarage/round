@@ -69,7 +69,7 @@ bool round_strloc(const char *str, char **buf)
 
 size_t round_strlen(const char *str)
 {
- return (str == NULL) ? 0 : strlen(str);
+  return (str == NULL) ? 0 : strlen(str);
 }
 
 /****************************************
@@ -78,7 +78,10 @@ size_t round_strlen(const char *str)
 
 char *round_strcpy(char *dst, const char *src)
 {
- return strcpy(dst, src);
+  if (!dst || !src)
+    return NULL;
+  
+  return strcpy(dst, src);
 }
 
 /****************************************
@@ -87,7 +90,7 @@ char *round_strcpy(char *dst, const char *src)
 
 char *round_strcat(char *dst, const char *src)
 {
- return strcat(dst, src);
+  return strcat(dst, src);
 }
 
 /****************************************
@@ -96,11 +99,11 @@ char *round_strcat(char *dst, const char *src)
 
 int round_strcmp(const char *str1, const char *str2)
 {
- if (str1 == NULL)
-  return -1;
- if (str2 == NULL)
-  return 1;
- return strcmp(str1, str2);
+  if (str1 == NULL)
+    return -1;
+  if (str2 == NULL)
+    return 1;
+  return strcmp(str1, str2);
 }
 
 /****************************************

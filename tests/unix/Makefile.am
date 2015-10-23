@@ -53,7 +53,6 @@ roundtest_SOURCES = \
 	..//util/MutexTest.cpp \
 	..//util/QueueTest.cpp \
 	..//util/SemaphoreTest.cpp \
-	..//util/string_test.cpp \
 	..//util/StringTest.cpp
 #if HAVE_LIBTOOL
 #roundtest_LDADD = @HTTP_LIBS@ @XML_LIBS@ ../../lib/unix/libround.la
