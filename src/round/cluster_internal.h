@@ -13,6 +13,7 @@
 
 #include <round/typedef.h>
 #include <round/util/list.h>
+#include <round/node_internal.h>
 
 #ifdef  __cplusplus
 extern "C" {
@@ -23,10 +24,8 @@ extern "C" {
  ****************************************/
 
 typedef struct _RoundCluster {
-  bool headFlag;
-  struct _RoundCluster *prev;
-  struct _RoundCluster *next;
-
+  ROUND_LIST_STRUCT_MEMBERS
+  RoundNodeRing *nodeRing;
 } RoundCluster, RoundClusterList;
 
 /****************************************
