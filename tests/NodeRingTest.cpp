@@ -13,6 +13,8 @@
 #include "RoundTest.h"
 #include <round/node_internal.h>
 
+BOOST_AUTO_TEST_SUITE(node)
+
 BOOST_AUTO_TEST_CASE(NodeRingAdd)
 {
   RoundNodeRing *nodes = round_node_ring_new();
@@ -31,3 +33,5 @@ BOOST_AUTO_TEST_CASE(NodeRingAdd)
   
   BOOST_CHECK(round_node_ring_delete(nodes));
 }
+
+BOOST_AUTO_TEST_SUITE_END()
