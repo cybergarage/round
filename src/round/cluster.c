@@ -25,6 +25,8 @@ RoundCluster *round_cluster_new(void)
 
   round_list_node_init((RoundList *)cluster);
 
+  cluster->nodeRing = round_node_ring_new();
+  
   return cluster;
 }
 
@@ -38,6 +40,7 @@ void round_cluster_delete(RoundCluster *cluster)
     return;
   
   round_list_remove((RoundList *)cluster);
+  round_node_ring_delete(cluster->nodeRing);
 
   free(cluster);
 }
