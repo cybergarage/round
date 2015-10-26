@@ -16,29 +16,29 @@
 
 RoundNodeRing *round_node_ring_new(void)
 {
-  RoundNodeRing *nodes;
+  RoundNodeRing *ring;
 
-  nodes = (RoundNodeRing *)malloc(sizeof(RoundNodeRing));
-  if (!nodes)
+  ring = (RoundNodeRing *)malloc(sizeof(RoundNodeRing));
+  if (!ring)
     return NULL;
 
-  round_list_header_init((RoundList *)nodes);
+  ring->consHashRing = round_consistenthashing_ring_new();
 
-  return nodes;
+  return ring;
 }
 
 /****************************************
 * round_node_ring_delete
 ****************************************/
 
-bool round_node_ring_delete(RoundNodeRing *list)
+bool round_node_ring_delete(RoundNodeRing *ring)
 {
-  if (!list)
+  if (!ring)
     return false;
-  
-  round_node_ring_clear(list);
 
-  free(list);
+  round_consistenthashing_ring_delete(ring->consHashRing);
+
+  free(ring);
   
   return true;
 }
