@@ -145,7 +145,7 @@ bool round_node_setaddress(RoundNode *node, const char *addr)
  * round_node_getaddress
  ****************************************/
 
-bool round_node_getaddress(RoundNode *node, const char **addr, RoundError *err)
+bool round_node_getaddress(RoundNode *node, const char **addr)
 {
   if (!node)
     return false;
@@ -176,7 +176,7 @@ bool round_node_setport(RoundNode *node, int port)
  * round_node_getport
  ****************************************/
 
-bool round_node_getport(RoundNode *node, int *port, RoundError *err)
+bool round_node_getport(RoundNode *node, int *port)
 {
   if (!node)
     return false;
@@ -239,7 +239,7 @@ bool round_node_setcluster(RoundNode *node, const char *cluster)
  * round_node_getcluster
  ****************************************/
 
-bool round_node_getcluster(RoundNode *node, const char **cluster, RoundError *err)
+bool round_node_getcluster(RoundNode *node, const char **cluster)
 {
   if (!node)
     return false;

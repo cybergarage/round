@@ -33,14 +33,13 @@ BOOST_AUTO_TEST_CASE(NodeBaseMember)
   RoundNode *node = round_node_new();
   BOOST_CHECK(node);
   
-  RoundError *err;
   const char *addr;
   int port;
   const char *cluster;
   
-  BOOST_CHECK(!round_node_getaddress(node, &addr, err));
-  BOOST_CHECK(!round_node_getport(node, &port, err));
-  BOOST_CHECK(!round_node_getcluster(node, &cluster, err));
+  BOOST_CHECK(!round_node_getaddress(node, &addr));
+  BOOST_CHECK(!round_node_getport(node, &port));
+  BOOST_CHECK(!round_node_getcluster(node, &cluster));
   BOOST_CHECK_EQUAL(round_node_getrequesttimeout(node), ROUNDC_JSON_RPC_REQUEST_TIMEOUT_SEC);
   
   BOOST_CHECK(round_node_setaddress(node, TEST_NODE_ADDR));
@@ -48,9 +47,9 @@ BOOST_AUTO_TEST_CASE(NodeBaseMember)
   BOOST_CHECK(round_node_setcluster(node, TEST_NODE_CLUSTER));
   BOOST_CHECK(round_node_setrequesttimeout(node, TEST_NODE_TIMEOUT));
 
-  BOOST_CHECK(round_node_getaddress(node, &addr, err));
-  BOOST_CHECK(round_node_getport(node, &port, err));
-  BOOST_CHECK(round_node_getcluster(node, &cluster, err));
+  BOOST_CHECK(round_node_getaddress(node, &addr));
+  BOOST_CHECK(round_node_getport(node, &port));
+  BOOST_CHECK(round_node_getcluster(node, &cluster));
   BOOST_CHECK_EQUAL(round_node_getrequesttimeout(node), TEST_NODE_TIMEOUT);
   
   BOOST_CHECK_EQUAL(addr, TEST_NODE_ADDR);
