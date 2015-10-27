@@ -9,38 +9,38 @@
 /* Begin PBXBuildFile section */
 		211E45D21B98188600CF0088 /* ClientTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 211E45D11B98188600CF0088 /* ClientTest.cpp */; };
 		211E45D41B9818E300CF0088 /* FinderTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 211E45D31B9818E300CF0088 /* FinderTest.cpp */; };
-		2127082C1BD6640300000985 /* ConsistentHashingRingTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2127082B1BD6640300000985 /* ConsistentHashingRingTest.cpp */; settings = {ASSET_TAGS = (); }; };
-		2127083A1BD7995A00000985 /* JSONArrayTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 212708361BD7995A00000985 /* JSONArrayTest.cpp */; settings = {ASSET_TAGS = (); }; };
-		2127083B1BD7995A00000985 /* JSONMapTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 212708371BD7995A00000985 /* JSONMapTest.cpp */; settings = {ASSET_TAGS = (); }; };
-		2127083C1BD7995A00000985 /* JSONObjectTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 212708381BD7995A00000985 /* JSONObjectTest.cpp */; settings = {ASSET_TAGS = (); }; };
-		2127083D1BD7995A00000985 /* JSONParseTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 212708391BD7995A00000985 /* JSONParseTest.cpp */; settings = {ASSET_TAGS = (); }; };
+		2127082C1BD6640300000985 /* ConsistentHashingRingTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2127082B1BD6640300000985 /* ConsistentHashingRingTest.cpp */; };
+		2127083A1BD7995A00000985 /* JSONArrayTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 212708361BD7995A00000985 /* JSONArrayTest.cpp */; };
+		2127083B1BD7995A00000985 /* JSONMapTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 212708371BD7995A00000985 /* JSONMapTest.cpp */; };
+		2127083C1BD7995A00000985 /* JSONObjectTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 212708381BD7995A00000985 /* JSONObjectTest.cpp */; };
+		2127083D1BD7995A00000985 /* JSONParseTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 212708391BD7995A00000985 /* JSONParseTest.cpp */; };
 		212A954B1B9BD1A400EC9A71 /* MethodMapTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 212A95491B9BD1A400EC9A71 /* MethodMapTest.cpp */; };
 		212A954C1B9BD1A400EC9A71 /* MethodManagerTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 212A954A1B9BD1A400EC9A71 /* MethodManagerTest.cpp */; };
 		212A954E1B9BD24700EC9A71 /* MethodTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 212A954D1B9BD24700EC9A71 /* MethodTest.cpp */; };
 		2137D3F11B998AEF00652E68 /* liblibround.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2137D3EE1B998ADD00652E68 /* liblibround.a */; };
-		21563A121BC419AB004D33EA /* ScriptTestController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21563A101BC419AB004D33EA /* ScriptTestController.cpp */; settings = {ASSET_TAGS = (); }; };
-		215A078E1BB2FB9400E9702F /* ServerTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 215A078D1BB2FB9400E9702F /* ServerTest.cpp */; settings = {ASSET_TAGS = (); }; };
-		215A079A1BB4663C00E9702F /* RegistryTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 215A07991BB4663C00E9702F /* RegistryTest.cpp */; settings = {ASSET_TAGS = (); }; };
+		21563A121BC419AB004D33EA /* ScriptTestController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21563A101BC419AB004D33EA /* ScriptTestController.cpp */; };
+		215A078E1BB2FB9400E9702F /* ServerTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 215A078D1BB2FB9400E9702F /* ServerTest.cpp */; };
+		215A079A1BB4663C00E9702F /* RegistryTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 215A07991BB4663C00E9702F /* RegistryTest.cpp */; };
 		2166EF8C1B9D2E5E002FE45D /* ScriptEngineMapTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2166EF8A1B9D2E5E002FE45D /* ScriptEngineMapTest.cpp */; };
 		2166EF8D1B9D2E5E002FE45D /* ScriptEngineTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2166EF8B1B9D2E5E002FE45D /* ScriptEngineTest.cpp */; };
-		216D19CF1BB4B37C0007B331 /* ClockTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 216D19CE1BB4B37C0007B331 /* ClockTest.cpp */; settings = {ASSET_TAGS = (); }; };
+		216D19CF1BB4B37C0007B331 /* ClockTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 216D19CE1BB4B37C0007B331 /* ClockTest.cpp */; };
 		2172C4C11B9AF3CB0032BE98 /* Ruby.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2172C4C01B9AF3CB0032BE98 /* Ruby.framework */; };
-		218569B31BB0D68800861B9B /* RemoteNodeTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 218569B21BB0D68800861B9B /* RemoteNodeTest.cpp */; settings = {ASSET_TAGS = (); }; };
-		218569B51BB0D69400861B9B /* LocalNodeTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 218569B41BB0D69400861B9B /* LocalNodeTest.cpp */; settings = {ASSET_TAGS = (); }; };
-		2195A3E31BD50DF000DF5436 /* Base64Test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2195A3DC1BD50DF000DF5436 /* Base64Test.cpp */; settings = {ASSET_TAGS = (); }; };
-		2195A3E41BD50DF000DF5436 /* ListOrderedTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2195A3DD1BD50DF000DF5436 /* ListOrderedTest.cpp */; settings = {ASSET_TAGS = (); }; };
-		2195A3E51BD50DF000DF5436 /* ListTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2195A3DE1BD50DF000DF5436 /* ListTest.cpp */; settings = {ASSET_TAGS = (); }; };
-		2195A3E61BD50DF000DF5436 /* MapTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2195A3DF1BD50DF000DF5436 /* MapTest.cpp */; settings = {ASSET_TAGS = (); }; };
-		2195A3E71BD50DF000DF5436 /* QueueTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2195A3E01BD50DF000DF5436 /* QueueTest.cpp */; settings = {ASSET_TAGS = (); }; };
-		2195A3E81BD50DF000DF5436 /* SemaphoreTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2195A3E11BD50DF000DF5436 /* SemaphoreTest.cpp */; settings = {ASSET_TAGS = (); }; };
-		2195A3E91BD50DF000DF5436 /* StringTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2195A3E21BD50DF000DF5436 /* StringTest.cpp */; settings = {ASSET_TAGS = (); }; };
-		21A4C21F1BC112DE0030BD12 /* LocalNodeMessageTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21A4C21E1BC112DE0030BD12 /* LocalNodeMessageTest.cpp */; settings = {ASSET_TAGS = (); }; };
+		218569B31BB0D68800861B9B /* RemoteNodeTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 218569B21BB0D68800861B9B /* RemoteNodeTest.cpp */; };
+		218569B51BB0D69400861B9B /* LocalNodeTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 218569B41BB0D69400861B9B /* LocalNodeTest.cpp */; };
+		2195A3E31BD50DF000DF5436 /* Base64Test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2195A3DC1BD50DF000DF5436 /* Base64Test.cpp */; };
+		2195A3E41BD50DF000DF5436 /* ListOrderedTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2195A3DD1BD50DF000DF5436 /* ListOrderedTest.cpp */; };
+		2195A3E51BD50DF000DF5436 /* ListTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2195A3DE1BD50DF000DF5436 /* ListTest.cpp */; };
+		2195A3E61BD50DF000DF5436 /* MapTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2195A3DF1BD50DF000DF5436 /* MapTest.cpp */; };
+		2195A3E71BD50DF000DF5436 /* QueueTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2195A3E01BD50DF000DF5436 /* QueueTest.cpp */; };
+		2195A3E81BD50DF000DF5436 /* SemaphoreTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2195A3E11BD50DF000DF5436 /* SemaphoreTest.cpp */; };
+		2195A3E91BD50DF000DF5436 /* StringTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2195A3E21BD50DF000DF5436 /* StringTest.cpp */; };
+		21A4C21F1BC112DE0030BD12 /* LocalNodeMessageTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21A4C21E1BC112DE0030BD12 /* LocalNodeMessageTest.cpp */; };
 		21A762ED1B96F82400D29732 /* RoundTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21A762EC1B96F82400D29732 /* RoundTest.cpp */; };
 		21A776B41BA0666C009BDB36 /* MessageTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21A776B31BA0666C009BDB36 /* MessageTest.cpp */; };
-		21C887741BD8F00700449F5D /* DigestTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21C887731BD8F00700449F5D /* DigestTest.cpp */; settings = {ASSET_TAGS = (); }; };
-		21C887771BD9115400449F5D /* MutexTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21C887751BD9115400449F5D /* MutexTest.cpp */; settings = {ASSET_TAGS = (); }; };
+		21C887741BD8F00700449F5D /* DigestTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21C887731BD8F00700449F5D /* DigestTest.cpp */; };
+		21C887771BD9115400449F5D /* MutexTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21C887751BD9115400449F5D /* MutexTest.cpp */; };
 		21D427F01B9F0B1A00BBBD41 /* ErrorTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D427EF1B9F0B1A00BBBD41 /* ErrorTest.cpp */; };
-		21EA96DE1B99104E00E00841 /* ClusterListTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21EA96DC1B99104E00E00841 /* ClusterListTest.cpp */; };
+		21EA96DE1B99104E00E00841 /* ClusterManagerTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21EA96DC1B99104E00E00841 /* ClusterManagerTest.cpp */; };
 		21EA96DF1B99104E00E00841 /* ClusterTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21EA96DD1B99104E00E00841 /* ClusterTest.cpp */; };
 		21EA96E21B99105E00E00841 /* NodeRingTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21EA96E01B99105E00E00841 /* NodeRingTest.cpp */; };
 		21EA96E31B99105E00E00841 /* NodeTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21EA96E11B99105E00E00841 /* NodeTest.cpp */; };
@@ -115,7 +115,7 @@
 		21C887731BD8F00700449F5D /* DigestTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DigestTest.cpp; path = ../../DigestTest.cpp; sourceTree = "<group>"; };
 		21C887751BD9115400449F5D /* MutexTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MutexTest.cpp; path = ../../util/MutexTest.cpp; sourceTree = "<group>"; };
 		21D427EF1B9F0B1A00BBBD41 /* ErrorTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ErrorTest.cpp; path = ../../ErrorTest.cpp; sourceTree = "<group>"; };
-		21EA96DC1B99104E00E00841 /* ClusterListTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ClusterListTest.cpp; path = ../../ClusterListTest.cpp; sourceTree = "<group>"; };
+		21EA96DC1B99104E00E00841 /* ClusterManagerTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ClusterManagerTest.cpp; path = ../../ClusterManagerTest.cpp; sourceTree = "<group>"; };
 		21EA96DD1B99104E00E00841 /* ClusterTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ClusterTest.cpp; path = ../../ClusterTest.cpp; sourceTree = "<group>"; };
 		21EA96E01B99105E00E00841 /* NodeRingTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = NodeRingTest.cpp; path = ../../NodeRingTest.cpp; sourceTree = "<group>"; };
 		21EA96E11B99105E00E00841 /* NodeTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = NodeTest.cpp; path = ../../NodeTest.cpp; sourceTree = "<group>"; };
@@ -191,7 +191,7 @@
 				21563A111BC419AB004D33EA /* ScriptTestController.h */,
 				211E45D11B98188600CF0088 /* ClientTest.cpp */,
 				216D19CE1BB4B37C0007B331 /* ClockTest.cpp */,
-				21EA96DC1B99104E00E00841 /* ClusterListTest.cpp */,
+				21EA96DC1B99104E00E00841 /* ClusterManagerTest.cpp */,
 				21EA96DD1B99104E00E00841 /* ClusterTest.cpp */,
 				21D427EF1B9F0B1A00BBBD41 /* ErrorTest.cpp */,
 				211E45D31B9818E300CF0088 /* FinderTest.cpp */,
@@ -339,7 +339,7 @@
 				21F6D99F1B9983A500714056 /* RubyEngineTest.cpp in Sources */,
 				218569B31BB0D68800861B9B /* RemoteNodeTest.cpp in Sources */,
 				218569B51BB0D69400861B9B /* LocalNodeTest.cpp in Sources */,
-				21EA96DE1B99104E00E00841 /* ClusterListTest.cpp in Sources */,
+				21EA96DE1B99104E00E00841 /* ClusterManagerTest.cpp in Sources */,
 				2195A3E41BD50DF000DF5436 /* ListOrderedTest.cpp in Sources */,
 				21C887741BD8F00700449F5D /* DigestTest.cpp in Sources */,
 				21EA96E31B99105E00E00841 /* NodeTest.cpp in Sources */,

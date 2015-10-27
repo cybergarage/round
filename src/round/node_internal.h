@@ -37,6 +37,10 @@ extern "C" {
 
 typedef bool (*ROUND_NODE_POSTMESSAGE_FUNC)(void *node, RoundJSONObject *reqObj, RoundJSONObject *resObj, RoundError *err);
 
+#if !defined(RoundClusterManager)
+typedef RoundList RoundClusterManager;
+#endif
+
 #define ROUND_NODE_STRUCT_MEMBERS \
   ROUND_CONSISTENTHASHING_NODE_STRUCT_MEMBERS \
   ROUND_OO_STRUCT_MEMBERS \
@@ -46,6 +50,7 @@ typedef bool (*ROUND_NODE_POSTMESSAGE_FUNC)(void *node, RoundJSONObject *reqObj,
   RoundString *cluster; \
   RoundClock *clock; \
   time_t requestTimeout; \
+  RoundClusterManager *clusterMgr; \
   ROUND_NODE_POSTMESSAGE_FUNC postMsg;
 
 typedef struct {
