@@ -27,7 +27,7 @@ BOOST_AUTO_TEST_CASE(ClusterManager)
   RoundCluster *cluster[ROUND_TEST_MAP_SIZE];
   for (int n=0; n<ROUND_TEST_MAP_SIZE; n++) {
     cluster[n] = round_cluster_new();
-    BOOST_CHECK(round_cluster_manager_add(mgr, cluster[n]));
+    BOOST_CHECK(round_cluster_manager_addcluster(mgr, cluster[n]));
     BOOST_CHECK_EQUAL((n+1), round_cluster_manager_size(mgr));
   }
   
