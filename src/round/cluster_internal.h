@@ -25,8 +25,9 @@ extern "C" {
 
 typedef struct _RoundCluster {
   ROUND_LIST_STRUCT_MEMBERS
+  RoundString *name;
   RoundNodeRing *nodeRing;
-} RoundCluster, RoundClusterList;
+} RoundCluster;
 
 /****************************************
  * Header
@@ -38,19 +39,26 @@ typedef struct _RoundCluster {
  * Function
  ****************************************/
 
+#define round_cluster_setname(cluster,value) round_string_setvalue(cluster->name, value)
+#define round_cluster_isname(cluster,value) round_streq(round_cluster_getname(cluster), value)
 #define round_cluster_remove(cluster) round_list_remove((RoundList *)cluster)
+#define round_cluster_equals(cluster1, cluster2) round_string_equals(cluster1->name, cluster2->name)
+
+bool round_cluster_addnode(RoundCluster *cluster, RoundNode *node);
 
 /****************************************
- * Function (Class List)
+ * Function (Class Manager)
  ****************************************/
   
-RoundClusterList *round_clusterlist_new(void);
-bool round_clusterlist_delete(RoundClusterList *clusters);
+RoundClusterManager *round_cluster_manager_new(void);
+bool round_cluster_manager_delete(RoundClusterManager *mgr);
   
-#define round_clusterlist_clear(clusters) round_list_clear((RoundList *)clusters, (ROUND_LIST_DESTRUCTORFUNC)round_cluster_delete)
-#define round_clusterlist_size(clusters) round_list_size((RoundList *)clusters)
-#define round_clusterlist_gets(clusters) (RoundCluster *)round_list_next((RoundList *)clusters)
-#define round_clusterlist_add(clusters,cluster) round_list_add((RoundList *)clusters, (RoundList *)cluster)
+bool round_cluster_manager_addnode(RoundClusterManager *mgr, RoundNode *node);
+  
+#define round_cluster_manager_clear(mgr) round_list_clear((RoundList *)mgr, (ROUND_LIST_DESTRUCTORFUNC)round_cluster_delete)
+#define round_cluster_manager_size(mgr) round_list_size((RoundList *)mgr)
+#define round_cluster_manager_gets(mgr) (RoundCluster *)round_list_next((RoundList *)mgr)
+#define round_cluster_manager_add(mgr,cluster) round_list_add((RoundList *)mgr, (RoundList *)cluster)
 
 #ifdef  __cplusplus
 } /* extern C */

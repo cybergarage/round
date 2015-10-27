@@ -30,8 +30,10 @@ typedef void RoundCluster;
  ****************************************/
 
 RoundCluster *round_cluster_new(void);
-void round_cluster_delete(RoundCluster *node);
-RoundCluster *round_cluster_next(RoundCluster *node);
+void round_cluster_delete(RoundCluster *cluster);
+
+RoundCluster *round_cluster_next(RoundCluster *cluster);
+const char *round_cluster_getname(RoundCluster *cluster);
 
 #ifdef  __cplusplus
 } /* extern C */

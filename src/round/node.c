@@ -9,6 +9,7 @@
  ******************************************************************/
 
 #include <round/node_internal.h>
+#include <round/cluster_internal.h>
 
 /****************************************
 * round_node_new
@@ -66,8 +67,9 @@ bool round_node_init(RoundNode *node)
   node->digest = round_string_new();
   node->cluster = round_string_new();
   node->clock = round_clock_new();
+  node->clusterMgr = round_cluster_manager_new();
   
-  if (!node->addr || !node->cluster || !node->clock)
+  if (!node->addr || !node->cluster || !node->clock || !node->clusterMgr)
     return false;
 
   round_node_setrequesttimeout(node, ROUNDC_JSON_RPC_REQUEST_TIMEOUT_SEC);
@@ -110,6 +112,7 @@ bool round_node_destroy(RoundNode *node)
   round_string_delete(node->digest);
   round_string_delete(node->cluster);
   round_clock_delete(node->clock);
+  round_cluster_manager_delete(node->clusterMgr);
   
   return true;
 }
