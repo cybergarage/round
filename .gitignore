@@ -33,3 +33,19 @@
 
 # MacOSX
 .DS_Store
+
+# XCode
+project.xcworkspace/
+xcuserdata/
+
+# Automake
+aclocal.m4
+autom4te.cache/
+config/
+.deps/
+*.Po
+.dirstamp
+Makefile
+config.*
+stamp*
+
