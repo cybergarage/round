@@ -1,0 +1,41 @@
+digraph round_finite_state_machine {
+	rankdir=LR;
+	size="8,5"
+	node [shape = doublecircle];  active;
+	node [shape = circle];
+
+	active [label="active"];
+
+	#subgraph cluster_twopc {
+	#	label="2PC";
+
+		#subgraph cluster_twopc_mem {
+		#	label="2PC Member";
+			ready_2pc_mem [label="Ready"];
+			commit_2pc_mem [label="Commit"];
+			abort_2pc_mem [label="Abort"];
+		#}
+
+		#subgraph cluster_twopc_cord {
+		#	label="2PC Coordinator";
+			wait_2pc_cord [label="Wait"];
+			commit_2pc_cord [label="Commit"];
+			abort_2pc_cord [label="Abort"];
+		#}
+	#}
+
+	active -> ready_2pc_mem [label="Vote Commit"];
+	active -> active [label="Vote Abort"];
+	ready_2pc_mem -> commit_2pc_mem [label="Global Commit"];
+	ready_2pc_mem -> abort_2pc_mem [label="Global Abort"];
+	ready_2pc_mem -> active [label="Timeout"];
+	commit_2pc_mem -> active [label="Done"];
+	abort_2pc_mem -> active [label="Done"];
+
+	active -> wait_2pc_cord [label="Vote Request"];
+	wait_2pc_cord -> active [label="Timeout"];
+	wait_2pc_cord -> commit_2pc_cord [label="Vote Commit"];
+	wait_2pc_cord -> abort_2pc_cord [label="Vote Abort"];
+	commit_2pc_cord -> active [label="Global Commit"];
+	abort_2pc_cord -> active [label="Global Abort"];
+}
