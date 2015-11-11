@@ -1,0 +1,4 @@
+#!/bin/sh
+for fname in *.svg; do
+  convert $fname ${fname%.svg}.png;
+done

@@ -1,0 +1,40 @@
+digraph round_finite_state_machine {
+	rankdir=LR;
+	size="8,5"
+	node [shape = doublecircle];  active;
+	node [shape = circle];
+
+	active [label="active"];
+
+	#subgraph cluster_paxos {
+	#	label="Paxos";
+
+	#	subgraph cluster_paxos_proposer {
+	#		label="Paxos Proposer";
+			prapareing_paxos_pro [label="Prepare"];
+			accepted_paxos_pro [label="Accept!"];
+			wait_paxos_pro [label="Accepted"];
+	#	}
+
+	#	subgraph cluster_paxos_accepter {
+	#		label="Paxos Accepter";
+			promised_paxos_acc [label="Promised"];
+			accepted_paxos_acc [label="Accepted"];
+	#	}
+	#}
+
+	active -> prapareing_paxos_pro [label="Preapre"];
+	prapareing_paxos_pro -> active [label="Prepare Timeout"];
+	prapareing_paxos_pro -> active [label="Prepare Failed"];
+	prapareing_paxos_pro -> accepted_paxos_pro [label="Prepare Promised"];
+	accepted_paxos_pro -> wait_paxos_pro [label="Accept!"];
+	wait_paxos_pro -> active [label="Timeout"];
+	wait_paxos_pro -> active [label="Accepted"];
+
+	active -> promised_paxos_acc [label="Prepare Assent"];
+	active -> active [label="Prepare Denial"];
+	promised_paxos_acc -> accepted_paxos_acc [label="Accept!"];
+	promised_paxos_acc -> active [label="Timeout"];
+	accepted_paxos_acc -> active [label="Done"];
+
+}

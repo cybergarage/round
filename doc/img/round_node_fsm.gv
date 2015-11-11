@@ -1,0 +1,46 @@
+digraph finite_state_machine {
+	#rankdir=LR;
+	size="8,5"
+	node [shape = doublecircle];  active;
+	node [shape = circle];
+
+	active [label="active"];
+
+	subgraph cluster_normal {
+		label="Normal Mode";
+		subgraph cluster_rpc {
+			label="RPC";
+			rpc_message [label="Execution"];
+		}
+	}
+
+	subgraph cluster_consensue {
+		label="Consensus Mode";
+		subgraph cluster_paxos {
+			label="Paxos";
+			paxos_proposer [label="Proposer"];
+			paxos_acceptor [label="Acceptor"];
+		}
+
+		subgraph cluster_twopc {
+			label="2PC";
+			twopc_coord [label="Coordinator"];
+			twopc_cohort [label="Cohort"];
+		}
+	}
+	
+	active -> paxos_proposer;
+	paxos_proposer -> active;
+
+	active -> paxos_acceptor;
+	paxos_acceptor -> active;
+
+	active -> twopc_coord;
+	twopc_coord -> active;
+
+	active -> twopc_cohort;
+	twopc_cohort -> active;
+
+	active -> rpc_message;
+	rpc_message -> active;
+}
