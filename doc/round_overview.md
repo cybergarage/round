@@ -30,6 +30,8 @@ Simplicity is the most valued principle. The core module of Round is very simple
 
 Orthogonality is another important one as well as simplicity. Considering those principles, no redundancy functions are implemented to keep the core module simple.
 
+Round enables to build distributed services and applications to define the small methods using any programming languages and connect between the methods like pipeline of Unix or Microservices instead of monolithic system.
+
 #### Clarity
 
 The technical specifications of the core functions are clearly defined and released free for users. Basically, the specifications are defined to extend some de facto standard specifications.
@@ -48,7 +50,7 @@ Round supplies some useful core modules such as consensus protocols and failure 
 
 ### Programming Model
 
-Round supports both [message passing model][msgp-model] and [shared memory model][shmem-model] as the parallel distributed programming model. In Round, the message passing model originates in [actor model][actor-model] and [CSP][csp-model] (Communicating Sequential Processes), and the shared memory model is based on [Paxos][paxos] protocol.
+Round supports both [message passing model][msgp-model] and [shared memory model][shmem-model] as the parallel distributed programming model. In Round, the message passing model originates in [actor model][actor-model] and [CSP][csp-model] (Communicating Sequential Processes), and the programming model be affected by [Reactive][reactive] and [Aspect-oriented][aspect] programming paradigms.
 
 Round's cluster is consist of several nodes. The each node is an actor of [Lamport model][lamport-model] which has a logical clock and a message queue to receive messages from clients or other nodes.
 
@@ -104,6 +106,8 @@ Round supports some dynamic programming languages such ad JavaScript and Java, t
 
 [actor-model]: http://en.wikipedia.org/wiki/Actor_model
 [csp]: http://en.wikipedia.org/wiki/Communicating_sequential_processes
+[reactive]: http://dl.acm.org/citation.cfm?id=101990
+[aspect]: https://en.wikipedia.org/wiki/Aspect-oriented_programming
 [df-prog]: http://en.wikipedia.org/wiki/Dataflow_programming
 [upnp-spec]: http://upnp.org/sdcps-and-certification/standards/
 [json-rpc]: http://www.jsonrpc.org/specification
@@ -114,6 +118,6 @@ Round supports some dynamic programming languages such ad JavaScript and Java, t
 [lamport-model]: http://en.wikipedia.org/wiki/Lamport_timestamps
 [parallel-model]: http://en.wikipedia.org/wiki/Parallel_programming_model
 [msgp-model]: http://en.wikipedia.org/wiki/Message_passing
-[shmem-model]: http://en.wikipedia.org/wiki/Shared_memory_(interprocess_communication) 
+[shmem-model]: http://en.wikipedia.org/wiki/Shared_memory_(interprocess_communication)
 [csp-model]: http://en.wikipedia.org/wiki/Communicating_sequential_processes
 [paxos]: http://research.microsoft.com/en-us/um/people/lamport/pubs/paxos-simple.pdf
