@@ -26,6 +26,8 @@ Roundは以下の原則に基づいて設計されています。
 
 簡潔性は重要な原則の一つです。Roundのコアモジュールは極めてシンプルであり最低限の機能のみ実装されています。簡潔さに関連する直交性も重要な原則です。これらの原則により、コアモジュールを簡潔に保つために、冗長な機能は実装されません。
 
+Roundは、従来のモノリシックに分散サービスやアプリケーションを開発するのではなく、Unixパイプラインやマイクロサービス的に、好みの言語で小さなメソッドを定義し組み合わせることで開発します。
+
 ### 明確性
 
 コアモジュールの技術仕様については明確に定義されており利用者に公開されています。技術仕様は業界標準のネットワークプロトコルを拡張して定義されています。
@@ -44,7 +46,7 @@ Roundは、標準で分散システムのコンセンサスプロトコルや障
 
 ### プログラミングモデル
 
-Roundは並列分散プログラミングモデルとして[メッセージパッシング (message passing)][msgp-model]モデルと[共有メモリ (shared memory)][shmem-model]モデルの両方に対応しています。Roundのメッセージパッシングモデルは[アクターモデル][actor-model]と[CSP][csp-model] (Communicating Sequential Processes)に影響を受けており、共有メモリモデルは[Paxos][paxos]プロトコルに基づいています。
+Roundは並列分散プログラミングモデルとして[メッセージパッシング (message passing)][msgp-model]モデルと[共有メモリ (shared memory)][shmem-model]モデルの両方に対応しています。Roundのメッセージパッシングモデルは[アクターモデル][actor-model]と[CSP][csp-model] (Communicating Sequential Processes)に影響を受けており、そのプログラミングモデルは[リアクティブシステム][reactive]と[アスペクト指向][aspect]の影響を受けています。
 
 Roundのクラスターは複数のノードから構成されます。各ノードは[Lamportモデル][lamport-model]のアクターでクライアントや他のノードからメッセージを受信するための論理クロックとメッセージキューを持ちます。
 
@@ -98,6 +100,8 @@ RoundはJavaScriptやJavaなどの複数の動的プログラミング言語に�
 
 [actor-model]: http://en.wikipedia.org/wiki/Actor_model
 [csp]: http://en.wikipedia.org/wiki/Communicating_sequential_processes
+[reactive]: http://dl.acm.org/citation.cfm?id=101990
+[aspect]: https://en.wikipedia.org/wiki/Aspect-oriented_programming
 [df-prog]: http://en.wikipedia.org/wiki/Dataflow_programming
 [upnp-spec]: http://upnp.org/sdcps-and-certification/standards/
 [json-rpc]: http://www.jsonrpc.org/specification
