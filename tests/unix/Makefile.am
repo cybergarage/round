@@ -18,7 +18,7 @@ AM_CPPFLAGS = -I$(top_srcdir)/include -I$(top_srcdir)/src -I../
 roundtest_SOURCES = \
 	..//ClientTest.cpp \
 	..//ClockTest.cpp \
-	..//ClusterListTest.cpp \
+	..//ClusterManagerTest.cpp \
 	..//ClusterTest.cpp \
 	..//DigestTest.cpp \
 	..//ErrorTest.cpp \
@@ -33,7 +33,7 @@ roundtest_SOURCES = \
 	..//MethodManagerTest.cpp \
 	..//MethodMapTest.cpp \
 	..//MethodTest.cpp \
-	..//NodeListTest.cpp \
+	..//NodeRingTest.cpp \
 	..//NodeTest.cpp \
 	..//RegistryTest.cpp \
 	..//RemoteNodeTest.cpp \
