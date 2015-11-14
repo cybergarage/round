@@ -1,0 +1,39 @@
+#!/bin/sh
+############################################################
+#
+# Round for C++
+# 
+# Copyright (C) Satoshi Konno 2015
+#
+# This is licensed under BSD-style license, see file COPYING.
+#
+############################################################
+ARGV="$@"
+ROUNDD=roundd
+ROUNDDCTRL=${ROUNDD}ctrl
+ROUNDD_CONFIG_DIR=/etc
+ROUNDD_CONFIG_FILE=${ROUNDD_CONFIG_DIR}/${ROUNDD}.conf
+ROUNDD_ARGUMENTS="-d ROUNDD_CONFIG_DIR"
+ROUNDD_DAEMON=/usr/bin/$ROUNDD
+case $ARGV in
+start)
+    $ROUNDD_DAEMON ${ROUNDD_ARGUMENTS} $ARGV
+    ERROR=$?
+    ;;
+stop)
+	killall ${ROUNDD} >/dev/null 2>&1 || true
+    ERROR=$?
+    ;;
+status)
+	ps -A | grep ${ROUNDD} | grep -v ${ROUNDDCTRL} | grep -v "grep" || true
+    ERROR=$?
+    ;;
+*)
+	echo "Usage: ${ROUNDDCTRL} {start|stop|status}"
+	exit 1
+	;;
+esac
+if [ "$ERROR" != 0 ] ; then
+	echo Action \'"$@"\' failed.
+fi
+exit $ERROR

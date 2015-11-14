@@ -140,6 +140,69 @@ AC_SUBST(XML_LIBS)
 AC_CHECK_LIB([mupnp],[main],,[AC_MSG_ERROR(Round needs mUPnP $MUPNP_VERSION later)])
 
 ##############################
+# Checks Language Options
+##############################
+
+# JavaScript
+
+AC_ARG_ENABLE(
+	[script-js-sm],
+	[  --enable-script-js-sm    enable JavaScript support (SpiderMonkey) [default=yes]],
+	[
+		if test $enableval = yes; then
+			ROUND_SUPPORT_JS_SM=yes
+		else
+			ROUND_SUPPORT_JS_SM=no
+		fi
+	],[
+		ROUND_SUPPORT_JS_SM=yes
+		ROUND_SUPPORT_JS_V8=no
+	]
+)
+AC_ARG_ENABLE(
+	[script-js-v8],
+	[  --enable-script-js-v8    enable JavaScript support (V8) [default=yes]],
+	[
+		if test $enableval = yes; then
+			ROUND_SUPPORT_JS_V8=yes
+		else
+			ROUND_SUPPORT_JS_V8=no
+		fi
+	],[]
+)
+if [ test $ROUND_SUPPORT_JS_SM = yes ]; then
+	AC_CHECK_LIB([mozjs185],[main],,[AC_MSG_ERROR(Round for C++ needs V8 $JS_VERSION later)])
+	AC_DEFINE([ROUND_SUPPORT_JS_SM],1,[SpiderMonkey])
+fi
+if [ test $ROUND_SUPPORT_JS_V8 = yes ]; then
+	AC_CHECK_LIB([v8],[main],,[AC_MSG_ERROR(Round for C++ needs V8 $V8_VERSION later)])
+	AC_DEFINE([ROUND_SUPPORT_JS_V8],1,[V8])]
+fi
+
+# Lua 
+
+AC_ARG_ENABLE(
+	[script-lua],
+	[  --enable-script-lua	enable Lua support [default=yes]],
+	[
+		if test $enableval = yes; then
+			ROUND_SUPPORT_LUA=yes
+		else
+			ROUND_SUPPORT_LUA=no
+		fi
+	],[
+		ROUND_SUPPORT_LUA=yes
+	]
+)
+if [ test $ROUND_SUPPORT_LUA = yes ]; then
+AC_CHECK_HEADERS([lua.h],,
+	[AC_CHECK_HEADERS([lua.h],,[AC_MSG_ERROR(Round for C++ needs LUA $LUA_VERSION later)])])
+	AC_CHECK_LIB([lua],[main],,[LUA_LIBS=`lua-config --libs`])
+        AC_SUBST(LUA_LIBS)
+	AC_DEFINE([ROUND_SUPPORT_LUA],1,[Lua])
+fi
+
+##############################
 # Testing
 ##############################
 
@@ -165,6 +228,11 @@ Makefile
 include/Makefile
 lib/Makefile
 lib/unix/Makefile
+bin/Makefile
+bin/round/Makefile
+bin/round/unix/Makefile
+bin/roundd/Makefile
+bin/roundd/unix/Makefile
 tests/Makefile
 tests/unix/Makefile
 ])

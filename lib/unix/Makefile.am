@@ -20,7 +20,7 @@ round_mpi_sources = \
 	../../src/round/client.c \
 	../../src/round/clock.c \
 	../../src/round/cluster.c \
-	../../src/round/cluster_list.c \
+	../../src/round/cluster_manager.c \
 	../../src/round/error.c \
 	../../src/round/error_rpc.c \
 	../../src/round/finder.c \
@@ -39,7 +39,7 @@ round_mpi_sources = \
 	../../src/round/method_manager.c \
 	../../src/round/method_map.c \
 	../../src/round/node.c \
-	../../src/round/node_list.c \
+	../../src/round/node_ring.c \
 	../../src/round/registry.c \
 	../../src/round/registry_manager.c \
 	../../src/round/registry_map.c \
