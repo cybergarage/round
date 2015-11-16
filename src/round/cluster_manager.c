@@ -50,12 +50,14 @@ bool round_cluster_manager_delete(RoundClusterManager *mgr)
 RoundCluster *round_cluster_manager_getcluster(RoundClusterManager *mgr, const char *name)
 {
   if (!mgr)
-    return false;
+    return NULL;
   
-  for (RoundCluster *cluster = round_cluster_manager_getclusters(mgr); cluster; cluster = round_cluster_next(cluster)) {    
+  for (RoundCluster *cluster = round_cluster_manager_getclusters(mgr); cluster; cluster = round_cluster_next(cluster)) {
+    if (round_streq(name, round_cluster_getname(cluster)))
+        return cluster;
   }
   
-  return false;
+  return NULL;
 }
 
 /****************************************

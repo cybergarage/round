@@ -23,12 +23,19 @@ BOOST_AUTO_TEST_CASE(ClusterManager)
   
   BOOST_CHECK(mgr);
   BOOST_CHECK_EQUAL(0, round_cluster_manager_size(mgr));
+
+  char clusterName[32];
   
   RoundCluster *cluster[ROUND_TEST_MAP_SIZE];
   for (int n=0; n<ROUND_TEST_MAP_SIZE; n++) {
     cluster[n] = round_cluster_new();
+    snprintf(clusterName, sizeof(clusterName), "%d", n);
+    BOOST_CHECK(round_cluster_setname(cluster[n], clusterName));
+
     BOOST_CHECK(round_cluster_manager_addcluster(mgr, cluster[n]));
+    
     BOOST_CHECK_EQUAL((n+1), round_cluster_manager_size(mgr));
+    BOOST_CHECK(round_cluster_manager_hascluster(mgr, clusterName));
   }
   
   BOOST_CHECK_EQUAL(ROUND_TEST_MAP_SIZE, round_cluster_manager_size(mgr));
