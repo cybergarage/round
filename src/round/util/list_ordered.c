@@ -44,6 +44,7 @@ bool round_ordered_list_delete(RoundOrderedList *list)
     return false;
 
   if (list->sortedList) {
+    round_ordered_list_clear(list);
     round_list_delete(list->sortedList);
     list->sortedList = NULL;
   }
@@ -60,10 +61,10 @@ bool round_ordered_list_clear(RoundOrderedList *list)
   if (!list)
     return false;
   
-  if (list->sortedList) {
-    round_list_delete(list->sortedList);
-    list->sortedList = NULL;
-  }
+  if (!list->sortedList)
+    return false;
+  
+  round_list_clear(list->sortedList, list->dstructorFunc);
   
   return true;
 }

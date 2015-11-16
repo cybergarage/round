@@ -111,8 +111,6 @@ bool round_ordered_list_add(RoundOrderedList *list, RoundListNode *node);
 #define round_ordered_list_next_circular(node) round_list_next_circular(node)
 #define round_ordered_list_next(node) round_list_next(node)
   
-#define round_ordered_list_clear(list, dstructorFunc) round_list_clear(list->sortedList, dstructorFunc)
-
 #ifdef  __cplusplus
 } /* extern "C" */
 #endif
