@@ -22,7 +22,9 @@ extern "C" {
  ****************************************/
 
 typedef void (*ROUND_LIST_DESTRUCTORFUNC)(void *);
+
 typedef int (*ROUND_ORDERED_LIST_COMPAREFUNC)(void *, void *);
+typedef ROUND_LIST_DESTRUCTORFUNC ROUND_ORDERED_LIST_DESTRUCTORFUNC;
 
 enum {
   RoundListNodeCompareSame = 0,
@@ -46,6 +48,7 @@ typedef struct _RoundList {
 typedef struct {
   RoundList *sortedList;
   ROUND_ORDERED_LIST_COMPAREFUNC cmpFunc;
+  ROUND_ORDERED_LIST_DESTRUCTORFUNC dstructorFunc;
 } RoundOrderedList;
 
 /****************************************
@@ -89,8 +92,10 @@ bool round_list_node_delete(RoundList *node);
 
 RoundOrderedList *round_ordered_list_new();
 bool round_ordered_list_delete(RoundOrderedList *list);
+bool round_ordered_list_clear(RoundOrderedList *list);
 
 #define round_ordered_list_setcmpfunc(list,func) (list->cmpFunc = (ROUND_ORDERED_LIST_COMPAREFUNC)func)
+#define round_ordered_list_setdestructorfunc(list,func) (list->dstructorFunc = (ROUND_ORDERED_LIST_DESTRUCTORFUNC)func)
   
 bool round_ordered_list_add(RoundOrderedList *list, RoundListNode *node);
 

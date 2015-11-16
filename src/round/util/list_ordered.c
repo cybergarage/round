@@ -28,6 +28,9 @@ RoundOrderedList *round_ordered_list_new()
     return false;
   }
   
+  round_ordered_list_setcmpfunc(list, NULL);
+  round_ordered_list_setdestructorfunc(list, NULL);
+
   return list;
 }
 
@@ -40,6 +43,23 @@ bool round_ordered_list_delete(RoundOrderedList *list)
   if (!list)
     return false;
 
+  if (list->sortedList) {
+    round_list_delete(list->sortedList);
+    list->sortedList = NULL;
+  }
+  
+  return true;
+}
+
+/****************************************
+ * round_ordered_list_clear
+ ****************************************/
+
+bool round_ordered_list_clear(RoundOrderedList *list)
+{
+  if (!list)
+    return false;
+  
   if (list->sortedList) {
     round_list_delete(list->sortedList);
     list->sortedList = NULL;
