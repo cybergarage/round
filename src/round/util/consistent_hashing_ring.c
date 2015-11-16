@@ -64,7 +64,7 @@ bool round_consistenthashing_ring_clear(RoundConsistentHashingRing *ring)
     return false;
   
   if (ring->orderedList) {
-    round_ordered_list_clear(ring->orderedList, ring->nodeDstructorFunc);
+    round_ordered_list_clear(ring->orderedList);
   }
 
   return true;

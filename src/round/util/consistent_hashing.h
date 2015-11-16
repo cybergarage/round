@@ -34,7 +34,6 @@ typedef const char *(*ROUND_CONSISTENTHASH_NODE_HASHFUNC)(void *);
   
 typedef struct {
   RoundOrderedList *orderedList;
-  ROUND_LIST_DESTRUCTORFUNC nodeDstructorFunc;
 } RoundConsistentHashingRing;
 
 typedef struct {
@@ -48,7 +47,7 @@ typedef struct {
 RoundConsistentHashingRing *round_consistenthashing_ring_new();
 bool round_consistenthashing_ring_delete(RoundConsistentHashingRing *ring);
 
-#define round_consistenthashing_ring_setnodedestructor(ring, func) (ring->nodeDstructorFunc = (ROUND_LIST_DESTRUCTORFUNC)func)
+#define round_consistenthashing_ring_setnodedestructor(ring, func) round_ordered_list_setdestructorfunc(ring->orderedList, (ROUND_LIST_DESTRUCTORFUNC)func)
 #define round_consistenthashing_ring_size(ring) round_ordered_list_size(ring->orderedList)
 #define round_consistenthashing_ring_getnodes(ring) ((RoundConsistentHashingNode *)round_ordered_list_gets(ring->orderedList))
 #define round_consistenthashing_ring_getnode(ring,idx) ((RoundConsistentHashingNode *)round_ordered_list_get(ring->orderedList,idx))
