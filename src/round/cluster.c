@@ -82,5 +82,5 @@ bool round_cluster_addnode(RoundCluster *cluster, RoundNode *node)
   if (!cluster || !node)
     return NULL;
   
-  return round_list_addlast((RoundList *)cluster, (RoundList *)node);
+  return round_node_ring_add(cluster->nodeRing, node);
 }
