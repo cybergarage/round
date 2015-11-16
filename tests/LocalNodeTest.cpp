@@ -17,8 +17,14 @@ BOOST_AUTO_TEST_CASE(LocalNodeNew)
 {
   RoundLocalNode *node = round_local_node_new();
   BOOST_CHECK(node);
-  
   BOOST_CHECK(round_local_node_delete(node));
+}
+
+BOOST_AUTO_TEST_CASE(LocalNodeVirtualNew)
+{
+  RoundNode *node = (RoundNode *)round_local_node_new();
+  BOOST_CHECK(node);
+  BOOST_CHECK(round_node_delete(node));
 }
 
 BOOST_AUTO_TEST_CASE(LocalSystemMethod)
