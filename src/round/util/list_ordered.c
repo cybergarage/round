@@ -11,7 +11,7 @@
 #include <round/util/list.h>
 
 /****************************************
- * round_ordered_list_add
+ * round_ordered_list_new
  ****************************************/
 
 RoundOrderedList *round_ordered_list_new()
