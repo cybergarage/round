@@ -79,5 +79,8 @@ const char *round_cluster_getname(RoundCluster *cluster)
 
 bool round_cluster_addnode(RoundCluster *cluster, RoundNode *node)
 {
-  return false;
+  if (!cluster || !node)
+    return NULL;
+  
+  return round_list_addlast((RoundList *)cluster, (RoundList *)node);
 }
