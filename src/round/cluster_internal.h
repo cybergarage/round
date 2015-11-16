@@ -52,15 +52,16 @@ bool round_cluster_addnode(RoundCluster *cluster, RoundNode *node);
   
 RoundClusterManager *round_cluster_manager_new(void);
 bool round_cluster_manager_delete(RoundClusterManager *mgr);
+bool round_cluster_manager_clear(RoundClusterManager *mgr);
   
 bool round_cluster_manager_addnode(RoundClusterManager *mgr, RoundNode *node);
 RoundCluster *round_cluster_manager_getcluster(RoundClusterManager *mgr, const char *name);
   
 #define round_cluster_manager_hascluster(mgr, name) (round_cluster_manager_getcluster(mgr,name) ? true : false)
-#define round_cluster_manager_clear(mgr) round_list_clear((RoundList *)mgr, (ROUND_LIST_DESTRUCTORFUNC)round_cluster_delete)
 #define round_cluster_manager_size(mgr) round_list_size((RoundList *)mgr)
 #define round_cluster_manager_getclusters(mgr) (RoundCluster *)round_list_next((RoundList *)mgr)
 #define round_cluster_manager_addcluster(mgr,cluster) round_list_add((RoundList *)mgr, (RoundList *)cluster)
+
 
 #ifdef  __cplusplus
 } /* extern C */

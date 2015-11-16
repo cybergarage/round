@@ -23,7 +23,7 @@ RoundClusterManager *round_cluster_manager_new(void)
     return NULL;
 
   round_list_header_init((RoundList *)mgr);
-
+  
   return mgr;
 }
 
@@ -40,6 +40,20 @@ bool round_cluster_manager_delete(RoundClusterManager *mgr)
 
   free(mgr);
 
+  return true;
+}
+
+/****************************************
+ * round_cluster_manager_clear
+ ****************************************/
+
+bool round_cluster_manager_clear(RoundClusterManager *mgr)
+{
+  if (!mgr)
+    return false;
+  
+  round_list_clear((RoundList *)mgr, (ROUND_LIST_DESTRUCTORFUNC)round_cluster_delete);
+  
   return true;
 }
 

@@ -38,7 +38,9 @@ extern "C" {
 typedef bool (*ROUND_NODE_POSTMESSAGE_FUNC)(void *node, RoundJSONObject *reqObj, RoundJSONObject *resObj, RoundError *err);
 
 #if !defined(RoundClusterManager)
-typedef RoundList RoundClusterManager;
+typedef struct {
+  ROUND_LIST_STRUCT_MEMBERS
+} RoundClusterManager;
 #endif
 
 #define ROUND_NODE_STRUCT_MEMBERS \
