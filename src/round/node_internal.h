@@ -19,7 +19,6 @@
 #include <round/util/thread.h>
 #include <round/util/consistent_hashing.h>
 #include <round/util/digest.h>
-#include <round/server.h>
 #include <round/script.h>
 #include <round/clock.h>
 #include <round/registry.h>
@@ -74,7 +73,6 @@ typedef struct {
   RoundRegistryManager *regMgr;
   RoundMessageManager *msgMgr;
   RoundThreadManager *threadMgr;
-  RoundServer *server;
 } RoundLocalNode;
 
 typedef struct {

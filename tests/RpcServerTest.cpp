@@ -10,19 +10,19 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include <round/server.h>
+#include <round/rpc_server.h>
 
 BOOST_AUTO_TEST_SUITE(server)
 
-BOOST_AUTO_TEST_CASE(ServerNew)
+BOOST_AUTO_TEST_CASE(RpcServerNew)
 {
-  RoundServer *server = round_server_new();
+  RoundRpcServer *server = round_rpc_server_new();
   BOOST_CHECK(server);
 
-  BOOST_CHECK(round_server_start(server));
-  BOOST_CHECK(round_server_stop(server));
+  BOOST_CHECK(round_rpc_server_start(server));
+  BOOST_CHECK(round_rpc_server_stop(server));
  
-  BOOST_CHECK(round_server_delete(server));
+  BOOST_CHECK(round_rpc_server_delete(server));
 }
 
 BOOST_AUTO_TEST_SUITE_END()

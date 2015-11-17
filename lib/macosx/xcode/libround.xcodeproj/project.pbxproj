@@ -18,6 +18,8 @@
 		2127082A1BD662B400000985 /* consistent_hashing.h in Headers */ = {isa = PBXBuildFile; fileRef = 212708281BD662B400000985 /* consistent_hashing.h */; };
 		212A95451B9BCA4200EC9A71 /* method_manager.c in Sources */ = {isa = PBXBuildFile; fileRef = 212A95431B9BCA4200EC9A71 /* method_manager.c */; };
 		212A95461B9BCA4200EC9A71 /* method.c in Sources */ = {isa = PBXBuildFile; fileRef = 212A95441B9BCA4200EC9A71 /* method.c */; };
+		213389D01BFAEA980014548E /* rpc_server.h in Headers */ = {isa = PBXBuildFile; fileRef = 213389CE1BFAEA980014548E /* rpc_server.h */; };
+		213389D11BFAEA980014548E /* rpc_server.c in Sources */ = {isa = PBXBuildFile; fileRef = 213389CF1BFAEA980014548E /* rpc_server.c */; };
 		21346A7E1BB4FA6B00B5F3A6 /* get_registry.c in Sources */ = {isa = PBXBuildFile; fileRef = 21346A7B1BB4FA6B00B5F3A6 /* get_registry.c */; };
 		21346A7F1BB4FA6B00B5F3A6 /* remove_registry.c in Sources */ = {isa = PBXBuildFile; fileRef = 21346A7C1BB4FA6B00B5F3A6 /* remove_registry.c */; };
 		21346A801BB4FA6B00B5F3A6 /* set_registry.c in Sources */ = {isa = PBXBuildFile; fileRef = 21346A7D1BB4FA6B00B5F3A6 /* set_registry.c */; };
@@ -125,6 +127,8 @@
 		212A95431B9BCA4200EC9A71 /* method_manager.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = method_manager.c; path = ../../../src/round/method_manager.c; sourceTree = "<group>"; };
 		212A95441B9BCA4200EC9A71 /* method.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = method.c; path = ../../../src/round/method.c; sourceTree = "<group>"; };
 		212ADD881A8D4F000054EC0F /* liblibround.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblibround.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		213389CE1BFAEA980014548E /* rpc_server.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = rpc_server.h; path = ../../../src/round/rpc_server.h; sourceTree = "<group>"; };
+		213389CF1BFAEA980014548E /* rpc_server.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = rpc_server.c; path = ../../../src/round/rpc_server.c; sourceTree = "<group>"; };
 		21346A7B1BB4FA6B00B5F3A6 /* get_registry.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = get_registry.c; sourceTree = "<group>"; };
 		21346A7C1BB4FA6B00B5F3A6 /* remove_registry.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = remove_registry.c; sourceTree = "<group>"; };
 		21346A7D1BB4FA6B00B5F3A6 /* set_registry.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = set_registry.c; sourceTree = "<group>"; };
@@ -280,8 +284,8 @@
 				2160B88E1BB3B59F002026E3 /* method */,
 				212A95431B9BCA4200EC9A71 /* method_manager.c */,
 				2148E5D71B9DFDAF0021CE7B /* method_map.c */,
-				21606BF91BA029A0000463A8 /* method.h */,
 				212A95441B9BCA4200EC9A71 /* method.c */,
+				21606BF91BA029A0000463A8 /* method.h */,
 				21EA96D41B990C3B00E00841 /* node_internal.h */,
 				21EA96D51B990C3B00E00841 /* node_ring.c */,
 				21EA96D61B990C3B00E00841 /* node.c */,
@@ -291,6 +295,8 @@
 				215A07961BB4662700E9702F /* registry.c */,
 				215A07951BB4662700E9702F /* registry.h */,
 				218569AE1BB0D66A00861B9B /* remote_node.c */,
+				213389CF1BFAEA980014548E /* rpc_server.c */,
+				213389CE1BFAEA980014548E /* rpc_server.h */,
 				21F6D9A91B99848000714056 /* script */,
 				2148E5D61B9DFDAF0021CE7B /* script_engine_map.c */,
 				21F6D9AE1B99848000714056 /* script_engine.c */,
@@ -447,6 +453,7 @@
 				2178B36C1B98BEAE00B9D86B /* list.h in Headers */,
 				21A776CB1BA0939F009BDB36 /* timer.h in Headers */,
 				21785DDF1BB79E0A0098DD1A /* json_rpc.h in Headers */,
+				213389D01BFAEA980014548E /* rpc_server.h in Headers */,
 				21B763DF1BA05ED1003C29F3 /* queue.h in Headers */,
 				2178B3711B98BEAE00B9D86B /* thread.h in Headers */,
 				21EA96D71B990C3B00E00841 /* node_internal.h in Headers */,
@@ -566,6 +573,7 @@
 				21D427EC1B9F010A00BBBD41 /* error.c in Sources */,
 				2178B36D1B98BEAE00B9D86B /* mutex.c in Sources */,
 				21F6D9B31B99848000714056 /* script_engine.c in Sources */,
+				213389D11BFAEA980014548E /* rpc_server.c in Sources */,
 				21FBE36F1B9DC803000C2512 /* map_object_list.c in Sources */,
 				2178B3701B98BEAE00B9D86B /* thread.c in Sources */,
 				21C887711BD8EFD300449F5D /* digest.c in Sources */,

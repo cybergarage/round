@@ -8,13 +8,11 @@
  *
  ******************************************************************/
 
-#ifndef _ROUNDC_SERVER_H_
-#define _ROUNDC_SERVER_H_
+#ifndef _ROUNDC_RPC_SERVER_H_
+#define _ROUNDC_RPC_SERVER_H_
 
 #include <round/typedef.h>
-#include <round/node_internal.h>
-#include <round/finder.h>
-#include <round/rpc_server.h>
+#include <mupnp/device.h>
 
 #ifdef  __cplusplus
 extern "C" {
@@ -25,21 +23,19 @@ extern "C" {
  ****************************************/
 
 typedef struct {
-  RoundLocalNode *node;
-  RoundFinder *finder;
-  RoundRpcServer *rpcServer;
-} RoundServer;
+  mUpnpDevice *upnpDev;
+} RoundRpcServer;
 
 /****************************************
  * Function
  ****************************************/
   
-RoundServer *round_server_new(void);
-bool round_server_delete(RoundServer *server);
+RoundRpcServer *round_rpc_server_new(void);
+bool round_rpc_server_delete(RoundRpcServer *server);
 
-bool round_server_start(RoundServer *server);
-bool round_server_stop(RoundServer *server);
-bool round_server_isrunning(RoundServer *server);
+bool round_rpc_server_start(RoundRpcServer *server);
+bool round_rpc_server_stop(RoundRpcServer *server);
+bool round_rpc_server_isrunning(RoundRpcServer *server);
 
 #ifdef  __cplusplus
 } /* extern C */

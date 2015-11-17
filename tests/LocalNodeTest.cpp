@@ -44,3 +44,14 @@ BOOST_AUTO_TEST_CASE(LocalSystemMethod)
 
   BOOST_CHECK(round_local_node_delete(node));
 }
+
+BOOST_AUTO_TEST_CASE(LocalNodeRun)
+{
+  RoundLocalNode *node = round_local_node_new();
+  BOOST_CHECK(node);
+  
+  BOOST_CHECK(round_local_node_start(node));
+  BOOST_CHECK(round_local_node_stop(node));
+  
+  BOOST_CHECK(round_local_node_delete(node));
+}
