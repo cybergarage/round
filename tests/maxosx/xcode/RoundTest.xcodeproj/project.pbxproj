@@ -17,6 +17,7 @@
 		212A954B1B9BD1A400EC9A71 /* MethodMapTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 212A95491B9BD1A400EC9A71 /* MethodMapTest.cpp */; };
 		212A954C1B9BD1A400EC9A71 /* MethodManagerTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 212A954A1B9BD1A400EC9A71 /* MethodManagerTest.cpp */; };
 		212A954E1B9BD24700EC9A71 /* MethodTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 212A954D1B9BD24700EC9A71 /* MethodTest.cpp */; };
+		213389D31BFAEAB30014548E /* RpcServerTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 213389D21BFAEAB30014548E /* RpcServerTest.cpp */; };
 		2137D3F11B998AEF00652E68 /* liblibround.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2137D3EE1B998ADD00652E68 /* liblibround.a */; };
 		21563A121BC419AB004D33EA /* ScriptTestController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21563A101BC419AB004D33EA /* ScriptTestController.cpp */; };
 		215A078E1BB2FB9400E9702F /* ServerTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 215A078D1BB2FB9400E9702F /* ServerTest.cpp */; };
@@ -91,6 +92,7 @@
 		212A95491B9BD1A400EC9A71 /* MethodMapTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MethodMapTest.cpp; path = ../../MethodMapTest.cpp; sourceTree = "<group>"; };
 		212A954A1B9BD1A400EC9A71 /* MethodManagerTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MethodManagerTest.cpp; path = ../../MethodManagerTest.cpp; sourceTree = "<group>"; };
 		212A954D1B9BD24700EC9A71 /* MethodTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MethodTest.cpp; path = ../../MethodTest.cpp; sourceTree = "<group>"; };
+		213389D21BFAEAB30014548E /* RpcServerTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RpcServerTest.cpp; path = ../../RpcServerTest.cpp; sourceTree = "<group>"; };
 		21563A101BC419AB004D33EA /* ScriptTestController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ScriptTestController.cpp; path = ../../ScriptTestController.cpp; sourceTree = "<group>"; };
 		21563A111BC419AB004D33EA /* ScriptTestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScriptTestController.h; path = ../../ScriptTestController.h; sourceTree = "<group>"; };
 		215A078D1BB2FB9400E9702F /* ServerTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ServerTest.cpp; path = ../../ServerTest.cpp; sourceTree = "<group>"; };
@@ -185,10 +187,6 @@
 		217993091B4A5A6B00A158CD /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				212708351BD7993D00000985 /* json */,
-				2195A3DB1BD50DD600DF5436 /* util */,
-				21563A101BC419AB004D33EA /* ScriptTestController.cpp */,
-				21563A111BC419AB004D33EA /* ScriptTestController.h */,
 				211E45D11B98188600CF0088 /* ClientTest.cpp */,
 				216D19CE1BB4B37C0007B331 /* ClockTest.cpp */,
 				21EA96DC1B99104E00E00841 /* ClusterManagerTest.cpp */,
@@ -206,11 +204,16 @@
 				215A07991BB4663C00E9702F /* RegistryTest.cpp */,
 				218569B21BB0D68800861B9B /* RemoteNodeTest.cpp */,
 				21A762EC1B96F82400D29732 /* RoundTest.cpp */,
-				2166EF8E1B9D3394002FE45D /* RoundTest.h */,
-				21F6D9991B9983A500714056 /* script */,
+				213389D21BFAEAB30014548E /* RpcServerTest.cpp */,
 				2166EF8A1B9D2E5E002FE45D /* ScriptEngineMapTest.cpp */,
 				2166EF8B1B9D2E5E002FE45D /* ScriptEngineTest.cpp */,
+				21563A101BC419AB004D33EA /* ScriptTestController.cpp */,
 				215A078D1BB2FB9400E9702F /* ServerTest.cpp */,
+				2166EF8E1B9D3394002FE45D /* RoundTest.h */,
+				21563A111BC419AB004D33EA /* ScriptTestController.h */,
+				212708351BD7993D00000985 /* json */,
+				21F6D9991B9983A500714056 /* script */,
+				2195A3DB1BD50DD600DF5436 /* util */,
 			);
 			name = Sources;
 			sourceTree = "<group>";
@@ -351,6 +354,7 @@
 				21A762ED1B96F82400D29732 /* RoundTest.cpp in Sources */,
 				212A954E1B9BD24700EC9A71 /* MethodTest.cpp in Sources */,
 				21EA96DF1B99104E00E00841 /* ClusterTest.cpp in Sources */,
+				213389D31BFAEAB30014548E /* RpcServerTest.cpp in Sources */,
 				2166EF8D1B9D2E5E002FE45D /* ScriptEngineTest.cpp in Sources */,
 				21A4C21F1BC112DE0030BD12 /* LocalNodeMessageTest.cpp in Sources */,
 				2127083D1BD7995A00000985 /* JSONParseTest.cpp in Sources */,

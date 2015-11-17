@@ -12,6 +12,8 @@
 
 #include <round/finder.h>
 
+BOOST_AUTO_TEST_SUITE(finder)
+
 BOOST_AUTO_TEST_CASE(FinderNew)
 {
   RoundFinder *finder = round_finder_new();
@@ -23,3 +25,5 @@ BOOST_AUTO_TEST_CASE(FinderNew)
   
   BOOST_CHECK(round_finder_delete(finder));
 }
+
+BOOST_AUTO_TEST_SUITE_END()
