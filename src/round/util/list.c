@@ -177,6 +177,8 @@ bool round_list_insert(RoundListNode *prevNode, RoundListNode *node)
 {
   if (!prevNode|| !node)
     return false;
+
+  round_list_remove(node);
   
   node->prev = prevNode;
   node->next = prevNode->next;

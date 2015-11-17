@@ -45,6 +45,39 @@ BOOST_AUTO_TEST_CASE(ListAdd)
   BOOST_CHECK(round_list_delete(list));
 }
 
+BOOST_AUTO_TEST_CASE(ListAddSameNode)
+{
+  RoundList *list = round_list_new();
+  
+  BOOST_CHECK(list);
+  BOOST_CHECK_EQUAL(0, round_list_size(list));
+  
+  RoundList *nodes[ROUND_TEST_LIST_SIZE];
+  for (int n=0; n<ROUND_TEST_LIST_SIZE; n++) {
+    nodes[n] = round_list_node_new();
+  }
+  
+  for (int n=0; n<ROUND_TEST_LIST_SIZE; n++) {
+    BOOST_CHECK(round_list_add(list, nodes[n]));
+    BOOST_CHECK_EQUAL((n+1), round_list_size(list));
+  }
+  for (int n=0; n<ROUND_TEST_LIST_SIZE; n++) {
+    BOOST_CHECK_EQUAL(nodes[n], round_list_get(list, n));
+  }
+  BOOST_CHECK_EQUAL(ROUND_TEST_LIST_SIZE, round_list_size(list));
+ 
+  for (int n=0; n<ROUND_TEST_LIST_SIZE; n++) {
+    BOOST_CHECK(round_list_add(list, nodes[n]));
+    BOOST_CHECK_EQUAL(ROUND_TEST_LIST_SIZE, round_list_size(list));
+  }
+  for (int n=0; n<ROUND_TEST_LIST_SIZE; n++) {
+    BOOST_CHECK_EQUAL(nodes[n], round_list_get(list, n));
+  }
+  BOOST_CHECK_EQUAL(ROUND_TEST_LIST_SIZE, round_list_size(list));
+  
+  BOOST_CHECK(round_list_delete(list));
+}
+
 BOOST_AUTO_TEST_CASE(ListRemove)
 {
   RoundList *list = round_list_new();

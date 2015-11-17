@@ -99,17 +99,14 @@ bool round_consistenthashing_ring_hasnode(RoundConsistentHashingRing *ring, void
 
 ssize_t round_consistenthashing_ring_getnodeindex(RoundConsistentHashingRing *ring, void *targetNode)
 {
-  RoundConsistentHashingNode *node;
-  const char *nodeHash, *targetNodeHash;
-  ssize_t nodeIdx;
-  
-  targetNodeHash = round_consistenthashing_node_gethash(targetNode);
+  const char *targetNodeHash = round_consistenthashing_node_gethash(targetNode);
   if (!targetNodeHash)
     return -1;
   
-  nodeIdx = 0;
+  ssize_t nodeIdx = 0;
+  RoundConsistentHashingNode *node;
   for (node = round_consistenthashing_ring_getnodes(ring); node; node = round_consistenthashing_node_next(node)) {
-    nodeHash = round_consistenthashing_node_gethash(node);
+    const char *nodeHash = round_consistenthashing_node_gethash(node);
     if (nodeHash) {
       if (round_strcmp(targetNodeHash, nodeHash) == 0)
         return nodeIdx;

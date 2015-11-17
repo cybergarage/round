@@ -80,6 +80,9 @@ RoundCluster *round_cluster_manager_getcluster(RoundClusterManager *mgr, const c
 
 bool round_cluster_manager_addnode(RoundClusterManager *mgr, RoundNode *node)
 {
+  if (!mgr || !node)
+    return false;
+  
   const char *clusterName;
   if (!round_node_getcluster(node, &clusterName))
     return false;
