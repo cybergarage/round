@@ -12,7 +12,7 @@
 #include <round/error_internal.h>
 
 /****************************************
- * round_rpc_errorcode2httpstatuscode
+ * round_json_rpc_errorcode2httpstatuscode
  ****************************************/
 
 int round_json_rpc_errorcode2httpstatuscode(int rpcErrCode)
@@ -57,7 +57,7 @@ int round_json_rpc_errorcode2httpstatuscode(int rpcErrCode)
 }
 
 /****************************************
- * round_error_setjsonrpcerrorcode
+ * round_json_rpc_errorcode2string
  ****************************************/
 
 const char *round_json_rpc_errorcode2string(int rpcErrCode)
