@@ -46,12 +46,11 @@ bool round_local_node_init(RoundLocalNode *node)
   round_node_init((RoundNode *)node);
   round_oo_setdescendantdestoroyfunc(node, round_local_node_destory);
   
-  node->server = round_server_new();
   node->methodMgr = round_method_manager_new();
   node->regMgr = round_registry_manager_new();
   node->threadMgr = round_thread_manager_new();
 
-  if (!node->server || !node->methodMgr || !node->regMgr || !node->threadMgr)
+  if (!node->methodMgr || !node->regMgr || !node->threadMgr)
     return false;
 
   round_node_setpostmessagefunc(node, round_local_node_postmessage);
@@ -148,9 +147,11 @@ bool round_local_node_destory(RoundLocalNode *node)
   if (!node)
     return false;
   
+  if (!round_local_node_stop(node))
+    return false;
+  
   round_method_manager_delete(node->methodMgr);
   round_registry_manager_delete(node->regMgr);
-  round_server_delete(node->server);
   round_thread_manager_delete(node->threadMgr);
 
   return true;
@@ -165,7 +166,9 @@ bool round_local_node_delete(RoundLocalNode *node)
   if (!node)
     return false;
   
-  round_local_node_destory(node);
+  if (!round_local_node_destory(node))
+    return false;
+  
   round_node_destroy((RoundNode *)node);
 
   free(node);
@@ -184,7 +187,6 @@ bool round_local_node_start(RoundLocalNode *node)
   if (!node)
     return false;
 
-  isSuccess &= round_server_start(node->server);
   isSuccess &= round_thread_manager_start(node->threadMgr);
   
   if (!isSuccess) {
@@ -206,7 +208,6 @@ bool round_local_node_stop(RoundLocalNode *node)
   if (!node)
     return false;
 
-  isSuccess &= round_server_stop(node->server);
   isSuccess &= round_thread_manager_stop(node->threadMgr);
 
   return isSuccess;
@@ -221,9 +222,6 @@ bool round_local_node_isrunning(RoundLocalNode *node)
   if (!node)
     return false;
 
-  if (!round_server_isrunning(node->server))
-    return false;
-  
   if (!round_thread_manager_isrunning(node->threadMgr))
     return false;
 
