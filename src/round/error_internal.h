@@ -39,6 +39,8 @@ typedef struct {
 * Function
 ****************************************/
 
+int round_json_rpc_errorcode2httpstatuscode(int rpcErrCode);
+const char *round_json_rpc_errorcode2string(int rpcErrCode);
 bool round_error_setjsonrpcerrorcode(RoundError *err, int rpcErrCode);
 
 #ifdef  __cplusplus
