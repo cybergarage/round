@@ -25,7 +25,7 @@ upnp_action_getconnectioninfo,"GetConnectionInfo"
 
 # HTTP Server
 rpc_http_endpoint,"/rpc"
-rpc_http_content_type,"application/json"
+rpc_http_content_type,"application/json-rpc"
 
 # HTTP Status Code
 rpc_http_status_code_ok,200 
