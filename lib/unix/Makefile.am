@@ -24,6 +24,7 @@ round_mpi_sources = \
 	../../src/round/error.c \
 	../../src/round/error_rpc.c \
 	../../src/round/finder.c \
+	../../src/round/impl/upnp_server.c \
 	../../src/round/local_node.c \
 	../../src/round/local_node_message.c \
 	../../src/round/local_node_thread.c \
@@ -44,6 +45,7 @@ round_mpi_sources = \
 	../../src/round/registry_manager.c \
 	../../src/round/registry_map.c \
 	../../src/round/remote_node.c \
+	../../src/round/rpc_server.c \
 	../../src/round/script/js_engine.c \
 	../../src/round/script/js_sm_engine.c \
 	../../src/round/script/lua_engine.c \

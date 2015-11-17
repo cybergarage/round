@@ -1,6 +1,7 @@
 #!/bin/sh
 
 cd include/round; ./const.h.build ; cd ../..
+cd src/round/impl; ./upnp_server_desc.h.build; cd ../../../
 
 cd include; ./Makefile.am.build > Makefile.am; cd ..
 cd lib/unix; ./Makefile.am.build > Makefile.am; cd ../..

@@ -1,0 +1,45 @@
+#!/usr/bin/perl
+print<<HEADER;
+/******************************************************************
+*
+* Round for C
+*
+* Copyright (C) Satoshi Konno 2015
+*
+* This is licensed under BSD-style license, see file COPYING.
+*
+******************************************************************/
+
+#ifndef _ROUNDC_UPNP_SERVER_DESC_H_
+#define _ROUNDC_UPNP_SERVER_DESC_H_
+
+HEADER
+
+print "static const char *ROUNDC_UPNP_SERVER_DEVICE_DESCRIPTION = \\\n";
+@desc_lines = `more ../../../conf/upnp_device_desc.xml`;
+foreach $desc_line (@desc_lines) {
+	chomp($desc_line);
+	if (length($desc_line) <= 0) {
+		next;
+	}
+	print $desc_line . "\\\n";
+}
+print "\"\";\n";
+
+print "\n";
+
+print "static const char *ROUNDC_UPNP_SERVER_SERVICE_DESCRIPTION = \\\n";
+@desc_lines = `more ../../../conf/upnp_service_desc.xml`;
+foreach $desc_line (@desc_lines) {
+	chomp($desc_line);
+	if (length($desc_line) <= 0) {
+		next;
+	}
+	print $desc_line . "\\\n";
+}
+print "\"\";\n";
+
+print<<FOTTER;
+
+#endif
+FOTTER

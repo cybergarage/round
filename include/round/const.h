@@ -24,10 +24,10 @@ extern "C" {
 #define ROUNDC_SHA256_DIGEST_LENGTH 32
 #define ROUNDC_SHA256_DIGEST_STRING_LENGTH 64
 #define ROUNDC_NODE_DIGEST_LENGTH 64
-#define ROUNDC_FINDER_UPNP_DEVICE_TYPE "urn:cybergarage-org:device:round:1"
-#define ROUNDC_FINDER_UPNP_SERVICE_TYPE "urn:cybergarage-org:service:round:1"
-#define ROUNDC_FINDER_UPNP_ACTION_GETPRODUCTINFO "GetProductInfo"
-#define ROUNDC_FINDER_UPNP_ACTION_GETCONNECTIONINFO "GetConnectionInfo"
+#define ROUNDC_UPNP_DEVICE_TYPE "urn:cybergarage-org:device:round:1"
+#define ROUNDC_UPNP_SERVICE_TYPE "urn:cybergarage-org:service:round:1"
+#define ROUNDC_UPNP_ACTION_GETPRODUCTINFO "GetProductInfo"
+#define ROUNDC_UPNP_ACTION_GETCONNECTIONINFO "GetConnectionInfo"
 #define ROUNDC_RPC_HTTP_ENDPOINT "/rpc"
 #define ROUNDC_RPC_HTTP_CONTENT_TYPE "application/json"
 #define ROUNDC_RPC_HTTP_STATUS_CODE_OK 200 

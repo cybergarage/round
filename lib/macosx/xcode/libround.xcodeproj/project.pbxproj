@@ -14,6 +14,9 @@
 		211E45D71B98192600CF0088 /* finder_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 211E45D51B98192600CF0088 /* finder_internal.h */; };
 		211E45D81B98192600CF0088 /* finder.c in Sources */ = {isa = PBXBuildFile; fileRef = 211E45D61B98192600CF0088 /* finder.c */; };
 		211E45DA1B981A6300CF0088 /* typedef.h in Headers */ = {isa = PBXBuildFile; fileRef = 211E45D91B981A6300CF0088 /* typedef.h */; };
+		212080741BFB6B7000190BF8 /* upnp_server.c in Sources */ = {isa = PBXBuildFile; fileRef = 212080721BFB6B7000190BF8 /* upnp_server.c */; };
+		212080751BFB6B7000190BF8 /* upnp_server.h in Headers */ = {isa = PBXBuildFile; fileRef = 212080731BFB6B7000190BF8 /* upnp_server.h */; };
+		2120807B1BFB855000190BF8 /* upnp_server_desc.h in Headers */ = {isa = PBXBuildFile; fileRef = 2120807A1BFB855000190BF8 /* upnp_server_desc.h */; };
 		212708291BD662B400000985 /* consistent_hashing_ring.c in Sources */ = {isa = PBXBuildFile; fileRef = 212708271BD662B400000985 /* consistent_hashing_ring.c */; };
 		2127082A1BD662B400000985 /* consistent_hashing.h in Headers */ = {isa = PBXBuildFile; fileRef = 212708281BD662B400000985 /* consistent_hashing.h */; };
 		212A95451B9BCA4200EC9A71 /* method_manager.c in Sources */ = {isa = PBXBuildFile; fileRef = 212A95431B9BCA4200EC9A71 /* method_manager.c */; };
@@ -122,6 +125,9 @@
 		211E45D51B98192600CF0088 /* finder_internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = finder_internal.h; path = ../../../src/round/finder_internal.h; sourceTree = "<group>"; };
 		211E45D61B98192600CF0088 /* finder.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = finder.c; path = ../../../src/round/finder.c; sourceTree = "<group>"; };
 		211E45D91B981A6300CF0088 /* typedef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = typedef.h; path = ../../../include/round/typedef.h; sourceTree = "<group>"; };
+		212080721BFB6B7000190BF8 /* upnp_server.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = upnp_server.c; path = ../../../src/round/impl/upnp_server.c; sourceTree = "<group>"; };
+		212080731BFB6B7000190BF8 /* upnp_server.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = upnp_server.h; path = ../../../src/round/impl/upnp_server.h; sourceTree = "<group>"; };
+		2120807A1BFB855000190BF8 /* upnp_server_desc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = upnp_server_desc.h; path = ../../../src/round/impl/upnp_server_desc.h; sourceTree = "<group>"; };
 		212708271BD662B400000985 /* consistent_hashing_ring.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = consistent_hashing_ring.c; path = ../../../src/round/util/consistent_hashing_ring.c; sourceTree = "<group>"; };
 		212708281BD662B400000985 /* consistent_hashing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = consistent_hashing.h; path = ../../../src/round/util/consistent_hashing.h; sourceTree = "<group>"; };
 		212A95431B9BCA4200EC9A71 /* method_manager.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = method_manager.c; path = ../../../src/round/method_manager.c; sourceTree = "<group>"; };
@@ -263,6 +269,7 @@
 		211E45CB1B98155300CF0088 /* round */ = {
 			isa = PBXGroup;
 			children = (
+				212080711BFB6B5400190BF8 /* impl */,
 				211E45CF1B9816F300CF0088 /* client_internal.h */,
 				211E45CC1B98157400CF0088 /* client.c */,
 				216D19CB1BB4B3570007B331 /* clock.c */,
@@ -306,6 +313,16 @@
 				2178B3631B98BE7B00B9D86B /* util */,
 			);
 			name = round;
+			sourceTree = "<group>";
+		};
+		212080711BFB6B5400190BF8 /* impl */ = {
+			isa = PBXGroup;
+			children = (
+				2120807A1BFB855000190BF8 /* upnp_server_desc.h */,
+				212080721BFB6B7000190BF8 /* upnp_server.c */,
+				212080731BFB6B7000190BF8 /* upnp_server.h */,
+			);
+			name = impl;
 			sourceTree = "<group>";
 		};
 		212ADD7F1A8D4F000054EC0F = {
@@ -455,8 +472,10 @@
 				21785DDF1BB79E0A0098DD1A /* json_rpc.h in Headers */,
 				213389D01BFAEA980014548E /* rpc_server.h in Headers */,
 				21B763DF1BA05ED1003C29F3 /* queue.h in Headers */,
+				2120807B1BFB855000190BF8 /* upnp_server_desc.h in Headers */,
 				2178B3711B98BEAE00B9D86B /* thread.h in Headers */,
 				21EA96D71B990C3B00E00841 /* node_internal.h in Headers */,
+				212080751BFB6B7000190BF8 /* upnp_server.h in Headers */,
 				211E45D71B98192600CF0088 /* finder_internal.h in Headers */,
 				21A776C71BA08A7C009BDB36 /* semaphore.h in Headers */,
 				215A078B1BB2FA8000E9702F /* server.h in Headers */,
@@ -556,6 +575,7 @@
 				216D19C51BB4743A0007B331 /* registry_manager.c in Sources */,
 				21EA96D81B990C3B00E00841 /* node_ring.c in Sources */,
 				218569B01BB0D66A00861B9B /* remote_node.c in Sources */,
+				212080741BFB6B7000190BF8 /* upnp_server.c in Sources */,
 				21A776C21BA07345009BDB36 /* queue_object.c in Sources */,
 				2160B8911BB3B59F002026E3 /* set_method.c in Sources */,
 				215E6B471B9E75EA00AAA203 /* map_hash.c in Sources */,

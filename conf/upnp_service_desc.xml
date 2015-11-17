@@ -73,26 +73,3 @@
 "     </stateVariable>\n"
 "   </serviceStateTable>\n"
 "</scpd>\n"
-
-
-
-
-
-
-
-
-
-
-ProductName	Out	Name
-ProductVersion	Out	Version
-GetConnectionInfo
-
-This required action returns the connection information to connect the node.
-
-Arguments
-
-Argument	Direction	relatedStateVariable
-Address	Out	Address
-Port	Out	Port
-Protocol	Out	Protocol
-Path	Out	Path

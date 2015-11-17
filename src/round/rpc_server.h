@@ -12,7 +12,7 @@
 #define _ROUNDC_RPC_SERVER_H_
 
 #include <round/typedef.h>
-#include <mupnp/device.h>
+#include <round/impl/upnp_server.h>
 
 #ifdef  __cplusplus
 extern "C" {
