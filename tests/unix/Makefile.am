@@ -38,6 +38,7 @@ roundtest_SOURCES = \
 	..//RegistryTest.cpp \
 	..//RemoteNodeTest.cpp \
 	..//RoundTest.cpp \
+	..//RpcServerTest.cpp \
 	..//script/JsEngineTest.cpp \
 	..//script/LuaEngineTest.cpp \
 	..//script/RubyEngineTest.cpp \

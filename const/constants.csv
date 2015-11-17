@@ -18,10 +18,10 @@ sha256_digest_string_length,64
 node_digest_length,64
 
 # Finder (UPnP)
-finder_upnp_device_type,"urn:cybergarage-org:device:round:1"
-finder_upnp_service_type,"urn:cybergarage-org:service:round:1"
-finder_upnp_action_getproductinfo,"GetProductInfo"
-finder_upnp_action_getconnectioninfo,"GetConnectionInfo"
+upnp_device_type,"urn:cybergarage-org:device:round:1"
+upnp_service_type,"urn:cybergarage-org:service:round:1"
+upnp_action_getproductinfo,"GetProductInfo"
+upnp_action_getconnectioninfo,"GetConnectionInfo"
 
 # HTTP Server
 rpc_http_endpoint,"/rpc"

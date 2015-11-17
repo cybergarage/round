@@ -23,7 +23,7 @@ RoundRpcServer *round_rpc_server_new(void)
   if (!server)
     return NULL;
 
-  server->upnpDev = mupnp_device_new();
+  server->upnpDev = round_upnp_server_new();
   
   if (!server->upnpDev) {
     round_rpc_server_delete(server);

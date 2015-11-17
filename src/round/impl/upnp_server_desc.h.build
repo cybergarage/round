@@ -1,0 +1,2 @@
+#!/bin/sh
+./upnp_server_desc.h.gen > upnp_server_desc.h
