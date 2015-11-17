@@ -16,19 +16,19 @@
 
 void round_local_node_message_thread(RoundThread *thread)
 {
-  RoundLocalNode *node;
-  RoundMessage *msg;
-  RoundError *err;
-  RoundJSONObject **resObj;
-  
   if (!thread)
     return;
   
-  node = (RoundLocalNode *)round_thread_getuserdata(thread);
+  RoundLocalNode *node = (RoundLocalNode *)round_thread_getuserdata(thread);
   if (!node)
     return;
 
+  RoundMessage *msg;
+  RoundError *err;
+  RoundJSONObject **resObj;
+
   while (round_local_node_isrunning(node)) {
+    msg = NULL;
     round_message_manager_waitmessage(node->msgMgr, &msg);
     if (!msg)
       break;
