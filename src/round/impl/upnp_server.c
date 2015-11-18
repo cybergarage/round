@@ -60,12 +60,21 @@ void round_upnp_server_posterrorresponse(mUpnpHttpRequest *httpReq, int rpcErrCo
   mUpnpHttpResponse *httpRes = mupnp_http_response_new();
   mupnp_http_response_setstatuscode(httpRes, round_json_rpc_errorcode2httpstatuscode(rpcErrCode));
 
-  // TODO : Set JSON Response
+  // TODO : Set JSON response content
   //RoundError *err = round_error_new();
   //round_error_setjsonrpcerrorcode(err, rpcErrCode);
   
   mupnp_http_request_postresponse(httpReq, httpRes);
   mupnp_http_response_delete(httpRes);
+}
+
+/****************************************
+ * round_upnp_server_hasjsonrpcparameters
+ ****************************************/
+
+bool round_upnp_server_hasjsonrpcparameters(mUpnpHttpRequest *httpReq)
+{
+  return true;
 }
 
 /****************************************
@@ -87,6 +96,12 @@ void round_upnp_server_jsonrpcrequestrecieved(mUpnpHttpRequest *httpReq)
   }
   
   if (round_json_parse(json, jsonContent, NULL)) {
+    round_json_delete(json);
+    round_upnp_server_posterrorresponse(httpReq, ROUNDC_RPC_ERROR_CODE_PARSER_ERROR);
+    return;
+  }
+
+  if (!round_upnp_server_hasjsonrpcparameters(httpReq))) {
     round_json_delete(json);
     round_upnp_server_posterrorresponse(httpReq, ROUNDC_RPC_ERROR_CODE_PARSER_ERROR);
     return;
