@@ -48,6 +48,9 @@ bool round_upnp_server_delete(RoundUpnpServer *server);
 #define round_upnp_server_stop(server) mupnp_device_stop(server->dev)
 #define round_upnp_server_isrunning(server) mupnp_device_isrunning(server->dev)
 
+#define round_upnp_server_setrpcserver(server,rpcSrv) mupnp_device_setuserdata(server->dev, rpcSrv)
+#define round_upnp_device_getrpcserver(dev,rpcSrv) ((RoundRpcServer *)mupnp_device_getuserdata(dev))
+  
 #ifdef  __cplusplus
 } /* extern C */
 #endif

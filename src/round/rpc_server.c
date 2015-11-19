@@ -37,6 +37,7 @@ RoundRpcServer *round_rpc_server_new(void)
   }
 
   round_upnp_server_setrpcrequestlistener(server->upnpServer, round_rpc_server_jsonrpcrequestrecieved);
+  round_upnp_server_setrpcserver(server->upnpServer, server);
   
   return server;
 }
@@ -151,6 +152,12 @@ bool round_rpc_server_hasjsonrpcparameters(RoundJSON *json)
 
 void round_rpc_server_jsonrpcrequestrecieved(mUpnpHttpRequest *httpReq)
 {
+  mUpnpDevice *upnpDev = (mUpnpDevice *)mupnp_http_request_getuserdata(httpReq);
+  if (!upnpDev) {
+    round_rpc_server_posterrorresponse(httpReq, ROUNDC_RPC_ERROR_CODE_INTERNAL_ERROR);
+    return;
+  }
+  
   const char *jsonContent = mupnp_http_request_getcontent(httpReq);
   if (jsonContent) {
     round_rpc_server_posterrorresponse(httpReq, ROUNDC_RPC_ERROR_CODE_INVALID_REQUEST);
