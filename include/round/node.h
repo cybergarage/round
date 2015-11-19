@@ -69,3 +69,4 @@ bool round_node_postmessage(RoundNode *node, RoundJSONObject *reqObj, RoundJSONO
 #endif
 
 #endif /* _ROUNDC_CLASS_H_ */
+

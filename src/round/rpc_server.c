@@ -23,9 +23,9 @@ RoundRpcServer *round_rpc_server_new(void)
   if (!server)
     return NULL;
 
-  server->upnpDev = round_upnp_server_new();
+  server->upnpServer = round_upnp_server_new();
   
-  if (!server->upnpDev) {
+  if (!server->upnpServer) {
     round_rpc_server_delete(server);
     return NULL;
   }
@@ -45,7 +45,7 @@ bool round_rpc_server_delete(RoundRpcServer *server)
   if (!round_rpc_server_stop(server))
     return false;
   
-  mupnp_device_delete(server->upnpDev);
+  round_upnp_server_delete(server->upnpServer);
   
   free(server);
   
@@ -63,7 +63,7 @@ bool round_rpc_server_start(RoundRpcServer *server)
   if (!server)
     return false;
 
-  isSuccess &= mupnp_device_start(server->upnpDev);
+  isSuccess &= round_upnp_server_start(server->upnpServer);
   
   if (!isSuccess) {
     round_rpc_server_stop(server);
@@ -84,7 +84,7 @@ bool round_rpc_server_stop(RoundRpcServer *server)
   if (!server)
     return false;
   
-  isSuccess &= mupnp_device_stop(server->upnpDev);
+  isSuccess &= round_upnp_server_stop(server->upnpServer);
   
   return true;
 }
@@ -98,7 +98,7 @@ bool round_rpc_server_isrunning(RoundRpcServer *server)
   if (!server)
     return false;
   
-  if (!mupnp_device_isrunning(server->upnpDev))
+  if (!round_upnp_server_isrunning(server->upnpServer))
     return false;
 
   return true;

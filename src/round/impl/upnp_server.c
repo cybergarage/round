@@ -72,8 +72,15 @@ void round_upnp_server_posterrorresponse(mUpnpHttpRequest *httpReq, int rpcErrCo
  * round_upnp_server_hasjsonrpcparameters
  ****************************************/
 
-bool round_upnp_server_hasjsonrpcparameters(mUpnpHttpRequest *httpReq)
+bool round_upnp_server_hasjsonrpcparameters(RoundJSON *json)
 {
+  RoundJSONObject *rootObj = round_json_getrootobject(json);
+  if (!rootObj)
+    return false;
+  
+  if (!round_json_object_isarray(json))
+    return false;
+  
   return true;
 }
 
@@ -101,7 +108,7 @@ void round_upnp_server_jsonrpcrequestrecieved(mUpnpHttpRequest *httpReq)
     return;
   }
 
-  if (!round_upnp_server_hasjsonrpcparameters(httpReq))) {
+  if (!round_upnp_server_hasjsonrpcparameters(json)) {
     round_json_delete(json);
     round_upnp_server_posterrorresponse(httpReq, ROUNDC_RPC_ERROR_CODE_PARSER_ERROR);
     return;
@@ -117,6 +124,7 @@ void round_upnp_server_jsonrpcrequestrecieved(mUpnpHttpRequest *httpReq)
 void round_upnp_server_httprequestrecieved(mUpnpHttpRequest *httpReq)
 {
   if (round_upnp_server_isjsonrpcrequest(httpReq)) {
+    // TODO : Change to post message queue
     round_upnp_server_jsonrpcrequestrecieved(httpReq);
     return;
   }
@@ -128,31 +136,57 @@ void round_upnp_server_httprequestrecieved(mUpnpHttpRequest *httpReq)
 * round_upnp_server_new
 ****************************************/
 
-mUpnpDevice *round_upnp_server_new(void)
+RoundUpnpServer *round_upnp_server_new(void)
 {
-  mUpnpDevice *upnpDev = mupnp_device_new();
-  if (!upnpDev)
+  RoundUpnpServer *server = (RoundUpnpServer *)malloc(sizeof(RoundUpnpServer));
+  
+  if (!server)
     return NULL;
+  
+  server->dev = mupnp_device_new();
+  
+  if (!server->dev) {
+    round_upnp_server_delete(server);
+    return NULL;
+  }
 
-  if (mupnp_device_parsedescription(upnpDev, ROUNDC_UPNP_SERVER_DEVICE_DESCRIPTION, strlen(ROUNDC_UPNP_SERVER_DEVICE_DESCRIPTION)) == false) {
-    mupnp_device_delete(upnpDev);
+  if (mupnp_device_parsedescription(server->dev, ROUNDC_UPNP_SERVER_DEVICE_DESCRIPTION, strlen(ROUNDC_UPNP_SERVER_DEVICE_DESCRIPTION)) == false) {
+    mupnp_device_delete(server->dev);
     return NULL;
   }
   
-  mUpnpService *upnpSrv = mupnp_device_getservicebyexacttype(upnpDev, ROUNDC_UPNP_SERVICE_TYPE);
+  mUpnpService *upnpSrv = mupnp_device_getservicebyexacttype(server->dev, ROUNDC_UPNP_SERVICE_TYPE);
   if (upnpSrv == NULL) {
-    mupnp_device_delete(upnpDev);
+    mupnp_device_delete(server->dev);
     return NULL;
   }
   
   if (mupnp_service_parsedescription(upnpSrv, ROUNDC_UPNP_SERVER_SERVICE_DESCRIPTION, strlen(ROUNDC_UPNP_SERVER_SERVICE_DESCRIPTION)) == false) {
-    mupnp_device_delete(upnpDev);
+    mupnp_device_delete(server->dev);
     return NULL;
   }
   
-  mupnp_device_setactionlistener(upnpDev, round_upnp_server_actionreceived);
-  mupnp_device_setquerylistener(upnpDev, round_upnp_server_queryreceived);
-  mupnp_device_sethttplistener(upnpDev, round_upnp_server_httprequestrecieved);
+  mupnp_device_setactionlistener(server->dev, round_upnp_server_actionreceived);
+  mupnp_device_setquerylistener(server->dev, round_upnp_server_queryreceived);
+  mupnp_device_sethttplistener(server->dev, round_upnp_server_httprequestrecieved);
   
-  return upnpDev;
+  return server;
+}
+
+/****************************************
+ * round_upnp_server_delete
+ ****************************************/
+
+bool round_upnp_server_delete(RoundUpnpServer *server)
+{
+  if (!server)
+    return false;
+
+  round_upnp_server_stop(server);
+
+  mupnp_device_delete(server->dev);
+  
+  free(server);
+  
+  return true;
 }
