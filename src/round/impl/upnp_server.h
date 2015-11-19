@@ -19,10 +19,23 @@ extern "C" {
 #endif
 
 /****************************************
+ * Data Type
+ ****************************************/
+  
+typedef struct {
+mUpnpDevice *dev;
+} RoundUpnpServer;
+  
+/****************************************
  * Function
  ****************************************/
-
-mUpnpDevice *round_upnp_server_new(void);
+  
+RoundUpnpServer *round_upnp_server_new(void);
+bool round_upnp_server_delete(RoundUpnpServer *server);
+  
+#define round_upnp_server_start(server) mupnp_device_start(server->dev)
+#define round_upnp_server_stop(server) mupnp_device_stop(server->dev)
+#define round_upnp_server_isrunning(server) mupnp_device_isrunning(server->dev)
 
 #ifdef  __cplusplus
 } /* extern C */

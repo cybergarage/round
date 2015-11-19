@@ -23,7 +23,7 @@ extern "C" {
  ****************************************/
 
 typedef struct {
-  mUpnpDevice *upnpDev;
+  RoundUpnpServer *upnpServer;
 } RoundRpcServer;
 
 /****************************************
