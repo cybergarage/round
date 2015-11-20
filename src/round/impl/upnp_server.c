@@ -12,6 +12,7 @@
 #include <round/util/strings.h>
 #include <round/impl/upnp_server.h>
 #include <round/impl/upnp_server_desc.h>
+#include <round/rpc_server.h>
 
 /****************************************
  * round_upnp_server_actionreceived
@@ -55,9 +56,12 @@ bool round_upnp_server_isjsonrpcrequest(mUpnpHttpRequest *httpReq)
 
 void round_upnp_server_httprequestrecieved(mUpnpHttpRequest *httpReq)
 {
+  mUpnpDevice *dev = (mUpnpDevice *)mupnp_http_request_getuserdata(httpReq);
+  RoundRpcServer *server = round_upnp_device_getrpcserver(dev);
   if (round_upnp_server_isjsonrpcrequest(httpReq)) {
     // TODO : Change to post message queue
-    round_upnp_server_jsonrpcrequestrecieved(httpReq);
+    //round_upnp_server_postrpcrequest(NULL, httpReq);
+    server->rpcReqListener(httpReq)
     return;
   }
 

@@ -36,8 +36,8 @@ RoundRpcServer *round_rpc_server_new(void)
     return NULL;
   }
 
-  round_upnp_server_setrpcrequestlistener(server->upnpServer, round_rpc_server_jsonrpcrequestrecieved);
   round_upnp_server_setrpcserver(server->upnpServer, server);
+  round_upnp_server_setrpcrequestlistener(server->upnpServer, round_rpc_server_jsonrpcrequestrecieved);
   
   return server;
 }
