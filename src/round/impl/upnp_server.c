@@ -61,7 +61,7 @@ void round_upnp_server_httprequestrecieved(mUpnpHttpRequest *httpReq)
   if (round_upnp_server_isjsonrpcrequest(httpReq)) {
     // TODO : Change to post message queue
     //round_upnp_server_postrpcrequest(NULL, httpReq);
-    server->rpcReqListener(httpReq)
+    server->upnpServer->rpcReqListener(httpReq);
     return;
   }
 

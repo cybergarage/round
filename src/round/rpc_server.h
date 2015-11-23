@@ -24,6 +24,7 @@ extern "C" {
 
 typedef struct {
   RoundUpnpServer *upnpServer;
+  void *localNode;
 } RoundRpcServer;
 
 /****************************************
@@ -37,6 +38,9 @@ bool round_rpc_server_start(RoundRpcServer *server);
 bool round_rpc_server_stop(RoundRpcServer *server);
 bool round_rpc_server_isrunning(RoundRpcServer *server);
 
+#define round_rpc_server_setlocalnode(server,node) (server->localNode = node)
+#define round_rpc_server_getlocalnode(server) ((RoundLocalNode *)(server->localNode))
+  
 #ifdef  __cplusplus
 } /* extern C */
 #endif

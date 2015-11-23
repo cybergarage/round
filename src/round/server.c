@@ -32,6 +32,8 @@ RoundServer *round_server_new(void)
     return NULL;
   }
 
+  round_rpc_server_setlocalnode(server->rpcServer, server->node);
+  
   return server;
 }
 
