@@ -41,6 +41,7 @@ enum {
 };
   
 enum {
+  RoundJSONOptionNone          = 0x00,
   RoundJSONOptionFormatCompact = 0x01,
   RoundJSONOptionFormatSort    = 0x02,
 };
