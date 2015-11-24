@@ -86,6 +86,21 @@ bool round_consistenthashing_ring_addnode(RoundConsistentHashingRing *ring, void
 }
 
 /****************************************
+ * round_consistenthashing_ring_removenode
+ ****************************************/
+
+bool round_consistenthashing_ring_removenode(RoundConsistentHashingRing *ring, void *node)
+{
+  if (!ring || !node)
+    return false;
+  
+  if (!round_consistenthashing_ring_hasnode(ring, node))
+    return false;
+  
+  return round_ordered_list_remove(node);
+}
+
+/****************************************
  * round_consistenthashing_ring_hasnode
  ****************************************/
 

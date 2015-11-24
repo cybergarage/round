@@ -64,7 +64,8 @@ BOOST_AUTO_TEST_CASE(ConsistentHashingRingNew)
   BOOST_CHECK(round_consistenthashing_ring_delete(ring));
 }
 
-BOOST_AUTO_TEST_CASE(ConsistentHashGraphAddSameNodeTest) {
+BOOST_AUTO_TEST_CASE(ConsistentHashGraphAddSameNodeTest)
+{
   RoundConsistentHashingRing *ring = round_consistenthashing_ring_new();
   round_consistenthashing_ring_setnodedestructor(ring, round_test_consistenthashing_node_delete);
   
@@ -91,7 +92,8 @@ BOOST_AUTO_TEST_CASE(ConsistentHashGraphAddSameNodeTest) {
   BOOST_CHECK(round_consistenthashing_ring_delete(ring));
 }
 
-BOOST_AUTO_TEST_CASE(ConsistentHashGraphAddTest) {
+BOOST_AUTO_TEST_CASE(ConsistentHashGraphAddTest)
+{
   const int conNodeCount = 9;
 
   RoundConsistentHashingRing *ring = round_consistenthashing_ring_new();
@@ -136,7 +138,49 @@ BOOST_AUTO_TEST_CASE(ConsistentHashGraphAddTest) {
  BOOST_CHECK(round_consistenthashing_ring_delete(ring));
 }
 
-BOOST_AUTO_TEST_CASE(ConsistentHashGraphEqualsTest) {
+BOOST_AUTO_TEST_CASE(ConsistentHashGraphRemoveTest)
+{
+  const int conNodeCount = 9;
+  
+  RoundConsistentHashingRing *ring = round_consistenthashing_ring_new();
+  round_consistenthashing_ring_setnodedestructor(ring, round_test_consistenthashing_node_delete);
+  
+  RoundTestConsistentHashingNode *nodes[conNodeCount];
+  
+  for (int n = 0; n < conNodeCount; n++) {
+    nodes[n] = round_test_consistenthashing_node_new(n+1);
+  }
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_size(ring), 0);
+
+  for (int n = 0; n < conNodeCount; n++) {
+    BOOST_CHECK_EQUAL(round_consistenthashing_ring_hasnode(ring, nodes[n]), false);
+    BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, nodes[n]), -1);
+    
+    BOOST_CHECK_EQUAL(round_consistenthashing_ring_addnode(ring, nodes[n]), true);
+    BOOST_CHECK_EQUAL(round_consistenthashing_ring_hasnode(ring, nodes[n]), true);
+    BOOST_CHECK_EQUAL(round_consistenthashing_ring_size(ring), (n+1));
+    BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, nodes[n]), n);
+    BOOST_CHECK_EQUAL(round_consistenthashing_ring_islastnode(ring, nodes[n]), true);
+  }
+  
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_size(ring), conNodeCount);
+  
+  for (int n = 0; n < conNodeCount; n++) {
+    BOOST_CHECK_EQUAL(round_consistenthashing_ring_hasnode(ring, nodes[n]), true);
+    
+    BOOST_CHECK_EQUAL(round_consistenthashing_ring_removenode(ring, nodes[n]), true);
+    
+    BOOST_CHECK_EQUAL(round_consistenthashing_ring_hasnode(ring, nodes[n]), false);
+    BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, nodes[n]), -1);
+  }
+  
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_size(ring), 0);
+  
+  BOOST_CHECK(round_consistenthashing_ring_delete(ring));
+}
+
+BOOST_AUTO_TEST_CASE(ConsistentHashGraphEqualsTest)
+{
   const int conNodeCount = 9;
   RoundConsistentHashingRing *ring = round_consistenthashing_ring_new();
   RoundTestConsistentHashingNode *nodes[conNodeCount];
@@ -155,7 +199,8 @@ BOOST_AUTO_TEST_CASE(ConsistentHashGraphEqualsTest) {
   BOOST_CHECK(round_consistenthashing_ring_delete(ring));
 }
 
-BOOST_AUTO_TEST_CASE(ConsistentHashGraphCompareTest) {
+BOOST_AUTO_TEST_CASE(ConsistentHashGraphCompareTest)
+{
   const int conNodeCount = 4;
   RoundTestConsistentHashingNode *nodes[conNodeCount];
   
@@ -189,7 +234,8 @@ BOOST_AUTO_TEST_CASE(ConsistentHashGraphCompareTest) {
   }
 }
 
-BOOST_AUTO_TEST_CASE(ConsistentHashGraphHandleTest) {
+BOOST_AUTO_TEST_CASE(ConsistentHashGraphHandleTest)
+{
   const int conNodeCount = 4;
   RoundConsistentHashingRing *ring = round_consistenthashing_ring_new();
   RoundTestConsistentHashingNode *nodes[conNodeCount];
@@ -422,7 +468,8 @@ BOOST_AUTO_TEST_CASE(ConsistentHashGraphHandleTest) {
   BOOST_CHECK(round_consistenthashing_ring_delete(ring));
 }
 
-BOOST_AUTO_TEST_CASE(ConsistentHashGraphOffsetNodeTest) {
+BOOST_AUTO_TEST_CASE(ConsistentHashGraphOffsetNodeTest)
+{
   const int conNodeCount = 9;
   RoundConsistentHashingRing *ring = round_consistenthashing_ring_new();
   RoundConsistentHashingNode *nodes[conNodeCount];
@@ -483,7 +530,8 @@ BOOST_AUTO_TEST_CASE(ConsistentHashGraphOffsetNodeTest) {
   BOOST_CHECK(round_consistenthashing_ring_delete(ring));
 }
 
-BOOST_AUTO_TEST_CASE(ConsistentHashGraphFowardDistanceTest) {
+BOOST_AUTO_TEST_CASE(ConsistentHashGraphFowardDistanceTest)
+{
   const int conNodeCount = 9;
   RoundConsistentHashingRing *ring = round_consistenthashing_ring_new();
   RoundTestConsistentHashingNode *nodes[conNodeCount];
@@ -586,7 +634,8 @@ BOOST_AUTO_TEST_CASE(ConsistentHashGraphFowardDistanceTest) {
  BOOST_CHECK(round_consistenthashing_ring_delete(ring));
 }
 
-BOOST_AUTO_TEST_CASE(ConsistentHashGraphBackfowardDistanceTest) {
+BOOST_AUTO_TEST_CASE(ConsistentHashGraphBackfowardDistanceTest)
+{
   const int conNodeCount = 9;
   RoundConsistentHashingRing *ring = round_consistenthashing_ring_new();
   RoundTestConsistentHashingNode *nodes[conNodeCount];
@@ -689,7 +738,8 @@ BOOST_AUTO_TEST_CASE(ConsistentHashGraphBackfowardDistanceTest) {
   BOOST_CHECK(round_consistenthashing_ring_delete(ring));
 }
 
-BOOST_AUTO_TEST_CASE(ConsistentHashGraphMinDistanceTest) {
+BOOST_AUTO_TEST_CASE(ConsistentHashGraphMinDistanceTest)
+{
   const int conNodeCount = 9;
   RoundConsistentHashingRing *ring = round_consistenthashing_ring_new();
   RoundTestConsistentHashingNode *nodes[conNodeCount];
@@ -799,7 +849,8 @@ BOOST_AUTO_TEST_CASE(ConsistentHashGraphMinDistanceTest) {
   BOOST_CHECK(round_consistenthashing_ring_delete(ring));
 }
 
-BOOST_AUTO_TEST_CASE(ConsistentHashGraphIsHandleNodeTest) {
+BOOST_AUTO_TEST_CASE(ConsistentHashGraphIsHandleNodeTest)
+{
   const int conNodeCount = 9;
   RoundConsistentHashingRing *ring = round_consistenthashing_ring_new();
   RoundTestConsistentHashingNode *nodes[conNodeCount];
