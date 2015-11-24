@@ -15,7 +15,8 @@
 
 #if defined(ROUND_SUPPORT_RUBY) ||  defined(ROUND_SUPPORT_MRUBY)
 
-BOOST_AUTO_TEST_CASE(RubyEngineTest) {
+BOOST_AUTO_TEST_CASE(RubyEngineTest)
+{
   RoundRubyEngine *rubyEngine;
   
   rubyEngine = round_ruby_engine_new();
