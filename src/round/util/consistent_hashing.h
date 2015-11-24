@@ -56,6 +56,7 @@ RoundConsistentHashingNode *round_consistenthashing_ring_gethandlenode(RoundCons
 bool round_consistenthashing_ring_ishandlenode(RoundConsistentHashingRing *ring, void *node, const char *hashCode);
 
 bool round_consistenthashing_ring_addnode(RoundConsistentHashingRing *ring, void *node);
+bool round_consistenthashing_ring_removenode(RoundConsistentHashingRing *ring, void *node);
 bool round_consistenthashing_ring_hasnode(RoundConsistentHashingRing *ring, void *node);
 ssize_t round_consistenthashing_ring_getnodeindex(RoundConsistentHashingRing *ring, void *node);
 
