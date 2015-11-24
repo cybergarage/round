@@ -46,7 +46,7 @@ int round_test_numbernode_comp(RoundTestNumberNode *thisNode, RoundTestNumberNod
   return RoundListNodeCompareLess;
 }
 
-BOOST_AUTO_TEST_CASE(OrderedListAdd)
+BOOST_AUTO_TEST_CASE(OrderedListAddAsc)
 {
   RoundOrderedList *list = round_ordered_list_new();
   BOOST_CHECK(list);
@@ -103,6 +103,35 @@ BOOST_AUTO_TEST_CASE(OrderedListAddDesc)
   }
   
   BOOST_CHECK_EQUAL(ROUND_TEST_LIST_SIZE, round_ordered_list_size(list));
+  
+  BOOST_CHECK(round_ordered_list_delete(list));
+}
+
+BOOST_AUTO_TEST_CASE(OrderedListRemove)
+{
+  RoundOrderedList *list = round_ordered_list_new();
+  BOOST_CHECK(list);
+  
+  round_ordered_list_setcmpfunc(list, round_test_numbernode_comp);
+  
+  BOOST_CHECK_EQUAL(0, round_ordered_list_size(list));
+  
+  RoundTestNumberNode *nodes[ROUND_TEST_LIST_SIZE];
+  for (int n=0; n<ROUND_TEST_LIST_SIZE; n++) {
+    nodes[n] = round_test_numbernode_new(n);
+    BOOST_CHECK(nodes[n]);
+    BOOST_CHECK(round_ordered_list_add(list, (RoundListNode *)nodes[n]));
+    BOOST_CHECK_EQUAL((n+1), round_ordered_list_size(list));
+  }
+  
+  BOOST_CHECK_EQUAL(ROUND_TEST_LIST_SIZE, round_ordered_list_size(list));
+  
+  for (int n=0; n<ROUND_TEST_LIST_SIZE; n++) {
+    BOOST_CHECK(round_ordered_list_remove(nodes[n]));
+    BOOST_CHECK_EQUAL((ROUND_TEST_LIST_SIZE-(n+1)), round_ordered_list_size(list));
+  }
+  
+  BOOST_CHECK_EQUAL(0, round_ordered_list_size(list));
   
   BOOST_CHECK(round_ordered_list_delete(list));
 }

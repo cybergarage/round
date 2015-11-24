@@ -99,7 +99,7 @@ bool round_ordered_list_clear(RoundOrderedList *list);
   
 bool round_ordered_list_add(RoundOrderedList *list, RoundListNode *node);
 
-#define round_ordered_list_remove(node) round_list_remove(node)
+#define round_ordered_list_remove(node) round_list_remove((RoundListNode *)node)
 #define round_ordered_list_size(list) round_list_size(list->sortedList)
   
 #define round_ordered_list_gets(list) round_list_gets(list->sortedList)
