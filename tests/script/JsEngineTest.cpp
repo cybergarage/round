@@ -16,7 +16,8 @@
 
 #if defined(ROUND_SUPPORT_JS_SM)
 
-BOOST_AUTO_TEST_CASE(JavaScriptEngineTest) {
+BOOST_AUTO_TEST_CASE(JavaScriptEngineTest)
+{
   #define SCRIPT_ECHO_LOOP 10
   #define SCRIPT_ECHO_EXPR "1 + 2 + 3"
   #define SCRIPT_ECHO_RESULT "6"

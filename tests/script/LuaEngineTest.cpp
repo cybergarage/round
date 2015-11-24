@@ -12,7 +12,8 @@
 #include <string>
 #include <round/script/lua.h>
 
-BOOST_AUTO_TEST_CASE(LuaEngineTest) {
+BOOST_AUTO_TEST_CASE(LuaEngineTest)
+{
   #define SCRIPT_ECHO_LOOP 10
   #define LUA_ECHO_FUNC "echo"
   #define LUA_ECHO_PARAM "hello"

@@ -17,7 +17,8 @@
 
 BOOST_AUTO_TEST_SUITE(queue)
 
-BOOST_AUTO_TEST_CASE(QueuePushPopTest) {
+BOOST_AUTO_TEST_CASE(QueuePushPopTest)
+{
   RoundQueue *queue = round_queue_new();
 
   BOOST_CHECK_EQUAL(round_queue_size(queue), 0);
@@ -46,7 +47,8 @@ BOOST_AUTO_TEST_CASE(QueuePushPopTest) {
   BOOST_CHECK_EQUAL(round_queue_size(queue), 0);
 }
 
-BOOST_AUTO_TEST_CASE(QueueEachPushPopTest) {
+BOOST_AUTO_TEST_CASE(QueueEachPushPopTest)
+{
   RoundQueue *queue = round_queue_new();
   
   BOOST_CHECK_EQUAL(round_queue_size(queue), 0);

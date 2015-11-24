@@ -13,7 +13,8 @@
 #include <round/util/base64.h>
 
 /*
-BOOST_AUTO_TEST_CASE(Base64Test) {
+BOOST_AUTO_TEST_CASE(Base64Test)
+{
   std::vector<std::string> testStrings;
   
   testStrings.push_back("");
