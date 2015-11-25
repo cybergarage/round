@@ -45,6 +45,7 @@ typedef struct _RoundCluster {
 #define round_cluster_equals(cluster1, cluster2) round_string_equals(cluster1->name, cluster2->name)
 
 bool round_cluster_addnode(RoundCluster *cluster, RoundNode *node);
+bool round_cluster_removenode(RoundCluster *cluster, RoundNode *node);
 
 /****************************************
  * Function (Class Manager)
@@ -55,13 +56,13 @@ bool round_cluster_manager_delete(RoundClusterManager *mgr);
 bool round_cluster_manager_clear(RoundClusterManager *mgr);
   
 bool round_cluster_manager_addnode(RoundClusterManager *mgr, RoundNode *node);
+bool round_cluster_manager_removenode(RoundClusterManager *mgr, RoundNode *node);
 RoundCluster *round_cluster_manager_getcluster(RoundClusterManager *mgr, const char *name);
   
 #define round_cluster_manager_hascluster(mgr, name) (round_cluster_manager_getcluster(mgr,name) ? true : false)
 #define round_cluster_manager_size(mgr) round_list_size((RoundList *)mgr)
 #define round_cluster_manager_getclusters(mgr) (RoundCluster *)round_list_next((RoundList *)mgr)
 #define round_cluster_manager_addcluster(mgr,cluster) round_list_add((RoundList *)mgr, (RoundList *)cluster)
-
 
 #ifdef  __cplusplus
 } /* extern C */
