@@ -84,3 +84,15 @@ bool round_cluster_addnode(RoundCluster *cluster, RoundNode *node)
   
   return round_node_ring_add(cluster->nodeRing, node);
 }
+
+/****************************************
+ * round_cluster_removenode
+ ****************************************/
+
+bool round_cluster_removenode(RoundCluster *cluster, RoundNode *node)
+{
+  if (!cluster || !node)
+    return NULL;
+  
+  return round_node_ring_remove(cluster->nodeRing, node);
+}

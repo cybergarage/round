@@ -106,3 +106,24 @@ bool round_cluster_manager_addnode(RoundClusterManager *mgr, RoundNode *node)
 
   return round_cluster_addnode(cluster, node);
 }
+
+/****************************************
+ * round_cluster_manager_removenode
+ ****************************************/
+
+bool round_cluster_manager_removenode(RoundClusterManager *mgr, RoundNode *node)
+{
+  if (!mgr || !node)
+    return false;
+  
+  const char *clusterName;
+  if (!round_node_getcluster(node, &clusterName))
+    return false;
+  
+  RoundCluster *cluster = round_cluster_manager_getcluster(mgr, clusterName);
+  if (!cluster)
+    return false;
+  
+  return round_cluster_removenode(cluster, node);
+  
+}
