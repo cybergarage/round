@@ -58,20 +58,33 @@ bool round_cluster_manager_clear(RoundClusterManager *mgr)
 }
 
 /****************************************
- * round_cluster_manager_getcluster
+ * round_cluster_manager_getclusterbyname
  ****************************************/
 
-RoundCluster *round_cluster_manager_getcluster(RoundClusterManager *mgr, const char *name)
+RoundCluster *round_cluster_manager_getclusterbyname(RoundClusterManager *mgr, const char *name)
 {
   if (!mgr)
     return NULL;
   
-  for (RoundCluster *cluster = round_cluster_manager_getclusters(mgr); cluster; cluster = round_cluster_next(cluster)) {
+  for (RoundCluster *cluster = round_cluster_manager_getclusterbynames(mgr); cluster; cluster = round_cluster_next(cluster)) {
     if (round_streq(name, round_cluster_getname(cluster)))
         return cluster;
   }
   
   return NULL;
+}
+
+/****************************************
+ * round_cluster_manager_getclusterbyname
+ ****************************************/
+
+RoundCluster *round_cluster_manager_getclusterbynode(RoundClusterManager *mgr, RoundNode *node)
+{
+  const char *clusterName;
+  if (!round_node_getcluster(node, &clusterName))
+    return NULL;
+  
+  return round_cluster_manager_getclusterbyname(mgr, clusterName);
 }
 
 /****************************************
@@ -87,7 +100,7 @@ bool round_cluster_manager_addnode(RoundClusterManager *mgr, RoundNode *node)
   if (!round_node_getcluster(node, &clusterName))
     return false;
 
-  RoundCluster *cluster = round_cluster_manager_getcluster(mgr, clusterName);
+  RoundCluster *cluster = round_cluster_manager_getclusterbyname(mgr, clusterName);
   if (!cluster) {
     cluster = round_cluster_new();
     if (!cluster)
@@ -116,14 +129,32 @@ bool round_cluster_manager_removenode(RoundClusterManager *mgr, RoundNode *node)
   if (!mgr || !node)
     return false;
   
-  const char *clusterName;
-  if (!round_node_getcluster(node, &clusterName))
-    return false;
-  
-  RoundCluster *cluster = round_cluster_manager_getcluster(mgr, clusterName);
+  RoundCluster *cluster = round_cluster_manager_getclusterbynode(mgr, node);
   if (!cluster)
     return false;
   
   return round_cluster_removenode(cluster, node);
-  
 }
+
+/****************************************
+ * round_cluster_manager_getnode
+ ****************************************/
+
+RoundNode *round_cluster_manager_getnode(RoundClusterManager *mgr, RoundNode *node)
+{
+  RoundCluster *cluster = round_cluster_manager_getclusterbynode(mgr, node);
+  if (!cluster)
+    return false;
+  
+  return round_cluster_getnode(cluster, node);
+}
+
+/****************************************
+ * round_cluster_manager_hasnode
+ ****************************************/
+
+bool round_cluster_manager_hasnode(RoundClusterManager *mgr, RoundNode *node)
+{
+  return (round_cluster_manager_getnode(mgr, node) != NULL) ? true : false;
+}
+

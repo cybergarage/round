@@ -52,6 +52,9 @@ bool round_consistenthashing_ring_delete(RoundConsistentHashingRing *ring);
 #define round_consistenthashing_ring_getnodes(ring) ((RoundConsistentHashingNode *)round_ordered_list_gets(ring->orderedList))
 #define round_consistenthashing_ring_getnode(ring,idx) ((RoundConsistentHashingNode *)round_ordered_list_get(ring->orderedList,idx))
 
+RoundConsistentHashingNode *round_consistenthashing_ring_getnodebyhashcode(RoundConsistentHashingRing *ring, const char *hashCode);
+RoundConsistentHashingNode *round_consistenthashing_ring_getequalnode(RoundConsistentHashingRing *ring, RoundConsistentHashingNode *node);
+
 RoundConsistentHashingNode *round_consistenthashing_ring_gethandlenode(RoundConsistentHashingRing *ring, const char *hashCode);
 bool round_consistenthashing_ring_ishandlenode(RoundConsistentHashingRing *ring, void *node, const char *hashCode);
 

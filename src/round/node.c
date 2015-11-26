@@ -279,6 +279,54 @@ time_t round_node_getrequesttimeout(RoundNode *node)
 }
 
 /****************************************
+ * round_node_addclusternode
+ ****************************************/
+
+bool round_node_addclusternode(RoundNode *node, RoundNode *clusterNode)
+{
+  if (!node)
+    return false;
+  
+  return round_cluster_manager_addnode(node->clusterMgr, clusterNode);
+}
+
+/****************************************
+ * round_node_removeclusternode
+ ****************************************/
+
+bool round_node_removeclusternode(RoundNode *node, RoundNode *clusterNode)
+{
+  if (!node)
+    return false;
+  
+  return round_cluster_manager_removenode(node->clusterMgr, clusterNode);
+}
+
+/****************************************
+ * round_node_clearclusternode
+ ****************************************/
+
+bool round_node_clearclusternode(RoundNode *node, RoundNode *clusterNode)
+{
+  if (!node)
+    return false;
+  
+  return round_cluster_manager_clear(node->clusterMgr);
+}
+
+/****************************************
+ * round_node_haclusternode
+ ****************************************/
+
+bool round_node_haclusternode(RoundNode *node, RoundNode *clusterNode)
+{
+  if (!node)
+    return false;
+  
+  return round_cluster_manager_hasnode(node->clusterMgr, clusterNode);
+}
+
+/****************************************
  * round_node_postmessage
  ****************************************/
 
