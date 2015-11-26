@@ -108,6 +108,25 @@ bool round_consistenthashing_ring_hasnode(RoundConsistentHashingRing *ring, void
 {
   return (0 <= round_consistenthashing_ring_getnodeindex(ring, node)) ? true : false;
 }
+
+/****************************************
+ * round_consistenthashing_ring_getnodebyhashcode
+ ****************************************/
+
+RoundConsistentHashingNode *round_consistenthashing_ring_getnodebyhashcode(RoundConsistentHashingRing *ring, const char *hashCode)
+{
+  return NULL;
+}
+
+/****************************************
+ * round_consistenthashing_ring_getequalnode
+ ****************************************/
+
+RoundConsistentHashingNode *round_consistenthashing_ring_getequalnode(RoundConsistentHashingRing *ring, RoundConsistentHashingNode *node)
+{
+  return NULL;
+}
+
 /****************************************
  * round_consistenthashing_ring_getnodeindex
  ****************************************/

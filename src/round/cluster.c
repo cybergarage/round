@@ -96,3 +96,24 @@ bool round_cluster_removenode(RoundCluster *cluster, RoundNode *node)
   
   return round_node_ring_remove(cluster->nodeRing, node);
 }
+
+/****************************************
+ * round_cluster_getnode
+ ****************************************/
+
+RoundNode *round_cluster_getnode(RoundCluster *cluster, RoundNode *node)
+{
+  if (!cluster || !node)
+    return NULL;
+  
+  return (RoundNode *)round_node_ring_getequalnode(cluster->nodeRing, (RoundConsistentHashingNode *)node);
+}
+
+/****************************************
+ * round_cluster_hasnode
+ ****************************************/
+
+bool round_cluster_hasnode(RoundCluster *cluster, RoundNode *node)
+{
+  return (round_cluster_getnode(cluster, node) != NULL) ? true : false;
+}
