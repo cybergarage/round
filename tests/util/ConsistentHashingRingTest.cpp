@@ -81,13 +81,15 @@ BOOST_AUTO_TEST_CASE(ConsistentHashGraphAddSameNodeTest)
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_hasnode(ring, node), true);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_size(ring), 1);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_islastnode(ring, node), true);
-  BOOST_CHECK_EQUAL((RoundTestConsistentHashingNode *)round_consistenthashing_ring_getlastnode(ring), node);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getequalnode(ring, node), (RoundConsistentHashingNode *)node);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getlastnode(ring), (RoundConsistentHashingNode *)node);
   
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_addnode(ring, node), false);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_hasnode(ring, node), true);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_size(ring), 1);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_islastnode(ring, node), true);
-  BOOST_CHECK_EQUAL((RoundTestConsistentHashingNode *)round_consistenthashing_ring_getlastnode(ring), node);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getlastnode(ring), (RoundConsistentHashingNode *)node);
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getequalnode(ring, node), (RoundConsistentHashingNode *)node);
   
   BOOST_CHECK(round_consistenthashing_ring_delete(ring));
 }
@@ -101,6 +103,8 @@ BOOST_AUTO_TEST_CASE(ConsistentHashGraphAddTest)
   
   RoundTestConsistentHashingNode *nodes[conNodeCount];
   
+  // Added new nodes
+  
   for (int n = 0; n < conNodeCount; n++) {
     nodes[n] = round_test_consistenthashing_node_new(n+1);
   }
@@ -113,12 +117,17 @@ BOOST_AUTO_TEST_CASE(ConsistentHashGraphAddTest)
     BOOST_CHECK_EQUAL(round_consistenthashing_ring_hasnode(ring, nodes[n]), true);
     BOOST_CHECK_EQUAL(round_consistenthashing_ring_size(ring), (n+1));
     BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, nodes[n]), n);
+    BOOST_CHECK_EQUAL(round_consistenthashing_ring_getequalnode(ring, nodes[n]), (RoundConsistentHashingNode *)nodes[n]);
     BOOST_CHECK_EQUAL(round_consistenthashing_ring_islastnode(ring, nodes[n]), true);
   }
 
+  // Clear nodes
+  
   round_consistenthashing_ring_clear(ring);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_size(ring), 0);
 
+  // Added same nodes again
+  
   for (int n = 0; n < conNodeCount; n++) {
     nodes[n] = round_test_consistenthashing_node_new(n+1);
   }
@@ -160,6 +169,7 @@ BOOST_AUTO_TEST_CASE(ConsistentHashGraphRemoveTest)
     BOOST_CHECK_EQUAL(round_consistenthashing_ring_hasnode(ring, nodes[n]), true);
     BOOST_CHECK_EQUAL(round_consistenthashing_ring_size(ring), (n+1));
     BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, nodes[n]), n);
+    BOOST_CHECK_EQUAL(round_consistenthashing_ring_getequalnode(ring, nodes[n]), (RoundConsistentHashingNode *)nodes[n]);
     BOOST_CHECK_EQUAL(round_consistenthashing_ring_islastnode(ring, nodes[n]), true);
   }
   
@@ -172,6 +182,7 @@ BOOST_AUTO_TEST_CASE(ConsistentHashGraphRemoveTest)
     
     BOOST_CHECK_EQUAL(round_consistenthashing_ring_hasnode(ring, nodes[n]), false);
     BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, nodes[n]), -1);
+    BOOST_CHECK_EQUAL(round_consistenthashing_ring_getequalnode(ring, nodes[n]), (RoundConsistentHashingNode *)NULL);
   }
   
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_size(ring), 0);
