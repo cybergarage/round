@@ -113,8 +113,17 @@ bool round_consistenthashing_ring_hasnode(RoundConsistentHashingRing *ring, void
  * round_consistenthashing_ring_getnodebyhashcode
  ****************************************/
 
-RoundConsistentHashingNode *round_consistenthashing_ring_getnodebyhashcode(RoundConsistentHashingRing *ring, const char *hashCode)
+RoundConsistentHashingNode *round_consistenthashing_ring_getnodebyhashcode(RoundConsistentHashingRing *ring, const char *targetNodeHash)
 {
+  RoundConsistentHashingNode *node;
+  for (node = round_consistenthashing_ring_getnodes(ring); node; node = round_consistenthashing_node_next(node)) {
+    const char *nodeHash = round_consistenthashing_node_gethash(node);
+    if (nodeHash) {
+      if (round_strcmp(targetNodeHash, nodeHash) == 0)
+        return node;
+    }
+  }
+  
   return NULL;
 }
 
@@ -122,9 +131,13 @@ RoundConsistentHashingNode *round_consistenthashing_ring_getnodebyhashcode(Round
  * round_consistenthashing_ring_getequalnode
  ****************************************/
 
-RoundConsistentHashingNode *round_consistenthashing_ring_getequalnode(RoundConsistentHashingRing *ring, RoundConsistentHashingNode *node)
+RoundConsistentHashingNode *round_consistenthashing_ring_getequalnode(RoundConsistentHashingRing *ring, void *node)
 {
-  return NULL;
+  const char *nodeHash = round_consistenthashing_node_gethash(node);
+  if (!nodeHash)
+    return NULL;
+  
+  return round_consistenthashing_ring_getnodebyhashcode(ring, nodeHash);
 }
 
 /****************************************
