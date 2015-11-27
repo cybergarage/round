@@ -94,10 +94,11 @@ bool round_consistenthashing_ring_removenode(RoundConsistentHashingRing *ring, v
   if (!ring || !node)
     return false;
   
-  if (!round_consistenthashing_ring_hasnode(ring, node))
+  RoundConsistentHashingNode *eqNode = round_consistenthashing_ring_getequalnode(ring, node);
+  if (!eqNode)
     return false;
   
-  return round_ordered_list_remove(node);
+  return round_ordered_list_remove(eqNode);
 }
 
 /****************************************
