@@ -117,6 +117,12 @@ bool round_cluster_manager_addnode(RoundClusterManager *mgr, RoundNode *node)
   if (!cluster)
     return false;
 
+  // Add as a remote node
+  
+  RoundRemoteNode *newNode = round_remote_node_copy(node);
+  if (!newNode)
+    return false;
+
   return round_cluster_addnode(cluster, node);
 }
 
@@ -146,7 +152,7 @@ RoundNode *round_cluster_manager_getnode(RoundClusterManager *mgr, RoundNode *no
   if (!cluster)
     return false;
   
-  return round_cluster_getnode(cluster, node);
+  return (RoundNode *)round_cluster_getnode(cluster, node);
 }
 
 /****************************************
@@ -155,6 +161,10 @@ RoundNode *round_cluster_manager_getnode(RoundClusterManager *mgr, RoundNode *no
 
 bool round_cluster_manager_hasnode(RoundClusterManager *mgr, RoundNode *node)
 {
-  return (round_cluster_manager_getnode(mgr, node) != NULL) ? true : false;
+  RoundCluster *cluster = round_cluster_manager_getclusterbynode(mgr, node);
+  if (!cluster)
+    return false;
+  
+  return round_cluster_hasnode(cluster, node);
 }
 

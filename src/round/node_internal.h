@@ -217,7 +217,8 @@ bool round_node_ring_delete(RoundNodeRing *ring);
 #define round_node_ring_add(ring,node) round_consistenthashing_ring_addnode(ring->consHashRing, node)
 #define round_node_ring_remove(ring,node) round_consistenthashing_ring_removenode(ring->consHashRing, node)
 #define round_node_ring_getequalnode(ring,node) round_consistenthashing_ring_getequalnode(ring->consHashRing, node)
-
+#define round_node_ring_hasnode(ring,node) round_consistenthashing_ring_hasnode(ring->consHashRing, node)
+  
 #ifdef  __cplusplus
 } /* extern C */
 #endif
