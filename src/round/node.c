@@ -190,6 +190,27 @@ bool round_node_getport(RoundNode *node, int *port)
 }
 
 /****************************************
+ * round_node_equals
+ ****************************************/
+
+bool round_node_equals(RoundNode *node1, RoundNode *node2)
+{
+  if (!node1 || !node2)
+    return false;
+  
+  if (node1->port != node2->port)
+    return false;
+  
+  if (!round_string_equals(node1->addr, node2->addr))
+    return false;
+  
+  if (!round_string_equals(node1->cluster, node2->cluster))
+    return false;
+  
+  return true;
+}
+
+/****************************************
  * round_node_updatedigest
  ****************************************/
 

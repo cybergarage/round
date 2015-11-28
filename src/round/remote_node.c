@@ -32,6 +32,37 @@ RoundRemoteNode *round_remote_node_new(void)
 }
 
 /****************************************
+ * round_remote_node_copy
+ ****************************************/
+
+RoundRemoteNode *round_remote_node_copy(RoundNode *node)
+{
+  if (!node)
+    return NULL;
+
+  RoundRemoteNode *newNode = round_remote_node_new();
+  if (!newNode)
+    return NULL;
+
+  const char *addr;
+  if (round_node_getaddress(node, &addr)) {
+    round_remote_node_setaddress(newNode, addr);
+  }
+
+  int port;
+  if (round_node_getport(node, &port)) {
+    round_remote_node_setport(newNode, port);
+  }
+
+  const char *cluster;
+  if (round_node_getcluster(node, &cluster)) {
+    round_remote_node_setcluster(newNode, cluster);
+  }
+  
+  return newNode;
+}
+
+/****************************************
  * round_remote_node_destory
  ****************************************/
 

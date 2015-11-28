@@ -115,6 +115,8 @@ const char *round_node_getdigest(RoundNode *node);
 #define round_node_setdigest(node, value) round_string_setvalue(node->digest, value)
 #define round_node_hasdigest(node) round_string_hasvalue(node->digest)
 
+bool round_node_equals(RoundNode *node1, RoundNode *node2);
+
 bool round_node_addclusternode(RoundNode *node, RoundNode *clusterNode);
 bool round_node_removeclusternode(RoundNode *node, RoundNode *clusterNode);
 bool round_node_clearclusternode(RoundNode *node, RoundNode *clusterNode);
@@ -134,6 +136,21 @@ bool round_local_node_initthreads(RoundLocalNode *node);
 bool round_local_node_destory(RoundLocalNode *node);
 bool round_local_node_delete(RoundLocalNode *node);
 
+#define round_local_node_setaddress(node,addr) round_node_setaddress((RoundNode*)node,addr)
+#define round_local_node_getaddress(node,addr) round_node_getaddress((RoundNode*)node,addr)
+  
+#define round_local_node_setport(node,port) round_node_setport((RoundNode*)node,port)
+#define round_local_node_getport(node,port) round_node_getport((RoundNode*)node,port)
+  
+#define round_local_node_setcluster(node,cluster) round_node_setcluster((RoundNode*)node,cluster)
+#define round_local_node_getcluster(node,cluster) round_node_getcluster((RoundNode*)node,cluster)
+  
+#define round_local_node_setrequesttimeout(node,value) round_node_setrequesttimeout((RoundNode*)node,value)
+#define round_local_node_getrequesttimeout(node) round_node_getrequesttimeout((RoundNode*)node)
+
+#define round_local_node_setclockvalue(node,value) round_clock_setvalue(node->clock,value)
+#define round_local_node_getclockvalue(node) round_clock_getvalue(node->clock)
+  
 bool round_local_node_start(RoundLocalNode *node);
 bool round_local_node_stop(RoundLocalNode *node);
 bool round_local_node_isrunning(RoundLocalNode *node);
@@ -153,9 +170,6 @@ bool round_local_node_removeregistry(RoundLocalNode *node, const char *key);
 
 void round_local_node_message_thread(RoundThread *thread);
   
-#define round_local_node_getclockvalue(node) round_clock_getvalue(node->clock)
-#define round_local_node_getrequesttimeout(node) round_node_getrequesttimeout((RoundNode *)node)
-
 /****************************************
  * Function (Local Node Message)
  ****************************************/
@@ -168,13 +182,29 @@ bool round_local_node_message_setresponsejsonobject(RoundMessage *msg, RoundJSON
 RoundJSONObject **round_local_node_message_getresponsejsonobject(RoundMessage *msg);
   
 /****************************************
- * Function (Remot eNode)
+ * Function (Remote Node)
  ****************************************/
   
 RoundRemoteNode *round_remote_node_new(void);
+RoundRemoteNode *round_remote_node_copy(RoundNode *node);
 bool round_remote_node_destory(RoundRemoteNode *node);
 bool round_remote_node_delete(RoundRemoteNode *node);
 bool round_remote_node_postmessage(RoundLocalNode *node, RoundJSONObject *reqMap, RoundJSONObject *resMap, RoundError *err);
+
+#define round_remote_node_setaddress(node,addr) round_node_setaddress((RoundNode*)node,addr)
+#define round_remote_node_getaddress(node,addr) round_node_getaddress((RoundNode*)node,addr)
+
+#define round_remote_node_setport(node,port) round_node_setport((RoundNode*)node,port)
+#define round_remote_node_getport(node,port) round_node_getport((RoundNode*)node,port)
+
+#define round_remote_node_setcluster(node,cluster) round_node_setcluster((RoundNode*)node,cluster)
+#define round_remote_node_getcluster(node,cluster) round_node_getcluster((RoundNode*)node,cluster)
+  
+#define round_remote_node_setrequesttimeout(node,value) round_node_setrequesttimeout((RoundNode*)node,value)
+#define round_remote_node_getrequesttimeout(node) round_node_getrequesttimeout((RoundNode*)node)
+
+#define round_remote_node_setclockvalue(node,value) round_clock_setvalue(node->clock,value)
+#define round_remote_node_getclockvalue(node) round_clock_getvalue(node->clock)
 
 /****************************************
  * Function (Node Ring)
