@@ -44,10 +44,10 @@ typedef struct _RoundCluster {
 #define round_cluster_remove(cluster) round_list_remove((RoundList *)cluster)
 #define round_cluster_equals(cluster1, cluster2) round_string_equals(cluster1->name, cluster2->name)
 
-bool round_cluster_addnode(RoundCluster *cluster, RoundNode *node);
-bool round_cluster_removenode(RoundCluster *cluster, RoundNode *node);
-RoundNode *round_cluster_getnode(RoundCluster *cluster, RoundNode *node);
-bool round_cluster_hasnode(RoundCluster *cluster, RoundNode *node);
+#define round_cluster_addnode(cluster,node) round_node_ring_add(cluster->nodeRing,node)
+#define round_cluster_removenode(cluster,node) round_node_ring_remove(cluster->nodeRing,node)
+#define round_cluster_getnode(cluster,node) round_node_ring_getequalnode(cluster->nodeRing,node)
+#define round_cluster_hasnode(cluster,node) round_node_ring_hasnode(cluster->nodeRing,node)
 
 /****************************************
  * Function (Class Manager)
