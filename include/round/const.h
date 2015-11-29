@@ -108,7 +108,7 @@ extern "C" {
 #define ROUND_SCRIPT_SEARCH_METHOD "search"
 #define ROUND_SCRIPT_SEARCH_METHOD_WAIT_MSEC 5000
 
-#define ROUND_DEFAULT_NODE_CLUSTER "round"
+#define ROUND_DEFAULT_NODE_CLUSTER_NAME "round"
 
 #define ROUND_MSG_SEARCHING "Searching"
 #define ROUND_MSG_DONE "Done"
