@@ -8,8 +8,8 @@
  *
  ******************************************************************/
 
-#ifndef _ROUNDC_REGISTRY_H_
-#define _ROUNDC_REGISTRY_H_
+#ifndef _ROUND_REGISTRY_H_
+#define _ROUND_REGISTRY_H_
 
 #ifdef HAVE_CONFIG_H
 #  include "config.h"

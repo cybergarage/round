@@ -8,8 +8,8 @@
  *
  ******************************************************************/
 
-#ifndef _ROUNDC_LUA_ENGINE_H_
-#define _ROUNDC_LUA_ENGINE_H_
+#ifndef _ROUND_LUA_ENGINE_H_
+#define _ROUND_LUA_ENGINE_H_
 
 #include <round/script.h>
 #include <round/method.h>

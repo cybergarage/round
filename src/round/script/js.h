@@ -8,8 +8,8 @@
  *
  ******************************************************************/
 
-#ifndef _ROUNDC_JAVSCRIPT_ENGINE_H_
-#define _ROUNDC_JAVSCRIPT_ENGINE_H_
+#ifndef _ROUND_JAVSCRIPT_ENGINE_H_
+#define _ROUND_JAVSCRIPT_ENGINE_H_
 
 #include <round/script.h>
 #include <round/method.h>

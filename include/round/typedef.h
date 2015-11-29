@@ -8,8 +8,8 @@
  *
  ******************************************************************/
 
-#ifndef _ROUNDC_TYPEDEF_H_
-#define _ROUNDC_TYPEDEF_H_
+#ifndef _ROUND_TYPEDEF_H_
+#define _ROUND_TYPEDEF_H_
 
 #include <stdio.h>
 #include <stdlib.h>

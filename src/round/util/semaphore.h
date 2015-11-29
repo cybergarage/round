@@ -8,8 +8,8 @@
  *
  ******************************************************************/
 
-#ifndef _ROUNDC_UTIL_SEMAPHORE_H_
-#define _ROUNDC_UTIL_SEMAPHORE_H_
+#ifndef _ROUND_UTIL_SEMAPHORE_H_
+#define _ROUND_UTIL_SEMAPHORE_H_
 
 #include <round/typedef.h>
 #include <time.h>

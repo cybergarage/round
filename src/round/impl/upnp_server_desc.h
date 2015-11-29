@@ -11,7 +11,7 @@
 #ifndef _ROUNDC_UPNP_SERVER_DESC_H_
 #define _ROUNDC_UPNP_SERVER_DESC_H_
 
-static const char *ROUNDC_UPNP_SERVER_DEVICE_DESCRIPTION = \
+static const char *ROUND_UPNP_SERVER_DEVICE_DESCRIPTION = \
 "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"\
 "<root xmlns=\"urn:schemas-upnp-org:device-1-0\">\n"\
 "   <specVersion>\n"\
@@ -41,7 +41,7 @@ static const char *ROUNDC_UPNP_SERVER_DEVICE_DESCRIPTION = \
 "</root>\n"\
 "";
 
-static const char *ROUNDC_UPNP_SERVER_SERVICE_DESCRIPTION = \
+static const char *ROUND_UPNP_SERVER_SERVICE_DESCRIPTION = \
 "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"\
 "<scpd xmlns=\"urn:schemas-upnp-org:service-1-0\">\n"\
 "   <specVersion>\n"\

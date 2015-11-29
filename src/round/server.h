@@ -8,8 +8,8 @@
  *
  ******************************************************************/
 
-#ifndef _ROUNDC_SERVER_H_
-#define _ROUNDC_SERVER_H_
+#ifndef _ROUND_SERVER_H_
+#define _ROUND_SERVER_H_
 
 #include <round/typedef.h>
 #include <round/node_internal.h>

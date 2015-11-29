@@ -8,8 +8,8 @@
  *
  ******************************************************************/
 
-#ifndef _ROUNDC_NODE_INTERNAL_H_
-#define _ROUNDC_NODE_INTERNAL_H_
+#ifndef _ROUND_NODE_INTERNAL_H_
+#define _ROUND_NODE_INTERNAL_H_
 
 #include <round/typedef.h>
 #include <round/util/oo.h>
@@ -223,4 +223,4 @@ bool round_node_ring_delete(RoundNodeRing *ring);
 } /* extern C */
 #endif
 
-#endif /* _ROUNDC_NODE_INTERNAL_H_ */
+#endif /* _ROUND_NODE_INTERNAL_H_ */

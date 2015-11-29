@@ -93,7 +93,7 @@ bool round_string_setvalue(RoundString *str, const char *value)
 
 bool round_string_setintvalue(RoundString *str, int value)
 {
-  char buf[ROUNDC_STRING_INTEGER_BUFLEN];
+  char buf[ROUND_STRING_INTEGER_BUFLEN];
   return round_string_setvalue(str, round_int2str(value, buf, sizeof(buf)));
 }
 
@@ -103,7 +103,7 @@ bool round_string_setintvalue(RoundString *str, int value)
 
 bool round_string_setlongvalue(RoundString *str, long value)
 {
-  char buf[ROUNDC_STRING_LONG_BUFLEN];
+  char buf[ROUND_STRING_LONG_BUFLEN];
   return round_string_setvalue(str, round_long2str(value, buf, sizeof(buf)));
 }
 

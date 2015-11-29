@@ -8,8 +8,8 @@
  *
  ******************************************************************/
 
-#ifndef _ROUNDC_CLUSTER_INTERNAL_H_
-#define _ROUNDC_CLUSTER_INTERNAL_H_
+#ifndef _ROUND_CLUSTER_INTERNAL_H_
+#define _ROUND_CLUSTER_INTERNAL_H_
 
 #include <round/typedef.h>
 #include <round/util/list.h>
@@ -73,4 +73,4 @@ RoundCluster *round_cluster_manager_getclusterbyname(RoundClusterManager *mgr, c
 } /* extern C */
 #endif
 
-#endif /* _ROUNDC_CLUSTER_H_ */
+#endif /* _ROUND_CLUSTER_H_ */

@@ -8,8 +8,8 @@
  *
  ******************************************************************/
 
-#ifndef _ROUNDC_STRING_H_
-#define _ROUNDC_STRING_H_
+#ifndef _ROUND_STRING_H_
+#define _ROUND_STRING_H_
 
 #include <round/typedef.h>
 #include <stdlib.h>
@@ -22,19 +22,19 @@ extern "C" {
 * Define
 ****************************************/
 
-#define ROUNDC_STRING_MEMORY_ALLOCATION_UNIT 64
+#define ROUND_STRING_MEMORY_ALLOCATION_UNIT 64
  
 /* UINT_MAX : 4294967295U */
-#define ROUNDC_STRING_INTEGER_BUFLEN 16
+#define ROUND_STRING_INTEGER_BUFLEN 16
  
  /* ULONG_MAX : 4294967295UL */
-#define ROUNDC_STRING_LONG_BUFLEN 32
+#define ROUND_STRING_LONG_BUFLEN 32
 
  /*  ULLONG_MAX : 18446744073709551615ULL */
-#define ROUNDC_STRING_LONGLONG_BUFLEN 32
+#define ROUND_STRING_LONGLONG_BUFLEN 32
 
-#define ROUNDC_STRING_FLOAT_BUFLEN 64
-#define ROUNDC_STRING_DOUBLE_BUFLEN 64
+#define ROUND_STRING_FLOAT_BUFLEN 64
+#define ROUND_STRING_DOUBLE_BUFLEN 64
   
 /****************************************
 * Function 

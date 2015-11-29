@@ -24,9 +24,9 @@ bool round_json_rpc_seterror(RoundJSONObject *obj, RoundError *err)
   errMap = round_json_map_new();
   if (!errMap)
     return false;
-  round_json_map_setinteger(errMap, ROUNDC_JSON_RPC_CODE, round_error_getdetailcode(err));
-  round_json_map_setstring(errMap, ROUNDC_JSON_RPC_MESSAGE, round_error_getdetailmessage(err));
-  round_json_map_setobject(obj, ROUNDC_JSON_RPC_ERROR, errMap);
+  round_json_map_setinteger(errMap, ROUND_JSON_RPC_CODE, round_error_getdetailcode(err));
+  round_json_map_setstring(errMap, ROUND_JSON_RPC_MESSAGE, round_error_getdetailmessage(err));
+  round_json_map_setobject(obj, ROUND_JSON_RPC_ERROR, errMap);
   round_json_object_delete(errMap);
   
   return false;

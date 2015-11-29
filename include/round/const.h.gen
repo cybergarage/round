@@ -18,20 +18,46 @@ extern "C" {
 #endif
 
 HEADER
+
+# Constants
+
 @const_lines = `more ../../const/constants.csv | awk '/./' | awk '\$0 !~ /^#/{print \$0}'`;
 foreach $const_line (@const_lines) {
   @const = split(/,/, $const_line);
   $const[0] =~ s/([a-z])/\u$1/g;
-  print "#define ROUNDC_" . $const[0] . " " . $const[1];
+  print "#define ROUND_" . $const[0] . " " . $const[1];
 }
+
+# Defaults 
+
+print "\n";
+@const_lines = `more ../../const/defaults.csv | awk '/./' | awk '\$0 !~ /^#/{print \$0}'`;
+foreach $const_line (@const_lines) {
+  @const = split(/,/, $const_line);
+  $const[0] =~ s/([a-z])/\u$1/g;
+  print "#define ROUND_DEFAULT_" . $const[0] . " " . $const[1];
+}
+
+# Messages 
+
+print "\n";
+@const_lines = `more ../../const/messages.csv | awk '/./' | awk '\$0 !~ /^#/{print \$0}'`;
+foreach $const_line (@const_lines) {
+  @const = split(/,/, $const_line);
+  $const[0] =~ s/([a-z])/\u$1/g;
+  print "#define ROUND_MSG_" . $const[0] . " " . $const[1];
+}
+
+# RPC Error Message
 
 print "\n";
 @const_lines = `more ../../const/rpc_errors.csv | awk '/./' | awk '\$0 !~ /^#/{print \$0}'`;
 foreach $const_line (@const_lines) {
   @const = split(/,/, $const_line);
   $const[0] =~ s/([a-z])/\u$1/g;
-  print "#define ROUNDC_RPC_" . $const[0] . " " . $const[1] . "\n";
+  print "#define ROUND_RPC_" . $const[0] . " " . $const[1] . "\n";
 }
+
 print "\n";
 foreach $const_line (@const_lines) {
   @const = split(/,/, $const_line);
@@ -40,7 +66,7 @@ foreach $const_line (@const_lines) {
   if (length($const[2]) <= 2) {
     next;
   }
-  print "#define ROUNDC_RPC_" . $const[0] . "_MSG  " . $const[2] . "\n";
+  print "#define ROUND_RPC_" . $const[0] . "_MSG  " . $const[2] . "\n";
 }
 
 print<<FOTTER;

@@ -86,28 +86,28 @@ bool round_js_engine_getsoucecode(RoundJavaScriptEngine *engine, RoundMethod *me
     return false;
 
   round_string_addvalue(jsSource, round_method_getstringcode(method));
-  round_string_addvalue(jsSource, ROUNDC_ENDL);
+  round_string_addvalue(jsSource, ROUND_ENDL);
   
   char *jsonParams = round_strreplace(param, "\"", "\\\"");
   round_string_addvalue(jsSource, "var jsonParams = \"");
   round_string_addvalue(jsSource, jsonParams ? jsonParams : "\"\"");
-  round_string_addvalue(jsSource, "\";" ROUNDC_ENDL);
+  round_string_addvalue(jsSource, "\";" ROUND_ENDL);
   free(jsonParams);
   
-  round_string_addvalue(jsSource, "var params = jsonParams;" ROUNDC_ENDL);
-  round_string_addvalue(jsSource, "if (0 < jsonParams.length) {" ROUNDC_ENDL);
-  round_string_addvalue(jsSource, "  try {" ROUNDC_ENDL);
-  round_string_addvalue(jsSource, "    params = JSON.parse(jsonParams);" ROUNDC_ENDL);
-  round_string_addvalue(jsSource, "  } catch (e) {" ROUNDC_ENDL);
-  round_string_addvalue(jsSource, "    params = jsonParams;" ROUNDC_ENDL);
-  round_string_addvalue(jsSource, "  }" ROUNDC_ENDL);
-  round_string_addvalue(jsSource, "}" ROUNDC_ENDL);
+  round_string_addvalue(jsSource, "var params = jsonParams;" ROUND_ENDL);
+  round_string_addvalue(jsSource, "if (0 < jsonParams.length) {" ROUND_ENDL);
+  round_string_addvalue(jsSource, "  try {" ROUND_ENDL);
+  round_string_addvalue(jsSource, "    params = JSON.parse(jsonParams);" ROUND_ENDL);
+  round_string_addvalue(jsSource, "  } catch (e) {" ROUND_ENDL);
+  round_string_addvalue(jsSource, "    params = jsonParams;" ROUND_ENDL);
+  round_string_addvalue(jsSource, "  }" ROUND_ENDL);
+  round_string_addvalue(jsSource, "}" ROUND_ENDL);
   
   round_string_addvalue(jsSource, "var results = ");
   round_string_addvalue(jsSource, round_method_getname(method));
-  round_string_addvalue(jsSource, "(params);" ROUNDC_ENDL);
+  round_string_addvalue(jsSource, "(params);" ROUND_ENDL);
   
-  round_string_addvalue(jsSource, "var jsonResults = JSON.stringify(results);" ROUNDC_ENDL);
+  round_string_addvalue(jsSource, "var jsonResults = JSON.stringify(results);" ROUND_ENDL);
   round_string_addvalue(jsSource, "jsonResults;");
   
   return true;

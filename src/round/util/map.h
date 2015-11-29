@@ -8,8 +8,8 @@
  *
  ******************************************************************/
 
-#ifndef _ROUNDC_UTIL_MAP_H_
-#define _ROUNDC_UTIL_MAP_H_
+#ifndef _ROUND_UTIL_MAP_H_
+#define _ROUND_UTIL_MAP_H_
 
 #include <round/typedef.h>
 #include <round/util/list.h>

@@ -8,8 +8,8 @@
  *
  ******************************************************************/
 
-#ifndef _ROUNDC_ERROR_INTERNAL_H_
-#define _ROUNDC_ERROR_INTERNAL_H_
+#ifndef _ROUND_ERROR_INTERNAL_H_
+#define _ROUND_ERROR_INTERNAL_H_
 
 #include <round/typedef.h>
 #include <round/util/strings.h>

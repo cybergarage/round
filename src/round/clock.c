@@ -60,7 +60,7 @@ bool round_clock_clear(RoundClock *clk)
   if (!clk)
     return false;
   
-  clk->value = ROUNDC_CLOCK_INITIAL_VALUE;
+  clk->value = ROUND_CLOCK_INITIAL_VALUE;
 
   return true;
 }
@@ -97,7 +97,7 @@ bool round_clock_setremotevalue(RoundClock *clk, clock_t remoteValue)
   if (clk->value < remoteValue) {
     clk->value = remoteValue;
   }
-  clk->value += ROUNDC_CLOCK_INCREMENT_VALUE;
+  clk->value += ROUND_CLOCK_INCREMENT_VALUE;
   
   round_mutex_unlock(clk->mutex);
   
@@ -138,7 +138,7 @@ clock_t round_clock_increment(RoundClock *clk)
   
   round_mutex_lock(clk->mutex);
   
-  clk->value += ROUNDC_CLOCK_INCREMENT_VALUE;
+  clk->value += ROUND_CLOCK_INCREMENT_VALUE;
   lastValue = clk->value;
   
   round_mutex_unlock(clk->mutex);

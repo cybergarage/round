@@ -8,8 +8,8 @@
  *
  ******************************************************************/
 
-#ifndef _ROUNDC_CLIENT_H_
-#define _ROUNDC_CLIENT_H_
+#ifndef _ROUND_CLIENT_H_
+#define _ROUND_CLIENT_H_
 
 #include <round/typedef.h>
 #include <round/const.h>
@@ -22,7 +22,7 @@ extern "C" {
  * Data Type
  ****************************************/
   
-#if !defined(_ROUNDC_CLIENT_INTERNAL_H_)
+#if !defined(_ROUND_CLIENT_INTERNAL_H_)
 typedef void RoundClient;
 #endif
 
@@ -37,4 +37,4 @@ bool round_client_delete(RoundClient *c);
 } /* extern C */
 #endif
 
-#endif /* _ROUNDC_CLIENT_H_ */
+#endif /* _ROUND_CLIENT_H_ */

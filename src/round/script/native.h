@@ -8,8 +8,8 @@
  *
  ******************************************************************/
 
-#ifndef _ROUNDC_NATIVE_ENGINE_H_
-#define _ROUNDC_NATIVE_ENGINE_H_
+#ifndef _ROUND_NATIVE_ENGINE_H_
+#define _ROUND_NATIVE_ENGINE_H_
 
 #include <round/script.h>
 #include <round/method.h>

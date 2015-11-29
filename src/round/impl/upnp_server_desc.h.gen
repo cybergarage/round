@@ -15,7 +15,7 @@ print<<HEADER;
 
 HEADER
 
-print "static const char *ROUNDC_UPNP_SERVER_DEVICE_DESCRIPTION = \\\n";
+print "static const char *ROUND_UPNP_SERVER_DEVICE_DESCRIPTION = \\\n";
 @desc_lines = `more ../../../conf/upnp_device_desc.xml`;
 foreach $desc_line (@desc_lines) {
 	chomp($desc_line);
@@ -28,7 +28,7 @@ print "\"\";\n";
 
 print "\n";
 
-print "static const char *ROUNDC_UPNP_SERVER_SERVICE_DESCRIPTION = \\\n";
+print "static const char *ROUND_UPNP_SERVER_SERVICE_DESCRIPTION = \\\n";
 @desc_lines = `more ../../../conf/upnp_service_desc.xml`;
 foreach $desc_line (@desc_lines) {
 	chomp($desc_line);
