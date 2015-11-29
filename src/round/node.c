@@ -73,7 +73,9 @@ bool round_node_init(RoundNode *node)
 
   round_node_setrequesttimeout(node, ROUND_JSON_RPC_REQUEST_TIMEOUT_SEC);
   round_consistenthashing_node_sethashfunc(node, round_node_getdigest);
+
   round_node_setcluster(node, NULL);
+  round_node_setclustername(node, ROUND_DEFAULT_NODE_CLUSTER_NAME);
   
   return true;
 }
