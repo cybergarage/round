@@ -8,8 +8,8 @@
  *
  ******************************************************************/
 
-#ifndef _ROUNDC_CLUSTER_H_
-#define _ROUNDC_CLUSTER_H_
+#ifndef _ROUND_CLUSTER_H_
+#define _ROUND_CLUSTER_H_
 
 #include <round/typedef.h>
 
@@ -21,7 +21,7 @@ extern "C" {
  * Data Type
  ****************************************/
 
-#if !defined(_ROUNDC_CLUSTER_INTERNAL_H_)
+#if !defined(_ROUND_CLUSTER_INTERNAL_H_)
 typedef void RoundCluster;
 #endif
   
@@ -39,4 +39,4 @@ const char *round_cluster_getname(RoundCluster *cluster);
 } /* extern C */
 #endif
 
-#endif /* _ROUNDC_CLUSTER_H_ */
+#endif /* _ROUND_CLUSTER_H_ */

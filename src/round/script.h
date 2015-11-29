@@ -8,8 +8,8 @@
  *
  ******************************************************************/
 
-#ifndef _ROUNDC_SCRIPT_INTERNAL_H_
-#define _ROUNDC_SCRIPT_INTERNAL_H_
+#ifndef _ROUND_SCRIPT_INTERNAL_H_
+#define _ROUND_SCRIPT_INTERNAL_H_
 
 #ifdef HAVE_CONFIG_H
 #  include "config.h"

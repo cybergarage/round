@@ -126,7 +126,7 @@ static const char *JS_INVALID_FUNCTION = \
 
 static const char *RPC_SET_ECHO = \
   "{\"jsonrpc\": \"2.0\"," \
-   "\"method\": \"" ROUNDC_SYSTEM_METHOD_SET_METHOD "\","
+   "\"method\": \"" ROUND_SYSTEM_METHOD_SET_METHOD "\","
    "\"params\": {" \
        "\"language\": \"" RPC_SET_ECHO_LANG "\", " \
        "\"name\": \"" RPC_SET_ECHO_NAME "\", " \
@@ -135,7 +135,7 @@ static const char *RPC_SET_ECHO = \
 
 static const char *RPC_REMOVE_ECHO = \
   "{\"jsonrpc\": \"2.0\"," \
-  "\"method\": \"" ROUNDC_SYSTEM_METHOD_REMOVE_METHOD "\","
+  "\"method\": \"" ROUND_SYSTEM_METHOD_REMOVE_METHOD "\","
   "\"params\": {" \
   "\"name\": \"" RPC_SET_ECHO_NAME "\"" \
   "}, \"id\": 1}";
@@ -152,7 +152,7 @@ static const char *RPC_RUN_ECHO = \
   
 static const char *RPC_SET_HELLO = \
   "{\"jsonrpc\": \"2.0\"," \
-  "\"method\": \"" ROUNDC_SYSTEM_METHOD_SET_ALIAS "\","
+  "\"method\": \"" ROUND_SYSTEM_METHOD_SET_ALIAS "\","
   "\"params\": {" \
     "\"name\": \"" RPC_ALIAS_HELLO_NAME "\", " \
     "\"method\": \"" RPC_SET_ECHO_NAME "\", " \
@@ -161,7 +161,7 @@ static const char *RPC_SET_HELLO = \
   
 static const char *RPC_REMOVE_HELLO = \
   "{\"jsonrpc\": \"2.0\"," \
-  "\"method\": \"" ROUNDC_SYSTEM_METHOD_REMOVE_ALIAS "\","
+  "\"method\": \"" ROUND_SYSTEM_METHOD_REMOVE_ALIAS "\","
   "\"params\": {" \
   "\"name\": \"" RPC_ALIAS_HELLO_NAME "\"" \
   "}, \"id\": 1}";
@@ -183,7 +183,7 @@ static const char *RPC_RUN_HELLO = \
 
 static const char *RPC_SET_ECHO_HELLO = \
   "{\"jsonrpc\": \"2.0\"," \
-  "\"method\": \"" ROUNDC_SYSTEM_METHOD_SET_METHOD "\","
+  "\"method\": \"" ROUND_SYSTEM_METHOD_SET_METHOD "\","
   "\"params\": {" \
   "\"language\": \"" RPC_ECHO_HELLO_LANG "\", " \
   "\"name\": \"" RPC_ECHO_HELLO_NAME "\", " \
@@ -192,14 +192,14 @@ static const char *RPC_SET_ECHO_HELLO = \
 
 static const char *RPC_REMOVE_ECHO_HELLO = \
   "{\"jsonrpc\": \"2.0\"," \
-  "\"method\": \"" ROUNDC_SYSTEM_METHOD_REMOVE_METHOD "\","
+  "\"method\": \"" ROUND_SYSTEM_METHOD_REMOVE_METHOD "\","
   "\"params\": {" \
   "\"name\": \"" RPC_ECHO_HELLO_NAME "\"" \
   "}, \"id\": 1}";
 
 static const char *RPC_SET_ECHO_HELLO_ROUTE = \
   "{\"jsonrpc\": \"2.0\"," \
-  "\"method\": \"" ROUNDC_SYSTEM_METHOD_SET_ROUTE "\","
+  "\"method\": \"" ROUND_SYSTEM_METHOD_SET_ROUTE "\","
   "\"params\": {" \
   "\"name\": \"" RPC_ECHO_HELLO_NAME "\"," \
   "\"src\": \"" RPC_SET_ECHO_NAME "\"," \
@@ -208,7 +208,7 @@ static const char *RPC_SET_ECHO_HELLO_ROUTE = \
 
 static const char *RPC_REMOVE_ECHO_HELLO_ROUTE = \
   "{\"jsonrpc\": \"2.0\"," \
-  "\"method\": \"" ROUNDC_SYSTEM_METHOD_REMOVE_ROUTE "\","
+  "\"method\": \"" ROUND_SYSTEM_METHOD_REMOVE_ROUTE "\","
   "\"params\": {" \
   "\"name\": \"" RPC_ECHO_HELLO_NAME "\"" \
   "}, \"id\": 1}";

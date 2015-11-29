@@ -154,19 +154,19 @@ bool round_method_manager_execmethod(RoundMethodManager *mgr, const char *name, 
   
   method = round_method_manager_getmethod(mgr, name);
   if (!method) {
-    round_error_setjsonrpcerrorcode(err, ROUNDC_RPC_ERROR_CODE_METHOD_NOT_FOUND);
+    round_error_setjsonrpcerrorcode(err, ROUND_RPC_ERROR_CODE_METHOD_NOT_FOUND);
     return false;
   }
 
   engine = round_method_manager_getengine(mgr, round_method_getlanguage(method));
   if (!method) {
-    round_error_setjsonrpcerrorcode(err, ROUNDC_RPC_ERROR_CODE_SCRIPT_ENGINE_NOT_FOUND);
+    round_error_setjsonrpcerrorcode(err, ROUND_RPC_ERROR_CODE_SCRIPT_ENGINE_NOT_FOUND);
     return false;
   }
   
   execFunc = round_script_engine_getexecutefunc(engine);
   if (!execFunc) {
-    round_error_setjsonrpcerrorcode(err, ROUNDC_RPC_ERROR_CODE_SCRIPT_ENGINE_NOT_FOUND);
+    round_error_setjsonrpcerrorcode(err, ROUND_RPC_ERROR_CODE_SCRIPT_ENGINE_NOT_FOUND);
     return false;
   }
   

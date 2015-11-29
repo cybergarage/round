@@ -8,8 +8,8 @@
  *
  ******************************************************************/
 
-#ifndef _ROUNDC_ROUND_H_
-#define _ROUNDC_ROUND_H_
+#ifndef _ROUND_ROUND_H_
+#define _ROUND_ROUND_H_
 
 #include <round/script/js.h>
 #include <round/script/lua.h>

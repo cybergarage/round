@@ -119,8 +119,3 @@ script_post_method,"post_method"
 script_print_method,"print"
 script_search_method,"search"
 script_search_method_wait_msec,5000
-
-# Messages
-message_searching,"Searching"
-message_done,"Done"
-

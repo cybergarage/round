@@ -8,8 +8,8 @@
  *
  ******************************************************************/
 
-#ifndef _ROUNDC_RPC_SERVER_H_
-#define _ROUNDC_RPC_SERVER_H_
+#ifndef _ROUND_RPC_SERVER_H_
+#define _ROUND_RPC_SERVER_H_
 
 #include <round/typedef.h>
 #include <round/impl/upnp_server.h>

@@ -8,8 +8,8 @@
  *
  ******************************************************************/
 
-#ifndef _ROUNDC_TEST_H_
-#define _ROUNDC_TEST_H_
+#ifndef _ROUND_TEST_H_
+#define _ROUND_TEST_H_
 
 #define ROUND_TEST_MAP_SIZE 10
 

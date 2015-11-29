@@ -72,7 +72,7 @@ bool round_node_init(RoundNode *node)
   if (!node->addr || !node->cluster || !node->clock || !node->clusterMgr)
     return false;
 
-  round_node_setrequesttimeout(node, ROUNDC_JSON_RPC_REQUEST_TIMEOUT_SEC);
+  round_node_setrequesttimeout(node, ROUND_JSON_RPC_REQUEST_TIMEOUT_SEC);
   round_consistenthashing_node_sethashfunc(node, round_node_getdigest);
   
   return true;

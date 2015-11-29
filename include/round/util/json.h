@@ -8,8 +8,8 @@
  *
  ******************************************************************/
 
-#ifndef _ROUNDC_UTIL_JSON_H_
-#define _ROUNDC_UTIL_JSON_H_
+#ifndef _ROUND_UTIL_JSON_H_
+#define _ROUND_UTIL_JSON_H_
 
 #include <round/typedef.h>
 #include <round/error.h>
@@ -52,7 +52,7 @@ enum {
  * Data Type
  ****************************************/
 
-#if !defined(_ROUNDC_UTIL_JSON_INTERNAL_H_)
+#if !defined(_ROUND_UTIL_JSON_INTERNAL_H_)
 typedef void RoundJSONObject;
 typedef void RoundJSON;
 #endif

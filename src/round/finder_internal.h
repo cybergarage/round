@@ -8,8 +8,8 @@
  *
  ******************************************************************/
 
-#ifndef _ROUNDC_FINDER_INTERNAL_H_
-#define _ROUNDC_FINDER_INTERNAL_H_
+#ifndef _ROUND_FINDER_INTERNAL_H_
+#define _ROUND_FINDER_INTERNAL_H_
 
 #include <round/typedef.h>
 #include <round/const.h>
@@ -42,4 +42,4 @@ typedef struct {
 } /* extern C */
 #endif
 
-#endif /* _ROUNDC_FINDER_INTERNAL_H_ */
+#endif /* _ROUND_FINDER_INTERNAL_H_ */

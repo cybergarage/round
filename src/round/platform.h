@@ -8,8 +8,8 @@
  *
  ******************************************************************/
 
-#ifndef _ROUNDC_PLATFORM_H_
-#define _ROUNDC_PLATFORM_H_
+#ifndef _ROUND_PLATFORM_H_
+#define _ROUND_PLATFORM_H_
 
 #include <stdio.h>
 #include <stdlib.h>

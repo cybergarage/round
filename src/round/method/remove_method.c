@@ -19,22 +19,22 @@ bool round_system_method_removemethod(RoundLocalNode *node, RoundJSONObject *par
   const char *name;
   
   if (!round_json_object_ismap(params)) {
-    round_error_setjsonrpcerrorcode(err, ROUNDC_RPC_ERROR_CODE_INVALID_PARAMS);
+    round_error_setjsonrpcerrorcode(err, ROUND_RPC_ERROR_CODE_INVALID_PARAMS);
     return false;
   }
   
-  if (!round_json_map_getstring(params, ROUNDC_SYSTEM_METHOD_PARAM_NAME, &name)) {
-    round_error_setjsonrpcerrorcode(err, ROUNDC_RPC_ERROR_CODE_INVALID_PARAMS);
+  if (!round_json_map_getstring(params, ROUND_SYSTEM_METHOD_PARAM_NAME, &name)) {
+    round_error_setjsonrpcerrorcode(err, ROUND_RPC_ERROR_CODE_INVALID_PARAMS);
     return false;
   }
 
   if (round_local_node_isfinalmethod(node, name)) {
-    round_error_setjsonrpcerrorcode(err, ROUNDC_RPC_ERROR_CODE_INVALID_PARAMS);
+    round_error_setjsonrpcerrorcode(err, ROUND_RPC_ERROR_CODE_INVALID_PARAMS);
     return false;
   }
 
   if (!round_local_node_removemethod(node, name)) {
-    round_error_setjsonrpcerrorcode(err, ROUNDC_RPC_ERROR_CODE_INTERNAL_ERROR);
+    round_error_setjsonrpcerrorcode(err, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR);
     return false;
   }
 

@@ -8,8 +8,8 @@
  *
  ******************************************************************/
 
-#ifndef _ROUNDC_FINDER__H_
-#define _ROUNDC_FINDER__H_
+#ifndef _ROUND_FINDER__H_
+#define _ROUND_FINDER__H_
 
 #include <round/typedef.h>
 #include <round/const.h>
@@ -24,7 +24,7 @@ extern "C" {
  * Data Type
  ****************************************/
   
-#if !defined(_ROUNDC_FINDER_INTERNAL_H_)
+#if !defined(_ROUND_FINDER_INTERNAL_H_)
 typedef void RoundFinder;
 #endif
   
@@ -44,4 +44,4 @@ bool round_finder_search(RoundFinder *finder);
 } /* extern C */
 #endif
 
-#endif /* _ROUNDC_FINDER__H_ */
+#endif /* _ROUND_FINDER__H_ */

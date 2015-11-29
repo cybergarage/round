@@ -8,8 +8,8 @@
  *
  ******************************************************************/
 
-#ifndef _ROUNDC_CLOCK_H_
-#define _ROUNDC_CLOCK_H_
+#ifndef _ROUND_CLOCK_H_
+#define _ROUND_CLOCK_H_
 
 #include <time.h>
 
@@ -20,8 +20,8 @@
 extern "C" {
 #endif
 
-#define ROUNDC_CLOCK_INITIAL_VALUE 0
-#define ROUNDC_CLOCK_INCREMENT_VALUE 1
+#define ROUND_CLOCK_INITIAL_VALUE 0
+#define ROUND_CLOCK_INCREMENT_VALUE 1
   
 /****************************************
  * Constant

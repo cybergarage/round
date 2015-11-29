@@ -8,8 +8,8 @@
  *
  ******************************************************************/
 
-#ifndef _ROUNDC_CLIENT_INTERNAL_H_
-#define _ROUNDC_CLIENT_INTERNAL_H_
+#ifndef _ROUND_CLIENT_INTERNAL_H_
+#define _ROUND_CLIENT_INTERNAL_H_
 
 #include <round/finder.h>
 
@@ -29,6 +29,6 @@ typedef struct {
 } /* extern C */
 #endif
 
-#endif /* _ROUNDC_CLIENT_INTERNAL_H_ */
+#endif /* _ROUND_CLIENT_INTERNAL_H_ */
 
 #include <round/client.h>

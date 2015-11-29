@@ -22,7 +22,7 @@ BOOST_AUTO_TEST_CASE(MD5Digest)
   char *digest = NULL;
   BOOST_CHECK(round_md5_digest("a", &digest));
   BOOST_CHECK(digest);
-  BOOST_CHECK_EQUAL(round_strlen(digest), ROUNDC_MD5_DIGEST_STRING_LENGTH);
+  BOOST_CHECK_EQUAL(round_strlen(digest), ROUND_MD5_DIGEST_STRING_LENGTH);
   free(digest);
 }
 
@@ -33,7 +33,7 @@ BOOST_AUTO_TEST_CASE(SHADigest)
   char *digest = NULL;
   BOOST_CHECK(round_sha_digest("a", &digest));
   BOOST_CHECK(digest);
-  BOOST_CHECK_EQUAL(round_strlen(digest), ROUNDC_SHA_DIGEST_STRING_LENGTH);
+  BOOST_CHECK_EQUAL(round_strlen(digest), ROUND_SHA_DIGEST_STRING_LENGTH);
   free(digest);
 }
 
@@ -42,7 +42,7 @@ BOOST_AUTO_TEST_CASE(SHA256Digest)
   char *digest = NULL;
   BOOST_CHECK(round_sha256_digest("a", &digest));
   BOOST_CHECK(digest);
-  BOOST_CHECK_EQUAL(round_strlen(digest), ROUNDC_SHA256_DIGEST_STRING_LENGTH);
+  BOOST_CHECK_EQUAL(round_strlen(digest), ROUND_SHA256_DIGEST_STRING_LENGTH);
   free(digest);
 }
 

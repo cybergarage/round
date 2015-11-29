@@ -8,8 +8,8 @@
  *
  ******************************************************************/
 
-#ifndef _ROUNDC_CLASS_H_
-#define _ROUNDC_CLASS_H_
+#ifndef _ROUND_CLASS_H_
+#define _ROUND_CLASS_H_
 
 #include <round/typedef.h>
 #include <round/error.h>
@@ -41,7 +41,7 @@ enum {
 
 typedef int RoundNodeCode;
 
-#if !defined(_ROUNDC_NODE_INTERNAL_H_)
+#if !defined(_ROUND_NODE_INTERNAL_H_)
 typedef void RoundNode;
 #endif
   
@@ -68,5 +68,5 @@ bool round_node_postmessage(RoundNode *node, RoundJSONObject *reqObj, RoundJSONO
 } /* extern C */
 #endif
 
-#endif /* _ROUNDC_CLASS_H_ */
+#endif /* _ROUND_CLASS_H_ */
 

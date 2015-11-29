@@ -8,8 +8,8 @@
  *
  ******************************************************************/
 
-#ifndef _ROUNDC_ERROR_H_
-#define _ROUNDC_ERROR_H_
+#ifndef _ROUND_ERROR_H_
+#define _ROUND_ERROR_H_
 
 #include <round/typedef.h>
 
@@ -21,7 +21,7 @@ extern "C" {
 * Data Type
 ****************************************/
 
-#if !defined(_ROUNDC_ERROR_INTERNAL_H_)
+#if !defined(_ROUND_ERROR_INTERNAL_H_)
 typedef void RoundError;
 #endif
   

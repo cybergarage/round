@@ -42,7 +42,7 @@ bool round_upnp_server_isjsonrpcrequest(mUpnpHttpRequest *httpReq)
     return false;
   
   char *uri = mupnp_http_request_geturi(httpReq);
-  if (!round_streq(uri, ROUNDC_RPC_HTTP_ENDPOINT))
+  if (!round_streq(uri, ROUND_RPC_HTTP_ENDPOINT))
     return false;
   
   // TODO : Check content type
@@ -88,18 +88,18 @@ RoundUpnpServer *round_upnp_server_new(void)
 
   // Setup UPnP Device
   
-  if (mupnp_device_parsedescription(server->dev, ROUNDC_UPNP_SERVER_DEVICE_DESCRIPTION, strlen(ROUNDC_UPNP_SERVER_DEVICE_DESCRIPTION)) == false) {
+  if (mupnp_device_parsedescription(server->dev, ROUND_UPNP_SERVER_DEVICE_DESCRIPTION, strlen(ROUND_UPNP_SERVER_DEVICE_DESCRIPTION)) == false) {
     mupnp_device_delete(server->dev);
     return NULL;
   }
   
-  mUpnpService *upnpSrv = mupnp_device_getservicebyexacttype(server->dev, ROUNDC_UPNP_SERVICE_TYPE);
+  mUpnpService *upnpSrv = mupnp_device_getservicebyexacttype(server->dev, ROUND_UPNP_SERVICE_TYPE);
   if (upnpSrv == NULL) {
     mupnp_device_delete(server->dev);
     return NULL;
   }
   
-  if (mupnp_service_parsedescription(upnpSrv, ROUNDC_UPNP_SERVER_SERVICE_DESCRIPTION, strlen(ROUNDC_UPNP_SERVER_SERVICE_DESCRIPTION)) == false) {
+  if (mupnp_service_parsedescription(upnpSrv, ROUND_UPNP_SERVER_SERVICE_DESCRIPTION, strlen(ROUND_UPNP_SERVER_SERVICE_DESCRIPTION)) == false) {
     mupnp_device_delete(server->dev);
     return NULL;
   }
