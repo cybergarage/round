@@ -50,7 +50,7 @@ BOOST_AUTO_TEST_CASE(ClusterMgrAddNode)
   
   RoundNode *node = round_node_local_new();
   
-  BOOST_CHECK(round_node_setcluster(node, TEST_CLUSTER_NAME));
+  BOOST_CHECK(round_node_setclustername(node, TEST_CLUSTER_NAME));
   
   BOOST_CHECK(round_cluster_manager_addnode(mgr, node));
   
