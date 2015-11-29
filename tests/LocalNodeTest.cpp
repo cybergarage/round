@@ -14,7 +14,7 @@
 #include <round/cluster_internal.h>
 #include <round/method/system_method.h>
 
-BOOST_AUTO_TEST_SUITE(server)
+BOOST_AUTO_TEST_SUITE(node)
 
 BOOST_AUTO_TEST_CASE(LocalNodeNew)
 {
