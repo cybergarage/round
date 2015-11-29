@@ -35,6 +35,14 @@ void round_cluster_delete(RoundCluster *cluster);
 RoundCluster *round_cluster_next(RoundCluster *cluster);
 const char *round_cluster_getname(RoundCluster *cluster);
 
+/****************************************
+ * Function (Node)
+ ****************************************/
+
+RoundCluster *round_node_getcluster(RoundNode *node);
+RoundCluster *round_node_getclusterbyname(RoundNode *node, const char *name);
+RoundCluster *round_node_getclusters(RoundNode *node);
+
 #ifdef  __cplusplus
 } /* extern C */
 #endif

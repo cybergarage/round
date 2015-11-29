@@ -66,7 +66,7 @@ RoundCluster *round_cluster_manager_getclusterbyname(RoundClusterManager *mgr, c
   if (!mgr)
     return NULL;
   
-  for (RoundCluster *cluster = round_cluster_manager_getclusterbynames(mgr); cluster; cluster = round_cluster_next(cluster)) {
+  for (RoundCluster *cluster = round_cluster_manager_getclusters(mgr); cluster; cluster = round_cluster_next(cluster)) {
     if (round_streq(name, round_cluster_getname(cluster)))
         return cluster;
   }
@@ -81,7 +81,7 @@ RoundCluster *round_cluster_manager_getclusterbyname(RoundClusterManager *mgr, c
 RoundCluster *round_cluster_manager_getclusterbynode(RoundClusterManager *mgr, RoundNode *node)
 {
   const char *clusterName;
-  if (!round_node_getcluster(node, &clusterName))
+  if (!round_node_getclustername(node, &clusterName))
     return NULL;
   
   return round_cluster_manager_getclusterbyname(mgr, clusterName);
@@ -97,7 +97,7 @@ bool round_cluster_manager_addnode(RoundClusterManager *mgr, RoundNode *node)
     return false;
   
   const char *clusterName;
-  if (!round_node_getcluster(node, &clusterName))
+  if (!round_node_getclustername(node, &clusterName))
     return false;
 
   RoundCluster *cluster = round_cluster_manager_getclusterbyname(mgr, clusterName);

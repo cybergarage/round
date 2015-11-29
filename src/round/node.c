@@ -61,19 +61,19 @@ bool round_node_init(RoundNode *node)
   
   round_consistenthashing_node_init((RoundConsistentHashingNode *)node);
   round_oo_setdescendantdestoroyfunc(node, NULL);
- 
   node->addr = round_string_new();
   node->port = 0;
   node->digest = round_string_new();
-  node->cluster = round_string_new();
+  node->clusterName = round_string_new();
   node->clock = round_clock_new();
   node->clusterMgr = round_cluster_manager_new();
   
-  if (!node->addr || !node->cluster || !node->clock || !node->clusterMgr)
+  if (!node->addr || !node->clusterName || !node->clock || !node->clusterMgr)
     return false;
 
   round_node_setrequesttimeout(node, ROUND_JSON_RPC_REQUEST_TIMEOUT_SEC);
   round_consistenthashing_node_sethashfunc(node, round_node_getdigest);
+  round_node_setcluster(node, NULL);
   
   return true;
 }
@@ -110,7 +110,7 @@ bool round_node_destroy(RoundNode *node)
 
   round_string_delete(node->addr);
   round_string_delete(node->digest);
-  round_string_delete(node->cluster);
+  round_string_delete(node->clusterName);
   round_clock_delete(node->clock);
   round_cluster_manager_delete(node->clusterMgr);
   
@@ -204,7 +204,7 @@ bool round_node_equals(RoundNode *node1, RoundNode *node2)
   if (!round_string_equals(node1->addr, node2->addr))
     return false;
   
-  if (!round_string_equals(node1->cluster, node2->cluster))
+  if (!round_string_equals(node1->clusterName, node2->clusterName))
     return false;
   
   return true;
@@ -248,27 +248,27 @@ const char *round_node_getdigest(RoundNode *node)
  * round_node_setcluster
  ****************************************/
 
-bool round_node_setcluster(RoundNode *node, const char *cluster)
+bool round_node_setclustername(RoundNode *node, const char *cluster)
 {
   if (!node)
     return false;
   
-  return round_string_setvalue(node->cluster, cluster);
+  return round_string_setvalue(node->clusterName, cluster);
 }
 
 /****************************************
  * round_node_getcluster
  ****************************************/
 
-bool round_node_getcluster(RoundNode *node, const char **cluster)
+bool round_node_getclustername(RoundNode *node, const char **cluster)
 {
   if (!node)
     return false;
   
-  if (round_string_length(node->cluster) <= 0)
+  if (round_string_length(node->clusterName) <= 0)
     return false;
   
-  *cluster = round_string_getvalue(node->cluster);
+  *cluster = round_string_getvalue(node->clusterName);
   
   return true;
 }
@@ -336,15 +336,50 @@ bool round_node_clearclusternode(RoundNode *node, RoundNode *clusterNode)
 }
 
 /****************************************
- * round_node_haclusternode
+ * round_node_hasclusternode
  ****************************************/
 
-bool round_node_haclusternode(RoundNode *node, RoundNode *clusterNode)
+bool round_node_hasclusternode(RoundNode *node, RoundNode *clusterNode)
 {
   if (!node)
     return false;
   
   return round_cluster_manager_hasnode(node->clusterMgr, clusterNode);
+}
+
+/****************************************
+ * round_node_getcluster
+ ****************************************/
+
+RoundCluster *round_node_getcluster(RoundNode *node)
+{
+  if (!node)
+    return NULL;
+  
+  if (node->cluster)
+    return node->cluster;
+  
+  node->cluster = round_node_getclusterbyname(node, round_string_getvalue(node->clusterName));
+  
+  return node->cluster;
+}
+
+/****************************************
+ * round_node_getclusterbyname
+ ****************************************/
+
+RoundCluster *round_node_getclusterbyname(RoundNode *node, const char *name)
+{
+  return round_cluster_manager_getclusterbyname(node->clusterMgr, name);
+}
+
+/****************************************
+ * round_node_getclusters
+ ****************************************/
+
+RoundCluster *round_node_getclusters(RoundNode *node)
+{
+  return round_cluster_manager_getclusters(node->clusterMgr);
 }
 
 /****************************************
@@ -355,3 +390,5 @@ bool round_node_postmessage(RoundNode *node, RoundJSONObject *reqObj, RoundJSONO
 {
   return false;
 }
+
+

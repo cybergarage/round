@@ -8,6 +8,7 @@
  *
  ******************************************************************/
 
+#include <round/cluster_internal.h>
 #include <round/node_internal.h>
 
 #include <round/script/native.h>
@@ -187,6 +188,10 @@ bool round_local_node_start(RoundLocalNode *node)
   if (!node)
     return false;
 
+  if (!round_local_node_stop(node))
+    return false;
+  
+  isSuccess &= round_cluster_manager_addnode(node->clusterMgr, (RoundNode *)node);
   isSuccess &= round_thread_manager_start(node->threadMgr);
   
   if (!isSuccess) {
@@ -209,7 +214,8 @@ bool round_local_node_stop(RoundLocalNode *node)
     return false;
 
   isSuccess &= round_thread_manager_stop(node->threadMgr);
-
+  isSuccess &= round_cluster_manager_clear(node->clusterMgr);
+  
   return isSuccess;
 }
 

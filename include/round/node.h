@@ -57,7 +57,9 @@ RoundNode *round_node_next(RoundNode *node);
 
 bool round_node_getaddress(RoundNode *node, const char **addr);
 bool round_node_getport(RoundNode *node, int *port);
-bool round_node_getcluster(RoundNode *node, const char **cluster);
+
+bool round_node_setclustername(RoundNode *node, const char *cluster);
+bool round_node_getclustername(RoundNode *node, const char **cluster);
   
 bool round_node_setrequesttimeout(RoundNode *node, time_t value);
 time_t round_node_getrequesttimeout(RoundNode *node);

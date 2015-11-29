@@ -54,9 +54,9 @@ RoundRemoteNode *round_remote_node_copy(RoundNode *node)
     round_remote_node_setport(newNode, port);
   }
 
-  const char *cluster;
-  if (round_node_getcluster(node, &cluster)) {
-    round_remote_node_setcluster(newNode, cluster);
+  const char *clusterName;
+  if (round_node_getclustername(node, &clusterName)) {
+    round_remote_node_setclustername(newNode, clusterName);
   }
   
   return newNode;

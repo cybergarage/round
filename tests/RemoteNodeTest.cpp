@@ -32,7 +32,7 @@ BOOST_AUTO_TEST_CASE(RemoteNodeCopy)
   BOOST_CHECK(node0);
   round_remote_node_setaddress(node0, TEST_ADDR);
   round_remote_node_setport(node0, TEST_PORT);
-  round_remote_node_setcluster(node0, TEST_CLUSTER);
+  round_remote_node_setclustername(node0, TEST_CLUSTER);
   
   RoundRemoteNode *node1 = round_remote_node_copy((RoundNode *)node0);
   BOOST_CHECK(node1);

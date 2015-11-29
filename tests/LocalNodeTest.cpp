@@ -11,7 +11,10 @@
 #include <boost/test/unit_test.hpp>
 
 #include <round/node_internal.h>
+#include <round/cluster_internal.h>
 #include <round/method/system_method.h>
+
+BOOST_AUTO_TEST_SUITE(server)
 
 BOOST_AUTO_TEST_CASE(LocalNodeNew)
 {
@@ -51,7 +54,13 @@ BOOST_AUTO_TEST_CASE(LocalNodeRun)
   BOOST_CHECK(node);
   
   BOOST_CHECK(round_local_node_start(node));
+ 
+  RoundCluster *cluster = round_local_node_getcluster(node);
+  BOOST_CHECK(cluster);
+  
   BOOST_CHECK(round_local_node_stop(node));
   
   BOOST_CHECK(round_local_node_delete(node));
 }
+
+BOOST_AUTO_TEST_SUITE_END()
