@@ -123,7 +123,7 @@ bool round_cluster_manager_addnode(RoundClusterManager *mgr, RoundNode *node)
   if (!newNode)
     return false;
 
-  return round_cluster_addnode(cluster, node);
+  return round_cluster_addnode(cluster, newNode);
 }
 
 /****************************************
