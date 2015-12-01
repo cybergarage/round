@@ -102,15 +102,6 @@ bool round_consistenthashing_ring_removenode(RoundConsistentHashingRing *ring, v
 }
 
 /****************************************
- * round_consistenthashing_ring_hasnode
- ****************************************/
-
-bool round_consistenthashing_ring_hasnode(RoundConsistentHashingRing *ring, void *node)
-{
-  return (0 <= round_consistenthashing_ring_getnodeindex(ring, node)) ? true : false;
-}
-
-/****************************************
  * round_consistenthashing_ring_getnodebyhashcode
  ****************************************/
 

@@ -50,13 +50,22 @@ BOOST_AUTO_TEST_CASE(LocalSystemMethod)
 
 BOOST_AUTO_TEST_CASE(LocalNodeRun)
 {
+  const char *TEST_ADDR = "1.2.3.4";
+  const int TEST_PORT = 8080;
+  const char *TEST_CLUSTER = "round";
+  
   RoundLocalNode *node = round_local_node_new();
   BOOST_CHECK(node);
+  round_local_node_setaddress(node, TEST_ADDR);
+  round_local_node_setport(node, TEST_PORT);
+  round_local_node_setclustername(node, TEST_CLUSTER);
   
   BOOST_CHECK(round_local_node_start(node));
  
   RoundCluster *cluster = round_local_node_getcluster(node);
   BOOST_CHECK(cluster);
+  BOOST_CHECK_EQUAL(round_cluster_size(cluster), 1);
+  BOOST_CHECK(round_cluster_hasnode(cluster, node));
   
   BOOST_CHECK(round_local_node_stop(node));
   
