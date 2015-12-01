@@ -14,17 +14,16 @@
  * round_finder_new
  ****************************************/
 
-RoundFinder *round_finder_new(void)
-{
+RoundFinder *round_finder_new(void) {
   RoundFinder *finder;
-  
+
   finder = (RoundFinder *)malloc(sizeof(RoundFinder));
-  
+
   if (!finder)
     return NULL;
-  
+
   finder->cp = mupnp_controlpoint_new();
-  
+
   return finder;
 }
 
@@ -32,15 +31,14 @@ RoundFinder *round_finder_new(void)
  * round_finder_delete
  ****************************************/
 
-bool round_finder_delete(RoundFinder *finder)
-{
+bool round_finder_delete(RoundFinder *finder) {
   if (!finder)
     return false;
-  
+
   mupnp_controlpoint_delete(finder->cp);
-  
+
   free(finder);
-  
+
   return true;
 }
 
@@ -48,8 +46,7 @@ bool round_finder_delete(RoundFinder *finder)
  * round_finder_start
  ****************************************/
 
-bool round_finder_start(RoundFinder *finder)
-{
+bool round_finder_start(RoundFinder *finder) {
   if (!finder)
     return false;
 
@@ -60,11 +57,10 @@ bool round_finder_start(RoundFinder *finder)
  * round_finder_stop
  ****************************************/
 
-bool round_finder_stop(RoundFinder *finder)
-{
+bool round_finder_stop(RoundFinder *finder) {
   if (!finder)
     return false;
-  
+
   return mupnp_controlpoint_stop(finder->cp);
 }
 
@@ -72,11 +68,9 @@ bool round_finder_stop(RoundFinder *finder)
  * round_finder_search
  ****************************************/
 
-bool round_finder_search(RoundFinder *finder)
-{
+bool round_finder_search(RoundFinder *finder) {
   if (!finder)
     return false;
-  
+
   return mupnp_controlpoint_search(finder->cp, ROUND_UPNP_DEVICE_TYPE);
 }
-

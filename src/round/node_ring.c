@@ -14,8 +14,7 @@
 * round_node_ring_new
 ****************************************/
 
-RoundNodeRing *round_node_ring_new(void)
-{
+RoundNodeRing *round_node_ring_new(void) {
   RoundNodeRing *ring;
 
   ring = (RoundNodeRing *)malloc(sizeof(RoundNodeRing));
@@ -23,8 +22,9 @@ RoundNodeRing *round_node_ring_new(void)
     return NULL;
 
   ring->consHashRing = round_consistenthashing_ring_new();
-  round_consistenthashing_ring_setnodedestructor(ring->consHashRing, round_node_delete);
-  
+  round_consistenthashing_ring_setnodedestructor(
+  ring->consHashRing, round_node_delete);
+
   return ring;
 }
 
@@ -32,14 +32,13 @@ RoundNodeRing *round_node_ring_new(void)
 * round_node_ring_delete
 ****************************************/
 
-bool round_node_ring_delete(RoundNodeRing *ring)
-{
+bool round_node_ring_delete(RoundNodeRing *ring) {
   if (!ring)
     return false;
 
   round_consistenthashing_ring_delete(ring->consHashRing);
 
   free(ring);
-  
+
   return true;
 }

@@ -14,8 +14,7 @@
 * round_map_object_new
 ****************************************/
 
-RoundMapObject *round_map_object_new(void)
-{
+RoundMapObject *round_map_object_new(void) {
   RoundMapObject *obj;
 
   obj = (RoundMapObject *)malloc(sizeof(RoundMapObject));
@@ -28,7 +27,7 @@ RoundMapObject *round_map_object_new(void)
   obj->key = NULL;
   obj->obj = NULL;
   obj->objDestFunc = NULL;
-  
+
   return obj;
 }
 
@@ -36,17 +35,16 @@ RoundMapObject *round_map_object_new(void)
 * round_map_object_delete
 ****************************************/
 
-bool round_map_object_delete(RoundMapObject *obj)
-{
+bool round_map_object_delete(RoundMapObject *obj) {
   if (!obj)
     return false;
-  
+
   round_list_remove((RoundList *)obj);
 
   if (obj->key) {
     free(obj->key);
   }
-  
+
   if (obj->obj && obj->objDestFunc) {
     obj->objDestFunc(obj->obj);
   }

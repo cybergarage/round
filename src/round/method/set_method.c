@@ -14,8 +14,8 @@
  * round_system_method_setmethod
  ****************************************/
 
-bool round_system_method_setmethod(RoundLocalNode *node, RoundJSONObject *params, RoundJSONObject **result, RoundError *err)
-{
+bool round_system_method_setmethod(RoundLocalNode *node,
+RoundJSONObject *params, RoundJSONObject **result, RoundError *err) {
   const char *name, *lang;
   byte *code;
   size_t codeLen;
@@ -26,24 +26,27 @@ bool round_system_method_setmethod(RoundLocalNode *node, RoundJSONObject *params
     round_error_setjsonrpcerrorcode(err, ROUND_RPC_ERROR_CODE_INVALID_PARAMS);
     return false;
   }
-  
-  if (!round_json_map_getstring(params, ROUND_SYSTEM_METHOD_PARAM_NAME, &name)) {
+
+  if (!round_json_map_getstring(
+      params, ROUND_SYSTEM_METHOD_PARAM_NAME, &name)) {
     round_error_setjsonrpcerrorcode(err, ROUND_RPC_ERROR_CODE_INVALID_PARAMS);
     return false;
   }
-  
-  if (!round_json_map_getstring(params, ROUND_SYSTEM_METHOD_PARAM_LANGUAGE, &lang)) {
+
+  if (!round_json_map_getstring(
+      params, ROUND_SYSTEM_METHOD_PARAM_LANGUAGE, &lang)) {
     round_error_setjsonrpcerrorcode(err, ROUND_RPC_ERROR_CODE_INVALID_PARAMS);
     return false;
   }
-  
-  if (!round_json_map_getstring(params, ROUND_SYSTEM_METHOD_PARAM_CODE, (const char **)&code)) {
+
+  if (!round_json_map_getstring(
+      params, ROUND_SYSTEM_METHOD_PARAM_CODE, (const char **)&code)) {
     round_error_setjsonrpcerrorcode(err, ROUND_RPC_ERROR_CODE_INVALID_PARAMS);
     return false;
   }
-  
+
   codeLen = round_strlen((const char *)code);
-  
+
   /* TODO : Support Base64
    #define ROUND_SYSTEM_METHOD_PARAM_ENCODE "encode"
    #define ROUND_SYSTEM_METHOD_PARAM_BASE64 "base64"
@@ -56,22 +59,22 @@ bool round_system_method_setmethod(RoundLocalNode *node, RoundJSONObject *params
    }
    }
    */
-  
+
   newMethod = round_method_new();
   if (!newMethod) {
     round_error_setjsonrpcerrorcode(err, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR);
     return false;
   }
-  
+
   round_method_setname(newMethod, name);
   round_method_setlanguage(newMethod, lang);
   round_method_setcode(newMethod, code, codeLen);
-  
+
   isAdded = round_local_node_setmethod(node, newMethod);
   if (!isAdded) {
     round_error_setjsonrpcerrorcode(err, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR);
     round_method_delete(newMethod);
   }
-  
+
   return isAdded;
 }

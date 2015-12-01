@@ -14,11 +14,10 @@
 * round_local_node_message_thread
 ****************************************/
 
-void round_local_node_message_thread(RoundThread *thread)
-{
+void round_local_node_message_thread(RoundThread *thread) {
   if (!thread)
     return;
-  
+
   RoundLocalNode *node = (RoundLocalNode *)round_thread_getuserdata(thread);
   if (!node)
     return;
@@ -40,8 +39,7 @@ void round_local_node_message_thread(RoundThread *thread)
 
     if (round_message_isnotifyenabled(msg)) {
       round_message_notify(msg);
-    }
-    else {
+    } else {
       if (*resObj) {
         round_json_object_delete(*resObj);
       }
