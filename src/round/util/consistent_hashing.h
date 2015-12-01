@@ -51,17 +51,18 @@ bool round_consistenthashing_ring_delete(RoundConsistentHashingRing *ring);
 #define round_consistenthashing_ring_size(ring) round_ordered_list_size(ring->orderedList)
 #define round_consistenthashing_ring_getnodes(ring) ((RoundConsistentHashingNode *)round_ordered_list_gets(ring->orderedList))
 #define round_consistenthashing_ring_getnode(ring,idx) ((RoundConsistentHashingNode *)round_ordered_list_get(ring->orderedList,idx))
+ssize_t round_consistenthashing_ring_getnodeindex(RoundConsistentHashingRing *ring, void *node);
+#define round_consistenthashing_ring_hasnode(ring,node) ((0 <= round_consistenthashing_ring_getnodeindex(ring, node)) ? true : false)
 
 RoundConsistentHashingNode *round_consistenthashing_ring_getnodebyhashcode(RoundConsistentHashingRing *ring, const char *nodeHash);
 RoundConsistentHashingNode *round_consistenthashing_ring_getequalnode(RoundConsistentHashingRing *ring, void *node);
+#define round_consistenthashing_ring_hasequalnode(ring,node) ((round_consistenthashing_ring_getequalnode(ring,node) != NULL) ? true : false)
 
 RoundConsistentHashingNode *round_consistenthashing_ring_gethandlenode(RoundConsistentHashingRing *ring, const char *hashCode);
 bool round_consistenthashing_ring_ishandlenode(RoundConsistentHashingRing *ring, void *node, const char *hashCode);
 
 bool round_consistenthashing_ring_addnode(RoundConsistentHashingRing *ring, void *node);
 bool round_consistenthashing_ring_removenode(RoundConsistentHashingRing *ring, void *node);
-bool round_consistenthashing_ring_hasnode(RoundConsistentHashingRing *ring, void *node);
-ssize_t round_consistenthashing_ring_getnodeindex(RoundConsistentHashingRing *ring, void *node);
 
 bool round_consistenthashing_ring_islastnode(RoundConsistentHashingRing *ring, void *node);
 RoundConsistentHashingNode *round_consistenthashing_ring_getlastnode(RoundConsistentHashingRing *ring);
