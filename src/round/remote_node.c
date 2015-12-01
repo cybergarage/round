@@ -14,8 +14,7 @@
 * round_remote_node_new
 ****************************************/
 
-RoundRemoteNode *round_remote_node_new(void)
-{
+RoundRemoteNode *round_remote_node_new(void) {
   RoundRemoteNode *node;
 
   node = (RoundRemoteNode *)malloc(sizeof(RoundRemoteNode));
@@ -27,7 +26,7 @@ RoundRemoteNode *round_remote_node_new(void)
   round_oo_setdescendantdestoroyfunc(node, round_remote_node_destory);
 
   round_node_setpostmessagefunc(node, round_remote_node_postmessage);
-  
+
   return node;
 }
 
@@ -35,8 +34,7 @@ RoundRemoteNode *round_remote_node_new(void)
  * round_remote_node_copy
  ****************************************/
 
-RoundRemoteNode *round_remote_node_copy(RoundNode *node)
-{
+RoundRemoteNode *round_remote_node_copy(RoundNode *node) {
   if (!node)
     return NULL;
 
@@ -58,7 +56,7 @@ RoundRemoteNode *round_remote_node_copy(RoundNode *node)
   if (round_node_getclustername(node, &clusterName)) {
     round_remote_node_setclustername(newNode, clusterName);
   }
-  
+
   return newNode;
 }
 
@@ -66,11 +64,10 @@ RoundRemoteNode *round_remote_node_copy(RoundNode *node)
  * round_remote_node_destory
  ****************************************/
 
-bool round_remote_node_destory(RoundRemoteNode *node)
-{
+bool round_remote_node_destory(RoundRemoteNode *node) {
   if (!node)
     return false;
-  
+
   return true;
 }
 
@@ -78,16 +75,15 @@ bool round_remote_node_destory(RoundRemoteNode *node)
 * round_remote_node_delete
 ****************************************/
 
-bool round_remote_node_delete(RoundRemoteNode *node)
-{
+bool round_remote_node_delete(RoundRemoteNode *node) {
   if (!node)
     return false;
-  
+
   round_remote_node_destory(node);
   round_node_destroy((RoundNode *)node);
 
   free(node);
-  
+
   return true;
 }
 
@@ -95,7 +91,7 @@ bool round_remote_node_delete(RoundRemoteNode *node)
  * round_remote_node_postmessage
  ****************************************/
 
-bool round_remote_node_postmessage(RoundLocalNode *node, RoundJSONObject *reqMap, RoundJSONObject *resMap, RoundError *err)
-{
+bool round_remote_node_postmessage(RoundLocalNode *node,
+RoundJSONObject *reqMap, RoundJSONObject *resMap, RoundError *err) {
   return false;
 }

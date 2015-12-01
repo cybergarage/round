@@ -15,15 +15,15 @@
  * round_method_map_new
  ****************************************/
 
-RoundMap *round_method_map_new()
-{
+RoundMap *round_method_map_new() {
   RoundMap *map;
-  
+
   map = round_map_new();
   if (!map)
     return NULL;
-  
-  round_map_setmapobjectdestructor(map, (ROUND_MAP_OBJECT_DESTRUCTOR)round_method_delete);
-  
+
+  round_map_setmapobjectdestructor(
+  map, (ROUND_MAP_OBJECT_DESTRUCTOR)round_method_delete);
+
   return map;
 }

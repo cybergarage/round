@@ -14,17 +14,16 @@
  * round_client_new
  ****************************************/
 
-RoundClient *round_client_new(void)
-{
+RoundClient *round_client_new(void) {
   RoundClient *c;
-  
+
   c = (RoundClient *)malloc(sizeof(RoundClient));
-  
+
   if (!c)
     return NULL;
-  
+
   c->finder = round_finder_new();
-  
+
   return c;
 }
 
@@ -32,14 +31,13 @@ RoundClient *round_client_new(void)
  * round_client_delete
  ****************************************/
 
-bool round_client_delete(RoundClient *c)
-{
+bool round_client_delete(RoundClient *c) {
   if (!c)
     return false;
-  
+
   round_finder_delete(c->finder);
-  
+
   free(c);
-  
+
   return true;
 }

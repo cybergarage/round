@@ -15,20 +15,19 @@
  * round_error_new
  ****************************************/
 
-RoundError *round_error_new(void)
-{
+RoundError *round_error_new(void) {
   RoundError *err;
-  
+
   err = (RoundError *)malloc(sizeof(RoundError));
-  
+
   if (!err)
     return NULL;
 
   err->msg = round_string_new();
   err->detailMsg = round_string_new();
-  
+
   round_error_clear(err);
-  
+
   return err;
 }
 
@@ -36,16 +35,15 @@ RoundError *round_error_new(void)
  * round_error_delete
  ****************************************/
 
-bool round_error_delete(RoundError *err)
-{
+bool round_error_delete(RoundError *err) {
   if (!err)
     return false;
-  
+
   round_string_delete(err->msg);
   round_string_delete(err->detailMsg);
 
   free(err);
-  
+
   return true;
 }
 
@@ -53,8 +51,7 @@ bool round_error_delete(RoundError *err)
  * round_error_clear
  ****************************************/
 
-bool round_error_clear(RoundError *err)
-{
+bool round_error_clear(RoundError *err) {
   if (!err)
     return false;
 
@@ -62,7 +59,7 @@ bool round_error_clear(RoundError *err)
   round_string_clear(err->detailMsg);
   round_error_setcode(err, 0);
   round_error_setdetailcode(err, 0);
-  
+
   return true;
 }
 
@@ -70,8 +67,7 @@ bool round_error_clear(RoundError *err)
  * round_error_setcode
  ****************************************/
 
-bool round_error_setcode(RoundError *err, int code)
-{
+bool round_error_setcode(RoundError *err, int code) {
   if (!err)
     return false;
   err->code = code;
@@ -82,8 +78,7 @@ bool round_error_setcode(RoundError *err, int code)
  * round_error_getcode
  ****************************************/
 
-int round_error_getcode(RoundError *err)
-{
+int round_error_getcode(RoundError *err) {
   if (!err)
     return 0;
   return err->code;
@@ -93,8 +88,7 @@ int round_error_getcode(RoundError *err)
  * round_error_setmessage
  ****************************************/
 
-bool round_error_setmessage(RoundError *err, const char *msg)
-{
+bool round_error_setmessage(RoundError *err, const char *msg) {
   if (!err)
     return false;
   return round_string_setvalue(err->msg, msg);
@@ -104,8 +98,7 @@ bool round_error_setmessage(RoundError *err, const char *msg)
  * round_error_getmessage
  ****************************************/
 
-const char *round_error_getmessage(RoundError *err)
-{
+const char *round_error_getmessage(RoundError *err) {
   if (!err)
     return NULL;
   return round_string_getvalue(err->msg);
@@ -115,8 +108,7 @@ const char *round_error_getmessage(RoundError *err)
  * round_error_setdetailcode
  ****************************************/
 
-bool round_error_setdetailcode(RoundError *err, int code)
-{
+bool round_error_setdetailcode(RoundError *err, int code) {
   if (!err)
     return false;
   err->detailCode = code;
@@ -127,8 +119,7 @@ bool round_error_setdetailcode(RoundError *err, int code)
  * round_error_getdetailcode
  ****************************************/
 
-int round_error_getdetailcode(RoundError *err)
-{
+int round_error_getdetailcode(RoundError *err) {
   if (!err)
     return 0;
   return err->detailCode;
@@ -138,8 +129,7 @@ int round_error_getdetailcode(RoundError *err)
  * round_error_setdetailmessage
  ****************************************/
 
-bool round_error_setdetailmessage(RoundError *err, const char *msg)
-{
+bool round_error_setdetailmessage(RoundError *err, const char *msg) {
   if (!err)
     return false;
   return round_string_setvalue(err->detailMsg, msg);
@@ -149,10 +139,8 @@ bool round_error_setdetailmessage(RoundError *err, const char *msg)
  * round_error_getdetailmessage
  ****************************************/
 
-const char *round_error_getdetailmessage(RoundError *err)
-{
+const char *round_error_getdetailmessage(RoundError *err) {
   if (!err)
     return NULL;
   return round_string_getvalue(err->detailMsg);
 }
-

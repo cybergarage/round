@@ -14,14 +14,13 @@
  * round_registry_init
  ****************************************/
 
-bool round_registry_init(RoundRegistry *reg)
-{
+bool round_registry_init(RoundRegistry *reg) {
   reg->key = round_string_new();
   reg->value = round_string_new();
-  
+
   if (!reg->key || !reg->value)
     return false;
-  
+
   round_registry_setts(reg, 0);
   round_registry_setlts(reg, 0);
 
@@ -32,10 +31,9 @@ bool round_registry_init(RoundRegistry *reg)
  * round_registry_new
  ****************************************/
 
-RoundRegistry *round_registry_new()
-{
+RoundRegistry *round_registry_new() {
   RoundRegistry *reg;
-  
+
   reg = (RoundRegistry *)malloc(sizeof(RoundRegistry));
   if (!reg)
     return NULL;
@@ -52,15 +50,14 @@ RoundRegistry *round_registry_new()
  * round_registry_delete
  ****************************************/
 
-bool round_registry_delete(RoundRegistry *reg)
-{
+bool round_registry_delete(RoundRegistry *reg) {
   if (!reg)
     return false;
-  
+
   round_string_delete(reg->key);
   round_string_delete(reg->value);
 
   free(reg);
-  
+
   return true;
 }

@@ -24,8 +24,7 @@
 * round_wait
 ****************************************/
 
-void round_wait(clock_t mtime)
-{
+void round_wait(clock_t mtime) {
 #if defined(WIN32)
   Sleep(mtime);
 #else
@@ -37,8 +36,7 @@ void round_wait(clock_t mtime)
 * round_waitrandom
 ****************************************/
 
-void round_waitrandom(clock_t mtime)
-{
+void round_waitrandom(clock_t mtime) {
   double factor;
   long waitTime;
 
@@ -51,8 +49,7 @@ void round_waitrandom(clock_t mtime)
 * round_getcurrentsystemtime
 ****************************************/
 
-clock_t round_getcurrentsystemtime(void)
-{
+clock_t round_getcurrentsystemtime(void) {
   return (size_t)(time((time_t *)NULL));
 }
 
@@ -60,14 +57,13 @@ clock_t round_getcurrentsystemtime(void)
 * round_random
 ****************************************/
 
-float round_random(void)
-{
+float round_random(void) {
   static bool seedDone = false;
 
   if (seedDone == false) {
     srand((int)(round_getcurrentsystemtime() % INT_MAX));
     seedDone = true;
   }
-  
+
   return (float)rand() / (float)RAND_MAX;
 }

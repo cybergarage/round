@@ -14,8 +14,7 @@
 * round_thread_manager_new
 ****************************************/
 
-RoundThreadManager *round_thread_manager_new(void)
-{
+RoundThreadManager *round_thread_manager_new(void) {
   RoundThreadManager *threadMgr;
 
   threadMgr = (RoundThreadManager *)malloc(sizeof(RoundThreadManager));
@@ -35,11 +34,10 @@ RoundThreadManager *round_thread_manager_new(void)
 * round_thread_manager_delete
 ****************************************/
 
-void round_thread_manager_delete(RoundThreadManager *threadMgr)
-{
+void round_thread_manager_delete(RoundThreadManager *threadMgr) {
   if (!threadMgr)
     return;
-  
+
   round_thread_manager_clear(threadMgr);
   free(threadMgr);
 }
@@ -48,14 +46,14 @@ void round_thread_manager_delete(RoundThreadManager *threadMgr)
 * round_thread_manager_start
 ****************************************/
 
-bool round_thread_manager_start(RoundThreadManager *threadMgr)
-{
+bool round_thread_manager_start(RoundThreadManager *threadMgr) {
   RoundThreadManager *thread;
 
   if (!threadMgr)
     return false;
-  
-  for (thread = round_thread_manager_gets(threadMgr); thread != NULL; thread = round_thread_next(thread)) {
+
+  for (thread = round_thread_manager_gets(threadMgr); thread != NULL;
+       thread = round_thread_next(thread)) {
     round_thread_start(thread);
   }
 
@@ -66,14 +64,14 @@ bool round_thread_manager_start(RoundThreadManager *threadMgr)
 * round_thread_manager_stop
 ****************************************/
 
-bool round_thread_manager_stop(RoundThreadManager *threadMgr)
-{
+bool round_thread_manager_stop(RoundThreadManager *threadMgr) {
   RoundThreadManager *thread;
-  
+
   if (!threadMgr)
     return false;
-  
-  for (thread = round_thread_manager_gets(threadMgr); thread != NULL; thread = round_thread_next(thread)) {
+
+  for (thread = round_thread_manager_gets(threadMgr); thread != NULL;
+       thread = round_thread_next(thread)) {
     round_thread_stop(thread);
   }
 
@@ -84,15 +82,14 @@ bool round_thread_manager_stop(RoundThreadManager *threadMgr)
  * round_thread_manager_isrunning
  ****************************************/
 
-bool round_thread_manager_isrunning(RoundThreadManager *threadMgr)
-{
+bool round_thread_manager_isrunning(RoundThreadManager *threadMgr) {
   RoundThreadManager *thread;
-  
-  for (thread = round_thread_manager_gets(threadMgr); thread != NULL; thread = round_thread_next(thread)) {
+
+  for (thread = round_thread_manager_gets(threadMgr); thread != NULL;
+       thread = round_thread_next(thread)) {
     if (!round_thread_isrunning(thread))
       return false;
   }
-  
+
   return true;
 }
-

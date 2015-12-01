@@ -14,17 +14,16 @@
 * round_queue_object_new
 ****************************************/
 
-RoundQueueObject *round_queue_object_new(void)
-{
+RoundQueueObject *round_queue_object_new(void) {
   RoundQueueObject *obj;
 
   obj = (RoundQueueObject *)malloc(sizeof(RoundQueueObject));
 
   if (!obj)
     return NULL;
-  
+
   round_list_node_init((RoundList *)obj);
-  
+
   obj->userData = NULL;
 
   return obj;
@@ -34,11 +33,10 @@ RoundQueueObject *round_queue_object_new(void)
 * round_queue_object_delete
 ****************************************/
 
-bool round_queue_object_delete(RoundQueueObject *obj)
-{
+bool round_queue_object_delete(RoundQueueObject *obj) {
   if (!obj)
     return false;
-  
+
   round_queue_object_remove(obj);
 
   free(obj);
