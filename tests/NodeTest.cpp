@@ -20,6 +20,8 @@ BOOST_AUTO_TEST_CASE(NodeNew)
   RoundNode *node = round_node_new();
   BOOST_CHECK(node);
   
+  BOOST_CHECK(!round_node_hasdigest(node));
+  
   BOOST_CHECK(round_node_delete(node));
 }
 
@@ -40,6 +42,7 @@ BOOST_AUTO_TEST_CASE(NodeBaseMember)
   BOOST_CHECK(!round_node_getaddress(node, &addr));
   BOOST_CHECK(!round_node_getport(node, &port));
   BOOST_CHECK(round_node_getclustername(node, &cluster));
+  BOOST_CHECK(!round_node_hasdigest(node));
   BOOST_CHECK_EQUAL(round_node_getrequesttimeout(node), ROUND_JSON_RPC_REQUEST_TIMEOUT_SEC);
   
   BOOST_CHECK(round_node_setaddress(node, TEST_NODE_ADDR));
@@ -50,6 +53,7 @@ BOOST_AUTO_TEST_CASE(NodeBaseMember)
   BOOST_CHECK(round_node_getaddress(node, &addr));
   BOOST_CHECK(round_node_getport(node, &port));
   BOOST_CHECK(round_node_getclustername(node, &cluster));
+  BOOST_CHECK(round_node_hasdigest(node));
   BOOST_CHECK_EQUAL(round_node_getrequesttimeout(node), TEST_NODE_TIMEOUT);
   
   BOOST_CHECK_EQUAL(addr, TEST_NODE_ADDR);
