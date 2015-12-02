@@ -389,7 +389,7 @@ RoundCluster* round_node_getclusters(RoundNode* node)
  * round_node_postmessage
  ****************************************/
 
-bool round_node_postmessage(RoundNode* node, RoundJSONObject* reqObj, RoundJSONObject* resObj, RoundError* err)
+bool round_node_postmessage(RoundNode* node, RoundJSONObject* reqObj, RoundJSONObject* resultObj, RoundError* err)
 {
   return false;
 }
@@ -398,7 +398,7 @@ bool round_node_postmessage(RoundNode* node, RoundJSONObject* reqObj, RoundJSONO
  * round_node_rpcerrorcode2errorresponse
  ****************************************/
 
-bool round_node_rpcerrorcode2errorresponse(void* node, int rpcErrCode, RoundError* err, RoundJSONObject** resObj)
+bool round_node_rpcerrorcode2errorresponse(void* node, int rpcErrCode, RoundError* err, RoundJSONObject** resultObj)
 {
   if (!node)
     return false;
@@ -407,8 +407,8 @@ bool round_node_rpcerrorcode2errorresponse(void* node, int rpcErrCode, RoundErro
     round_error_setjsonrpcerrorcode(err, rpcErrCode);
   }
 
-  *resObj = round_json_map_new();
-  round_json_rpc_seterror(*resObj, err);
+  *resultObj = round_json_map_new();
+  round_json_rpc_seterror(*resultObj, err);
 
   return true;
 }
@@ -417,20 +417,20 @@ bool round_node_rpcerrorcode2errorresponse(void* node, int rpcErrCode, RoundErro
  * round_node_jsonrpcrequest2string
  ****************************************/
 
-bool round_node_jsonrpcrequest2string(void* node, RoundJSONObject* reqObj, const char **reqStr, RoundError* err, RoundJSONObject** resObj)
+bool round_node_jsonrpcrequest2string(void* node, RoundJSONObject* reqObj, const char **reqStr, RoundError* err, RoundJSONObject** resultObj)
 {
   if (!node) {
-    round_node_rpcerrorcode2errorresponse(node, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR, err, resObj);
+    round_node_rpcerrorcode2errorresponse(node, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR, err, resultObj);
     return false;
   }
 
-  if (!reqObj || !resObj || !err) {
-    round_node_rpcerrorcode2errorresponse(node, ROUND_RPC_ERROR_CODE_INVALID_PARAMS, err, resObj);
+  if (!reqObj || !resultObj || !err) {
+    round_node_rpcerrorcode2errorresponse(node, ROUND_RPC_ERROR_CODE_INVALID_PARAMS, err, resultObj);
     return false;
   }
 
   if (!round_json_object_tocompactstring(reqObj, reqStr) || (0 < round_strlen(*reqStr))) {
-    round_node_rpcerrorcode2errorresponse(node, ROUND_RPC_ERROR_CODE_INVALID_PARAMS, err, resObj);
+    round_node_rpcerrorcode2errorresponse(node, ROUND_RPC_ERROR_CODE_INVALID_PARAMS, err, resultObj);
     return false;
   }
 

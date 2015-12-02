@@ -34,7 +34,7 @@ extern "C" {
  * Data Type
  ****************************************/
 
-typedef bool (*ROUND_NODE_POSTMESSAGE_FUNC)(void *node, RoundJSONObject *reqObj, RoundJSONObject *resObj, RoundError *err);
+typedef bool (*ROUND_NODE_POSTMESSAGE_FUNC)(void *node, RoundJSONObject *reqObj, RoundJSONObject *resultObj, RoundError *err);
 
 #if !defined(RoundClusterManager)
 typedef struct {
@@ -77,7 +77,7 @@ typedef struct {
 } RoundLocalNode;
 
 typedef struct {
-  RoundJSONObject **resObj;
+  RoundJSONObject **resultObj;
   RoundError *err;
 } RoundLocalMessageData;
 
@@ -124,8 +124,8 @@ bool round_node_removeclusternode(RoundNode *node, RoundNode *clusterNode);
 bool round_node_clearclusternode(RoundNode *node, RoundNode *clusterNode);
 bool round_node_hasclusternode(RoundNode *node, RoundNode *clusterNode);
 
-bool round_node_rpcerrorcode2errorresponse(void* node, int rpcErrCode, RoundError* err, RoundJSONObject** resObj);
-bool round_node_jsonrpcrequest2string(void* node, RoundJSONObject* reqObj, const char **reqStr, RoundError* err, RoundJSONObject** resObj);
+bool round_node_rpcerrorcode2errorresponse(void* node, int rpcErrCode, RoundError* err, RoundJSONObject** resultObj);
+bool round_node_jsonrpcrequest2string(void* node, RoundJSONObject* reqObj, const char **reqStr, RoundError* err, RoundJSONObject** resultObj);
 
   
 /****************************************
@@ -168,8 +168,8 @@ bool round_local_node_isfinalmethod(RoundLocalNode *node, const char *name);
 
 bool round_local_node_addengine(RoundLocalNode *node, RoundScriptEngine *engine);
 
-bool round_local_node_postmessage(RoundLocalNode *node, RoundJSONObject *reqObj, RoundJSONObject *resObj, RoundError *err);
-bool round_local_node_execmessage(RoundLocalNode *node, RoundMessage *msg, RoundJSONObject **resObj, RoundError *err);
+bool round_local_node_postmessage(RoundLocalNode *node, RoundJSONObject *reqObj, RoundJSONObject *resultObj, RoundError *err);
+bool round_local_node_execmessage(RoundLocalNode *node, RoundMessage *msg, RoundJSONObject **resultObj, RoundError *err);
 
 bool round_local_node_setregistry(RoundLocalNode *node, const char *key, const char *val);
 RoundRegistry *round_local_node_getregistry(RoundLocalNode *node, const char *key);
@@ -185,7 +185,7 @@ RoundMessage *round_local_node_message_new();
 bool round_local_node_message_delete(RoundMessage *msg);
 bool round_local_node_message_seterror(RoundMessage *msg, RoundError *err);
 RoundError *round_local_node_message_geterror(RoundMessage *msg);
-bool round_local_node_message_setresponsejsonobject(RoundMessage *msg, RoundJSONObject **resObj);
+bool round_local_node_message_setresponsejsonobject(RoundMessage *msg, RoundJSONObject **resultObj);
 RoundJSONObject **round_local_node_message_getresponsejsonobject(RoundMessage *msg);
   
 /****************************************
@@ -196,9 +196,9 @@ RoundRemoteNode *round_remote_node_new(void);
 RoundRemoteNode *round_remote_node_copy(RoundNode *node);
 bool round_remote_node_destory(RoundRemoteNode *node);
 bool round_remote_node_delete(RoundRemoteNode *node);
-bool round_remote_node_postmessage(RoundLocalNode *node, RoundJSONObject *reqMap, RoundJSONObject *resMap, RoundError *err);
-bool round_remote_node_parsehttpresponse(RoundRemoteNode* node, const char *resContent, RoundJSONObject** resObj, RoundError* err);
-bool round_remote_node_posthttpjsonrequest(RoundRemoteNode* node, const char *reqContent, RoundJSONObject** resObj, RoundError* err);
+bool round_remote_node_postmessage(RoundRemoteNode *node, RoundJSONObject *reqMap, RoundJSONObject *resMap, RoundError *err);
+bool round_remote_node_parsehttpresponse(RoundRemoteNode* node, const char *resContent, RoundJSONObject** resultObj, RoundError* err);
+bool round_remote_node_posthttpjsonrequest(RoundRemoteNode* node, const char *reqContent, RoundJSONObject** resultObj, RoundError* err);
 
 #define round_remote_node_setaddress(node,addr) round_node_setaddress((RoundNode*)node,addr)
 #define round_remote_node_getaddress(node,addr) round_node_getaddress((RoundNode*)node,addr)

@@ -95,21 +95,21 @@ bool round_remote_node_delete(RoundRemoteNode* node)
  * round_remote_node_parsehttpresponse
  ****************************************/
 
-bool round_remote_node_parsehttpresponse(RoundRemoteNode* node, const char *resContent, RoundJSONObject** resObj, RoundError* err)
+bool round_remote_node_parsehttpresponse(RoundRemoteNode* node, const char *resContent, RoundJSONObject** resultObj, RoundError* err)
 {
   RoundJSON *json = round_json_new();
   if (!json) {
-    round_node_rpcerrorcode2errorresponse(node, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR, err, resObj);
+    round_node_rpcerrorcode2errorresponse(node, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR, err, resultObj);
     return false;
   }
   
   bool isSuccess = round_json_parse(json, resContent, err);
   if (isSuccess) {
-    *resObj = round_json_poprootobject(json);
+    *resultObj = round_json_poprootobject(json);
   }
   else {
-    *resObj = round_json_map_new();
-    round_json_rpc_seterror(*resObj, err);
+    *resultObj = round_json_map_new();
+    round_json_rpc_seterror(*resultObj, err);
   }
   
   round_json_delete(json);
@@ -121,21 +121,31 @@ bool round_remote_node_parsehttpresponse(RoundRemoteNode* node, const char *resC
  * round_remote_node_postjsonrequest
  ****************************************/
 
-bool round_remote_node_postjsonrequest(RoundRemoteNode* node, RoundJSONObject* reqObj, RoundJSONObject** resObj, RoundError* err)
+bool round_remote_node_postjsonrequest(RoundRemoteNode* node, RoundJSONObject* reqObj, RoundJSONObject** resultObj, RoundError* err)
 {
   const char* reqContent = NULL;
-  if (!round_node_jsonrpcrequest2string(node, reqObj, &reqContent, err, resObj))
+  if (!round_node_jsonrpcrequest2string(node, reqObj, &reqContent, err, resultObj))
     return false;
   
-  return round_remote_node_posthttpjsonrequest(node, reqContent, resObj, err);
+  return round_remote_node_posthttpjsonrequest(node, reqContent, resultObj, err);
 }
 
 /****************************************
  * round_remote_node_postmessage
  ****************************************/
 
-bool round_remote_node_postmessage(RoundLocalNode* node, RoundJSONObject* reqMap, RoundJSONObject* resMap, RoundError* err)
+bool round_remote_node_postmessage(RoundRemoteNode* node, RoundJSONObject* reqMap, RoundJSONObject* resMap, RoundError* err)
 {
-  return false;
+  RoundJSONObject* resultObj;
+  
+  bool isSuccess = round_remote_node_postjsonrequest(node, reqMap, &resultObj, err);
+  if (resultObj) {
+    const char *resultStr;
+    round_json_object_tocompactstring(resultObj, &resultStr);
+    
+    round_json_object_delete(resultObj);
+  }
+  
+  return isSuccess;
 }
 

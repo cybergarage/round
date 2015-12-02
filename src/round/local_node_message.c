@@ -29,7 +29,7 @@ RoundMessage* round_local_node_message_new()
     return NULL;
   }
 
-  msgData->resObj = NULL;
+  msgData->resultObj = NULL;
   msgData->err = NULL;
 
   round_message_setuserdata(msg, msgData);
@@ -99,7 +99,7 @@ RoundError* round_local_node_message_geterror(RoundMessage* msg)
  ****************************************/
 
 bool round_local_node_message_setresponsejsonobject(RoundMessage* msg,
-    RoundJSONObject** resObj)
+    RoundJSONObject** resultObj)
 {
   RoundLocalMessageData* msgData;
 
@@ -110,7 +110,7 @@ bool round_local_node_message_setresponsejsonobject(RoundMessage* msg,
   if (!msgData)
     return false;
 
-  msgData->resObj = resObj;
+  msgData->resultObj = resultObj;
 
   return true;
 }
@@ -131,5 +131,5 @@ round_local_node_message_getresponsejsonobject(RoundMessage* msg)
   if (!msgData)
     return NULL;
 
-  return msgData->resObj;
+  return msgData->resultObj;
 }
