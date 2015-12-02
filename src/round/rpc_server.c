@@ -135,8 +135,7 @@ bool round_rpc_server_hasjsonrpcparameters(RoundJSON* json)
  * round_rpc_server_jsonrpcrequestrecieved
  ****************************************/
 
-void round_rpc_server_postresponse(mUpnpHttpRequest* httpReq,
-    RoundJSONObject* jsonObj)
+void round_rpc_server_postresponse(mUpnpHttpRequest* httpReq, RoundJSONObject* jsonObj)
 {
   mUpnpHttpResponse* httpRes = mupnp_http_response_new();
   if (!httpRes)
@@ -158,8 +157,7 @@ void round_rpc_server_postresponse(mUpnpHttpRequest* httpReq,
  * round_rpc_server_jsonrpcrequestrecieved
  ****************************************/
 
-void round_rpc_server_posterrorresponse(mUpnpHttpRequest* httpReq,
-    int rpcErrCode)
+void round_rpc_server_posterrorresponse(mUpnpHttpRequest* httpReq, int rpcErrCode)
 {
   mUpnpHttpResponse* httpRes = mupnp_http_response_new();
   mupnp_http_response_setstatuscode(
@@ -192,22 +190,19 @@ void round_rpc_server_jsonrpcrequestrecieved(mUpnpHttpRequest* httpReq)
 
   mUpnpDevice* upnpDev = (mUpnpDevice*)mupnp_http_request_getuserdata(httpReq);
   if (!upnpDev) {
-    round_rpc_server_posterrorresponse(httpReq,
-        ROUND_RPC_ERROR_CODE_INTERNAL_ERROR);
+    round_rpc_server_posterrorresponse(httpReq, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR);
     return;
   }
 
   RoundRpcServer* rpcServer = round_upnp_device_getrpcserver(upnpDev);
   if (!rpcServer) {
-    round_rpc_server_posterrorresponse(httpReq,
-        ROUND_RPC_ERROR_CODE_INTERNAL_ERROR);
+    round_rpc_server_posterrorresponse(httpReq, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR);
     return;
   }
 
   RoundLocalNode* node = round_rpc_server_getlocalnode(rpcServer);
   if (!node) {
-    round_rpc_server_posterrorresponse(httpReq,
-        ROUND_RPC_ERROR_CODE_INTERNAL_ERROR);
+    round_rpc_server_posterrorresponse(httpReq, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR);
     return;
   }
 
@@ -215,31 +210,29 @@ void round_rpc_server_jsonrpcrequestrecieved(mUpnpHttpRequest* httpReq)
 
   RoundMessage* msg = round_message_new();
   if (!msg) {
-    round_rpc_server_posterrorresponse(httpReq,
-        ROUND_RPC_ERROR_CODE_INTERNAL_ERROR);
+    round_rpc_server_posterrorresponse(httpReq, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR);
     return;
   }
   round_message_setstring(msg, jsonContent);
 
   RoundError* err = round_error_new();
   if (!err) {
-    round_rpc_server_posterrorresponse(httpReq,
-        ROUND_RPC_ERROR_CODE_INTERNAL_ERROR);
+    round_rpc_server_posterrorresponse(httpReq, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR);
     round_message_delete(msg);
     return;
   }
 
-  RoundJSONObject* resObj = NULL;
+  RoundJSONObject* resultObj = NULL;
 
-  if (round_local_node_execmessage(node, msg, &resObj, err)) {
-    round_rpc_server_postresponse(httpReq, resObj);
+  if (round_local_node_execmessage(node, msg, &resultObj, err)) {
+    round_rpc_server_postresponse(httpReq, resultObj);
   }
   else {
     round_rpc_server_posterrorresponse(httpReq, round_error_getdetailcode(err));
   }
 
-  if (resObj) {
-    round_json_object_delete(resObj);
+  if (resultObj) {
+    round_json_object_delete(resultObj);
   }
 
   round_error_delete(err);
