@@ -14,10 +14,11 @@
  * round_client_new
  ****************************************/
 
-RoundClient *round_client_new(void) {
-  RoundClient *c;
+RoundClient* round_client_new(void)
+{
+  RoundClient* c;
 
-  c = (RoundClient *)malloc(sizeof(RoundClient));
+  c = (RoundClient*)malloc(sizeof(RoundClient));
 
   if (!c)
     return NULL;
@@ -31,7 +32,8 @@ RoundClient *round_client_new(void) {
  * round_client_delete
  ****************************************/
 
-bool round_client_delete(RoundClient *c) {
+bool round_client_delete(RoundClient* c)
+{
   if (!c)
     return false;
 

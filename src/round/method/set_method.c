@@ -14,13 +14,14 @@
  * round_system_method_setmethod
  ****************************************/
 
-bool round_system_method_setmethod(RoundLocalNode *node,
-                                   RoundJSONObject *params,
-                                   RoundJSONObject **result, RoundError *err) {
+bool round_system_method_setmethod(RoundLocalNode* node,
+                                   RoundJSONObject* params,
+                                   RoundJSONObject** result, RoundError* err)
+{
   const char *name, *lang;
-  byte *code;
+  byte* code;
   size_t codeLen;
-  RoundMethod *newMethod;
+  RoundMethod* newMethod;
   bool isAdded;
 
   if (!round_json_object_ismap(params)) {
@@ -41,12 +42,12 @@ bool round_system_method_setmethod(RoundLocalNode *node,
   }
 
   if (!round_json_map_getstring(params, ROUND_SYSTEM_METHOD_PARAM_CODE,
-                                (const char **)&code)) {
+                                (const char**)&code)) {
     round_error_setjsonrpcerrorcode(err, ROUND_RPC_ERROR_CODE_INVALID_PARAMS);
     return false;
   }
 
-  codeLen = round_strlen((const char *)code);
+  codeLen = round_strlen((const char*)code);
 
   /* TODO : Support Base64
    #define ROUND_SYSTEM_METHOD_PARAM_ENCODE "encode"

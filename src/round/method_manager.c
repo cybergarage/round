@@ -17,10 +17,11 @@
  * round_method_manager_new
  ****************************************/
 
-RoundMethodManager *round_method_manager_new() {
-  RoundMethodManager *mgr;
+RoundMethodManager* round_method_manager_new()
+{
+  RoundMethodManager* mgr;
 
-  mgr = (RoundMethodManager *)malloc(sizeof(RoundMethodManager));
+  mgr = (RoundMethodManager*)malloc(sizeof(RoundMethodManager));
   if (!mgr)
     return NULL;
 
@@ -34,7 +35,8 @@ RoundMethodManager *round_method_manager_new() {
  * round_method_manager_delete
  ****************************************/
 
-bool round_method_manager_delete(RoundMethodManager *mgr) {
+bool round_method_manager_delete(RoundMethodManager* mgr)
+{
   if (!mgr)
     return false;
 
@@ -50,8 +52,9 @@ bool round_method_manager_delete(RoundMethodManager *mgr) {
  * round_method_manager_delete
  ****************************************/
 
-bool round_method_manager_addmethod(RoundMethodManager *mgr,
-                                    RoundMethod *method) {
+bool round_method_manager_addmethod(RoundMethodManager* mgr,
+                                    RoundMethod* method)
+{
   if (!mgr)
     return false;
 
@@ -67,7 +70,8 @@ bool round_method_manager_addmethod(RoundMethodManager *mgr,
  * round_method_manager_hasmethod
  ****************************************/
 
-bool round_method_manager_hasmethod(RoundMethodManager *mgr, const char *name) {
+bool round_method_manager_hasmethod(RoundMethodManager* mgr, const char* name)
+{
   return round_method_map_has(mgr->methodMap, name);
 }
 
@@ -75,8 +79,9 @@ bool round_method_manager_hasmethod(RoundMethodManager *mgr, const char *name) {
  * round_method_manager_getmethod
  ****************************************/
 
-RoundMethod *round_method_manager_getmethod(RoundMethodManager *mgr,
-                                            const char *name) {
+RoundMethod* round_method_manager_getmethod(RoundMethodManager* mgr,
+                                            const char* name)
+{
   if (!mgr)
     return NULL;
 
@@ -87,8 +92,9 @@ RoundMethod *round_method_manager_getmethod(RoundMethodManager *mgr,
  * round_method_manager_removemethod
  ****************************************/
 
-bool round_method_manager_removemethod(RoundMethodManager *mgr,
-                                       const char *name) {
+bool round_method_manager_removemethod(RoundMethodManager* mgr,
+                                       const char* name)
+{
   if (!mgr)
     return false;
 
@@ -99,8 +105,9 @@ bool round_method_manager_removemethod(RoundMethodManager *mgr,
  * round_method_manager_addengine
  ****************************************/
 
-bool round_method_manager_addengine(RoundMethodManager *mgr,
-                                    RoundScriptEngine *engine) {
+bool round_method_manager_addengine(RoundMethodManager* mgr,
+                                    RoundScriptEngine* engine)
+{
   if (!mgr)
     return false;
 
@@ -117,8 +124,9 @@ bool round_method_manager_addengine(RoundMethodManager *mgr,
  * round_method_manager_getengine
  ****************************************/
 
-RoundScriptEngine *round_method_manager_getengine(RoundMethodManager *mgr,
-                                                  const char *name) {
+RoundScriptEngine* round_method_manager_getengine(RoundMethodManager* mgr,
+                                                  const char* name)
+{
   if (!mgr)
     return NULL;
 
@@ -129,8 +137,9 @@ RoundScriptEngine *round_method_manager_getengine(RoundMethodManager *mgr,
  * round_method_manager_removeengine
  ****************************************/
 
-bool round_method_manager_removeengine(RoundMethodManager *mgr,
-                                       const char *name) {
+bool round_method_manager_removeengine(RoundMethodManager* mgr,
+                                       const char* name)
+{
   if (!mgr)
     return false;
 
@@ -141,12 +150,13 @@ bool round_method_manager_removeengine(RoundMethodManager *mgr,
  * round_method_manager_execmethod
  ****************************************/
 
-bool round_method_manager_execmethod(RoundMethodManager *mgr, const char *name,
-                                     const char *params,
-                                     RoundJSONObject **result,
-                                     RoundError *err) {
-  RoundMethod *method;
-  RoundScriptEngine *engine;
+bool round_method_manager_execmethod(RoundMethodManager* mgr, const char* name,
+                                     const char* params,
+                                     RoundJSONObject** result,
+                                     RoundError* err)
+{
+  RoundMethod* method;
+  RoundScriptEngine* engine;
   ROUND_SCRIPT_ENGINE_EXECFUNC execFunc;
 
   if (!mgr)
@@ -158,18 +168,17 @@ bool round_method_manager_execmethod(RoundMethodManager *mgr, const char *name,
     return false;
   }
 
-  engine =
-  round_method_manager_getengine(mgr, round_method_getlanguage(method));
+  engine = round_method_manager_getengine(mgr, round_method_getlanguage(method));
   if (!method) {
     round_error_setjsonrpcerrorcode(
-    err, ROUND_RPC_ERROR_CODE_SCRIPT_ENGINE_NOT_FOUND);
+        err, ROUND_RPC_ERROR_CODE_SCRIPT_ENGINE_NOT_FOUND);
     return false;
   }
 
   execFunc = round_script_engine_getexecutefunc(engine);
   if (!execFunc) {
     round_error_setjsonrpcerrorcode(
-    err, ROUND_RPC_ERROR_CODE_SCRIPT_ENGINE_NOT_FOUND);
+        err, ROUND_RPC_ERROR_CODE_SCRIPT_ENGINE_NOT_FOUND);
     return false;
   }
 

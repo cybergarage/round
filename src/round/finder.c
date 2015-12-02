@@ -14,10 +14,11 @@
  * round_finder_new
  ****************************************/
 
-RoundFinder *round_finder_new(void) {
-  RoundFinder *finder;
+RoundFinder* round_finder_new(void)
+{
+  RoundFinder* finder;
 
-  finder = (RoundFinder *)malloc(sizeof(RoundFinder));
+  finder = (RoundFinder*)malloc(sizeof(RoundFinder));
 
   if (!finder)
     return NULL;
@@ -31,7 +32,8 @@ RoundFinder *round_finder_new(void) {
  * round_finder_delete
  ****************************************/
 
-bool round_finder_delete(RoundFinder *finder) {
+bool round_finder_delete(RoundFinder* finder)
+{
   if (!finder)
     return false;
 
@@ -46,7 +48,8 @@ bool round_finder_delete(RoundFinder *finder) {
  * round_finder_start
  ****************************************/
 
-bool round_finder_start(RoundFinder *finder) {
+bool round_finder_start(RoundFinder* finder)
+{
   if (!finder)
     return false;
 
@@ -57,7 +60,8 @@ bool round_finder_start(RoundFinder *finder) {
  * round_finder_stop
  ****************************************/
 
-bool round_finder_stop(RoundFinder *finder) {
+bool round_finder_stop(RoundFinder* finder)
+{
   if (!finder)
     return false;
 
@@ -68,7 +72,8 @@ bool round_finder_stop(RoundFinder *finder) {
  * round_finder_search
  ****************************************/
 
-bool round_finder_search(RoundFinder *finder) {
+bool round_finder_search(RoundFinder* finder)
+{
   if (!finder)
     return false;
 

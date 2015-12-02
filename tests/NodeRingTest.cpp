@@ -15,13 +15,14 @@
 
 BOOST_AUTO_TEST_SUITE(node)
 
-BOOST_AUTO_TEST_CASE(NodeRingAdd) {
-  RoundNodeRing *nodes = round_node_ring_new();
+BOOST_AUTO_TEST_CASE(NodeRingAdd)
+{
+  RoundNodeRing* nodes = round_node_ring_new();
 
   BOOST_CHECK(nodes);
   BOOST_CHECK_EQUAL(0, round_node_ring_size(nodes));
 
-  RoundNode *node[ROUND_TEST_MAP_SIZE];
+  RoundNode* node[ROUND_TEST_MAP_SIZE];
   for (int n = 0; n < ROUND_TEST_MAP_SIZE; n++) {
     node[n] = round_node_new();
     BOOST_CHECK(round_node_ring_add(nodes, node[n]));

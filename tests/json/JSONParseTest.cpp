@@ -19,8 +19,9 @@ BOOST_AUTO_TEST_SUITE(json)
 // Array
 ////////////////////////////////////////////////////////////
 
-BOOST_AUTO_TEST_CASE(JSONParseIntArray) {
-  RoundJSON *json = round_json_new();
+BOOST_AUTO_TEST_CASE(JSONParseIntArray)
+{
+  RoundJSON* json = round_json_new();
   BOOST_CHECK(json);
 
   BOOST_CHECK(round_json_parse(json, "[0, 1, 2]", NULL));
@@ -36,13 +37,14 @@ BOOST_AUTO_TEST_CASE(JSONParseIntArray) {
   BOOST_CHECK(round_json_delete(json));
 }
 
-BOOST_AUTO_TEST_CASE(JSONParseStrArray) {
-  RoundJSON *json = round_json_new();
+BOOST_AUTO_TEST_CASE(JSONParseStrArray)
+{
+  RoundJSON* json = round_json_new();
   BOOST_CHECK(json);
 
   BOOST_CHECK(round_json_parse(json, "[\"milk\", \"bread\", \"eggs\"]", NULL));
 
-  const char *value;
+  const char* value;
 
   BOOST_CHECK(round_json_getstringforpath(json, "0", &value));
   BOOST_CHECK_EQUAL("milk", value);
@@ -56,13 +58,14 @@ BOOST_AUTO_TEST_CASE(JSONParseStrArray) {
   BOOST_CHECK(round_json_delete(json));
 }
 
-BOOST_AUTO_TEST_CASE(JSONParseStrArrayWithSpace) {
-  RoundJSON *json = round_json_new();
+BOOST_AUTO_TEST_CASE(JSONParseStrArrayWithSpace)
+{
+  RoundJSON* json = round_json_new();
   BOOST_CHECK(json);
 
   BOOST_CHECK(round_json_parse(json, "[\"name\", \"John Smith\"]", NULL));
 
-  const char *value;
+  const char* value;
 
   BOOST_CHECK(round_json_getstringforpath(json, "0", &value));
   BOOST_CHECK_EQUAL("name", value);
@@ -77,8 +80,9 @@ BOOST_AUTO_TEST_CASE(JSONParseStrArrayWithSpace) {
 // Dictionary
 ////////////////////////////////////////////////////////////
 
-BOOST_AUTO_TEST_CASE(JSONParseIntDict) {
-  RoundJSON *json = round_json_new();
+BOOST_AUTO_TEST_CASE(JSONParseIntDict)
+{
+  RoundJSON* json = round_json_new();
   BOOST_CHECK(json);
 
   BOOST_CHECK(round_json_parse(json, "{\"a\": 1, \"b\": 2, \"c\": 3}", NULL));
@@ -97,15 +101,16 @@ BOOST_AUTO_TEST_CASE(JSONParseIntDict) {
   BOOST_CHECK(round_json_delete(json));
 }
 
-BOOST_AUTO_TEST_CASE(JSONParseStrDict) {
-  RoundJSON *json = round_json_new();
+BOOST_AUTO_TEST_CASE(JSONParseStrDict)
+{
+  RoundJSON* json = round_json_new();
   BOOST_CHECK(json);
 
   BOOST_CHECK(
-  round_json_parse(json, "{\"name\": \"John Smith\", \"age\": 32}", NULL));
+      round_json_parse(json, "{\"name\": \"John Smith\", \"age\": 32}", NULL));
 
   union MixValue {
-    const char *s;
+    const char* s;
     long i;
   };
   union MixValue value;
@@ -123,8 +128,9 @@ BOOST_AUTO_TEST_CASE(JSONParseStrDict) {
 // Dictionary in Array
 ////////////////////////////////////////////////////////////
 
-BOOST_AUTO_TEST_CASE(JSONParseDictInArray) {
-  RoundJSON *json = round_json_new();
+BOOST_AUTO_TEST_CASE(JSONParseDictInArray)
+{
+  RoundJSON* json = round_json_new();
   BOOST_CHECK(json);
 
   BOOST_CHECK(round_json_parse(json, "[ {\"age\": 32,\"name\":\"John "
@@ -133,7 +139,7 @@ BOOST_AUTO_TEST_CASE(JSONParseDictInArray) {
                                NULL));
 
   union MixValue {
-    const char *s;
+    const char* s;
     long i;
   };
   union MixValue value;
@@ -157,18 +163,19 @@ BOOST_AUTO_TEST_CASE(JSONParseDictInArray) {
 // Array in Dictionary
 ////////////////////////////////////////////////////////////
 
-BOOST_AUTO_TEST_CASE(JSONParseArrayInDict) {
-  RoundJSON *json = round_json_new();
+BOOST_AUTO_TEST_CASE(JSONParseArrayInDict)
+{
+  RoundJSON* json = round_json_new();
   BOOST_CHECK(json);
 
   BOOST_CHECK(round_json_parse(
-  json, "{\"phoneNumber\": [\"212 555-1234\", \"646 555-4567\"]}", NULL));
+      json, "{\"phoneNumber\": [\"212 555-1234\", \"646 555-4567\"]}", NULL));
 
   union MixValue {
-    const char *s;
+    const char* s;
     int i;
   };
-  const char *value;
+  const char* value;
 
   BOOST_CHECK(round_json_getstringforpath(json, "phoneNumber/0", &value));
   BOOST_CHECK_EQUAL("212 555-1234", value);
@@ -183,13 +190,14 @@ BOOST_AUTO_TEST_CASE(JSONParseArrayInDict) {
 // Other
 ////////////////////////////////////////////////////////////
 
-BOOST_AUTO_TEST_CASE(JSONParsePopObject) {
-  RoundJSON *json = round_json_new();
+BOOST_AUTO_TEST_CASE(JSONParsePopObject)
+{
+  RoundJSON* json = round_json_new();
   BOOST_CHECK(json);
 
   BOOST_CHECK(round_json_parse(json, "[0, 1, 2]", NULL));
 
-  RoundJSONObject *rootObj = round_json_poprootobject(json);
+  RoundJSONObject* rootObj = round_json_poprootobject(json);
   BOOST_CHECK(rootObj);
   BOOST_CHECK(!round_json_getrootobject(json));
 

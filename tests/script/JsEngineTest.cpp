@@ -16,27 +16,27 @@
 
 #if defined(ROUND_SUPPORT_JS_SM)
 
-BOOST_AUTO_TEST_CASE(JavaScriptEngineTest) {
+BOOST_AUTO_TEST_CASE(JavaScriptEngineTest)
+{
 #define SCRIPT_ECHO_LOOP 10
 #define SCRIPT_ECHO_EXPR "1 + 2 + 3"
 #define SCRIPT_ECHO_RESULT "6"
-  static const std::string SCRIPT_ECHO_SCRIPT =
-  "var result = " SCRIPT_ECHO_EXPR ";\nresult;";
+  static const std::string SCRIPT_ECHO_SCRIPT = "var result = " SCRIPT_ECHO_EXPR ";\nresult;";
 
-  RoundJavaScriptEngine *jsEngine;
+  RoundJavaScriptEngine* jsEngine;
 
   jsEngine = round_js_engine_new();
   BOOST_CHECK(jsEngine);
 
-  RoundMethod *method = round_method_new();
+  RoundMethod* method = round_method_new();
   /*
   round_method_setname(method, LUA_ECHO_FUNC);
   round_method_setcode(method, (byte *)LUA_ECHO_CODE.c_str(),
   LUA_ECHO_CODE.size());
    */
 
-  RoundString *result = round_string_new();
-  RoundError *err = round_error_new();
+  RoundString* result = round_string_new();
+  RoundError* err = round_error_new();
 
   for (int n = 0; n < SCRIPT_ECHO_LOOP; n++) {
     BOOST_CHECK(round_js_engine_lock(jsEngine));
@@ -54,22 +54,23 @@ BOOST_AUTO_TEST_CASE(JavaScriptEngineTest) {
   BOOST_CHECK(round_js_engine_delete(jsEngine));
 }
 
-BOOST_AUTO_TEST_CASE(JavaScriptEngineEchoTest) {
-  RoundMethodManager *methodMgr = round_method_manager_new();
+BOOST_AUTO_TEST_CASE(JavaScriptEngineEchoTest)
+{
+  RoundMethodManager* methodMgr = round_method_manager_new();
   BOOST_CHECK(methodMgr);
 
-  RoundJavaScriptEngine *jsEngine = round_js_engine_new();
+  RoundJavaScriptEngine* jsEngine = round_js_engine_new();
   BOOST_CHECK(jsEngine);
 
   BOOST_CHECK(
-  round_method_manager_addengine(methodMgr, (RoundScriptEngine *)jsEngine));
+      round_method_manager_addengine(methodMgr, (RoundScriptEngine*)jsEngine));
 
   BOOST_CHECK(round_method_manager_addmethod(
-  methodMgr, Round::Test::CreateTestMethod(Round::Test::SCRIPT_ECHO_NAME,
-                                           RoundJavaScriptEngineLanguage,
-                                           Round::Test::JS_ECHO_CODE)));
+      methodMgr, Round::Test::CreateTestMethod(Round::Test::SCRIPT_ECHO_NAME,
+                                               RoundJavaScriptEngineLanguage,
+                                               Round::Test::JS_ECHO_CODE)));
   BOOST_CHECK(
-  round_method_manager_hasmethod(methodMgr, Round::Test::SCRIPT_ECHO_NAME));
+      round_method_manager_hasmethod(methodMgr, Round::Test::SCRIPT_ECHO_NAME));
 
   Round::Test::ScriptTestController scriptTestController;
   scriptTestController.runEchoMethodTest(methodMgr);
@@ -77,22 +78,23 @@ BOOST_AUTO_TEST_CASE(JavaScriptEngineEchoTest) {
   BOOST_CHECK(round_method_manager_delete(methodMgr));
 }
 
-BOOST_AUTO_TEST_CASE(JavaScriptEngineSumTest) {
-  RoundMethodManager *methodMgr = round_method_manager_new();
+BOOST_AUTO_TEST_CASE(JavaScriptEngineSumTest)
+{
+  RoundMethodManager* methodMgr = round_method_manager_new();
   BOOST_CHECK(methodMgr);
 
-  RoundJavaScriptEngine *jsEngine = round_js_engine_new();
+  RoundJavaScriptEngine* jsEngine = round_js_engine_new();
   BOOST_CHECK(jsEngine);
 
   BOOST_CHECK(
-  round_method_manager_addengine(methodMgr, (RoundScriptEngine *)jsEngine));
+      round_method_manager_addengine(methodMgr, (RoundScriptEngine*)jsEngine));
 
   BOOST_CHECK(round_method_manager_addmethod(
-  methodMgr, Round::Test::CreateTestMethod(Round::Test::SCRIPT_SUM_NAME,
-                                           RoundJavaScriptEngineLanguage,
-                                           Round::Test::JS_SUM_CODE)));
+      methodMgr, Round::Test::CreateTestMethod(Round::Test::SCRIPT_SUM_NAME,
+                                               RoundJavaScriptEngineLanguage,
+                                               Round::Test::JS_SUM_CODE)));
   BOOST_CHECK(
-  round_method_manager_hasmethod(methodMgr, Round::Test::SCRIPT_SUM_NAME));
+      round_method_manager_hasmethod(methodMgr, Round::Test::SCRIPT_SUM_NAME));
 
   Round::Test::ScriptTestController scriptTestController;
   scriptTestController.runSumMethodTest(methodMgr);

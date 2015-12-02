@@ -19,10 +19,11 @@
 * round_clock_new
 ****************************************/
 
-RoundClock *round_clock_new(void) {
-  RoundClock *clk;
+RoundClock* round_clock_new(void)
+{
+  RoundClock* clk;
 
-  clk = (RoundClock *)malloc(sizeof(RoundClock));
+  clk = (RoundClock*)malloc(sizeof(RoundClock));
 
   if (!clk)
     return NULL;
@@ -38,7 +39,8 @@ RoundClock *round_clock_new(void) {
 * round_clock_delete
 ****************************************/
 
-bool round_clock_delete(RoundClock *clk) {
+bool round_clock_delete(RoundClock* clk)
+{
   if (!clk)
     return false;
 
@@ -53,7 +55,8 @@ bool round_clock_delete(RoundClock *clk) {
  * round_clock_clear
  ****************************************/
 
-bool round_clock_clear(RoundClock *clk) {
+bool round_clock_clear(RoundClock* clk)
+{
   if (!clk)
     return false;
 
@@ -66,7 +69,8 @@ bool round_clock_clear(RoundClock *clk) {
  * round_clock_setvalue
  ****************************************/
 
-bool round_clock_setvalue(RoundClock *clk, clock_t value) {
+bool round_clock_setvalue(RoundClock* clk, clock_t value)
+{
   if (!clk)
     return false;
 
@@ -83,7 +87,8 @@ bool round_clock_setvalue(RoundClock *clk, clock_t value) {
  * round_clock_setvalue
  ****************************************/
 
-bool round_clock_setremotevalue(RoundClock *clk, clock_t remoteValue) {
+bool round_clock_setremotevalue(RoundClock* clk, clock_t remoteValue)
+{
   if (!clk)
     return 0;
 
@@ -103,7 +108,8 @@ bool round_clock_setremotevalue(RoundClock *clk, clock_t remoteValue) {
  * round_clock_getvalue
  ****************************************/
 
-clock_t round_clock_getvalue(RoundClock *clk) {
+clock_t round_clock_getvalue(RoundClock* clk)
+{
   clock_t lastValue;
 
   if (!clk)
@@ -122,7 +128,8 @@ clock_t round_clock_getvalue(RoundClock *clk) {
  * round_clock_increment
  ****************************************/
 
-clock_t round_clock_increment(RoundClock *clk) {
+clock_t round_clock_increment(RoundClock* clk)
+{
   clock_t lastValue;
 
   if (!clk)
@@ -142,7 +149,8 @@ clock_t round_clock_increment(RoundClock *clk) {
  * round_clock_compare
  ****************************************/
 
-RoundClockOrder round_clock_compare(RoundClock *clk1, RoundClock *clk2) {
+RoundClockOrder round_clock_compare(RoundClock* clk1, RoundClock* clk2)
+{
   if (clk1->value == clk2->value)
     return RoundClockOrderSame;
   return (clk2->value < clk1->value) ? RoundClockOrderDescending

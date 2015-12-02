@@ -14,10 +14,11 @@
  * round_list_header_init
  ****************************************/
 
-RoundList *round_list_new() {
-  RoundList *header;
+RoundList* round_list_new()
+{
+  RoundList* header;
 
-  header = (RoundList *)malloc(sizeof(RoundList));
+  header = (RoundList*)malloc(sizeof(RoundList));
   if (!header)
     return NULL;
 
@@ -30,10 +31,11 @@ RoundList *round_list_new() {
  * round_list_node_new
  ****************************************/
 
-RoundList *round_list_node_new() {
-  RoundList *header;
+RoundList* round_list_node_new()
+{
+  RoundList* header;
 
-  header = (RoundList *)malloc(sizeof(RoundList));
+  header = (RoundList*)malloc(sizeof(RoundList));
   if (!header)
     return NULL;
 
@@ -46,7 +48,8 @@ RoundList *round_list_node_new() {
  * round_list_delete
  ****************************************/
 
-bool round_list_delete(RoundList *list) {
+bool round_list_delete(RoundList* list)
+{
   if (!list)
     return false;
 
@@ -61,7 +64,8 @@ bool round_list_delete(RoundList *list) {
  * round_list_node_delete
  ****************************************/
 
-bool round_list_node_delete(RoundList *node) {
+bool round_list_node_delete(RoundList* node)
+{
   if (!node)
     return false;
 
@@ -74,7 +78,8 @@ bool round_list_node_delete(RoundList *node) {
  * round_list_header_init
  ****************************************/
 
-bool round_list_header_init(RoundList *list) {
+bool round_list_header_init(RoundList* list)
+{
   if (!list)
     return false;
 
@@ -88,7 +93,8 @@ bool round_list_header_init(RoundList *list) {
  * round_list_node_init
  ****************************************/
 
-bool round_list_node_init(RoundList *list) {
+bool round_list_node_init(RoundList* list)
+{
   if (!list)
     return false;
 
@@ -102,8 +108,9 @@ bool round_list_node_init(RoundList *list) {
  * round_list_size
  ****************************************/
 
-size_t round_list_size(RoundList *list) {
-  RoundList *node;
+size_t round_list_size(RoundList* list)
+{
+  RoundList* node;
   int nodeCnt;
 
   if (!list)
@@ -120,7 +127,8 @@ size_t round_list_size(RoundList *list) {
  * round_list_getfirst
  ****************************************/
 
-RoundListNode *round_list_getfirst(RoundList *list) {
+RoundListNode* round_list_getfirst(RoundList* list)
+{
   if (!list)
     return NULL;
 
@@ -131,7 +139,8 @@ RoundListNode *round_list_getfirst(RoundList *list) {
  * round_list_getlast
  ****************************************/
 
-RoundListNode *round_list_getlast(RoundList *list) {
+RoundListNode* round_list_getlast(RoundList* list)
+{
   if (!list)
     return NULL;
 
@@ -142,8 +151,9 @@ RoundListNode *round_list_getlast(RoundList *list) {
  * round_list_get
  ****************************************/
 
-RoundListNode *round_list_get(RoundList *list, size_t index) {
-  RoundList *node;
+RoundListNode* round_list_get(RoundList* list, size_t index)
+{
+  RoundList* node;
   size_t n;
 
   if (!list)
@@ -163,7 +173,8 @@ RoundListNode *round_list_get(RoundList *list, size_t index) {
  * round_list_insert
  ****************************************/
 
-bool round_list_insert(RoundListNode *prevNode, RoundListNode *node) {
+bool round_list_insert(RoundListNode* prevNode, RoundListNode* node)
+{
   if (!prevNode || !node)
     return false;
 
@@ -181,7 +192,8 @@ bool round_list_insert(RoundListNode *prevNode, RoundListNode *node) {
  * round_list_addfirst
  ****************************************/
 
-bool round_list_addfirst(RoundList *list, RoundListNode *node) {
+bool round_list_addfirst(RoundList* list, RoundListNode* node)
+{
   if (!list || !node)
     return false;
 
@@ -197,7 +209,8 @@ bool round_list_addfirst(RoundList *list, RoundListNode *node) {
  * round_list_addlast
  ****************************************/
 
-bool round_list_addlast(RoundList *list, RoundListNode *node) {
+bool round_list_addlast(RoundList* list, RoundListNode* node)
+{
   if (!list || !node)
     return false;
 
@@ -213,7 +226,8 @@ bool round_list_addlast(RoundList *list, RoundListNode *node) {
  * round_list_remove
  ****************************************/
 
-bool round_list_remove(RoundListNode *node) {
+bool round_list_remove(RoundListNode* node)
+{
   if (!node)
     return false;
 
@@ -231,7 +245,8 @@ bool round_list_remove(RoundListNode *node) {
  * round_list_prev_circular
  ****************************************/
 
-RoundListNode *round_list_prev_circular(RoundListNode *node) {
+RoundListNode* round_list_prev_circular(RoundListNode* node)
+{
   if (!node)
     return NULL;
 
@@ -248,7 +263,8 @@ RoundListNode *round_list_prev_circular(RoundListNode *node) {
  * round_list_prev
  ****************************************/
 
-RoundListNode *round_list_prev(RoundListNode *node) {
+RoundListNode* round_list_prev(RoundListNode* node)
+{
   if (!node)
     return NULL;
 
@@ -265,7 +281,8 @@ RoundListNode *round_list_prev(RoundListNode *node) {
  * round_list_next_circular
  ****************************************/
 
-RoundListNode *round_list_next_circular(RoundListNode *node) {
+RoundListNode* round_list_next_circular(RoundListNode* node)
+{
   if (!node)
     return NULL;
 
@@ -282,7 +299,8 @@ RoundListNode *round_list_next_circular(RoundListNode *node) {
  * round_list_next
  ****************************************/
 
-RoundListNode *round_list_next(RoundListNode *node) {
+RoundListNode* round_list_next(RoundListNode* node)
+{
   if (!node)
     return NULL;
 
@@ -299,9 +317,10 @@ RoundListNode *round_list_next(RoundListNode *node) {
  * round_list_clear
  ****************************************/
 
-bool round_list_clear(RoundList *headList,
-                      ROUND_LIST_DESTRUCTORFUNC dstructorFunc) {
-  RoundList *node;
+bool round_list_clear(RoundList* headList,
+                      ROUND_LIST_DESTRUCTORFUNC dstructorFunc)
+{
+  RoundList* node;
 
   if (!headList)
     return false;
@@ -311,7 +330,8 @@ bool round_list_clear(RoundList *headList,
     round_list_remove(node);
     if (dstructorFunc) {
       dstructorFunc(node);
-    } else {
+    }
+    else {
       free(node);
     }
     node = round_list_next(headList);

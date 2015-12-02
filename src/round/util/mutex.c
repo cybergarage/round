@@ -16,10 +16,11 @@
 * round_mutex_new
 ****************************************/
 
-RoundMutex *round_mutex_new(void) {
-  RoundMutex *mutex;
+RoundMutex* round_mutex_new(void)
+{
+  RoundMutex* mutex;
 
-  mutex = (RoundMutex *)malloc(sizeof(RoundMutex));
+  mutex = (RoundMutex*)malloc(sizeof(RoundMutex));
 
   if (!mutex)
     return NULL;
@@ -37,7 +38,8 @@ RoundMutex *round_mutex_new(void) {
 * round_mutex_delete
 ****************************************/
 
-bool round_mutex_delete(RoundMutex *mutex) {
+bool round_mutex_delete(RoundMutex* mutex)
+{
   if (!mutex)
     return false;
 
@@ -55,7 +57,8 @@ bool round_mutex_delete(RoundMutex *mutex) {
 * round_mutex_lock
 ****************************************/
 
-bool round_mutex_lock(RoundMutex *mutex) {
+bool round_mutex_lock(RoundMutex* mutex)
+{
   if (!mutex)
     return false;
 
@@ -72,7 +75,8 @@ bool round_mutex_lock(RoundMutex *mutex) {
 * round_mutex_unlock
 ****************************************/
 
-bool round_mutex_unlock(RoundMutex *mutex) {
+bool round_mutex_unlock(RoundMutex* mutex)
+{
   if (!mutex)
     return false;
 

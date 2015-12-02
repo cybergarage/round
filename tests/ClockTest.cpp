@@ -14,8 +14,9 @@
 
 BOOST_AUTO_TEST_SUITE(clock_test)
 
-BOOST_AUTO_TEST_CASE(ClockSet) {
-  RoundClock *clk = round_clock_new();
+BOOST_AUTO_TEST_CASE(ClockSet)
+{
+  RoundClock* clk = round_clock_new();
   BOOST_CHECK(clk);
 
   time_t timeValue = time(NULL);
@@ -24,8 +25,9 @@ BOOST_AUTO_TEST_CASE(ClockSet) {
   BOOST_CHECK(round_clock_delete(clk));
 }
 
-BOOST_AUTO_TEST_CASE(ClockIncrement) {
-  RoundClock *clk = round_clock_new();
+BOOST_AUTO_TEST_CASE(ClockIncrement)
+{
+  RoundClock* clk = round_clock_new();
   BOOST_CHECK(clk);
 
   round_clock_setvalue(clk, time(NULL));
@@ -45,8 +47,9 @@ BOOST_AUTO_TEST_CASE(ClockIncrement) {
   BOOST_CHECK(round_clock_delete(clk));
 }
 
-BOOST_AUTO_TEST_CASE(ClockSetRemote) {
-  RoundClock *clk = round_clock_new();
+BOOST_AUTO_TEST_CASE(ClockSetRemote)
+{
+  RoundClock* clk = round_clock_new();
   BOOST_CHECK(clk);
 
   clock_t startClk, currClk, remoteClk;
@@ -67,13 +70,14 @@ BOOST_AUTO_TEST_CASE(ClockSetRemote) {
   BOOST_CHECK_EQUAL(currClk, (remoteClk + ROUND_CLOCK_INCREMENT_VALUE));
 }
 
-BOOST_AUTO_TEST_CASE(ClockCompare) {
+BOOST_AUTO_TEST_CASE(ClockCompare)
+{
   time_t timeValue = time(NULL);
 
-  RoundClock *clk01 = round_clock_new();
-  RoundClock *clk02 = round_clock_new();
-  RoundClock *clk03 = round_clock_new();
-  RoundClock *clk04 = round_clock_new();
+  RoundClock* clk01 = round_clock_new();
+  RoundClock* clk02 = round_clock_new();
+  RoundClock* clk03 = round_clock_new();
+  RoundClock* clk04 = round_clock_new();
 
   round_clock_setvalue(clk01, (timeValue));
   round_clock_setvalue(clk02, (timeValue));

@@ -14,10 +14,11 @@
  * round_ordered_list_new
  ****************************************/
 
-RoundOrderedList *round_ordered_list_new() {
-  RoundOrderedList *list;
+RoundOrderedList* round_ordered_list_new()
+{
+  RoundOrderedList* list;
 
-  list = (RoundOrderedList *)malloc(sizeof(RoundOrderedList));
+  list = (RoundOrderedList*)malloc(sizeof(RoundOrderedList));
   if (!list)
     return NULL;
 
@@ -37,7 +38,8 @@ RoundOrderedList *round_ordered_list_new() {
  * round_ordered_list_delete
  ****************************************/
 
-bool round_ordered_list_delete(RoundOrderedList *list) {
+bool round_ordered_list_delete(RoundOrderedList* list)
+{
   if (!list)
     return false;
 
@@ -54,7 +56,8 @@ bool round_ordered_list_delete(RoundOrderedList *list) {
  * round_ordered_list_clear
  ****************************************/
 
-bool round_ordered_list_clear(RoundOrderedList *list) {
+bool round_ordered_list_clear(RoundOrderedList* list)
+{
   if (!list)
     return false;
 
@@ -70,8 +73,9 @@ bool round_ordered_list_clear(RoundOrderedList *list) {
  * round_ordered_list_add
  ****************************************/
 
-bool round_ordered_list_add(RoundOrderedList *list, RoundListNode *newNode) {
-  RoundList *node;
+bool round_ordered_list_add(RoundOrderedList* list, RoundListNode* newNode)
+{
+  RoundList* node;
 
   if (!list || !list->cmpFunc)
     return false;

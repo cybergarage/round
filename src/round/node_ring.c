@@ -14,10 +14,11 @@
 * round_node_ring_new
 ****************************************/
 
-RoundNodeRing *round_node_ring_new(void) {
-  RoundNodeRing *ring;
+RoundNodeRing* round_node_ring_new(void)
+{
+  RoundNodeRing* ring;
 
-  ring = (RoundNodeRing *)malloc(sizeof(RoundNodeRing));
+  ring = (RoundNodeRing*)malloc(sizeof(RoundNodeRing));
   if (!ring)
     return NULL;
 
@@ -32,7 +33,8 @@ RoundNodeRing *round_node_ring_new(void) {
 * round_node_ring_delete
 ****************************************/
 
-bool round_node_ring_delete(RoundNodeRing *ring) {
+bool round_node_ring_delete(RoundNodeRing* ring)
+{
   if (!ring)
     return false;
 

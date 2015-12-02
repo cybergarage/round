@@ -23,7 +23,8 @@
 
 // typedef std::map<std::string,std::string> RounddOptionsDictionary;
 
-int main(int argc, char *argv[]) {
+int main(int argc, char* argv[])
+{
   /*
   Round::Error err;
 

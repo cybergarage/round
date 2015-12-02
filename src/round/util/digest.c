@@ -31,8 +31,9 @@
 
 #if defined(ROUND_SUPPORT_MD_5DIGEST)
 
-bool round_md5_digest(const char *string, char **buf) {
-  char *md5DigestString = (char *)malloc((MD5_DIGEST_LENGTH * 2) + 1);
+bool round_md5_digest(const char* string, char** buf)
+{
+  char* md5DigestString = (char*)malloc((MD5_DIGEST_LENGTH * 2) + 1);
 
   unsigned char md5Digest[MD5_DIGEST_LENGTH];
   MD5FUNC(string, (int)round_strlen(string), md5Digest);
@@ -56,9 +57,10 @@ bool round_md5_digest(const char *string, char **buf) {
 // SHA1
 ////////////////////////////////////////
 
-bool round_sha_digest(const char *string, char **buf) {
+bool round_sha_digest(const char* string, char** buf)
+{
   unsigned char shaDigest[SHA_DIGEST_LENGTH];
-  char *shaDigestString = (char *)malloc((SHA_DIGEST_LENGTH * 2) + 1);
+  char* shaDigestString = (char*)malloc((SHA_DIGEST_LENGTH * 2) + 1);
 
   SHA1FUNC(string, (int)round_strlen(string), shaDigest);
 
@@ -79,8 +81,9 @@ bool round_sha_digest(const char *string, char **buf) {
 // SHA256
 ////////////////////////////////////////
 
-bool round_sha256_digest(const char *string, char **buf) {
-  char *shaDigestString = (char *)malloc((SHA256_DIGEST_LENGTH * 2) + 1);
+bool round_sha256_digest(const char* string, char** buf)
+{
+  char* shaDigestString = (char*)malloc((SHA256_DIGEST_LENGTH * 2) + 1);
 
   unsigned char shaDigest[SHA256_DIGEST_LENGTH];
   SHA256FUNC(string, (int)round_strlen(string), shaDigest);

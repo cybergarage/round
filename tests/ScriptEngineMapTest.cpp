@@ -13,13 +13,14 @@
 #include "RoundTest.h"
 #include <round/script.h>
 
-BOOST_AUTO_TEST_CASE(ScriptEngineListAdd) {
-  RoundMap *map = round_script_engine_map_new();
+BOOST_AUTO_TEST_CASE(ScriptEngineListAdd)
+{
+  RoundMap* map = round_script_engine_map_new();
 
   BOOST_CHECK(map);
   BOOST_CHECK_EQUAL(0, round_script_engine_map_size(map));
 
-  RoundScriptEngine *engine[ROUND_TEST_MAP_SIZE];
+  RoundScriptEngine* engine[ROUND_TEST_MAP_SIZE];
   char lang[32];
 
   // Add engines

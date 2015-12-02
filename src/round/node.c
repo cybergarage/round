@@ -15,10 +15,11 @@
 * round_node_new
 ****************************************/
 
-RoundNode *round_node_new(void) {
-  RoundNode *node;
+RoundNode* round_node_new(void)
+{
+  RoundNode* node;
 
-  node = (RoundNode *)malloc(sizeof(RoundNode));
+  node = (RoundNode*)malloc(sizeof(RoundNode));
 
   if (!node)
     return NULL;
@@ -35,27 +36,30 @@ RoundNode *round_node_new(void) {
  * round_node_local_new
  ****************************************/
 
-RoundNode *round_node_local_new(void) {
-  return (RoundNode *)round_local_node_new();
+RoundNode* round_node_local_new(void)
+{
+  return (RoundNode*)round_local_node_new();
 }
 
 /****************************************
  * round_node_remote_new
  ****************************************/
 
-RoundNode *round_node_remote_new(void) {
-  return (RoundNode *)round_remote_node_new();
+RoundNode* round_node_remote_new(void)
+{
+  return (RoundNode*)round_remote_node_new();
 }
 
 /****************************************
  * round_node_init
  ****************************************/
 
-bool round_node_init(RoundNode *node) {
+bool round_node_init(RoundNode* node)
+{
   if (!node)
     return false;
 
-  round_consistenthashing_node_init((RoundConsistentHashingNode *)node);
+  round_consistenthashing_node_init((RoundConsistentHashingNode*)node);
   round_oo_setdescendantdestoroyfunc(node, NULL);
   node->addr = round_string_new();
   node->port = 0;
@@ -80,7 +84,8 @@ bool round_node_init(RoundNode *node) {
 * round_node_delete
 ****************************************/
 
-bool round_node_delete(RoundNode *node) {
+bool round_node_delete(RoundNode* node)
+{
   if (!node)
     return false;
 
@@ -98,11 +103,12 @@ bool round_node_delete(RoundNode *node) {
  * round_node_destroy
  ****************************************/
 
-bool round_node_destroy(RoundNode *node) {
+bool round_node_destroy(RoundNode* node)
+{
   if (!node)
     return false;
 
-  round_consistenthashing_node_destroy((RoundConsistentHashingNode *)node);
+  round_consistenthashing_node_destroy((RoundConsistentHashingNode*)node);
 
   round_string_delete(node->addr);
   round_string_delete(node->digest);
@@ -117,15 +123,17 @@ bool round_node_destroy(RoundNode *node) {
  * round_node_next
  ****************************************/
 
-RoundNode *round_node_next(RoundNode *node) {
-  return (RoundNode *)round_list_next((RoundList *)node);
+RoundNode* round_node_next(RoundNode* node)
+{
+  return (RoundNode*)round_list_next((RoundList*)node);
 }
 
 /****************************************
  * round_node_setaddress
  ****************************************/
 
-bool round_node_setaddress(RoundNode *node, const char *addr) {
+bool round_node_setaddress(RoundNode* node, const char* addr)
+{
   if (!node)
     return false;
 
@@ -139,7 +147,8 @@ bool round_node_setaddress(RoundNode *node, const char *addr) {
  * round_node_getaddress
  ****************************************/
 
-bool round_node_getaddress(RoundNode *node, const char **addr) {
+bool round_node_getaddress(RoundNode* node, const char** addr)
+{
   if (!node)
     return false;
 
@@ -155,7 +164,8 @@ bool round_node_getaddress(RoundNode *node, const char **addr) {
  * round_node_setport
  ****************************************/
 
-bool round_node_setport(RoundNode *node, int port) {
+bool round_node_setport(RoundNode* node, int port)
+{
   if (!node)
     return false;
 
@@ -168,7 +178,8 @@ bool round_node_setport(RoundNode *node, int port) {
  * round_node_getport
  ****************************************/
 
-bool round_node_getport(RoundNode *node, int *port) {
+bool round_node_getport(RoundNode* node, int* port)
+{
   if (!node)
     return false;
 
@@ -184,7 +195,8 @@ bool round_node_getport(RoundNode *node, int *port) {
  * round_node_equals
  ****************************************/
 
-bool round_node_equals(RoundNode *node1, RoundNode *node2) {
+bool round_node_equals(RoundNode* node1, RoundNode* node2)
+{
   if (!node1 || !node2)
     return false;
 
@@ -204,7 +216,8 @@ bool round_node_equals(RoundNode *node1, RoundNode *node2) {
  * round_node_updatedigest
  ****************************************/
 
-bool round_node_updatedigest(RoundNode *node) {
+bool round_node_updatedigest(RoundNode* node)
+{
   if (!node)
     return false;
 
@@ -212,7 +225,7 @@ bool round_node_updatedigest(RoundNode *node) {
   snprintf(seed, sizeof(seed), "%s:%d", round_string_getvalue(node->addr),
            node->port);
 
-  char *digest;
+  char* digest;
   if (!round_node_digest(seed, &digest))
     return false;
 
@@ -226,7 +239,8 @@ bool round_node_updatedigest(RoundNode *node) {
  * round_node_getdigest
  ****************************************/
 
-const char *round_node_getdigest(RoundNode *node) {
+const char* round_node_getdigest(RoundNode* node)
+{
   if (!node)
     return "";
 
@@ -237,7 +251,8 @@ const char *round_node_getdigest(RoundNode *node) {
  * round_node_setcluster
  ****************************************/
 
-bool round_node_setclustername(RoundNode *node, const char *cluster) {
+bool round_node_setclustername(RoundNode* node, const char* cluster)
+{
   if (!node)
     return false;
 
@@ -248,7 +263,8 @@ bool round_node_setclustername(RoundNode *node, const char *cluster) {
  * round_node_getcluster
  ****************************************/
 
-bool round_node_getclustername(RoundNode *node, const char **cluster) {
+bool round_node_getclustername(RoundNode* node, const char** cluster)
+{
   if (!node)
     return false;
 
@@ -264,7 +280,8 @@ bool round_node_getclustername(RoundNode *node, const char **cluster) {
  * round_node_setrequesttimeout
  ****************************************/
 
-bool round_node_setrequesttimeout(RoundNode *node, time_t value) {
+bool round_node_setrequesttimeout(RoundNode* node, time_t value)
+{
   if (!node)
     return false;
 
@@ -277,7 +294,8 @@ bool round_node_setrequesttimeout(RoundNode *node, time_t value) {
  * round_node_getrequesttimeout
  ****************************************/
 
-time_t round_node_getrequesttimeout(RoundNode *node) {
+time_t round_node_getrequesttimeout(RoundNode* node)
+{
   if (!node)
     return 0;
 
@@ -288,7 +306,8 @@ time_t round_node_getrequesttimeout(RoundNode *node) {
  * round_node_addclusternode
  ****************************************/
 
-bool round_node_addclusternode(RoundNode *node, RoundNode *clusterNode) {
+bool round_node_addclusternode(RoundNode* node, RoundNode* clusterNode)
+{
   if (!node)
     return false;
 
@@ -299,7 +318,8 @@ bool round_node_addclusternode(RoundNode *node, RoundNode *clusterNode) {
  * round_node_removeclusternode
  ****************************************/
 
-bool round_node_removeclusternode(RoundNode *node, RoundNode *clusterNode) {
+bool round_node_removeclusternode(RoundNode* node, RoundNode* clusterNode)
+{
   if (!node)
     return false;
 
@@ -310,7 +330,8 @@ bool round_node_removeclusternode(RoundNode *node, RoundNode *clusterNode) {
  * round_node_clearclusternode
  ****************************************/
 
-bool round_node_clearclusternode(RoundNode *node, RoundNode *clusterNode) {
+bool round_node_clearclusternode(RoundNode* node, RoundNode* clusterNode)
+{
   if (!node)
     return false;
 
@@ -321,7 +342,8 @@ bool round_node_clearclusternode(RoundNode *node, RoundNode *clusterNode) {
  * round_node_hasclusternode
  ****************************************/
 
-bool round_node_hasclusternode(RoundNode *node, RoundNode *clusterNode) {
+bool round_node_hasclusternode(RoundNode* node, RoundNode* clusterNode)
+{
   if (!node)
     return false;
 
@@ -332,15 +354,16 @@ bool round_node_hasclusternode(RoundNode *node, RoundNode *clusterNode) {
  * round_node_getcluster
  ****************************************/
 
-RoundCluster *round_node_getcluster(RoundNode *node) {
+RoundCluster* round_node_getcluster(RoundNode* node)
+{
   if (!node)
     return NULL;
 
   if (node->cluster)
     return node->cluster;
 
-  node->cluster =
-  round_node_getclusterbyname(node, round_string_getvalue(node->clusterName));
+  node->cluster = round_node_getclusterbyname(
+      node, round_string_getvalue(node->clusterName));
 
   return node->cluster;
 }
@@ -349,7 +372,8 @@ RoundCluster *round_node_getcluster(RoundNode *node) {
  * round_node_getclusterbyname
  ****************************************/
 
-RoundCluster *round_node_getclusterbyname(RoundNode *node, const char *name) {
+RoundCluster* round_node_getclusterbyname(RoundNode* node, const char* name)
+{
   return round_cluster_manager_getclusterbyname(node->clusterMgr, name);
 }
 
@@ -357,7 +381,8 @@ RoundCluster *round_node_getclusterbyname(RoundNode *node, const char *name) {
  * round_node_getclusters
  ****************************************/
 
-RoundCluster *round_node_getclusters(RoundNode *node) {
+RoundCluster* round_node_getclusters(RoundNode* node)
+{
   return round_cluster_manager_getclusters(node->clusterMgr);
 }
 
@@ -365,8 +390,8 @@ RoundCluster *round_node_getclusters(RoundNode *node) {
  * round_node_postmessage
  ****************************************/
 
-bool round_node_postmessage(RoundNode *node, RoundJSONObject *reqObj,
-                            RoundJSONObject *resObj, RoundError *err) {
+bool round_node_postmessage(RoundNode* node, RoundJSONObject* reqObj, RoundJSONObject* resObj, RoundError* err)
+{
   return false;
 }
 
@@ -374,25 +399,23 @@ bool round_node_postmessage(RoundNode *node, RoundJSONObject *reqObj,
  * round_node_request2string
  ****************************************/
 
-bool round_node_request2string(RoundLocalNode *node,
-                               RoundJSONObject *reqObj,
-                                      RoundJSONObject **resObj,
-                                      RoundError *err) {
+bool round_node_request2string(RoundLocalNode* node, RoundJSONObject* reqObj,
+                               RoundJSONObject** resObj, RoundError* err)
+{
   if (!node) {
     round_local_node_seterrorresponse(node, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR,
                                       err, resObj);
     return false;
   }
-  
+
   if (!reqObj || !resObj || !err) {
     round_local_node_seterrorresponse(node, ROUND_RPC_ERROR_CODE_INVALID_PARAMS,
                                       err, resObj);
     return false;
   }
-  
-  const char *reqStr = NULL;
-  if (!round_json_object_tocompactstring(reqObj, &reqStr) ||
-      (0 < round_strlen(reqStr))) {
+
+  const char* reqStr = NULL;
+  if (!round_json_object_tocompactstring(reqObj, &reqStr) || (0 < round_strlen(reqStr))) {
     round_local_node_seterrorresponse(node, ROUND_RPC_ERROR_CODE_INVALID_PARAMS,
                                       err, resObj);
     return false;

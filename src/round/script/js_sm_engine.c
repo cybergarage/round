@@ -12,10 +12,11 @@
 
 #if defined(ROUND_SUPPORT_JS_SM)
 
-static RoundJavaScriptEngine *gCurrentJsEngine;
+static RoundJavaScriptEngine* gCurrentJsEngine;
 
-static void RoundJSReportError(JSContext *cx, const char *message,
-                               JSErrorReport *report) {
+static void RoundJSReportError(JSContext* cx, const char* message,
+                               JSErrorReport* report)
+{
   static char errmsg[1024];
 
   snprintf(errmsg, sizeof(errmsg), "%s:%u:%s",
@@ -26,16 +27,25 @@ static void RoundJSReportError(JSContext *cx, const char *message,
 }
 
 static JSClass RoundJSGlobalClass = {
-"global", JSCLASS_NEW_RESOLVE | JSCLASS_GLOBAL_FLAGS | JSCLASS_HAS_PRIVATE,
-JS_PropertyStub, JS_PropertyStub, JS_PropertyStub, JS_StrictPropertyStub,
-JS_EnumerateStub, JS_ResolveStub, JS_ConvertStub, JS_FinalizeStub,
-JSCLASS_NO_OPTIONAL_MEMBERS};
+  "global",
+  JSCLASS_NEW_RESOLVE | JSCLASS_GLOBAL_FLAGS | JSCLASS_HAS_PRIVATE,
+  JS_PropertyStub,
+  JS_PropertyStub,
+  JS_PropertyStub,
+  JS_StrictPropertyStub,
+  JS_EnumerateStub,
+  JS_ResolveStub,
+  JS_ConvertStub,
+  JS_FinalizeStub,
+  JSCLASS_NO_OPTIONAL_MEMBERS
+};
 
 /****************************************
 * round_js_sm_engine_new
 ****************************************/
 
-bool round_js_sm_engine_init(RoundJavaScriptEngine *engine) {
+bool round_js_sm_engine_init(RoundJavaScriptEngine* engine)
+{
   if (!engine)
     return NULL;
 
@@ -56,8 +66,7 @@ bool round_js_sm_engine_init(RoundJavaScriptEngine *engine) {
   JS_SetErrorReporter(engine->cx, RoundJSReportError);
 
   // Obsolete since JSAPI 16
-  engine->obj =
-  JS_NewCompartmentAndGlobalObject(engine->cx, &RoundJSGlobalClass, NULL);
+  engine->obj = JS_NewCompartmentAndGlobalObject(engine->cx, &RoundJSGlobalClass, NULL);
   if (!engine->obj)
     return false;
 
@@ -70,7 +79,8 @@ bool round_js_sm_engine_init(RoundJavaScriptEngine *engine) {
  * round_js_engine_delete
  ****************************************/
 
-bool round_js_sm_engine_destroy(RoundJavaScriptEngine *engine) {
+bool round_js_sm_engine_destroy(RoundJavaScriptEngine* engine)
+{
   if (!engine)
     return false;
 
@@ -91,8 +101,9 @@ bool round_js_sm_engine_destroy(RoundJavaScriptEngine *engine) {
  * round_js_sm_engine_setfunctions
  ****************************************/
 
-bool round_js_sm_engine_setfunctions(RoundJavaScriptEngine *engine,
-                                     JSFunctionSpec *funcs) {
+bool round_js_sm_engine_setfunctions(RoundJavaScriptEngine* engine,
+                                     JSFunctionSpec* funcs)
+{
   if (!engine)
     return false;
 
@@ -105,9 +116,10 @@ bool round_js_sm_engine_setfunctions(RoundJavaScriptEngine *engine,
  * round_js_engine_run
  ****************************************/
 
-bool round_js_sm_engine_run(RoundJavaScriptEngine *engine, const char *source,
-                            size_t sourceLen, RoundString *result,
-                            RoundError *err) {
+bool round_js_sm_engine_run(RoundJavaScriptEngine* engine, const char* source,
+                            size_t sourceLen, RoundString* result,
+                            RoundError* err)
+{
   jsval rval;
   JSBool ok;
 
@@ -123,7 +135,7 @@ bool round_js_sm_engine_run(RoundJavaScriptEngine *engine, const char *source,
   gCurrentJsEngine = NULL;
 
   if (ok) {
-    JSString *rstr = JS_ValueToString(engine->cx, rval);
+    JSString* rstr = JS_ValueToString(engine->cx, rval);
     if (rstr) {
       if (result) {
         round_string_setvalue(result, JS_EncodeString(engine->cx, rstr));

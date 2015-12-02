@@ -12,8 +12,9 @@
 
 #include <round/error_internal.h>
 
-BOOST_AUTO_TEST_CASE(ErrortNew) {
-  RoundError *err = round_error_new();
+BOOST_AUTO_TEST_CASE(ErrortNew)
+{
+  RoundError* err = round_error_new();
   BOOST_CHECK(err);
 
   BOOST_CHECK_EQUAL(round_error_getcode(err), 0);
@@ -25,7 +26,7 @@ BOOST_AUTO_TEST_CASE(ErrortNew) {
   BOOST_CHECK(round_error_setcode(err, code));
   BOOST_CHECK_EQUAL(round_error_getcode(err), code);
 
-  const char *msg = "hello";
+  const char* msg = "hello";
   BOOST_CHECK(round_error_setmessage(err, msg));
   BOOST_CHECK(round_streq(round_error_getmessage(err), msg));
 
@@ -33,7 +34,7 @@ BOOST_AUTO_TEST_CASE(ErrortNew) {
   BOOST_CHECK(round_error_setdetailcode(err, detailCode));
   BOOST_CHECK_EQUAL(round_error_getdetailcode(err), detailCode);
 
-  const char *detailMsg = "hello world";
+  const char* detailMsg = "hello world";
   BOOST_CHECK(round_error_setdetailmessage(err, detailMsg));
   BOOST_CHECK(round_streq(round_error_getdetailmessage(err), detailMsg));
 

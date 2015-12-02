@@ -16,8 +16,9 @@ BOOST_AUTO_TEST_SUITE(string)
 
 #define ROUND_STRING_TEST_LOOP_CNT 100
 
-BOOST_AUTO_TEST_CASE(NullStringTest) {
-  RoundString *str;
+BOOST_AUTO_TEST_CASE(NullStringTest)
+{
+  RoundString* str;
 
   str = NULL;
 
@@ -31,8 +32,9 @@ BOOST_AUTO_TEST_CASE(NullStringTest) {
   BOOST_CHECK(!round_string_addvalue(str, ""));
 }
 
-BOOST_AUTO_TEST_CASE(NewStringTest) {
-  RoundString *str;
+BOOST_AUTO_TEST_CASE(NewStringTest)
+{
+  RoundString* str;
   char buf[128];
   int n;
 
@@ -75,7 +77,8 @@ BOOST_AUTO_TEST_CASE(NewStringTest) {
   BOOST_CHECK(round_string_delete(str));
 }
 
-BOOST_AUTO_TEST_CASE(IsNumeric) {
+BOOST_AUTO_TEST_CASE(IsNumeric)
+{
   BOOST_CHECK_EQUAL(round_isnumeric(NULL), false);
   BOOST_CHECK_EQUAL(round_isnumeric(""), false);
   BOOST_CHECK_EQUAL(round_isnumeric("a"), false);
@@ -91,7 +94,8 @@ BOOST_AUTO_TEST_CASE(IsNumeric) {
   BOOST_CHECK_EQUAL(round_isnumeric("1234567890"), true);
 }
 
-BOOST_AUTO_TEST_CASE(StringReplace) {
+BOOST_AUTO_TEST_CASE(StringReplace)
+{
   std::vector<std::string> strings;
   std::vector<std::string> froms;
   std::vector<std::string> tos;
@@ -161,8 +165,7 @@ BOOST_AUTO_TEST_CASE(StringReplace) {
 
   size_t testCnt = strings.size();
   for (size_t n = 0; n < testCnt; n++) {
-    char *result =
-    round_strreplace(strings[n].c_str(), froms[n].c_str(), tos[n].c_str());
+    char* result = round_strreplace(strings[n].c_str(), froms[n].c_str(), tos[n].c_str());
     BOOST_CHECK_EQUAL(expects[n].compare(result), 0);
   }
 }

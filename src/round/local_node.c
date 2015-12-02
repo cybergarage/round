@@ -21,10 +21,11 @@
 * round_local_node_new
 ****************************************/
 
-RoundLocalNode *round_local_node_new(void) {
-  RoundLocalNode *node;
+RoundLocalNode* round_local_node_new(void)
+{
+  RoundLocalNode* node;
 
-  node = (RoundLocalNode *)malloc(sizeof(RoundLocalNode));
+  node = (RoundLocalNode*)malloc(sizeof(RoundLocalNode));
 
   if (!node)
     return NULL;
@@ -41,8 +42,9 @@ RoundLocalNode *round_local_node_new(void) {
  * round_local_node_init
  ****************************************/
 
-bool round_local_node_init(RoundLocalNode *node) {
-  round_node_init((RoundNode *)node);
+bool round_local_node_init(RoundLocalNode* node)
+{
+  round_node_init((RoundNode*)node);
   round_oo_setdescendantdestoroyfunc(node, round_local_node_destory);
 
   node->methodMgr = round_method_manager_new();
@@ -70,9 +72,10 @@ bool round_local_node_init(RoundLocalNode *node) {
  * round_local_node_initthreads
  ****************************************/
 
-bool round_local_node_initthreads(RoundLocalNode *node) {
-  RoundThreadFunc threadFuncs[] = {round_local_node_message_thread};
-  RoundThread *thread;
+bool round_local_node_initthreads(RoundLocalNode* node)
+{
+  RoundThreadFunc threadFuncs[] = { round_local_node_message_thread };
+  RoundThread* thread;
   size_t n, threadFuncCnt;
 
   threadFuncCnt = sizeof(threadFuncs) / sizeof(RoundThreadFunc);
@@ -93,27 +96,28 @@ bool round_local_node_initthreads(RoundLocalNode *node) {
  * round_local_node_initscriptengines
  ****************************************/
 
-bool round_local_node_initscriptengines(RoundLocalNode *node) {
+bool round_local_node_initscriptengines(RoundLocalNode* node)
+{
   bool areAllEnginesAdded;
 
   areAllEnginesAdded = true;
 
   areAllEnginesAdded &= round_local_node_addengine(
-  node, (RoundScriptEngine *)round_native_engine_new());
+      node, (RoundScriptEngine*)round_native_engine_new());
 
 #if defined(ROUND_SUPPORT_JS_SM)
-  areAllEnginesAdded &=
-  round_local_node_addengine(node, (RoundScriptEngine *)round_js_engine_new());
+  areAllEnginesAdded &= round_local_node_addengine(
+      node, (RoundScriptEngine*)round_js_engine_new());
 #endif
 
 #if defined(ROUND_SUPPORT_LUA)
-  areAllEnginesAdded &=
-  round_local_node_addengine(node, (RoundScriptEngine *)round_lua_engine_new());
+  areAllEnginesAdded &= round_local_node_addengine(
+      node, (RoundScriptEngine*)round_lua_engine_new());
 #endif
 
 #if defined(ROUND_SUPPORT_RUBY)
   areAllEnginesAdded &= round_local_node_addengine(
-  node, (RoundScriptEngine *)round_ruby_engine_new());
+      node, (RoundScriptEngine*)round_ruby_engine_new());
 #endif
 
   return areAllEnginesAdded;
@@ -123,22 +127,19 @@ bool round_local_node_initscriptengines(RoundLocalNode *node) {
  * round_local_node_initsystemmethods
  ****************************************/
 
-bool round_local_node_initsystemmethods(RoundLocalNode *node) {
+bool round_local_node_initsystemmethods(RoundLocalNode* node)
+{
   bool areAllMethodsAdded;
 
   areAllMethodsAdded = true;
 
-  areAllMethodsAdded &=
-  round_local_node_setmethod(node, round_system_method_setmethod_new());
-  areAllMethodsAdded &=
-  round_local_node_setmethod(node, round_system_method_removemethod_new());
+  areAllMethodsAdded &= round_local_node_setmethod(node, round_system_method_setmethod_new());
+  areAllMethodsAdded &= round_local_node_setmethod(node, round_system_method_removemethod_new());
 
-  areAllMethodsAdded &=
-  round_local_node_setmethod(node, round_system_method_setregistry_new());
-  areAllMethodsAdded &=
-  round_local_node_setmethod(node, round_system_method_getregistry_new());
-  areAllMethodsAdded &=
-  round_local_node_setmethod(node, round_system_method_removeregistry_new());
+  areAllMethodsAdded &= round_local_node_setmethod(node, round_system_method_setregistry_new());
+  areAllMethodsAdded &= round_local_node_setmethod(node, round_system_method_getregistry_new());
+  areAllMethodsAdded &= round_local_node_setmethod(
+      node, round_system_method_removeregistry_new());
 
   return areAllMethodsAdded;
 }
@@ -147,7 +148,8 @@ bool round_local_node_initsystemmethods(RoundLocalNode *node) {
  * round_local_node_destory
  ****************************************/
 
-bool round_local_node_destory(RoundLocalNode *node) {
+bool round_local_node_destory(RoundLocalNode* node)
+{
   if (!node)
     return false;
 
@@ -165,14 +167,15 @@ bool round_local_node_destory(RoundLocalNode *node) {
 * round_local_node_delete
 ****************************************/
 
-bool round_local_node_delete(RoundLocalNode *node) {
+bool round_local_node_delete(RoundLocalNode* node)
+{
   if (!node)
     return false;
 
   if (!round_local_node_destory(node))
     return false;
 
-  round_node_destroy((RoundNode *)node);
+  round_node_destroy((RoundNode*)node);
 
   free(node);
 
@@ -183,7 +186,8 @@ bool round_local_node_delete(RoundLocalNode *node) {
  * round_local_node_start
  ****************************************/
 
-bool round_local_node_start(RoundLocalNode *node) {
+bool round_local_node_start(RoundLocalNode* node)
+{
   bool isSuccess = true;
 
   if (!node)
@@ -192,8 +196,7 @@ bool round_local_node_start(RoundLocalNode *node) {
   if (!round_local_node_stop(node))
     return false;
 
-  isSuccess &=
-  round_cluster_manager_addnode(node->clusterMgr, (RoundNode *)node);
+  isSuccess &= round_cluster_manager_addnode(node->clusterMgr, (RoundNode*)node);
   isSuccess &= round_thread_manager_start(node->threadMgr);
 
   if (!isSuccess) {
@@ -208,7 +211,8 @@ bool round_local_node_start(RoundLocalNode *node) {
  * round_local_node_stop
  ****************************************/
 
-bool round_local_node_stop(RoundLocalNode *node) {
+bool round_local_node_stop(RoundLocalNode* node)
+{
   bool isSuccess = true;
 
   if (!node)
@@ -224,7 +228,8 @@ bool round_local_node_stop(RoundLocalNode *node) {
  * round_local_node_isrunning
  ****************************************/
 
-bool round_local_node_isrunning(RoundLocalNode *node) {
+bool round_local_node_isrunning(RoundLocalNode* node)
+{
   if (!node)
     return false;
 
@@ -238,9 +243,10 @@ bool round_local_node_isrunning(RoundLocalNode *node) {
  * round_local_node_setmethod
  ****************************************/
 
-bool round_local_node_setmethod(RoundLocalNode *node, RoundMethod *method) {
-  const char *methodName;
-  RoundMethod *exMethod;
+bool round_local_node_setmethod(RoundLocalNode* node, RoundMethod* method)
+{
+  const char* methodName;
+  RoundMethod* exMethod;
 
   if (!node)
     return false;
@@ -264,8 +270,9 @@ bool round_local_node_setmethod(RoundLocalNode *node, RoundMethod *method) {
  * round_local_node_removemethod
  ****************************************/
 
-bool round_local_node_removemethod(RoundLocalNode *node, const char *name) {
-  RoundMethod *method;
+bool round_local_node_removemethod(RoundLocalNode* node, const char* name)
+{
+  RoundMethod* method;
 
   if (!node)
     return false;
@@ -284,8 +291,9 @@ bool round_local_node_removemethod(RoundLocalNode *node, const char *name) {
  * round_local_node_isfinalmethod
  ****************************************/
 
-bool round_local_node_isfinalmethod(RoundLocalNode *node, const char *name) {
-  RoundMethod *method;
+bool round_local_node_isfinalmethod(RoundLocalNode* node, const char* name)
+{
+  RoundMethod* method;
 
   if (!node)
     return false;
@@ -301,8 +309,9 @@ bool round_local_node_isfinalmethod(RoundLocalNode *node, const char *name) {
  * round_local_node_addengine
  ****************************************/
 
-bool round_local_node_addengine(RoundLocalNode *node,
-                                RoundScriptEngine *engine) {
+bool round_local_node_addengine(RoundLocalNode* node,
+                                RoundScriptEngine* engine)
+{
   if (!node)
     return false;
 
@@ -318,9 +327,10 @@ bool round_local_node_addengine(RoundLocalNode *node,
  * round_local_node_setregistry
  ****************************************/
 
-bool round_local_node_setregistry(RoundLocalNode *node, const char *key,
-                                  const char *val) {
-  RoundRegistry *reg;
+bool round_local_node_setregistry(RoundLocalNode* node, const char* key,
+                                  const char* val)
+{
+  RoundRegistry* reg;
 
   if (!node)
     return false;
@@ -348,8 +358,9 @@ bool round_local_node_setregistry(RoundLocalNode *node, const char *key,
  * round_local_node_getregistry
  ****************************************/
 
-RoundRegistry *round_local_node_getregistry(RoundLocalNode *node,
-                                            const char *key) {
+RoundRegistry* round_local_node_getregistry(RoundLocalNode* node,
+                                            const char* key)
+{
   if (!node)
     return false;
 
@@ -360,7 +371,8 @@ RoundRegistry *round_local_node_getregistry(RoundLocalNode *node,
  * round_local_node_removeregistry
  ****************************************/
 
-bool round_local_node_removeregistry(RoundLocalNode *node, const char *key) {
+bool round_local_node_removeregistry(RoundLocalNode* node, const char* key)
+{
   if (!node)
     return false;
 
@@ -371,12 +383,13 @@ bool round_local_node_removeregistry(RoundLocalNode *node, const char *key) {
  * round_local_node_postmessage
  ****************************************/
 
-bool round_local_node_postmessage(RoundLocalNode *node, RoundJSONObject *reqMap,
-                                  RoundJSONObject *resMap, RoundError *err) {
+bool round_local_node_postmessage(RoundLocalNode* node, RoundJSONObject* reqMap,
+                                  RoundJSONObject* resMap, RoundError* err)
+{
   const char *msgId, *method, *params;
   long ts;
   bool isSuccess;
-  RoundJSONObject *jsonResult;
+  RoundJSONObject* jsonResult;
 
   if (!node) {
     round_error_setjsonrpcerrorcode(err, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR);
@@ -401,7 +414,8 @@ bool round_local_node_postmessage(RoundLocalNode *node, RoundJSONObject *reqMap,
 
   if (round_json_rpc_gettimestamp(reqMap, &ts)) {
     round_node_setremoteclockvalue(node, ts);
-  } else {
+  }
+  else {
     round_node_incrementclock(node);
   }
 
@@ -518,9 +532,10 @@ bool round_local_node_postmessage(RoundLocalNode *node, RoundJSONObject *reqMap,
  * round_local_node_seterrorresponse
  ****************************************/
 
-bool round_local_node_seterrorresponse(RoundLocalNode *node, int rpcErrCode,
-                                       RoundError *err,
-                                       RoundJSONObject **resObj) {
+bool round_local_node_seterrorresponse(RoundLocalNode* node, int rpcErrCode,
+                                       RoundError* err,
+                                       RoundJSONObject** resObj)
+{
   if (!node)
     return false;
 
@@ -538,33 +553,34 @@ bool round_local_node_seterrorresponse(RoundLocalNode *node, int rpcErrCode,
  * round_local_node_execmessage
  ****************************************/
 
-bool round_local_node_execmessage(RoundLocalNode *node, RoundMessage *msg,
-                                  RoundJSONObject **resObj, RoundError *err) {
-  RoundJSON *json;
-  const char *msgContent;
+bool round_local_node_execmessage(RoundLocalNode* node, RoundMessage* msg,
+                                  RoundJSONObject** resObj, RoundError* err)
+{
+  RoundJSON* json;
+  const char* msgContent;
   RoundJSONObject *reqObj, *msgArrayObj, *resArrayObj;
   size_t n, msgArrayCnt;
 
   if (!node || !msg || !resObj || !err)
     return round_local_node_seterrorresponse(
-    node, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR, err, resObj);
+        node, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR, err, resObj);
 
   // Parse JSON-RPC request
 
   msgContent = round_message_getstring(msg);
   if (!msgContent)
     return round_local_node_seterrorresponse(
-    node, ROUND_RPC_ERROR_CODE_INVALID_REQUEST, err, resObj);
+        node, ROUND_RPC_ERROR_CODE_INVALID_REQUEST, err, resObj);
 
   json = round_json_new();
   if (!json)
     return round_local_node_seterrorresponse(
-    node, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR, err, resObj);
+        node, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR, err, resObj);
 
   if (!round_json_parse(json, msgContent, err)) {
     round_json_delete(json);
     return round_local_node_seterrorresponse(
-    node, ROUND_RPC_ERROR_CODE_INVALID_REQUEST, err, resObj);
+        node, ROUND_RPC_ERROR_CODE_INVALID_REQUEST, err, resObj);
   }
 
   // Check JSON-RPC request
@@ -573,13 +589,13 @@ bool round_local_node_execmessage(RoundLocalNode *node, RoundMessage *msg,
   if (!reqObj) {
     round_json_delete(json);
     return round_local_node_seterrorresponse(
-    node, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR, err, resObj);
+        node, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR, err, resObj);
   }
 
   if (!round_json_object_ismap(reqObj) && !round_json_object_isarray(reqObj)) {
     round_json_delete(json);
     return round_local_node_seterrorresponse(
-    node, ROUND_RPC_ERROR_CODE_INVALID_REQUEST, err, resObj);
+        node, ROUND_RPC_ERROR_CODE_INVALID_REQUEST, err, resObj);
   }
 
   // Single request
@@ -609,15 +625,16 @@ bool round_local_node_execmessage(RoundLocalNode *node, RoundMessage *msg,
   }
 
   return round_local_node_seterrorresponse(
-  node, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR, err, resObj);
+      node, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR, err, resObj);
 }
 
 /****************************************
  * round_local_node_postrequest
  ****************************************/
 
-bool round_local_node_postrequest(RoundLocalNode *node, RoundMessage *msg,
-                                  RoundJSONObject **resObj, RoundError *err) {
+bool round_local_node_postrequest(RoundLocalNode* node, RoundMessage* msg,
+                                  RoundJSONObject** resObj, RoundError* err)
+{
   if (!msg) {
     round_local_node_seterrorresponse(node, ROUND_RPC_ERROR_CODE_INVALID_PARAMS,
                                       err, resObj);
@@ -656,7 +673,7 @@ bool round_local_node_postrequest(RoundLocalNode *node, RoundMessage *msg,
   }
 
   if (!round_message_timedwaitnotify(
-      msg, round_local_node_getrequesttimeout(node))) {
+          msg, round_local_node_getrequesttimeout(node))) {
     round_message_setnotifyenabled(msg, false);
     round_local_node_seterrorresponse(node, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR,
                                       err, resObj);
@@ -670,10 +687,11 @@ bool round_local_node_postrequest(RoundLocalNode *node, RoundMessage *msg,
  * round_local_node_postjsonrequest
  ****************************************/
 
-bool round_local_node_postjsonrequest(RoundLocalNode *node,
-                                      RoundJSONObject *reqObj,
-                                      RoundJSONObject **resObj,
-                                      RoundError *err) {
+bool round_local_node_postjsonrequest(RoundLocalNode* node,
+                                      RoundJSONObject* reqObj,
+                                      RoundJSONObject** resObj,
+                                      RoundError* err)
+{
   if (!node) {
     round_local_node_seterrorresponse(node, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR,
                                       err, resObj);
@@ -686,15 +704,14 @@ bool round_local_node_postjsonrequest(RoundLocalNode *node,
     return false;
   }
 
-  const char *reqStr = NULL;
-  if (!round_json_object_tocompactstring(reqObj, &reqStr) ||
-      (0 < round_strlen(reqStr))) {
+  const char* reqStr = NULL;
+  if (!round_json_object_tocompactstring(reqObj, &reqStr) || (0 < round_strlen(reqStr))) {
     round_local_node_seterrorresponse(node, ROUND_RPC_ERROR_CODE_INVALID_PARAMS,
                                       err, resObj);
     return false;
   }
 
-  RoundMessage *msg = round_local_node_message_new();
+  RoundMessage* msg = round_local_node_message_new();
   if (!msg) {
     round_local_node_seterrorresponse(node, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR,
                                       err, resObj);

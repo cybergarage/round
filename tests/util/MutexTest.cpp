@@ -13,8 +13,9 @@
 
 BOOST_AUTO_TEST_SUITE(mutex)
 
-BOOST_AUTO_TEST_CASE(MutexTest) {
-  RoundMutex *mutex;
+BOOST_AUTO_TEST_CASE(MutexTest)
+{
+  RoundMutex* mutex;
 
   mutex = round_mutex_new();
   BOOST_CHECK(mutex);
