@@ -12,7 +12,7 @@
 
 #define round_queue_clear(queue) round_list_clear((RoundList *)queue, NULL)
 #define round_queue_gets(queue) round_list_next((RoundList *)queue)
-#define round_queue_add(queue, obj) \
+#define round_queue_add(queue, obj)                                            \
   round_list_add((RoundList *)queue, (RoundList *)obj)
 
 /****************************************

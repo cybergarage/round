@@ -59,8 +59,9 @@ const char *round_consistenthashing_node_gethash(void *node) {
  * round_consistenthashing_node_compfunc
  ****************************************/
 
-int round_consistenthashing_node_compfunc(
-RoundConsistentHashingNode *thisNode, RoundConsistentHashingNode *otherNode) {
+int
+round_consistenthashing_node_compfunc(RoundConsistentHashingNode *thisNode,
+                                      RoundConsistentHashingNode *otherNode) {
   const char *thisHash, *otherHash;
   int strCmp;
 

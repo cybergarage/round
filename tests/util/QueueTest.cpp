@@ -17,12 +17,11 @@
 
 BOOST_AUTO_TEST_SUITE(queue)
 
-BOOST_AUTO_TEST_CASE(QueuePushPopTest)
-{
+BOOST_AUTO_TEST_CASE(QueuePushPopTest) {
   RoundQueue *queue = round_queue_new();
 
   BOOST_CHECK_EQUAL(round_queue_size(queue), 0);
-  
+
   for (int n = 0; n < ROUND_QUEUE_TEST_COUNT; n++) {
     char *data = (char *)malloc(ROUND_QUEUE_TEST_DATA_MAX);
     snprintf(data, ROUND_QUEUE_TEST_DATA_MAX, "obj%d", n);
@@ -32,7 +31,7 @@ BOOST_AUTO_TEST_CASE(QueuePushPopTest)
   }
 
   BOOST_CHECK_EQUAL(round_queue_size(queue), ROUND_QUEUE_TEST_COUNT);
-  
+
   for (int n = 0; n < ROUND_QUEUE_TEST_COUNT; n++) {
     char data[ROUND_QUEUE_TEST_DATA_MAX];
     snprintf(data, sizeof(data), "obj%d", n);
@@ -47,12 +46,11 @@ BOOST_AUTO_TEST_CASE(QueuePushPopTest)
   BOOST_CHECK_EQUAL(round_queue_size(queue), 0);
 }
 
-BOOST_AUTO_TEST_CASE(QueueEachPushPopTest)
-{
+BOOST_AUTO_TEST_CASE(QueueEachPushPopTest) {
   RoundQueue *queue = round_queue_new();
-  
+
   BOOST_CHECK_EQUAL(round_queue_size(queue), 0);
-  
+
   for (int n = 0; n < ROUND_QUEUE_TEST_COUNT; n++) {
     char *data = (char *)malloc(ROUND_QUEUE_TEST_DATA_MAX);
     snprintf(data, ROUND_QUEUE_TEST_DATA_MAX, "obj%d", n);
@@ -70,9 +68,8 @@ BOOST_AUTO_TEST_CASE(QueueEachPushPopTest)
     free(popObjData);
     BOOST_CHECK_EQUAL(round_queue_size(queue), 0);
   }
-  
+
   BOOST_CHECK_EQUAL(round_queue_size(queue), 0);
 }
 
 BOOST_AUTO_TEST_SUITE_END()
-

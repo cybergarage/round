@@ -74,8 +74,8 @@ bool round_message_manager_clear(RoundMessageManager *mgr) {
  * round_message_manager_pushmessage
  ****************************************/
 
-bool round_message_manager_pushmessage(
-RoundMessageManager *mgr, RoundMessage *msg) {
+bool round_message_manager_pushmessage(RoundMessageManager *mgr,
+                                       RoundMessage *msg) {
   if (!mgr)
     return false;
 
@@ -92,8 +92,8 @@ RoundMessageManager *mgr, RoundMessage *msg) {
  * round_message_manager_waitmessage
  ****************************************/
 
-bool round_message_manager_waitmessage(
-RoundMessageManager *mgr, RoundMessage **msg) {
+bool round_message_manager_waitmessage(RoundMessageManager *mgr,
+                                       RoundMessage **msg) {
   bool isSuccess;
 
   if (!mgr)

@@ -22,8 +22,8 @@ RoundNodeRing *round_node_ring_new(void) {
     return NULL;
 
   ring->consHashRing = round_consistenthashing_ring_new();
-  round_consistenthashing_ring_setnodedestructor(
-  ring->consHashRing, round_node_delete);
+  round_consistenthashing_ring_setnodedestructor(ring->consHashRing,
+                                                 round_node_delete);
 
   return ring;
 }

@@ -15,7 +15,9 @@
  ****************************************/
 
 bool round_system_method_removeregistry(RoundLocalNode *node,
-RoundJSONObject *params, RoundJSONObject **result, RoundError *err) {
+                                        RoundJSONObject *params,
+                                        RoundJSONObject **result,
+                                        RoundError *err) {
   const char *key;
 
   if (!round_json_object_ismap(params)) {

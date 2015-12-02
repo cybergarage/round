@@ -209,8 +209,8 @@ bool round_node_updatedigest(RoundNode *node) {
     return false;
 
   char seed[32];
-  snprintf(
-  seed, sizeof(seed), "%s:%d", round_string_getvalue(node->addr), node->port);
+  snprintf(seed, sizeof(seed), "%s:%d", round_string_getvalue(node->addr),
+           node->port);
 
   char *digest;
   if (!round_node_digest(seed, &digest))
@@ -366,6 +366,6 @@ RoundCluster *round_node_getclusters(RoundNode *node) {
  ****************************************/
 
 bool round_node_postmessage(RoundNode *node, RoundJSONObject *reqObj,
-RoundJSONObject *resObj, RoundError *err) {
+                            RoundJSONObject *resObj, RoundError *err) {
   return false;
 }

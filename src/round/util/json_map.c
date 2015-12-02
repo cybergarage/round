@@ -32,8 +32,8 @@ json_t *round_json_map_getobject(RoundJSONObject *obj, const char *key) {
  * round_json_map_getstring
  ****************************************/
 
-bool round_json_map_getstring(
-RoundJSONObject *obj, const char *key, const char **value) {
+bool round_json_map_getstring(RoundJSONObject *obj, const char *key,
+                              const char **value) {
 #if defined(ROUND_USE_JSON_PARSER_JANSSON)
   json_t *keyJson;
 
@@ -61,8 +61,8 @@ RoundJSONObject *obj, const char *key, const char **value) {
  * round_json_map_getinteger
  ****************************************/
 
-bool round_json_map_getinteger(
-RoundJSONObject *obj, const char *key, long *value) {
+bool round_json_map_getinteger(RoundJSONObject *obj, const char *key,
+                               long *value) {
 #if defined(ROUND_USE_JSON_PARSER_JANSSON)
   json_t *keyJson;
 
@@ -81,8 +81,8 @@ RoundJSONObject *obj, const char *key, long *value) {
  * round_json_getreal
  ****************************************/
 
-bool round_json_map_getreal(
-RoundJSONObject *obj, const char *key, double *value) {
+bool round_json_map_getreal(RoundJSONObject *obj, const char *key,
+                            double *value) {
 #if defined(ROUND_USE_JSON_PARSER_JANSSON)
   json_t *keyJson;
 
@@ -101,8 +101,8 @@ RoundJSONObject *obj, const char *key, double *value) {
  * round_json_getbool
  ****************************************/
 
-bool round_json_map_getbool(
-RoundJSONObject *obj, const char *key, bool *value) {
+bool round_json_map_getbool(RoundJSONObject *obj, const char *key,
+                            bool *value) {
 #if defined(ROUND_USE_JSON_PARSER_JANSSON)
   json_t *keyJson;
 
@@ -122,8 +122,8 @@ RoundJSONObject *obj, const char *key, bool *value) {
  * round_json_map_setstring
  ****************************************/
 
-bool round_json_map_setstring(
-RoundJSONObject *obj, const char *key, const char *value) {
+bool round_json_map_setstring(RoundJSONObject *obj, const char *key,
+                              const char *value) {
   RoundJSONObject *valObj;
 
   valObj = round_json_string_new(value);
@@ -139,8 +139,8 @@ RoundJSONObject *obj, const char *key, const char *value) {
  * round_json_map_setinteger
  ****************************************/
 
-bool round_json_map_setinteger(
-RoundJSONObject *obj, const char *key, long value) {
+bool round_json_map_setinteger(RoundJSONObject *obj, const char *key,
+                               long value) {
   RoundJSONObject *valObj;
 
   valObj = round_json_integer_new(value);
@@ -156,8 +156,8 @@ RoundJSONObject *obj, const char *key, long value) {
  * round_json_map_setreal
  ****************************************/
 
-bool round_json_map_setreal(
-RoundJSONObject *obj, const char *key, double value) {
+bool round_json_map_setreal(RoundJSONObject *obj, const char *key,
+                            double value) {
   RoundJSONObject *valObj;
 
   valObj = round_json_real_new(value);
@@ -189,8 +189,8 @@ bool round_json_map_setbool(RoundJSONObject *obj, const char *key, bool value) {
  * round_json_map_setobjectpointer
  ****************************************/
 
-bool round_json_map_setobjectpointer(
-RoundJSONObject *obj, const char *key, RoundJSONObject *valObj) {
+bool round_json_map_setobjectpointer(RoundJSONObject *obj, const char *key,
+                                     RoundJSONObject *valObj) {
   if (!round_json_object_ismap(obj))
     return false;
 
@@ -209,8 +209,8 @@ RoundJSONObject *obj, const char *key, RoundJSONObject *valObj) {
  * round_json_map_setobject
  ****************************************/
 
-bool round_json_map_setobject(
-RoundJSONObject *obj, const char *key, RoundJSONObject *valObj) {
+bool round_json_map_setobject(RoundJSONObject *obj, const char *key,
+                              RoundJSONObject *valObj) {
   bool isAdded = false;
 #if defined(ROUND_USE_JSON_PARSER_JANSSON)
   json_t *copyJsonObj;

@@ -75,7 +75,8 @@ bool round_native_engine_delete(RoundNativeEngine *engine) {
  ****************************************/
 
 bool round_native_engine_run(RoundNativeEngine *engine, RoundMethod *method,
-const char *params, RoundJSONObject **result, RoundError *err) {
+                             const char *params, RoundJSONObject **result,
+                             RoundError *err) {
   RoundLocalNode *node;
   ROUND_SCRIPT_NATIVE_ENGINE_FUNC nativeFunc;
   RoundJSON *json;

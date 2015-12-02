@@ -15,8 +15,8 @@
  * round_json_getstringforpath
  ****************************************/
 
-bool round_json_getstringforpath(
-RoundJSON *json, const char *path, const char **value) {
+bool round_json_getstringforpath(RoundJSON *json, const char *path,
+                                 const char **value) {
   RoundJSONObject *jsonObj;
 
   jsonObj = round_json_getobjectforpath(json, path);
@@ -30,8 +30,8 @@ RoundJSON *json, const char *path, const char **value) {
  * round_json_getintegerforpath
  ****************************************/
 
-bool round_json_getintegerforpath(
-RoundJSON *json, const char *path, long *value) {
+bool round_json_getintegerforpath(RoundJSON *json, const char *path,
+                                  long *value) {
   RoundJSONObject *jsonObj;
 
   jsonObj = round_json_getobjectforpath(json, path);
@@ -45,8 +45,8 @@ RoundJSON *json, const char *path, long *value) {
  * round_json_getrealforpath
  ****************************************/
 
-bool round_json_getrealforpath(
-RoundJSON *json, const char *path, double *value) {
+bool round_json_getrealforpath(RoundJSON *json, const char *path,
+                               double *value) {
   RoundJSONObject *jsonObj;
 
   jsonObj = round_json_getobjectforpath(json, path);
@@ -140,8 +140,9 @@ json_t *round_jansson_array_getobject(json_t *jsonArray, size_t n) {
  * round_json_object_getobjectforpath
  ****************************************/
 
-bool round_json_object_getobjectforpath(
-RoundJSONObject *rootObj, const char *pathStr, RoundJSONObject *retObj) {
+bool round_json_object_getobjectforpath(RoundJSONObject *rootObj,
+                                        const char *pathStr,
+                                        RoundJSONObject *retObj) {
   char *path, *token, *ptr;
 #if defined(ROUND_USE_JSON_PARSER_JANSSON)
   json_t *rootJson, *tokenJson;
@@ -201,16 +202,16 @@ RoundJSONObject *rootObj, const char *pathStr, RoundJSONObject *retObj) {
  * round_json_getobjectforpath
  ****************************************/
 
-RoundJSONObject *round_json_getobjectforpath(
-RoundJSON *json, const char *pathStr) {
+RoundJSONObject *round_json_getobjectforpath(RoundJSON *json,
+                                             const char *pathStr) {
   if (!json || !pathStr)
     return NULL;
 
   if (!json->rootObj || !json->pathObj)
     return NULL;
 
-  if (!round_json_object_getobjectforpath(
-      json->rootObj, pathStr, json->pathObj))
+  if (!round_json_object_getobjectforpath(json->rootObj, pathStr,
+                                          json->pathObj))
     return NULL;
 
   return json->pathObj;
