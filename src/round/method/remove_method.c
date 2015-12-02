@@ -15,7 +15,9 @@
  ****************************************/
 
 bool round_system_method_removemethod(RoundLocalNode *node,
-RoundJSONObject *params, RoundJSONObject **result, RoundError *err) {
+                                      RoundJSONObject *params,
+                                      RoundJSONObject **result,
+                                      RoundError *err) {
   const char *name;
 
   if (!round_json_object_ismap(params)) {
@@ -23,8 +25,8 @@ RoundJSONObject *params, RoundJSONObject **result, RoundError *err) {
     return false;
   }
 
-  if (!round_json_map_getstring(
-      params, ROUND_SYSTEM_METHOD_PARAM_NAME, &name)) {
+  if (!round_json_map_getstring(params, ROUND_SYSTEM_METHOD_PARAM_NAME,
+                                &name)) {
     round_error_setjsonrpcerrorcode(err, ROUND_RPC_ERROR_CODE_INVALID_PARAMS);
     return false;
   }

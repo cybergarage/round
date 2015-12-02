@@ -129,7 +129,7 @@ bool round_json_parse(RoundJSON *json, const char *jsonStr, RoundError *err) {
     if (err) {
       round_error_setcode(err, jsonErr.line);
       snprintf(errMsg, sizeof(errMsg), "Error : Line %d , Pos %d, %s",
-      jsonErr.line, jsonErr.position, jsonErr.text);
+               jsonErr.line, jsonErr.position, jsonErr.text);
       round_error_setmessage(err, errMsg);
     }
     return false;

@@ -1,6 +1,4 @@
 BasedOnStyle:  LLVM
 Language: Cpp
 IndentWidth: 2
-AlignAfterOpenBracket: false
-AlignEscapedNewlinesLeft: true
 ContinuationIndentWidth: 0

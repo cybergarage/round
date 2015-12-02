@@ -15,8 +15,8 @@
  * round_json_setstringforpath
  ****************************************/
 
-bool round_json_setstringforpath(
-RoundJSON *json, const char *path, const char *value) {
+bool round_json_setstringforpath(RoundJSON *json, const char *path,
+                                 const char *value) {
   RoundJSONObject *obj;
 
   obj = round_json_string_new(value);
@@ -33,8 +33,8 @@ RoundJSON *json, const char *path, const char *value) {
  * round_json_setintegerforpath
  ****************************************/
 
-bool round_json_setintegerforpath(
-RoundJSON *json, const char *path, long value) {
+bool round_json_setintegerforpath(RoundJSON *json, const char *path,
+                                  long value) {
   RoundJSONObject *obj;
 
   obj = round_json_integer_new(value);
@@ -51,8 +51,8 @@ RoundJSON *json, const char *path, long value) {
  * round_json_setrealforpath
  ****************************************/
 
-bool round_json_setrealforpath(
-RoundJSON *json, const char *path, double value) {
+bool round_json_setrealforpath(RoundJSON *json, const char *path,
+                               double value) {
   RoundJSONObject *obj;
 
   obj = round_json_real_new(value);
@@ -86,8 +86,9 @@ bool round_json_setboolforpath(RoundJSON *json, const char *path, bool value) {
  * round_json_object_setobjectforpath
  ****************************************/
 
-bool round_json_object_setobjectforpath(
-RoundJSONObject *parentObj, const char *pathStr, RoundJSONObject *obj) {
+bool round_json_object_setobjectforpath(RoundJSONObject *parentObj,
+                                        const char *pathStr,
+                                        RoundJSONObject *obj) {
   char *path, *token, *ptr;
   char **tokens;
   size_t n, tokenCnt;
@@ -167,8 +168,8 @@ RoundJSONObject *parentObj, const char *pathStr, RoundJSONObject *obj) {
       }
     } else if (json_is_array(parentJson)) {
       if (round_json_isarraytoken(tokens[(tokenCnt - 1)])) {
-        json_array_set(
-        parentJson, round_str2int(tokens[(tokenCnt - 1)]), obj->jsonObj);
+        json_array_set(parentJson, round_str2int(tokens[(tokenCnt - 1)]),
+                       obj->jsonObj);
         isAdded = true;
       }
     }
@@ -190,8 +191,8 @@ RoundJSONObject *parentObj, const char *pathStr, RoundJSONObject *obj) {
  * round_json_setobjectforpath
  ****************************************/
 
-bool round_json_map_setobjectforpath(
-RoundJSON *json, const char *pathStr, RoundJSONObject *obj) {
+bool round_json_map_setobjectforpath(RoundJSON *json, const char *pathStr,
+                                     RoundJSONObject *obj) {
   if (!json || !pathStr || !obj)
     return false;
 

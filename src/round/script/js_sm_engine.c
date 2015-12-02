@@ -14,19 +14,19 @@
 
 static RoundJavaScriptEngine *gCurrentJsEngine;
 
-static void RoundJSReportError(
-JSContext *cx, const char *message, JSErrorReport *report) {
+static void RoundJSReportError(JSContext *cx, const char *message,
+                               JSErrorReport *report) {
   static char errmsg[1024];
 
   snprintf(errmsg, sizeof(errmsg), "%s:%u:%s",
-  report->filename ? report->filename : "<no filename>",
-  (unsigned int)report->lineno, message);
+           report->filename ? report->filename : "<no filename>",
+           (unsigned int)report->lineno, message);
 
   fprintf(stderr, "%s\n", errmsg);
 }
 
-static JSClass RoundJSGlobalClass = {"global",
-JSCLASS_NEW_RESOLVE | JSCLASS_GLOBAL_FLAGS | JSCLASS_HAS_PRIVATE,
+static JSClass RoundJSGlobalClass = {
+"global", JSCLASS_NEW_RESOLVE | JSCLASS_GLOBAL_FLAGS | JSCLASS_HAS_PRIVATE,
 JS_PropertyStub, JS_PropertyStub, JS_PropertyStub, JS_StrictPropertyStub,
 JS_EnumerateStub, JS_ResolveStub, JS_ConvertStub, JS_FinalizeStub,
 JSCLASS_NO_OPTIONAL_MEMBERS};
@@ -91,8 +91,8 @@ bool round_js_sm_engine_destroy(RoundJavaScriptEngine *engine) {
  * round_js_sm_engine_setfunctions
  ****************************************/
 
-bool round_js_sm_engine_setfunctions(
-RoundJavaScriptEngine *engine, JSFunctionSpec *funcs) {
+bool round_js_sm_engine_setfunctions(RoundJavaScriptEngine *engine,
+                                     JSFunctionSpec *funcs) {
   if (!engine)
     return false;
 
@@ -106,7 +106,8 @@ RoundJavaScriptEngine *engine, JSFunctionSpec *funcs) {
  ****************************************/
 
 bool round_js_sm_engine_run(RoundJavaScriptEngine *engine, const char *source,
-size_t sourceLen, RoundString *result, RoundError *err) {
+                            size_t sourceLen, RoundString *result,
+                            RoundError *err) {
   jsval rval;
   JSBool ok;
 
@@ -117,8 +118,8 @@ size_t sourceLen, RoundString *result, RoundError *err) {
     return false;
 
   gCurrentJsEngine = engine;
-  ok = JS_EvaluateScript(
-  engine->cx, engine->obj, source, (uintN)sourceLen, "", 0, &rval);
+  ok = JS_EvaluateScript(engine->cx, engine->obj, source, (uintN)sourceLen, "",
+                         0, &rval);
   gCurrentJsEngine = NULL;
 
   if (ok) {

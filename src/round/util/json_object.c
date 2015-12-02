@@ -304,8 +304,8 @@ bool round_json_object_getbool(RoundJSONObject *obj, bool *value) {
  * round_json_object_tostring
  ****************************************/
 
-bool round_json_object_tostring(
-RoundJSONObject *obj, RoundOption opt, const char **str) {
+bool round_json_object_tostring(RoundJSONObject *obj, RoundOption opt,
+                                const char **str) {
   const char *jsonObjStr;
 
   if (!obj)

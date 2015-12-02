@@ -12,10 +12,9 @@
 
 #include <round/script.h>
 
-BOOST_AUTO_TEST_CASE(ScriptEngineNew)
-{
+BOOST_AUTO_TEST_CASE(ScriptEngineNew) {
   RoundScriptEngine *eng = round_script_engine_new();
   BOOST_CHECK(eng);
-  
+
   BOOST_CHECK(round_script_engine_delete(eng));
 }

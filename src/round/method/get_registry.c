@@ -15,7 +15,9 @@
  ****************************************/
 
 bool round_system_method_getregistry(RoundLocalNode *node,
-RoundJSONObject *params, RoundJSONObject **resultMap, RoundError *err) {
+                                     RoundJSONObject *params,
+                                     RoundJSONObject **resultMap,
+                                     RoundError *err) {
   const char *key;
   RoundRegistry *reg;
 
@@ -42,12 +44,12 @@ RoundJSONObject *params, RoundJSONObject **resultMap, RoundError *err) {
   }
 
   round_json_map_setstring((*resultMap), ROUND_SYSTEM_METHOD_PARAM_KEY, key);
-  round_json_map_setstring(
-  (*resultMap), ROUND_SYSTEM_METHOD_PARAM_VALUE, round_registry_getvalue(reg));
-  round_json_map_setinteger(
-  (*resultMap), ROUND_SYSTEM_METHOD_PARAM_TS, round_registry_getts(reg));
-  round_json_map_setinteger(
-  (*resultMap), ROUND_SYSTEM_METHOD_PARAM_LTS, round_registry_getlts(reg));
+  round_json_map_setstring((*resultMap), ROUND_SYSTEM_METHOD_PARAM_VALUE,
+                           round_registry_getvalue(reg));
+  round_json_map_setinteger((*resultMap), ROUND_SYSTEM_METHOD_PARAM_TS,
+                            round_registry_getts(reg));
+  round_json_map_setinteger((*resultMap), ROUND_SYSTEM_METHOD_PARAM_LTS,
+                            round_registry_getlts(reg));
 
   return true;
 }

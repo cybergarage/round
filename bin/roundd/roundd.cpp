@@ -21,15 +21,14 @@
 #include <round/Round.h>
 //#include <round/ui/Console.h>
 
-//typedef std::map<std::string,std::string> RounddOptionsDictionary;
+// typedef std::map<std::string,std::string> RounddOptionsDictionary;
 
-int main(int argc, char *argv[])
-{
+int main(int argc, char *argv[]) {
   /*
   Round::Error err;
 
   // Option parameters
-  
+
   bool deamonMode = true;
   bool verboseMode = false;
   std::string configFilename = "";
@@ -38,12 +37,12 @@ int main(int argc, char *argv[])
   int bindPort = 0;
 
   // Setup Server
-  
+
   Round::Console::Server server;
   server.setFirstArgument(argv[0]);
-  
+
   // Parse options
-  
+
   int ch;
   while ((ch = getopt(argc, argv, "fhvc:i:p:s:")) != -1) {
     switch (ch) {
@@ -85,38 +84,39 @@ int main(int argc, char *argv[])
       }
     }
    }
-  
+
   argc -= optind;
   argv += optind;
 
   // Setup deamon
-  
+
   if (deamonMode) {
     int pid = fork();
     if (pid < 0)
       exit(EXIT_FAILURE);
-  
+
     if (0 < pid)
       exit(EXIT_SUCCESS);
- 
+
     if (setsid() < 0)
       exit(EXIT_FAILURE);
 
     if ( chdir("/") < 0 ) {
       exit(EXIT_FAILURE);
     }
-    
+
     umask(0);
-  
+
     close(STDIN_FILENO);
     close(STDOUT_FILENO);
     close(STDERR_FILENO);
   }
 
   // Setup Logger
-  
+
   Round::Logger *logger = server.getLogger();
-  logger->setLevel((verboseMode ? Round::LoggerLevel::TRACE : Round::LoggerLevel::INFO));
+  logger->setLevel((verboseMode ? Round::LoggerLevel::TRACE :
+  Round::LoggerLevel::INFO));
 
   if (deamonMode) {
     std::string logFilename;
@@ -135,28 +135,28 @@ int main(int argc, char *argv[])
   }
 
   // Setup configuration
-  
+
   if (0 < configFilename.length()) {
     if (!server.loadConfigFromString(configFilename, &err)) {
       Round::RoundLog(err);
       exit(EXIT_FAILURE);
     }
   }
-  
+
   if (0 < bindAddr.length()) {
     if (!server.setBindAddress(bindAddr, &err)) {
       Round::RoundLog(err);
       exit(EXIT_FAILURE);
     }
   }
-  
+
   if (0 < bindPort) {
     if (!server.setBindPort(bindPort, &err)) {
       Round::RoundLog(err);
       exit(EXIT_FAILURE);
     }
   }
-  
+
   if (0 < bindCluster.length()) {
     if (!server.setCluster(bindCluster, &err)) {
       Round::RoundLog(err);
@@ -165,23 +165,23 @@ int main(int argc, char *argv[])
   }
 
   // Start server
-  
+
   if (server.start(&err) == false) {
     Round::RoundLog(err);
     exit(EXIT_FAILURE);
   }
-  
+
   bool isRunnging = true;
-  
+
   while (isRunnging) {
     sigset_t sigSet;
     if (sigfillset(&sigSet) != 0)
       break;
-    
+
     int sigNo;
     if (sigwait(&sigSet, &sigNo) != 0)
       break;
-    
+
     switch (sigNo) {
     case SIGTERM:
     case SIGINT:
@@ -202,6 +202,6 @@ int main(int argc, char *argv[])
     }
   }
   */
-  
+
   return EXIT_SUCCESS;
 }

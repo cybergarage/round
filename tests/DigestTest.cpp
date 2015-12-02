@@ -17,8 +17,7 @@ BOOST_AUTO_TEST_SUITE(digest)
 
 #if defined(ROUND_SUPPORT_MD_5DIGEST)
 
-BOOST_AUTO_TEST_CASE(MD5Digest)
-{
+BOOST_AUTO_TEST_CASE(MD5Digest) {
   char *digest = NULL;
   BOOST_CHECK(round_md5_digest("a", &digest));
   BOOST_CHECK(digest);
@@ -28,8 +27,7 @@ BOOST_AUTO_TEST_CASE(MD5Digest)
 
 #endif
 
-BOOST_AUTO_TEST_CASE(SHADigest)
-{
+BOOST_AUTO_TEST_CASE(SHADigest) {
   char *digest = NULL;
   BOOST_CHECK(round_sha_digest("a", &digest));
   BOOST_CHECK(digest);
@@ -37,8 +35,7 @@ BOOST_AUTO_TEST_CASE(SHADigest)
   free(digest);
 }
 
-BOOST_AUTO_TEST_CASE(SHA256Digest)
-{
+BOOST_AUTO_TEST_CASE(SHA256Digest) {
   char *digest = NULL;
   BOOST_CHECK(round_sha256_digest("a", &digest));
   BOOST_CHECK(digest);

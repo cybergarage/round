@@ -86,7 +86,8 @@ bool round_ruby_engine_delete(RoundRubyEngine *engine) {
  ****************************************/
 
 bool round_ruby_engine_run(RoundRubyEngine *engine, RoundMethod *method,
-const char *param, RoundString *result, RoundError *err) {
+                           const char *param, RoundString *result,
+                           RoundError *err) {
   return false;
 }
 
