@@ -199,8 +199,8 @@ size_t round_string_length(RoundString* str)
 bool round_string_equals(RoundString* str1, RoundString* str2)
 {
   return (round_strcmp(round_string_getvalue(str1),
-                       round_string_getvalue(str2))
-          == 0)
+              round_string_getvalue(str2))
+             == 0)
       ? true
       : false;
 }
@@ -218,8 +218,7 @@ char* round_string_addvalue(RoundString* str, const char* value)
  * round_string_add
  ****************************************/
 
-char* round_string_naddvalue(RoundString* str, const char* value,
-                             size_t valueLen)
+char* round_string_naddvalue(RoundString* str, const char* value, size_t valueLen)
 {
   char* newValue = NULL;
   size_t newMemSize = 0;
@@ -264,8 +263,7 @@ char* round_string_naddvalue(RoundString* str, const char* value,
  * round_string_addrep
  ****************************************/
 
-char* round_string_addrepvalue(RoundString* str, const char* value,
-                               size_t repeatCnt)
+char* round_string_addrepvalue(RoundString* str, const char* value, size_t repeatCnt)
 {
   int n;
 
@@ -279,8 +277,7 @@ char* round_string_addrepvalue(RoundString* str, const char* value,
  * round_string_naddrep
  ****************************************/
 
-char* round_string_naddrepvalue(RoundString* str, const char* value,
-                                size_t valueLen, size_t repeatCnt)
+char* round_string_naddrepvalue(RoundString* str, const char* value, size_t valueLen, size_t repeatCnt)
 {
   int n;
 
@@ -294,8 +291,7 @@ char* round_string_naddrepvalue(RoundString* str, const char* value,
  * round_string_replace
  ****************************************/
 
-char* round_string_replace(RoundString* str, char* fromStr[], char* toStr[],
-                           size_t fromStrCnt)
+char* round_string_replace(RoundString* str, char* fromStr[], char* toStr[], size_t fromStrCnt)
 {
   char* orgValue = NULL;
   size_t orgValueLen = 0;

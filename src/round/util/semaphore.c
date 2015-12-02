@@ -65,9 +65,8 @@ bool round_semaphore_init(RoundSemaphore* sem, size_t maxCnt)
     return true;
 
 #if defined(__APPLE__)
-  sem->isInitialized = (semaphore_create(mach_task_self(), &sem->semId, SYNC_POLICY_FIFO,
-                                         (int)maxCnt)
-                        == KERN_SUCCESS)
+  sem->isInitialized = (semaphore_create(mach_task_self(), &sem->semId, SYNC_POLICY_FIFO, (int)maxCnt)
+                           == KERN_SUCCESS)
       ? true
       : false;
 #else

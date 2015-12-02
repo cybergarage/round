@@ -66,9 +66,7 @@ BOOST_AUTO_TEST_CASE(JavaScriptEngineEchoTest)
       round_method_manager_addengine(methodMgr, (RoundScriptEngine*)jsEngine));
 
   BOOST_CHECK(round_method_manager_addmethod(
-      methodMgr, Round::Test::CreateTestMethod(Round::Test::SCRIPT_ECHO_NAME,
-                                               RoundJavaScriptEngineLanguage,
-                                               Round::Test::JS_ECHO_CODE)));
+      methodMgr, Round::Test::CreateTestMethod(Round::Test::SCRIPT_ECHO_NAME, RoundJavaScriptEngineLanguage, Round::Test::JS_ECHO_CODE)));
   BOOST_CHECK(
       round_method_manager_hasmethod(methodMgr, Round::Test::SCRIPT_ECHO_NAME));
 
@@ -90,9 +88,7 @@ BOOST_AUTO_TEST_CASE(JavaScriptEngineSumTest)
       round_method_manager_addengine(methodMgr, (RoundScriptEngine*)jsEngine));
 
   BOOST_CHECK(round_method_manager_addmethod(
-      methodMgr, Round::Test::CreateTestMethod(Round::Test::SCRIPT_SUM_NAME,
-                                               RoundJavaScriptEngineLanguage,
-                                               Round::Test::JS_SUM_CODE)));
+      methodMgr, Round::Test::CreateTestMethod(Round::Test::SCRIPT_SUM_NAME, RoundJavaScriptEngineLanguage, Round::Test::JS_SUM_CODE)));
   BOOST_CHECK(
       round_method_manager_hasmethod(methodMgr, Round::Test::SCRIPT_SUM_NAME));
 

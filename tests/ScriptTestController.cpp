@@ -23,8 +23,7 @@
 using namespace std;
 using namespace Round;
 
-RoundMethod* Round::Test::CreateTestMethod(const char* name, const char* lang,
-                                           const char* stringCode)
+RoundMethod* Round::Test::CreateTestMethod(const char* name, const char* lang, const char* stringCode)
 {
   RoundMethod* method = round_method_new();
   if (!method)
@@ -74,12 +73,12 @@ void Round::Test::ScriptTestController::runEchoMethodTest(
   RoundError* err = round_error_new();
 
   for (std::vector<std::string>::iterator echoParamIt = params.begin();
-       echoParamIt != params.end(); echoParamIt++) {
+       echoParamIt != params.end();
+       echoParamIt++) {
     std::string& echoParam = *echoParamIt;
     bool isSuccess;
     BOOST_CHECK(isSuccess = round_method_manager_execmethod(
-                    scriptMgr, Round::Test::SCRIPT_ECHO_NAME, echoParam.c_str(),
-                    &resultObj, err));
+                    scriptMgr, Round::Test::SCRIPT_ECHO_NAME, echoParam.c_str(), &resultObj, err));
     if (!isSuccess)
       continue;
 
@@ -89,8 +88,7 @@ void Round::Test::ScriptTestController::runEchoMethodTest(
 
     const char* resultStr = NULL;
     BOOST_CHECK(round_json_object_tostring(
-        resultObj, (RoundJSONOptionFormatCompact | RoundJSONOptionFormatSort),
-        &resultStr));
+        resultObj, (RoundJSONOptionFormatCompact | RoundJSONOptionFormatSort), &resultStr));
     BOOST_CHECK(resultStr);
 
     if (resultStr) {
@@ -142,8 +140,7 @@ void Round::Test::ScriptTestController::runSumMethodTest(
   for (size_t n = 0; n < nParams; n++) {
     bool isSuccess;
     BOOST_CHECK(isSuccess = round_method_manager_execmethod(
-                    scriptMgr, Round::Test::SCRIPT_SUM_NAME, params[n].c_str(),
-                    &resultObj, err));
+                    scriptMgr, Round::Test::SCRIPT_SUM_NAME, params[n].c_str(), &resultObj, err));
     if (!isSuccess)
       continue;
 
@@ -153,8 +150,7 @@ void Round::Test::ScriptTestController::runSumMethodTest(
 
     const char* resultStr = NULL;
     BOOST_CHECK(round_json_object_tostring(
-        resultObj, (RoundJSONOptionFormatCompact | RoundJSONOptionFormatSort),
-        &resultStr));
+        resultObj, (RoundJSONOptionFormatCompact | RoundJSONOptionFormatSort), &resultStr));
     BOOST_CHECK(resultStr);
     BOOST_CHECK_EQUAL(results[n].c_str(), resultStr);
 

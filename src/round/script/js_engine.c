@@ -82,8 +82,9 @@ bool round_js_engine_delete(RoundJavaScriptEngine* engine)
  ****************************************/
 
 bool round_js_engine_getsoucecode(RoundJavaScriptEngine* engine,
-                                  RoundMethod* method, const char* param,
-                                  RoundString* jsSource)
+    RoundMethod* method,
+    const char* param,
+    RoundString* jsSource)
 {
   if (!method || !jsSource)
     return false;
@@ -101,7 +102,7 @@ bool round_js_engine_getsoucecode(RoundJavaScriptEngine* engine,
   round_string_addvalue(jsSource, "if (0 < jsonParams.length) {" ROUND_ENDL);
   round_string_addvalue(jsSource, "  try {" ROUND_ENDL);
   round_string_addvalue(jsSource,
-                        "    params = JSON.parse(jsonParams);" ROUND_ENDL);
+      "    params = JSON.parse(jsonParams);" ROUND_ENDL);
   round_string_addvalue(jsSource, "  } catch (e) {" ROUND_ENDL);
   round_string_addvalue(jsSource, "    params = jsonParams;" ROUND_ENDL);
   round_string_addvalue(jsSource, "  }" ROUND_ENDL);
@@ -122,9 +123,7 @@ bool round_js_engine_getsoucecode(RoundJavaScriptEngine* engine,
  * round_js_engine_run
  ****************************************/
 
-bool round_js_engine_run(RoundJavaScriptEngine* engine, RoundMethod* method,
-                         const char* param, RoundJSONObject** jsonResult,
-                         RoundError* err)
+bool round_js_engine_run(RoundJavaScriptEngine* engine, RoundMethod* method, const char* param, RoundJSONObject** jsonResult, RoundError* err)
 {
   RoundString *jsSource, *strResult;
   RoundJSON* json;
@@ -138,8 +137,7 @@ bool round_js_engine_run(RoundJavaScriptEngine* engine, RoundMethod* method,
 
   if (round_js_engine_getsoucecode(engine, method, param, jsSource)) {
 #if defined(ROUND_SUPPORT_JS_SM)
-    isSuccess = round_js_sm_engine_run(engine, round_string_getvalue(jsSource),
-                                       round_string_length(jsSource), strResult, err);
+    isSuccess = round_js_sm_engine_run(engine, round_string_getvalue(jsSource), round_string_length(jsSource), strResult, err);
 #endif
   }
 

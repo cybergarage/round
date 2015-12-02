@@ -96,8 +96,9 @@ bool round_remote_node_delete(RoundRemoteNode* node)
  ****************************************/
 
 bool round_remote_node_postmessage(RoundLocalNode* node,
-                                   RoundJSONObject* reqMap,
-                                   RoundJSONObject* resMap, RoundError* err)
+    RoundJSONObject* reqMap,
+    RoundJSONObject* resMap,
+    RoundError* err)
 {
   return false;
 }

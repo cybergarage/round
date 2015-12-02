@@ -222,8 +222,7 @@ bool round_node_updatedigest(RoundNode* node)
     return false;
 
   char seed[32];
-  snprintf(seed, sizeof(seed), "%s:%d", round_string_getvalue(node->addr),
-           node->port);
+  snprintf(seed, sizeof(seed), "%s:%d", round_string_getvalue(node->addr), node->port);
 
   char* digest;
   if (!round_node_digest(seed, &digest))
@@ -403,14 +402,14 @@ bool round_node_seterrorresponsebyrpcerrorcode(RoundLocalNode* node, int rpcErrC
 {
   if (!node)
     return false;
-  
+
   if (err) {
     round_error_setjsonrpcerrorcode(err, rpcErrCode);
   }
-  
+
   *resObj = round_json_map_new();
   round_json_rpc_seterror(*resObj, err);
-  
+
   return true;
 }
 
@@ -418,25 +417,21 @@ bool round_node_seterrorresponsebyrpcerrorcode(RoundLocalNode* node, int rpcErrC
  * round_node_request2string
  ****************************************/
 
-bool round_node_request2string(RoundLocalNode* node, RoundJSONObject* reqObj,
-                               RoundJSONObject** resObj, RoundError* err)
+bool round_node_request2string(RoundLocalNode* node, RoundJSONObject* reqObj, RoundJSONObject** resObj, RoundError* err)
 {
   if (!node) {
-    round_node_seterrorresponsebyrpcerrorcode(node, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR,
-                                      err, resObj);
+    round_node_seterrorresponsebyrpcerrorcode(node, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR, err, resObj);
     return false;
   }
 
   if (!reqObj || !resObj || !err) {
-    round_node_seterrorresponsebyrpcerrorcode(node, ROUND_RPC_ERROR_CODE_INVALID_PARAMS,
-                                      err, resObj);
+    round_node_seterrorresponsebyrpcerrorcode(node, ROUND_RPC_ERROR_CODE_INVALID_PARAMS, err, resObj);
     return false;
   }
 
   const char* reqStr = NULL;
   if (!round_json_object_tocompactstring(reqObj, &reqStr) || (0 < round_strlen(reqStr))) {
-    round_node_seterrorresponsebyrpcerrorcode(node, ROUND_RPC_ERROR_CODE_INVALID_PARAMS,
-                                      err, resObj);
+    round_node_seterrorresponsebyrpcerrorcode(node, ROUND_RPC_ERROR_CODE_INVALID_PARAMS, err, resObj);
     return false;
   }
 

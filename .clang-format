@@ -1,6 +1,7 @@
 BasedOnStyle: WebKit 
 Language: Cpp
 IndentWidth: 2
-AlignAfterOpenBracket: true
-AllowAllParametersOfDeclarationOnNextLine: false
+BinPackArguments: false
+BinPackParameters: false
 BreakBeforeBraces: Stroustrup
+PenaltyReturnTypeOnItsOwnLine: 200
