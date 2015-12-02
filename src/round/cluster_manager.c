@@ -53,7 +53,7 @@ bool round_cluster_manager_clear(RoundClusterManager* mgr)
     return false;
 
   round_list_clear((RoundList*)mgr,
-                   (ROUND_LIST_DESTRUCTORFUNC)round_cluster_delete);
+      (ROUND_LIST_DESTRUCTORFUNC)round_cluster_delete);
 
   return true;
 }
@@ -63,7 +63,7 @@ bool round_cluster_manager_clear(RoundClusterManager* mgr)
  ****************************************/
 
 RoundCluster* round_cluster_manager_getclusterbyname(RoundClusterManager* mgr,
-                                                     const char* name)
+    const char* name)
 {
   if (!mgr)
     return NULL;
@@ -82,7 +82,7 @@ RoundCluster* round_cluster_manager_getclusterbyname(RoundClusterManager* mgr,
  ****************************************/
 
 RoundCluster* round_cluster_manager_getclusterbynode(RoundClusterManager* mgr,
-                                                     RoundNode* node)
+    RoundNode* node)
 {
   const char* clusterName;
   if (!round_node_getclustername(node, &clusterName))
@@ -134,7 +134,7 @@ bool round_cluster_manager_addnode(RoundClusterManager* mgr, RoundNode* node)
  ****************************************/
 
 bool round_cluster_manager_removenode(RoundClusterManager* mgr,
-                                      RoundNode* node)
+    RoundNode* node)
 {
   if (!mgr || !node)
     return false;
@@ -151,7 +151,7 @@ bool round_cluster_manager_removenode(RoundClusterManager* mgr,
  ****************************************/
 
 RoundNode* round_cluster_manager_getnode(RoundClusterManager* mgr,
-                                         RoundNode* node)
+    RoundNode* node)
 {
   RoundCluster* cluster = round_cluster_manager_getclusterbynode(mgr, node);
   if (!cluster)

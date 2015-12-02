@@ -26,17 +26,14 @@ BOOST_AUTO_TEST_CASE(LuaEngineTest)
 
   RoundMethod* method = round_method_new();
   round_method_setname(method, LUA_ECHO_FUNC);
-  round_method_setcode(method, (byte*)LUA_ECHO_CODE.c_str(),
-                       LUA_ECHO_CODE.size());
+  round_method_setcode(method, (byte*)LUA_ECHO_CODE.c_str(), LUA_ECHO_CODE.size());
 
   RoundString* result = round_string_new();
   RoundError* err = round_error_new();
 
   BOOST_CHECK(luaEngine);
 
-  bool round_lua_engine_run(RoundLuaEngine * engine, RoundMethod * method,
-                            const char* param, RoundString* result,
-                            RoundError* err);
+  bool round_lua_engine_run(RoundLuaEngine * engine, RoundMethod * method, const char* param, RoundString* result, RoundError* err);
 
   for (int n = 0; n < SCRIPT_ECHO_LOOP; n++) {
     BOOST_CHECK(round_lua_engine_lock(luaEngine));

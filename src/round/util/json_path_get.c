@@ -45,8 +45,7 @@ bool round_json_getintegerforpath(RoundJSON* json, const char* path, long* value
  * round_json_getrealforpath
  ****************************************/
 
-bool round_json_getrealforpath(RoundJSON* json, const char* path,
-                               double* value)
+bool round_json_getrealforpath(RoundJSON* json, const char* path, double* value)
 {
   RoundJSONObject* jsonObj;
 
@@ -147,8 +146,8 @@ json_t* round_jansson_array_getobject(json_t* jsonArray, size_t n)
  ****************************************/
 
 bool round_json_object_getobjectforpath(RoundJSONObject* rootObj,
-                                        const char* pathStr,
-                                        RoundJSONObject* retObj)
+    const char* pathStr,
+    RoundJSONObject* retObj)
 {
   char *path, *token, *ptr;
 #if defined(ROUND_USE_JSON_PARSER_JANSSON)

@@ -99,7 +99,7 @@ RoundError* round_local_node_message_geterror(RoundMessage* msg)
  ****************************************/
 
 bool round_local_node_message_setresponsejsonobject(RoundMessage* msg,
-                                                    RoundJSONObject** resObj)
+    RoundJSONObject** resObj)
 {
   RoundLocalMessageData* msgData;
 

@@ -452,8 +452,7 @@ char* round_strtok(char* s1, const char* s2, char** ptr)
  * round_strreplace
  ****************************************/
 
-char* round_strreplace(const char* str, const char* orgToken,
-                       const char* repToken)
+char* round_strreplace(const char* str, const char* orgToken, const char* repToken)
 {
   size_t strLen = round_strlen(str);
   if (strLen <= 0) {

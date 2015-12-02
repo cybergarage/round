@@ -36,7 +36,7 @@ RoundTestNumberNode* round_test_numbernode_new(int value)
 }
 
 int round_test_numbernode_comp(RoundTestNumberNode* thisNode,
-                               RoundTestNumberNode* otherNode)
+    RoundTestNumberNode* otherNode)
 {
   if (thisNode->number == otherNode->number)
     return RoundListNodeCompareSame;
@@ -130,7 +130,7 @@ BOOST_AUTO_TEST_CASE(OrderedListRemove)
   for (int n = 0; n < ROUND_TEST_LIST_SIZE; n++) {
     BOOST_CHECK(round_ordered_list_remove(nodes[n]));
     BOOST_CHECK_EQUAL((ROUND_TEST_LIST_SIZE - (n + 1)),
-                      round_ordered_list_size(list));
+        round_ordered_list_size(list));
   }
 
   BOOST_CHECK_EQUAL(0, round_ordered_list_size(list));

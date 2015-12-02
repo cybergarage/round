@@ -111,8 +111,7 @@ bool round_thread_start(RoundThread* thread)
   thread->runnableFlag = true;
 
 #if defined(WIN32)
-  thread->hThread = CreateThread(NULL, 0, Win32ThreadProc, (LPVOID)thread, 0,
-                                 &thread->threadID);
+  thread->hThread = CreateThread(NULL, 0, Win32ThreadProc, (LPVOID)thread, 0, &thread->threadID);
 #else
   pthread_attr_t thread_attr;
   if (pthread_attr_init(&thread_attr) != 0) {

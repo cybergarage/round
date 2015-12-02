@@ -86,8 +86,7 @@ RoundUpnpServer* round_upnp_server_new(void)
   // Setup UPnP Device
 
   if (mupnp_device_parsedescription(
-          server->dev, ROUND_UPNP_SERVER_DEVICE_DESCRIPTION,
-          strlen(ROUND_UPNP_SERVER_DEVICE_DESCRIPTION))
+          server->dev, ROUND_UPNP_SERVER_DEVICE_DESCRIPTION, strlen(ROUND_UPNP_SERVER_DEVICE_DESCRIPTION))
       == false) {
     mupnp_device_delete(server->dev);
     return NULL;
@@ -100,8 +99,7 @@ RoundUpnpServer* round_upnp_server_new(void)
   }
 
   if (mupnp_service_parsedescription(
-          upnpSrv, ROUND_UPNP_SERVER_SERVICE_DESCRIPTION,
-          strlen(ROUND_UPNP_SERVER_SERVICE_DESCRIPTION))
+          upnpSrv, ROUND_UPNP_SERVER_SERVICE_DESCRIPTION, strlen(ROUND_UPNP_SERVER_SERVICE_DESCRIPTION))
       == false) {
     mupnp_device_delete(server->dev);
     return NULL;
@@ -110,7 +108,7 @@ RoundUpnpServer* round_upnp_server_new(void)
   mupnp_device_setactionlistener(server->dev, round_upnp_server_actionreceived);
   mupnp_device_setquerylistener(server->dev, round_upnp_server_queryreceived);
   mupnp_device_sethttplistener(server->dev,
-                               round_upnp_server_httprequestrecieved);
+      round_upnp_server_httprequestrecieved);
 
   // Set Listener
 

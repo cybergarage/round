@@ -52,9 +52,9 @@ BOOST_AUTO_TEST_CASE(MethodManagerNew)
   }
 
   BOOST_CHECK_EQUAL(ROUND_TEST_MAP_SIZE,
-                    round_method_manager_getmethodsize(mgr));
+      round_method_manager_getmethodsize(mgr));
   BOOST_CHECK_EQUAL(ROUND_TEST_MAP_SIZE,
-                    round_method_manager_getenginsize(mgr));
+      round_method_manager_getenginsize(mgr));
 
   // Get method & engines
 
@@ -67,9 +67,9 @@ BOOST_AUTO_TEST_CASE(MethodManagerNew)
   }
 
   BOOST_CHECK_EQUAL(ROUND_TEST_MAP_SIZE,
-                    round_method_manager_getmethodsize(mgr));
+      round_method_manager_getmethodsize(mgr));
   BOOST_CHECK_EQUAL(ROUND_TEST_MAP_SIZE,
-                    round_method_manager_getenginsize(mgr));
+      round_method_manager_getenginsize(mgr));
 
   // Remove method & engines
 
@@ -78,13 +78,13 @@ BOOST_AUTO_TEST_CASE(MethodManagerNew)
     BOOST_CHECK(round_method_manager_removemethod(mgr, name));
     BOOST_CHECK(!round_method_manager_getmethod(mgr, name));
     BOOST_CHECK_EQUAL((ROUND_TEST_MAP_SIZE - (n + 1)),
-                      round_method_manager_getmethodsize(mgr));
+        round_method_manager_getmethodsize(mgr));
 
     snprintf(lang, sizeof(lang), "%d", n);
     BOOST_CHECK(round_method_manager_removeengine(mgr, lang));
     BOOST_CHECK(!round_method_manager_getengine(mgr, lang));
     BOOST_CHECK_EQUAL((ROUND_TEST_MAP_SIZE - (n + 1)),
-                      round_method_manager_getenginsize(mgr));
+        round_method_manager_getenginsize(mgr));
   }
 
   BOOST_CHECK_EQUAL(0, round_method_manager_getmethodsize(mgr));

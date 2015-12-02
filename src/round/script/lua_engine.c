@@ -78,8 +78,7 @@ bool round_lua_engine_delete(RoundLuaEngine* engine)
 
 #if defined(ROUND_SUPPORT_LUA)
 
-bool round_lua_engine_register(RoundLuaEngine* engine, const char* name,
-                               lua_CFunction func)
+bool round_lua_engine_register(RoundLuaEngine* engine, const char* name, lua_CFunction func)
 {
   lua_register(engine->luaState, name, func);
   return true;
@@ -140,7 +139,7 @@ bool round_lua_engine_poperror(RoundLuaEngine* engine, RoundError* err)
     return false;
 
   round_error_setjsonrpcerrorcode(err,
-                                  ROUND_RPC_ERROR_CODE_SCRIPT_RUNTIME_ERROR);
+      ROUND_RPC_ERROR_CODE_SCRIPT_RUNTIME_ERROR);
   round_error_setdetailmessage(err, lua_tostring(engine->luaState, -1));
 
   lua_pop(engine->luaState, 1);
@@ -154,9 +153,7 @@ bool round_lua_engine_poperror(RoundLuaEngine* engine, RoundError* err)
  * round_lua_engine_run
  ****************************************/
 
-bool round_lua_engine_run(RoundLuaEngine* engine, RoundMethod* method,
-                          const char* param, RoundString* result,
-                          RoundError* err)
+bool round_lua_engine_run(RoundLuaEngine* engine, RoundMethod* method, const char* param, RoundString* result, RoundError* err)
 {
   const char* source;
   const char* name;

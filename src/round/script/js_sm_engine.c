@@ -14,14 +14,11 @@
 
 static RoundJavaScriptEngine* gCurrentJsEngine;
 
-static void RoundJSReportError(JSContext* cx, const char* message,
-                               JSErrorReport* report)
+static void RoundJSReportError(JSContext* cx, const char* message, JSErrorReport* report)
 {
   static char errmsg[1024];
 
-  snprintf(errmsg, sizeof(errmsg), "%s:%u:%s",
-           report->filename ? report->filename : "<no filename>",
-           (unsigned int)report->lineno, message);
+  snprintf(errmsg, sizeof(errmsg), "%s:%u:%s", report->filename ? report->filename : "<no filename>", (unsigned int)report->lineno, message);
 
   fprintf(stderr, "%s\n", errmsg);
 }
@@ -102,7 +99,7 @@ bool round_js_sm_engine_destroy(RoundJavaScriptEngine* engine)
  ****************************************/
 
 bool round_js_sm_engine_setfunctions(RoundJavaScriptEngine* engine,
-                                     JSFunctionSpec* funcs)
+    JSFunctionSpec* funcs)
 {
   if (!engine)
     return false;
@@ -116,9 +113,7 @@ bool round_js_sm_engine_setfunctions(RoundJavaScriptEngine* engine,
  * round_js_engine_run
  ****************************************/
 
-bool round_js_sm_engine_run(RoundJavaScriptEngine* engine, const char* source,
-                            size_t sourceLen, RoundString* result,
-                            RoundError* err)
+bool round_js_sm_engine_run(RoundJavaScriptEngine* engine, const char* source, size_t sourceLen, RoundString* result, RoundError* err)
 {
   jsval rval;
   JSBool ok;
@@ -130,8 +125,7 @@ bool round_js_sm_engine_run(RoundJavaScriptEngine* engine, const char* source,
     return false;
 
   gCurrentJsEngine = engine;
-  ok = JS_EvaluateScript(engine->cx, engine->obj, source, (uintN)sourceLen, "",
-                         0, &rval);
+  ok = JS_EvaluateScript(engine->cx, engine->obj, source, (uintN)sourceLen, "", 0, &rval);
   gCurrentJsEngine = NULL;
 
   if (ok) {
