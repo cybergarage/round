@@ -369,3 +369,34 @@ bool round_node_postmessage(RoundNode *node, RoundJSONObject *reqObj,
                             RoundJSONObject *resObj, RoundError *err) {
   return false;
 }
+
+/****************************************
+ * round_node_request2string
+ ****************************************/
+
+bool round_node_request2string(RoundLocalNode *node,
+                               RoundJSONObject *reqObj,
+                                      RoundJSONObject **resObj,
+                                      RoundError *err) {
+  if (!node) {
+    round_local_node_seterrorresponse(node, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR,
+                                      err, resObj);
+    return false;
+  }
+  
+  if (!reqObj || !resObj || !err) {
+    round_local_node_seterrorresponse(node, ROUND_RPC_ERROR_CODE_INVALID_PARAMS,
+                                      err, resObj);
+    return false;
+  }
+  
+  const char *reqStr = NULL;
+  if (!round_json_object_tocompactstring(reqObj, &reqStr) ||
+      (0 < round_strlen(reqStr))) {
+    round_local_node_seterrorresponse(node, ROUND_RPC_ERROR_CODE_INVALID_PARAMS,
+                                      err, resObj);
+    return false;
+  }
+
+  return true;
+}

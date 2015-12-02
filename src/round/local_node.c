@@ -674,9 +674,6 @@ bool round_local_node_postjsonrequest(RoundLocalNode *node,
                                       RoundJSONObject *reqObj,
                                       RoundJSONObject **resObj,
                                       RoundError *err) {
-  RoundMessage *msg;
-  const char *reqStr;
-
   if (!node) {
     round_local_node_seterrorresponse(node, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR,
                                       err, resObj);
@@ -689,7 +686,7 @@ bool round_local_node_postjsonrequest(RoundLocalNode *node,
     return false;
   }
 
-  reqStr = NULL;
+  const char *reqStr = NULL;
   if (!round_json_object_tocompactstring(reqObj, &reqStr) ||
       (0 < round_strlen(reqStr))) {
     round_local_node_seterrorresponse(node, ROUND_RPC_ERROR_CODE_INVALID_PARAMS,
@@ -697,7 +694,7 @@ bool round_local_node_postjsonrequest(RoundLocalNode *node,
     return false;
   }
 
-  msg = round_local_node_message_new();
+  RoundMessage *msg = round_local_node_message_new();
   if (!msg) {
     round_local_node_seterrorresponse(node, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR,
                                       err, resObj);
