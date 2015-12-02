@@ -395,10 +395,10 @@ bool round_node_postmessage(RoundNode* node, RoundJSONObject* reqObj, RoundJSONO
 }
 
 /****************************************
- * round_node_rpcerrorcode2errorresponse
+ * round_node_rpcerrorcode2error
  ****************************************/
 
-bool round_node_rpcerrorcode2errorresponse(void* node, int rpcErrCode, RoundError* err, RoundJSONObject** resultObj)
+bool round_node_rpcerrorcode2error(void* node, int rpcErrCode, RoundError* err)
 {
   if (!node)
     return false;
@@ -407,9 +407,6 @@ bool round_node_rpcerrorcode2errorresponse(void* node, int rpcErrCode, RoundErro
     round_error_setjsonrpcerrorcode(err, rpcErrCode);
   }
 
-  *resultObj = round_json_map_new();
-  round_json_rpc_seterror(*resultObj, err);
-
   return true;
 }
 
@@ -417,20 +414,20 @@ bool round_node_rpcerrorcode2errorresponse(void* node, int rpcErrCode, RoundErro
  * round_node_jsonrpcrequest2string
  ****************************************/
 
-bool round_node_jsonrpcrequest2string(void* node, RoundJSONObject* reqObj, const char **reqStr, RoundError* err, RoundJSONObject** resultObj)
+bool round_node_jsonrpcrequest2string(void* node, RoundJSONObject* reqObj, const char **reqStr, RoundError* err)
 {
   if (!node) {
-    round_node_rpcerrorcode2errorresponse(node, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR, err, resultObj);
+    round_node_rpcerrorcode2error(node, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR, err);
     return false;
   }
 
   if (!reqObj || !resultObj || !err) {
-    round_node_rpcerrorcode2errorresponse(node, ROUND_RPC_ERROR_CODE_INVALID_PARAMS, err, resultObj);
+    round_node_rpcerrorcode2error(node, ROUND_RPC_ERROR_CODE_INVALID_PARAMS, err);
     return false;
   }
 
   if (!round_json_object_tocompactstring(reqObj, reqStr) || (0 < round_strlen(*reqStr))) {
-    round_node_rpcerrorcode2errorresponse(node, ROUND_RPC_ERROR_CODE_INVALID_PARAMS, err, resultObj);
+    round_node_rpcerrorcode2error(node, ROUND_RPC_ERROR_CODE_INVALID_PARAMS, err);
     return false;
   }
 

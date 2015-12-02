@@ -390,21 +390,21 @@ bool round_local_node_execmessage(RoundLocalNode* node, RoundMessage* msg, Round
   size_t n, msgArrayCnt;
 
   if (!node || !msg || !resultObj || !err)
-    return round_node_rpcerrorcode2errorresponse(node, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR, err, resultObj);
+    return round_node_rpcerrorcode2error(node, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR, err, resultObj);
 
   // Parse JSON-RPC request
 
   msgContent = round_message_getstring(msg);
   if (!msgContent)
-    return round_node_rpcerrorcode2errorresponse(node, ROUND_RPC_ERROR_CODE_INVALID_REQUEST, err, resultObj);
+    return round_node_rpcerrorcode2error(node, ROUND_RPC_ERROR_CODE_INVALID_REQUEST, err, resultObj);
 
   json = round_json_new();
   if (!json)
-    return round_node_rpcerrorcode2errorresponse(node, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR, err, resultObj);
+    return round_node_rpcerrorcode2error(node, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR, err, resultObj);
 
   if (!round_json_parse(json, msgContent, err)) {
     round_json_delete(json);
-    return round_node_rpcerrorcode2errorresponse(node, ROUND_RPC_ERROR_CODE_INVALID_REQUEST, err, resultObj);
+    return round_node_rpcerrorcode2error(node, ROUND_RPC_ERROR_CODE_INVALID_REQUEST, err, resultObj);
   }
 
   // Check JSON-RPC request
@@ -412,12 +412,12 @@ bool round_local_node_execmessage(RoundLocalNode* node, RoundMessage* msg, Round
   reqObj = round_json_getrootobject(json);
   if (!reqObj) {
     round_json_delete(json);
-    return round_node_rpcerrorcode2errorresponse(node, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR, err, resultObj);
+    return round_node_rpcerrorcode2error(node, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR, err, resultObj);
   }
 
   if (!round_json_object_ismap(reqObj) && !round_json_object_isarray(reqObj)) {
     round_json_delete(json);
-    return round_node_rpcerrorcode2errorresponse(node, ROUND_RPC_ERROR_CODE_INVALID_REQUEST, err, resultObj);
+    return round_node_rpcerrorcode2error(node, ROUND_RPC_ERROR_CODE_INVALID_REQUEST, err, resultObj);
   }
 
   // Single request
@@ -446,7 +446,7 @@ bool round_local_node_execmessage(RoundLocalNode* node, RoundMessage* msg, Round
     return true;
   }
 
-  return round_node_rpcerrorcode2errorresponse(node, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR, err, resultObj);
+  return round_node_rpcerrorcode2error(node, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR, err, resultObj);
 }
 
 /****************************************
@@ -456,25 +456,25 @@ bool round_local_node_execmessage(RoundLocalNode* node, RoundMessage* msg, Round
 bool round_local_node_postrequest(RoundLocalNode* node, RoundMessage* msg, RoundJSONObject** resultObj, RoundError* err)
 {
   if (!msg) {
-    round_node_rpcerrorcode2errorresponse(node, ROUND_RPC_ERROR_CODE_INVALID_PARAMS, err, resultObj);
+    round_node_rpcerrorcode2error(node, ROUND_RPC_ERROR_CODE_INVALID_PARAMS, err, resultObj);
     return false;
   }
 
   if (!node) {
     round_message_delete(msg);
-    round_node_rpcerrorcode2errorresponse(node, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR, err, resultObj);
+    round_node_rpcerrorcode2error(node, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR, err, resultObj);
     return false;
   }
 
   if (!resultObj || !err) {
     round_message_delete(msg);
-    round_node_rpcerrorcode2errorresponse(node, ROUND_RPC_ERROR_CODE_INVALID_PARAMS, err, resultObj);
+    round_node_rpcerrorcode2error(node, ROUND_RPC_ERROR_CODE_INVALID_PARAMS, err, resultObj);
     return false;
   }
 
   if (!round_message_setnotifyenabled(msg, true)) {
     round_message_delete(msg);
-    round_node_rpcerrorcode2errorresponse(node, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR, err, resultObj);
+    round_node_rpcerrorcode2error(node, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR, err, resultObj);
     return false;
   }
 
@@ -483,13 +483,13 @@ bool round_local_node_postrequest(RoundLocalNode* node, RoundMessage* msg, Round
 
   if (!round_message_manager_pushmessage(node->msgMgr, msg)) {
     round_message_delete(msg);
-    round_node_rpcerrorcode2errorresponse(node, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR, err, resultObj);
+    round_node_rpcerrorcode2error(node, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR, err, resultObj);
     return false;
   }
 
   if (!round_message_timedwaitnotify(msg, round_local_node_getrequesttimeout(node))) {
     round_message_setnotifyenabled(msg, false);
-    round_node_rpcerrorcode2errorresponse(node, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR, err, resultObj);
+    round_node_rpcerrorcode2error(node, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR, err, resultObj);
     return false;
   }
 
@@ -508,7 +508,7 @@ bool round_local_node_postjsonrequest(RoundLocalNode* node, RoundJSONObject* req
   
   RoundMessage* msg = round_local_node_message_new();
   if (!msg) {
-    round_node_rpcerrorcode2errorresponse(node, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR, err, resultObj);
+    round_node_rpcerrorcode2error(node, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR, err, resultObj);
     return false;
   }
   round_message_setstring(msg, reqStr);
