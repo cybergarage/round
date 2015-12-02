@@ -395,10 +395,10 @@ bool round_node_postmessage(RoundNode* node, RoundJSONObject* reqObj, RoundJSONO
 }
 
 /****************************************
- * round_node_seterrorresponsebyrpcerrorcode
+ * round_node_rpcerrorcode2errorresponse
  ****************************************/
 
-bool round_node_seterrorresponsebyrpcerrorcode(RoundLocalNode* node, int rpcErrCode, RoundError* err, RoundJSONObject** resObj)
+bool round_node_rpcerrorcode2errorresponse(void* node, int rpcErrCode, RoundError* err, RoundJSONObject** resObj)
 {
   if (!node)
     return false;
@@ -414,24 +414,23 @@ bool round_node_seterrorresponsebyrpcerrorcode(RoundLocalNode* node, int rpcErrC
 }
 
 /****************************************
- * round_node_request2string
+ * round_node_jsonrpcrequest2string
  ****************************************/
 
-bool round_node_request2string(RoundLocalNode* node, RoundJSONObject* reqObj, RoundJSONObject** resObj, RoundError* err)
+bool round_node_jsonrpcrequest2string(void* node, RoundJSONObject* reqObj, const char **reqStr, RoundError* err, RoundJSONObject** resObj)
 {
   if (!node) {
-    round_node_seterrorresponsebyrpcerrorcode(node, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR, err, resObj);
+    round_node_rpcerrorcode2errorresponse(node, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR, err, resObj);
     return false;
   }
 
   if (!reqObj || !resObj || !err) {
-    round_node_seterrorresponsebyrpcerrorcode(node, ROUND_RPC_ERROR_CODE_INVALID_PARAMS, err, resObj);
+    round_node_rpcerrorcode2errorresponse(node, ROUND_RPC_ERROR_CODE_INVALID_PARAMS, err, resObj);
     return false;
   }
 
-  const char* reqStr = NULL;
-  if (!round_json_object_tocompactstring(reqObj, &reqStr) || (0 < round_strlen(reqStr))) {
-    round_node_seterrorresponsebyrpcerrorcode(node, ROUND_RPC_ERROR_CODE_INVALID_PARAMS, err, resObj);
+  if (!round_json_object_tocompactstring(reqObj, reqStr) || (0 < round_strlen(*reqStr))) {
+    round_node_rpcerrorcode2errorresponse(node, ROUND_RPC_ERROR_CODE_INVALID_PARAMS, err, resObj);
     return false;
   }
 
