@@ -121,7 +121,7 @@ bool round_json_map_setbool(RoundJSONObject *obj, const char *key, bool value);
 bool round_json_map_setobject(RoundJSONObject *obj, const char *key, RoundJSONObject *value);
 
 /****************************************
- * Functions (JSON Map)
+ * Functions (JSON Array)
  ****************************************/
   
 size_t round_json_array_size(RoundJSONObject *obj);
@@ -147,5 +147,9 @@ bool round_json_setboolforpath(RoundJSON *json, const char *path, bool value);
 #ifdef  __cplusplus
 } /* extern "C" */
 #endif
+
+
+
+
 
 #endif

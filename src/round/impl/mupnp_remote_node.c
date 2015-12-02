@@ -15,18 +15,18 @@
  * round_remote_node_posthttpjsonrequest
  ****************************************/
 
-bool round_remote_node_posthttpjsonrequest(RoundRemoteNode* node, const char *reqContent, RoundJSONObject** resultObj, RoundError* err)
+bool round_remote_node_posthttpjsonrequest(RoundRemoteNode* node, const char *reqContent, RoundJSONObject* resMap, RoundError* err)
 {
   const char *remoteAddr = NULL;
   int remotePort = 0;
   if (!round_remote_node_getaddress(node, &remoteAddr) || !round_remote_node_getport(node, &remotePort)) {
-    round_node_rpcerrorcode2errorresponse(node, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR, err, resultObj);
+    round_node_rpcerrorcode2error(node, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR, err, resultObj);
     return false;
   }
   
   mUpnpHttpRequest *httpReq = mupnp_http_request_new();
   if (!httpReq) {
-    round_node_rpcerrorcode2errorresponse(node, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR, err, resultObj);
+    round_node_rpcerrorcode2error(node, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR, err, resultObj);
     return false;
   }
   
@@ -36,17 +36,17 @@ bool round_remote_node_posthttpjsonrequest(RoundRemoteNode* node, const char *re
   
   mUpnpHttpResponse *httpRes = mupnp_http_request_post(httpReq, remoteAddr, remotePort);
   if (httpRes) {
-    round_node_rpcerrorcode2errorresponse(node, ROUND_RPC_ERROR_CODE_BAD_DESTINATION, err, resultObj);
+    round_node_rpcerrorcode2error(node, ROUND_RPC_ERROR_CODE_BAD_DESTINATION, err, resultObj);
     mupnp_http_request_delete(httpReq);
     return false;
   }
   
   const char *resContent = mupnp_http_response_getcontent(httpRes);
   if (mupnp_http_response_issuccessful(httpRes)) {
-    round_remote_node_parsehttpresponse(node, resContent, resultObj, err);
+    round_remote_node_sethttpresponse(node, resContent, resultObj, err);
   }
   else {
-    round_remote_node_parsehttpresponse(node, resContent, resultObj, err);
+    round_remote_node_sethttpresponse(node, resContent, resultObj, err);
   }
 
   mupnp_http_request_delete(httpReq);

@@ -92,24 +92,25 @@ bool round_remote_node_delete(RoundRemoteNode* node)
 }
 
 /****************************************
- * round_remote_node_parsehttpresponse
+ * round_remote_node_sethttpresponse
  ****************************************/
 
-bool round_remote_node_parsehttpresponse(RoundRemoteNode* node, const char *resContent, RoundJSONObject** resultObj, RoundError* err)
+bool round_remote_node_sethttpresponse(RoundRemoteNode* node, const char *resContent, RoundJSONObject* resMap, RoundError* err)
 {
   RoundJSON *json = round_json_new();
   if (!json) {
-    round_node_rpcerrorcode2errorresponse(node, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR, err, resultObj);
+    round_node_rpcerrorcode2error(node, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR, err);
     return false;
   }
   
   bool isSuccess = round_json_parse(json, resContent, err);
   if (isSuccess) {
-    *resultObj = round_json_poprootobject(json);
+    RoundJSONObject *resultObj = round_json_poprootobject(json);
+    round_json_map_c
   }
   else {
-    *resultObj = round_json_map_new();
-    round_json_rpc_seterror(*resultObj, err);
+    round_node_rpcerrorcode2error(node, ROUND_RPC_ERROR_CODE_PARSER_ERROR, err);
+    return false;
   }
   
   round_json_delete(json);
@@ -121,13 +122,13 @@ bool round_remote_node_parsehttpresponse(RoundRemoteNode* node, const char *resC
  * round_remote_node_postjsonrequest
  ****************************************/
 
-bool round_remote_node_postjsonrequest(RoundRemoteNode* node, RoundJSONObject* reqObj, RoundJSONObject** resultObj, RoundError* err)
+bool round_remote_node_postjsonrequest(RoundRemoteNode* node, RoundJSONObject* reqObj, RoundJSONObject* resMap, RoundError* err)
 {
   const char* reqContent = NULL;
-  if (!round_node_jsonrpcrequest2string(node, reqObj, &reqContent, err, resultObj))
+  if (!round_node_jsonrpcrequest2string(node, reqObj, &reqContent, err))
     return false;
   
-  return round_remote_node_posthttpjsonrequest(node, reqContent, resultObj, err);
+  return round_remote_node_posthttpjsonrequest(node, reqContent, resMap, err);
 }
 
 /****************************************
@@ -137,15 +138,15 @@ bool round_remote_node_postjsonrequest(RoundRemoteNode* node, RoundJSONObject* r
 bool round_remote_node_postmessage(RoundRemoteNode* node, RoundJSONObject* reqMap, RoundJSONObject* resMap, RoundError* err)
 {
   RoundJSONObject* resultObj;
-  
-  bool isSuccess = round_remote_node_postjsonrequest(node, reqMap, &resultObj, err);
-  if (resultObj) {
-    const char *resultStr;
-    round_json_object_tocompactstring(resultObj, &resultStr);
-    
-    round_json_object_delete(resultObj);
+  if (round_remote_node_postjsonrequest(node, reqMap, resMap, err)) {
+    if (resultObj) {
+      round_json_rpc_setresult(resMap, resultObj);
+      round_json_object_delete(resultObj);
+    }
+  }
+  else {
+    round_json_rpc_seterror(resMap, err);
   }
   
-  return isSuccess;
+  return true;
 }
-
