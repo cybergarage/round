@@ -124,6 +124,8 @@ bool round_node_removeclusternode(RoundNode *node, RoundNode *clusterNode);
 bool round_node_clearclusternode(RoundNode *node, RoundNode *clusterNode);
 bool round_node_hasclusternode(RoundNode *node, RoundNode *clusterNode);
 
+bool round_node_seterrorresponsebyrpcerrorcode(RoundLocalNode* node, int rpcErrCode, RoundError* err, RoundJSONObject** resObj);
+
 /****************************************
  * Function (LocalNode)
  ****************************************/
