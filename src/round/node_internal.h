@@ -124,8 +124,10 @@ bool round_node_removeclusternode(RoundNode *node, RoundNode *clusterNode);
 bool round_node_clearclusternode(RoundNode *node, RoundNode *clusterNode);
 bool round_node_hasclusternode(RoundNode *node, RoundNode *clusterNode);
 
-bool round_node_seterrorresponsebyrpcerrorcode(RoundLocalNode* node, int rpcErrCode, RoundError* err, RoundJSONObject** resObj);
+bool round_node_rpcerrorcode2errorresponse(void* node, int rpcErrCode, RoundError* err, RoundJSONObject** resObj);
+bool round_node_jsonrpcrequest2string(void* node, RoundJSONObject* reqObj, const char **reqStr, RoundError* err, RoundJSONObject** resObj);
 
+  
 /****************************************
  * Function (LocalNode)
  ****************************************/
@@ -195,6 +197,8 @@ RoundRemoteNode *round_remote_node_copy(RoundNode *node);
 bool round_remote_node_destory(RoundRemoteNode *node);
 bool round_remote_node_delete(RoundRemoteNode *node);
 bool round_remote_node_postmessage(RoundLocalNode *node, RoundJSONObject *reqMap, RoundJSONObject *resMap, RoundError *err);
+bool round_remote_node_parsehttpresponse(RoundRemoteNode* node, const char *resContent, RoundJSONObject** resObj, RoundError* err);
+bool round_remote_node_posthttpjsonrequest(RoundRemoteNode* node, const char *reqContent, RoundJSONObject** resObj, RoundError* err);
 
 #define round_remote_node_setaddress(node,addr) round_node_setaddress((RoundNode*)node,addr)
 #define round_remote_node_getaddress(node,addr) round_node_getaddress((RoundNode*)node,addr)

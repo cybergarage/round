@@ -537,24 +537,24 @@ bool round_local_node_execmessage(RoundLocalNode* node, RoundMessage* msg, Round
   size_t n, msgArrayCnt;
 
   if (!node || !msg || !resObj || !err)
-    return round_node_seterrorresponsebyrpcerrorcode(
+    return round_node_rpcerrorcode2errorresponse(
         node, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR, err, resObj);
 
   // Parse JSON-RPC request
 
   msgContent = round_message_getstring(msg);
   if (!msgContent)
-    return round_node_seterrorresponsebyrpcerrorcode(
+    return round_node_rpcerrorcode2errorresponse(
         node, ROUND_RPC_ERROR_CODE_INVALID_REQUEST, err, resObj);
 
   json = round_json_new();
   if (!json)
-    return round_node_seterrorresponsebyrpcerrorcode(
+    return round_node_rpcerrorcode2errorresponse(
         node, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR, err, resObj);
 
   if (!round_json_parse(json, msgContent, err)) {
     round_json_delete(json);
-    return round_node_seterrorresponsebyrpcerrorcode(
+    return round_node_rpcerrorcode2errorresponse(
         node, ROUND_RPC_ERROR_CODE_INVALID_REQUEST, err, resObj);
   }
 
@@ -563,13 +563,13 @@ bool round_local_node_execmessage(RoundLocalNode* node, RoundMessage* msg, Round
   reqObj = round_json_getrootobject(json);
   if (!reqObj) {
     round_json_delete(json);
-    return round_node_seterrorresponsebyrpcerrorcode(
+    return round_node_rpcerrorcode2errorresponse(
         node, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR, err, resObj);
   }
 
   if (!round_json_object_ismap(reqObj) && !round_json_object_isarray(reqObj)) {
     round_json_delete(json);
-    return round_node_seterrorresponsebyrpcerrorcode(
+    return round_node_rpcerrorcode2errorresponse(
         node, ROUND_RPC_ERROR_CODE_INVALID_REQUEST, err, resObj);
   }
 
@@ -599,7 +599,7 @@ bool round_local_node_execmessage(RoundLocalNode* node, RoundMessage* msg, Round
     return true;
   }
 
-  return round_node_seterrorresponsebyrpcerrorcode(
+  return round_node_rpcerrorcode2errorresponse(
       node, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR, err, resObj);
 }
 
@@ -610,25 +610,25 @@ bool round_local_node_execmessage(RoundLocalNode* node, RoundMessage* msg, Round
 bool round_local_node_postrequest(RoundLocalNode* node, RoundMessage* msg, RoundJSONObject** resObj, RoundError* err)
 {
   if (!msg) {
-    round_node_seterrorresponsebyrpcerrorcode(node, ROUND_RPC_ERROR_CODE_INVALID_PARAMS, err, resObj);
+    round_node_rpcerrorcode2errorresponse(node, ROUND_RPC_ERROR_CODE_INVALID_PARAMS, err, resObj);
     return false;
   }
 
   if (!node) {
     round_message_delete(msg);
-    round_node_seterrorresponsebyrpcerrorcode(node, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR, err, resObj);
+    round_node_rpcerrorcode2errorresponse(node, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR, err, resObj);
     return false;
   }
 
   if (!resObj || !err) {
     round_message_delete(msg);
-    round_node_seterrorresponsebyrpcerrorcode(node, ROUND_RPC_ERROR_CODE_INVALID_PARAMS, err, resObj);
+    round_node_rpcerrorcode2errorresponse(node, ROUND_RPC_ERROR_CODE_INVALID_PARAMS, err, resObj);
     return false;
   }
 
   if (!round_message_setnotifyenabled(msg, true)) {
     round_message_delete(msg);
-    round_node_seterrorresponsebyrpcerrorcode(node, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR, err, resObj);
+    round_node_rpcerrorcode2errorresponse(node, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR, err, resObj);
     return false;
   }
 
@@ -637,14 +637,14 @@ bool round_local_node_postrequest(RoundLocalNode* node, RoundMessage* msg, Round
 
   if (!round_message_manager_pushmessage(node->msgMgr, msg)) {
     round_message_delete(msg);
-    round_node_seterrorresponsebyrpcerrorcode(node, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR, err, resObj);
+    round_node_rpcerrorcode2errorresponse(node, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR, err, resObj);
     return false;
   }
 
   if (!round_message_timedwaitnotify(
           msg, round_local_node_getrequesttimeout(node))) {
     round_message_setnotifyenabled(msg, false);
-    round_node_seterrorresponsebyrpcerrorcode(node, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR, err, resObj);
+    round_node_rpcerrorcode2errorresponse(node, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR, err, resObj);
     return false;
   }
 
@@ -655,30 +655,15 @@ bool round_local_node_postrequest(RoundLocalNode* node, RoundMessage* msg, Round
  * round_local_node_postjsonrequest
  ****************************************/
 
-bool round_local_node_postjsonrequest(RoundLocalNode* node,
-    RoundJSONObject* reqObj,
-    RoundJSONObject** resObj,
-    RoundError* err)
+bool round_local_node_postjsonrequest(RoundLocalNode* node, RoundJSONObject* reqObj, RoundJSONObject** resObj, RoundError* err)
 {
-  if (!node) {
-    round_node_seterrorresponsebyrpcerrorcode(node, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR, err, resObj);
-    return false;
-  }
-
-  if (!reqObj || !resObj || !err) {
-    round_node_seterrorresponsebyrpcerrorcode(node, ROUND_RPC_ERROR_CODE_INVALID_PARAMS, err, resObj);
-    return false;
-  }
-
   const char* reqStr = NULL;
-  if (!round_json_object_tocompactstring(reqObj, &reqStr) || (0 < round_strlen(reqStr))) {
-    round_node_seterrorresponsebyrpcerrorcode(node, ROUND_RPC_ERROR_CODE_INVALID_PARAMS, err, resObj);
+  if (!round_node_jsonrpcrequest2string(node, reqObj, &reqStr,err, resObj))
     return false;
-  }
-
+  
   RoundMessage* msg = round_local_node_message_new();
   if (!msg) {
-    round_node_seterrorresponsebyrpcerrorcode(node, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR, err, resObj);
+    round_node_rpcerrorcode2errorresponse(node, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR, err, resObj);
     return false;
   }
   round_message_setstring(msg, reqStr);
