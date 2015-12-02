@@ -15,10 +15,11 @@
  * round_method_new
  ****************************************/
 
-RoundMethod *round_method_new() {
-  RoundMethod *method;
+RoundMethod* round_method_new()
+{
+  RoundMethod* method;
 
-  method = (RoundMethod *)malloc(sizeof(RoundMethod));
+  method = (RoundMethod*)malloc(sizeof(RoundMethod));
   if (!method)
     return NULL;
 
@@ -37,7 +38,8 @@ RoundMethod *round_method_new() {
  * round_method_delete
  ****************************************/
 
-bool round_method_delete(RoundMethod *method) {
+bool round_method_delete(RoundMethod* method)
+{
   if (!method)
     return false;
 
@@ -68,7 +70,8 @@ bool round_method_delete(RoundMethod *method) {
  * round_method_isvalid
  ****************************************/
 
-bool round_method_isvalid(RoundMethod *method) {
+bool round_method_isvalid(RoundMethod* method)
+{
   if (!method)
     return false;
 
@@ -89,7 +92,8 @@ bool round_method_isvalid(RoundMethod *method) {
  * round_method_setmodule
  ****************************************/
 
-bool round_method_setmodule(RoundMethod *method, const char *module) {
+bool round_method_setmodule(RoundMethod* method, const char* module)
+{
   if (!method)
     return false;
 
@@ -100,7 +104,8 @@ bool round_method_setmodule(RoundMethod *method, const char *module) {
  * round_method_setname
  ****************************************/
 
-bool round_method_setname(RoundMethod *method, const char *name) {
+bool round_method_setname(RoundMethod* method, const char* name)
+{
   if (!method)
     return false;
 
@@ -111,7 +116,8 @@ bool round_method_setname(RoundMethod *method, const char *name) {
  * round_method_setlanguage
  ****************************************/
 
-bool round_method_setlanguage(RoundMethod *method, const char *lang) {
+bool round_method_setlanguage(RoundMethod* method, const char* lang)
+{
   if (!method)
     return false;
 
@@ -122,7 +128,8 @@ bool round_method_setlanguage(RoundMethod *method, const char *lang) {
  * round_method_setcode
  ****************************************/
 
-bool round_method_setcode(RoundMethod *method, byte *code, size_t codeSize) {
+bool round_method_setcode(RoundMethod* method, byte* code, size_t codeSize)
+{
   if (!method)
     return false;
 
@@ -135,7 +142,7 @@ bool round_method_setcode(RoundMethod *method, byte *code, size_t codeSize) {
   if (!code || (codeSize == 0))
     return true;
 
-  method->code = (byte *)malloc(codeSize + 1);
+  method->code = (byte*)malloc(codeSize + 1);
   if (!method->code)
     return false;
 
@@ -151,6 +158,7 @@ bool round_method_setcode(RoundMethod *method, byte *code, size_t codeSize) {
  * round_method_setstringcode
  ****************************************/
 
-bool round_method_setstringcode(RoundMethod *method, const char *code) {
-  return round_method_setcode(method, (byte *)code, round_strlen(code) + 1);
+bool round_method_setstringcode(RoundMethod* method, const char* code)
+{
+  return round_method_setcode(method, (byte*)code, round_strlen(code) + 1);
 }

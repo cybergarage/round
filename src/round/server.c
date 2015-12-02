@@ -14,10 +14,11 @@
 * round_server_new
 ****************************************/
 
-RoundServer *round_server_new(void) {
-  RoundServer *server;
+RoundServer* round_server_new(void)
+{
+  RoundServer* server;
 
-  server = (RoundServer *)malloc(sizeof(RoundServer));
+  server = (RoundServer*)malloc(sizeof(RoundServer));
 
   if (!server)
     return NULL;
@@ -40,7 +41,8 @@ RoundServer *round_server_new(void) {
 * round_server_delete
 ****************************************/
 
-bool round_server_delete(RoundServer *server) {
+bool round_server_delete(RoundServer* server)
+{
   if (!server)
     return false;
 
@@ -58,7 +60,8 @@ bool round_server_delete(RoundServer *server) {
  * round_server_start
  ****************************************/
 
-bool round_server_start(RoundServer *server) {
+bool round_server_start(RoundServer* server)
+{
   bool isSuccess = true;
 
   if (!server)
@@ -80,7 +83,8 @@ bool round_server_start(RoundServer *server) {
  * round_server_stop
  ****************************************/
 
-bool round_server_stop(RoundServer *server) {
+bool round_server_stop(RoundServer* server)
+{
   bool isSuccess = true;
 
   if (!server)
@@ -97,7 +101,8 @@ bool round_server_stop(RoundServer *server) {
  * round_server_isrunning
  ****************************************/
 
-bool round_server_isrunning(RoundServer *server) {
+bool round_server_isrunning(RoundServer* server)
+{
   if (!server)
     return false;
 

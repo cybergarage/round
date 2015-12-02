@@ -14,8 +14,9 @@
 
 BOOST_AUTO_TEST_SUITE(method)
 
-BOOST_AUTO_TEST_CASE(MethodNew) {
-  RoundMethod *method = round_method_new();
+BOOST_AUTO_TEST_CASE(MethodNew)
+{
+  RoundMethod* method = round_method_new();
   BOOST_CHECK(method);
 
   BOOST_CHECK_EQUAL(round_method_isvalid(method), false);
@@ -23,13 +24,14 @@ BOOST_AUTO_TEST_CASE(MethodNew) {
   BOOST_CHECK(round_method_delete(method));
 }
 
-BOOST_AUTO_TEST_CASE(MethodSet) {
-  const char *TEST_MODULE = "methodname";
-  const char *TEST_NAME = "methodname";
-  const char *TEST_LANG = "methodlang";
-  const char *TEST_CODE = "methodcode";
+BOOST_AUTO_TEST_CASE(MethodSet)
+{
+  const char* TEST_MODULE = "methodname";
+  const char* TEST_NAME = "methodname";
+  const char* TEST_LANG = "methodlang";
+  const char* TEST_CODE = "methodcode";
 
-  RoundMethod *method = round_method_new();
+  RoundMethod* method = round_method_new();
   BOOST_CHECK(method);
 
   BOOST_CHECK_EQUAL(round_method_isvalid(method), false);

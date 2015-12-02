@@ -15,14 +15,15 @@
 * round_lua_engine_new
 ****************************************/
 
-RoundLuaEngine *round_lua_engine_new() {
-  RoundLuaEngine *engine;
+RoundLuaEngine* round_lua_engine_new()
+{
+  RoundLuaEngine* engine;
 
-  engine = (RoundLuaEngine *)calloc(1, sizeof(RoundLuaEngine));
+  engine = (RoundLuaEngine*)calloc(1, sizeof(RoundLuaEngine));
   if (!engine)
     return NULL;
 
-  if (!round_script_engine_init((RoundScriptEngine *)engine)) {
+  if (!round_script_engine_init((RoundScriptEngine*)engine)) {
     round_lua_engine_delete(engine);
     return NULL;
   }
@@ -43,7 +44,8 @@ RoundLuaEngine *round_lua_engine_new() {
  * round_lua_engine_destory
  ****************************************/
 
-bool round_lua_engine_destory(RoundLuaEngine *engine) {
+bool round_lua_engine_destory(RoundLuaEngine* engine)
+{
   if (!engine)
     return false;
 
@@ -54,14 +56,15 @@ bool round_lua_engine_destory(RoundLuaEngine *engine) {
  * round_lua_engine_delete
  ****************************************/
 
-bool round_lua_engine_delete(RoundLuaEngine *engine) {
+bool round_lua_engine_delete(RoundLuaEngine* engine)
+{
   if (!engine)
     return false;
 
   if (!round_lua_engine_destory(engine))
     return false;
 
-  if (!round_script_engine_destory((RoundScriptEngine *)engine))
+  if (!round_script_engine_destory((RoundScriptEngine*)engine))
     return false;
 
   free(engine);
@@ -75,8 +78,9 @@ bool round_lua_engine_delete(RoundLuaEngine *engine) {
 
 #if defined(ROUND_SUPPORT_LUA)
 
-bool round_lua_engine_register(RoundLuaEngine *engine, const char *name,
-                               lua_CFunction func) {
+bool round_lua_engine_register(RoundLuaEngine* engine, const char* name,
+                               lua_CFunction func)
+{
   lua_register(engine->luaState, name, func);
   return true;
 }
@@ -89,7 +93,8 @@ bool round_lua_engine_register(RoundLuaEngine *engine, const char *name,
 
 #if defined(ROUND_SUPPORT_LUA)
 
-bool round_lua_engine_popresult(RoundLuaEngine *engine, RoundString *result) {
+bool round_lua_engine_popresult(RoundLuaEngine* engine, RoundString* result)
+{
   char strbuf[128];
 
   int nStack = lua_gettop(engine->luaState);
@@ -104,7 +109,7 @@ bool round_lua_engine_popresult(RoundLuaEngine *engine, RoundString *result) {
 
   if (lua_isboolean(engine->luaState, -1)) {
     round_string_setvalue(
-    result, lua_toboolean(engine->luaState, -1) ? "true" : "false");
+        result, lua_toboolean(engine->luaState, -1) ? "true" : "false");
     lua_pop(engine->luaState, 1);
     return true;
   }
@@ -128,7 +133,8 @@ bool round_lua_engine_popresult(RoundLuaEngine *engine, RoundString *result) {
 
 #if defined(ROUND_SUPPORT_LUA)
 
-bool round_lua_engine_poperror(RoundLuaEngine *engine, RoundError *err) {
+bool round_lua_engine_poperror(RoundLuaEngine* engine, RoundError* err)
+{
   int nStack = lua_gettop(engine->luaState);
   if (nStack <= 0)
     return false;
@@ -148,11 +154,12 @@ bool round_lua_engine_poperror(RoundLuaEngine *engine, RoundError *err) {
  * round_lua_engine_run
  ****************************************/
 
-bool round_lua_engine_run(RoundLuaEngine *engine, RoundMethod *method,
-                          const char *param, RoundString *result,
-                          RoundError *err) {
-  const char *source;
-  const char *name;
+bool round_lua_engine_run(RoundLuaEngine* engine, RoundMethod* method,
+                          const char* param, RoundString* result,
+                          RoundError* err)
+{
+  const char* source;
+  const char* name;
 
   if (!engine)
     return false;
@@ -186,7 +193,8 @@ bool round_lua_engine_run(RoundLuaEngine *engine, RoundMethod *method,
   nStack = lua_gettop(engine->luaState);
   if (callResult == 0) {
     round_lua_engine_popresult(engine, result);
-  } else {
+  }
+  else {
     round_lua_engine_poperror(engine, err);
   }
 

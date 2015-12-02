@@ -14,12 +14,13 @@
 
 BOOST_AUTO_TEST_SUITE(json)
 
-BOOST_AUTO_TEST_CASE(JsonMapSetString) {
-  const char *key = "testKey";
-  const char *val = "test";
-  const char *objVal;
+BOOST_AUTO_TEST_CASE(JsonMapSetString)
+{
+  const char* key = "testKey";
+  const char* val = "test";
+  const char* objVal;
 
-  RoundJSONObject *obj = round_json_map_new();
+  RoundJSONObject* obj = round_json_map_new();
   BOOST_CHECK(obj);
   BOOST_CHECK(round_json_object_ismap(obj));
 
@@ -30,12 +31,13 @@ BOOST_AUTO_TEST_CASE(JsonMapSetString) {
   BOOST_CHECK(round_json_object_delete(obj));
 }
 
-BOOST_AUTO_TEST_CASE(JsonMapSetNullString) {
-  const char *key = "testKey";
-  const char *val = NULL;
-  const char *objVal;
+BOOST_AUTO_TEST_CASE(JsonMapSetNullString)
+{
+  const char* key = "testKey";
+  const char* val = NULL;
+  const char* objVal;
 
-  RoundJSONObject *obj = round_json_map_new();
+  RoundJSONObject* obj = round_json_map_new();
   BOOST_CHECK(obj);
   BOOST_CHECK(round_json_object_ismap(obj));
 
@@ -46,12 +48,13 @@ BOOST_AUTO_TEST_CASE(JsonMapSetNullString) {
   BOOST_CHECK(round_json_object_delete(obj));
 }
 
-BOOST_AUTO_TEST_CASE(JsonMapSetInt) {
-  const char *key = "testKey";
+BOOST_AUTO_TEST_CASE(JsonMapSetInt)
+{
+  const char* key = "testKey";
   long val = 123456;
   long objVal;
 
-  RoundJSONObject *obj = round_json_map_new();
+  RoundJSONObject* obj = round_json_map_new();
   BOOST_CHECK(obj);
   BOOST_CHECK(round_json_object_ismap(obj));
 
@@ -62,12 +65,13 @@ BOOST_AUTO_TEST_CASE(JsonMapSetInt) {
   BOOST_CHECK(round_json_object_delete(obj));
 }
 
-BOOST_AUTO_TEST_CASE(JsonMapSetReal) {
-  const char *key = "testKey";
+BOOST_AUTO_TEST_CASE(JsonMapSetReal)
+{
+  const char* key = "testKey";
   double val = 100;
   double objVal;
 
-  RoundJSONObject *obj = round_json_map_new();
+  RoundJSONObject* obj = round_json_map_new();
   BOOST_CHECK(obj);
   BOOST_CHECK(round_json_object_ismap(obj));
 
@@ -78,12 +82,13 @@ BOOST_AUTO_TEST_CASE(JsonMapSetReal) {
   BOOST_CHECK(round_json_object_delete(obj));
 }
 
-BOOST_AUTO_TEST_CASE(JsonMapSetBool) {
-  const char *key = "testKey";
+BOOST_AUTO_TEST_CASE(JsonMapSetBool)
+{
+  const char* key = "testKey";
   bool val = true;
   bool objVal;
 
-  RoundJSONObject *obj = round_json_map_new();
+  RoundJSONObject* obj = round_json_map_new();
   BOOST_CHECK(obj);
   BOOST_CHECK(round_json_object_ismap(obj));
 
@@ -94,16 +99,17 @@ BOOST_AUTO_TEST_CASE(JsonMapSetBool) {
   BOOST_CHECK(round_json_object_delete(obj));
 }
 
-BOOST_AUTO_TEST_CASE(JsonMapSetObject) {
-  const char *key = "testKey";
-  const char *val = NULL;
-  const char *objVal;
+BOOST_AUTO_TEST_CASE(JsonMapSetObject)
+{
+  const char* key = "testKey";
+  const char* val = NULL;
+  const char* objVal;
 
-  RoundJSONObject *obj = round_json_map_new();
+  RoundJSONObject* obj = round_json_map_new();
   BOOST_CHECK(obj);
   BOOST_CHECK(round_json_object_ismap(obj));
 
-  RoundJSONObject *cobj = round_json_string_new(val);
+  RoundJSONObject* cobj = round_json_string_new(val);
   BOOST_CHECK(round_json_map_setobject(obj, key, cobj));
   BOOST_CHECK(round_json_object_delete(cobj));
 

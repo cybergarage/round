@@ -23,9 +23,10 @@
 using namespace std;
 using namespace Round;
 
-RoundMethod *Round::Test::CreateTestMethod(const char *name, const char *lang,
-                                           const char *stringCode) {
-  RoundMethod *method = round_method_new();
+RoundMethod* Round::Test::CreateTestMethod(const char* name, const char* lang,
+                                           const char* stringCode)
+{
+  RoundMethod* method = round_method_new();
   if (!method)
     return NULL;
 
@@ -37,7 +38,8 @@ RoundMethod *Round::Test::CreateTestMethod(const char *name, const char *lang,
 }
 
 void Round::Test::ScriptTestController::runEchoMethodTest(
-RoundMethodManager *scriptMgr) {
+    RoundMethodManager* scriptMgr)
+{
   std::vector<std::string> params;
 
   // FIXME Script Error only of SpiderMonkey #23
@@ -66,18 +68,18 @@ RoundMethodManager *scriptMgr) {
   params.push_back("{\"key0\":\"value0\"}");
   params.push_back("{\"key0\":\"value0\",\"key1\":\"value1\"}");
   params.push_back(
-  "{\"key0\":\"value0\",\"key1\":\"value1\",\"key2\":\"value2\"}");
+      "{\"key0\":\"value0\",\"key1\":\"value1\",\"key2\":\"value2\"}");
 
-  RoundJSONObject *resultObj;
-  RoundError *err = round_error_new();
+  RoundJSONObject* resultObj;
+  RoundError* err = round_error_new();
 
   for (std::vector<std::string>::iterator echoParamIt = params.begin();
        echoParamIt != params.end(); echoParamIt++) {
-    std::string &echoParam = *echoParamIt;
+    std::string& echoParam = *echoParamIt;
     bool isSuccess;
     BOOST_CHECK(isSuccess = round_method_manager_execmethod(
-                scriptMgr, Round::Test::SCRIPT_ECHO_NAME, echoParam.c_str(),
-                &resultObj, err));
+                    scriptMgr, Round::Test::SCRIPT_ECHO_NAME, echoParam.c_str(),
+                    &resultObj, err));
     if (!isSuccess)
       continue;
 
@@ -85,14 +87,14 @@ RoundMethodManager *scriptMgr) {
     if (!resultObj)
       continue;
 
-    const char *resultStr = NULL;
+    const char* resultStr = NULL;
     BOOST_CHECK(round_json_object_tostring(
-    resultObj, (RoundJSONOptionFormatCompact | RoundJSONOptionFormatSort),
-    &resultStr));
+        resultObj, (RoundJSONOptionFormatCompact | RoundJSONOptionFormatSort),
+        &resultStr));
     BOOST_CHECK(resultStr);
 
     if (resultStr) {
-      char *compackResultStr = round_strreplace(resultStr, " ", "");
+      char* compackResultStr = round_strreplace(resultStr, " ", "");
       BOOST_CHECK_EQUAL(echoParam.c_str(), compackResultStr);
       free(compackResultStr);
     }
@@ -104,7 +106,8 @@ RoundMethodManager *scriptMgr) {
 }
 
 void Round::Test::ScriptTestController::runSumMethodTest(
-RoundMethodManager *scriptMgr) {
+    RoundMethodManager* scriptMgr)
+{
   std::vector<std::string> params;
   std::vector<std::string> results;
 
@@ -132,15 +135,15 @@ RoundMethodManager *scriptMgr) {
   params.push_back("[0,10,20,30,40,50,60,70,80,90]");
   results.push_back("450");
 
-  RoundJSONObject *resultObj;
-  RoundError *err = round_error_new();
+  RoundJSONObject* resultObj;
+  RoundError* err = round_error_new();
 
   size_t nParams = params.size();
   for (size_t n = 0; n < nParams; n++) {
     bool isSuccess;
     BOOST_CHECK(isSuccess = round_method_manager_execmethod(
-                scriptMgr, Round::Test::SCRIPT_SUM_NAME, params[n].c_str(),
-                &resultObj, err));
+                    scriptMgr, Round::Test::SCRIPT_SUM_NAME, params[n].c_str(),
+                    &resultObj, err));
     if (!isSuccess)
       continue;
 
@@ -148,10 +151,10 @@ RoundMethodManager *scriptMgr) {
     if (!resultObj)
       continue;
 
-    const char *resultStr = NULL;
+    const char* resultStr = NULL;
     BOOST_CHECK(round_json_object_tostring(
-    resultObj, (RoundJSONOptionFormatCompact | RoundJSONOptionFormatSort),
-    &resultStr));
+        resultObj, (RoundJSONOptionFormatCompact | RoundJSONOptionFormatSort),
+        &resultStr));
     BOOST_CHECK(resultStr);
     BOOST_CHECK_EQUAL(results[n].c_str(), resultStr);
 
@@ -160,7 +163,8 @@ RoundMethodManager *scriptMgr) {
 }
 
 void Round::Test::ScriptTestController::runCounterMethodTest(
-RoundMethodManager *scriptMgr) {
+    RoundMethodManager* scriptMgr)
+{
   std::string result;
   /*
     Error error;

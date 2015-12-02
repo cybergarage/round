@@ -14,10 +14,11 @@
  * round_map_new
  ****************************************/
 
-RoundMap *round_map_new() {
-  RoundMap *map;
+RoundMap* round_map_new()
+{
+  RoundMap* map;
 
-  map = (RoundMap *)malloc(sizeof(RoundMap));
+  map = (RoundMap*)malloc(sizeof(RoundMap));
 
   if (!map)
     return NULL;
@@ -37,7 +38,8 @@ RoundMap *round_map_new() {
  * round_map_cleartable
  ****************************************/
 
-bool round_map_cleartable(RoundMap *map) {
+bool round_map_cleartable(RoundMap* map)
+{
   size_t n;
 
   if (!map)
@@ -62,7 +64,8 @@ bool round_map_cleartable(RoundMap *map) {
  * round_map_delete
  ****************************************/
 
-bool round_map_delete(RoundMap *map) {
+bool round_map_delete(RoundMap* map)
+{
   if (!map)
     return false;
 
@@ -77,7 +80,8 @@ bool round_map_delete(RoundMap *map) {
  * round_map_settablesize
  ****************************************/
 
-bool round_map_settablesize(RoundMap *map, size_t size) {
+bool round_map_settablesize(RoundMap* map, size_t size)
+{
   if (!map)
     return false;
 
@@ -86,7 +90,7 @@ bool round_map_settablesize(RoundMap *map, size_t size) {
 
   round_map_cleartable(map);
 
-  map->table = calloc(size, sizeof(RoundList *));
+  map->table = calloc(size, sizeof(RoundList*));
   if (!map->table) {
     return false;
   }
@@ -100,7 +104,8 @@ bool round_map_settablesize(RoundMap *map, size_t size) {
  * round_map_size
  ****************************************/
 
-size_t round_map_size(RoundMap *map) {
+size_t round_map_size(RoundMap* map)
+{
   size_t mapSize, n;
 
   if (!map || !map->table)
@@ -120,7 +125,8 @@ size_t round_map_size(RoundMap *map) {
  * round_map_getefficiency
  ****************************************/
 
-double round_map_getefficiency(RoundMap *map) {
+double round_map_getefficiency(RoundMap* map)
+{
   size_t mapCnt, tableCnt, n;
 
   if (!map || !map->table)
@@ -141,7 +147,8 @@ double round_map_getefficiency(RoundMap *map) {
  * round_map_printdistribution
  ****************************************/
 
-void round_map_printdistribution(RoundMap *map) {
+void round_map_printdistribution(RoundMap* map)
+{
   size_t mapCnt, tableCnt, tableMapCnt, n;
 
   if (!map || !map->table)
@@ -169,7 +176,8 @@ void round_map_printdistribution(RoundMap *map) {
  * round_map_getkeycode
  ****************************************/
 
-size_t round_map_getkeycode(RoundMap *map, const char *key) {
+size_t round_map_getkeycode(RoundMap* map, const char* key)
+{
   if (!map || !map->mapHashFunc)
     return 0;
 
@@ -180,8 +188,9 @@ size_t round_map_getkeycode(RoundMap *map, const char *key) {
  * round_map_addmapobject
  ****************************************/
 
-bool round_map_addmapobject(RoundMap *map, RoundMapObject *obj) {
-  char *key;
+bool round_map_addmapobject(RoundMap* map, RoundMapObject* obj)
+{
+  char* key;
   size_t keyCode;
 
   if (!map || !obj)
@@ -208,8 +217,9 @@ bool round_map_addmapobject(RoundMap *map, RoundMapObject *obj) {
  * round_map_setobject
  ****************************************/
 
-bool round_map_setobject(RoundMap *map, const char *key, void *obj) {
-  RoundMapObject *mapObj;
+bool round_map_setobject(RoundMap* map, const char* key, void* obj)
+{
+  RoundMapObject* mapObj;
 
   if (!key)
     return false;
@@ -232,8 +242,9 @@ bool round_map_setobject(RoundMap *map, const char *key, void *obj) {
  * round_map_removeobjectbykey
  ****************************************/
 
-bool round_map_removeobjectbykey(RoundMap *map, const char *key) {
-  RoundMapObject *obj;
+bool round_map_removeobjectbykey(RoundMap* map, const char* key)
+{
+  RoundMapObject* obj;
 
   if (!map || !key)
     return false;
@@ -252,7 +263,8 @@ bool round_map_removeobjectbykey(RoundMap *map, const char *key) {
  * round_map_haskey
  ****************************************/
 
-bool round_map_haskey(RoundMap *map, const char *key) {
+bool round_map_haskey(RoundMap* map, const char* key)
+{
   return round_map_getmapobjectbykey(map, key) ? true : false;
 }
 
@@ -260,8 +272,9 @@ bool round_map_haskey(RoundMap *map, const char *key) {
  * round_map_getmapobjectbykey
  ****************************************/
 
-RoundMapObject *round_map_getmapobjectbykey(RoundMap *map, const char *key) {
-  RoundMapObject *mapObj;
+RoundMapObject* round_map_getmapobjectbykey(RoundMap* map, const char* key)
+{
+  RoundMapObject* mapObj;
   size_t keyCode;
 
   if (!map)
@@ -284,8 +297,9 @@ RoundMapObject *round_map_getmapobjectbykey(RoundMap *map, const char *key) {
  * round_map_getobjectbykey
  ****************************************/
 
-void *round_map_getobjectbykey(RoundMap *map, const char *key) {
-  RoundMapObject *mapObj;
+void* round_map_getobjectbykey(RoundMap* map, const char* key)
+{
+  RoundMapObject* mapObj;
 
   mapObj = round_map_getmapobjectbykey(map, key);
   if (!mapObj)

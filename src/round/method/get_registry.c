@@ -14,12 +14,13 @@
  * round_system_method_setmethod
  ****************************************/
 
-bool round_system_method_getregistry(RoundLocalNode *node,
-                                     RoundJSONObject *params,
-                                     RoundJSONObject **resultMap,
-                                     RoundError *err) {
-  const char *key;
-  RoundRegistry *reg;
+bool round_system_method_getregistry(RoundLocalNode* node,
+                                     RoundJSONObject* params,
+                                     RoundJSONObject** resultMap,
+                                     RoundError* err)
+{
+  const char* key;
+  RoundRegistry* reg;
 
   if (!round_json_object_ismap(params)) {
     round_error_setjsonrpcerrorcode(err, ROUND_RPC_ERROR_CODE_INVALID_PARAMS);

@@ -15,10 +15,11 @@
  * round_script_engine_new
  ****************************************/
 
-RoundScriptEngine *round_script_engine_new() {
-  RoundScriptEngine *engine;
+RoundScriptEngine* round_script_engine_new()
+{
+  RoundScriptEngine* engine;
 
-  engine = (RoundScriptEngine *)malloc(sizeof(RoundScriptEngine));
+  engine = (RoundScriptEngine*)malloc(sizeof(RoundScriptEngine));
   if (!engine)
     return NULL;
 
@@ -34,11 +35,12 @@ RoundScriptEngine *round_script_engine_new() {
 * round_script_engine_init
 ****************************************/
 
-bool round_script_engine_init(RoundScriptEngine *engine) {
+bool round_script_engine_init(RoundScriptEngine* engine)
+{
   if (!engine)
     return false;
 
-  round_list_node_init((RoundList *)engine);
+  round_list_node_init((RoundList*)engine);
 
   engine->mutex = round_mutex_new();
   if (!engine->mutex) {
@@ -59,7 +61,8 @@ bool round_script_engine_init(RoundScriptEngine *engine) {
  * round_script_engine_destory
  ****************************************/
 
-bool round_script_engine_destory(RoundScriptEngine *engine) {
+bool round_script_engine_destory(RoundScriptEngine* engine)
+{
   if (!engine)
     return false;
 
@@ -80,7 +83,8 @@ bool round_script_engine_destory(RoundScriptEngine *engine) {
  * round_script_engine_delete
  ****************************************/
 
-bool round_script_engine_delete(RoundScriptEngine *engine) {
+bool round_script_engine_delete(RoundScriptEngine* engine)
+{
   if (!engine)
     return false;
 
@@ -97,7 +101,8 @@ bool round_script_engine_delete(RoundScriptEngine *engine) {
  * round_script_engine_lock
  ****************************************/
 
-bool round_script_engine_lock(RoundScriptEngine *engine) {
+bool round_script_engine_lock(RoundScriptEngine* engine)
+{
   if (!engine)
     return false;
 
@@ -108,7 +113,8 @@ bool round_script_engine_lock(RoundScriptEngine *engine) {
  * round_script_engine_unlock
  ****************************************/
 
-bool round_script_engine_unlock(RoundScriptEngine *engine) {
+bool round_script_engine_unlock(RoundScriptEngine* engine)
+{
   if (!engine)
     return false;
 
@@ -119,7 +125,8 @@ bool round_script_engine_unlock(RoundScriptEngine *engine) {
  * round_script_engine_isvalid
  ****************************************/
 
-bool round_script_engine_isvalid(RoundScriptEngine *engine) {
+bool round_script_engine_isvalid(RoundScriptEngine* engine)
+{
   if (!engine)
     return false;
 

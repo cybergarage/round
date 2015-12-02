@@ -15,13 +15,14 @@
 
 BOOST_AUTO_TEST_SUITE(method)
 
-BOOST_AUTO_TEST_CASE(MethodMap) {
-  RoundMap *map = round_method_map_new();
+BOOST_AUTO_TEST_CASE(MethodMap)
+{
+  RoundMap* map = round_method_map_new();
 
   BOOST_CHECK(map);
   BOOST_CHECK_EQUAL(0, round_method_map_size(map));
 
-  RoundMethod *method[ROUND_TEST_MAP_SIZE];
+  RoundMethod* method[ROUND_TEST_MAP_SIZE];
   char name[32];
 
   // Add methods

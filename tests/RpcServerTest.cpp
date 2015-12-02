@@ -14,8 +14,9 @@
 
 BOOST_AUTO_TEST_SUITE(server)
 
-BOOST_AUTO_TEST_CASE(RpcServerNew) {
-  RoundRpcServer *server = round_rpc_server_new();
+BOOST_AUTO_TEST_CASE(RpcServerNew)
+{
+  RoundRpcServer* server = round_rpc_server_new();
   BOOST_CHECK(server);
 
   BOOST_CHECK(round_rpc_server_start(server));

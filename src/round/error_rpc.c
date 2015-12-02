@@ -15,7 +15,8 @@
  * round_json_rpc_errorcode2httpstatuscode
  ****************************************/
 
-int round_json_rpc_errorcode2httpstatuscode(int rpcErrCode) {
+int round_json_rpc_errorcode2httpstatuscode(int rpcErrCode)
+{
   // Standard Response Error Codes
   switch (rpcErrCode) {
   case ROUND_RPC_ERROR_CODE_PARSER_ERROR:
@@ -59,7 +60,8 @@ int round_json_rpc_errorcode2httpstatuscode(int rpcErrCode) {
  * round_json_rpc_errorcode2string
  ****************************************/
 
-const char *round_json_rpc_errorcode2string(int rpcErrCode) {
+const char* round_json_rpc_errorcode2string(int rpcErrCode)
+{
   switch (rpcErrCode) {
   case ROUND_RPC_ERROR_CODE_PARSER_ERROR:
     return ROUND_RPC_ERROR_CODE_PARSER_ERROR_MSG;
@@ -94,7 +96,8 @@ const char *round_json_rpc_errorcode2string(int rpcErrCode) {
  * round_error_setjsonrpcerrorcode
  ****************************************/
 
-bool round_error_setjsonrpcerrorcode(RoundError *err, int rpcErrCode) {
+bool round_error_setjsonrpcerrorcode(RoundError* err, int rpcErrCode)
+{
   int httpStatusCode;
 
   if (!err)

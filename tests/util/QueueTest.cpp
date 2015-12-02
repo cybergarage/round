@@ -17,15 +17,16 @@
 
 BOOST_AUTO_TEST_SUITE(queue)
 
-BOOST_AUTO_TEST_CASE(QueuePushPopTest) {
-  RoundQueue *queue = round_queue_new();
+BOOST_AUTO_TEST_CASE(QueuePushPopTest)
+{
+  RoundQueue* queue = round_queue_new();
 
   BOOST_CHECK_EQUAL(round_queue_size(queue), 0);
 
   for (int n = 0; n < ROUND_QUEUE_TEST_COUNT; n++) {
-    char *data = (char *)malloc(ROUND_QUEUE_TEST_DATA_MAX);
+    char* data = (char*)malloc(ROUND_QUEUE_TEST_DATA_MAX);
     snprintf(data, ROUND_QUEUE_TEST_DATA_MAX, "obj%d", n);
-    RoundQueueObject *obj = round_queue_object_new();
+    RoundQueueObject* obj = round_queue_object_new();
     round_queue_object_setuserdata(obj, data);
     BOOST_CHECK(round_queue_push(queue, obj));
   }
@@ -35,10 +36,10 @@ BOOST_AUTO_TEST_CASE(QueuePushPopTest) {
   for (int n = 0; n < ROUND_QUEUE_TEST_COUNT; n++) {
     char data[ROUND_QUEUE_TEST_DATA_MAX];
     snprintf(data, sizeof(data), "obj%d", n);
-    RoundQueueObject *obj = NULL;
+    RoundQueueObject* obj = NULL;
     BOOST_CHECK(round_queue_pop(queue, &obj));
     BOOST_CHECK(obj);
-    char *objData = (char *)round_queue_object_getuserdata(obj);
+    char* objData = (char*)round_queue_object_getuserdata(obj);
     BOOST_CHECK_EQUAL(data, objData);
     free(objData);
   }
@@ -46,24 +47,25 @@ BOOST_AUTO_TEST_CASE(QueuePushPopTest) {
   BOOST_CHECK_EQUAL(round_queue_size(queue), 0);
 }
 
-BOOST_AUTO_TEST_CASE(QueueEachPushPopTest) {
-  RoundQueue *queue = round_queue_new();
+BOOST_AUTO_TEST_CASE(QueueEachPushPopTest)
+{
+  RoundQueue* queue = round_queue_new();
 
   BOOST_CHECK_EQUAL(round_queue_size(queue), 0);
 
   for (int n = 0; n < ROUND_QUEUE_TEST_COUNT; n++) {
-    char *data = (char *)malloc(ROUND_QUEUE_TEST_DATA_MAX);
+    char* data = (char*)malloc(ROUND_QUEUE_TEST_DATA_MAX);
     snprintf(data, ROUND_QUEUE_TEST_DATA_MAX, "obj%d", n);
 
-    RoundQueueObject *obj = round_queue_object_new();
+    RoundQueueObject* obj = round_queue_object_new();
     round_queue_object_setuserdata(obj, data);
     BOOST_CHECK(round_queue_push(queue, obj));
     BOOST_CHECK_EQUAL(round_queue_size(queue), 1);
 
-    RoundQueueObject *popObj = NULL;
+    RoundQueueObject* popObj = NULL;
     BOOST_CHECK(round_queue_pop(queue, &popObj));
     BOOST_CHECK(popObj);
-    char *popObjData = (char *)round_queue_object_getuserdata(popObj);
+    char* popObjData = (char*)round_queue_object_getuserdata(popObj);
     BOOST_CHECK_EQUAL(data, popObjData);
     free(popObjData);
     BOOST_CHECK_EQUAL(round_queue_size(queue), 0);

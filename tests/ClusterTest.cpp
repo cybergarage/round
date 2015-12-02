@@ -14,18 +14,20 @@
 
 BOOST_AUTO_TEST_SUITE(cluster)
 
-const char *TEST_CLUSTER_NAME = "testCluster";
-const char *TEST_CLUSTER_NAME_2 = "testCluster1";
-const char *TEST_CLUSTER_NAME_3 = "testCluster2";
+const char* TEST_CLUSTER_NAME = "testCluster";
+const char* TEST_CLUSTER_NAME_2 = "testCluster1";
+const char* TEST_CLUSTER_NAME_3 = "testCluster2";
 
-BOOST_AUTO_TEST_CASE(ClusterNew) {
-  RoundCluster *cluster = round_cluster_new();
+BOOST_AUTO_TEST_CASE(ClusterNew)
+{
+  RoundCluster* cluster = round_cluster_new();
   BOOST_CHECK(cluster);
   round_cluster_delete(cluster);
 }
 
-BOOST_AUTO_TEST_CASE(ClusterName) {
-  RoundCluster *cluster = round_cluster_new();
+BOOST_AUTO_TEST_CASE(ClusterName)
+{
+  RoundCluster* cluster = round_cluster_new();
   BOOST_CHECK(round_cluster_setname(cluster, TEST_CLUSTER_NAME));
 
   BOOST_CHECK_EQUAL(TEST_CLUSTER_NAME, round_cluster_getname(cluster));
@@ -37,7 +39,8 @@ BOOST_AUTO_TEST_CASE(ClusterName) {
   round_cluster_delete(cluster);
 }
 
-BOOST_AUTO_TEST_CASE(ClusterCopyTest) {
+BOOST_AUTO_TEST_CASE(ClusterCopyTest)
+{
   /*
   Round::Cluster cluster1(TEST_CLUSTER_NAME_2);
   Round::Cluster cluster2(&cluster1);
@@ -45,17 +48,18 @@ BOOST_AUTO_TEST_CASE(ClusterCopyTest) {
    */
 }
 
-BOOST_AUTO_TEST_CASE(ClusterEqualTest) {
-  RoundCluster *cluster1 = round_cluster_new();
+BOOST_AUTO_TEST_CASE(ClusterEqualTest)
+{
+  RoundCluster* cluster1 = round_cluster_new();
   BOOST_CHECK(round_cluster_setname(cluster1, TEST_CLUSTER_NAME));
   BOOST_CHECK(round_cluster_equals(cluster1, cluster1));
 
-  RoundCluster *cluster2 = round_cluster_new();
+  RoundCluster* cluster2 = round_cluster_new();
   BOOST_CHECK(round_cluster_setname(cluster2, TEST_CLUSTER_NAME_2));
   BOOST_CHECK(!round_cluster_equals(cluster1, cluster2));
   BOOST_CHECK(!round_cluster_equals(cluster2, cluster1));
 
-  RoundCluster *cluster3 = round_cluster_new();
+  RoundCluster* cluster3 = round_cluster_new();
   BOOST_CHECK(round_cluster_setname(cluster3, TEST_CLUSTER_NAME));
   BOOST_CHECK(round_cluster_equals(cluster1, cluster3));
   BOOST_CHECK(round_cluster_equals(cluster3, cluster1));
@@ -65,21 +69,23 @@ BOOST_AUTO_TEST_CASE(ClusterEqualTest) {
   round_cluster_delete(cluster3);
 }
 
-BOOST_AUTO_TEST_CASE(ClusterAddNode) {
-  RoundCluster *cluster = round_cluster_new();
+BOOST_AUTO_TEST_CASE(ClusterAddNode)
+{
+  RoundCluster* cluster = round_cluster_new();
   BOOST_CHECK(cluster);
 
-  RoundNode *node = round_node_local_new();
+  RoundNode* node = round_node_local_new();
   BOOST_CHECK(round_cluster_addnode(cluster, node));
 
   round_cluster_delete(cluster);
 }
 
-BOOST_AUTO_TEST_CASE(ClusterAddNodes) {
-  RoundCluster *cluster = round_cluster_new();
+BOOST_AUTO_TEST_CASE(ClusterAddNodes)
+{
+  RoundCluster* cluster = round_cluster_new();
   BOOST_CHECK(cluster);
 
-  RoundNode *node = round_node_local_new();
+  RoundNode* node = round_node_local_new();
 
   BOOST_CHECK(round_cluster_addnode(cluster, node));
   BOOST_CHECK(round_cluster_addnode(cluster, node));

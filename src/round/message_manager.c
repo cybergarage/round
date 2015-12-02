@@ -14,10 +14,11 @@
 * round_message_manager_new
 ****************************************/
 
-RoundMessageManager *round_message_manager_new(void) {
-  RoundMessageManager *mgr;
+RoundMessageManager* round_message_manager_new(void)
+{
+  RoundMessageManager* mgr;
 
-  mgr = (RoundMessageManager *)malloc(sizeof(RoundMessageManager));
+  mgr = (RoundMessageManager*)malloc(sizeof(RoundMessageManager));
 
   if (!mgr)
     return NULL;
@@ -33,7 +34,8 @@ RoundMessageManager *round_message_manager_new(void) {
 * round_message_manager_delete
 ****************************************/
 
-bool round_message_manager_delete(RoundMessageManager *mgr) {
+bool round_message_manager_delete(RoundMessageManager* mgr)
+{
   if (!mgr)
     return false;
 
@@ -52,14 +54,15 @@ bool round_message_manager_delete(RoundMessageManager *mgr) {
  * round_message_manager_clear
  ****************************************/
 
-bool round_message_manager_clear(RoundMessageManager *mgr) {
-  RoundMessage *msg;
+bool round_message_manager_clear(RoundMessageManager* mgr)
+{
+  RoundMessage* msg;
 
   if (!mgr)
     return false;
 
   // TODO : Serialize none executed message
-  while (round_queue_pop(mgr->queue, (RoundQueueObject **)&msg)) {
+  while (round_queue_pop(mgr->queue, (RoundQueueObject**)&msg)) {
     if (!msg)
       continue;
     round_message_delete(msg);
@@ -74,13 +77,14 @@ bool round_message_manager_clear(RoundMessageManager *mgr) {
  * round_message_manager_pushmessage
  ****************************************/
 
-bool round_message_manager_pushmessage(RoundMessageManager *mgr,
-                                       RoundMessage *msg) {
+bool round_message_manager_pushmessage(RoundMessageManager* mgr,
+                                       RoundMessage* msg)
+{
   if (!mgr)
     return false;
 
   round_mutex_lock(mgr->mutex);
-  round_queue_push(mgr->queue, (RoundQueueObject *)msg);
+  round_queue_push(mgr->queue, (RoundQueueObject*)msg);
   round_mutex_unlock(mgr->mutex);
 
   round_semaphore_post(mgr->sem);
@@ -92,8 +96,9 @@ bool round_message_manager_pushmessage(RoundMessageManager *mgr,
  * round_message_manager_waitmessage
  ****************************************/
 
-bool round_message_manager_waitmessage(RoundMessageManager *mgr,
-                                       RoundMessage **msg) {
+bool round_message_manager_waitmessage(RoundMessageManager* mgr,
+                                       RoundMessage** msg)
+{
   bool isSuccess;
 
   if (!mgr)
@@ -104,7 +109,7 @@ bool round_message_manager_waitmessage(RoundMessageManager *mgr,
     return false;
 
   round_mutex_lock(mgr->mutex);
-  isSuccess = round_queue_pop(mgr->queue, (RoundQueueObject **)msg);
+  isSuccess = round_queue_pop(mgr->queue, (RoundQueueObject**)msg);
   round_mutex_unlock(mgr->mutex);
 
   return isSuccess;

@@ -23,20 +23,22 @@ static void round_sig_handler(int sign);
 ****************************************/
 
 #if defined(WIN32)
-static DWORD WINAPI Win32ThreadProc(LPVOID lpParam) {
-  RoundThread *thread;
+static DWORD WINAPI Win32ThreadProc(LPVOID lpParam)
+{
+  RoundThread* thread;
 
-  thread = (RoundThread *)lpParam;
+  thread = (RoundThread*)lpParam;
   if (thread->action != NULL)
     thread->action(thread);
 
   return 0;
 }
 #else
-static void *PosixThreadProc(void *param) {
+static void* PosixThreadProc(void* param)
+{
   sigset_t set;
   struct sigaction actions;
-  RoundThread *thread = (RoundThread *)param;
+  RoundThread* thread = (RoundThread*)param;
 
   sigfillset(&set);
   sigdelset(&set, SIGQUIT);
@@ -59,15 +61,16 @@ static void *PosixThreadProc(void *param) {
 * round_thread_new
 ****************************************/
 
-RoundThread *round_thread_new(void) {
-  RoundThread *thread;
+RoundThread* round_thread_new(void)
+{
+  RoundThread* thread;
 
-  thread = (RoundThread *)malloc(sizeof(RoundThread));
+  thread = (RoundThread*)malloc(sizeof(RoundThread));
 
   if (!thread)
     return NULL;
 
-  round_list_node_init((RoundList *)thread);
+  round_list_node_init((RoundList*)thread);
 
   thread->runnableFlag = false;
   thread->action = NULL;
@@ -80,7 +83,8 @@ RoundThread *round_thread_new(void) {
 * round_thread_delete
 ****************************************/
 
-bool round_thread_delete(RoundThread *thread) {
+bool round_thread_delete(RoundThread* thread)
+{
   if (!thread)
     return false;
 
@@ -99,15 +103,16 @@ bool round_thread_delete(RoundThread *thread) {
 * round_thread_start
 ****************************************/
 
-bool round_thread_start(RoundThread *thread) {
+bool round_thread_start(RoundThread* thread)
+{
   if (!thread)
     return false;
 
   thread->runnableFlag = true;
 
 #if defined(WIN32)
-  thread->hThread =
-  CreateThread(NULL, 0, Win32ThreadProc, (LPVOID)thread, 0, &thread->threadID);
+  thread->hThread = CreateThread(NULL, 0, Win32ThreadProc, (LPVOID)thread, 0,
+                                 &thread->threadID);
 #else
   pthread_attr_t thread_attr;
   if (pthread_attr_init(&thread_attr) != 0) {
@@ -121,8 +126,7 @@ bool round_thread_start(RoundThread *thread) {
     return false;
   }
 
-  if (pthread_create(&thread->pThread, &thread_attr, PosixThreadProc, thread) !=
-      0) {
+  if (pthread_create(&thread->pThread, &thread_attr, PosixThreadProc, thread) != 0) {
     thread->runnableFlag = false;
     pthread_attr_destroy(&thread_attr);
     return false;
@@ -137,7 +141,8 @@ bool round_thread_start(RoundThread *thread) {
 * round_thread_stop
 ****************************************/
 
-bool round_thread_stop(RoundThread *thread) {
+bool round_thread_stop(RoundThread* thread)
+{
   if (!thread)
     return false;
 
@@ -161,7 +166,8 @@ bool round_thread_stop(RoundThread *thread) {
 * round_thread_restart
 ****************************************/
 
-bool round_thread_restart(RoundThread *thread) {
+bool round_thread_restart(RoundThread* thread)
+{
   round_thread_stop(thread);
   return round_thread_start(thread);
 }
@@ -170,7 +176,8 @@ bool round_thread_restart(RoundThread *thread) {
 * round_thread_isrunnable
 ****************************************/
 
-bool round_thread_isrunnable(RoundThread *thread) {
+bool round_thread_isrunnable(RoundThread* thread)
+{
   if (!thread)
     return false;
 
@@ -185,7 +192,8 @@ bool round_thread_isrunnable(RoundThread *thread) {
  * round_thread_isrunning
  ****************************************/
 
-bool round_thread_isrunning(RoundThread *thread) {
+bool round_thread_isrunning(RoundThread* thread)
+{
   if (!thread)
     return false;
 
@@ -196,7 +204,8 @@ bool round_thread_isrunning(RoundThread *thread) {
 * round_thread_setaction
 ****************************************/
 
-void round_thread_setaction(RoundThread *thread, RoundThreadFunc func) {
+void round_thread_setaction(RoundThread* thread, RoundThreadFunc func)
+{
   if (!thread)
     return;
 
@@ -207,7 +216,8 @@ void round_thread_setaction(RoundThread *thread, RoundThreadFunc func) {
 * round_thread_setuserdata
 ****************************************/
 
-void round_thread_setuserdata(RoundThread *thread, void *value) {
+void round_thread_setuserdata(RoundThread* thread, void* value)
+{
   if (!thread)
     return;
 
@@ -218,7 +228,8 @@ void round_thread_setuserdata(RoundThread *thread, void *value) {
 * round_thread_getuserdata
 ****************************************/
 
-void *round_thread_getuserdata(RoundThread *thread) {
+void* round_thread_getuserdata(RoundThread* thread)
+{
   if (!thread)
     return NULL;
 

@@ -15,17 +15,18 @@
 
 BOOST_AUTO_TEST_SUITE(method)
 
-BOOST_AUTO_TEST_CASE(MethodManagerNew) {
-  RoundMethodManager *mgr = round_method_manager_new();
+BOOST_AUTO_TEST_CASE(MethodManagerNew)
+{
+  RoundMethodManager* mgr = round_method_manager_new();
   BOOST_CHECK(mgr);
 
   BOOST_CHECK_EQUAL(0, round_method_manager_getmethodsize(mgr));
   BOOST_CHECK_EQUAL(0, round_method_manager_getenginsize(mgr));
 
-  RoundMethod *method[ROUND_TEST_MAP_SIZE];
+  RoundMethod* method[ROUND_TEST_MAP_SIZE];
   char name[32];
 
-  RoundScriptEngine *engine[ROUND_TEST_MAP_SIZE];
+  RoundScriptEngine* engine[ROUND_TEST_MAP_SIZE];
   char lang[32];
 
   // Add method & engines
@@ -37,7 +38,7 @@ BOOST_AUTO_TEST_CASE(MethodManagerNew) {
     snprintf(name, sizeof(name), "%d", n);
     round_method_setname(method[n], name);
     round_method_setlanguage(method[n], name);
-    round_method_setcode(method[n], (byte *)name, (n + 1));
+    round_method_setcode(method[n], (byte*)name, (n + 1));
     BOOST_CHECK(round_method_manager_addmethod(mgr, method[n]));
     BOOST_CHECK_EQUAL((n + 1), round_method_manager_getmethodsize(mgr));
 

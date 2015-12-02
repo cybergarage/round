@@ -15,11 +15,12 @@
  * round_consistenthashing_node_init
  ****************************************/
 
-bool round_consistenthashing_node_init(RoundConsistentHashingNode *node) {
+bool round_consistenthashing_node_init(RoundConsistentHashingNode* node)
+{
   if (!node)
     return false;
 
-  round_list_node_init((RoundListNode *)node);
+  round_list_node_init((RoundListNode*)node);
   round_consistenthashing_node_sethashfunc(node, NULL);
 
   return true;
@@ -29,11 +30,12 @@ bool round_consistenthashing_node_init(RoundConsistentHashingNode *node) {
  * round_consistenthashing_node_destroy
  ****************************************/
 
-bool round_consistenthashing_node_destroy(RoundConsistentHashingNode *node) {
+bool round_consistenthashing_node_destroy(RoundConsistentHashingNode* node)
+{
   if (!node)
     return false;
 
-  round_list_remove((RoundList *)node);
+  round_list_remove((RoundList*)node);
 
   return true;
 }
@@ -42,13 +44,14 @@ bool round_consistenthashing_node_destroy(RoundConsistentHashingNode *node) {
  * round_consistenthashing_node_gethash
  ****************************************/
 
-const char *round_consistenthashing_node_gethash(void *node) {
+const char* round_consistenthashing_node_gethash(void* node)
+{
   ROUND_CONSISTENTHASH_NODE_HASHFUNC hashFunc;
 
   if (!node)
     return NULL;
 
-  hashFunc = ((RoundConsistentHashingNode *)node)->hashFunc;
+  hashFunc = ((RoundConsistentHashingNode*)node)->hashFunc;
   if (!hashFunc)
     return NULL;
 
@@ -59,9 +62,10 @@ const char *round_consistenthashing_node_gethash(void *node) {
  * round_consistenthashing_node_compfunc
  ****************************************/
 
-int
-round_consistenthashing_node_compfunc(RoundConsistentHashingNode *thisNode,
-                                      RoundConsistentHashingNode *otherNode) {
+int round_consistenthashing_node_compfunc(
+    RoundConsistentHashingNode* thisNode,
+    RoundConsistentHashingNode* otherNode)
+{
   const char *thisHash, *otherHash;
   int strCmp;
 
@@ -86,9 +90,9 @@ round_consistenthashing_node_compfunc(RoundConsistentHashingNode *thisNode,
  * round_consistenthashing_node_equals
  ****************************************/
 
-bool round_consistenthashing_node_equals(void *thisNode, void *otherNode) {
-  return (round_consistenthashing_node_comp(thisNode, otherNode) ==
-          RoundListNodeCompareSame)
-         ? true
-         : false;
+bool round_consistenthashing_node_equals(void* thisNode, void* otherNode)
+{
+  return (round_consistenthashing_node_comp(thisNode, otherNode) == RoundListNodeCompareSame)
+      ? true
+      : false;
 }

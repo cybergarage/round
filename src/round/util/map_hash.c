@@ -15,7 +15,8 @@
  * round_map_getasciihash
  ****************************************/
 
-size_t round_map_getasciihash(const char *key) {
+size_t round_map_getasciihash(const char* key)
+{
   size_t keyCode, keySize, n;
 
   keyCode = 0;

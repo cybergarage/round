@@ -14,10 +14,11 @@
  * round_system_method_new
  ****************************************/
 
-RoundMethod *round_system_method_new(const char *name,
+RoundMethod* round_system_method_new(const char* name,
                                      ROUND_SCRIPT_NATIVE_ENGINE_FUNC func,
-                                     bool isFinal) {
-  RoundMethod *method;
+                                     bool isFinal)
+{
+  RoundMethod* method;
 
   method = round_method_new();
   if (!method)

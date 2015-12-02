@@ -19,14 +19,15 @@
 * round_ruby_engine_new
 ****************************************/
 
-RoundRubyEngine *round_ruby_engine_new() {
-  RoundRubyEngine *engine;
+RoundRubyEngine* round_ruby_engine_new()
+{
+  RoundRubyEngine* engine;
 
-  engine = (RoundRubyEngine *)calloc(1, sizeof(RoundRubyEngine));
+  engine = (RoundRubyEngine*)calloc(1, sizeof(RoundRubyEngine));
   if (!engine)
     return NULL;
 
-  if (!round_script_engine_init((RoundScriptEngine *)engine)) {
+  if (!round_script_engine_init((RoundScriptEngine*)engine)) {
     round_ruby_engine_delete(engine);
     return NULL;
   }
@@ -49,7 +50,8 @@ RoundRubyEngine *round_ruby_engine_new() {
  * round_ruby_engine_destory
  ****************************************/
 
-bool round_ruby_engine_destory(RoundRubyEngine *engine) {
+bool round_ruby_engine_destory(RoundRubyEngine* engine)
+{
   if (!engine)
     return false;
 
@@ -66,14 +68,15 @@ bool round_ruby_engine_destory(RoundRubyEngine *engine) {
  * round_ruby_engine_delete
  ****************************************/
 
-bool round_ruby_engine_delete(RoundRubyEngine *engine) {
+bool round_ruby_engine_delete(RoundRubyEngine* engine)
+{
   if (!engine)
     return false;
 
   if (!round_ruby_engine_destory(engine))
     return false;
 
-  if (!round_script_engine_destory((RoundScriptEngine *)engine))
+  if (!round_script_engine_destory((RoundScriptEngine*)engine))
     return false;
 
   free(engine);
@@ -85,9 +88,10 @@ bool round_ruby_engine_delete(RoundRubyEngine *engine) {
  * round_ruby_engine_run
  ****************************************/
 
-bool round_ruby_engine_run(RoundRubyEngine *engine, RoundMethod *method,
-                           const char *param, RoundString *result,
-                           RoundError *err) {
+bool round_ruby_engine_run(RoundRubyEngine* engine, RoundMethod* method,
+                           const char* param, RoundString* result,
+                           RoundError* err)
+{
   return false;
 }
 
@@ -95,7 +99,8 @@ bool round_ruby_engine_run(RoundRubyEngine *engine, RoundMethod *method,
  * round_ruby_engine_run
  ****************************************/
 
-bool round_ruby_engine_run_code(RoundRubyEngine *engine, const char *code) {
+bool round_ruby_engine_run_code(RoundRubyEngine* engine, const char* code)
+{
 #if defined(ROUND_SUPPORT_RUBY)
   int evalState;
 #endif

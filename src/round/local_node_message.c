@@ -14,9 +14,10 @@
 * round_local_node_message_new
 ****************************************/
 
-RoundMessage *round_local_node_message_new() {
-  RoundMessage *msg;
-  RoundLocalMessageData *msgData;
+RoundMessage* round_local_node_message_new()
+{
+  RoundMessage* msg;
+  RoundLocalMessageData* msgData;
 
   msg = round_message_new();
   if (!msg)
@@ -40,13 +41,14 @@ RoundMessage *round_local_node_message_new() {
  * round_local_node_message_delete
  ****************************************/
 
-bool round_local_node_message_delete(RoundMessage *msg) {
-  RoundLocalMessageData *msgData;
+bool round_local_node_message_delete(RoundMessage* msg)
+{
+  RoundLocalMessageData* msgData;
 
   if (!msg)
     return true;
 
-  msgData = (RoundLocalMessageData *)round_message_getuserdata(msg);
+  msgData = (RoundLocalMessageData*)round_message_getuserdata(msg);
   if (msgData) {
     free(msgData);
   }
@@ -58,13 +60,14 @@ bool round_local_node_message_delete(RoundMessage *msg) {
  * round_local_node_message_seterror
  ****************************************/
 
-bool round_local_node_message_seterror(RoundMessage *msg, RoundError *err) {
-  RoundLocalMessageData *msgData;
+bool round_local_node_message_seterror(RoundMessage* msg, RoundError* err)
+{
+  RoundLocalMessageData* msgData;
 
   if (!msg)
     return false;
 
-  msgData = (RoundLocalMessageData *)round_message_getuserdata(msg);
+  msgData = (RoundLocalMessageData*)round_message_getuserdata(msg);
   if (!msgData)
     return false;
 
@@ -77,13 +80,14 @@ bool round_local_node_message_seterror(RoundMessage *msg, RoundError *err) {
  * round_local_node_message_geterror
  ****************************************/
 
-RoundError *round_local_node_message_geterror(RoundMessage *msg) {
-  RoundLocalMessageData *msgData;
+RoundError* round_local_node_message_geterror(RoundMessage* msg)
+{
+  RoundLocalMessageData* msgData;
 
   if (!msg)
     return NULL;
 
-  msgData = (RoundLocalMessageData *)round_message_getuserdata(msg);
+  msgData = (RoundLocalMessageData*)round_message_getuserdata(msg);
   if (!msgData)
     return NULL;
 
@@ -94,14 +98,15 @@ RoundError *round_local_node_message_geterror(RoundMessage *msg) {
  * round_local_node_message_setresponsejsonobject
  ****************************************/
 
-bool round_local_node_message_setresponsejsonobject(RoundMessage *msg,
-                                                    RoundJSONObject **resObj) {
-  RoundLocalMessageData *msgData;
+bool round_local_node_message_setresponsejsonobject(RoundMessage* msg,
+                                                    RoundJSONObject** resObj)
+{
+  RoundLocalMessageData* msgData;
 
   if (!msg)
     return false;
 
-  msgData = (RoundLocalMessageData *)round_message_getuserdata(msg);
+  msgData = (RoundLocalMessageData*)round_message_getuserdata(msg);
   if (!msgData)
     return false;
 
@@ -114,14 +119,15 @@ bool round_local_node_message_setresponsejsonobject(RoundMessage *msg,
  * round_local_node_message_getresponsejsonobject
  ****************************************/
 
-RoundJSONObject **
-round_local_node_message_getresponsejsonobject(RoundMessage *msg) {
-  RoundLocalMessageData *msgData;
+RoundJSONObject**
+round_local_node_message_getresponsejsonobject(RoundMessage* msg)
+{
+  RoundLocalMessageData* msgData;
 
   if (!msg)
     return NULL;
 
-  msgData = (RoundLocalMessageData *)round_message_getuserdata(msg);
+  msgData = (RoundLocalMessageData*)round_message_getuserdata(msg);
   if (!msgData)
     return NULL;
 

@@ -14,8 +14,9 @@
  * round_json_rpc_seterror
  ****************************************/
 
-bool round_json_rpc_seterror(RoundJSONObject *obj, RoundError *err) {
-  RoundJSONObject *errMap;
+bool round_json_rpc_seterror(RoundJSONObject* obj, RoundError* err)
+{
+  RoundJSONObject* errMap;
 
   if (!round_json_object_ismap(obj))
     return false;

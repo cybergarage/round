@@ -12,15 +12,16 @@
 
 #include <round/util/map.h>
 
-BOOST_AUTO_TEST_CASE(MapNew) {
-  RoundMap *map = round_map_new();
+BOOST_AUTO_TEST_CASE(MapNew)
+{
+  RoundMap* map = round_map_new();
   BOOST_CHECK(map);
 
   BOOST_CHECK_EQUAL(round_map_size(map), 0);
 
   size_t tableSize = round_map_gettablesize(map);
 
-  RoundMapObject *mapObj;
+  RoundMapObject* mapObj;
   char key[64];
 
   // Add key objects

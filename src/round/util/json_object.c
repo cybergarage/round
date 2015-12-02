@@ -14,7 +14,8 @@
  * round_json_object_init
  ****************************************/
 
-bool round_json_object_init(RoundJSONObject *obj) {
+bool round_json_object_init(RoundJSONObject* obj)
+{
   if (!obj)
     return false;
 
@@ -22,7 +23,7 @@ bool round_json_object_init(RoundJSONObject *obj) {
   obj->jsonObj = NULL;
 #endif
 
-  obj->childObj = (RoundJSONObject *)calloc(1, sizeof(RoundJSONObject));
+  obj->childObj = (RoundJSONObject*)calloc(1, sizeof(RoundJSONObject));
   obj->dumpedStr = NULL;
 
   return true;
@@ -32,10 +33,11 @@ bool round_json_object_init(RoundJSONObject *obj) {
  * round_json_object_new
  ****************************************/
 
-RoundJSONObject *round_json_object_new(void) {
-  RoundJSONObject *obj;
+RoundJSONObject* round_json_object_new(void)
+{
+  RoundJSONObject* obj;
 
-  obj = (RoundJSONObject *)malloc(sizeof(RoundJSONObject));
+  obj = (RoundJSONObject*)malloc(sizeof(RoundJSONObject));
 
   if (!obj)
     return NULL;
@@ -52,7 +54,8 @@ RoundJSONObject *round_json_object_new(void) {
  * round_json_object_delete
  ****************************************/
 
-bool round_json_object_delete(RoundJSONObject *obj) {
+bool round_json_object_delete(RoundJSONObject* obj)
+{
   if (!obj)
     return false;
 
@@ -82,7 +85,8 @@ bool round_json_object_delete(RoundJSONObject *obj) {
  * round_json_object_delete
  ****************************************/
 
-int round_json_object_gettype(RoundJSONObject *obj) {
+int round_json_object_gettype(RoundJSONObject* obj)
+{
   if (!obj)
     return ROUND_JSON_UNKOWN;
 
@@ -111,8 +115,9 @@ int round_json_object_gettype(RoundJSONObject *obj) {
  * round_json_map_new
  ****************************************/
 
-RoundJSONObject *round_json_map_new(void) {
-  RoundJSONObject *obj;
+RoundJSONObject* round_json_map_new(void)
+{
+  RoundJSONObject* obj;
 
   obj = round_json_object_new();
 
@@ -130,8 +135,9 @@ RoundJSONObject *round_json_map_new(void) {
  * round_json_array_new
  ****************************************/
 
-RoundJSONObject *round_json_array_new(void) {
-  RoundJSONObject *obj;
+RoundJSONObject* round_json_array_new(void)
+{
+  RoundJSONObject* obj;
 
   obj = round_json_object_new();
 
@@ -149,8 +155,9 @@ RoundJSONObject *round_json_array_new(void) {
  * round_json_string_new
  ****************************************/
 
-RoundJSONObject *round_json_string_new(const char *value) {
-  RoundJSONObject *obj;
+RoundJSONObject* round_json_string_new(const char* value)
+{
+  RoundJSONObject* obj;
 
   obj = round_json_object_new();
 
@@ -168,8 +175,9 @@ RoundJSONObject *round_json_string_new(const char *value) {
  * round_json_integer_new
  ****************************************/
 
-RoundJSONObject *round_json_integer_new(long value) {
-  RoundJSONObject *obj;
+RoundJSONObject* round_json_integer_new(long value)
+{
+  RoundJSONObject* obj;
 
   obj = round_json_object_new();
 
@@ -187,8 +195,9 @@ RoundJSONObject *round_json_integer_new(long value) {
  * round_json_real_new
  ****************************************/
 
-RoundJSONObject *round_json_real_new(double value) {
-  RoundJSONObject *obj;
+RoundJSONObject* round_json_real_new(double value)
+{
+  RoundJSONObject* obj;
 
   obj = round_json_object_new();
 
@@ -206,8 +215,9 @@ RoundJSONObject *round_json_real_new(double value) {
  * round_json_bool_new
  ****************************************/
 
-RoundJSONObject *round_json_bool_new(bool value) {
-  RoundJSONObject *obj;
+RoundJSONObject* round_json_bool_new(bool value)
+{
+  RoundJSONObject* obj;
 
   obj = round_json_object_new();
 
@@ -225,7 +235,8 @@ RoundJSONObject *round_json_bool_new(bool value) {
  * round_json_object_istype
  ****************************************/
 
-bool round_json_object_istype(RoundJSONObject *obj, int type) {
+bool round_json_object_istype(RoundJSONObject* obj, int type)
+{
   if (!obj)
     return false;
   return (round_json_object_gettype(obj) == type) ? true : false;
@@ -235,7 +246,8 @@ bool round_json_object_istype(RoundJSONObject *obj, int type) {
  * round_json_object_getstring
  ****************************************/
 
-bool round_json_object_getstring(RoundJSONObject *obj, const char **value) {
+bool round_json_object_getstring(RoundJSONObject* obj, const char** value)
+{
   if (!obj)
     return false;
 
@@ -256,7 +268,8 @@ bool round_json_object_getstring(RoundJSONObject *obj, const char **value) {
  * round_json_object_getinteger
  ****************************************/
 
-bool round_json_object_getinteger(RoundJSONObject *obj, long *value) {
+bool round_json_object_getinteger(RoundJSONObject* obj, long* value)
+{
   if (!obj)
     return false;
 
@@ -272,7 +285,8 @@ bool round_json_object_getinteger(RoundJSONObject *obj, long *value) {
  * round_json_object_getreal
  ****************************************/
 
-bool round_json_object_getreal(RoundJSONObject *obj, double *value) {
+bool round_json_object_getreal(RoundJSONObject* obj, double* value)
+{
   if (!obj)
     return false;
 
@@ -288,7 +302,8 @@ bool round_json_object_getreal(RoundJSONObject *obj, double *value) {
  * round_json_object_getbool
  ****************************************/
 
-bool round_json_object_getbool(RoundJSONObject *obj, bool *value) {
+bool round_json_object_getbool(RoundJSONObject* obj, bool* value)
+{
   if (!obj)
     return false;
 
@@ -304,9 +319,10 @@ bool round_json_object_getbool(RoundJSONObject *obj, bool *value) {
  * round_json_object_tostring
  ****************************************/
 
-bool round_json_object_tostring(RoundJSONObject *obj, RoundOption opt,
-                                const char **str) {
-  const char *jsonObjStr;
+bool round_json_object_tostring(RoundJSONObject* obj, RoundOption opt,
+                                const char** str)
+{
+  const char* jsonObjStr;
 
   if (!obj)
     return false;

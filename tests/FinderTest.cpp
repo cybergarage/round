@@ -14,8 +14,9 @@
 
 BOOST_AUTO_TEST_SUITE(finder)
 
-BOOST_AUTO_TEST_CASE(FinderNew) {
-  RoundFinder *finder = round_finder_new();
+BOOST_AUTO_TEST_CASE(FinderNew)
+{
+  RoundFinder* finder = round_finder_new();
   BOOST_CHECK(finder);
 
   BOOST_CHECK(round_finder_start(finder));

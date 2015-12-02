@@ -14,17 +14,18 @@
 * round_local_node_message_thread
 ****************************************/
 
-void round_local_node_message_thread(RoundThread *thread) {
+void round_local_node_message_thread(RoundThread* thread)
+{
   if (!thread)
     return;
 
-  RoundLocalNode *node = (RoundLocalNode *)round_thread_getuserdata(thread);
+  RoundLocalNode* node = (RoundLocalNode*)round_thread_getuserdata(thread);
   if (!node)
     return;
 
-  RoundMessage *msg;
-  RoundError *err;
-  RoundJSONObject **resObj;
+  RoundMessage* msg;
+  RoundError* err;
+  RoundJSONObject** resObj;
 
   while (round_local_node_isrunning(node)) {
     msg = NULL;
@@ -39,7 +40,8 @@ void round_local_node_message_thread(RoundThread *thread) {
 
     if (round_message_isnotifyenabled(msg)) {
       round_message_notify(msg);
-    } else {
+    }
+    else {
       if (*resObj) {
         round_json_object_delete(*resObj);
       }

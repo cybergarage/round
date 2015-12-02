@@ -13,8 +13,9 @@
 #include "RoundTest.h"
 #include <round/registry.h>
 
-BOOST_AUTO_TEST_CASE(RegistryMember) {
-  RoundRegistry *reg = round_registry_new();
+BOOST_AUTO_TEST_CASE(RegistryMember)
+{
+  RoundRegistry* reg = round_registry_new();
   BOOST_CHECK(reg);
 
   char key[32], val[32];
@@ -44,13 +45,14 @@ BOOST_AUTO_TEST_CASE(RegistryMember) {
   BOOST_CHECK(round_registry_delete(reg));
 }
 
-BOOST_AUTO_TEST_CASE(RegistryManager) {
-  RoundRegistryManager *mgr = round_registry_manager_new();
+BOOST_AUTO_TEST_CASE(RegistryManager)
+{
+  RoundRegistryManager* mgr = round_registry_manager_new();
 
   BOOST_CHECK(mgr);
   BOOST_CHECK_EQUAL(0, round_registry_manager_size(mgr));
 
-  RoundRegistry *reg[ROUND_TEST_MAP_SIZE];
+  RoundRegistry* reg[ROUND_TEST_MAP_SIZE];
   char key[32];
   char val[32];
 
@@ -79,8 +81,8 @@ BOOST_AUTO_TEST_CASE(RegistryManager) {
     snprintf(key, sizeof(key), "key%d", n);
     BOOST_CHECK_EQUAL(reg[n], round_registry_manager_get(mgr, key));
     BOOST_CHECK_EQUAL(
-    round_registry_getvalue(reg[n]),
-    round_registry_getvalue(round_registry_manager_get(mgr, key)));
+        round_registry_getvalue(reg[n]),
+        round_registry_getvalue(round_registry_manager_get(mgr, key)));
   }
 
   BOOST_CHECK_EQUAL(ROUND_TEST_MAP_SIZE, round_registry_manager_size(mgr));

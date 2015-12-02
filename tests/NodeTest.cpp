@@ -15,8 +15,9 @@
 
 BOOST_AUTO_TEST_SUITE(node)
 
-BOOST_AUTO_TEST_CASE(NodeNew) {
-  RoundNode *node = round_node_new();
+BOOST_AUTO_TEST_CASE(NodeNew)
+{
+  RoundNode* node = round_node_new();
   BOOST_CHECK(node);
 
   BOOST_CHECK(!round_node_hasdigest(node));
@@ -24,18 +25,19 @@ BOOST_AUTO_TEST_CASE(NodeNew) {
   BOOST_CHECK(round_node_delete(node));
 }
 
-BOOST_AUTO_TEST_CASE(NodeBaseMember) {
-  const char *TEST_NODE_ADDR = "testaddr";
+BOOST_AUTO_TEST_CASE(NodeBaseMember)
+{
+  const char* TEST_NODE_ADDR = "testaddr";
   const int TEST_NODE_PORT = 4649;
-  const char *TEST_NODE_CLUSTER = "testcluster";
+  const char* TEST_NODE_CLUSTER = "testcluster";
   const int TEST_NODE_TIMEOUT = 120;
 
-  RoundNode *node = round_node_new();
+  RoundNode* node = round_node_new();
   BOOST_CHECK(node);
 
-  const char *addr;
+  const char* addr;
   int port;
-  const char *cluster;
+  const char* cluster;
 
   BOOST_CHECK(!round_node_getaddress(node, &addr));
   BOOST_CHECK(!round_node_getport(node, &port));
@@ -62,11 +64,12 @@ BOOST_AUTO_TEST_CASE(NodeBaseMember) {
   BOOST_CHECK(round_node_delete(node));
 }
 
-BOOST_AUTO_TEST_CASE(NodeHash) {
-  RoundNode *node = round_node_new();
+BOOST_AUTO_TEST_CASE(NodeHash)
+{
+  RoundNode* node = round_node_new();
   BOOST_CHECK(node);
 
-  char nodeHash[4][ROUND_NODE_DIGEST_LENGTH] = {"", "", "", ""};
+  char nodeHash[4][ROUND_NODE_DIGEST_LENGTH] = { "", "", "", "" };
 
   BOOST_CHECK_EQUAL(round_node_hasdigest(node), false);
   round_strcpy(nodeHash[0], round_node_getdigest(node));

@@ -28,7 +28,8 @@ static const std::string ROUND_CLINET_DOMAIN_SOCKET = "/tmp/round";
 
 // static Round::Console::Client *gConsoleClient;
 
-const char *round_prompt(EditLine *e) {
+const char* round_prompt(EditLine* e)
+{
   // return gConsoleClient->getPromptName();
   return "";
 }
@@ -229,7 +230,8 @@ std::endl;
 
  */
 
-int main(int argc, char *argv[]) {
+int main(int argc, char* argv[])
+{
   /*
   Round::Error error;
 

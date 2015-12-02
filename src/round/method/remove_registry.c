@@ -14,11 +14,12 @@
  * round_system_method_removemethod
  ****************************************/
 
-bool round_system_method_removeregistry(RoundLocalNode *node,
-                                        RoundJSONObject *params,
-                                        RoundJSONObject **result,
-                                        RoundError *err) {
-  const char *key;
+bool round_system_method_removeregistry(RoundLocalNode* node,
+                                        RoundJSONObject* params,
+                                        RoundJSONObject** result,
+                                        RoundError* err)
+{
+  const char* key;
 
   if (!round_json_object_ismap(params)) {
     round_error_setjsonrpcerrorcode(err, ROUND_RPC_ERROR_CODE_INVALID_PARAMS);
