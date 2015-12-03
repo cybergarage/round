@@ -421,7 +421,7 @@ bool round_node_jsonrpcrequest2string(void* node, RoundJSONObject* reqObj, const
     return false;
   }
 
-  if (!reqObj || !resultObj || !err) {
+  if (!reqObj || !err) {
     round_node_rpcerrorcode2error(node, ROUND_RPC_ERROR_CODE_INVALID_PARAMS, err);
     return false;
   }

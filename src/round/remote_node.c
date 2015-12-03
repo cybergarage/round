@@ -106,7 +106,6 @@ bool round_remote_node_sethttpresponse(RoundRemoteNode* node, const char *resCon
   bool isSuccess = round_json_parse(json, resContent, err);
   if (isSuccess) {
     RoundJSONObject *resultObj = round_json_poprootobject(json);
-    round_json_map_c
   }
   else {
     round_node_rpcerrorcode2error(node, ROUND_RPC_ERROR_CODE_PARSER_ERROR, err);
