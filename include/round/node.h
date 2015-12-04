@@ -64,7 +64,7 @@ bool round_node_getclustername(RoundNode *node, const char **cluster);
 bool round_node_setrequesttimeout(RoundNode *node, time_t value);
 time_t round_node_getrequesttimeout(RoundNode *node);
 
-bool round_node_postmessage(RoundNode *node, RoundJSONObject *reqObj, RoundJSONObject *resultObj, RoundError *err);
+bool round_node_postmessage(RoundNode *node, RoundJSONObject *reqObj, RoundJSONObject **resObj, RoundError *err);
   
 #ifdef  __cplusplus
 } /* extern C */

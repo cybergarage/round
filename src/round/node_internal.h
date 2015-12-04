@@ -126,7 +126,6 @@ bool round_node_hasclusternode(RoundNode *node, RoundNode *clusterNode);
 
 bool round_node_rpcerrorcode2error(void* node, int rpcErrCode, RoundError* err);
 bool round_node_jsonrpcrequest2string(void* node, RoundJSONObject* reqObj, const char **reqStr, RoundError* err);
-
   
 /****************************************
  * Function (LocalNode)
@@ -168,7 +167,7 @@ bool round_local_node_isfinalmethod(RoundLocalNode *node, const char *name);
 
 bool round_local_node_addengine(RoundLocalNode *node, RoundScriptEngine *engine);
 
-bool round_local_node_postmessage(RoundLocalNode *node, RoundJSONObject *reqObj, RoundJSONObject *resultObj, RoundError *err);
+bool round_local_node_postmessage(RoundLocalNode *node, RoundJSONObject *reqObj, RoundJSONObject **resObj, RoundError *err);
 bool round_local_node_execmessage(RoundLocalNode *node, RoundMessage *msg, RoundJSONObject **resultObj, RoundError *err);
 
 bool round_local_node_setregistry(RoundLocalNode *node, const char *key, const char *val);
@@ -196,7 +195,7 @@ RoundRemoteNode *round_remote_node_new(void);
 RoundRemoteNode *round_remote_node_copy(RoundNode *node);
 bool round_remote_node_destory(RoundRemoteNode *node);
 bool round_remote_node_delete(RoundRemoteNode *node);
-bool round_remote_node_postmessage(RoundRemoteNode *node, RoundJSONObject *reqMap, RoundJSONObject *resMap, RoundError *err);
+bool round_remote_node_postmessage(RoundRemoteNode *node, RoundJSONObject *reqMap, RoundJSONObject **resObj, RoundError *err);
 bool round_remote_node_sethttpresponse(RoundRemoteNode* node, const char *resContent, RoundJSONObject* resMap, RoundError* err);
 bool round_remote_node_posthttpjsonrequest(RoundRemoteNode* node, const char *reqContent, RoundJSONObject* resMap, RoundError* err);
 
