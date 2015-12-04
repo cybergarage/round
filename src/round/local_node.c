@@ -520,7 +520,7 @@ bool round_local_node_postjsonrequest(RoundLocalNode* node, RoundJSONObject* req
  * round_local_node_postmessage
  ****************************************/
 
-bool round_local_node_postmessage(RoundLocalNode* node, RoundJSONObject* reqMap, RoundJSONObject* resMap, RoundError* err)
+bool round_local_node_postmessage(RoundLocalNode* node, RoundJSONObject* reqObj, RoundJSONObject** resObj, RoundError* err)
 {
   const char *msgId, *method, *params;
   long ts;
@@ -534,21 +534,21 @@ bool round_local_node_postmessage(RoundLocalNode* node, RoundJSONObject* reqMap,
   
   // Check request
   
-  if (!round_json_object_ismap(reqMap)) {
+  if (!round_json_object_ismap(reqObj)) {
     round_error_setjsonrpcerrorcode(err, ROUND_RPC_ERROR_CODE_INVALID_REQUEST);
     return false;
   }
   
   // Set id and ts parameter
   
-  if (round_json_rpc_getid(reqMap, &msgId)) {
-    round_json_rpc_setid(resMap, msgId);
+  if (round_json_rpc_getid(reqObj, &msgId)) {
+    round_json_rpc_setid(resObj, msgId);
   }
-  round_json_rpc_settimestamp(resMap, round_node_getclockvalue(node));
+  round_json_rpc_settimestamp(resObj, round_node_getclockvalue(node));
   
   // Updated local clock
   
-  if (round_json_rpc_gettimestamp(reqMap, &ts)) {
+  if (round_json_rpc_gettimestamp(reqObj, &ts)) {
     round_node_setremoteclockvalue(node, ts);
   }
   else {
@@ -615,18 +615,18 @@ bool round_local_node_postmessage(RoundLocalNode* node, RoundJSONObject* reqMap,
   
   // Exec Message
   
-  if (round_json_rpc_getmethod(reqMap, &method) && (0 < round_strlen(method))) {
+  if (round_json_rpc_getmethod(reqObj, &method) && (0 < round_strlen(method))) {
     round_error_setjsonrpcerrorcode(err, ROUND_RPC_ERROR_CODE_METHOD_NOT_FOUND);
     return false;
   }
   
-  round_json_rpc_getparams(reqMap, &params);
+  round_json_rpc_getparams(reqObj, &params);
   jsonResult = NULL;
   isSuccess = round_method_manager_execmethod(node->methodMgr, method, params, &jsonResult, err);
   
   if (isSuccess) {
     if (jsonResult) {
-      round_json_rpc_setresult(resMap, jsonResult);
+      round_json_rpc_setresult(resObj, jsonResult);
       round_json_object_delete(jsonResult);
     }
   }
