@@ -32,3 +32,36 @@ bool round_json_rpc_seterror(RoundJSONObject* mapObj, RoundError* err)
 
   return false;
 }
+
+/****************************************
+ * round_json_rpc_error2object
+ ****************************************/
+
+RoundJSONObject *round_json_rpc_error2object(RoundError* err)
+{
+  RoundJSONObject *resObj = round_json_map_new();
+  if (!resObj)
+    return NULL;
+  
+  round_json_rpc_seterror(resObj, err);
+  
+  return resObj;
+}
+
+/****************************************
+ * round_json_rpc_seterror
+ ****************************************/
+
+RoundJSONObject *round_json_rpc_error2response(RoundError* err)
+{
+  RoundJSONObject *resObj = round_json_rpc_request_new();
+  if (!resObj)
+    return NULL;
+  
+  RoundJSONObject *errObj = round_json_rpc_error2object(err);
+  if (errObj) {
+    round_json_rpc_seterror(resObj, errObj);
+  }
+
+  return resObj;
+}
