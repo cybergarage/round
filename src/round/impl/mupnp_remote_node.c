@@ -15,7 +15,7 @@
  * round_remote_node_posthttpjsonrequest
  ****************************************/
 
-bool round_remote_node_posthttpjsonrequest(RoundRemoteNode* node, const char *reqContent, RoundJSONObject* resMap, RoundError* err)
+bool round_remote_node_posthttpjsonrequest(RoundRemoteNode* node, const char *reqContent, RoundJSONObject** resObj, RoundError* err)
 {
   const char *remoteAddr = NULL;
   int remotePort = 0;
@@ -42,14 +42,25 @@ bool round_remote_node_posthttpjsonrequest(RoundRemoteNode* node, const char *re
   }
   
   const char *resContent = mupnp_http_response_getcontent(httpRes);
-  if (mupnp_http_response_issuccessful(httpRes)) {
-    round_remote_node_sethttpresponse(node, resContent, resMap, err);
+  if (round_strlen(resContent)) {
+    round_node_rpcerrorcode2error(node, ROUND_RPC_ERROR_CODE_BAD_DESTINATION, err);
+    mupnp_http_request_delete(httpReq);
+  }
+  
+  RoundJSON *json = round_json_new();
+  if (!json) {
+    round_node_rpcerrorcode2error(node, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR, err);
+    mupnp_http_request_delete(httpReq);
+  }
+  
+  if (round_json_parse(json, resContent, err)) {
+    *resObj = round_json_poprootobject(json);
   }
   else {
-    round_remote_node_sethttpresponse(node, resContent, resMap, err);
+    
   }
-
-  mupnp_http_request_delete(httpReq);
+  
+  round_json_delete(json);
   
   return true;
 }
