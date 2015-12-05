@@ -11,6 +11,21 @@
 #include <round/util/json_rpc.h>
 
 /****************************************
+ * round_json_rpc_object_new
+ ****************************************/
+
+RoundJSONObject *round_json_rpc_object_new()
+{
+  RoundJSONObject *rpcObj = round_json_map_new();
+  if (!rpcObj)
+    return NULL;
+
+  round_json_rpc_setversion(rpcObj, ROUND_JSON_RPC_VERSION);
+  
+  return rpcObj;
+}
+
+/****************************************
  * round_json_rpc_seterror
  ****************************************/
 
