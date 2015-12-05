@@ -44,7 +44,7 @@ node_status_terminating,4
 node_status_promice,5
 
 # JSON RPC members
-json_rpc_version,"jsonrpc"
+json_rpc_jsonrpc,"jsonrpc"
 json_rpc_method,"method"
 json_rpc_params,"params"
 json_rpc_id,"id"
@@ -56,6 +56,7 @@ json_rpc_code,"code"
 json_rpc_message,"message"
 
 # JSON RPC parameters 
+json_rpc_version,"2.0"
 json_rpc_request_timeout_sec,60
 
 # System Methods

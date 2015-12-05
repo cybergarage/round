@@ -23,7 +23,12 @@ extern "C" {
  * Function
  ****************************************/
 
-#define round_json_rpc_setversion(obj, value) round_json_map_setstring(obj, ROUND_JSON_RPC_VERSION, value)
+RoundJSONObject *round_json_rpc_object_new();
+
+#define round_json_rpc_request_new() round_json_rpc_object_new()
+#define round_json_rpc_response_new() round_json_rpc_object_new()
+
+#define round_json_rpc_setversion(obj, value) round_json_map_setstring(obj, ROUND_JSON_RPC_JSONRPC, value)
 #define round_json_rpc_setmethod(obj, value) round_json_map_setstring(obj, ROUND_JSON_RPC_METHOD, value)
 #define round_json_rpc_setid(obj, value) round_json_map_setstring(obj, ROUND_JSON_RPC_ID, value)
 #define round_json_rpc_setparams(obj, value) round_json_map_setstring(obj, ROUND_JSON_RPC_PARAMS, value)
@@ -32,7 +37,7 @@ extern "C" {
 
 bool round_json_rpc_seterror(RoundJSONObject *obj, RoundError *err);
   
-#define round_json_rpc_getversion(obj, value) round_json_map_getstring(obj, ROUND_JSON_RPC_VERSION, value)
+#define round_json_rpc_getversion(obj, value) round_json_map_getstring(obj, ROUND_JSON_RPC_JSONRPC, value)
 #define round_json_rpc_getmethod(obj, value) round_json_map_getstring(obj, ROUND_JSON_RPC_METHOD, value)
 #define round_json_rpc_getid(obj, value) round_json_map_getstring(obj, ROUND_JSON_RPC_ID, value)
 #define round_json_rpc_getparams(obj, value) round_json_map_getstring(obj, ROUND_JSON_RPC_PARAMS, value)

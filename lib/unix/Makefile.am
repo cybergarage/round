@@ -24,6 +24,7 @@ round_mpi_sources = \
 	../../src/round/error.c \
 	../../src/round/error_rpc.c \
 	../../src/round/finder.c \
+	../../src/round/impl/mupnp_remote_node.c \
 	../../src/round/impl/upnp_server.c \
 	../../src/round/local_node.c \
 	../../src/round/local_node_message.c \
