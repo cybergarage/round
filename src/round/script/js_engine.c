@@ -82,9 +82,9 @@ bool round_js_engine_delete(RoundJavaScriptEngine* engine)
  ****************************************/
 
 bool round_js_engine_getsoucecode(RoundJavaScriptEngine* engine,
-    RoundMethod* method,
-    const char* param,
-    RoundString* jsSource)
+                                  RoundMethod* method,
+                                  const char* param,
+                                  RoundString* jsSource)
 {
   if (!method || !jsSource)
     return false;
@@ -102,7 +102,7 @@ bool round_js_engine_getsoucecode(RoundJavaScriptEngine* engine,
   round_string_addvalue(jsSource, "if (0 < jsonParams.length) {" ROUND_ENDL);
   round_string_addvalue(jsSource, "  try {" ROUND_ENDL);
   round_string_addvalue(jsSource,
-      "    params = JSON.parse(jsonParams);" ROUND_ENDL);
+                        "    params = JSON.parse(jsonParams);" ROUND_ENDL);
   round_string_addvalue(jsSource, "  } catch (e) {" ROUND_ENDL);
   round_string_addvalue(jsSource, "    params = jsonParams;" ROUND_ENDL);
   round_string_addvalue(jsSource, "  }" ROUND_ENDL);
@@ -125,7 +125,7 @@ bool round_js_engine_getsoucecode(RoundJavaScriptEngine* engine,
 
 bool round_js_engine_run(RoundJavaScriptEngine* engine, RoundMethod* method, const char* param, RoundJSONObject** jsonResult, RoundError* err)
 {
-  RoundString *jsSource, *strResult;
+  RoundString* jsSource, *strResult;
   RoundJSON* json;
   bool isSuccess;
 

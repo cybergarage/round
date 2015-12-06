@@ -153,6 +153,5 @@ RoundClockOrder round_clock_compare(RoundClock* clk1, RoundClock* clk2)
 {
   if (clk1->value == clk2->value)
     return RoundClockOrderSame;
-  return (clk2->value < clk1->value) ? RoundClockOrderDescending
-                                     : RoundClockOrderAscending;
+  return (clk2->value < clk1->value) ? RoundClockOrderDescending : RoundClockOrderAscending;
 }

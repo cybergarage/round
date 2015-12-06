@@ -53,16 +53,16 @@ bool round_json_array_append(RoundJSONObject* obj, RoundJSONObject* valObj)
 {
   if (!round_json_object_isarray(obj))
     return false;
-  
+
   bool isAdded = false;
-  
+
 #if defined(ROUND_USE_JSON_PARSER_JANSSON)
   if (!valObj->jsonObj)
     return false;
-  
+
   isAdded = (json_array_append(obj->jsonObj, valObj->jsonObj) == 0) ? true : false;
 #endif
-  
+
   return isAdded;
 }
 
@@ -76,7 +76,7 @@ bool round_json_array_appendreplica(RoundJSONObject* obj, RoundJSONObject* valOb
     return false;
 
   bool isAdded = false;
-  
+
 #if defined(ROUND_USE_JSON_PARSER_JANSSON)
   if (!valObj->jsonObj)
     return false;

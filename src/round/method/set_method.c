@@ -15,11 +15,11 @@
  ****************************************/
 
 bool round_system_method_setmethod(RoundLocalNode* node,
-    RoundJSONObject* params,
-    RoundJSONObject** result,
-    RoundError* err)
+                                   RoundJSONObject* params,
+                                   RoundJSONObject** result,
+                                   RoundError* err)
 {
-  const char *name, *lang;
+  const char* name, *lang;
   byte* code;
   size_t codeLen;
   RoundMethod* newMethod;

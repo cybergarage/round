@@ -414,7 +414,7 @@ bool round_node_rpcerrorcode2error(void* node, int rpcErrCode, RoundError* err)
  * round_node_jsonrpcrequest2string
  ****************************************/
 
-bool round_node_jsonrpcrequest2string(void* node, RoundJSONObject* reqObj, const char **reqStr, RoundError* err)
+bool round_node_jsonrpcrequest2string(void* node, RoundJSONObject* reqObj, const char** reqStr, RoundError* err)
 {
   if (!node) {
     round_node_rpcerrorcode2error(node, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR, err);

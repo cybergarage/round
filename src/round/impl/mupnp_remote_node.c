@@ -15,52 +15,51 @@
  * round_remote_node_posthttpjsonrequest
  ****************************************/
 
-bool round_remote_node_posthttpjsonrequest(RoundRemoteNode* node, const char *reqContent, RoundJSONObject** resObj, RoundError* err)
+bool round_remote_node_posthttpjsonrequest(RoundRemoteNode* node, const char* reqContent, RoundJSONObject** resObj, RoundError* err)
 {
-  const char *remoteAddr = NULL;
+  const char* remoteAddr = NULL;
   int remotePort = 0;
   if (!round_remote_node_getaddress(node, &remoteAddr) || !round_remote_node_getport(node, &remotePort)) {
     round_node_rpcerrorcode2error(node, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR, err);
     return false;
   }
-  
-  mUpnpHttpRequest *httpReq = mupnp_http_request_new();
+
+  mUpnpHttpRequest* httpReq = mupnp_http_request_new();
   if (!httpReq) {
     round_node_rpcerrorcode2error(node, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR, err);
     return false;
   }
-  
+
   mupnp_http_request_setmethod(httpReq, MUPNP_HTTP_POST);
   mupnp_http_request_seturi(httpReq, ROUND_RPC_HTTP_ENDPOINT);
   mupnp_http_request_setcontentlength(httpReq, 0);
-  
-  mUpnpHttpResponse *httpRes = mupnp_http_request_post(httpReq, remoteAddr, remotePort);
+
+  mUpnpHttpResponse* httpRes = mupnp_http_request_post(httpReq, remoteAddr, remotePort);
   if (httpRes) {
     round_node_rpcerrorcode2error(node, ROUND_RPC_ERROR_CODE_BAD_DESTINATION, err);
     mupnp_http_request_delete(httpReq);
     return false;
   }
-  
-  const char *resContent = mupnp_http_response_getcontent(httpRes);
+
+  const char* resContent = mupnp_http_response_getcontent(httpRes);
   if (round_strlen(resContent)) {
     round_node_rpcerrorcode2error(node, ROUND_RPC_ERROR_CODE_BAD_DESTINATION, err);
     mupnp_http_request_delete(httpReq);
   }
-  
-  RoundJSON *json = round_json_new();
+
+  RoundJSON* json = round_json_new();
   if (!json) {
     round_node_rpcerrorcode2error(node, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR, err);
     mupnp_http_request_delete(httpReq);
   }
-  
+
   if (round_json_parse(json, resContent, err)) {
     *resObj = round_json_poprootobject(json);
   }
   else {
-    
   }
-  
+
   round_json_delete(json);
-  
+
   return true;
 }
