@@ -111,7 +111,7 @@ bool round_json_map_getbool(RoundJSONObject* obj, const char* key, bool* value)
   if (!keyJson || ((json_typeof(keyJson) != JSON_TRUE) && (json_typeof(keyJson) != JSON_FALSE)))
     return false;
 
-  //*value = json_boolean_value(keyJson) ? true  : false;
+  *value = json_boolean_value(keyJson) ? true  : false;
   return true;
 #else
   return false;
@@ -127,7 +127,7 @@ bool round_json_map_setstring(RoundJSONObject* obj, const char* key, const char*
   RoundJSONObject* valObj;
 
   valObj = round_json_string_new(value);
-  if (round_json_map_setobjectpointer(obj, key, valObj)) {
+  if (round_json_map_setobject(obj, key, valObj)) {
     valObj->jsonObj = NULL;
   }
   round_json_object_delete(valObj);
@@ -144,7 +144,7 @@ bool round_json_map_setinteger(RoundJSONObject* obj, const char* key, long value
   RoundJSONObject* valObj;
 
   valObj = round_json_integer_new(value);
-  if (round_json_map_setobjectpointer(obj, key, valObj)) {
+  if (round_json_map_setobject(obj, key, valObj)) {
     valObj->jsonObj = NULL;
   }
   round_json_object_delete(valObj);
@@ -161,7 +161,7 @@ bool round_json_map_setreal(RoundJSONObject* obj, const char* key, double value)
   RoundJSONObject* valObj;
 
   valObj = round_json_real_new(value);
-  if (round_json_map_setobjectpointer(obj, key, valObj)) {
+  if (round_json_map_setobject(obj, key, valObj)) {
     valObj->jsonObj = NULL;
   }
   round_json_object_delete(valObj);
@@ -178,7 +178,7 @@ bool round_json_map_setbool(RoundJSONObject* obj, const char* key, bool value)
   RoundJSONObject* valObj;
 
   valObj = round_json_bool_new(value);
-  if (round_json_map_setobjectpointer(obj, key, valObj)) {
+  if (round_json_map_setobject(obj, key, valObj)) {
     valObj->jsonObj = NULL;
   }
   round_json_object_delete(valObj);
@@ -187,10 +187,10 @@ bool round_json_map_setbool(RoundJSONObject* obj, const char* key, bool value)
 }
 
 /****************************************
- * round_json_map_setobjectpointer
+ * round_json_map_setobject
  ****************************************/
 
-bool round_json_map_setobjectpointer(RoundJSONObject* obj, const char* key, RoundJSONObject* valObj)
+bool round_json_map_setobject(RoundJSONObject* obj, const char* key, RoundJSONObject* valObj)
 {
   if (!round_json_object_ismap(obj))
     return false;
@@ -199,18 +199,17 @@ bool round_json_map_setobjectpointer(RoundJSONObject* obj, const char* key, Roun
   if (!valObj->jsonObj)
     return false;
 
-  return (json_object_set(obj->jsonObj, key, valObj->jsonObj) == 0) ? true
-                                                                    : false;
+  return (json_object_set(obj->jsonObj, key, valObj->jsonObj) == 0) ? true : false;
 #else
   return false;
 #endif
 }
 
 /****************************************
- * round_json_map_setobject
+ * round_json_map_setreplicaobject
  ****************************************/
 
-bool round_json_map_setobject(RoundJSONObject* obj, const char* key, RoundJSONObject* valObj)
+bool round_json_map_setreplicaobject(RoundJSONObject* obj, const char* key, RoundJSONObject* valObj)
 {
   bool isAdded = false;
 #if defined(ROUND_USE_JSON_PARSER_JANSSON)
