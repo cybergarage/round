@@ -139,7 +139,7 @@ bool round_lua_engine_poperror(RoundLuaEngine* engine, RoundError* err)
     return false;
 
   round_error_setjsonrpcerrorcode(err,
-      ROUND_RPC_ERROR_CODE_SCRIPT_RUNTIME_ERROR);
+                                  ROUND_RPC_ERROR_CODE_SCRIPT_RUNTIME_ERROR);
   round_error_setdetailmessage(err, lua_tostring(engine->luaState, -1));
 
   lua_pop(engine->luaState, 1);

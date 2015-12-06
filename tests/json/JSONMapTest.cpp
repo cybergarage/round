@@ -124,18 +124,18 @@ BOOST_AUTO_TEST_CASE(JsonMapSetRplicaObject)
   const char* key = "testKey";
   const char* val = NULL;
   const char* objVal;
-  
+
   RoundJSONObject* obj = round_json_map_new();
   BOOST_CHECK(obj);
   BOOST_CHECK(round_json_object_ismap(obj));
-  
+
   RoundJSONObject* cobj = round_json_string_new(val);
   BOOST_CHECK(round_json_map_setreplicaobject(obj, key, cobj));
   BOOST_CHECK(round_json_object_delete(cobj));
-  
+
   BOOST_CHECK(round_json_map_getstring(obj, key, &objVal));
   BOOST_CHECK_EQUAL(val, objVal);
-  
+
   BOOST_CHECK(round_json_object_delete(obj));
 }
 

@@ -310,7 +310,7 @@ bool round_local_node_isfinalmethod(RoundLocalNode* node, const char* name)
  ****************************************/
 
 bool round_local_node_addengine(RoundLocalNode* node,
-    RoundScriptEngine* engine)
+                                RoundScriptEngine* engine)
 {
   if (!node)
     return false;
@@ -358,7 +358,7 @@ bool round_local_node_setregistry(RoundLocalNode* node, const char* key, const c
  ****************************************/
 
 RoundRegistry* round_local_node_getregistry(RoundLocalNode* node,
-    const char* key)
+                                            const char* key)
 {
   if (!node)
     return false;
@@ -403,8 +403,8 @@ bool round_local_node_execmessage(RoundLocalNode* node, RoundMessage* msg, Round
   }
 
   // Post request
-  
-  RoundJSONObject *reqObj = round_json_getrootobject(json);
+
+  RoundJSONObject* reqObj = round_json_getrootobject(json);
   if (!reqObj) {
     round_json_delete(json);
     return round_node_rpcerrorcode2error(node, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR, err);
@@ -467,9 +467,9 @@ bool round_local_node_postrequest(RoundLocalNode* node, RoundMessage* msg, Round
 bool round_local_node_postjsonrequest(RoundLocalNode* node, RoundJSONObject* reqObj, RoundJSONObject** resultObj, RoundError* err)
 {
   const char* reqStr = NULL;
-  if (!round_node_jsonrpcrequest2string(node, reqObj, &reqStr,err))
+  if (!round_node_jsonrpcrequest2string(node, reqObj, &reqStr, err))
     return false;
-  
+
   RoundMessage* msg = round_local_node_message_new();
   if (!msg) {
     round_node_rpcerrorcode2error(node, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR, err);
@@ -487,7 +487,7 @@ bool round_local_node_postjsonrequest(RoundLocalNode* node, RoundJSONObject* req
 bool round_local_node_execrequest(RoundLocalNode* node, RoundJSONObject* reqObj, RoundJSONObject** resObj, RoundError* err)
 {
   // Set Response
-  
+
   *resObj = round_json_rpc_response_new();
   if (!resObj) {
     round_error_setjsonrpcerrorcode(err, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR);
@@ -495,26 +495,26 @@ bool round_local_node_execrequest(RoundLocalNode* node, RoundJSONObject* reqObj,
   }
 
   // Set id and timestamp
-  
+
   round_json_rpc_setrequestid(*resObj, reqObj);
   round_json_rpc_settimestamp(*resObj, round_node_getclockvalue(node));
-  
+
   // Check node
-  
+
   if (!node) {
     round_error_setjsonrpcerrorcode(err, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR);
     round_json_rpc_seterror(*resObj, err);
     return false;
   }
-  
+
   // Check request
-  
+
   if (!round_json_object_ismap(reqObj)) {
     round_error_setjsonrpcerrorcode(err, ROUND_RPC_ERROR_CODE_INVALID_REQUEST);
     round_json_rpc_seterror(*resObj, err);
     return false;
   }
-  
+
   /*
    // Check dest
    
@@ -572,22 +572,22 @@ bool round_local_node_execrequest(RoundLocalNode* node, RoundJSONObject* reqObj,
    batchArray->add(otherNodeRes);
    }
    */
-  
+
   // Exec Message
-  
-  const char *method;
+
+  const char* method;
   if (round_json_rpc_getmethod(reqObj, &method) && (0 < round_strlen(method))) {
     round_error_setjsonrpcerrorcode(err, ROUND_RPC_ERROR_CODE_METHOD_NOT_FOUND);
     round_json_rpc_seterror(*resObj, err);
     return false;
   }
-  
-  const char *params;
+
+  const char* params;
   round_json_rpc_getparams(reqObj, &params);
 
-  RoundJSONObject *resultObj = NULL;
+  RoundJSONObject* resultObj = NULL;
   bool isMethodExecuted = round_method_manager_execmethod(node->methodMgr, method, params, &resultObj, err);
-  
+
   if (isMethodExecuted) {
     if (resultObj) {
       round_json_rpc_setresult(*resObj, resultObj);
@@ -626,7 +626,7 @@ bool round_local_node_execrequest(RoundLocalNode* node, RoundJSONObject* reqObj,
    
    nodeRes->set(&routeNodeRes);
    */
-  
+
   return isMethodExecuted;
 }
 
@@ -640,9 +640,9 @@ bool round_local_node_postmessage(RoundLocalNode* node, RoundJSONObject* reqObj,
     round_error_setjsonrpcerrorcode(err, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR);
     return false;
   }
-  
+
   // Updated local clock
-  
+
   long ts;
   if (round_json_rpc_gettimestamp(reqObj, &ts)) {
     round_node_setremoteclockvalue(node, ts);
@@ -650,27 +650,27 @@ bool round_local_node_postmessage(RoundLocalNode* node, RoundJSONObject* reqObj,
   else {
     round_node_incrementclock(node);
   }
-  
+
   // Check request
-  
+
   if (!round_json_object_ismap(reqObj) && !round_json_object_isarray(reqObj)) {
     round_error_setjsonrpcerrorcode(err, ROUND_RPC_ERROR_CODE_INVALID_REQUEST);
     return false;
   }
-  
+
   // Single request
-  
+
   if (round_json_object_ismap(reqObj))
     return round_local_node_postmessage(node, reqObj, resObj, err);
-  
+
   // Batch request
-  
+
   if (round_json_object_isarray(reqObj)) {
     *resObj = round_json_array_new();
     size_t msgArrayCnt = round_json_array_size(reqObj);
     for (size_t n = 0; n < msgArrayCnt; n++) {
-      RoundJSONObject *reqArrayObj = round_json_array_get(reqObj, n);
-      RoundJSONObject *resArrayObj = NULL;
+      RoundJSONObject* reqArrayObj = round_json_array_get(reqObj, n);
+      RoundJSONObject* resArrayObj = NULL;
       round_local_node_postmessage(node, reqArrayObj, &resArrayObj, err);
       if (reqArrayObj) {
         round_json_array_append(*resObj, resArrayObj);
@@ -679,6 +679,6 @@ bool round_local_node_postmessage(RoundLocalNode* node, RoundJSONObject* reqObj,
     }
     return true;
   }
-  
+
   return round_node_rpcerrorcode2error(node, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR, err);
 }
