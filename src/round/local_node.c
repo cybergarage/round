@@ -440,7 +440,7 @@ bool round_local_node_execmessage(RoundLocalNode* node, RoundMessage* msg, Round
       if (!round_local_node_postmessage(node, reqObj, resArrayObj, err)) {
         round_json_rpc_seterror(resArrayObj, err);
       }
-      round_json_array_append(*resultObj, resArrayObj);
+      round_json_array_appendreplica(*resultObj, resArrayObj);
     }
     return true;
   }
@@ -705,7 +705,7 @@ bool round_local_node_postmessage(RoundLocalNode* node, RoundJSONObject* reqObj,
       if (!round_local_node_postmessage(node, reqArrayObj, &resArrayObj, err)) {
         round_json_rpc_seterror(resArrayObj, err);
       }
-      round_json_array_append(*resObj, resArrayObj);
+      round_json_array_appendreplica(*resObj, resArrayObj);
     }
     return true;
   }
