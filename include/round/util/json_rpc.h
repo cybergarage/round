@@ -36,6 +36,8 @@ RoundJSONObject *round_json_rpc_object_new();
 #define round_json_rpc_settimestamp(obj, value) round_json_map_setinteger(obj, ROUND_JSON_RPC_TS, value)
 
 bool round_json_rpc_seterror(RoundJSONObject *obj, RoundError *err);
+RoundJSONObject *round_json_rpc_error2response(RoundError* err);
+
 bool round_json_rpc_setrequestid(RoundJSONObject *resObj, RoundJSONObject *reqObj);
   
 #define round_json_rpc_getversion(obj, value) round_json_map_getstring(obj, ROUND_JSON_RPC_JSONRPC, value)
