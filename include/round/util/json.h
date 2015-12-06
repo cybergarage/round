@@ -127,7 +127,9 @@ bool round_json_map_setreplicaobject(RoundJSONObject *obj, const char *key, Roun
   
 size_t round_json_array_size(RoundJSONObject *obj);
 RoundJSONObject *round_json_array_get(RoundJSONObject *obj, size_t idx);
+
 bool round_json_array_append(RoundJSONObject *obj, RoundJSONObject *valObj);
+bool round_json_array_appendreplica(RoundJSONObject *obj, RoundJSONObject *valObj);
 
 /****************************************
  * Functions (JSON Path)
