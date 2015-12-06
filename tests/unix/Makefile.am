@@ -27,7 +27,7 @@ roundtest_SOURCES = \
 	..//json/JSONMapTest.cpp \
 	..//json/JSONObjectTest.cpp \
 	..//json/JSONParseTest.cpp \
-	..//json/JsonRpcTest.cpp \
+	..//json/JSONRpcTest.cpp \
 	..//LocalNodeMessageTest.cpp \
 	..//LocalNodeTest.cpp \
 	..//MessageTest.cpp \

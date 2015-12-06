@@ -12,7 +12,6 @@
 		211E45CD1B98157400CF0088 /* client.c in Sources */ = {isa = PBXBuildFile; fileRef = 211E45CC1B98157400CF0088 /* client.c */; };
 		211E45D01B9816F300CF0088 /* client_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 211E45CF1B9816F300CF0088 /* client_internal.h */; };
 		211E45D71B98192600CF0088 /* finder_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 211E45D51B98192600CF0088 /* finder_internal.h */; };
-		211E45D81B98192600CF0088 /* finder.c in Sources */ = {isa = PBXBuildFile; fileRef = 211E45D61B98192600CF0088 /* finder.c */; };
 		211E45DA1B981A6300CF0088 /* typedef.h in Headers */ = {isa = PBXBuildFile; fileRef = 211E45D91B981A6300CF0088 /* typedef.h */; };
 		212080741BFB6B7000190BF8 /* upnp_server.c in Sources */ = {isa = PBXBuildFile; fileRef = 212080721BFB6B7000190BF8 /* upnp_server.c */; };
 		212080751BFB6B7000190BF8 /* upnp_server.h in Headers */ = {isa = PBXBuildFile; fileRef = 212080731BFB6B7000190BF8 /* upnp_server.h */; };
@@ -75,6 +74,7 @@
 		219A8E2B1B9AF54D004ED802 /* ruby.h in Headers */ = {isa = PBXBuildFile; fileRef = 219A8E241B9AF54D004ED802 /* ruby.h */; };
 		219A8E2D1B9AF607004ED802 /* script.h in Headers */ = {isa = PBXBuildFile; fileRef = 219A8E2C1B9AF607004ED802 /* script.h */; };
 		219A8E2F1B9B0103004ED802 /* Ruby.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 219A8E2E1B9B0103004ED802 /* Ruby.framework */; };
+		219B3D641C143A7A0091DC62 /* upnp_finder.c in Sources */ = {isa = PBXBuildFile; fileRef = 219B3D631C143A7A0091DC62 /* upnp_finder.c */; };
 		21A4C2171BC0A4C10030BD12 /* local_node_thread.c in Sources */ = {isa = PBXBuildFile; fileRef = 21A4C2161BC0A4C10030BD12 /* local_node_thread.c */; };
 		21A4C21D1BC10E6E0030BD12 /* local_node_message.c in Sources */ = {isa = PBXBuildFile; fileRef = 21A4C21C1BC10E6E0030BD12 /* local_node_message.c */; };
 		21A776BC1BA06DC2009BDB36 /* message_manager.c in Sources */ = {isa = PBXBuildFile; fileRef = 21A776B91BA06DC2009BDB36 /* message_manager.c */; };
@@ -124,7 +124,6 @@
 		211E45CC1B98157400CF0088 /* client.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = client.c; path = ../../../src/round/client.c; sourceTree = "<group>"; };
 		211E45CF1B9816F300CF0088 /* client_internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = client_internal.h; path = ../../../src/round/client_internal.h; sourceTree = "<group>"; };
 		211E45D51B98192600CF0088 /* finder_internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = finder_internal.h; path = ../../../src/round/finder_internal.h; sourceTree = "<group>"; };
-		211E45D61B98192600CF0088 /* finder.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = finder.c; path = ../../../src/round/finder.c; sourceTree = "<group>"; };
 		211E45D91B981A6300CF0088 /* typedef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = typedef.h; path = ../../../include/round/typedef.h; sourceTree = "<group>"; };
 		212080721BFB6B7000190BF8 /* upnp_server.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = upnp_server.c; path = ../../../src/round/impl/upnp_server.c; sourceTree = "<group>"; };
 		212080731BFB6B7000190BF8 /* upnp_server.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = upnp_server.h; path = ../../../src/round/impl/upnp_server.h; sourceTree = "<group>"; };
@@ -188,6 +187,7 @@
 		219A8E241B9AF54D004ED802 /* ruby.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ruby.h; sourceTree = "<group>"; };
 		219A8E2C1B9AF607004ED802 /* script.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = script.h; path = ../../../src/round/script.h; sourceTree = "<group>"; };
 		219A8E2E1B9B0103004ED802 /* Ruby.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Ruby.framework; path = System/Library/Frameworks/Ruby.framework; sourceTree = SDKROOT; };
+		219B3D631C143A7A0091DC62 /* upnp_finder.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = upnp_finder.c; path = ../../../src/round/impl/upnp_finder.c; sourceTree = "<group>"; };
 		21A4C2161BC0A4C10030BD12 /* local_node_thread.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = local_node_thread.c; path = ../../../src/round/local_node_thread.c; sourceTree = "<group>"; };
 		21A4C21C1BC10E6E0030BD12 /* local_node_message.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = local_node_message.c; path = ../../../src/round/local_node_message.c; sourceTree = "<group>"; };
 		21A776B91BA06DC2009BDB36 /* message_manager.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = message_manager.c; path = ../../../src/round/message_manager.c; sourceTree = "<group>"; };
@@ -282,7 +282,6 @@
 				21D427ED1B9F07CD00BBBD41 /* error_internal.h */,
 				2148E5DF1B9F1A7D0021CE7B /* error_rpc.c */,
 				211E45D51B98192600CF0088 /* finder_internal.h */,
-				211E45D61B98192600CF0088 /* finder.c */,
 				21D427EB1B9F010A00BBBD41 /* error.c */,
 				21A4C21C1BC10E6E0030BD12 /* local_node_message.c */,
 				21A4C2161BC0A4C10030BD12 /* local_node_thread.c */,
@@ -320,6 +319,7 @@
 		212080711BFB6B5400190BF8 /* impl */ = {
 			isa = PBXGroup;
 			children = (
+				219B3D631C143A7A0091DC62 /* upnp_finder.c */,
 				21B3B3161C0F04C20099BEC8 /* mupnp_remote_node.c */,
 				2120807A1BFB855000190BF8 /* upnp_server_desc.h */,
 				212080721BFB6B7000190BF8 /* upnp_server.c */,
@@ -573,7 +573,6 @@
 				21EAA2A61B9931B10002CFF0 /* string_func.c in Sources */,
 				211E45CD1B98157400CF0088 /* client.c in Sources */,
 				21FBE3701B9DC803000C2512 /* map_object.c in Sources */,
-				211E45D81B98192600CF0088 /* finder.c in Sources */,
 				2148E5E01B9F1A7D0021CE7B /* error_rpc.c in Sources */,
 				2178B36F1B98BEAE00B9D86B /* thread_manager.c in Sources */,
 				216D19C51BB4743A0007B331 /* registry_manager.c in Sources */,
@@ -608,6 +607,7 @@
 				21F6D9B21B99848000714056 /* ruby_engine.c in Sources */,
 				21C482451B9F5A100087380C /* json.c in Sources */,
 				21346A7F1BB4FA6B00B5F3A6 /* remove_registry.c in Sources */,
+				219B3D641C143A7A0091DC62 /* upnp_finder.c in Sources */,
 				21F6D9B01B99848000714056 /* js_sm_engine.c in Sources */,
 				21A4C2171BC0A4C10030BD12 /* local_node_thread.c in Sources */,
 				21EA96CE1B990AF800E00841 /* cluster_manager.c in Sources */,

@@ -24,15 +24,30 @@ extern "C" {
  * Data Type
  ****************************************/
   
+typedef void (*ROUND_FINDER_NODEADDED_LISTNER)(void *, void *);
+typedef void (*ROUND_FINDER_NODEREMOVED_LISTNER)(void *, void *);
+
 typedef struct {
   mUpnpControlPoint *cp;
+  void *userData;
+  ROUND_FINDER_NODEADDED_LISTNER addedListener;
+  ROUND_FINDER_NODEREMOVED_LISTNER removedListener;
 } RoundFinder;
 
 /****************************************
  * Public Header
  ****************************************/
   
-#include <round/node.h>
+#include <round/finder.h>
+
+#define round_finder_setuserdata(finder,value) (finder->userData = value)
+#define round_finder_getuserdata(finder) (finder->userData)
+
+#define round_finder_setnodeaddedlistener(finder,func) (finder->addedListener = func)
+#define round_finder_getnodeaddedlistener(finder) (finder->addedListener)
+
+#define round_finder_setnoderemovedlistener(finder,func) (finder->removedListener = func)
+#define round_finder_getnoderemovedlistener(finder) (finder->removedListener)
   
 /****************************************
  * Function
