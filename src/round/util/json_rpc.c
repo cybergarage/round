@@ -57,7 +57,7 @@ bool round_json_rpc_seterror(RoundJSONObject* mapObj, RoundError* err)
   round_json_map_setinteger(errMap, ROUND_JSON_RPC_CODE, round_error_getdetailcode(err));
   round_json_map_setstring(errMap, ROUND_JSON_RPC_MESSAGE, round_error_getdetailmessage(err));
   
-  round_json_map_setobject(mapObj, ROUND_JSON_RPC_ERROR, errMap);
+  round_json_map_setreplicaobject(mapObj, ROUND_JSON_RPC_ERROR, errMap);
 
   round_json_object_delete(errMap);
 

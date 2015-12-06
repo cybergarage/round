@@ -119,6 +119,7 @@ bool round_json_map_setinteger(RoundJSONObject *obj, const char *key, long value
 bool round_json_map_setreal(RoundJSONObject *obj, const char *key, double value);
 bool round_json_map_setbool(RoundJSONObject *obj, const char *key, bool value);
 bool round_json_map_setobject(RoundJSONObject *obj, const char *key, RoundJSONObject *value);
+bool round_json_map_setreplicaobject(RoundJSONObject *obj, const char *key, RoundJSONObject *value);
 
 /****************************************
  * Functions (JSON Array)
