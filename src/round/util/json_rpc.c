@@ -26,6 +26,22 @@ RoundJSONObject *round_json_rpc_object_new()
 }
 
 /****************************************
+ * round_json_rpc_setrequestid
+ ****************************************/
+
+bool round_json_rpc_setrequestid(RoundJSONObject *resObj, RoundJSONObject *reqObj)
+{
+  if (!round_json_object_ismap(resObj) || !round_json_object_ismap(reqObj))
+    return false;
+  
+  const char *reqId;
+  if (!round_json_rpc_getid(reqObj, &reqId))
+    return false;
+  
+  return round_json_rpc_setid(resObj, reqId);
+}
+
+/****************************************
  * round_json_rpc_seterror
  ****************************************/
 

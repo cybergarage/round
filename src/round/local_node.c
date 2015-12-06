@@ -539,13 +539,6 @@ bool round_local_node_postmessage(RoundLocalNode* node, RoundJSONObject* reqObj,
     return false;
   }
   
-  // Set id and ts parameter
-  
-  if (round_json_rpc_getid(reqObj, &msgId)) {
-    round_json_rpc_setid(resObj, msgId);
-  }
-  round_json_rpc_settimestamp(resObj, round_node_getclockvalue(node));
-  
   // Updated local clock
   
   if (round_json_rpc_gettimestamp(reqObj, &ts)) {
@@ -624,11 +617,19 @@ bool round_local_node_postmessage(RoundLocalNode* node, RoundJSONObject* reqObj,
   jsonResult = NULL;
   isSuccess = round_method_manager_execmethod(node->methodMgr, method, params, &jsonResult, err);
   
-  if (isSuccess) {
-    if (jsonResult) {
-      round_json_rpc_setresult(resObj, jsonResult);
-      round_json_object_delete(jsonResult);
+  if (isSuccess)
+    return false;
+  
+  
+  if (jsonResult) {
+    *resObj = round_json_map_new();
+    if (resObj) {
+      round_json_rpc_setresult(*resObj, jsonResult);
+      // Set id and ts parameter
+      round_json_rpc_setrequestid(*resObj, reqObj);
+      round_json_rpc_settimestamp(*resObj, round_node_getclockvalue(node));
     }
+    round_json_object_delete(jsonResult);
   }
   
   /*
