@@ -16,30 +16,42 @@
 
 RoundClient* round_client_new(void)
 {
-  RoundClient* c;
+  RoundClient* client;
 
-  c = (RoundClient*)malloc(sizeof(RoundClient));
+  client = (RoundClient*)malloc(sizeof(RoundClient));
 
-  if (!c)
+  if (!client)
     return NULL;
 
-  c->finder = round_finder_new();
+  client->finder = round_finder_new();
+  client->clusterMgr = round_cluster_manager_new();
+  
+  if (!client->finder || !client->clusterMgr)
+    return NULL;
 
-  return c;
+  return client;
 }
 
 /****************************************
  * round_client_delete
  ****************************************/
 
-bool round_client_delete(RoundClient* c)
+bool round_client_delete(RoundClient* client)
 {
-  if (!c)
+  if (!client)
     return false;
 
-  round_finder_delete(c->finder);
-
-  free(c);
+  if (client->finder) {
+    round_finder_delete(client->finder);
+    client->finder = NULL;
+  }
+  
+  if (client->clusterMgr) {
+    round_cluster_manager_delete(client->clusterMgr);
+    client->clusterMgr = NULL;
+  }
+  
+  free(client);
 
   return true;
 }

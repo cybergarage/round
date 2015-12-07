@@ -12,6 +12,7 @@
 #define _ROUND_CLIENT_INTERNAL_H_
 
 #include <round/finder.h>
+#include <round/cluster_internal.h>
 
 #ifdef  __cplusplus
 extern "C" {
@@ -23,6 +24,7 @@ extern "C" {
   
 typedef struct {
   RoundFinder *finder;
+  RoundClusterManager *clusterMgr;
 } RoundClient;
   
 #ifdef  __cplusplus
