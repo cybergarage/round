@@ -25,7 +25,7 @@ RoundClient* round_client_new(void)
 
   client->finder = round_finder_new();
   client->clusterMgr = round_cluster_manager_new();
-  
+
   if (!client->finder || !client->clusterMgr)
     return NULL;
 
@@ -45,12 +45,12 @@ bool round_client_delete(RoundClient* client)
     round_finder_delete(client->finder);
     client->finder = NULL;
   }
-  
+
   if (client->clusterMgr) {
     round_cluster_manager_delete(client->clusterMgr);
     client->clusterMgr = NULL;
   }
-  
+
   free(client);
 
   return true;
