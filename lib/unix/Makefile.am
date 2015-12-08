@@ -23,8 +23,8 @@ round_mpi_sources = \
 	../../src/round/cluster_manager.c \
 	../../src/round/error.c \
 	../../src/round/error_rpc.c \
-	../../src/round/impl/mupnp_remote_node.c \
 	../../src/round/impl/upnp_finder.c \
+	../../src/round/impl/upnp_remote_node.c \
 	../../src/round/impl/upnp_server.c \
 	../../src/round/local_node.c \
 	../../src/round/local_node_message.c \
