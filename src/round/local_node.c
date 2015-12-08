@@ -183,19 +183,36 @@ bool round_local_node_delete(RoundLocalNode* node)
 }
 
 /****************************************
+ * round_local_node_clear
+ ****************************************/
+
+bool round_local_node_clear(RoundLocalNode *node)
+{
+  if (!node)
+    return false;
+
+  bool isSuccess = true;
+  isSuccess &= round_cluster_manager_clear(node->clusterMgr);
+  
+  return isSuccess;
+}
+
+/****************************************
  * round_local_node_start
  ****************************************/
 
 bool round_local_node_start(RoundLocalNode* node)
 {
-  bool isSuccess = true;
-
   if (!node)
     return false;
 
   if (!round_local_node_stop(node))
     return false;
 
+  bool isSuccess = true;
+
+  isSuccess &= round_local_node_clear(node);
+  
   isSuccess &= round_cluster_manager_addnode(node->clusterMgr, (RoundNode*)node);
   isSuccess &= round_thread_manager_start(node->threadMgr);
 
@@ -219,7 +236,6 @@ bool round_local_node_stop(RoundLocalNode* node)
     return false;
 
   isSuccess &= round_thread_manager_stop(node->threadMgr);
-  isSuccess &= round_cluster_manager_clear(node->clusterMgr);
 
   return isSuccess;
 }

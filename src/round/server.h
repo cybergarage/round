@@ -13,7 +13,8 @@
 
 #include <round/typedef.h>
 #include <round/node_internal.h>
-#include <round/finder.h>
+#include <round/cluster_internal.h>
+#include <round/finder_internal.h>
 #include <round/rpc_server.h>
 
 #ifdef  __cplusplus
@@ -36,6 +37,7 @@ typedef struct {
   
 RoundServer *round_server_new(void);
 bool round_server_delete(RoundServer *server);
+bool round_server_clear(RoundServer *server);
 
 bool round_server_start(RoundServer *server);
 bool round_server_stop(RoundServer *server);
@@ -44,7 +46,10 @@ bool round_server_isrunning(RoundServer *server);
 #define round_server_getlocalnode(server) (server->node)
 #define round_server_getfinder(server) (server->finder)
 #define round_server_getrpcserver(server) (server->rpcServer)
-  
+
+void round_server_nodeaddedlistener(RoundFinder *finder, RoundNode *node);
+void round_server_noderemovedlistener(RoundFinder *finder, RoundNode *node);
+
 #ifdef  __cplusplus
 } /* extern C */
 #endif
