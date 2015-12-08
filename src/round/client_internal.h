@@ -11,7 +11,7 @@
 #ifndef _ROUND_CLIENT_INTERNAL_H_
 #define _ROUND_CLIENT_INTERNAL_H_
 
-#include <round/finder.h>
+#include <round/finder_internal.h>
 #include <round/cluster_internal.h>
 
 #ifdef  __cplusplus

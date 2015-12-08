@@ -33,6 +33,9 @@ typedef void RoundClient;
 RoundClient *round_client_new(void);
 bool round_client_delete(RoundClient *c);
   
+bool round_client_start(RoundClient *c);
+bool round_client_stop(RoundClient *c);
+
 #ifdef  __cplusplus
 } /* extern C */
 #endif

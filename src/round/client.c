@@ -29,6 +29,8 @@ RoundClient* round_client_new(void)
   if (!client->finder || !client->clusterMgr)
     return NULL;
 
+  round_finder_setuserdata(client->finder, client);
+  
   return client;
 }
 
@@ -54,4 +56,37 @@ bool round_client_delete(RoundClient* client)
   free(client);
 
   return true;
+}
+
+/****************************************
+ * round_client_start
+ ****************************************/
+
+bool round_client_start(RoundClient *client)
+{
+  if (!client)
+    return false;
+  
+  bool isSuccess = round_finder_start(client->finder);
+  
+  if (!isSuccess) {
+    round_client_stop(client);
+    return false;
+  }
+  
+  return true;
+}
+
+/****************************************
+ * round_client_stop
+ ****************************************/
+
+bool round_client_stop(RoundClient *client)
+{
+  if (!client)
+    return false;
+  
+  bool isSuccess = round_finder_stop(client->finder);
+  
+  return isSuccess;
 }
