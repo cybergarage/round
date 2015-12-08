@@ -31,6 +31,11 @@ typedef struct {
 } /* extern C */
 #endif
 
+bool round_client_clear(RoundClient *client);
+
+void round_client_nodeaddedlistener(RoundFinder *finder, RoundNode *node);
+void round_client_noderemovedlistener(RoundFinder *finder, RoundNode *node);
+
 #endif /* _ROUND_CLIENT_INTERNAL_H_ */
 
 #include <round/client.h>
