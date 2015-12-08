@@ -85,7 +85,7 @@
 		21A776C81BA08A7C009BDB36 /* semaphore.c in Sources */ = {isa = PBXBuildFile; fileRef = 21A776C61BA08A7C009BDB36 /* semaphore.c */; };
 		21A776CB1BA0939F009BDB36 /* timer.h in Headers */ = {isa = PBXBuildFile; fileRef = 21A776C91BA0939F009BDB36 /* timer.h */; };
 		21A776CC1BA0939F009BDB36 /* timer.c in Sources */ = {isa = PBXBuildFile; fileRef = 21A776CA1BA0939F009BDB36 /* timer.c */; };
-		21B3B3171C0F04C20099BEC8 /* mupnp_remote_node.c in Sources */ = {isa = PBXBuildFile; fileRef = 21B3B3161C0F04C20099BEC8 /* mupnp_remote_node.c */; };
+		21B3B3171C0F04C20099BEC8 /* upnp_remote_node.c in Sources */ = {isa = PBXBuildFile; fileRef = 21B3B3161C0F04C20099BEC8 /* upnp_remote_node.c */; };
 		21B763DD1BA05ED1003C29F3 /* queue.c in Sources */ = {isa = PBXBuildFile; fileRef = 21B763DA1BA05ED1003C29F3 /* queue.c */; };
 		21B763DF1BA05ED1003C29F3 /* queue.h in Headers */ = {isa = PBXBuildFile; fileRef = 21B763DC1BA05ED1003C29F3 /* queue.h */; };
 		21C482441B9F5A100087380C /* json_object.c in Sources */ = {isa = PBXBuildFile; fileRef = 21C482411B9F5A100087380C /* json_object.c */; };
@@ -198,7 +198,7 @@
 		21A776C61BA08A7C009BDB36 /* semaphore.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = semaphore.c; path = ../../../src/round/util/semaphore.c; sourceTree = "<group>"; };
 		21A776C91BA0939F009BDB36 /* timer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = timer.h; path = ../../../src/round/util/timer.h; sourceTree = "<group>"; };
 		21A776CA1BA0939F009BDB36 /* timer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = timer.c; path = ../../../src/round/util/timer.c; sourceTree = "<group>"; };
-		21B3B3161C0F04C20099BEC8 /* mupnp_remote_node.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = mupnp_remote_node.c; path = ../../../src/round/impl/mupnp_remote_node.c; sourceTree = "<group>"; };
+		21B3B3161C0F04C20099BEC8 /* upnp_remote_node.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = upnp_remote_node.c; path = ../../../src/round/impl/upnp_remote_node.c; sourceTree = "<group>"; };
 		21B763DA1BA05ED1003C29F3 /* queue.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = queue.c; path = ../../../src/round/util/queue.c; sourceTree = "<group>"; };
 		21B763DC1BA05ED1003C29F3 /* queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = queue.h; path = ../../../src/round/util/queue.h; sourceTree = "<group>"; };
 		21C482411B9F5A100087380C /* json_object.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = json_object.c; path = ../../../src/round/util/json_object.c; sourceTree = "<group>"; };
@@ -320,7 +320,7 @@
 			isa = PBXGroup;
 			children = (
 				219B3D631C143A7A0091DC62 /* upnp_finder.c */,
-				21B3B3161C0F04C20099BEC8 /* mupnp_remote_node.c */,
+				21B3B3161C0F04C20099BEC8 /* upnp_remote_node.c */,
 				2120807A1BFB855000190BF8 /* upnp_server_desc.h */,
 				212080721BFB6B7000190BF8 /* upnp_server.c */,
 				212080731BFB6B7000190BF8 /* upnp_server.h */,
@@ -552,7 +552,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				218569A91BAFFE9F00861B9B /* native_engine.c in Sources */,
-				21B3B3171C0F04C20099BEC8 /* mupnp_remote_node.c in Sources */,
+				21B3B3171C0F04C20099BEC8 /* upnp_remote_node.c in Sources */,
 				2148E5D91B9DFDAF0021CE7B /* method_map.c in Sources */,
 				21F6D9B11B99848000714056 /* lua_engine.c in Sources */,
 				21A4C21D1BC10E6E0030BD12 /* local_node_message.c in Sources */,
