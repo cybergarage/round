@@ -43,10 +43,10 @@ typedef struct {
 #define round_finder_setuserdata(finder,value) (finder->userData = value)
 #define round_finder_getuserdata(finder) (finder->userData)
 
-#define round_finder_setnodeaddedlistener(finder,func) (finder->addedListener = func)
+#define round_finder_setnodeaddedlistener(finder,func) (finder->addedListener = (ROUND_FINDER_NODEADDED_LISTNER)func)
 #define round_finder_getnodeaddedlistener(finder) (finder->addedListener)
 
-#define round_finder_setnoderemovedlistener(finder,func) (finder->removedListener = func)
+#define round_finder_setnoderemovedlistener(finder,func) (finder->removedListener = (ROUND_FINDER_NODEREMOVED_LISTNER)func)
 #define round_finder_getnoderemovedlistener(finder) (finder->removedListener)
   
 /****************************************

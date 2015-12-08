@@ -12,10 +12,17 @@
 
 #include <round/client.h>
 
+BOOST_AUTO_TEST_SUITE(client)
+
 BOOST_AUTO_TEST_CASE(ClientNew)
 {
   RoundClient* c = round_client_new();
   BOOST_CHECK(c);
 
+  BOOST_CHECK(round_client_start(c));
+  BOOST_CHECK(round_client_stop(c));
+  
   BOOST_CHECK(round_client_delete(c));
 }
+
+BOOST_AUTO_TEST_SUITE_END()

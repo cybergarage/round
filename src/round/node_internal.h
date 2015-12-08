@@ -159,6 +159,7 @@ bool round_local_node_delete(RoundLocalNode *node);
 
 bool round_local_node_start(RoundLocalNode *node);
 bool round_local_node_stop(RoundLocalNode *node);
+bool round_local_node_clear(RoundLocalNode *node);
 bool round_local_node_isrunning(RoundLocalNode *node);
 
 bool round_local_node_setmethod(RoundLocalNode *node, RoundMethod *method);
@@ -173,6 +174,9 @@ bool round_local_node_execmessage(RoundLocalNode *node, RoundMessage *msg, Round
 bool round_local_node_setregistry(RoundLocalNode *node, const char *key, const char *val);
 RoundRegistry *round_local_node_getregistry(RoundLocalNode *node, const char *key);
 bool round_local_node_removeregistry(RoundLocalNode *node, const char *key);
+
+#define round_local_node_addclusternode(node, clusterNode) round_cluster_manager_addnode(node->clusterMgr, clusterNode);
+#define round_local_node_removeclusternode(node, clusterNode) round_cluster_manager_removenode(node->clusterMgr, clusterNode);
 
 void round_local_node_message_thread(RoundThread *thread);
   
