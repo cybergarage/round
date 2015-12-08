@@ -196,6 +196,8 @@ bool round_local_node_start(RoundLocalNode* node)
   if (!round_local_node_stop(node))
     return false;
 
+  isSuccess &= round_cluster_manager_clear(node->clusterMgr);
+  
   isSuccess &= round_cluster_manager_addnode(node->clusterMgr, (RoundNode*)node);
   isSuccess &= round_thread_manager_start(node->threadMgr);
 
@@ -219,7 +221,6 @@ bool round_local_node_stop(RoundLocalNode* node)
     return false;
 
   isSuccess &= round_thread_manager_stop(node->threadMgr);
-  isSuccess &= round_cluster_manager_clear(node->clusterMgr);
 
   return isSuccess;
 }
