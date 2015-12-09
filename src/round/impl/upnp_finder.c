@@ -17,17 +17,17 @@
 
 void round_finder_upnpdevicelistener(mUpnpControlPoint* cp, const char* udn, mUpnpDeviceStatus devStatus)
 {
-  mUpnpDevice* dev = mupnp_controlpoint_getdevicebyudn(cp, (char*)udn);
-  if (!dev)
-    return;
-
   RoundFinder* finder = mupnp_controlpoint_getuserdata(cp);
   if (!finder)
     return;
 
+  mUpnpDevice* dev = mupnp_controlpoint_getdevicebyudn(cp, (char*)udn);
+  if (!dev)
+    return;
+  
   RoundNode* node = round_node_new();
   round_node_setaddress(node, "");
-  round_node_setport(node, 0);
+  round_node_setport(node, mupnp_device_gethttpport(dev));
 
   switch (devStatus) {
   case mUpnpDeviceStatusAdded: {
