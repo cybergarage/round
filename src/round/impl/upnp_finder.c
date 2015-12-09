@@ -28,6 +28,9 @@ void round_finder_upnpdevicelistener(mUpnpControlPoint* cp, const char* udn, mUp
   mUpnpDevice* dev = mupnp_controlpoint_getdevicebyudn(cp, (char*)udn);
   if (!dev)
     return;
+
+  if (!mupnp_device_isdevicetype(dev, ROUND_UPNP_DEVICE_TYPE))
+    return;
   
   RoundNode* node = round_node_new();
   round_node_setaddress(node, mupnp_device_getaddress(dev));

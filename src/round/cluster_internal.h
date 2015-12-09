@@ -67,6 +67,7 @@ RoundCluster *round_cluster_manager_getclusterbyname(RoundClusterManager *mgr, c
   
 #define round_cluster_manager_hascluster(mgr, name) (round_cluster_manager_getclusterbyname(mgr,name) ? true : false)
 #define round_cluster_manager_size(mgr) round_list_size((RoundList *)mgr)
+#define round_cluster_manager_getcluster(mgr,n) (RoundCluster *)round_list_get((RoundList *)mgr,n)
 #define round_cluster_manager_getclusters(mgr) (RoundCluster *)round_list_next((RoundList *)mgr)
 #define round_cluster_manager_addcluster(mgr,cluster) round_list_add((RoundList *)mgr, (RoundList *)cluster)
 
