@@ -12,6 +12,7 @@
 #define _ROUND_CLUSTER_H_
 
 #include <round/typedef.h>
+#include <round/node.h>
 
 #ifdef  __cplusplus
 extern "C" {

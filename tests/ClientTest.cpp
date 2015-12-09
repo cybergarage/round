@@ -10,7 +10,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include <round/client.h>
+#include <round/client_internal.h>
 #include <round/server.h>
 
 BOOST_AUTO_TEST_SUITE(client)

@@ -13,6 +13,7 @@
 
 #include <round/typedef.h>
 #include <round/const.h>
+#include <round/cluster.h>
 
 #ifdef  __cplusplus
 extern "C" {
@@ -35,6 +36,10 @@ bool round_client_delete(RoundClient *client);
   
 bool round_client_start(RoundClient *client);
 bool round_client_stop(RoundClient *client);
+
+size_t round_client_getclustersize(RoundClient *client);
+RoundCluster *round_client_getclusters(RoundClient *client);
+RoundCluster *round_client_getcluster(RoundClient *client);
 
 #ifdef  __cplusplus
 } /* extern C */
