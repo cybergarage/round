@@ -36,10 +36,11 @@ bool round_client_delete(RoundClient *client);
   
 bool round_client_start(RoundClient *client);
 bool round_client_stop(RoundClient *client);
+bool round_client_search(RoundClient *client);
 
 size_t round_client_getclustersize(RoundClient *client);
 RoundCluster *round_client_getclusters(RoundClient *client);
-RoundCluster *round_client_getcluster(RoundClient *client);
+RoundCluster *round_client_getcluster(RoundClient *client, size_t n);
 
 #ifdef  __cplusplus
 } /* extern C */

@@ -61,7 +61,7 @@ bool round_client_delete(RoundClient* client)
 }
 
 /****************************************
- * round_client_start
+ * round_client_clear
  ****************************************/
 
 bool round_client_clear(RoundClient *client)
@@ -91,8 +91,8 @@ bool round_client_start(RoundClient *client)
   bool isSuccess = true;
   
   isSuccess &= round_client_clear(client);
-  
   isSuccess &= round_finder_start(client->finder);
+  isSuccess &= round_client_search(client);
   
   if (!isSuccess) {
     round_client_stop(client);
@@ -115,6 +115,46 @@ bool round_client_stop(RoundClient *client)
   
   return isSuccess;
 }
+
+/****************************************
+ * round_client_search
+ ****************************************/
+
+bool round_client_search(RoundClient *client)
+{
+  if (!client)
+    return false;
+  
+  return round_finder_search(client->finder);
+}
+
+/****************************************
+ * round_client_getclustersize
+ ****************************************/
+
+size_t round_client_getclustersize(RoundClient *client)
+{
+  return round_cluster_manager_size(client->clusterMgr);
+}
+
+/****************************************
+ * round_client_nodeaddedlistener
+ ****************************************/
+
+RoundCluster *round_client_getclusters(RoundClient *client)
+{
+  return round_cluster_manager_getclusters(client->clusterMgr);
+}
+
+/****************************************
+ * round_client_nodeaddedlistener
+ ****************************************/
+
+RoundCluster *round_client_getcluster(RoundClient *client, size_t n)
+{
+  return round_cluster_manager_getcluster(client->clusterMgr, n);
+}
+
 
 /****************************************
  * round_client_nodeaddedlistener
