@@ -152,7 +152,7 @@ RoundNode* round_cluster_manager_getnode(RoundClusterManager* mgr, RoundNode* no
   if (!cluster)
     return false;
 
-  return (RoundNode*)round_cluster_getnode(cluster, node);
+  return (RoundNode*)round_cluster_getequalnode(cluster, node);
 }
 
 /****************************************
@@ -165,5 +165,5 @@ bool round_cluster_manager_hasnode(RoundClusterManager* mgr, RoundNode* node)
   if (!cluster)
     return false;
 
-  return round_cluster_hasnode(cluster, node);
+  return round_cluster_hasequalnode(cluster, node);
 }

@@ -62,6 +62,18 @@ RoundCluster* round_cluster_next(RoundCluster* cluster)
 }
 
 /****************************************
+ * round_cluster_size
+ ****************************************/
+
+size_t round_cluster_size(RoundCluster* cluster)
+{
+  if (!cluster)
+    return 0;
+  
+  return round_node_ring_size(cluster->nodeRing);
+}
+
+/****************************************
  * round_cluster_getname
  ****************************************/
 
@@ -69,6 +81,42 @@ const char* round_cluster_getname(RoundCluster* cluster)
 {
   if (!cluster)
     return NULL;
-
+  
   return round_string_getvalue(cluster->name);
+}
+
+/****************************************
+ * round_cluster_getnodes
+ ****************************************/
+
+RoundNode *round_cluster_getnodes(RoundCluster *cluster)
+{
+  if (!cluster)
+    return NULL;
+  
+  return (RoundNode *)round_node_ring_getnodes(cluster->nodeRing);
+}
+
+/****************************************
+ * round_cluster_getnode
+ ****************************************/
+
+RoundNode *round_cluster_getnode(RoundCluster *cluster,size_t idx)
+{
+  if (!cluster)
+    return NULL;
+  
+  return (RoundNode *)round_node_ring_getnode(cluster->nodeRing,idx);
+}
+
+/****************************************
+ * round_cluster_hasnode
+ ****************************************/
+
+bool round_cluster_hasnode(RoundCluster* cluster, RoundNode *node)
+{
+  if (!cluster)
+    return NULL;
+  
+  return round_cluster_hasequalnode(cluster, node);
 }
