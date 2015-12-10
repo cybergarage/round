@@ -50,8 +50,9 @@ bool round_local_node_init(RoundLocalNode* node)
   node->methodMgr = round_method_manager_new();
   node->regMgr = round_registry_manager_new();
   node->threadMgr = round_thread_manager_new();
+  node->msgMgr = round_message_manager_new();
 
-  if (!node->methodMgr || !node->regMgr || !node->threadMgr)
+  if (!node->methodMgr || !node->regMgr || !node->threadMgr || !node->msgMgr)
     return false;
 
   round_node_setpostmessagefunc(node, round_local_node_postmessage);
@@ -138,8 +139,7 @@ bool round_local_node_initsystemmethods(RoundLocalNode* node)
 
   areAllMethodsAdded &= round_local_node_setmethod(node, round_system_method_setregistry_new());
   areAllMethodsAdded &= round_local_node_setmethod(node, round_system_method_getregistry_new());
-  areAllMethodsAdded &= round_local_node_setmethod(
-      node, round_system_method_removeregistry_new());
+  areAllMethodsAdded &= round_local_node_setmethod(node, round_system_method_removeregistry_new());
 
   return areAllMethodsAdded;
 }
@@ -159,6 +159,7 @@ bool round_local_node_destory(RoundLocalNode* node)
   round_method_manager_delete(node->methodMgr);
   round_registry_manager_delete(node->regMgr);
   round_thread_manager_delete(node->threadMgr);
+  round_message_manager_delete(node->msgMgr);
 
   return true;
 }
