@@ -230,7 +230,7 @@ bool round_node_ring_delete(RoundNodeRing *ring);
 #define round_node_ring_getequalnode(ring,node) round_consistenthashing_ring_getequalnode(ring->consHashRing, node)
 #define round_node_ring_hasequalnode(ring,node) round_consistenthashing_ring_hasequalnode(ring->consHashRing, node)
 #define round_node_ring_getnode(ring,idx) round_consistenthashing_ring_getnode(ring->consHashRing, idx)
-#define round_node_ring_getnodes(ring) round_consistenthashing_ring_getnode(ring->consHashRing)
+#define round_node_ring_getnodes(ring) round_consistenthashing_ring_getnodes(ring->consHashRing)
   
 #ifdef  __cplusplus
 } /* extern C */

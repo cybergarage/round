@@ -50,6 +50,12 @@ BOOST_AUTO_TEST_CASE(ClientStartAfterServer)
   
   // Check Node
   
+  RoundCluster *cluster = round_client_getclusters(client);
+  BOOST_CHECK(cluster);
+  RoundNode *node = round_cluster_getnodes(cluster);
+  BOOST_CHECK(node);
+  BOOST_CHECK(round_node_equals(node, round_server_getnode(server)));
+  
   BOOST_CHECK(round_client_stop(client));
   BOOST_CHECK(round_server_stop(server));
   
@@ -77,6 +83,14 @@ BOOST_AUTO_TEST_CASE(ClientStartBeforeServer)
     Round::Test::Sleep();
   }
   BOOST_CHECK_EQUAL(round_client_getclustersize(client), 1);
+  
+  // Check Node
+  
+  RoundCluster *cluster = round_client_getclusters(client);
+  BOOST_CHECK(cluster);
+  RoundNode *node = round_cluster_getnodes(cluster);
+  BOOST_CHECK(node);
+  BOOST_CHECK(round_node_equals(node, round_server_getnode(server)));
   
   BOOST_CHECK(round_server_stop(server));
   BOOST_CHECK(round_client_stop(client));

@@ -44,6 +44,7 @@ bool round_server_stop(RoundServer *server);
 bool round_server_isrunning(RoundServer *server);
 
 #define round_server_getlocalnode(server) (server->node)
+#define round_server_getnode(server) ((RoundNode *)(server->node))
 #define round_server_getfinder(server) (server->finder)
 #define round_server_getrpcserver(server) (server->rpcServer)
 

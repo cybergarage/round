@@ -65,7 +65,7 @@ BOOST_AUTO_TEST_CASE(LocalNodeRun)
   RoundCluster* cluster = round_local_node_getcluster(node);
   BOOST_CHECK(cluster);
   BOOST_CHECK_EQUAL(round_cluster_size(cluster), 1);
-  BOOST_CHECK(round_cluster_hasnode(cluster, node));
+  BOOST_CHECK(round_cluster_hasequalnode(cluster, node));
 
   BOOST_CHECK(round_local_node_stop(node));
 
