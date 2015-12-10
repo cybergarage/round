@@ -117,8 +117,6 @@ const char *round_node_getdigest(RoundNode *node);
 #define round_node_setdigest(node, value) round_string_setvalue(node->digest, value)
 #define round_node_hasdigest(node) round_string_hasvalue(node->digest)
 
-bool round_node_equals(RoundNode *node1, RoundNode *node2);
-
 bool round_node_addclusternode(RoundNode *node, RoundNode *clusterNode);
 bool round_node_removeclusternode(RoundNode *node, RoundNode *clusterNode);
 bool round_node_clearclusternode(RoundNode *node, RoundNode *clusterNode);
@@ -231,6 +229,8 @@ bool round_node_ring_delete(RoundNodeRing *ring);
 #define round_node_ring_remove(ring,node) round_consistenthashing_ring_removenode(ring->consHashRing, node)
 #define round_node_ring_getequalnode(ring,node) round_consistenthashing_ring_getequalnode(ring->consHashRing, node)
 #define round_node_ring_hasequalnode(ring,node) round_consistenthashing_ring_hasequalnode(ring->consHashRing, node)
+#define round_node_ring_getnode(ring,idx) round_consistenthashing_ring_getnode(ring->consHashRing, idx)
+#define round_node_ring_getnodes(ring) round_consistenthashing_ring_getnode(ring->consHashRing)
   
 #ifdef  __cplusplus
 } /* extern C */
