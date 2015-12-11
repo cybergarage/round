@@ -14,47 +14,49 @@
 #include <string.h>
 
 #include "NodeTestController.h"
+#include "ScriptTestController.h"
 
 ////////////////////////////////////////////////
 // Core Functions (Script)
 ////////////////////////////////////////////////
 
 void Round::NodeTestController::runScriptManagerTest(RoundNode *node) {
-  /*
-  NodeRequestParser reqParser;
-  
-  NodeRequest *nodeReq;
-  NodeResponse nodeRes;
-  Error error;
+  RoundJSON *json = round_json_new();
+  RoundJSONObject*reqObj, *resObj;
   clock_t prevClock, postClock;
+
+  /*
   std::string result;
+*/
+  RoundError *err = round_error_new();
   
   // Post Node Message (Overide 'set_method' method)
   
-  BOOST_CHECK(reqParser.parse(Test::RPC_SET_SETMETHOD, &error));
-  BOOST_CHECK(reqParser.getRootObject()->isDictionary());
-  nodeReq = dynamic_cast<NodeRequest *>(reqParser.getRootObject());
-  BOOST_CHECK(nodeReq);
-  
-  prevClock = node->getLocalClock();
-  BOOST_CHECK(!node->postMessage(nodeReq, &nodeRes, &error));
-  postClock = node->getLocalClock();
+  BOOST_CHECK(round_json_parse(json, Test::RPC_SET_SETMETHOD, err));
+  reqObj = round_json_poprootobject(json);
+  BOOST_CHECK(reqObj);
+  BOOST_CHECK(round_json_object_ismap(reqObj));
+
+  prevClock = round_node_getclock(node);;
+  BOOST_CHECK(round_node_postmessage(node, reqObj, &reqObj, err));
+  postClock = round_node_getclock(node);;
   BOOST_CHECK(prevClock < postClock);
-  
+
   // Post Node Message (Run 'echo' method without method)
   
-  BOOST_CHECK(reqParser.parse(Test::RPC_RUN_ECHO, &error));
-  BOOST_CHECK(reqParser.getRootObject()->isDictionary());
-  nodeReq = dynamic_cast<NodeRequest *>(reqParser.getRootObject());
-  BOOST_CHECK(nodeReq);
-  
-  prevClock = node->getLocalClock();
-  BOOST_CHECK(!node->postMessage(nodeReq, &nodeRes, &error));
-  BOOST_CHECK(error.getDetailCode() == RPC::JSON::ErrorCodeMethodNotFound);
-  postClock = node->getLocalClock();
+  BOOST_CHECK(round_json_parse(json, Test::RPC_RUN_ECHO, err));
+  reqObj = round_json_poprootobject(json);
+  BOOST_CHECK(reqObj);
+  BOOST_CHECK(round_json_object_ismap(reqObj));
+
+  prevClock = round_node_getclock(node);;
+  BOOST_CHECK(!round_node_postmessage(node, reqObj, &reqObj, err));
+  BOOST_CHECK_EQUAL(round_error_getdetailcode(err), ROUND_RPC_ERROR_CODE_METHOD_NOT_FOUND);
+  postClock = round_node_getclock(node);;
   BOOST_CHECK(prevClock < postClock);
-  
-  // Post Node Message (Set 'echo' method)
+
+  /*
+   // Post Node Message (Set 'echo' method)
   
   BOOST_CHECK(reqParser.parse(Test::RPC_SET_ECHO, &error));
   BOOST_CHECK(reqParser.getRootObject()->isDictionary());

@@ -206,6 +206,18 @@ bool round_node_getport(RoundNode* node, int* port)
 }
 
 /****************************************
+ * round_node_getclock
+ ****************************************/
+
+clock_t round_node_getclock(RoundNode *node)
+{
+  if (!node)
+    return 0;
+
+  return round_clock_getvalue(node->clock);
+}
+
+/****************************************
  * round_node_equals
  ****************************************/
 
