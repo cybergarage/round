@@ -424,7 +424,6 @@
 					"-lcurl",
 					"-lmupnp",
 					"-lmruby",
-					"-llua",
 					"-lmozjs185",
 					"-ljansson",
 				);
@@ -472,7 +471,6 @@
 					"-lcurl",
 					"-lmupnp",
 					"-lmruby",
-					"-llua",
 					"-lmozjs185",
 					"-ljansson",
 				);
@@ -500,7 +498,6 @@
 					"-lcurl",
 					"-lmupnp",
 					"-lmozjs185",
-					"-llua",
 					"-lmruby",
 					"-ljansson",
 				);
@@ -528,7 +525,6 @@
 					"-lcurl",
 					"-lmupnp",
 					"-lmozjs185",
-					"-llua",
 					"-lmruby",
 					"-ljansson",
 				);
