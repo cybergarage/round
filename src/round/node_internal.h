@@ -53,7 +53,7 @@ typedef struct {
   RoundClock *clock; \
   time_t requestTimeout; \
   RoundClusterManager *clusterMgr; \
-  ROUND_NODE_POSTMESSAGE_FUNC postMsg;
+  ROUND_NODE_POSTMESSAGE_FUNC postMsgFunc;
 
 typedef struct {
   ROUND_NODE_STRUCT_MEMBERS
@@ -108,8 +108,8 @@ bool round_node_setport(RoundNode *node, int port);
 #define round_node_incrementclock(node) round_clock_increment(node->clock)
 #define round_node_getclockvalue(node) round_clock_getvalue(node->clock)
 
-#define round_node_setpostmessagefunc(node, func) (node->postMsg = (ROUND_NODE_POSTMESSAGE_FUNC)func)
-#define round_node_getpostmessagefunc(node) (node->postMsg)
+#define round_node_setpostmessagefunc(node, func) (node->postMsgFunc = (ROUND_NODE_POSTMESSAGE_FUNC)func)
+#define round_node_getpostmessagefunc(node) (node->postMsgFunc)
 
 #define round_node_digest(str,buf) round_sha256_digest(str,buf)
 bool round_node_updatedigest(RoundNode *node);
