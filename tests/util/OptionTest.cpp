@@ -23,21 +23,35 @@ BOOST_AUTO_TEST_CASE(OptionSet)
   BOOST_CHECK_EQUAL(round_option_get(opt), 0);
   BOOST_CHECK(round_option_isdisabled(opt, 0x01));
   BOOST_CHECK(round_option_isdisabled(opt, 0x02));
-
+  
   round_option_set(opt, 0x01);
   BOOST_CHECK_EQUAL(round_option_get(opt), 0x01);
   BOOST_CHECK(round_option_isenabled(opt, 0x01));
   BOOST_CHECK(round_option_isdisabled(opt, 0x02));
-
+  
   round_option_set(opt, 0x02);
   BOOST_CHECK_EQUAL(round_option_get(opt), 0x02);
   BOOST_CHECK(round_option_isdisabled(opt, 0x01));
   BOOST_CHECK(round_option_isenabled(opt, 0x02));
-
+  
   round_option_set(opt, 0x03);
   BOOST_CHECK_EQUAL(round_option_get(opt), 0x03);
   BOOST_CHECK(round_option_isenabled(opt, 0x01));
   BOOST_CHECK(round_option_isenabled(opt, 0x02));
+
+  round_option_clear(opt);
+  BOOST_CHECK_EQUAL(round_option_get(opt), 0);
+  round_option_setflag(opt, 0x01, true);
+  round_option_setflag(opt, 0x02, true);
+  BOOST_CHECK(round_option_isenabled(opt, 0x01));
+  BOOST_CHECK(round_option_isenabled(opt, 0x02));
+  round_option_setflag(opt, 0x02, false);
+  BOOST_CHECK(round_option_isenabled(opt, 0x01));
+  BOOST_CHECK(round_option_isdisabled(opt, 0x02));
+  round_option_setflag(opt, 0x01, false);
+  BOOST_CHECK(round_option_isdisabled(opt, 0x01));
+  BOOST_CHECK(round_option_isdisabled(opt, 0x02));
+  BOOST_CHECK_EQUAL(round_option_get(opt), 0);
 }
 
 BOOST_AUTO_TEST_SUITE_END()

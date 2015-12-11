@@ -32,6 +32,7 @@ typedef int RoundOption;
 #define round_option_setflag(opt, flag, value) (value ? (opt |= flag) : (opt ^= flag))
 #define round_option_isenabled(opt, flag) ((opt & flag) ? true : false)
 #define round_option_isdisabled(opt, flag) ((opt & flag) ? false : true)
+#define round_option_clear(opt) (opt = 0)
 
 #ifdef  __cplusplus
 
