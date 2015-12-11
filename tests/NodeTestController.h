@@ -11,7 +11,7 @@
 #ifndef _ROUND_TEST_NODETESTCONTROLLER_H_
 #define _ROUND_TEST_NODETESTCONTROLLER_H_
 
-#include <round/node.h>
+#include <round/node_internal.h>
 
 namespace Round {
   

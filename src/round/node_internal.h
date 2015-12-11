@@ -106,10 +106,9 @@ bool round_node_setport(RoundNode *node, int port);
 
 #define round_node_setcluster(node,value) (node->cluster = value)
 
-#define round_node_setclockvalue(node, value) round_clock_setvalue(node->clock, value)
-#define round_node_setremoteclockvalue(node, value) round_clock_setremotevalue(node->clock, value)
+#define round_node_setclock(node, value) round_clock_setvalue(node->clock, value)
+#define round_node_setremoteclock(node, value) round_clock_setremotevalue(node->clock, value)
 #define round_node_incrementclock(node) round_clock_increment(node->clock)
-#define round_node_getclockvalue(node) round_clock_getvalue(node->clock)
 
 #define round_node_setpostmessagefunc(node, func) (node->postMsgFunc = (ROUND_NODE_POSTMESSAGE_FUNC)func)
 #define round_node_getpostmessagefunc(node) (node->postMsgFunc)
