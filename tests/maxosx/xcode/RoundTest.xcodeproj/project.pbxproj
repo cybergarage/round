@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		21135E4A1C1A967600013136 /* NodeTestController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21135E491C1A967600013136 /* NodeTestController.cpp */; };
 		211E45D21B98188600CF0088 /* ClientTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 211E45D11B98188600CF0088 /* ClientTest.cpp */; };
 		211E45D41B9818E300CF0088 /* FinderTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 211E45D31B9818E300CF0088 /* FinderTest.cpp */; };
 		2127082C1BD6640300000985 /* ConsistentHashingRingTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2127082B1BD6640300000985 /* ConsistentHashingRingTest.cpp */; };
@@ -82,6 +83,8 @@
 
 /* Begin PBXFileReference section */
 		210363311B4A51B300DB3025 /* RoundTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = RoundTest; sourceTree = BUILT_PRODUCTS_DIR; };
+		21135E491C1A967600013136 /* NodeTestController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = NodeTestController.cpp; path = ../../NodeTestController.cpp; sourceTree = "<group>"; };
+		21135E4B1C1A974B00013136 /* NodeTestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NodeTestController.h; path = ../../NodeTestController.h; sourceTree = "<group>"; };
 		211E45BF1B9814FA00CF0088 /* libround.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libround.xcodeproj; path = ../../../lib/macosx/xcode/libround.xcodeproj; sourceTree = "<group>"; };
 		211E45D11B98188600CF0088 /* ClientTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ClientTest.cpp; path = ../../ClientTest.cpp; sourceTree = "<group>"; };
 		211E45D31B9818E300CF0088 /* FinderTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FinderTest.cpp; path = ../../FinderTest.cpp; sourceTree = "<group>"; };
@@ -205,6 +208,8 @@
 				212A954D1B9BD24700EC9A71 /* MethodTest.cpp */,
 				21EA96E01B99105E00E00841 /* NodeRingTest.cpp */,
 				21EA96E11B99105E00E00841 /* NodeTest.cpp */,
+				21135E491C1A967600013136 /* NodeTestController.cpp */,
+				21135E4B1C1A974B00013136 /* NodeTestController.h */,
 				215A07991BB4663C00E9702F /* RegistryTest.cpp */,
 				218569B21BB0D68800861B9B /* RemoteNodeTest.cpp */,
 				21A762EC1B96F82400D29732 /* RoundTest.cpp */,
@@ -326,6 +331,7 @@
 				2127083C1BD7995A00000985 /* JSONObjectTest.cpp in Sources */,
 				2195A3E71BD50DF000DF5436 /* QueueTest.cpp in Sources */,
 				215A079A1BB4663C00E9702F /* RegistryTest.cpp in Sources */,
+				21135E4A1C1A967600013136 /* NodeTestController.cpp in Sources */,
 				21D427F01B9F0B1A00BBBD41 /* ErrorTest.cpp in Sources */,
 				2195A3E51BD50DF000DF5436 /* ListTest.cpp in Sources */,
 				21F6D99E1B9983A500714056 /* LuaEngineTest.cpp in Sources */,
