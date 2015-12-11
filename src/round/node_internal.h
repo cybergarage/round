@@ -19,6 +19,7 @@
 #include <round/util/thread.h>
 #include <round/util/consistent_hashing.h>
 #include <round/util/digest.h>
+#include <round/util/status.h>
 #include <round/script.h>
 #include <round/clock.h>
 #include <round/registry.h>
@@ -53,7 +54,8 @@ typedef struct {
   RoundClock *clock; \
   time_t requestTimeout; \
   RoundClusterManager *clusterMgr; \
-  ROUND_NODE_POSTMESSAGE_FUNC postMsgFunc;
+  ROUND_NODE_POSTMESSAGE_FUNC postMsgFunc; \
+  RoundStatus status;
 
 typedef struct {
   ROUND_NODE_STRUCT_MEMBERS
@@ -94,6 +96,7 @@ typedef struct {
 RoundNode *round_node_new(void);
 
 bool round_node_init(RoundNode *node);
+bool round_node_clear(RoundNode *node);
 bool round_node_destroy(RoundNode *node);
 
 #define round_node_remove(node) round_list_remove((RoundList *)node)
@@ -119,7 +122,7 @@ const char *round_node_getdigest(RoundNode *node);
 
 bool round_node_addclusternode(RoundNode *node, RoundNode *clusterNode);
 bool round_node_removeclusternode(RoundNode *node, RoundNode *clusterNode);
-bool round_node_clearclusternode(RoundNode *node, RoundNode *clusterNode);
+bool round_node_clearclusternodes(RoundNode *node, RoundNode *clusterNode);
 bool round_node_hasclusternode(RoundNode *node, RoundNode *clusterNode);
 
 bool round_node_rpcerrorcode2error(void* node, int rpcErrCode, RoundError* err);

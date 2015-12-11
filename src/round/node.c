@@ -81,6 +81,20 @@ bool round_node_init(RoundNode* node)
 }
 
 /****************************************
+ * round_node_clear
+ ****************************************/
+
+bool round_node_clear(RoundNode *node)
+{
+  if (!node)
+    return false;
+
+  round_status_clear(node->status);
+  
+  return true;
+}
+
+/****************************************
 * round_node_delete
 ****************************************/
 
@@ -326,10 +340,10 @@ bool round_node_removeclusternode(RoundNode* node, RoundNode* clusterNode)
 }
 
 /****************************************
- * round_node_clearclusternode
+ * round_node_clearclusternodes
  ****************************************/
 
-bool round_node_clearclusternode(RoundNode* node, RoundNode* clusterNode)
+bool round_node_clearclusternodes(RoundNode* node, RoundNode* clusterNode)
 {
   if (!node)
     return false;
