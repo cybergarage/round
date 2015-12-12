@@ -41,6 +41,9 @@ typedef struct {
 RoundUpnpServer *round_upnp_server_new(void);
 bool round_upnp_server_delete(RoundUpnpServer *server);
 
+const char *round_upnp_server_getaddress(RoundUpnpServer *server);
+int round_upnp_server_getport(RoundUpnpServer *server);
+
 #define round_upnp_server_setrpcserver(server,rpcSrv) mupnp_device_setuserdata(server->dev, rpcSrv)
 #define round_upnp_device_getrpcserver(dev) ((RoundRpcServer *)mupnp_device_getuserdata(dev))
   

@@ -82,6 +82,9 @@ bool round_server_start(RoundServer* server)
     return false;
   }
 
+  round_local_node_setaddress(server->node, round_rpc_server_getaddress(server->rpcServer));
+  round_local_node_setport(server->node, round_rpc_server_getport(server->rpcServer));
+  
   return true;
 }
 
