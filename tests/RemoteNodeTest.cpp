@@ -11,6 +11,11 @@
 #include <boost/test/unit_test.hpp>
 
 #include <round/node_internal.h>
+#include <round/server.h>
+#include <round/client.h>
+
+#include "RoundTest.h"
+#include "NodeTestController.h"
 
 BOOST_AUTO_TEST_SUITE(node)
 
@@ -41,6 +46,39 @@ BOOST_AUTO_TEST_CASE(RemoteNodeCopy)
 
   BOOST_CHECK(round_remote_node_delete(node0));
   BOOST_CHECK(round_remote_node_delete(node1));
+}
+
+BOOST_AUTO_TEST_CASE(RemoteNodeScriping)
+{
+  RoundClient* client = round_client_new();
+  BOOST_CHECK(client);
+  BOOST_CHECK(round_client_start(client));
+  
+  RoundServer* server = round_server_new();
+  BOOST_CHECK(server);
+  BOOST_CHECK(round_server_start(server));
+    
+  // Get remote node
+  
+  Round::Test::Sleep();
+  while (round_client_getclustersize(client) < 1) {
+    //BOOST_MESSAGE("Cluster is not found ...");
+    Round::Test::Sleep();
+  }
+  BOOST_CHECK_EQUAL(round_client_getclustersize(client), 1);
+  
+  RoundCluster *cluster = round_client_getclusters(client);
+  BOOST_CHECK(cluster);
+  RoundNode *node = round_cluster_getnodes(cluster);
+  BOOST_CHECK(node);
+  
+  // Run Scripts
+  
+  Round::NodeTestController nodeTestController;
+  //nodeTestController.runScriptManagerTest(node);
+  
+  BOOST_CHECK(round_client_delete(client));
+  BOOST_CHECK(round_server_delete(server));
 }
 
 BOOST_AUTO_TEST_SUITE_END()

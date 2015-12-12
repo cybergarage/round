@@ -19,6 +19,7 @@
 #include <round/util/thread.h>
 #include <round/util/consistent_hashing.h>
 #include <round/util/digest.h>
+#include <round/util/status.h>
 #include <round/script.h>
 #include <round/clock.h>
 #include <round/registry.h>
@@ -53,7 +54,8 @@ typedef struct {
   RoundClock *clock; \
   time_t requestTimeout; \
   RoundClusterManager *clusterMgr; \
-  ROUND_NODE_POSTMESSAGE_FUNC postMsg;
+  ROUND_NODE_POSTMESSAGE_FUNC postMsgFunc; \
+  RoundStatus status;
 
 typedef struct {
   ROUND_NODE_STRUCT_MEMBERS
@@ -94,6 +96,7 @@ typedef struct {
 RoundNode *round_node_new(void);
 
 bool round_node_init(RoundNode *node);
+bool round_node_clear(RoundNode *node);
 bool round_node_destroy(RoundNode *node);
 
 #define round_node_remove(node) round_list_remove((RoundList *)node)
@@ -103,13 +106,12 @@ bool round_node_setport(RoundNode *node, int port);
 
 #define round_node_setcluster(node,value) (node->cluster = value)
 
-#define round_node_setclockvalue(node, value) round_clock_setvalue(node->clock, value)
-#define round_node_setremoteclockvalue(node, value) round_clock_setremotevalue(node->clock, value)
+#define round_node_setclock(node, value) round_clock_setvalue(node->clock, value)
+#define round_node_setremoteclock(node, value) round_clock_setremotevalue(node->clock, value)
 #define round_node_incrementclock(node) round_clock_increment(node->clock)
-#define round_node_getclockvalue(node) round_clock_getvalue(node->clock)
 
-#define round_node_setpostmessagefunc(node, func) (node->postMsg = (ROUND_NODE_POSTMESSAGE_FUNC)func)
-#define round_node_getpostmessagefunc(node) (node->postMsg)
+#define round_node_setpostmessagefunc(node, func) (node->postMsgFunc = (ROUND_NODE_POSTMESSAGE_FUNC)func)
+#define round_node_getpostmessagefunc(node) (node->postMsgFunc)
 
 #define round_node_digest(str,buf) round_sha256_digest(str,buf)
 bool round_node_updatedigest(RoundNode *node);
@@ -119,7 +121,7 @@ const char *round_node_getdigest(RoundNode *node);
 
 bool round_node_addclusternode(RoundNode *node, RoundNode *clusterNode);
 bool round_node_removeclusternode(RoundNode *node, RoundNode *clusterNode);
-bool round_node_clearclusternode(RoundNode *node, RoundNode *clusterNode);
+bool round_node_clearclusternodes(RoundNode *node, RoundNode *clusterNode);
 bool round_node_hasclusternode(RoundNode *node, RoundNode *clusterNode);
 
 bool round_node_rpcerrorcode2error(void* node, int rpcErrCode, RoundError* err);
