@@ -38,6 +38,9 @@ bool round_rpc_server_start(RoundRpcServer *server);
 bool round_rpc_server_stop(RoundRpcServer *server);
 bool round_rpc_server_isrunning(RoundRpcServer *server);
 
+#define round_rpc_server_getaddress(server) round_upnp_server_getaddress(server->upnpServer)
+#define round_rpc_server_getport(server) round_upnp_server_getport(server->upnpServer)
+
 #define round_rpc_server_setlocalnode(server,node) (server->localNode = node)
 #define round_rpc_server_getlocalnode(server) ((RoundLocalNode *)(server->localNode))
   

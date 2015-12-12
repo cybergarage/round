@@ -138,3 +138,38 @@ bool round_upnp_server_delete(RoundUpnpServer* server)
 
   return true;
 }
+
+/****************************************
+ * round_upnp_server_getaddress
+ ****************************************/
+
+const char *round_upnp_server_getaddress(RoundUpnpServer *server)
+{
+  if (!server)
+    return NULL;
+
+  mUpnpHttpServerList *httpServers = mupnp_device_gethttpserverlist(server->dev);
+  if (!httpServers)
+    return NULL;
+  
+  mUpnpHttpServer *httpServer = mupnp_http_serverlist_gets(httpServers);
+  if (!httpServer)
+    return NULL;
+
+  // TODO : Support multiple interface
+  
+  return mupnp_http_request_getlocaladdress(httpServer);
+}
+
+/****************************************
+ * round_upnp_server_getport
+ ****************************************/
+
+int round_upnp_server_getport(RoundUpnpServer *server)
+{
+  if (!server)
+    return 0;
+ 
+  return mupnp_device_gethttpport(server->dev);
+}
+
