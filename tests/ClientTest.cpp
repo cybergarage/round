@@ -43,7 +43,7 @@ BOOST_AUTO_TEST_CASE(ClientStartAfterServer)
   
   Round::Test::Sleep();
   while (round_client_getclustersize(client) < 1) {
-    BOOST_MESSAGE("Cluster is not found ...");
+    //BOOST_MESSAGE("Cluster is not found ...");
     Round::Test::Sleep();
   }
   BOOST_CHECK_EQUAL(round_client_getclustersize(client), 1);
@@ -79,7 +79,7 @@ BOOST_AUTO_TEST_CASE(ClientStartBeforeServer)
   
   Round::Test::Sleep();
   while (round_client_getclustersize(client) < 1) {
-    BOOST_MESSAGE("Cluster is not found ...");
+    //BOOST_MESSAGE("Cluster is not found ...");
     Round::Test::Sleep();
   }
   BOOST_CHECK_EQUAL(round_client_getclustersize(client), 1);

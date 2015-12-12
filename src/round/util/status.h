@@ -8,8 +8,8 @@
  *
  ******************************************************************/
 
-#ifndef _ROUND_UTIL_OPTION_H_
-#define _ROUND_UTIL_OPTION_H_
+#ifndef _ROUND_UTIL_STATUS_H_
+#define _ROUND_UTIL_STATUS_H_
 
 #include <round/typedef.h>
 
@@ -21,18 +21,18 @@ extern "C" {
  * Data Type
  ****************************************/
 
-typedef int RoundOption;
+typedef int RoundStatus;
   
 /****************************************
  * Macros
  ****************************************/
 
-#define round_option_set(opt, value) (opt = value)
-#define round_option_get(opt) (opt)
-#define round_option_setflag(opt, flag, value) (value ? (opt |= flag) : (opt ^= flag))
-#define round_option_isenabled(opt, flag) ((opt & flag) ? true : false)
-#define round_option_isdisabled(opt, flag) ((opt & flag) ? false : true)
-#define round_option_clear(opt) (opt = 0)
+#define round_status_set(stat, value) (stat = value)
+#define round_status_get(stat) (stat)
+#define round_status_setflag(stat, flag, value) (value ? (stat |= flag) : (stat ^= flag))
+#define round_status_isenabled(stat, flag) ((stat & flag) ? true : false)
+#define round_status_isdisabled(stat, flag) ((stat & flag) ? false : true)
+#define round_status_clear(stat) (stat = 0)
 
 #ifdef  __cplusplus
 

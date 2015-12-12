@@ -81,6 +81,20 @@ bool round_node_init(RoundNode* node)
 }
 
 /****************************************
+ * round_node_clear
+ ****************************************/
+
+bool round_node_clear(RoundNode *node)
+{
+  if (!node)
+    return false;
+
+  round_status_clear(node->status);
+  
+  return true;
+}
+
+/****************************************
 * round_node_delete
 ****************************************/
 
@@ -189,6 +203,18 @@ bool round_node_getport(RoundNode* node, int* port)
   *port = node->port;
 
   return true;
+}
+
+/****************************************
+ * round_node_getclock
+ ****************************************/
+
+clock_t round_node_getclock(RoundNode *node)
+{
+  if (!node)
+    return 0;
+
+  return round_clock_getvalue(node->clock);
 }
 
 /****************************************
@@ -326,10 +352,10 @@ bool round_node_removeclusternode(RoundNode* node, RoundNode* clusterNode)
 }
 
 /****************************************
- * round_node_clearclusternode
+ * round_node_clearclusternodes
  ****************************************/
 
-bool round_node_clearclusternode(RoundNode* node, RoundNode* clusterNode)
+bool round_node_clearclusternodes(RoundNode* node, RoundNode* clusterNode)
 {
   if (!node)
     return false;
@@ -391,7 +417,10 @@ RoundCluster* round_node_getclusters(RoundNode* node)
 
 bool round_node_postmessage(RoundNode* node, RoundJSONObject* reqObj, RoundJSONObject** resObj, RoundError* err)
 {
-  return false;
+  if (node || !node->postMsgFunc)
+    return false;
+  
+  return node->postMsgFunc(node, reqObj, reqObj, err);
 }
 
 /****************************************

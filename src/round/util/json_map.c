@@ -98,6 +98,8 @@ bool round_json_map_getreal(RoundJSONObject* obj, const char* key, double* value
 #endif
 }
 
+
+
 /****************************************
  * round_json_getbool
  ****************************************/
