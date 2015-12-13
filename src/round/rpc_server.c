@@ -179,9 +179,8 @@ void round_rpc_server_jsonrpcrequestrecieved(mUpnpHttpRequest* httpReq)
   // Check content
 
   const char* jsonContent = mupnp_http_request_getcontent(httpReq);
-  if (jsonContent) {
-    round_rpc_server_posterrorresponse(httpReq,
-                                       ROUND_RPC_ERROR_CODE_INVALID_REQUEST);
+  if (!jsonContent) {
+    round_rpc_server_posterrorresponse(httpReq, ROUND_RPC_ERROR_CODE_INVALID_REQUEST);
     return;
   }
 
