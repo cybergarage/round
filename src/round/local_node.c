@@ -593,7 +593,7 @@ bool round_local_node_execrequest(RoundLocalNode* node, RoundJSONObject* reqObj,
   // Exec Message
 
   const char* method;
-  if (round_json_rpc_getmethod(reqObj, &method) && (0 < round_strlen(method))) {
+  if (!round_json_rpc_getmethod(reqObj, &method) && (0 < round_strlen(method))) {
     round_error_setjsonrpcerrorcode(err, ROUND_RPC_ERROR_CODE_METHOD_NOT_FOUND);
     round_json_rpc_seterror(*resObj, err);
     return false;
@@ -678,7 +678,7 @@ bool round_local_node_postmessage(RoundLocalNode* node, RoundJSONObject* reqObj,
   // Single request
 
   if (round_json_object_ismap(reqObj))
-    return round_local_node_postmessage(node, reqObj, resObj, err);
+    return round_local_node_execrequest(node, reqObj, resObj, err);
 
   // Batch request
 
@@ -688,7 +688,7 @@ bool round_local_node_postmessage(RoundLocalNode* node, RoundJSONObject* reqObj,
     for (size_t n = 0; n < msgArrayCnt; n++) {
       RoundJSONObject* reqArrayObj = round_json_array_get(reqObj, n);
       RoundJSONObject* resArrayObj = NULL;
-      round_local_node_postmessage(node, reqArrayObj, &resArrayObj, err);
+      round_local_node_execrequest(node, reqArrayObj, &resArrayObj, err);
       if (reqArrayObj) {
         round_json_array_append(*resObj, resArrayObj);
         round_json_object_delete(resArrayObj);
