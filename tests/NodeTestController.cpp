@@ -43,7 +43,7 @@ void Round::NodeTestController::runScriptManagerTest(RoundNode *node) {
   BOOST_CHECK(prevClock < postClock);
 
   // Post Node Message (Run 'echo' method without method)
-  
+ /*
   BOOST_CHECK(round_json_parse(json, Test::RPC_RUN_ECHO, err));
   reqObj = round_json_poprootobject(json);
   BOOST_CHECK(reqObj);
@@ -54,7 +54,7 @@ void Round::NodeTestController::runScriptManagerTest(RoundNode *node) {
   BOOST_CHECK_EQUAL(round_error_getdetailcode(err), ROUND_RPC_ERROR_CODE_METHOD_NOT_FOUND);
   postClock = round_node_getclock(node);;
   BOOST_CHECK(prevClock < postClock);
-
+*/
   /*
    // Post Node Message (Set 'echo' method)
   
