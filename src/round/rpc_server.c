@@ -146,6 +146,7 @@ void round_rpc_server_postresponse(mUpnpHttpRequest* httpReq, RoundJSONObject* j
   round_json_object_tostring(jsonObj, RoundJSONOptionNone, &jsonContent);
   if (jsonContent) {
     mupnp_http_response_setcontent(httpRes, jsonContent);
+    mupnp_http_response_setcontentlength(httpRes, mupnp_strlen(jsonContent));
   }
 
   mupnp_http_request_postresponse(httpReq, httpRes);
