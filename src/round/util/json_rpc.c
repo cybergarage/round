@@ -42,6 +42,32 @@ bool round_json_rpc_setrequestid(RoundJSONObject* resObj, RoundJSONObject* reqOb
 }
 
 /****************************************
+ * round_json_rpc_setrequestid
+ ****************************************/
+
+bool round_json_rpc_settimestamp(RoundJSONObject* obj, long ts)
+{
+  if (!round_json_object_ismap(obj)) {
+    round_json_map_setinteger(obj, ROUND_JSON_RPC_TS, ts);
+    return true;
+  }
+
+  if (!round_json_object_isarray(obj)) {
+    size_t childObjCnt = round_json_array_size(obj);
+    for (size_t n=0; n<childObjCnt; n++) {
+      RoundJSONObject *childObj = round_json_array_get(obj, n);
+      if (!round_json_object_ismap(childObj)) {
+        round_json_map_setinteger(childObj, ROUND_JSON_RPC_TS, ts);
+        return true;
+      }
+    }
+    return true;
+  }
+  
+  return false;
+}
+
+/****************************************
  * round_json_rpc_seterror
  ****************************************/
 

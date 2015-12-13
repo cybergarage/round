@@ -33,7 +33,8 @@ RoundJSONObject *round_json_rpc_object_new();
 #define round_json_rpc_setid(obj, value) round_json_map_setstring(obj, ROUND_JSON_RPC_ID, value)
 #define round_json_rpc_setparams(obj, value) round_json_map_setstring(obj, ROUND_JSON_RPC_PARAMS, value)
 #define round_json_rpc_setresult(obj, value) round_json_map_setreplicaobject(obj, ROUND_JSON_RPC_RESULT, value)
-#define round_json_rpc_settimestamp(obj, value) round_json_map_setinteger(obj, ROUND_JSON_RPC_TS, value)
+
+bool round_json_rpc_settimestamp(RoundJSONObject* obj, long ts);
 
 bool round_json_rpc_seterror(RoundJSONObject *obj, RoundError *err);
 RoundJSONObject *round_json_rpc_error2response(RoundError* err);
