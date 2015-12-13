@@ -89,6 +89,9 @@ bool round_message_setdata(RoundMessage* msg, byte* data, size_t dataLen)
   if (!round_message_clear(msg))
     return false;
 
+  if (!data || (dataLen <= 0))
+    return true;
+  
   msg->data = (byte*)malloc(dataLen);
   if (!msg->data)
     return false;
