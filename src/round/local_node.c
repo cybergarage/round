@@ -365,7 +365,7 @@ bool round_local_node_setregistry(RoundLocalNode* node, const char* key, const c
 
   round_registry_setvalue(reg, val);
   round_registry_setts(reg, time(NULL));
-  round_registry_setlts(reg, round_node_getclock(node));
+  round_registry_setlts(reg, round_local_node_getclock(node));
 
   return true;
 }
@@ -514,7 +514,7 @@ bool round_local_node_execrequest(RoundLocalNode* node, RoundJSONObject* reqObj,
   // Set id and timestamp
 
   round_json_rpc_setrequestid(*resObj, reqObj);
-  round_json_rpc_settimestamp(*resObj, round_node_getclock(node));
+  round_json_rpc_settimestamp(*resObj, round_local_node_getclock(node));
 
   // Check node
 

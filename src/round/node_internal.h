@@ -154,8 +154,8 @@ bool round_local_node_delete(RoundLocalNode *node);
 #define round_local_node_setrequesttimeout(node,value) round_node_setrequesttimeout((RoundNode*)node,value)
 #define round_local_node_getrequesttimeout(node) round_node_getrequesttimeout((RoundNode*)node)
 
-#define round_local_node_setclockvalue(node,value) round_clock_setvalue(node->clock,value)
-#define round_local_node_getclockvalue(node) round_clock_getvalue(node->clock)
+#define round_local_node_setcloc(node,value) round_clock_setvalue(node->clock,value)
+#define round_local_node_getclock(node) round_clock_getvalue(node->clock)
 
 bool round_local_node_start(RoundLocalNode *node);
 bool round_local_node_stop(RoundLocalNode *node);
@@ -216,8 +216,8 @@ bool round_remote_node_posthttpjsonrequest(RoundRemoteNode* node, const char *re
 #define round_remote_node_setrequesttimeout(node,value) round_node_setrequesttimeout((RoundNode*)node,value)
 #define round_remote_node_getrequesttimeout(node) round_node_getrequesttimeout((RoundNode*)node)
 
-#define round_remote_node_setclockvalue(node,value) round_clock_setvalue(node->clock,value)
-#define round_remote_node_getclockvalue(node) round_clock_getvalue(node->clock)
+#define round_remote_node_setclock(node,value) round_clock_setvalue(node->clock,value)
+#define round_remote_node_getclock(node) round_clock_getvalue(node->clock)
 
 /****************************************
  * Function (Node Ring)

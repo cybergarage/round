@@ -387,8 +387,7 @@ RoundCluster* round_node_getcluster(RoundNode* node)
   if (node->cluster)
     return node->cluster;
 
-  node->cluster = round_node_getclusterbyname(
-      node, round_string_getvalue(node->clusterName));
+  node->cluster = round_node_getclusterbyname(node, round_string_getvalue(node->clusterName));
 
   return node->cluster;
 }
@@ -417,7 +416,7 @@ RoundCluster* round_node_getclusters(RoundNode* node)
 
 bool round_node_postmessage(RoundNode* node, RoundJSONObject* reqObj, RoundJSONObject** resObj, RoundError* err)
 {
-  if (node || !node->postMsgFunc)
+  if (!node || !node->postMsgFunc)
     return false;
   
   return node->postMsgFunc(node, reqObj, reqObj, err);
@@ -455,7 +454,7 @@ bool round_node_jsonrpcrequest2string(void* node, RoundJSONObject* reqObj, const
     return false;
   }
 
-  if (!round_json_object_tocompactstring(reqObj, reqStr) || (0 < round_strlen(*reqStr))) {
+  if (!round_json_object_tocompactstring(reqObj, reqStr)) {
     round_node_rpcerrorcode2error(node, ROUND_RPC_ERROR_CODE_INVALID_PARAMS, err);
     return false;
   }

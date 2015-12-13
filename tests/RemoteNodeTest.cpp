@@ -75,7 +75,7 @@ BOOST_AUTO_TEST_CASE(RemoteNodeScriping)
   // Run Scripts
   
   Round::NodeTestController nodeTestController;
-  //nodeTestController.runScriptManagerTest(node);
+  nodeTestController.runScriptManagerTest(node);
   
   BOOST_CHECK(round_client_delete(client));
   BOOST_CHECK(round_server_delete(server));
