@@ -109,6 +109,7 @@ bool round_node_setport(RoundNode *node, int port);
 #define round_node_setclock(node, value) round_clock_setvalue(node->clock, value)
 #define round_node_setremoteclock(node, value) round_clock_setremotevalue(node->clock, value)
 #define round_node_incrementclock(node) round_clock_increment(node->clock)
+bool round_node_updateclockbyjsonobject(RoundNode* node, RoundJSONObject* jsonObj);
 
 #define round_node_setpostmessagefunc(node, func) (node->postMsgFunc = (ROUND_NODE_POSTMESSAGE_FUNC)func)
 #define round_node_getpostmessagefunc(node) (node->postMsgFunc)
@@ -156,6 +157,7 @@ bool round_local_node_delete(RoundLocalNode *node);
 
 #define round_local_node_setcloc(node,value) round_clock_setvalue(node->clock,value)
 #define round_local_node_getclock(node) round_clock_getvalue(node->clock)
+#define round_local_node_updateclockbyjsonobject(node,jsonobj) round_node_updateclockbyjsonobject((RoundNode*)node,jsonobj)
 
 bool round_local_node_start(RoundLocalNode *node);
 bool round_local_node_stop(RoundLocalNode *node);
@@ -218,6 +220,7 @@ bool round_remote_node_posthttpjsonrequest(RoundRemoteNode* node, const char *re
 
 #define round_remote_node_setclock(node,value) round_clock_setvalue(node->clock,value)
 #define round_remote_node_getclock(node) round_clock_getvalue(node->clock)
+#define round_remote_node_updateclockbyjsonobject(node,jsonobj) round_node_updateclockbyjsonobject((RoundNode*)node,jsonobj)
 
 /****************************************
  * Function (Node Ring)

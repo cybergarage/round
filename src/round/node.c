@@ -218,6 +218,26 @@ clock_t round_node_getclock(RoundNode* node)
 }
 
 /****************************************
+ * round_node_updateclockbyjsonobject
+ ****************************************/
+
+bool round_node_updateclockbyjsonobject(RoundNode* node, RoundJSONObject* jsonObj)
+{
+  if (!node || !jsonObj)
+    return false;
+  
+  long ts;
+  if (round_json_rpc_gettimestamp(jsonObj, &ts)) {
+    round_node_setremoteclock(node, ts);
+  }
+  else {
+    round_node_incrementclock(node);
+  }
+
+  return true;
+}
+
+/****************************************
  * round_node_equals
  ****************************************/
 

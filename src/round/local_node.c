@@ -662,13 +662,7 @@ bool round_local_node_postmessage(RoundLocalNode* node, RoundJSONObject* reqObj,
 
   // Updated local clock
 
-  long ts;
-  if (round_json_rpc_gettimestamp(reqObj, &ts)) {
-    round_node_setremoteclock(node, ts);
-  }
-  else {
-    round_node_incrementclock(node);
-  }
+  round_local_node_updateclockbyjsonobject(node, reqObj);
 
   // Check request
 
