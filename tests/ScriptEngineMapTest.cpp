@@ -53,7 +53,7 @@ BOOST_AUTO_TEST_CASE(ScriptEngineListAdd)
     BOOST_CHECK(round_script_engine_map_remove(map, lang));
     BOOST_CHECK(!round_script_engine_map_get(map, lang));
     BOOST_CHECK_EQUAL((ROUND_TEST_MAP_SIZE - (n + 1)),
-                      round_script_engine_map_size(map));
+        round_script_engine_map_size(map));
   }
 
   BOOST_CHECK_EQUAL(0, round_script_engine_map_size(map));

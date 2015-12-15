@@ -137,7 +137,7 @@ bool round_remote_node_postjsonrequest(RoundRemoteNode* node, RoundJSONObject* r
 bool round_remote_node_postmessage(RoundRemoteNode* node, RoundJSONObject* reqObj, RoundJSONObject** resObj, RoundError* err)
 {
   round_json_rpc_settimestamp(reqObj, round_remote_node_getclock(node));
-  
+
   if (!round_remote_node_postjsonrequest(node, reqObj, resObj, err)) {
     return false;
   }

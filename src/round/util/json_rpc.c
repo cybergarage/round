@@ -54,8 +54,8 @@ bool round_json_rpc_settimestamp(RoundJSONObject* obj, long ts)
 
   if (!round_json_object_isarray(obj)) {
     size_t childObjCnt = round_json_array_size(obj);
-    for (size_t n=0; n<childObjCnt; n++) {
-      RoundJSONObject *childObj = round_json_array_get(obj, n);
+    for (size_t n = 0; n < childObjCnt; n++) {
+      RoundJSONObject* childObj = round_json_array_get(obj, n);
       if (!round_json_object_ismap(childObj)) {
         round_json_map_setinteger(childObj, ROUND_JSON_RPC_TS, ts);
         return true;
@@ -63,7 +63,7 @@ bool round_json_rpc_settimestamp(RoundJSONObject* obj, long ts)
     }
     return true;
   }
-  
+
   return false;
 }
 

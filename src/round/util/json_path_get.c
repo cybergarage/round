@@ -146,12 +146,12 @@ json_t* round_jansson_array_getobject(json_t* jsonArray, size_t n)
  ****************************************/
 
 bool round_json_object_getobjectforpath(RoundJSONObject* rootObj,
-                                        const char* pathStr,
-                                        RoundJSONObject* retObj)
+    const char* pathStr,
+    RoundJSONObject* retObj)
 {
-  char* path, *token, *ptr;
+  char *path, *token, *ptr;
 #if defined(ROUND_USE_JSON_PARSER_JANSSON)
-  json_t* rootJson, *tokenJson;
+  json_t *rootJson, *tokenJson;
 #endif
 
   if (!rootObj || !pathStr)

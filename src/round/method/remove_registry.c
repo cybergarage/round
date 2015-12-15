@@ -14,10 +14,7 @@
  * round_system_method_removemethod
  ****************************************/
 
-bool round_system_method_removeregistry(RoundLocalNode* node,
-                                        RoundJSONObject* params,
-                                        RoundJSONObject** result,
-                                        RoundError* err)
+bool round_system_method_removeregistry(RoundLocalNode* node, RoundJSONObject* params, RoundJSONObject** result, RoundError* err)
 {
   const char* key;
 

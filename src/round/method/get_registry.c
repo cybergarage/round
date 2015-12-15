@@ -14,10 +14,7 @@
  * round_system_method_setmethod
  ****************************************/
 
-bool round_system_method_getregistry(RoundLocalNode* node,
-                                     RoundJSONObject* params,
-                                     RoundJSONObject** resultMap,
-                                     RoundError* err)
+bool round_system_method_getregistry(RoundLocalNode* node, RoundJSONObject* params, RoundJSONObject** resultMap, RoundError* err)
 {
   const char* key;
   RoundRegistry* reg;

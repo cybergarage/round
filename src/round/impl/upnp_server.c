@@ -143,21 +143,21 @@ bool round_upnp_server_delete(RoundUpnpServer* server)
  * round_upnp_server_getaddress
  ****************************************/
 
-const char *round_upnp_server_getaddress(RoundUpnpServer *server)
+const char* round_upnp_server_getaddress(RoundUpnpServer* server)
 {
   if (!server)
     return NULL;
 
-  mUpnpHttpServerList *httpServers = mupnp_device_gethttpserverlist(server->dev);
+  mUpnpHttpServerList* httpServers = mupnp_device_gethttpserverlist(server->dev);
   if (!httpServers)
     return NULL;
-  
-  mUpnpHttpServer *httpServer = mupnp_http_serverlist_gets(httpServers);
+
+  mUpnpHttpServer* httpServer = mupnp_http_serverlist_gets(httpServers);
   if (!httpServer)
     return NULL;
 
   // TODO : Support multiple interface
-  
+
   return mupnp_http_request_getlocaladdress(httpServer);
 }
 
@@ -165,11 +165,10 @@ const char *round_upnp_server_getaddress(RoundUpnpServer *server)
  * round_upnp_server_getport
  ****************************************/
 
-int round_upnp_server_getport(RoundUpnpServer *server)
+int round_upnp_server_getport(RoundUpnpServer* server)
 {
   if (!server)
     return 0;
- 
+
   return mupnp_device_gethttpport(server->dev);
 }
-
