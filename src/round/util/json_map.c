@@ -33,7 +33,7 @@ json_t* round_json_map_getobject(RoundJSONObject* obj, const char* key)
  * round_json_map_getstring
  ****************************************/
 
-bool round_json_map_getstring(RoundJSONObject* obj, const char* key, const char** value)
+bool round_json_map_getstring(RoundJSONObject* obj, const char* key, const char** buf)
 {
 #if defined(ROUND_USE_JSON_PARSER_JANSSON)
   json_t* keyJson;
@@ -43,14 +43,20 @@ bool round_json_map_getstring(RoundJSONObject* obj, const char* key, const char*
     return false;
 
   if (json_typeof(keyJson) == JSON_NULL) {
-    *value = NULL;
+    *buf = NULL;
     return true;
   }
 
-  if (json_typeof(keyJson) != JSON_STRING)
-    return false;
+  if (json_typeof(keyJson) == JSON_STRING) {
+    *buf = json_string_value(keyJson);
+    return true;
+  }
 
-  *value = json_string_value(keyJson);
+  obj->dumpedStr = json_dumps(keyJson, 0);
+  if (!obj->dumpedStr)
+    return false;
+  
+  *buf = obj->dumpedStr;
 
   return true;
 #else

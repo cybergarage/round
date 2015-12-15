@@ -316,10 +316,10 @@ bool round_json_object_getbool(RoundJSONObject* obj, bool* value)
 }
 
 /****************************************
- * round_json_object_tostring
+ * round_json_object_tostringwithoption
  ****************************************/
 
-bool round_json_object_tostring(RoundJSONObject* obj, RoundOption opt, const char** str)
+bool round_json_object_tostringwithoption(RoundJSONObject* obj, RoundOption opt, const char** str)
 {
   const char* jsonObjStr;
 
@@ -348,6 +348,7 @@ bool round_json_object_tostring(RoundJSONObject* obj, RoundOption opt, const cha
   obj->dumpedStr = json_dumps(obj->jsonObj, dumpOpt);
   if (!obj->dumpedStr)
     return false;
+  
   *str = obj->dumpedStr;
   return true;
 #else
