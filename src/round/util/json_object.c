@@ -361,7 +361,7 @@ bool round_json_object_tostringwithoption(RoundJSONObject* obj, RoundOption opt,
     dumpOpt |= JSON_PRESERVE_ORDER;
   }
 
-  obj->dumpedStr = round_strdup(json_dumps(obj->jsonObj, dumpOpt));
+  obj->dumpedStr = json_dumps(obj->jsonObj, dumpOpt);
   if (!obj->dumpedStr)
     return false;
 

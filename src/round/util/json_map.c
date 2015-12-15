@@ -64,7 +64,7 @@ bool round_json_map_getstring(RoundJSONObject* obj, const char* key, const char*
     *str = obj->dumpedStr;
     break;
   default:
-    obj->dumpedStr = round_strdup(json_dumps(keyJson, 0));
+    obj->dumpedStr = json_dumps(keyJson, 0);
     *str = obj->dumpedStr;
     break;
   }
