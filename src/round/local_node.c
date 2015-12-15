@@ -1,3 +1,6 @@
+
+
+
 /******************************************************************
  *
  * Round for C
@@ -599,7 +602,7 @@ bool round_local_node_execrequest(RoundLocalNode* node, RoundJSONObject* reqObj,
     return false;
   }
 
-  const char* params;
+  const char* params = NULL;
   round_json_rpc_getparams(reqObj, &params);
 
   RoundJSONObject* resultObj = NULL;
