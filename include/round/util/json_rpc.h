@@ -45,7 +45,7 @@ bool round_json_rpc_setrequestid(RoundJSONObject *resObj, RoundJSONObject *reqOb
 #define round_json_rpc_getmethod(obj, value) round_json_map_getstring(obj, ROUND_JSON_RPC_METHOD, value)
 #define round_json_rpc_getid(obj, value) round_json_map_getstring(obj, ROUND_JSON_RPC_ID, value)
 #define round_json_rpc_getparams(obj, value) round_json_map_getstring(obj, ROUND_JSON_RPC_PARAMS, value)
-#define round_json_rpc_getresult(obj, value) round_json_map_getobject(obj, ROUND_JSON_RPC_RESULT, value)
+#define round_json_rpc_getresult(obj, value) round_json_map_getstring(obj, ROUND_JSON_RPC_RESULT, value)
 #define round_json_rpc_geterror(obj, value) round_json_map_getobject(obj, ROUND_JSON_RPC_ERROR, value)
 #define round_json_rpc_gettimestamp(obj, value) round_json_map_getinteger(obj, ROUND_JSON_RPC_TS, value)
 
