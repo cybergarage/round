@@ -102,8 +102,9 @@ bool round_json_object_getinteger(RoundJSONObject *obj, long *value);
 bool round_json_object_getreal(RoundJSONObject *obj, double *value);
 bool round_json_object_getbool(RoundJSONObject *obj, bool *value);
 
-bool round_json_object_tostring(RoundJSONObject *obj, RoundOption opt, const char **str);
-#define round_json_object_tocompactstring(obj, str) round_json_object_tostring(obj,RoundJSONOptionFormatCompact,str)
+bool round_json_object_tostringwithoption(RoundJSONObject *obj, RoundOption opt, const char **buf);
+#define round_json_object_tostring(obj, buf) round_json_object_tostringwithoption(obj,RoundJSONOptionNone,buf)
+#define round_json_object_tocompactstring(obj, buf) round_json_object_tostringwithoption(obj,RoundJSONOptionFormatCompact,buf)
 
 /****************************************
  * Functions (JSON Map)
