@@ -33,8 +33,12 @@ json_t* round_json_map_getobject(RoundJSONObject* obj, const char* key)
  * round_json_map_getstring
  ****************************************/
 
-bool round_json_map_getstring(RoundJSONObject* obj, const char* key, const char** buf)
+bool round_json_map_getstring(RoundJSONObject* obj, const char* key, const char** str)
 {
+  char buf[32];
+  
+  round_json_object_clearcaches(obj);
+  
 #if defined(ROUND_USE_JSON_PARSER_JANSSON)
   json_t* keyJson;
 
@@ -42,22 +46,29 @@ bool round_json_map_getstring(RoundJSONObject* obj, const char* key, const char*
   if (!keyJson)
     return false;
 
-  if (json_typeof(keyJson) == JSON_NULL) {
-    *buf = NULL;
-    return true;
+  switch (json_typeof(keyJson)) {
+    case JSON_NULL:
+      *str = NULL;
+      break;
+    case JSON_STRING:
+      *str = json_string_value(keyJson);
+      break;
+    case JSON_INTEGER:
+      snprintf(buf, sizeof(buf), "%lld", json_integer_value(keyJson));
+      obj->dumpedStr = round_strdup(buf);
+      *str = obj->dumpedStr;
+      break;
+    case JSON_REAL:
+      snprintf(buf, sizeof(buf), "%f", json_real_value(keyJson));
+      obj->dumpedStr = round_strdup(buf);
+      *str = obj->dumpedStr;
+      break;
+    default:
+      obj->dumpedStr = json_dumps(keyJson, 0);
+      *str = obj->dumpedStr;
+      break;
   }
-
-  if (json_typeof(keyJson) == JSON_STRING) {
-    *buf = json_string_value(keyJson);
-    return true;
-  }
-
-  obj->dumpedStr = json_dumps(keyJson, 0);
-  if (!obj->dumpedStr)
-    return false;
   
-  *buf = obj->dumpedStr;
-
   return true;
 #else
   return false;

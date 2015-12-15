@@ -59,6 +59,8 @@ bool round_json_object_delete(RoundJSONObject* obj)
   if (!obj)
     return false;
 
+  round_json_object_clearcaches(obj);
+  
 #if defined(ROUND_USE_JSON_PARSER_JANSSON)
   if (obj->jsonObj) {
     json_decref(obj->jsonObj);
@@ -71,18 +73,30 @@ bool round_json_object_delete(RoundJSONObject* obj)
     obj->childObj = NULL;
   }
 
-  if (obj->dumpedStr) {
-    free(obj->dumpedStr);
-    obj->dumpedStr = NULL;
-  }
-
   free(obj);
 
   return true;
 }
 
 /****************************************
- * round_json_object_delete
+ * round_json_object_gettype
+ ****************************************/
+
+bool round_json_object_clearcaches(RoundJSONObject *obj)
+{
+  if (!obj)
+    return false;
+  
+  if (obj->dumpedStr) {
+    free(obj->dumpedStr);
+    obj->dumpedStr = NULL;
+  }
+  
+  return true;
+}
+
+/****************************************
+ * round_json_object_gettype
  ****************************************/
 
 int round_json_object_gettype(RoundJSONObject* obj)
@@ -326,6 +340,8 @@ bool round_json_object_tostringwithoption(RoundJSONObject* obj, RoundOption opt,
   if (!obj)
     return false;
 
+  round_json_object_clearcaches(obj);
+  
   if (round_json_object_isstring(obj)) {
     round_json_object_getstring(obj, &jsonObjStr);
     obj->dumpedStr = round_strdup(jsonObjStr);
