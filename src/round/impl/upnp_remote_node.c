@@ -60,15 +60,6 @@ bool round_remote_node_posthttpjsonrequest(RoundRemoteNode* node, const char* re
     *resObj = round_json_poprootobject(json);
   }
 
-  if (*resObj) {
-    if (round_json_object_ismap(*resObj)) {
-      long ts;
-      if (round_json_rpc_gettimestamp(*resObj, &ts)) {
-        round_node_setremoteclock(node, ts);
-      }
-    }
-  }
-
   round_json_delete(json);
 
   return true;

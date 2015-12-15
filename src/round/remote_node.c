@@ -138,8 +138,11 @@ bool round_remote_node_postmessage(RoundRemoteNode* node, RoundJSONObject* reqOb
 {
   round_json_rpc_settimestamp(reqObj, round_remote_node_getclock(node));
 
-  if (!round_remote_node_postjsonrequest(node, reqObj, resObj, err)) {
-    return false;
-  }
-  return true;
+  bool isSuccess = round_remote_node_postjsonrequest(node, reqObj, resObj, err);
+
+  // Updated clock
+  
+  round_remote_node_updateclockbyjsonobject(node, *resObj);
+  
+  return isSuccess;
 }
