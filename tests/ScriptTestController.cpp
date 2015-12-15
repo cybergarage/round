@@ -87,7 +87,7 @@ void Round::Test::ScriptTestController::runEchoMethodTest(
       continue;
 
     const char* resultStr = NULL;
-    BOOST_CHECK(round_json_object_tostring(
+    BOOST_CHECK(round_json_object_tostringwithoption(
         resultObj, (RoundJSONOptionFormatCompact | RoundJSONOptionFormatSort), &resultStr));
     BOOST_CHECK(resultStr);
 
@@ -149,7 +149,7 @@ void Round::Test::ScriptTestController::runSumMethodTest(
       continue;
 
     const char* resultStr = NULL;
-    BOOST_CHECK(round_json_object_tostring(
+    BOOST_CHECK(round_json_object_tostringwithoption(
         resultObj, (RoundJSONOptionFormatCompact | RoundJSONOptionFormatSort), &resultStr));
     BOOST_CHECK(resultStr);
     BOOST_CHECK_EQUAL(results[n].c_str(), resultStr);

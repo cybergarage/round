@@ -143,7 +143,7 @@ void round_rpc_server_postresponse(mUpnpHttpRequest* httpReq, RoundJSONObject* j
   mupnp_http_response_setstatuscode(httpRes, ROUND_RPC_HTTP_STATUS_CODE_OK);
 
   const char* jsonContent = NULL;
-  round_json_object_tostring(jsonObj, RoundJSONOptionNone, &jsonContent);
+  round_json_object_tostringwithoption(jsonObj, RoundJSONOptionNone, &jsonContent);
   if (jsonContent) {
     mupnp_http_response_setcontent(httpRes, jsonContent);
     mupnp_http_response_setcontentlength(httpRes, mupnp_strlen(jsonContent));

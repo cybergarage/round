@@ -41,9 +41,15 @@ BOOST_AUTO_TEST_CASE(RpcResponse)
 
 BOOST_AUTO_TEST_CASE(RpcSetMethod)
 {
+  static const char *RPC_METHOD_PARAM = \
+    "{" \
+      "\"name\": \"hello\", " \
+      "\"method\": \"function echo(params) {return params;}\"" \
+    "}";
+  
   static const char *RPC_SET_METHOD = \
     "{\"jsonrpc\": \"2.0\"," \
-    "\"method\": \"set_method\","
+    "\"method\": \"set_method\"," \
     "\"params\": {" \
     "\"name\": \"hello\", " \
     "\"method\": \"function echo(params) {return params;}\"" \
@@ -62,16 +68,15 @@ BOOST_AUTO_TEST_CASE(RpcSetMethod)
   BOOST_CHECK(method);
   BOOST_CHECK_EQUAL(method, "set_method");
   
-  // TODO : RETURN INTERGER STRING
-  //const char *id;
-  //BOOST_CHECK(id);
-  //BOOST_CHECK(round_json_rpc_getid(rootObj, &id));
-  //BOOST_CHECK_EQUAL(id, "1");
+  const char *id;
+  BOOST_CHECK(id);
+  BOOST_CHECK(round_json_rpc_getid(rootObj, &id));
+  BOOST_CHECK_EQUAL(id, "1");
   
   const char *params;
   BOOST_CHECK(round_json_rpc_getparams(rootObj, &params));
   BOOST_CHECK(params);
-  BOOST_CHECK_EQUAL(params, "param");
+  BOOST_CHECK_EQUAL(params, RPC_METHOD_PARAM);
   
   round_json_delete(json);
 }
