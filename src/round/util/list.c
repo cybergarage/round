@@ -318,7 +318,7 @@ RoundListNode* round_list_next(RoundListNode* node)
  ****************************************/
 
 bool round_list_clear(RoundList* headList,
-                      ROUND_LIST_DESTRUCTORFUNC dstructorFunc)
+    ROUND_LIST_DESTRUCTORFUNC dstructorFunc)
 {
   RoundList* node;
 

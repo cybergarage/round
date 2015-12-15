@@ -31,7 +31,7 @@ void round_finder_upnpdevicelistener(mUpnpControlPoint* cp, const char* udn, mUp
 
   if (!mupnp_device_isdevicetype(dev, ROUND_UPNP_DEVICE_TYPE))
     return;
-  
+
   RoundNode* node = round_node_new();
   round_node_setaddress(node, mupnp_device_getaddress(dev));
   round_node_setport(node, mupnp_device_gethttpport(dev));

@@ -1,6 +1,5 @@
 
 
-
 /******************************************************************
  *
  * Round for C
@@ -190,14 +189,14 @@ bool round_local_node_delete(RoundLocalNode* node)
  * round_local_node_clear
  ****************************************/
 
-bool round_local_node_clear(RoundLocalNode *node)
+bool round_local_node_clear(RoundLocalNode* node)
 {
   if (!node)
     return false;
 
   bool isSuccess = true;
   isSuccess &= round_cluster_manager_clear(node->clusterMgr);
-  
+
   return isSuccess;
 }
 
@@ -216,7 +215,7 @@ bool round_local_node_start(RoundLocalNode* node)
   bool isSuccess = true;
 
   isSuccess &= round_local_node_clear(node);
-  
+
   isSuccess &= round_cluster_manager_addnode(node->clusterMgr, (RoundNode*)node);
   isSuccess &= round_thread_manager_start(node->threadMgr);
 
@@ -330,7 +329,7 @@ bool round_local_node_isfinalmethod(RoundLocalNode* node, const char* name)
  ****************************************/
 
 bool round_local_node_addengine(RoundLocalNode* node,
-                                RoundScriptEngine* engine)
+    RoundScriptEngine* engine)
 {
   if (!node)
     return false;
@@ -378,7 +377,7 @@ bool round_local_node_setregistry(RoundLocalNode* node, const char* key, const c
  ****************************************/
 
 RoundRegistry* round_local_node_getregistry(RoundLocalNode* node,
-                                            const char* key)
+    const char* key)
 {
   if (!node)
     return false;

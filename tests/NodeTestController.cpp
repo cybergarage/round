@@ -22,30 +22,31 @@
 // Core Functions (Script)
 ////////////////////////////////////////////////
 
-void Round::NodeTestController::runScriptManagerTest(RoundNode *node) {
-  RoundJSON *json = round_json_new();
-  RoundJSONObject*reqObj, *resObj;
+void Round::NodeTestController::runScriptManagerTest(RoundNode* node)
+{
+  RoundJSON* json = round_json_new();
+  RoundJSONObject *reqObj, *resObj;
   clock_t prevClock, postClock;
 
   /*
   std::string result;
 */
-  RoundError *err = round_error_new();
-  
+  RoundError* err = round_error_new();
+
   // Post Node Message (Overide 'set_method' method)
-  
+
   BOOST_CHECK(round_json_parse(json, Test::RPC_SET_SETMETHOD, err));
   reqObj = round_json_poprootobject(json);
   BOOST_CHECK(reqObj);
   BOOST_CHECK(round_json_object_ismap(reqObj));
 
-  prevClock = round_node_getclock(node);;
-  BOOST_CHECK(round_node_postmessage(node, reqObj, &reqObj, err));
-  postClock = round_node_getclock(node);;
+  prevClock = round_node_getclock(node);
+  BOOST_CHECK(!round_node_postmessage(node, reqObj, &reqObj, err));
+  postClock = round_node_getclock(node);
   BOOST_CHECK(prevClock < postClock);
 
   // Post Node Message (Run 'echo' method without method)
- /*
+  /*
   BOOST_CHECK(round_json_parse(json, Test::RPC_RUN_ECHO, err));
   reqObj = round_json_poprootobject(json);
   BOOST_CHECK(reqObj);
@@ -131,8 +132,9 @@ void Round::NodeTestController::runScriptManagerTest(RoundNode *node) {
 // Core Functions (Alias)
 ////////////////////////////////////////////////
 
-void Round::NodeTestController::runAliasManagerTest(RoundNode *node) {
-/*
+void Round::NodeTestController::runAliasManagerTest(RoundNode* node)
+{
+  /*
   NodeRequestParser reqParser;
   
   NodeRequest *nodeReq;
@@ -176,8 +178,9 @@ void Round::NodeTestController::runAliasManagerTest(RoundNode *node) {
 // Core Functions (Route)
 ////////////////////////////////////////////////
 
-void Round::NodeTestController::runRouteManagerTest(RoundNode *node) {
-/*
+void Round::NodeTestController::runRouteManagerTest(RoundNode* node)
+{
+  /*
   NodeRequestParser reqParser;
   
   NodeRequest *nodeReq;
@@ -261,12 +264,14 @@ void Round::NodeTestController::runRouteManagerTest(RoundNode *node) {
 // Basic Functions
 ////////////////////////////////////////////////
 
-void Round::NodeTestController::runRpcBatchTest(RoundNode *node) {
+void Round::NodeTestController::runRpcBatchTest(RoundNode* node)
+{
   // echo (Add)
   runPostBatchEchoMethodTest(node);
 }
 
-void Round::NodeTestController::runSetEchoMethodTest(RoundNode *node) {
+void Round::NodeTestController::runSetEchoMethodTest(RoundNode* node)
+{
   /*
   Error err;
   
@@ -291,8 +296,9 @@ void Round::NodeTestController::runSetEchoMethodTest(RoundNode *node) {
   BOOST_CHECK(prevClock < postClock);
    */
 }
-  
-void Round::NodeTestController::runPostEchoMethodTest(RoundNode *node) {
+
+void Round::NodeTestController::runPostEchoMethodTest(RoundNode* node)
+{
   /*
   Error err;
   
@@ -321,7 +327,8 @@ void Round::NodeTestController::runPostEchoMethodTest(RoundNode *node) {
    */
 }
 
-void Round::NodeTestController::runPostBatchEchoMethodTest(RoundNode *node) {
+void Round::NodeTestController::runPostBatchEchoMethodTest(RoundNode* node)
+{
   /*
   Error err;
   
@@ -350,7 +357,8 @@ void Round::NodeTestController::runPostBatchEchoMethodTest(RoundNode *node) {
    */
 }
 
-void Round::NodeTestController::runGetEchoMethodTest(RoundNode *node, bool isJsonRpcEncodeEnabled) {
+void Round::NodeTestController::runGetEchoMethodTest(RoundNode* node, bool isJsonRpcEncodeEnabled)
+{
   /*
   Error err;
   
@@ -391,7 +399,8 @@ void Round::NodeTestController::runGetEchoMethodTest(RoundNode *node, bool isJso
    */
 }
 
-void Round::NodeTestController::runRpcHashTest(RoundNode **nodes, size_t nodeCnt) {
+void Round::NodeTestController::runRpcHashTest(RoundNode** nodes, size_t nodeCnt)
+{
   /*
   Error err;
   
@@ -420,7 +429,8 @@ void Round::NodeTestController::runRpcHashTest(RoundNode **nodes, size_t nodeCnt
    */
 }
 
-void Round::NodeTestController::runRpcTest(RoundNode **nodes, size_t nodeCnt) {
+void Round::NodeTestController::runRpcTest(RoundNode** nodes, size_t nodeCnt)
+{
   runRpcHashTest(nodes, nodeCnt);
 }
 
@@ -428,14 +438,16 @@ void Round::NodeTestController::runRpcTest(RoundNode **nodes, size_t nodeCnt) {
 // System Methods
 ////////////////////////////////////////////////
 
-void Round::NodeTestController::runSystemEchoTest(RoundNode *node) {
+void Round::NodeTestController::runSystemEchoTest(RoundNode* node)
+{
   /*
   Error err;
   BOOST_CHECK(node->isAlive(&err));
    */
 }
 
-void Round::NodeTestController::runSystemGetNodeInfoTest(RoundNode *node) {
+void Round::NodeTestController::runSystemGetNodeInfoTest(RoundNode* node)
+{
   /*
   Error err;
   std::string jsonString;
@@ -490,7 +502,8 @@ void Round::NodeTestController::runSystemGetNodeInfoTest(RoundNode *node) {
    */
 }
 
-void Round::NodeTestController::runSystemGetClusterInfoTest(RoundNode *node) {
+void Round::NodeTestController::runSystemGetClusterInfoTest(RoundNode* node)
+{
   /*
   Error err;
   std::string jsonString;
@@ -524,8 +537,9 @@ void Round::NodeTestController::runSystemGetClusterInfoTest(RoundNode *node) {
    */
 }
 
-void Round::NodeTestController::runSystemGetNetworkInfoTest(RoundNode *node) {
-/*
+void Round::NodeTestController::runSystemGetNetworkInfoTest(RoundNode* node)
+{
+  /*
   Error err;
   std::string jsonString;
   
@@ -561,7 +575,8 @@ void Round::NodeTestController::runSystemGetNetworkInfoTest(RoundNode *node) {
  */
 }
 
-void Round::NodeTestController::runSystemRegistryTest(RoundNode *node) {
+void Round::NodeTestController::runSystemRegistryTest(RoundNode* node)
+{
   /*
   Error err;
   
@@ -584,30 +599,32 @@ void Round::NodeTestController::runSystemRegistryTest(RoundNode *node) {
   */
 }
 
-void Round::NodeTestController::runSystemMethodTest(RoundNode *node) {
+void Round::NodeTestController::runSystemMethodTest(RoundNode* node)
+{
   // _echo()
   runSystemEchoTest(node);
-  
+
   // get_node_state()
   runSystemGetNodeInfoTest(node);
-  
+
   // get_cluster_state()
   runSystemGetClusterInfoTest(node);
-  
+
   // get_network_state()
   runSystemGetNetworkInfoTest(node);
-  
+
   // set_registry() and get_registry()
   runSystemRegistryTest(node);
 }
 
-void Round::NodeTestController::runRpcTest(RoundNode *node) {
+void Round::NodeTestController::runRpcTest(RoundNode* node)
+{
   // echo (Add)
   runSetEchoMethodTest(node);
-  
+
   // echo (POST)
   runPostEchoMethodTest(node);
-/*
+  /*
   // echo (GET) only RemoteNode
   RemoteNode *remoteNode = dynamic_cast<RemoteNode *>(node);
   if (remoteNode) {
@@ -615,4 +632,3 @@ void Round::NodeTestController::runRpcTest(RoundNode *node) {
   }
 */
 }
-

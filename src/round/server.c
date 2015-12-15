@@ -70,9 +70,9 @@ bool round_server_start(RoundServer* server)
     return false;
 
   bool isSuccess = true;
-  
+
   isSuccess &= round_server_clear(server);
-  
+
   isSuccess &= round_local_node_start(server->node);
   isSuccess &= round_finder_start(server->finder);
   isSuccess &= round_rpc_server_start(server->rpcServer);
@@ -84,7 +84,7 @@ bool round_server_start(RoundServer* server)
 
   round_local_node_setaddress(server->node, round_rpc_server_getaddress(server->rpcServer));
   round_local_node_setport(server->node, round_rpc_server_getport(server->rpcServer));
-  
+
   return true;
 }
 
@@ -116,7 +116,7 @@ bool round_server_clear(RoundServer* server)
 
   bool isSuccess = true;
   isSuccess &= round_local_node_clear(server->node);
-  
+
   return isSuccess;
 }
 
@@ -139,12 +139,12 @@ bool round_server_isrunning(RoundServer* server)
  * round_server_nodeaddedlistener
  ****************************************/
 
-void round_server_nodeaddedlistener(RoundFinder *finder, RoundNode *node)
+void round_server_nodeaddedlistener(RoundFinder* finder, RoundNode* node)
 {
   if (!finder || !node)
     return;
-  
-  RoundServer *server = round_finder_getuserdata(finder);
+
+  RoundServer* server = round_finder_getuserdata(finder);
   if (!server)
     return;
 
@@ -155,14 +155,14 @@ void round_server_nodeaddedlistener(RoundFinder *finder, RoundNode *node)
  * round_server_noderemovedlistener
  ****************************************/
 
-void round_server_noderemovedlistener(RoundFinder *finder, RoundNode *node)
-{  
+void round_server_noderemovedlistener(RoundFinder* finder, RoundNode* node)
+{
   if (!finder || !node)
     return;
 
-  RoundServer *server = round_finder_getuserdata(finder);
+  RoundServer* server = round_finder_getuserdata(finder);
   if (!server)
     return;
-  
+
   round_local_node_removeclusternode(server->node, node);
 }

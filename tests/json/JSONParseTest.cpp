@@ -136,7 +136,7 @@ BOOST_AUTO_TEST_CASE(JSONParseDictInArray)
   BOOST_CHECK(round_json_parse(json, "[ {\"age\": 32,\"name\":\"John "
                                      "Smith\"},{\"age\": 31,\"name\":\"John "
                                      "Lennon\"} ]",
-                               NULL));
+      NULL));
 
   union MixValue {
     const char* s;

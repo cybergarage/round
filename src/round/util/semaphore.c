@@ -66,9 +66,9 @@ bool round_semaphore_init(RoundSemaphore* sem, size_t maxCnt)
 
 #if defined(__APPLE__)
   sem->isInitialized = (semaphore_create(mach_task_self(), &sem->semId, SYNC_POLICY_FIFO, (int)maxCnt)
-                        == KERN_SUCCESS)
-                           ? true
-                           : false;
+                           == KERN_SUCCESS)
+      ? true
+      : false;
 #else
   sem->isInitialized = (sem_init(&sem->semId, 0, maxCnt) == 0) ? true : false;
 #endif
@@ -145,8 +145,8 @@ bool round_semaphore_timedwait(RoundSemaphore* sem, time_t timeoutSec)
     machTimeout.tv_sec = (unsigned int)timeoutSec;
     machTimeout.tv_nsec = 0;
     isSuccess = (semaphore_timedwait(sem->semId, machTimeout) == KERN_SUCCESS)
-                    ? true
-                    : false;
+        ? true
+        : false;
   }
   else {
     isSuccess = (semaphore_wait(sem->semId) == KERN_SUCCESS) ? true : false;

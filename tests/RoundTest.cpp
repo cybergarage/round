@@ -19,20 +19,24 @@
 #include "RoundTest.h"
 
 struct RoundFixture {
-  RoundFixture() {
+  RoundFixture()
+  {
     Round::Test::Setup();
   }
-  
-  ~RoundFixture() {
+
+  ~RoundFixture()
+  {
   }
 };
 
 BOOST_GLOBAL_FIXTURE(RoundFixture);
 
-void Round::Test::Setup() {
+void Round::Test::Setup()
+{
 }
 
-int Round::Test::GetRandomRepeatCount(int min, int max) {
+int Round::Test::GetRandomRepeatCount(int min, int max)
+{
 #if defined(ROUND_HAVE_BOOST_RANDOM)
   boost::random::mt19937 rndEngine;
   boost::random::uniform_int_distribution<> randDist(min, max);
@@ -43,6 +47,7 @@ int Round::Test::GetRandomRepeatCount(int min, int max) {
   return randDist(rndEngine);
 }
 
-void Round::Test::Sleep(long milliSecond) {
+void Round::Test::Sleep(long milliSecond)
+{
   boost::this_thread::sleep(boost::posix_time::milliseconds(milliSecond));
 }

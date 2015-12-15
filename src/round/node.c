@@ -84,13 +84,13 @@ bool round_node_init(RoundNode* node)
  * round_node_clear
  ****************************************/
 
-bool round_node_clear(RoundNode *node)
+bool round_node_clear(RoundNode* node)
 {
   if (!node)
     return false;
 
   round_status_clear(node->status);
-  
+
   return true;
 }
 
@@ -209,7 +209,7 @@ bool round_node_getport(RoundNode* node, int* port)
  * round_node_getclock
  ****************************************/
 
-clock_t round_node_getclock(RoundNode *node)
+clock_t round_node_getclock(RoundNode* node)
 {
   if (!node)
     return 0;
@@ -418,7 +418,7 @@ bool round_node_postmessage(RoundNode* node, RoundJSONObject* reqObj, RoundJSONO
 {
   if (!node || !node->postMsgFunc)
     return false;
-  
+
   return node->postMsgFunc(node, reqObj, reqObj, err);
 }
 
