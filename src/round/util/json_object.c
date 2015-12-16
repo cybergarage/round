@@ -23,9 +23,23 @@ bool round_json_object_init(RoundJSONObject* obj)
   obj->jsonObj = NULL;
 #endif
 
-  obj->childObj = (RoundJSONObject*)calloc(1, sizeof(RoundJSONObject));
-  obj->dumpedStr = NULL;
+  round_json_object_initchildobject(obj);
+  obj->cachedStr = NULL;
 
+  return true;
+}
+
+/****************************************
+ * round_json_object_initchildobject
+ ****************************************/
+
+bool round_json_object_initchildobject(RoundJSONObject* obj)
+{
+  if (!obj)
+    return false;
+  
+  obj->childObj = (RoundJSONObject*)calloc(1, sizeof(RoundJSONObject));
+  
   return true;
 }
 
@@ -68,7 +82,13 @@ bool round_json_object_delete(RoundJSONObject* obj)
   }
 #endif
 
+  // Clear Child Nodes
+  
   if (obj->childObj) {
+    if (obj->childObj->childObj) {
+      round_json_object_delete(obj->childObj->childObj);
+      obj->childObj->childObj = NULL;
+    }
     free(obj->childObj);
     obj->childObj = NULL;
   }
@@ -87,9 +107,9 @@ bool round_json_object_clearcaches(RoundJSONObject* obj)
   if (!obj)
     return false;
 
-  if (obj->dumpedStr) {
-    free(obj->dumpedStr);
-    obj->dumpedStr = NULL;
+  if (obj->cachedStr) {
+    free(obj->cachedStr);
+    obj->cachedStr = NULL;
   }
 
   return true;
@@ -344,8 +364,8 @@ bool round_json_object_tostringwithoption(RoundJSONObject* obj, RoundOption opt,
 
   if (round_json_object_isstring(obj)) {
     round_json_object_getstring(obj, &jsonObjStr);
-    obj->dumpedStr = round_strdup(jsonObjStr);
-    *str = obj->dumpedStr;
+    obj->cachedStr = round_strdup(jsonObjStr);
+    *str = obj->cachedStr;
     return true;
   }
 
@@ -361,11 +381,11 @@ bool round_json_object_tostringwithoption(RoundJSONObject* obj, RoundOption opt,
     dumpOpt |= JSON_PRESERVE_ORDER;
   }
 
-  obj->dumpedStr = json_dumps(obj->jsonObj, dumpOpt);
-  if (!obj->dumpedStr)
+  obj->cachedStr = json_dumps(obj->jsonObj, dumpOpt);
+  if (!obj->cachedStr)
     return false;
 
-  *str = obj->dumpedStr;
+  *str = obj->cachedStr;
   return true;
 #else
   return false;

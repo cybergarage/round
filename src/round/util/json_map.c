@@ -14,16 +14,48 @@
  * round_json_map_getobject
  ****************************************/
 
+bool round_json_map_getobject(RoundJSONObject *obj, const char *key, RoundJSONObject **value)
+{
+  if (!obj || !key)
+    return false;
+  
+  if (!obj->jsonObj || !json_is_object(obj->jsonObj))
+    return false;
+  
+#if defined(ROUND_USE_JSON_PARSER_JANSSON)
+  
+  if (!obj->childObj) {
+    round_json_object_initchildobject(obj);
+  }
+  
+  obj->childObj->jsonObj = round_jansson_map_getobject(obj->jsonObj, key);
+  
+  if (!obj->childObj->jsonObj) {
+    *value = NULL;
+    return false;
+  }
+
+  *value = obj->childObj;
+  return true;
+#else
+  return false;
+#endif
+}
+
+/****************************************
+ * round_json_map_getjannsonobject
+ ****************************************/
+
 #if defined(ROUND_USE_JSON_PARSER_JANSSON)
 
-json_t* round_json_map_getobject(RoundJSONObject* obj, const char* key)
+json_t* round_json_map_getjannsonobject(RoundJSONObject *obj, const char *key)
 {
   if (!obj || !key)
     return NULL;
-
+  
   if (!obj->jsonObj || !json_is_object(obj->jsonObj))
-    return NULL;
-
+    return false;
+  
   return round_jansson_map_getobject(obj->jsonObj, key);
 }
 
@@ -40,9 +72,11 @@ bool round_json_map_getstring(RoundJSONObject* obj, const char* key, const char*
   round_json_object_clearcaches(obj);
 
 #if defined(ROUND_USE_JSON_PARSER_JANSSON)
-  json_t* keyJson;
-
-  keyJson = round_json_map_getobject(obj, key);
+  RoundJSONObject *keyObj;
+  if (!round_json_map_getobject(obj, key, &keyObj))
+    return false;
+  
+  json_t* keyJson = keyObj->jsonObj;
   if (!keyJson)
     return false;
 
@@ -55,17 +89,17 @@ bool round_json_map_getstring(RoundJSONObject* obj, const char* key, const char*
     break;
   case JSON_INTEGER:
     snprintf(buf, sizeof(buf), "%lld", json_integer_value(keyJson));
-    obj->dumpedStr = round_strdup(buf);
-    *str = obj->dumpedStr;
+    obj->cachedStr = round_strdup(buf);
+    *str = obj->cachedStr;
     break;
   case JSON_REAL:
     snprintf(buf, sizeof(buf), "%f", json_real_value(keyJson));
-    obj->dumpedStr = round_strdup(buf);
-    *str = obj->dumpedStr;
+    obj->cachedStr = round_strdup(buf);
+    *str = obj->cachedStr;
     break;
   default:
-    obj->dumpedStr = json_dumps(keyJson, 0);
-    *str = obj->dumpedStr;
+    obj->cachedStr = json_dumps(keyJson, 0);
+    *str = obj->cachedStr;
     break;
   }
 
@@ -84,7 +118,7 @@ bool round_json_map_getinteger(RoundJSONObject* obj, const char* key, long* valu
 #if defined(ROUND_USE_JSON_PARSER_JANSSON)
   json_t* keyJson;
 
-  keyJson = round_json_map_getobject(obj, key);
+  keyJson = round_json_map_getjannsonobject(obj, key);
   if (!keyJson || (json_typeof(keyJson) != JSON_INTEGER))
     return false;
 
@@ -104,7 +138,7 @@ bool round_json_map_getreal(RoundJSONObject* obj, const char* key, double* value
 #if defined(ROUND_USE_JSON_PARSER_JANSSON)
   json_t* keyJson;
 
-  keyJson = round_json_map_getobject(obj, key);
+  keyJson = round_json_map_getjannsonobject(obj, key);
   if (!keyJson || (json_typeof(keyJson) != JSON_REAL))
     return false;
 
@@ -124,7 +158,7 @@ bool round_json_map_getbool(RoundJSONObject* obj, const char* key, bool* value)
 #if defined(ROUND_USE_JSON_PARSER_JANSSON)
   json_t* keyJson;
 
-  keyJson = round_json_map_getobject(obj, key);
+  keyJson = round_json_map_getjannsonobject(obj, key);
   if (!keyJson || ((json_typeof(keyJson) != JSON_TRUE) && (json_typeof(keyJson) != JSON_FALSE)))
     return false;
 
