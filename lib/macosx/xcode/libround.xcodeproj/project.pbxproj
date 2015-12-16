@@ -20,6 +20,7 @@
 		2127082A1BD662B400000985 /* consistent_hashing.h in Headers */ = {isa = PBXBuildFile; fileRef = 212708281BD662B400000985 /* consistent_hashing.h */; };
 		212A95451B9BCA4200EC9A71 /* method_manager.c in Sources */ = {isa = PBXBuildFile; fileRef = 212A95431B9BCA4200EC9A71 /* method_manager.c */; };
 		212A95461B9BCA4200EC9A71 /* method.c in Sources */ = {isa = PBXBuildFile; fileRef = 212A95441B9BCA4200EC9A71 /* method.c */; };
+		212D04721C20AFC400DCD5B3 /* liblibmupnp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 212D046D1C20AF6D00DCD5B3 /* liblibmupnp.a */; };
 		213389D01BFAEA980014548E /* rpc_server.h in Headers */ = {isa = PBXBuildFile; fileRef = 213389CE1BFAEA980014548E /* rpc_server.h */; };
 		213389D11BFAEA980014548E /* rpc_server.c in Sources */ = {isa = PBXBuildFile; fileRef = 213389CF1BFAEA980014548E /* rpc_server.c */; };
 		21346A7E1BB4FA6B00B5F3A6 /* get_registry.c in Sources */ = {isa = PBXBuildFile; fileRef = 21346A7B1BB4FA6B00B5F3A6 /* get_registry.c */; };
@@ -119,6 +120,23 @@
 		21FBE3701B9DC803000C2512 /* map_object.c in Sources */ = {isa = PBXBuildFile; fileRef = 21FBE36E1B9DC803000C2512 /* map_object.c */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		212D046C1C20AF6D00DCD5B3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 212D04681C20AF6C00DCD5B3 /* libmupnp.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 210AF4181331182E00A2EB09;
+			remoteInfo = libmupnp;
+		};
+		212D04701C20AFBC00DCD5B3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 212D04681C20AF6C00DCD5B3 /* libmupnp.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 210AF4171331182E00A2EB09;
+			remoteInfo = libmupnp;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		210E7BA21BA145F600343445 /* json.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = json.h; path = ../../../include/round/util/json.h; sourceTree = "<group>"; };
 		211E45C91B98154A00CF0088 /* client.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = client.h; path = ../../../include/round/client.h; sourceTree = "<group>"; };
@@ -134,6 +152,7 @@
 		212A95431B9BCA4200EC9A71 /* method_manager.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = method_manager.c; path = ../../../src/round/method_manager.c; sourceTree = "<group>"; };
 		212A95441B9BCA4200EC9A71 /* method.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = method.c; path = ../../../src/round/method.c; sourceTree = "<group>"; };
 		212ADD881A8D4F000054EC0F /* liblibround.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblibround.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		212D04681C20AF6C00DCD5B3 /* libmupnp.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libmupnp.xcodeproj; path = ../../../../mupnpc/lib/macosx/xcode/libmupnp.xcodeproj; sourceTree = "<group>"; };
 		213389CE1BFAEA980014548E /* rpc_server.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = rpc_server.h; path = ../../../src/round/rpc_server.h; sourceTree = "<group>"; };
 		213389CF1BFAEA980014548E /* rpc_server.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = rpc_server.c; path = ../../../src/round/rpc_server.c; sourceTree = "<group>"; };
 		21346A7B1BB4FA6B00B5F3A6 /* get_registry.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = get_registry.c; sourceTree = "<group>"; };
@@ -238,6 +257,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				212D04721C20AFC400DCD5B3 /* liblibmupnp.a in Frameworks */,
 				219A8E2F1B9B0103004ED802 /* Ruby.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -333,6 +353,7 @@
 		212ADD7F1A8D4F000054EC0F = {
 			isa = PBXGroup;
 			children = (
+				212D04681C20AF6C00DCD5B3 /* libmupnp.xcodeproj */,
 				219A8E2E1B9B0103004ED802 /* Ruby.framework */,
 				21678EE11A8D50BD00AE79AA /* Headers */,
 				21678EF51A8D510900AE79AA /* Sources */,
@@ -344,6 +365,14 @@
 			isa = PBXGroup;
 			children = (
 				212ADD881A8D4F000054EC0F /* liblibround.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		212D04691C20AF6C00DCD5B3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				212D046D1C20AF6D00DCD5B3 /* liblibmupnp.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -513,6 +542,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				212D04711C20AFBC00DCD5B3 /* PBXTargetDependency */,
 			);
 			name = libround;
 			productName = libuecho;
@@ -543,12 +573,28 @@
 			mainGroup = 212ADD7F1A8D4F000054EC0F;
 			productRefGroup = 212ADD891A8D4F000054EC0F /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 212D04691C20AF6C00DCD5B3 /* Products */;
+					ProjectRef = 212D04681C20AF6C00DCD5B3 /* libmupnp.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				212ADD871A8D4F000054EC0F /* libround */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		212D046D1C20AF6D00DCD5B3 /* liblibmupnp.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = liblibmupnp.a;
+			remoteRef = 212D046C1C20AF6D00DCD5B3 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXSourcesBuildPhase section */
 		212ADD841A8D4F000054EC0F /* Sources */ = {
@@ -623,6 +669,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		212D04711C20AFBC00DCD5B3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = libmupnp;
+			targetProxy = 212D04701C20AFBC00DCD5B3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		212ADD8A1A8D4F000054EC0F /* Debug */ = {
