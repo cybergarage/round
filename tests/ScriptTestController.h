@@ -128,7 +128,7 @@ static const char *RPC_SET_ECHO = \
   "{\"jsonrpc\": \"2.0\"," \
    "\"method\": \"" ROUND_SYSTEM_METHOD_SET_METHOD "\","
    "\"params\": {" \
-       "\"language\": \"" RPC_SET_ECHO_LANG "\", " \
+       "\"lang\": \"" RPC_SET_ECHO_LANG "\", " \
        "\"name\": \"" RPC_SET_ECHO_NAME "\", " \
        "\"code\": \"" RPC_SET_ECHO_CODE "\"" \
    "}, \"id\": 1}";
@@ -185,7 +185,7 @@ static const char *RPC_SET_ECHO_HELLO = \
   "{\"jsonrpc\": \"2.0\"," \
   "\"method\": \"" ROUND_SYSTEM_METHOD_SET_METHOD "\","
   "\"params\": {" \
-  "\"language\": \"" RPC_ECHO_HELLO_LANG "\", " \
+  "\"lang\": \"" RPC_ECHO_HELLO_LANG "\", " \
   "\"name\": \"" RPC_ECHO_HELLO_NAME "\", " \
   "\"code\": \"" RPC_ECHO_HELLO_CODE "\"" \
   "}, \"id\": 1}";
@@ -239,7 +239,7 @@ static const char *RPC_SET_SETMETHOD = \
   "{\"jsonrpc\": \"2.0\"," \
   "\"method\": \"set_method\","
   "\"params\": {" \
-  "\"language\": \"" RPC_SET_ECHO_LANG "\", " \
+  "\"lang\": \"" RPC_SET_ECHO_LANG "\", " \
   "\"name\": \"set_method\", " \
   "\"code\": \"" RPC_SET_ECHO_CODE "\"" \
   "}, \"id\": 1}";

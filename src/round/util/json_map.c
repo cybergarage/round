@@ -11,7 +11,7 @@
 #include <round/util/json_internal.h>
 
 /****************************************
- * round_json_map_getstring
+ * round_json_map_getobject
  ****************************************/
 
 #if defined(ROUND_USE_JSON_PARSER_JANSSON)
