@@ -50,7 +50,7 @@ bool round_remote_node_posthttpjsonrequest(RoundRemoteNode* node, const char* re
   }
 
   // Set JSON Response
-  
+
   RoundJSON* json = round_json_new();
   if (!json) {
     round_node_rpcerrorcode2error(node, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR, err);
@@ -61,19 +61,19 @@ bool round_remote_node_posthttpjsonrequest(RoundRemoteNode* node, const char* re
   if (round_json_parse(json, resContent, err)) {
     *resObj = round_json_poprootobject(json);
   }
-  
+
   round_json_delete(json);
 
   // Set Error Response
-  
+
   if (!mupnp_http_response_issuccessful(httpRes)) {
     if (*resObj) {
-      RoundJSONObject *errObj;
+      RoundJSONObject* errObj;
       if (round_json_rpc_geterror(*resObj, &errObj)) {
         round_error_setjsonrpcerror(err, errObj);
       }
     }
   }
-  
+
   return true;
 }

@@ -7,10 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		210127FA1C21B9F100844A97 /* liblibround.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 214DA61C1BF7072B00F41C0E /* liblibround.a */; };
+		210127FC1C21B9F100844A97 /* liblibmupnp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 210127FB1C21B9F100844A97 /* liblibmupnp.a */; };
 		21E6F32B15493EE800F7077B /* roundd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21E6F32A15493EE800F7077B /* roundd.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		210127F71C21B9E800844A97 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 214DA6171BF7072B00F41C0E /* libround.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 212ADD871A8D4F000054EC0F;
+			remoteInfo = libround;
+		};
 		214DA61B1BF7072B00F41C0E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 214DA6171BF7072B00F41C0E /* libround.xcodeproj */;
@@ -33,6 +42,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		210127FB1C21B9F100844A97 /* liblibmupnp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liblibmupnp.a; path = "../../../../../../Library/Developer/Xcode/DerivedData/roundd-bubhfdlqfpuqdegujiwotozdfylv/Build/Products/Debug/liblibmupnp.a"; sourceTree = "<group>"; };
 		214DA6171BF7072B00F41C0E /* libround.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libround.xcodeproj; path = ../../../../lib/macosx/xcode/libround.xcodeproj; sourceTree = "<group>"; };
 		2191B3BB15493B4C003B80F4 /* roundd */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = roundd; sourceTree = BUILT_PRODUCTS_DIR; };
 		21E6F32A15493EE800F7077B /* roundd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = roundd.cpp; path = ../../roundd.cpp; sourceTree = "<group>"; };
@@ -43,6 +53,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				210127FC1C21B9F100844A97 /* liblibmupnp.a in Frameworks */,
+				210127FA1C21B9F100844A97 /* liblibround.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,6 +89,7 @@
 		21E6F31E15493EB300F7077B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				210127FB1C21B9F100844A97 /* liblibmupnp.a */,
 				214DA6171BF7072B00F41C0E /* libround.xcodeproj */,
 			);
 			name = Frameworks;
@@ -104,6 +117,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				210127F81C21B9E800844A97 /* PBXTargetDependency */,
 			);
 			name = roundd;
 			productName = fractald;
@@ -116,7 +130,7 @@
 		2191B3B215493B4C003B80F4 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0630;
+				LastUpgradeCheck = 0710;
 			};
 			buildConfigurationList = 2191B3B515493B4C003B80F4 /* Build configuration list for PBXProject "roundd" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -162,6 +176,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		210127F81C21B9E800844A97 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = libround;
+			targetProxy = 210127F71C21B9E800844A97 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
 		2191B3C315493B4C003B80F4 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -178,6 +200,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;

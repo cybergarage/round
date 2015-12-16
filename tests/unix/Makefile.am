@@ -12,6 +12,7 @@ noinst_PROGRAMS = roundtest
 
 AM_CPPFLAGS = -I$(top_srcdir)/include -I$(top_srcdir)/src -I../
 
+	..//NodeTestController.h \
 	..//RoundTest.h \
 	..//ScriptTestController.h
 
@@ -36,6 +37,7 @@ roundtest_SOURCES = \
 	..//MethodTest.cpp \
 	..//NodeRingTest.cpp \
 	..//NodeTest.cpp \
+	..//NodeTestController.cpp \
 	..//RegistryTest.cpp \
 	..//RemoteNodeTest.cpp \
 	..//RoundTest.cpp \
@@ -53,8 +55,10 @@ roundtest_SOURCES = \
 	..//util/ListTest.cpp \
 	..//util/MapTest.cpp \
 	..//util/MutexTest.cpp \
+	..//util/OptionTest.cpp \
 	..//util/QueueTest.cpp \
 	..//util/SemaphoreTest.cpp \
+	..//util/StatusTest.cpp \
 	..//util/StringTest.cpp
 #if HAVE_LIBTOOL
 #roundtest_LDADD = @HTTP_LIBS@ @XML_LIBS@ ../../lib/unix/libround.la

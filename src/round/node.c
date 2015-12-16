@@ -225,7 +225,7 @@ bool round_node_updateclockbyjsonobject(RoundNode* node, RoundJSONObject* jsonOb
 {
   if (!node)
     return false;
-  
+
   long ts;
   if (jsonObj && round_json_rpc_gettimestamp(jsonObj, &ts)) {
     round_node_setremoteclock(node, ts);
