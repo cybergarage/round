@@ -11,7 +11,7 @@
 #include <round/method/system_method.h>
 
 /****************************************
- * round_system_method_setmethod
+ * round_system_method_setregistry
  ****************************************/
 
 bool round_system_method_setregistry(RoundLocalNode* node, RoundJSONObject* params, RoundJSONObject** result, RoundError* err)
