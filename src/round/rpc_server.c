@@ -148,6 +148,9 @@ void round_rpc_server_postresponse(mUpnpHttpRequest* httpReq, RoundJSONObject* j
     mupnp_http_response_setcontent(httpRes, jsonContent);
     mupnp_http_response_setcontentlength(httpRes, mupnp_strlen(jsonContent));
   }
+  else {
+    mupnp_http_response_setcontentlength(httpRes, 0);
+  }
 
   mupnp_http_request_postresponse(httpReq, httpRes);
   mupnp_http_response_delete(httpRes);
@@ -160,8 +163,9 @@ void round_rpc_server_postresponse(mUpnpHttpRequest* httpReq, RoundJSONObject* j
 void round_rpc_server_posterrorresponse(mUpnpHttpRequest* httpReq, int rpcErrCode)
 {
   mUpnpHttpResponse* httpRes = mupnp_http_response_new();
-  mupnp_http_response_setstatuscode(
-      httpRes, round_json_rpc_errorcode2httpstatuscode(rpcErrCode));
+
+  mupnp_http_response_setstatuscode(httpRes, round_json_rpc_errorcode2httpstatuscode(rpcErrCode));
+  mupnp_http_response_setcontentlength(httpRes, 0);
 
   // TODO : Set JSON response content
   // RoundError *err = round_error_new();

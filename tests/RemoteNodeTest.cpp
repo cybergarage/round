@@ -53,14 +53,15 @@ BOOST_AUTO_TEST_CASE(RemoteNodeScriping)
   RoundClient* client = round_client_new();
   BOOST_CHECK(client);
   BOOST_CHECK(round_client_start(client));
+  Round::Test::Sleep();
 
   RoundServer* server = round_server_new();
   BOOST_CHECK(server);
   BOOST_CHECK(round_server_start(server));
+  Round::Test::Sleep();
 
   // Get remote node
 
-  Round::Test::Sleep();
   while (round_client_getclustersize(client) < 1) {
     //BOOST_MESSAGE("Cluster is not found ...");
     Round::Test::Sleep();
