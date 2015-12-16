@@ -85,7 +85,7 @@ void Round::NodeTestController::runScriptManagerTest(RoundNode* node)
   BOOST_CHECK(prevClock < postClock);
 
   result = NULL;
-  BOOST_CHECK(round_json_rpc_getresult(resObj, &result));
+  BOOST_CHECK(round_json_rpc_getresultstring(resObj, &result));
   BOOST_CHECK(result);
   BOOST_CHECK_EQUAL(result, RPC_SET_ECHO_PARAMS);
   
@@ -116,7 +116,7 @@ void Round::NodeTestController::runScriptManagerTest(RoundNode* node)
   BOOST_CHECK(prevClock < postClock);
   
   result = NULL;
-  BOOST_CHECK(round_json_rpc_getresult(resObj, &result));
+  BOOST_CHECK(round_json_rpc_getresultstring(resObj, &result));
   BOOST_CHECK(result);
   BOOST_CHECK_EQUAL(result, RPC_SET_ECHO_PARAMS);
 
@@ -597,26 +597,31 @@ void Round::NodeTestController::runSystemGetNetworkInfoTest(RoundNode* node)
 
 void Round::NodeTestController::runSystemRegistryTest(RoundNode* node)
 {
-  /*
-  Error err;
+  #define REGISTRY_TEST_CNT 10
   
-  string key = "key";
-  string value;
-  string valueBuf;
+  char key[32], val[32];
   
-  BOOST_CHECK_EQUAL(node->getRegistry(key, &valueBuf, &err), false);
+  RoundError *err = round_error_new();
   
-  value = "hello";
-  BOOST_CHECK(node->setRegistry(key, value, &err));
-  BOOST_CHECK_EQUAL(node->getRegistry(key, &valueBuf, &err), true);
-  BOOST_CHECK_EQUAL(valueBuf.compare(value), 0);
+  for (int n=0; n<REGISTRY_TEST_CNT; n++) {
+    snprintf(key, sizeof(key), "/key%d", n);
+    snprintf(val, sizeof(val), "val%d", n);
+    BOOST_CHECK(round_node_setregistry(node, key, val, err));
+  }
+
+  for (int n=0; n<REGISTRY_TEST_CNT; n++) {
+    snprintf(key, sizeof(key), "/key%d", n);
+    snprintf(val, sizeof(val), "val%d", n);
+    char *keyVal = NULL;
+    BOOST_CHECK(round_node_getregistry(node, key, &keyVal, err));
+    BOOST_CHECK(keyVal);
+    if (!keyVal)
+      continue;
+    BOOST_CHECK_EQUAL(keyVal, key);
+    free(keyVal);
+  }
   
-  value = "world";
-  BOOST_CHECK(node->setRegistry(key, value, &err));
-  BOOST_CHECK_EQUAL(node->getRegistry(key, &valueBuf, &err), true);
-  BOOST_CHECK_EQUAL(valueBuf.compare(value), 0);
-  
-  */
+  round_error_delete(err);
 }
 
 void Round::NodeTestController::runSystemMethodTest(RoundNode* node)
@@ -639,6 +644,7 @@ void Round::NodeTestController::runSystemMethodTest(RoundNode* node)
 
 void Round::NodeTestController::runRpcTest(RoundNode* node)
 {
+  /*
   // echo (Add)
   runSetEchoMethodTest(node);
 

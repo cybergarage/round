@@ -69,6 +69,13 @@ bool round_node_postmessage(RoundNode *node, RoundJSONObject *reqObj, RoundJSONO
 
 bool round_node_equals(RoundNode *node1, RoundNode *node2);  
 
+/****************************************
+ * Function (Node Methods)
+ ****************************************/
+
+bool round_node_setregistry(RoundNode* node, const char *key, const char *value, RoundError *err);
+bool round_node_getregistry(RoundNode* node, const char *key, char **value, RoundError *err);
+
 #ifdef  __cplusplus
 } /* extern C */
 #endif
