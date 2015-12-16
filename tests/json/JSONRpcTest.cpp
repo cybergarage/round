@@ -72,7 +72,7 @@ BOOST_AUTO_TEST_CASE(RpcSetMethod)
   BOOST_CHECK_EQUAL(id, "1");
 
   const char* params;
-  BOOST_CHECK(round_json_rpc_getparams(rootObj, &params));
+  BOOST_CHECK(round_json_rpc_getparamsstring(rootObj, &params));
   BOOST_CHECK(params);
   BOOST_CHECK_EQUAL(params, RPC_METHOD_PARAM);
 
@@ -97,7 +97,7 @@ BOOST_AUTO_TEST_CASE(RpcResponseResult)
   BOOST_CHECK_EQUAL(id, "1");
   
   const char* params;
-  BOOST_CHECK(round_json_rpc_getresult(rootObj, &params));
+  BOOST_CHECK(round_json_rpc_getresultstring(rootObj, &params));
   BOOST_CHECK(params);
   BOOST_CHECK_EQUAL(params, "[1, 2, 3]");
   

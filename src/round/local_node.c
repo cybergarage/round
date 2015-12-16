@@ -358,11 +358,11 @@ bool round_local_node_setregistry(RoundLocalNode* node, const char* key, const c
     reg = round_registry_new();
     if (!reg)
       return false;
-    if (round_registry_manager_set(node->regMgr, reg)) {
+    round_registry_setkey(reg, key);
+    if (!round_registry_manager_set(node->regMgr, reg)) {
       round_registry_delete(reg);
       return false;
     }
-    round_registry_setkey(reg, key);
   }
 
   round_registry_setvalue(reg, val);
@@ -602,7 +602,7 @@ bool round_local_node_execrequest(RoundLocalNode* node, RoundJSONObject* reqObj,
   }
 
   const char* params = NULL;
-  round_json_rpc_getparams(reqObj, &params);
+  round_json_rpc_getparamsstring(reqObj, &params);
 
   RoundJSONObject* resultObj = NULL;
   bool isMethodExecuted = round_method_manager_execmethod(node->methodMgr, method, params, &resultObj, err);
