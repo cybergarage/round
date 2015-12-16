@@ -102,6 +102,19 @@ void Round::NodeTestController::runScriptManagerTest(RoundNode* node)
   postClock = round_node_getclock(node);;
   BOOST_CHECK(prevClock < postClock);
   
+  // Post Node Message (Run 'echo' method)
+  
+  BOOST_CHECK(round_json_parse(json, Test::RPC_RUN_ECHO, err));
+  reqObj = round_json_poprootobject(json);
+  BOOST_CHECK(reqObj);
+  BOOST_CHECK(round_json_object_ismap(reqObj));
+  
+  prevClock = round_node_getclock(node);;
+  resObj = NULL;
+  BOOST_CHECK(round_node_postmessage(node, reqObj, &resObj, err));
+  postClock = round_node_getclock(node);;
+  BOOST_CHECK(prevClock < postClock);
+  
   result = NULL;
   BOOST_CHECK(round_json_rpc_getresult(resObj, &result));
   BOOST_CHECK(result);

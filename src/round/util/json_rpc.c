@@ -8,6 +8,7 @@
  *
  ******************************************************************/
 
+#include <round/error_internal.h>
 #include <round/util/json_rpc.h>
 
 /****************************************
@@ -123,3 +124,30 @@ RoundJSONObject* round_json_rpc_error2response(RoundError* err)
 
   return resObj;
 }
+
+/****************************************
+ * round_error_setjsonrpcerror
+ ****************************************/
+
+bool round_error_setjsonrpcerror(RoundError *err, RoundJSONObject *errObj)
+{
+  if (!err || !errObj)
+    return false;
+  
+  if (!round_json_object_ismap(errObj))
+    return false;
+
+  long errCode;
+  if (round_json_rpc_geterrorcode(errObj, &errCode)) {
+    round_error_setjsonrpcerrorcode(err, (int)errCode);
+    round_error_setdetailcode(err, (int)errCode);
+  }
+
+  const char *errMsg;
+  if (round_json_rpc_geterrormessage(errObj, &errMsg)) {
+    round_error_setdetailmessage(err, errMsg);
+  }
+  
+  return true;
+}
+

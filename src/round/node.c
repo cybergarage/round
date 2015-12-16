@@ -223,11 +223,11 @@ clock_t round_node_getclock(RoundNode* node)
 
 bool round_node_updateclockbyjsonobject(RoundNode* node, RoundJSONObject* jsonObj)
 {
-  if (!node || !jsonObj)
+  if (!node)
     return false;
   
   long ts;
-  if (round_json_rpc_gettimestamp(jsonObj, &ts)) {
+  if (jsonObj && round_json_rpc_gettimestamp(jsonObj, &ts)) {
     round_node_setremoteclock(node, ts);
   }
   else {
