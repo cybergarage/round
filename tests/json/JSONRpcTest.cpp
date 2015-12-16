@@ -79,4 +79,29 @@ BOOST_AUTO_TEST_CASE(RpcSetMethod)
   round_json_delete(json);
 }
 
+BOOST_AUTO_TEST_CASE(RpcResponseResult)
+{
+  static const char* RPC_RESPONSE_RESULT = "{\"jsonrpc\": \"2.0\", \"id\": \"1\", \"result\": [1, 2, 3]}";
+  
+  RoundJSON* json = round_json_new();
+  BOOST_CHECK(json);
+  BOOST_CHECK(round_json_parse(json, RPC_RESPONSE_RESULT, NULL));
+  
+  RoundJSONObject* rootObj = round_json_getrootobject(json);
+  BOOST_CHECK(rootObj);
+  BOOST_CHECK(round_json_object_ismap(rootObj));
+  
+  const char* id;
+  BOOST_CHECK(id);
+  BOOST_CHECK(round_json_rpc_getid(rootObj, &id));
+  BOOST_CHECK_EQUAL(id, "1");
+  
+  const char* params;
+  BOOST_CHECK(round_json_rpc_getresult(rootObj, &params));
+  BOOST_CHECK(params);
+  BOOST_CHECK_EQUAL(params, "[1, 2, 3]");
+  
+  round_json_delete(json);
+}
+
 BOOST_AUTO_TEST_SUITE_END()
