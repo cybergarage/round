@@ -11,7 +11,7 @@
 #include <round/method/system_method.h>
 
 /****************************************
- * round_system_method_setmethod
+ * round_system_method_getregistry
  ****************************************/
 
 bool round_system_method_getregistry(RoundLocalNode* node, RoundJSONObject* params, RoundJSONObject** resultMap, RoundError* err)
@@ -36,7 +36,7 @@ bool round_system_method_getregistry(RoundLocalNode* node, RoundJSONObject* para
   }
 
   *resultMap = round_json_map_new();
-  if (*resultMap) {
+  if (!(*resultMap)) {
     round_error_setjsonrpcerrorcode(err, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR);
     return false;
   }
