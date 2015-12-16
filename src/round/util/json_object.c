@@ -37,9 +37,9 @@ bool round_json_object_initchildobject(RoundJSONObject* obj)
 {
   if (!obj)
     return false;
-  
+
   obj->childObj = (RoundJSONObject*)calloc(1, sizeof(RoundJSONObject));
-  
+
   return true;
 }
 
@@ -83,7 +83,7 @@ bool round_json_object_delete(RoundJSONObject* obj)
 #endif
 
   // Clear Child Nodes
-  
+
   if (obj->childObj) {
     if (obj->childObj->childObj) {
       round_json_object_delete(obj->childObj->childObj);

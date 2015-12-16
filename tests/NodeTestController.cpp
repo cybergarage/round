@@ -27,7 +27,7 @@ void Round::NodeTestController::runScriptManagerTest(RoundNode* node)
   RoundJSON* json = round_json_new();
   RoundJSONObject *reqObj, *resObj;
   clock_t prevClock, postClock;
-  const char *result;
+  const char* result;
 
   RoundError* err = round_error_new();
 
@@ -55,96 +55,109 @@ void Round::NodeTestController::runScriptManagerTest(RoundNode* node)
   resObj = NULL;
   BOOST_CHECK(!round_node_postmessage(node, reqObj, &resObj, err));
   BOOST_CHECK_EQUAL(round_error_getdetailcode(err), ROUND_RPC_ERROR_CODE_METHOD_NOT_FOUND);
-  postClock = round_node_getclock(node);;
+  postClock = round_node_getclock(node);
+  ;
   BOOST_CHECK(prevClock < postClock);
 
   // Post Node Message (Set 'echo' method)
-  
+
   BOOST_CHECK(round_json_parse(json, Test::RPC_SET_ECHO, err));
   reqObj = round_json_poprootobject(json);
   BOOST_CHECK(reqObj);
   BOOST_CHECK(round_json_object_ismap(reqObj));
-  
-  prevClock = round_node_getclock(node);;
+
+  prevClock = round_node_getclock(node);
+  ;
   resObj = NULL;
   BOOST_CHECK(round_node_postmessage(node, reqObj, &resObj, err));
-  postClock = round_node_getclock(node);;
+  postClock = round_node_getclock(node);
+  ;
   BOOST_CHECK(prevClock < postClock);
 
   // Post Node Message (Run 'echo' method)
-  
+
   BOOST_CHECK(round_json_parse(json, Test::RPC_RUN_ECHO, err));
   reqObj = round_json_poprootobject(json);
   BOOST_CHECK(reqObj);
   BOOST_CHECK(round_json_object_ismap(reqObj));
-  
-  prevClock = round_node_getclock(node);;
+
+  prevClock = round_node_getclock(node);
+  ;
   resObj = NULL;
   BOOST_CHECK(round_node_postmessage(node, reqObj, &resObj, err));
-  postClock = round_node_getclock(node);;
+  postClock = round_node_getclock(node);
+  ;
   BOOST_CHECK(prevClock < postClock);
 
   result = NULL;
   BOOST_CHECK(round_json_rpc_getresultstring(resObj, &result));
   BOOST_CHECK(result);
   BOOST_CHECK_EQUAL(result, RPC_SET_ECHO_PARAMS);
-  
+
   // Post Node Message (Override 'echo' method)
-  
+
   BOOST_CHECK(round_json_parse(json, Test::RPC_SET_ECHO, err));
   reqObj = round_json_poprootobject(json);
   BOOST_CHECK(reqObj);
   BOOST_CHECK(round_json_object_ismap(reqObj));
-  
-  prevClock = round_node_getclock(node);;
+
+  prevClock = round_node_getclock(node);
+  ;
   resObj = NULL;
   BOOST_CHECK(round_node_postmessage(node, reqObj, &resObj, err));
-  postClock = round_node_getclock(node);;
+  postClock = round_node_getclock(node);
+  ;
   BOOST_CHECK(prevClock < postClock);
-  
+
   // Post Node Message (Run 'echo' method)
-  
+
   BOOST_CHECK(round_json_parse(json, Test::RPC_RUN_ECHO, err));
   reqObj = round_json_poprootobject(json);
   BOOST_CHECK(reqObj);
   BOOST_CHECK(round_json_object_ismap(reqObj));
-  
-  prevClock = round_node_getclock(node);;
+
+  prevClock = round_node_getclock(node);
+  ;
   resObj = NULL;
   BOOST_CHECK(round_node_postmessage(node, reqObj, &resObj, err));
-  postClock = round_node_getclock(node);;
+  postClock = round_node_getclock(node);
+  ;
   BOOST_CHECK(prevClock < postClock);
-  
+
   result = NULL;
   BOOST_CHECK(round_json_rpc_getresultstring(resObj, &result));
   BOOST_CHECK(result);
   BOOST_CHECK_EQUAL(result, RPC_SET_ECHO_PARAMS);
 
   // Post Node Message (Remove 'echo' method)
-  
+
   BOOST_CHECK(round_json_parse(json, Test::RPC_REMOVE_ECHO, err));
   reqObj = round_json_poprootobject(json);
   BOOST_CHECK(reqObj);
   BOOST_CHECK(round_json_object_ismap(reqObj));
-  
-  prevClock = round_node_getclock(node);;
+
+  prevClock = round_node_getclock(node);
+  ;
   resObj = NULL;
   BOOST_CHECK(round_node_postmessage(node, reqObj, &resObj, err));
-  postClock = round_node_getclock(node);;
+  postClock = round_node_getclock(node);
+  ;
   BOOST_CHECK(prevClock < postClock);
-  
+
   // Post Node Message (Run 'echo' method)
-  
+
   BOOST_CHECK(round_json_parse(json, Test::RPC_RUN_ECHO, err));
   reqObj = round_json_poprootobject(json);
   BOOST_CHECK(reqObj);
   BOOST_CHECK(round_json_object_ismap(reqObj));
 
-  prevClock = round_node_getclock(node);;
+  prevClock = round_node_getclock(node);
+  ;
   resObj = NULL;
   BOOST_CHECK(!round_node_postmessage(node, reqObj, &resObj, err));
   BOOST_CHECK_EQUAL(round_error_getdetailcode(err), ROUND_RPC_ERROR_CODE_METHOD_NOT_FOUND);
-  postClock = round_node_getclock(node);;
+  postClock = round_node_getclock(node);
+  ;
   BOOST_CHECK(prevClock < postClock);
 }
 
@@ -597,22 +610,22 @@ void Round::NodeTestController::runSystemGetNetworkInfoTest(RoundNode* node)
 
 void Round::NodeTestController::runSystemRegistryTest(RoundNode* node)
 {
-  #define REGISTRY_TEST_CNT 10
-  
+#define REGISTRY_TEST_CNT 10
+
   char key[32], val[32];
-  
-  RoundError *err = round_error_new();
-  
-  for (int n=0; n<REGISTRY_TEST_CNT; n++) {
+
+  RoundError* err = round_error_new();
+
+  for (int n = 0; n < REGISTRY_TEST_CNT; n++) {
     snprintf(key, sizeof(key), "/key%d", n);
     snprintf(val, sizeof(val), "val%d", n);
     BOOST_CHECK(round_node_setregistry(node, key, val, err));
   }
 
-  for (int n=0; n<REGISTRY_TEST_CNT; n++) {
+  for (int n = 0; n < REGISTRY_TEST_CNT; n++) {
     snprintf(key, sizeof(key), "/key%d", n);
     snprintf(val, sizeof(val), "val%d", n);
-    char *keyVal = NULL;
+    char* keyVal = NULL;
     BOOST_CHECK(round_node_getregistry(node, key, &keyVal, err));
     BOOST_CHECK(keyVal);
     if (!keyVal)
@@ -620,12 +633,12 @@ void Round::NodeTestController::runSystemRegistryTest(RoundNode* node)
     BOOST_CHECK_EQUAL(keyVal, key);
     free(keyVal);
   }
-  
-  for (int n=0; n<REGISTRY_TEST_CNT; n++) {
+
+  for (int n = 0; n < REGISTRY_TEST_CNT; n++) {
     snprintf(key, sizeof(key), "/key%d", n);
     BOOST_CHECK(round_node_removeregistry(node, key, err));
   }
-  
+
   round_error_delete(err);
 }
 

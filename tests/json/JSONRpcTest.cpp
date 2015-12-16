@@ -82,49 +82,49 @@ BOOST_AUTO_TEST_CASE(RpcSetMethod)
 BOOST_AUTO_TEST_CASE(RpcResponseResult)
 {
   static const char* RPC_RESPONSE_RESULT = "{\"jsonrpc\": \"2.0\", \"id\": \"1\", \"result\": [1, 2, 3]}";
-  
+
   RoundJSON* json = round_json_new();
   BOOST_CHECK(json);
   BOOST_CHECK(round_json_parse(json, RPC_RESPONSE_RESULT, NULL));
-  
+
   RoundJSONObject* rootObj = round_json_getrootobject(json);
   BOOST_CHECK(rootObj);
   BOOST_CHECK(round_json_object_ismap(rootObj));
-  
+
   const char* id;
   BOOST_CHECK(id);
   BOOST_CHECK(round_json_rpc_getid(rootObj, &id));
   BOOST_CHECK_EQUAL(id, "1");
-  
+
   const char* params;
   BOOST_CHECK(round_json_rpc_getresultstring(rootObj, &params));
   BOOST_CHECK(params);
   BOOST_CHECK_EQUAL(params, "[1, 2, 3]");
-  
+
   round_json_delete(json);
 }
 
 BOOST_AUTO_TEST_CASE(RpcErrorResponse)
 {
   static const char* RPC_ERROR_RESPONSE = "{\"jsonrpc\": \"2.0\", \"id\": \"1\", \"error\": {\"code\": -32600, \"message\": \"Invalid Request\"}}";
-  
+
   RoundJSON* json = round_json_new();
   BOOST_CHECK(json);
   BOOST_CHECK(round_json_parse(json, RPC_ERROR_RESPONSE, NULL));
-  
+
   RoundJSONObject* rootObj = round_json_getrootobject(json);
   BOOST_CHECK(rootObj);
   BOOST_CHECK(round_json_object_ismap(rootObj));
 
-  RoundJSONObject *errObj;
+  RoundJSONObject* errObj;
   BOOST_CHECK(round_json_rpc_geterror(rootObj, &errObj));
   BOOST_CHECK(errObj);
-  
+
   long errCode;
   BOOST_CHECK(round_json_rpc_geterrorcode(errObj, &errCode));
   BOOST_CHECK_EQUAL(errCode, -32600);
 
-  const char *errMsg;
+  const char* errMsg;
   BOOST_CHECK(round_json_rpc_geterrormessage(errObj, &errMsg));
   BOOST_CHECK_EQUAL(errMsg, "Invalid Request");
 

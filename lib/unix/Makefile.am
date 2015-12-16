@@ -41,6 +41,7 @@ round_mpi_sources = \
 	../../src/round/method_manager.c \
 	../../src/round/method_map.c \
 	../../src/round/node.c \
+	../../src/round/node_methods.c \
 	../../src/round/node_ring.c \
 	../../src/round/registry.c \
 	../../src/round/registry_manager.c \

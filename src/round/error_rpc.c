@@ -107,7 +107,7 @@ bool round_error_setjsonrpcerrorcode(RoundError* err, int rpcErrCode)
   round_error_setcode(err, httpStatusCode);
 
   round_error_setdetailcode(err, rpcErrCode);
-  round_error_setdetailmessage(err,round_json_rpc_errorcode2string(rpcErrCode));
+  round_error_setdetailmessage(err, round_json_rpc_errorcode2string(rpcErrCode));
 
   return true;
 }

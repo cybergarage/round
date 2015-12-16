@@ -141,8 +141,8 @@ bool round_remote_node_postmessage(RoundRemoteNode* node, RoundJSONObject* reqOb
   bool isSuccess = round_remote_node_postjsonrequest(node, reqObj, resObj, err);
 
   // Updated clock
-  
+
   round_remote_node_updateclockbyjsonobject(node, *resObj);
-  
+
   return isSuccess;
 }

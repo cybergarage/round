@@ -24,7 +24,7 @@
 extern "C" {
 #endif
 
-#if defined(__APPLE__)
+#if defined(__APPLE__) && !defined(HAVE_CONFIG_H)
 
 #define ROUND_SUPPORT_JS_SM
 //#define ROUND_SUPPORT_LUA

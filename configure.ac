@@ -110,7 +110,7 @@ AC_CHECK_HEADERS([expat.h])
 AC_CHECK_LIB([expat],[main],
 [
   FOUND_EXPAT=yes
-	XML_LIBS+="-lexpat"
+	XML_LIBS+="-lexpat "
 ],
 []
 )

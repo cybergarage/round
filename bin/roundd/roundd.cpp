@@ -18,7 +18,9 @@
 #include <histedit.h>
 #include <signal.h>
 
-#include <round/Round.h>
+#include <round/round.h>
+#include <round/server.h>
+
 //#include <round/ui/Console.h>
 
 // typedef std::map<std::string,std::string> RounddOptionsDictionary;
@@ -38,8 +40,11 @@ int main(int argc, char* argv[])
   int bindPort = 0;
 
   // Setup Server
+   */
 
-  Round::Console::Server server;
+  RoundServer* server = round_server_new();
+
+  /*
   server.setFirstArgument(argv[0]);
 
   // Parse options
@@ -164,11 +169,11 @@ int main(int argc, char* argv[])
       exit(EXIT_FAILURE);
     }
   }
+*/
 
   // Start server
 
-  if (server.start(&err) == false) {
-    Round::RoundLog(err);
+  if (!round_server_start(server)) {
     exit(EXIT_FAILURE);
   }
 
@@ -186,23 +191,17 @@ int main(int argc, char* argv[])
     switch (sigNo) {
     case SIGTERM:
     case SIGINT:
-    case SIGKILL:
-      {
-        server.stop(&err);
-        isRunnging = false;
+    case SIGKILL: {
+      round_server_stop(server);
+      isRunnging = false;
+    } break;
+    case SIGHUP: {
+      if (!round_server_start(server)) {
+        exit(EXIT_FAILURE);
       }
-      break;
-    case SIGHUP:
-      {
-        if (server.start(&err) == false) {
-          Round::RoundLog(err);
-          exit(EXIT_FAILURE);
-        }
-      }
-      break;
+    } break;
     }
   }
-  */
 
   return EXIT_SUCCESS;
 }

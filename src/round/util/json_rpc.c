@@ -129,11 +129,11 @@ RoundJSONObject* round_json_rpc_error2response(RoundError* err)
  * round_error_setjsonrpcerror
  ****************************************/
 
-bool round_error_setjsonrpcerror(RoundError *err, RoundJSONObject *errObj)
+bool round_error_setjsonrpcerror(RoundError* err, RoundJSONObject* errObj)
 {
   if (!err || !errObj)
     return false;
-  
+
   if (!round_json_object_ismap(errObj))
     return false;
 
@@ -143,11 +143,10 @@ bool round_error_setjsonrpcerror(RoundError *err, RoundJSONObject *errObj)
     round_error_setdetailcode(err, (int)errCode);
   }
 
-  const char *errMsg;
+  const char* errMsg;
   if (round_json_rpc_geterrormessage(errObj, &errMsg)) {
     round_error_setdetailmessage(err, errMsg);
   }
-  
+
   return true;
 }
-
