@@ -38,6 +38,7 @@ bool round_json_rpc_settimestamp(RoundJSONObject* obj, long ts);
 
 bool round_json_rpc_seterror(RoundJSONObject *obj, RoundError *err);
 RoundJSONObject *round_json_rpc_error2response(RoundError* err);
+bool round_error_setjsonrpcerror(RoundError *err, RoundJSONObject *errObj);
 
 bool round_json_rpc_setrequestid(RoundJSONObject *resObj, RoundJSONObject *reqObj);
   
@@ -46,8 +47,11 @@ bool round_json_rpc_setrequestid(RoundJSONObject *resObj, RoundJSONObject *reqOb
 #define round_json_rpc_getid(obj, value) round_json_map_getstring(obj, ROUND_JSON_RPC_ID, value)
 #define round_json_rpc_getparams(obj, value) round_json_map_getstring(obj, ROUND_JSON_RPC_PARAMS, value)
 #define round_json_rpc_getresult(obj, value) round_json_map_getstring(obj, ROUND_JSON_RPC_RESULT, value)
-#define round_json_rpc_geterror(obj, value) round_json_map_getobject(obj, ROUND_JSON_RPC_ERROR, value)
 #define round_json_rpc_gettimestamp(obj, value) round_json_map_getinteger(obj, ROUND_JSON_RPC_TS, value)
+
+#define round_json_rpc_geterror(obj, value) round_json_map_getobject(obj, ROUND_JSON_RPC_ERROR, value)
+#define round_json_rpc_geterrorcode(obj, value) round_json_map_getinteger(obj, ROUND_JSON_RPC_CODE, value)
+#define round_json_rpc_geterrormessage(obj, value) round_json_map_getstring(obj, ROUND_JSON_RPC_MESSAGE, value)
 
 #ifdef  __cplusplus
 } /* extern "C" */

@@ -118,7 +118,7 @@ static const char *JS_INVALID_FUNCTION = \
 #define RPC_ALIAS_HELLO_NAME "hello"
 #define RPC_SET_ECHO_LANG   "js"
 #define RPC_SET_ECHO_CODE   "function echo(params) {return params;}"
-#define RPC_SET_ECHO_PARAMS "[1,2,3]"
+#define RPC_SET_ECHO_PARAMS "[1, 2, 3]"
 
 ////////////////////////////////////////////////
 // set_method

@@ -596,7 +596,7 @@ bool round_local_node_execrequest(RoundLocalNode* node, RoundJSONObject* reqObj,
 
   const char* method = NULL;
   if (!round_json_rpc_getmethod(reqObj, &method) && (0 < round_strlen(method))) {
-    round_error_setjsonrpcerrorcode(err, ROUND_RPC_ERROR_CODE_METHOD_NOT_FOUND);
+    round_error_setjsonrpcerrorcode(err, ROUND_RPC_ERROR_CODE_INVALID_REQUEST);
     round_json_rpc_seterror(*resObj, err);
     return false;
   }
