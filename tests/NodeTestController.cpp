@@ -621,6 +621,11 @@ void Round::NodeTestController::runSystemRegistryTest(RoundNode* node)
     free(keyVal);
   }
   
+  for (int n=0; n<REGISTRY_TEST_CNT; n++) {
+    snprintf(key, sizeof(key), "/key%d", n);
+    BOOST_CHECK(round_node_removeregistry(node, key, err));
+  }
+  
   round_error_delete(err);
 }
 
@@ -650,11 +655,11 @@ void Round::NodeTestController::runRpcTest(RoundNode* node)
 
   // echo (POST)
   runPostEchoMethodTest(node);
-  /*
+
   // echo (GET) only RemoteNode
   RemoteNode *remoteNode = dynamic_cast<RemoteNode *>(node);
   if (remoteNode) {
     runGetEchoMethodTest(remoteNode, true);
   }
-*/
+  */
 }
