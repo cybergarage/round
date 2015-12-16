@@ -35,7 +35,7 @@ extern "C" {
  * Data Type
  ****************************************/
 
-typedef bool (*ROUND_NODE_POSTMESSAGE_FUNC)(void *node, RoundJSONObject *reqObj, RoundJSONObject *resultObj, RoundError *err);
+typedef bool (*ROUND_NODE_POSTMESSAGE_FUNC)(void *node, RoundJSONObject *reqObj, RoundJSONObject **resultObj, RoundError *err);
 
 #if !defined(RoundClusterManager)
 typedef struct {
