@@ -114,6 +114,7 @@ bool round_json_map_getstring(RoundJSONObject *obj, const char *key, const char 
 bool round_json_map_getinteger(RoundJSONObject *obj, const char *key, long *value);
 bool round_json_map_getreal(RoundJSONObject *obj, const char *key, double *value);
 bool round_json_map_getbool(RoundJSONObject *obj, const char *key, bool *value);
+bool round_json_map_getobject(RoundJSONObject *obj, const char *key, RoundJSONObject **value);
   
 bool round_json_map_setstring(RoundJSONObject *obj, const char *key, const char *value);
 bool round_json_map_setinteger(RoundJSONObject *obj, const char *key, long value);

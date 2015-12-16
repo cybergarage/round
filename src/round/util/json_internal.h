@@ -33,7 +33,7 @@ typedef struct _RoundJSONObject {
   json_t *jsonObj;
 #endif
   struct _RoundJSONObject *childObj;
-  char *dumpedStr;
+  char *cachedStr;
 } RoundJSONObject;
   
 typedef struct {
@@ -51,6 +51,9 @@ typedef struct {
 /****************************************
  * Function
  ****************************************/
+
+bool round_json_object_init(RoundJSONObject* obj);
+bool round_json_object_initchildobject(RoundJSONObject* obj);
 
 #define round_json_setrootobject(json, obj) (json->rootObj = obj)
 
