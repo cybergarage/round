@@ -439,7 +439,7 @@ bool round_node_postmessage(RoundNode* node, RoundJSONObject* reqObj, RoundJSONO
   if (!node || !node->postMsgFunc)
     return false;
 
-  return node->postMsgFunc(node, reqObj, reqObj, err);
+  return node->postMsgFunc(node, reqObj, resObj, err);
 }
 
 /****************************************
