@@ -43,23 +43,6 @@ AC_PROG_RANLIB
 AC_CHECK_HEADERS([stdbool.h])
 
 ##############################
-# Check libcurl
-##############################
-
-AC_CHECK_LIB(curl, curl_easy_perform,
-[
-	AC_DEFINE([CG_HTTP_CURL],1,[LIBCURL])
-
-	HTTP_CFLAGS=`curl-config --cflags`
-	AC_SUBST(HTTP_CFLAGS)
-
-	HTTP_LIBS=`curl-config --libs`
-	AC_SUBST(HTTP_LIBS)
-],[
-	AC_MSG_ERROR(Round needs libcurl-dev >= $LIBCURL_VERSION)
-])
-
-##############################
 # Check jansson
 ##############################
 
