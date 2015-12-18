@@ -23,7 +23,14 @@ LIBCURL_VERSION=7.13.0
 JANSSON_VERSION=2.2.1
 EXPAT_VERSION=1.95
 LIBXML2_VERSION=2.6.0
+
 MUPNP_VERSION=3.0.0
+
+JNI_VERSION=1.6.0
+V8_VERSION=3.14
+JS_VERSION=1.8.5
+TCL_VERSION=8.5.0
+LUA_VERSION=5.0.0
 
 ##############################
 # Checks compiler
@@ -154,7 +161,7 @@ AC_ARG_ENABLE(
 	],[]
 )
 if [ test $ROUND_SUPPORT_JS_SM = yes ]; then
-	AC_CHECK_LIB([mozjs185],[main],,[AC_MSG_ERROR(Round for C++ needs V8 $JS_VERSION later)])
+	AC_CHECK_LIB([mozjs185],[main],,[AC_MSG_ERROR(Round for C++ needs SpiderMonkey $JS_VERSION later)])
 	AC_DEFINE([ROUND_SUPPORT_JS_SM],1,[SpiderMonkey])
 fi
 if [ test $ROUND_SUPPORT_JS_V8 = yes ]; then
