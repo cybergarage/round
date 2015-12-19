@@ -11,7 +11,7 @@
 AC_CONFIG_AUX_DIR(config)
 AM_CONFIG_HEADER(config.h)
 
-AC_INIT([round-sdk], [0.1])
+AC_INIT([round], [0.1])
 AC_CONFIG_SRCDIR([include/round/client.h])
 AM_INIT_AUTOMAKE([subdir-objects])
 
