@@ -1,6 +1,6 @@
 ##################################################################
 #
-# Round SDK for C
+# Round for C
 #
 # Copyright (C) Satoshi Konno 2015
 #
