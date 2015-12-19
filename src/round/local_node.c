@@ -681,7 +681,8 @@ bool round_local_node_postmessage(RoundLocalNode* node, RoundJSONObject* reqObj,
   if (round_json_object_isarray(reqObj)) {
     *resObj = round_json_array_new();
     size_t msgArrayCnt = round_json_array_size(reqObj);
-    for (size_t n = 0; n < msgArrayCnt; n++) {
+    size_t n;
+    for (n = 0; n < msgArrayCnt; n++) {
       RoundJSONObject* reqArrayObj = round_json_array_get(reqObj, n);
       RoundJSONObject* resArrayObj = NULL;
       round_local_node_execrequest(node, reqArrayObj, &resArrayObj, err);

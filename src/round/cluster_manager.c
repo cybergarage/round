@@ -66,7 +66,8 @@ RoundCluster* round_cluster_manager_getclusterbyname(RoundClusterManager* mgr, c
   if (!mgr)
     return NULL;
 
-  for (RoundCluster* cluster = round_cluster_manager_getclusters(mgr); cluster;
+  RoundCluster* cluster;
+  for (cluster = round_cluster_manager_getclusters(mgr); cluster;
        cluster = round_cluster_next(cluster)) {
     if (round_streq(name, round_cluster_getname(cluster)))
       return cluster;

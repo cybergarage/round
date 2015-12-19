@@ -32,6 +32,8 @@ JS_VERSION=1.8.5
 TCL_VERSION=8.5.0
 LUA_VERSION=5.0.0
 
+$LIBEDIT_VERSION=3.1.0
+
 ##############################
 # Checks compiler
 ##############################
@@ -48,6 +50,13 @@ AC_PROG_RANLIB
 ##############################
 
 AC_CHECK_HEADERS([stdbool.h])
+
+##############################
+# Check standard libraries
+##############################
+
+AC_CHECK_LIB([pthread],[main],,[AC_MSG_ERROR(Round needs POSIX thread library)])
+AC_CHECK_LIB([crypto],[main],,[AC_MSG_ERROR(Round for needs OpenSSL)])
 
 ##############################
 # Check jansson
@@ -88,6 +97,21 @@ AC_MSG_CHECKING(json_array_foreach)
   [],
   [AC_MSG_RESULT(yes)
   AC_DEFINE([ROUND_USE_JANSSON_JSON_ARRAY_FOREACH],1,[json_array_foreach])],
+  [AC_MSG_RESULT(no)]
+)
+
+AC_MSG_CHECKING(json_is_boolean)
+  AC_TRY_COMPILE([
+    #include <jansson.h>
+    void func()
+    {
+      json_t *jsonT;
+      json_is_boolean(jsonTDict, jsonKey, jsonT);
+    }
+  ],
+  [],
+  [AC_MSG_RESULT(yes)
+  AC_DEFINE([ROUND_USE_JANSSON_JSON_IS_BOOLEAN],1,[json_is_boolean])],
   [AC_MSG_RESULT(no)]
 )
 
@@ -181,7 +205,7 @@ AC_ARG_ENABLE(
 			ROUND_SUPPORT_LUA=no
 		fi
 	],[
-		ROUND_SUPPORT_LUA=yes
+		ROUND_SUPPORT_LUA=no
 	]
 )
 if [ test $ROUND_SUPPORT_LUA = yes ]; then
@@ -191,6 +215,12 @@ AC_CHECK_HEADERS([lua.h],,
         AC_SUBST(LUA_LIBS)
 	AC_DEFINE([ROUND_SUPPORT_LUA],1,[Lua])
 fi
+
+##############################
+# Check standard libraries for Utility
+##############################
+
+AC_CHECK_LIB([edit],[main],,[AC_MSG_ERROR(Round needs libedit $LIBEDIT_VERSION later)])
 
 ##############################
 # Testing

@@ -9,6 +9,7 @@
  ******************************************************************/
 
 #include <math.h>
+#include <limits.h>
 #include <round/util/map.h>
 
 /****************************************
@@ -17,16 +18,15 @@
 
 size_t round_map_getasciihash(const char* key)
 {
-  size_t keyCode, keySize, n;
-
-  keyCode = 0;
-
-  keySize = round_strlen(key);
+  size_t keyCode = 0;
+  size_t keySize = round_strlen(key);
+  size_t keyCodeMax = INT_MAX;
+  size_t n;
   for (n = 0; n < keySize; n++) {
     // TODO : Optimaize distributionr
     keyCode += ((int)key[n]) * pow(0x80, n);
-    if ((SIZE_MAX / 2) < keyCode) {
-      keyCode = keyCode % (SIZE_MAX / 2);
+    if (keyCodeMax < keyCode) {
+      keyCode = keyCode % keyCodeMax;
     }
   }
 

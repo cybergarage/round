@@ -65,7 +65,8 @@ bool round_sha_digest(const char* string, char** buf)
   SHA1FUNC(string, (int)round_strlen(string), shaDigest);
 
   char hexString[3];
-  for (int n = 0; n < SHA_DIGEST_LENGTH; n++) {
+  int n;
+  for (n = 0; n < SHA_DIGEST_LENGTH; n++) {
     snprintf(hexString, sizeof(hexString), "%02X", shaDigest[n]);
     shaDigestString[(n * 2) + 0] = hexString[0];
     shaDigestString[(n * 2) + 1] = hexString[1];
@@ -89,7 +90,8 @@ bool round_sha256_digest(const char* string, char** buf)
   SHA256FUNC(string, (int)round_strlen(string), shaDigest);
 
   char hexString[3];
-  for (int n = 0; n < SHA256_DIGEST_LENGTH; n++) {
+  int n;
+  for (n = 0; n < SHA256_DIGEST_LENGTH; n++) {
     snprintf(hexString, sizeof(hexString), "%02X", shaDigest[n]);
     shaDigestString[(n * 2) + 0] = hexString[0];
     shaDigestString[(n * 2) + 1] = hexString[1];
