@@ -22,7 +22,7 @@
 
 #if defined(ROUND_USE_JSON_PARSER_JANSSON)
 #include <jansson.h>
-#if !defined(ROUND_USE_JANSSON_JSON_IS_BOOLEAN)
+#if !defined(json_boolean_value)
 #define json_boolean_value(obj) json_is_true(obj) ? true : false
 #endif
 #endif
