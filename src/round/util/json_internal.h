@@ -16,8 +16,15 @@
 #include <round/error_internal.h>
 #include <round/util/option.h>
 
+#if defined(HAVE_LIBJANSSON)
+#define ROUND_USE_JSON_PARSER_JANSSON 1
+#endif
+
 #if defined(ROUND_USE_JSON_PARSER_JANSSON)
 #include <jansson.h>
+#if !defined(ROUND_USE_JANSSON_JSON_IS_BOOLEAN)
+#define json_boolean_value(obj) json_is_true(obj) ? true : false
+#endif
 #endif
 
 #ifdef  __cplusplus

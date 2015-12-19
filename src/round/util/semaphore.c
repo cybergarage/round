@@ -153,7 +153,7 @@ bool round_semaphore_timedwait(RoundSemaphore* sem, time_t timeoutSec)
   }
 #else
   if (0 < timeoutSec) {
-    timespec absTimeout;
+    struct timespec absTimeout;
     absTimeout.tv_sec = timeoutSec;
     absTimeout.tv_nsec = 0;
     isSuccess = (sem_timedwait(&sem->semId, &absTimeout) == 0) ? true : false;
