@@ -23,6 +23,7 @@ LIBCURL_VERSION=7.13.0
 JANSSON_VERSION=2.2.1
 EXPAT_VERSION=1.95
 LIBXML2_VERSION=2.6.0
+OPENSSL_VERSION=1.0.1
 
 MUPNP_VERSION=3.0.0
 
@@ -56,7 +57,7 @@ AC_CHECK_HEADERS([stdbool.h])
 ##############################
 
 AC_CHECK_LIB([pthread],[main],,[AC_MSG_ERROR(Round needs POSIX thread library)])
-AC_CHECK_LIB([crypto],[main],,[AC_MSG_ERROR(Round for needs OpenSSL)])
+AC_CHECK_LIB([crypto],[main],,[AC_MSG_ERROR(Round needs OpenSSL $OPENSSL_VERSION later)])
 
 ##############################
 # Check jansson
