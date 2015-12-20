@@ -6,6 +6,7 @@ RUN apt-get update && apt-get upgrade -y
 
 # Install base packages
 RUN apt-get install -y git g++ make automake autoconf
+RUN apt-get install -y pkg-config
 RUN apt-get install -y libboost-all-dev
 
 # Set Packaging ENV
@@ -35,3 +36,4 @@ WORKDIR round
 RUN ./configure && make && make install
 
 WORKDIR /root
+
