@@ -21,7 +21,7 @@ RUN apt-get install -y libxml2-dev
 WORKDIR /root
 RUN git clone https://github.com/cybergarage/mupnpc.git mupnp
 WORKDIR mupnp
-RUN ./bootstrap && ./configure && make && make install
+RUN ./configure && make && make install
 
 # Round
 RUN apt-get install -y libboost-all-dev libssl-dev libjansson-dev
@@ -32,6 +32,6 @@ WORKDIR /root
 #RUN git pull
 COPY round /root/round
 WORKDIR round
-RUN ./bootstrap && ./configure && make && make install
+RUN ./configure && make && make install
 
 WORKDIR /root
