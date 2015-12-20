@@ -5,15 +5,15 @@ MAINTAINER Satoshi Konno <skonno@cybergarage.org>
 WORKDIR /root
 WORKDIR mupnp
 RUN git pull
-RUN ./bootstrap && ./configure && make && make install
+RUN ./configure && make && make install
 WORKDIR /root
 RUN rm -rf mupnp
 
 # Round
 WORKDIR /root
 WORKDIR round
-RUN git pull
-RUN ./bootstrap && ./configure && make && make install
+# RUN git pull
+RUN ./configure && make && make install
 WORKDIR /root
 RUN rm -rf round
 
