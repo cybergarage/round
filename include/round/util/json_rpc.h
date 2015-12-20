@@ -55,6 +55,8 @@ bool round_json_rpc_setrequestid(RoundJSONObject *resObj, RoundJSONObject *reqOb
 #define round_json_rpc_geterrorcode(obj, value) round_json_map_getinteger(obj, ROUND_JSON_RPC_CODE, value)
 #define round_json_rpc_geterrormessage(obj, value) round_json_map_getstring(obj, ROUND_JSON_RPC_MESSAGE, value)
 
+bool round_error_setjsonrpcerrorcode(RoundError *err, int rpcErrCode);
+
 #ifdef  __cplusplus
 } /* extern "C" */
 #endif
