@@ -33,7 +33,7 @@ JS_VERSION=1.8.5
 TCL_VERSION=8.5.0
 LUA_VERSION=5.0.0
 
-$LIBEDIT_VERSION=3.1.0
+LIBEDIT_VERSION=3.1.0
 
 ##############################
 # Checks compiler
