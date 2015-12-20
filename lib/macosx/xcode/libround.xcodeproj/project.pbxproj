@@ -42,7 +42,6 @@
 		215E6B471B9E75EA00AAA203 /* map_hash.c in Sources */ = {isa = PBXBuildFile; fileRef = 215E6B461B9E75EA00AAA203 /* map_hash.c */; };
 		21606BF71B9FC8EB000463A8 /* json_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 21606BF61B9FC8EB000463A8 /* json_internal.h */; };
 		21606BFA1BA029A0000463A8 /* method.h in Headers */ = {isa = PBXBuildFile; fileRef = 21606BF91BA029A0000463A8 /* method.h */; };
-		2160B88C1BB3AF9E002026E3 /* option.h in Headers */ = {isa = PBXBuildFile; fileRef = 2160B88B1BB3AF9E002026E3 /* option.h */; };
 		2160B8911BB3B59F002026E3 /* set_method.c in Sources */ = {isa = PBXBuildFile; fileRef = 2160B88F1BB3B59F002026E3 /* set_method.c */; };
 		2160B8921BB3B59F002026E3 /* system_method.h in Headers */ = {isa = PBXBuildFile; fileRef = 2160B8901BB3B59F002026E3 /* system_method.h */; };
 		2160B8941BB3B9F7002026E3 /* system_method.c in Sources */ = {isa = PBXBuildFile; fileRef = 2160B8931BB3B9F7002026E3 /* system_method.c */; };
@@ -87,6 +86,7 @@
 		21A776CB1BA0939F009BDB36 /* timer.h in Headers */ = {isa = PBXBuildFile; fileRef = 21A776C91BA0939F009BDB36 /* timer.h */; };
 		21A776CC1BA0939F009BDB36 /* timer.c in Sources */ = {isa = PBXBuildFile; fileRef = 21A776CA1BA0939F009BDB36 /* timer.c */; };
 		21B3B3171C0F04C20099BEC8 /* upnp_remote_node.c in Sources */ = {isa = PBXBuildFile; fileRef = 21B3B3161C0F04C20099BEC8 /* upnp_remote_node.c */; };
+		21B755F01C270A4400E3F057 /* option.h in Headers */ = {isa = PBXBuildFile; fileRef = 21B755EF1C270A4400E3F057 /* option.h */; };
 		21B763DD1BA05ED1003C29F3 /* queue.c in Sources */ = {isa = PBXBuildFile; fileRef = 21B763DA1BA05ED1003C29F3 /* queue.c */; };
 		21B763DF1BA05ED1003C29F3 /* queue.h in Headers */ = {isa = PBXBuildFile; fileRef = 21B763DC1BA05ED1003C29F3 /* queue.h */; };
 		21C1C5C21C1AB198005B95C3 /* status.h in Headers */ = {isa = PBXBuildFile; fileRef = 21C1C5C11C1AB198005B95C3 /* status.h */; };
@@ -175,7 +175,6 @@
 		215E6B461B9E75EA00AAA203 /* map_hash.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = map_hash.c; path = ../../../src/round/util/map_hash.c; sourceTree = "<group>"; };
 		21606BF61B9FC8EB000463A8 /* json_internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = json_internal.h; path = ../../../src/round/util/json_internal.h; sourceTree = "<group>"; };
 		21606BF91BA029A0000463A8 /* method.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = method.h; path = ../../../src/round/method.h; sourceTree = "<group>"; };
-		2160B88B1BB3AF9E002026E3 /* option.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = option.h; path = ../../../src/round/util/option.h; sourceTree = "<group>"; };
 		2160B88F1BB3B59F002026E3 /* set_method.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = set_method.c; sourceTree = "<group>"; };
 		2160B8901BB3B59F002026E3 /* system_method.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = system_method.h; sourceTree = "<group>"; };
 		2160B8931BB3B9F7002026E3 /* system_method.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = system_method.c; sourceTree = "<group>"; };
@@ -220,6 +219,7 @@
 		21A776C91BA0939F009BDB36 /* timer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = timer.h; path = ../../../src/round/util/timer.h; sourceTree = "<group>"; };
 		21A776CA1BA0939F009BDB36 /* timer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = timer.c; path = ../../../src/round/util/timer.c; sourceTree = "<group>"; };
 		21B3B3161C0F04C20099BEC8 /* upnp_remote_node.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = upnp_remote_node.c; path = ../../../src/round/impl/upnp_remote_node.c; sourceTree = "<group>"; };
+		21B755EF1C270A4400E3F057 /* option.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = option.h; path = ../../../include/round/util/option.h; sourceTree = "<group>"; };
 		21B763DA1BA05ED1003C29F3 /* queue.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = queue.c; path = ../../../src/round/util/queue.c; sourceTree = "<group>"; };
 		21B763DC1BA05ED1003C29F3 /* queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = queue.h; path = ../../../src/round/util/queue.h; sourceTree = "<group>"; };
 		21C1C5C11C1AB198005B95C3 /* status.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = status.h; path = ../../../src/round/util/status.h; sourceTree = "<group>"; };
@@ -270,6 +270,7 @@
 		210E7BA11BA145E200343445 /* util */ = {
 			isa = PBXGroup;
 			children = (
+				21B755EF1C270A4400E3F057 /* option.h */,
 				21785DDE1BB79E0A0098DD1A /* json_rpc.h */,
 				210E7BA21BA145F600343445 /* json.h */,
 			);
@@ -440,7 +441,6 @@
 				2178B3661B98BEAE00B9D86B /* mutex.c */,
 				2178B3671B98BEAE00B9D86B /* mutex.h */,
 				216611781BA135450097BB98 /* oo.h */,
-				2160B88B1BB3AF9E002026E3 /* option.h */,
 				21A776C11BA07345009BDB36 /* queue_object.c */,
 				21B763DA1BA05ED1003C29F3 /* queue.c */,
 				21B763DC1BA05ED1003C29F3 /* queue.h */,
@@ -484,6 +484,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				218569A81BAFFE9F00861B9B /* native.h in Headers */,
+				21B755F01C270A4400E3F057 /* option.h in Headers */,
 				21A776BE1BA06DC2009BDB36 /* message.h in Headers */,
 				21C1C5C21C1AB198005B95C3 /* status.h in Headers */,
 				219A8E251B9AF54D004ED802 /* js.h in Headers */,
@@ -493,7 +494,6 @@
 				2127082A1BD662B400000985 /* consistent_hashing.h in Headers */,
 				211E45DA1B981A6300CF0088 /* typedef.h in Headers */,
 				2178B36E1B98BEAE00B9D86B /* mutex.h in Headers */,
-				2160B88C1BB3AF9E002026E3 /* option.h in Headers */,
 				219A8E2A1B9AF54D004ED802 /* lua.h in Headers */,
 				21D427EE1B9F07CD00BBBD41 /* error_internal.h in Headers */,
 				211E45D01B9816F300CF0088 /* client_internal.h in Headers */,
