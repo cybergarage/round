@@ -13,10 +13,6 @@
 #include <round/util/json_internal.h>
 #include <round/node_internal.h>
 
-#if defined(ROUND_SUPPORT_MRUBY)
-#include "mnative/compile.h"
-#endif
-
 /****************************************
 * round_native_engine_new
 ****************************************/
