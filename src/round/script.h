@@ -86,6 +86,12 @@ RoundMap *round_script_engine_map_new();
 #define round_script_engine_map_get(map, name) ((RoundScriptEngine*)round_map_getobjectbykey(map, name))
 #define round_script_engine_map_remove(map, name) round_map_removeobjectbykey(map, name)
   
+/****************************************
+ * Function
+ ****************************************/
+  
+bool round_script_engine_result2json(RoundString *result, RoundJSONObject** jsonResult, RoundError* err);
+
 #ifdef  __cplusplus
 }
 #endif
