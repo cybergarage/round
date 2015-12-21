@@ -20,7 +20,7 @@
 		2127082A1BD662B400000985 /* consistent_hashing.h in Headers */ = {isa = PBXBuildFile; fileRef = 212708281BD662B400000985 /* consistent_hashing.h */; };
 		212A95451B9BCA4200EC9A71 /* method_manager.c in Sources */ = {isa = PBXBuildFile; fileRef = 212A95431B9BCA4200EC9A71 /* method_manager.c */; };
 		212A95461B9BCA4200EC9A71 /* method.c in Sources */ = {isa = PBXBuildFile; fileRef = 212A95441B9BCA4200EC9A71 /* method.c */; };
-		212D04721C20AFC400DCD5B3 /* libmupnp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 212D046D1C20AF6D00DCD5B3 /* libmupnp.a */; };
+		212D04721C20AFC400DCD5B3 /* liblibmupnp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 212D046D1C20AF6D00DCD5B3 /* liblibmupnp.a */; };
 		213389D01BFAEA980014548E /* rpc_server.h in Headers */ = {isa = PBXBuildFile; fileRef = 213389CE1BFAEA980014548E /* rpc_server.h */; };
 		213389D11BFAEA980014548E /* rpc_server.c in Sources */ = {isa = PBXBuildFile; fileRef = 213389CF1BFAEA980014548E /* rpc_server.c */; };
 		21346A7E1BB4FA6B00B5F3A6 /* get_registry.c in Sources */ = {isa = PBXBuildFile; fileRef = 21346A7B1BB4FA6B00B5F3A6 /* get_registry.c */; };
@@ -100,6 +100,8 @@
 		21D427EC1B9F010A00BBBD41 /* error.c in Sources */ = {isa = PBXBuildFile; fileRef = 21D427EB1B9F010A00BBBD41 /* error.c */; };
 		21D427EE1B9F07CD00BBBD41 /* error_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D427ED1B9F07CD00BBBD41 /* error_internal.h */; };
 		21DDB71A1C281F68002DEDDF /* script_functions.c in Sources */ = {isa = PBXBuildFile; fileRef = 21DDB7191C281F68002DEDDF /* script_functions.c */; };
+		21DFCA461C287EC800F75D5C /* js_sm_functions.c in Sources */ = {isa = PBXBuildFile; fileRef = 21DFCA451C287EC800F75D5C /* js_sm_functions.c */; };
+		21DFCA481C287ED500F75D5C /* lua_functions.c in Sources */ = {isa = PBXBuildFile; fileRef = 21DFCA471C287ED500F75D5C /* lua_functions.c */; };
 		21E6E5721BB01A49006E853D /* base64.c in Sources */ = {isa = PBXBuildFile; fileRef = 21E6E5701BB01A49006E853D /* base64.c */; };
 		21E6E5731BB01A49006E853D /* base64.h in Headers */ = {isa = PBXBuildFile; fileRef = 21E6E5711BB01A49006E853D /* base64.h */; };
 		21EA96CD1B990AF800E00841 /* cluster_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 21EA96CA1B990AF800E00841 /* cluster_internal.h */; };
@@ -234,6 +236,8 @@
 		21D427EB1B9F010A00BBBD41 /* error.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = error.c; path = ../../../src/round/error.c; sourceTree = "<group>"; };
 		21D427ED1B9F07CD00BBBD41 /* error_internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = error_internal.h; path = ../../../src/round/error_internal.h; sourceTree = "<group>"; };
 		21DDB7191C281F68002DEDDF /* script_functions.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = script_functions.c; sourceTree = "<group>"; };
+		21DFCA451C287EC800F75D5C /* js_sm_functions.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = js_sm_functions.c; sourceTree = "<group>"; };
+		21DFCA471C287ED500F75D5C /* lua_functions.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lua_functions.c; sourceTree = "<group>"; };
 		21E6E5701BB01A49006E853D /* base64.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = base64.c; path = ../../../src/round/util/base64.c; sourceTree = "<group>"; };
 		21E6E5711BB01A49006E853D /* base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = base64.h; path = ../../../src/round/util/base64.h; sourceTree = "<group>"; };
 		21EA96CA1B990AF800E00841 /* cluster_internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cluster_internal.h; path = ../../../src/round/cluster_internal.h; sourceTree = "<group>"; };
@@ -261,7 +265,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				212D04721C20AFC400DCD5B3 /* libmupnp.a in Frameworks */,
+				212D04721C20AFC400DCD5B3 /* liblibmupnp.a in Frameworks */,
 				219A8E2F1B9B0103004ED802 /* Ruby.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -378,7 +382,7 @@
 		212D04691C20AF6C00DCD5B3 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				212D046D1C20AF6D00DCD5B3 /* libmupnp.a */,
+				212D046D1C20AF6D00DCD5B3 /* liblibmupnp.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -461,9 +465,27 @@
 			name = util;
 			sourceTree = "<group>";
 		};
+		21DFCA431C287E9B00F75D5C /* lua */ = {
+			isa = PBXGroup;
+			children = (
+				21DFCA471C287ED500F75D5C /* lua_functions.c */,
+			);
+			path = lua;
+			sourceTree = "<group>";
+		};
+		21DFCA441C287EC800F75D5C /* js */ = {
+			isa = PBXGroup;
+			children = (
+				21DFCA451C287EC800F75D5C /* js_sm_functions.c */,
+			);
+			path = js;
+			sourceTree = "<group>";
+		};
 		21F6D9A91B99848000714056 /* script */ = {
 			isa = PBXGroup;
 			children = (
+				21DFCA441C287EC800F75D5C /* js */,
+				21DFCA431C287E9B00F75D5C /* lua */,
 				21DDB7191C281F68002DEDDF /* script_functions.c */,
 				218569A61BAFFE9F00861B9B /* native.h */,
 				218569A71BAFFE9F00861B9B /* native_engine.c */,
@@ -593,10 +615,10 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		212D046D1C20AF6D00DCD5B3 /* libmupnp.a */ = {
+		212D046D1C20AF6D00DCD5B3 /* liblibmupnp.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libmupnp.a;
+			path = liblibmupnp.a;
 			remoteRef = 212D046C1C20AF6D00DCD5B3 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -625,6 +647,7 @@
 				216D19D51BB5A4480007B331 /* json_map.c in Sources */,
 				215A07981BB4662700E9702F /* registry.c in Sources */,
 				215A078C1BB2FA8000E9702F /* server.c in Sources */,
+				21DFCA481C287ED500F75D5C /* lua_functions.c in Sources */,
 				21D229CC1C21784C0003ABE6 /* node_methods.c in Sources */,
 				2160B8941BB3B9F7002026E3 /* system_method.c in Sources */,
 				21EAA2A61B9931B10002CFF0 /* string_func.c in Sources */,
@@ -659,6 +682,7 @@
 				21C887711BD8EFD300449F5D /* digest.c in Sources */,
 				216D19CD1BB4B3570007B331 /* clock.c in Sources */,
 				21C482441B9F5A100087380C /* json_object.c in Sources */,
+				21DFCA461C287EC800F75D5C /* js_sm_functions.c in Sources */,
 				21346A7E1BB4FA6B00B5F3A6 /* get_registry.c in Sources */,
 				21EA96CF1B990AF800E00841 /* cluster.c in Sources */,
 				21F6D9B21B99848000714056 /* ruby_engine.c in Sources */,
