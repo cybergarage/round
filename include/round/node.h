@@ -49,10 +49,6 @@ typedef void RoundNode;
  * Function (Node)
  ****************************************/
 
-RoundNode *round_node_local_new(void);
-RoundNode *round_node_remote_new(void);
-
-bool round_node_delete(RoundNode *node);
 RoundNode *round_node_next(RoundNode *node);
 
 bool round_node_getaddress(RoundNode *node, const char **addr);
