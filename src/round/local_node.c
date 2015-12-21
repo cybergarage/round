@@ -376,8 +376,7 @@ bool round_local_node_setregistry(RoundLocalNode* node, const char* key, const c
  * round_local_node_getregistry
  ****************************************/
 
-RoundRegistry* round_local_node_getregistry(RoundLocalNode* node,
-    const char* key)
+RoundRegistry* round_local_node_getregistry(RoundLocalNode* node, const char* key)
 {
   if (!node)
     return false;
