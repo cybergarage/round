@@ -51,6 +51,23 @@ bool round_js_sm_engine_run(RoundJavaScriptEngine *engine, const char *source, s
 
 bool round_js_engine_run(RoundJavaScriptEngine *engine, RoundMethod *method, const char *param, RoundJSONObject **jsonResult, RoundError *err);
   
+/****************************************
+ * Function
+ ****************************************/
+
+void round_js_sm_setlocalnode(void  *node);
+void *round_js_sm_getlocalnode();
+
+JSBool round_js_sm_print(JSContext *cx, unsigned argc, jsval *vp);
+
+JSBool round_js_sm_getnetworkstate(JSContext *cx, unsigned argc, jsval *vp);
+JSBool round_js_sm_getclusterstate(JSContext *cx, unsigned argc, jsval *vp);
+JSBool round_js_sm_getnodestate(JSContext *cx, unsigned argc, jsval *vp);
+JSBool round_js_sm_postmethod(JSContext *cx, unsigned argc, jsval *vp);
+JSBool round_js_sm_setregistry(JSContext *cx, unsigned argc, jsval *vp);
+JSBool round_js_sm_getregistry(JSContext *cx, unsigned argc, jsval *vp);
+JSBool round_js_sm_removeregistry(JSContext *cx, unsigned argc, jsval *vp);
+
 #ifdef  __cplusplus
 }
 #endif

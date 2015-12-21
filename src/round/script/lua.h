@@ -54,6 +54,10 @@ bool round_lua_engine_register(RoundLuaEngine *engine, const char *name, lua_CFu
 
 #if defined(ROUND_SUPPORT_LUA)
 
+void round_lua_setlocalnode(void *);
+void *round_lua_getlocalnode();
+bool round_lua_haslocalnode();
+  
 int round_lua_getnetworkstate(lua_State* L);
 int round_lua_getclusterstate(lua_State* L);
 int round_lua_getnodestate(lua_State* L);
@@ -61,10 +65,6 @@ int round_lua_setregistry(lua_State* L);
 int round_lua_getregistry(lua_State* L);
 int round_lua_removeregistry(lua_State* L);
 int round_lua_postmethod(lua_State* L);
-
-void round_lua_setlocalnode(Round::Node *);
-Round::Node *round_lua_getlocalnode();
-bool round_lua_haslocalnode();
 
 #endif
 
