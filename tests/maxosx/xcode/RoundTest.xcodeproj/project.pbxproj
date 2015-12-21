@@ -18,7 +18,6 @@
 		212A954B1B9BD1A400EC9A71 /* MethodMapTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 212A95491B9BD1A400EC9A71 /* MethodMapTest.cpp */; };
 		212A954C1B9BD1A400EC9A71 /* MethodManagerTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 212A954A1B9BD1A400EC9A71 /* MethodManagerTest.cpp */; };
 		212A954E1B9BD24700EC9A71 /* MethodTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 212A954D1B9BD24700EC9A71 /* MethodTest.cpp */; };
-		212D046F1C20AF8B00DCD5B3 /* liblibmupnp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 212D046E1C20AF8B00DCD5B3 /* liblibmupnp.a */; };
 		213389D31BFAEAB30014548E /* RpcServerTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 213389D21BFAEAB30014548E /* RpcServerTest.cpp */; };
 		2137D3F11B998AEF00652E68 /* liblibround.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2137D3EE1B998ADD00652E68 /* liblibround.a */; };
 		21563A121BC419AB004D33EA /* ScriptTestController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21563A101BC419AB004D33EA /* ScriptTestController.cpp */; };
@@ -99,7 +98,6 @@
 		212A95491B9BD1A400EC9A71 /* MethodMapTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MethodMapTest.cpp; path = ../../MethodMapTest.cpp; sourceTree = "<group>"; };
 		212A954A1B9BD1A400EC9A71 /* MethodManagerTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MethodManagerTest.cpp; path = ../../MethodManagerTest.cpp; sourceTree = "<group>"; };
 		212A954D1B9BD24700EC9A71 /* MethodTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MethodTest.cpp; path = ../../MethodTest.cpp; sourceTree = "<group>"; };
-		212D046E1C20AF8B00DCD5B3 /* liblibmupnp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liblibmupnp.a; path = ../../../../mupnpc/lib/macosx/xcode/build/Debug/liblibmupnp.a; sourceTree = "<group>"; };
 		213389D21BFAEAB30014548E /* RpcServerTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RpcServerTest.cpp; path = ../../RpcServerTest.cpp; sourceTree = "<group>"; };
 		21563A101BC419AB004D33EA /* ScriptTestController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ScriptTestController.cpp; path = ../../ScriptTestController.cpp; sourceTree = "<group>"; };
 		21563A111BC419AB004D33EA /* ScriptTestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScriptTestController.h; path = ../../ScriptTestController.h; sourceTree = "<group>"; };
@@ -142,7 +140,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				212D046F1C20AF8B00DCD5B3 /* liblibmupnp.a in Frameworks */,
 				2172C4C11B9AF3CB0032BE98 /* Ruby.framework in Frameworks */,
 				2137D3F11B998AEF00652E68 /* liblibround.a in Frameworks */,
 			);
@@ -191,7 +188,6 @@
 		213C5BF41B4A543C0013DDD9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				212D046E1C20AF8B00DCD5B3 /* liblibmupnp.a */,
 				2172C4C01B9AF3CB0032BE98 /* Ruby.framework */,
 				211E45BF1B9814FA00CF0088 /* libround.xcodeproj */,
 			);
