@@ -18,7 +18,6 @@
 		212A954B1B9BD1A400EC9A71 /* MethodMapTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 212A95491B9BD1A400EC9A71 /* MethodMapTest.cpp */; };
 		212A954C1B9BD1A400EC9A71 /* MethodManagerTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 212A954A1B9BD1A400EC9A71 /* MethodManagerTest.cpp */; };
 		212A954E1B9BD24700EC9A71 /* MethodTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 212A954D1B9BD24700EC9A71 /* MethodTest.cpp */; };
-		212D046F1C20AF8B00DCD5B3 /* liblibmupnp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 212D046E1C20AF8B00DCD5B3 /* liblibmupnp.a */; };
 		213389D31BFAEAB30014548E /* RpcServerTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 213389D21BFAEAB30014548E /* RpcServerTest.cpp */; };
 		2137D3F11B998AEF00652E68 /* liblibround.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2137D3EE1B998ADD00652E68 /* liblibround.a */; };
 		21563A121BC419AB004D33EA /* ScriptTestController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21563A101BC419AB004D33EA /* ScriptTestController.cpp */; };
@@ -142,7 +141,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				212D046F1C20AF8B00DCD5B3 /* liblibmupnp.a in Frameworks */,
 				2172C4C11B9AF3CB0032BE98 /* Ruby.framework in Frameworks */,
 				2137D3F11B998AEF00652E68 /* liblibround.a in Frameworks */,
 			);
