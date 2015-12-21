@@ -20,7 +20,7 @@
 		2127082A1BD662B400000985 /* consistent_hashing.h in Headers */ = {isa = PBXBuildFile; fileRef = 212708281BD662B400000985 /* consistent_hashing.h */; };
 		212A95451B9BCA4200EC9A71 /* method_manager.c in Sources */ = {isa = PBXBuildFile; fileRef = 212A95431B9BCA4200EC9A71 /* method_manager.c */; };
 		212A95461B9BCA4200EC9A71 /* method.c in Sources */ = {isa = PBXBuildFile; fileRef = 212A95441B9BCA4200EC9A71 /* method.c */; };
-		212D04721C20AFC400DCD5B3 /* liblibmupnp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 212D046D1C20AF6D00DCD5B3 /* liblibmupnp.a */; };
+		212D04721C20AFC400DCD5B3 /* libmupnp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 212D046D1C20AF6D00DCD5B3 /* libmupnp.a */; };
 		213389D01BFAEA980014548E /* rpc_server.h in Headers */ = {isa = PBXBuildFile; fileRef = 213389CE1BFAEA980014548E /* rpc_server.h */; };
 		213389D11BFAEA980014548E /* rpc_server.c in Sources */ = {isa = PBXBuildFile; fileRef = 213389CF1BFAEA980014548E /* rpc_server.c */; };
 		21346A7E1BB4FA6B00B5F3A6 /* get_registry.c in Sources */ = {isa = PBXBuildFile; fileRef = 21346A7B1BB4FA6B00B5F3A6 /* get_registry.c */; };
@@ -152,7 +152,7 @@
 		212708281BD662B400000985 /* consistent_hashing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = consistent_hashing.h; path = ../../../src/round/util/consistent_hashing.h; sourceTree = "<group>"; };
 		212A95431B9BCA4200EC9A71 /* method_manager.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = method_manager.c; path = ../../../src/round/method_manager.c; sourceTree = "<group>"; };
 		212A95441B9BCA4200EC9A71 /* method.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = method.c; path = ../../../src/round/method.c; sourceTree = "<group>"; };
-		212ADD881A8D4F000054EC0F /* liblibround.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblibround.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		212ADD881A8D4F000054EC0F /* libround.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libround.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		212D04681C20AF6C00DCD5B3 /* libmupnp.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libmupnp.xcodeproj; path = ../../../../mupnpc/lib/macosx/xcode/libmupnp.xcodeproj; sourceTree = "<group>"; };
 		213389CE1BFAEA980014548E /* rpc_server.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = rpc_server.h; path = ../../../src/round/rpc_server.h; sourceTree = "<group>"; };
 		213389CF1BFAEA980014548E /* rpc_server.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = rpc_server.c; path = ../../../src/round/rpc_server.c; sourceTree = "<group>"; };
@@ -259,7 +259,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				212D04721C20AFC400DCD5B3 /* liblibmupnp.a in Frameworks */,
+				212D04721C20AFC400DCD5B3 /* libmupnp.a in Frameworks */,
 				219A8E2F1B9B0103004ED802 /* Ruby.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -368,7 +368,7 @@
 		212ADD891A8D4F000054EC0F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				212ADD881A8D4F000054EC0F /* liblibround.a */,
+				212ADD881A8D4F000054EC0F /* libround.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -376,7 +376,7 @@
 		212D04691C20AF6C00DCD5B3 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				212D046D1C20AF6D00DCD5B3 /* liblibmupnp.a */,
+				212D046D1C20AF6D00DCD5B3 /* libmupnp.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -549,7 +549,7 @@
 			);
 			name = libround;
 			productName = libuecho;
-			productReference = 212ADD881A8D4F000054EC0F /* liblibround.a */;
+			productReference = 212ADD881A8D4F000054EC0F /* libround.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -590,10 +590,10 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		212D046D1C20AF6D00DCD5B3 /* liblibmupnp.a */ = {
+		212D046D1C20AF6D00DCD5B3 /* libmupnp.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = liblibmupnp.a;
+			path = libmupnp.a;
 			remoteRef = 212D046C1C20AF6D00DCD5B3 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -780,7 +780,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_PREFIX = "";
 				PRODUCT_NAME = libround;
 				SUPPORTED_PLATFORMS = macosx;
 				VALID_ARCHS = x86_64;
@@ -791,7 +791,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_PREFIX = "";
 				PRODUCT_NAME = libround;
 				SUPPORTED_PLATFORMS = macosx;
 				VALID_ARCHS = x86_64;
