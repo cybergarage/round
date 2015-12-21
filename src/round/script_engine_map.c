@@ -23,8 +23,7 @@ RoundMap* round_script_engine_map_new()
   if (!map)
     return NULL;
 
-  round_map_setmapobjectdestructor(
-      map, (ROUND_MAP_OBJECT_DESTRUCTOR)round_script_engine_delete);
+  round_map_setmapobjectdestructor(map, (ROUND_MAP_OBJECT_DESTRUCTOR)round_script_engine_delete);
 
   return map;
 }

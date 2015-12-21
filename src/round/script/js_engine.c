@@ -121,7 +121,6 @@ bool round_js_engine_getsoucecode(RoundJavaScriptEngine* engine, RoundMethod* me
 bool round_js_engine_run(RoundJavaScriptEngine* engine, RoundMethod* method, const char* param, RoundJSONObject** jsonResult, RoundError* err)
 {
   RoundString *jsSource, *strResult;
-  RoundJSON* json;
   bool isSuccess;
 
   if (!engine)
@@ -138,21 +137,7 @@ bool round_js_engine_run(RoundJavaScriptEngine* engine, RoundMethod* method, con
 
   *jsonResult = NULL;
   if (isSuccess) {
-    json = round_json_new();
-    if (json) {
-      isSuccess = round_json_parse(json, round_string_getvalue(strResult), err);
-      if (isSuccess) {
-        *jsonResult = round_json_poprootobject(json);
-      }
-      round_json_delete(json);
-    }
-
-    if (!(*jsonResult)) {
-      if (0 < round_string_length(strResult)) {
-        isSuccess = true;
-        *jsonResult = round_json_string_new(round_string_getvalue(strResult));
-      }
-    }
+    isSuccess = round_script_engine_result2json(strResult, jsonResult, err);
   }
 
   if (jsSource) {

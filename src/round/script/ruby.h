@@ -52,8 +52,9 @@ const char *round_ruby_engine_getresult(RoundRubyEngine *engine);
 bool round_ruby_engine_seterror(RoundRubyEngine *engine, const char *value);
 const char *round_ruby_engine_geterror(RoundRubyEngine *engine);
 
-bool round_ruby_engine_run(RoundRubyEngine *engine, RoundMethod *method, const char *param, RoundString *result, RoundError *err);
-  
+bool round_ruby_engine_run(RoundRubyEngine* engine, RoundMethod* method, const char* param, RoundJSONObject** jsonResult, RoundError* err);
+bool round_ruby_engine_run_code(RoundRubyEngine* engine, const char* code);
+
 #ifdef  __cplusplus
 }
 #endif

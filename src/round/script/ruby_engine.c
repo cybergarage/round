@@ -85,12 +85,50 @@ bool round_ruby_engine_delete(RoundRubyEngine* engine)
 }
 
 /****************************************
+ * round_ruby_engine_getsoucecode
+ ****************************************/
+
+bool round_ruby_engine_getsoucecode(RoundRubyEngine* engine, RoundMethod* method, const char* param, RoundString* sourceCode)
+{
+  if (!method || !sourceCode)
+    return false;
+
+  return true;
+}
+
+/****************************************
  * round_ruby_engine_run
  ****************************************/
 
-bool round_ruby_engine_run(RoundRubyEngine* engine, RoundMethod* method, const char* param, RoundString* result, RoundError* err)
+bool round_ruby_engine_run(RoundRubyEngine* engine, RoundMethod* method, const char* param, RoundJSONObject** jsonResult, RoundError* err)
 {
-  return false;
+  RoundString *sourceCode, *strResult;
+  bool isSuccess;
+  
+  if (!engine)
+    return false;
+  
+  sourceCode = round_string_new();
+  strResult = round_string_new();
+  
+  if (round_ruby_engine_getsoucecode(engine, method, param, sourceCode)) {
+    isSuccess = round_ruby_engine_run_code(engine, round_string_getvalue(sourceCode));
+  }
+  
+  *jsonResult = NULL;
+  if (isSuccess) {
+    isSuccess = round_script_engine_result2json(strResult, jsonResult, err);
+  }
+  
+  if (sourceCode) {
+    round_string_delete(sourceCode);
+  }
+  
+  if (strResult) {
+    round_string_delete(strResult);
+  }
+  
+  return isSuccess;
 }
 
 /****************************************
@@ -99,18 +137,14 @@ bool round_ruby_engine_run(RoundRubyEngine* engine, RoundMethod* method, const c
 
 bool round_ruby_engine_run_code(RoundRubyEngine* engine, const char* code)
 {
-#if defined(ROUND_SUPPORT_RUBY)
-  int evalState;
-#endif
-
   if (!engine)
     return false;
 
 #if defined(ROUND_SUPPORT_RUBY)
+  int evalState;
   rb_eval_string_protect(code, &evalState);
   if (evalState) {
-    // round_ruby_engine_seterror(engine, rb_string_value_cstr((volatile VALUE *
-    // )rb_errinfo));
+    // round_ruby_engine_seterror(engine, rb_string_value_cstr((volatile VALUE *)rb_errinfo));
   }
 
   return true;
