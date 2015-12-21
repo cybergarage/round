@@ -94,10 +94,13 @@ typedef struct {
  ****************************************/
 
 RoundNode *round_node_new(void);
-
+RoundNode *round_node_local_new(void);
+RoundNode *round_node_remote_new(void);
+  
 bool round_node_init(RoundNode *node);
 bool round_node_clear(RoundNode *node);
 bool round_node_destroy(RoundNode *node);
+bool round_node_delete(RoundNode *node);
 
 #define round_node_remove(node) round_list_remove((RoundList *)node)
 
