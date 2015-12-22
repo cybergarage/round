@@ -252,14 +252,12 @@ JSBool round_js_sm_getregistry(JSContext *cx, unsigned argc, jsval *vp)
   if (reg) {
     RoundJSONObject *map = round_json_map_new();
     if (map) {
-      /*
-      Round::JSONDictionary jsonDict;
-      std::string result;
-      reg.toJSONDictionary(&jsonDict);
-      jsonDict.toJSONString(&result);
-      JS_SET_STDSTRING_RVAL(cx, vp, result);
-      */
-      round_json_delete(map);
+      round_script_registry2json(reg, map);
+      const char *result;
+      if (round_json_object_tostring(map, &result)) {
+        JS_SET_STDSTRING_RVAL(cx, vp, result);
+      }
+      round_json_object_delete(map);
     }
     else {
       JS_SET_RVAL(cx, vp, BOOLEAN_TO_JSVAL(JS_FALSE));

@@ -18,6 +18,7 @@
 #include <round/typedef.h>
 #include <round/const.h>
 #include <round/error_internal.h>
+#include <round/registry.h>
 #include <round/util/oo.h>
 #include <round/util/mutex.h>
 #include <round/util/strings.h>
@@ -90,7 +91,8 @@ RoundMap *round_script_engine_map_new();
  * Function
  ****************************************/
   
-bool round_script_engine_result2json(RoundString *result, RoundJSONObject** jsonResult, RoundError* err);
+bool round_script_result2json(RoundString *result, RoundJSONObject** jsonResult, RoundError* err);
+bool round_script_registry2json(RoundRegistry *reg, RoundJSONObject* jsonMap);
 
 #ifdef  __cplusplus
 }

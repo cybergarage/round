@@ -16,7 +16,7 @@
 static RoundLocalNode *gRoundLuaEngineLocalNode = NULL;
 
 /****************************************
- * round_script_engine_result2json
+ * round_script_result2json
  ****************************************/
 
 void round_lua_setlocalnode(RoundLocalNode *node) {
@@ -24,7 +24,7 @@ void round_lua_setlocalnode(RoundLocalNode *node) {
 }
 
 /****************************************
- * round_script_engine_result2json
+ * round_script_result2json
  ****************************************/
 
 RoundLocalNode *round_lua_getlocalnode() {
@@ -32,7 +32,7 @@ RoundLocalNode *round_lua_getlocalnode() {
 }
 
 /****************************************
- * round_script_engine_result2json
+ * round_script_result2json
  ****************************************/
 
 bool round_lua_haslocalnode() {
@@ -40,7 +40,7 @@ bool round_lua_haslocalnode() {
 }
 
 /****************************************
- * round_script_engine_result2json
+ * round_script_result2json
  ****************************************/
 
 int round_lua_getnetworkstate(lua_State* L)
@@ -62,7 +62,7 @@ int round_lua_getnetworkstate(lua_State* L)
 }
 
 /****************************************
- * round_script_engine_result2json
+ * round_script_result2json
  ****************************************/
 
 int round_lua_getclusterstate(lua_State* L)
@@ -84,7 +84,7 @@ int round_lua_getclusterstate(lua_State* L)
 }
 
 /****************************************
- * round_script_engine_result2json
+ * round_script_result2json
  ****************************************/
 
 int round_lua_getnodestate(lua_State* L)
@@ -106,7 +106,7 @@ int round_lua_getnodestate(lua_State* L)
 }
 
 /****************************************
- * round_script_engine_result2json
+ * round_script_result2json
  ****************************************/
 
 int round_lua_setregistry(lua_State* L)
@@ -127,7 +127,7 @@ int round_lua_setregistry(lua_State* L)
 }
 
 /****************************************
- * round_script_engine_result2json
+ * round_script_result2json
  ****************************************/
 
 int round_lua_getregistry(lua_State* L)
@@ -156,7 +156,7 @@ int round_lua_getregistry(lua_State* L)
 }
 
 /****************************************
- * round_script_engine_result2json
+ * round_script_result2json
  ****************************************/
 
 int round_lua_removeregistry(lua_State* L)
@@ -176,7 +176,7 @@ int round_lua_removeregistry(lua_State* L)
 }
 
 /****************************************
- * round_script_engine_result2json
+ * round_script_result2json
  ****************************************/
 
 int round_lua_postmethod(lua_State* L)
