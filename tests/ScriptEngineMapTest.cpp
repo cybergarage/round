@@ -13,6 +13,8 @@
 #include "RoundTest.h"
 #include <round/script.h>
 
+BOOST_AUTO_TEST_SUITE(script)
+
 BOOST_AUTO_TEST_CASE(ScriptEngineListAdd)
 {
   RoundMap* map = round_script_engine_map_new();
@@ -60,3 +62,6 @@ BOOST_AUTO_TEST_CASE(ScriptEngineListAdd)
 
   BOOST_CHECK(round_script_engine_map_delete(map));
 }
+
+BOOST_AUTO_TEST_SUITE_END()
+

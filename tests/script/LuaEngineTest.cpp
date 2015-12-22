@@ -12,6 +12,10 @@
 #include <string>
 #include <round/script/lua.h>
 
+#if defined(ROUND_SUPPORT_LUA)
+
+BOOST_AUTO_TEST_SUITE(script)
+
 BOOST_AUTO_TEST_CASE(LuaEngineTest)
 {
 #define SCRIPT_ECHO_LOOP 10
@@ -33,12 +37,9 @@ BOOST_AUTO_TEST_CASE(LuaEngineTest)
 
   BOOST_CHECK(luaEngine);
 
-  bool round_lua_engine_run(RoundLuaEngine * engine, RoundMethod * method, const char* param, RoundString* result, RoundError* err);
-
   for (int n = 0; n < SCRIPT_ECHO_LOOP; n++) {
     BOOST_CHECK(round_lua_engine_lock(luaEngine));
-    BOOST_CHECK(
-        round_lua_engine_run(luaEngine, method, LUA_ECHO_PARAM, result, err));
+    BOOST_CHECK(round_lua_engine_run(luaEngine, method, LUA_ECHO_PARAM, result, err));
     BOOST_CHECK(round_streq(LUA_ECHO_PARAM, round_string_getvalue(result)));
     BOOST_CHECK(round_lua_engine_unlock(luaEngine));
   }
@@ -48,3 +49,8 @@ BOOST_AUTO_TEST_CASE(LuaEngineTest)
   BOOST_CHECK(round_error_delete(err));
   BOOST_CHECK(round_lua_engine_delete(luaEngine));
 }
+
+BOOST_AUTO_TEST_SUITE_END()
+
+#endif
+
