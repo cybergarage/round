@@ -130,6 +130,7 @@ BOOST_AUTO_TEST_CASE(JavaScriptRegistryMethods)
   for (size_t n = 0; n < KEY_LOOP_COUNT; n++) {
     snprintf(params, sizeof(params), "{\"%s\" : \"key%ld\", \"%s\" : \"val%ld\"}", ROUND_SYSTEM_METHOD_PARAM_KEY, n, ROUND_SYSTEM_METHOD_PARAM_VALUE, n);
     //BOOST_CHECK(round_local_node_poststringmessage(node, Round::Test::CreateJsonRpcRequestString(SET_KEY_NAME, params), &resObj, err));
+    //BOOST_CHECK(round_local_node_poststringmessage(node, Round::Test::CreateJsonRpcRequestString(SET_KEY_NAME, params), &resObj, err));
   }
   /*
   BOOST_CHECK(round_json_parse(json, Test::RPC_RUN_ECHO, err));
