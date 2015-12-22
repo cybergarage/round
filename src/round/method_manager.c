@@ -12,6 +12,7 @@
 #include <round/const.h>
 #include <round/error_internal.h>
 #include <round/method.h>
+#include <round/util/json_rpc.h>
 
 /****************************************
  * round_method_manager_new
