@@ -13,13 +13,14 @@
 #if defined(ROUND_SUPPORT_LUA)
 
 // FIXME : Update not to use the global variable
-static RoundLocalNode *gRoundLuaEngineLocalNode = NULL;
+static RoundLocalNode* gRoundLuaEngineLocalNode = NULL;
 
 /****************************************
  * round_script_result2json
  ****************************************/
 
-void round_lua_setlocalnode(RoundLocalNode *node) {
+void round_lua_setlocalnode(RoundLocalNode* node)
+{
   gRoundLuaEngineLocalNode = node;
 }
 
@@ -27,7 +28,8 @@ void round_lua_setlocalnode(RoundLocalNode *node) {
  * round_script_result2json
  ****************************************/
 
-RoundLocalNode *round_lua_getlocalnode() {
+RoundLocalNode* round_lua_getlocalnode()
+{
   return gRoundLuaEngineLocalNode;
 }
 
@@ -35,7 +37,8 @@ RoundLocalNode *round_lua_getlocalnode() {
  * round_script_result2json
  ****************************************/
 
-bool round_lua_haslocalnode() {
+bool round_lua_haslocalnode()
+{
   return (gRoundLuaEngineLocalNode != NULL) ? true : false;
 }
 
@@ -46,8 +49,8 @@ bool round_lua_haslocalnode() {
 int round_lua_getnetworkstate(lua_State* L)
 {
   std::string json = "";
-  
-  RoundLocalNode *node = dynamic_cast<RoundLocalNode *>(round_lua_getlocalnode());
+
+  RoundLocalNode* node = dynamic_cast<RoundLocalNode*>(round_lua_getlocalnode());
   if (node) {
     RoundLocalNodeResponse nodeRes;
     Round::SystemGetNetworkInfoResponse sysRes(&nodeRes);
@@ -55,9 +58,9 @@ int round_lua_getnetworkstate(lua_State* L)
       nodeRes.getResult(&json);
     }
   }
-  
+
   lua_pushstring(L, json.c_str());
-  
+
   return 1;
 }
 
@@ -68,8 +71,8 @@ int round_lua_getnetworkstate(lua_State* L)
 int round_lua_getclusterstate(lua_State* L)
 {
   std::string json = "";
-  
-  RoundLocalNode *node = dynamic_cast<RoundLocalNode *>(round_lua_getlocalnode());
+
+  RoundLocalNode* node = dynamic_cast<RoundLocalNode*>(round_lua_getlocalnode());
   if (node) {
     RoundLocalNodeResponse nodeRes;
     Round::SystemGetClusterInfoResponse sysRes(&nodeRes);
@@ -77,9 +80,9 @@ int round_lua_getclusterstate(lua_State* L)
       nodeRes.getResult(&json);
     }
   }
-  
+
   lua_pushstring(L, json.c_str());
-  
+
   return 1;
 }
 
@@ -90,8 +93,8 @@ int round_lua_getclusterstate(lua_State* L)
 int round_lua_getnodestate(lua_State* L)
 {
   std::string json = "";
-  
-  RoundLocalNode *node = dynamic_cast<RoundLocalNode *>(round_lua_getlocalnode());
+
+  RoundLocalNode* node = dynamic_cast<RoundLocalNode*>(round_lua_getlocalnode());
   if (node) {
     RoundLocalNodeResponse nodeRes;
     Round::SystemGetNodeInfoResponse sysRes(&nodeRes);
@@ -99,9 +102,9 @@ int round_lua_getnodestate(lua_State* L)
       nodeRes.getResult(&json);
     }
   }
-  
+
   lua_pushstring(L, json.c_str());
-  
+
   return 1;
 }
 
@@ -111,18 +114,18 @@ int round_lua_getnodestate(lua_State* L)
 
 int round_lua_setregistry(lua_State* L)
 {
-  RoundLocalNode *localNode = round_lua_getlocalnode();
+  RoundLocalNode* localNode = round_lua_getlocalnode();
   std::string key = luaL_checkstring(L, 1);
   std::string val = luaL_checkstring(L, 2);
-  
+
   bool isSuccess = false;
   if (localNode && (0 < key.length())) {
     Round::Error err;
     isSuccess = localNode->setRegistry(key, val, &err);
   }
-  
+
   lua_pushboolean(L, isSuccess);
-  
+
   return 1;
 }
 
@@ -134,24 +137,24 @@ int round_lua_getregistry(lua_State* L)
 {
   bool isSuccess = false;
   std::string result = "";
-  
-  RoundLocalNode *localNode = round_lua_getlocalnode();
+
+  RoundLocalNode* localNode = round_lua_getlocalnode();
   std::string key = luaL_checkstring(L, 1);
   if (localNode && (0 < key.length())) {
     Round::Error err;
     Round::Registry reg;
     isSuccess = localNode->getRegistry(key, &reg, &err);
-    
+
     if (isSuccess) {
       Round::JSONDictionary jsonDict;
       reg.toJSONDictionary(&jsonDict);
       jsonDict.toJSONString(&result);
     }
   }
-  
+
   lua_pushboolean(L, isSuccess);
   lua_pushstring(L, result.c_str());
-  
+
   return 2;
 }
 
@@ -162,16 +165,16 @@ int round_lua_getregistry(lua_State* L)
 int round_lua_removeregistry(lua_State* L)
 {
   bool isSuccess = false;
-  
-  RoundLocalNode *localNode = round_lua_getlocalnode();
+
+  RoundLocalNode* localNode = round_lua_getlocalnode();
   std::string key = luaL_checkstring(L, 1);
   if (localNode && (0 < key.length())) {
     Round::Error err;
     isSuccess = localNode->removeRegistry(key, &err);
   }
-  
+
   lua_pushboolean(L, isSuccess);
-  
+
   return 1;
 }
 
@@ -183,20 +186,20 @@ int round_lua_postmethod(lua_State* L)
 {
   bool isSuccess = false;
   std::string result;
-  
+
   std::string method = luaL_checkstring(L, 1);
   std::string params = luaL_checkstring(L, 2);
   std::string dest = luaL_checkstring(L, 3);
-  
-  RoundLocalNode *localNode = round_lua_getlocalnode();
+
+  RoundLocalNode* localNode = round_lua_getlocalnode();
   if (localNode) {
     Round::Error error;
     isSuccess = localNode->postMessage(dest, method, params, &result);
   }
-  
+
   lua_pushboolean(L, isSuccess);
   lua_pushstring(L, result.c_str());
-  
+
   return 2;
 }
 

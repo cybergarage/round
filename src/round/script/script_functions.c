@@ -15,11 +15,11 @@
  * round_script_result2json
  ****************************************/
 
-bool round_script_result2json(RoundString *result, RoundJSONObject** jsonResult, RoundError* err)
+bool round_script_result2json(RoundString* result, RoundJSONObject** jsonResult, RoundError* err)
 {
   *jsonResult = NULL;
   bool isSuccess = false;
-  
+
   RoundJSON* json = round_json_new();
   if (json) {
     isSuccess = round_json_parse(json, round_string_getvalue(result), err);
@@ -43,12 +43,12 @@ bool round_script_result2json(RoundString *result, RoundJSONObject** jsonResult,
  * round_script_engine_resistry2json
  ****************************************/
 
-bool round_script_registry2json(RoundRegistry *reg, RoundJSONObject* jsonMap)
+bool round_script_registry2json(RoundRegistry* reg, RoundJSONObject* jsonMap)
 {
   if (jsonMap)
     return false;
-  
+
   round_json_map_setstring(jsonMap, round_registry_getkey(reg), round_registry_getvalue(reg));
-  
+
   return true;
 }

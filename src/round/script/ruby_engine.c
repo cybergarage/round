@@ -102,32 +102,32 @@ bool round_ruby_engine_getsoucecode(RoundRubyEngine* engine, RoundMethod* method
 
 bool round_ruby_engine_run(RoundRubyEngine* engine, RoundMethod* method, const char* param, RoundJSONObject** jsonResult, RoundError* err)
 {
-  RoundString *sourceCode, *strResult;
+  RoundString* sourceCode, *strResult;
   bool isSuccess;
-  
+
   if (!engine)
     return false;
-  
+
   sourceCode = round_string_new();
   strResult = round_string_new();
-  
+
   if (round_ruby_engine_getsoucecode(engine, method, param, sourceCode)) {
     isSuccess = round_ruby_engine_run_code(engine, round_string_getvalue(sourceCode));
   }
-  
+
   *jsonResult = NULL;
   if (isSuccess) {
     isSuccess = round_script_result2json(strResult, jsonResult, err);
   }
-  
+
   if (sourceCode) {
     round_string_delete(sourceCode);
   }
-  
+
   if (strResult) {
     round_string_delete(strResult);
   }
-  
+
   return isSuccess;
 }
 

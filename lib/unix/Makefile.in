@@ -175,11 +175,14 @@ am__objects_1 = ../../src/round/libround_a-client.$(OBJEXT) \
 	../../src/round/libround_a-registry_map.$(OBJEXT) \
 	../../src/round/libround_a-remote_node.$(OBJEXT) \
 	../../src/round/libround_a-rpc_server.$(OBJEXT) \
+	../../src/round/script/js/libround_a-js_sm_functions.$(OBJEXT) \
 	../../src/round/script/libround_a-js_engine.$(OBJEXT) \
 	../../src/round/script/libround_a-js_sm_engine.$(OBJEXT) \
+	../../src/round/script/lua/libround_a-lua_functions.$(OBJEXT) \
 	../../src/round/script/libround_a-lua_engine.$(OBJEXT) \
 	../../src/round/script/libround_a-native_engine.$(OBJEXT) \
 	../../src/round/script/libround_a-ruby_engine.$(OBJEXT) \
+	../../src/round/script/libround_a-script_functions.$(OBJEXT) \
 	../../src/round/libround_a-script_engine.$(OBJEXT) \
 	../../src/round/libround_a-script_engine_map.$(OBJEXT) \
 	../../src/round/libround_a-server.$(OBJEXT) \
@@ -405,11 +408,14 @@ round_mpi_sources = \
 	../../src/round/registry_map.c \
 	../../src/round/remote_node.c \
 	../../src/round/rpc_server.c \
+	../../src/round/script/js/js_sm_functions.c \
 	../../src/round/script/js_engine.c \
 	../../src/round/script/js_sm_engine.c \
+	../../src/round/script/lua/lua_functions.c \
 	../../src/round/script/lua_engine.c \
 	../../src/round/script/native_engine.c \
 	../../src/round/script/ruby_engine.c \
+	../../src/round/script/script_functions.c \
 	../../src/round/script_engine.c \
 	../../src/round/script_engine_map.c \
 	../../src/round/server.c \
@@ -625,6 +631,15 @@ clean-libLIBRARIES:
 ../../src/round/libround_a-rpc_server.$(OBJEXT):  \
 	../../src/round/$(am__dirstamp) \
 	../../src/round/$(DEPDIR)/$(am__dirstamp)
+../../src/round/script/js/$(am__dirstamp):
+	@$(MKDIR_P) ../../src/round/script/js
+	@: > ../../src/round/script/js/$(am__dirstamp)
+../../src/round/script/js/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) ../../src/round/script/js/$(DEPDIR)
+	@: > ../../src/round/script/js/$(DEPDIR)/$(am__dirstamp)
+../../src/round/script/js/libround_a-js_sm_functions.$(OBJEXT):  \
+	../../src/round/script/js/$(am__dirstamp) \
+	../../src/round/script/js/$(DEPDIR)/$(am__dirstamp)
 ../../src/round/script/$(am__dirstamp):
 	@$(MKDIR_P) ../../src/round/script
 	@: > ../../src/round/script/$(am__dirstamp)
@@ -637,6 +652,15 @@ clean-libLIBRARIES:
 ../../src/round/script/libround_a-js_sm_engine.$(OBJEXT):  \
 	../../src/round/script/$(am__dirstamp) \
 	../../src/round/script/$(DEPDIR)/$(am__dirstamp)
+../../src/round/script/lua/$(am__dirstamp):
+	@$(MKDIR_P) ../../src/round/script/lua
+	@: > ../../src/round/script/lua/$(am__dirstamp)
+../../src/round/script/lua/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) ../../src/round/script/lua/$(DEPDIR)
+	@: > ../../src/round/script/lua/$(DEPDIR)/$(am__dirstamp)
+../../src/round/script/lua/libround_a-lua_functions.$(OBJEXT):  \
+	../../src/round/script/lua/$(am__dirstamp) \
+	../../src/round/script/lua/$(DEPDIR)/$(am__dirstamp)
 ../../src/round/script/libround_a-lua_engine.$(OBJEXT):  \
 	../../src/round/script/$(am__dirstamp) \
 	../../src/round/script/$(DEPDIR)/$(am__dirstamp)
@@ -644,6 +668,9 @@ clean-libLIBRARIES:
 	../../src/round/script/$(am__dirstamp) \
 	../../src/round/script/$(DEPDIR)/$(am__dirstamp)
 ../../src/round/script/libround_a-ruby_engine.$(OBJEXT):  \
+	../../src/round/script/$(am__dirstamp) \
+	../../src/round/script/$(DEPDIR)/$(am__dirstamp)
+../../src/round/script/libround_a-script_functions.$(OBJEXT):  \
 	../../src/round/script/$(am__dirstamp) \
 	../../src/round/script/$(DEPDIR)/$(am__dirstamp)
 ../../src/round/libround_a-script_engine.$(OBJEXT):  \
@@ -751,6 +778,8 @@ mostlyclean-compile:
 	-rm -f ../../src/round/impl/*.$(OBJEXT)
 	-rm -f ../../src/round/method/*.$(OBJEXT)
 	-rm -f ../../src/round/script/*.$(OBJEXT)
+	-rm -f ../../src/round/script/js/*.$(OBJEXT)
+	-rm -f ../../src/round/script/lua/*.$(OBJEXT)
 	-rm -f ../../src/round/util/*.$(OBJEXT)
 
 distclean-compile:
@@ -795,6 +824,9 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@../../src/round/script/$(DEPDIR)/libround_a-lua_engine.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../../src/round/script/$(DEPDIR)/libround_a-native_engine.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../../src/round/script/$(DEPDIR)/libround_a-ruby_engine.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@../../src/round/script/$(DEPDIR)/libround_a-script_functions.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@../../src/round/script/js/$(DEPDIR)/libround_a-js_sm_functions.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@../../src/round/script/lua/$(DEPDIR)/libround_a-lua_functions.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../../src/round/util/$(DEPDIR)/libround_a-base64.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../../src/round/util/$(DEPDIR)/libround_a-consistent_hashing_node.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../../src/round/util/$(DEPDIR)/libround_a-consistent_hashing_ring.Po@am__quote@
@@ -1272,6 +1304,20 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libround_a_CFLAGS) $(CFLAGS) -c -o ../../src/round/libround_a-rpc_server.obj `if test -f '../../src/round/rpc_server.c'; then $(CYGPATH_W) '../../src/round/rpc_server.c'; else $(CYGPATH_W) '$(srcdir)/../../src/round/rpc_server.c'; fi`
 
+../../src/round/script/js/libround_a-js_sm_functions.o: ../../src/round/script/js/js_sm_functions.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libround_a_CFLAGS) $(CFLAGS) -MT ../../src/round/script/js/libround_a-js_sm_functions.o -MD -MP -MF ../../src/round/script/js/$(DEPDIR)/libround_a-js_sm_functions.Tpo -c -o ../../src/round/script/js/libround_a-js_sm_functions.o `test -f '../../src/round/script/js/js_sm_functions.c' || echo '$(srcdir)/'`../../src/round/script/js/js_sm_functions.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) ../../src/round/script/js/$(DEPDIR)/libround_a-js_sm_functions.Tpo ../../src/round/script/js/$(DEPDIR)/libround_a-js_sm_functions.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='../../src/round/script/js/js_sm_functions.c' object='../../src/round/script/js/libround_a-js_sm_functions.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libround_a_CFLAGS) $(CFLAGS) -c -o ../../src/round/script/js/libround_a-js_sm_functions.o `test -f '../../src/round/script/js/js_sm_functions.c' || echo '$(srcdir)/'`../../src/round/script/js/js_sm_functions.c
+
+../../src/round/script/js/libround_a-js_sm_functions.obj: ../../src/round/script/js/js_sm_functions.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libround_a_CFLAGS) $(CFLAGS) -MT ../../src/round/script/js/libround_a-js_sm_functions.obj -MD -MP -MF ../../src/round/script/js/$(DEPDIR)/libround_a-js_sm_functions.Tpo -c -o ../../src/round/script/js/libround_a-js_sm_functions.obj `if test -f '../../src/round/script/js/js_sm_functions.c'; then $(CYGPATH_W) '../../src/round/script/js/js_sm_functions.c'; else $(CYGPATH_W) '$(srcdir)/../../src/round/script/js/js_sm_functions.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) ../../src/round/script/js/$(DEPDIR)/libround_a-js_sm_functions.Tpo ../../src/round/script/js/$(DEPDIR)/libround_a-js_sm_functions.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='../../src/round/script/js/js_sm_functions.c' object='../../src/round/script/js/libround_a-js_sm_functions.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libround_a_CFLAGS) $(CFLAGS) -c -o ../../src/round/script/js/libround_a-js_sm_functions.obj `if test -f '../../src/round/script/js/js_sm_functions.c'; then $(CYGPATH_W) '../../src/round/script/js/js_sm_functions.c'; else $(CYGPATH_W) '$(srcdir)/../../src/round/script/js/js_sm_functions.c'; fi`
+
 ../../src/round/script/libround_a-js_engine.o: ../../src/round/script/js_engine.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libround_a_CFLAGS) $(CFLAGS) -MT ../../src/round/script/libround_a-js_engine.o -MD -MP -MF ../../src/round/script/$(DEPDIR)/libround_a-js_engine.Tpo -c -o ../../src/round/script/libround_a-js_engine.o `test -f '../../src/round/script/js_engine.c' || echo '$(srcdir)/'`../../src/round/script/js_engine.c
 @am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) ../../src/round/script/$(DEPDIR)/libround_a-js_engine.Tpo ../../src/round/script/$(DEPDIR)/libround_a-js_engine.Po
@@ -1299,6 +1345,20 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='../../src/round/script/js_sm_engine.c' object='../../src/round/script/libround_a-js_sm_engine.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libround_a_CFLAGS) $(CFLAGS) -c -o ../../src/round/script/libround_a-js_sm_engine.obj `if test -f '../../src/round/script/js_sm_engine.c'; then $(CYGPATH_W) '../../src/round/script/js_sm_engine.c'; else $(CYGPATH_W) '$(srcdir)/../../src/round/script/js_sm_engine.c'; fi`
+
+../../src/round/script/lua/libround_a-lua_functions.o: ../../src/round/script/lua/lua_functions.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libround_a_CFLAGS) $(CFLAGS) -MT ../../src/round/script/lua/libround_a-lua_functions.o -MD -MP -MF ../../src/round/script/lua/$(DEPDIR)/libround_a-lua_functions.Tpo -c -o ../../src/round/script/lua/libround_a-lua_functions.o `test -f '../../src/round/script/lua/lua_functions.c' || echo '$(srcdir)/'`../../src/round/script/lua/lua_functions.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) ../../src/round/script/lua/$(DEPDIR)/libround_a-lua_functions.Tpo ../../src/round/script/lua/$(DEPDIR)/libround_a-lua_functions.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='../../src/round/script/lua/lua_functions.c' object='../../src/round/script/lua/libround_a-lua_functions.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libround_a_CFLAGS) $(CFLAGS) -c -o ../../src/round/script/lua/libround_a-lua_functions.o `test -f '../../src/round/script/lua/lua_functions.c' || echo '$(srcdir)/'`../../src/round/script/lua/lua_functions.c
+
+../../src/round/script/lua/libround_a-lua_functions.obj: ../../src/round/script/lua/lua_functions.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libround_a_CFLAGS) $(CFLAGS) -MT ../../src/round/script/lua/libround_a-lua_functions.obj -MD -MP -MF ../../src/round/script/lua/$(DEPDIR)/libround_a-lua_functions.Tpo -c -o ../../src/round/script/lua/libround_a-lua_functions.obj `if test -f '../../src/round/script/lua/lua_functions.c'; then $(CYGPATH_W) '../../src/round/script/lua/lua_functions.c'; else $(CYGPATH_W) '$(srcdir)/../../src/round/script/lua/lua_functions.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) ../../src/round/script/lua/$(DEPDIR)/libround_a-lua_functions.Tpo ../../src/round/script/lua/$(DEPDIR)/libround_a-lua_functions.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='../../src/round/script/lua/lua_functions.c' object='../../src/round/script/lua/libround_a-lua_functions.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libround_a_CFLAGS) $(CFLAGS) -c -o ../../src/round/script/lua/libround_a-lua_functions.obj `if test -f '../../src/round/script/lua/lua_functions.c'; then $(CYGPATH_W) '../../src/round/script/lua/lua_functions.c'; else $(CYGPATH_W) '$(srcdir)/../../src/round/script/lua/lua_functions.c'; fi`
 
 ../../src/round/script/libround_a-lua_engine.o: ../../src/round/script/lua_engine.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libround_a_CFLAGS) $(CFLAGS) -MT ../../src/round/script/libround_a-lua_engine.o -MD -MP -MF ../../src/round/script/$(DEPDIR)/libround_a-lua_engine.Tpo -c -o ../../src/round/script/libround_a-lua_engine.o `test -f '../../src/round/script/lua_engine.c' || echo '$(srcdir)/'`../../src/round/script/lua_engine.c
@@ -1341,6 +1401,20 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='../../src/round/script/ruby_engine.c' object='../../src/round/script/libround_a-ruby_engine.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libround_a_CFLAGS) $(CFLAGS) -c -o ../../src/round/script/libround_a-ruby_engine.obj `if test -f '../../src/round/script/ruby_engine.c'; then $(CYGPATH_W) '../../src/round/script/ruby_engine.c'; else $(CYGPATH_W) '$(srcdir)/../../src/round/script/ruby_engine.c'; fi`
+
+../../src/round/script/libround_a-script_functions.o: ../../src/round/script/script_functions.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libround_a_CFLAGS) $(CFLAGS) -MT ../../src/round/script/libround_a-script_functions.o -MD -MP -MF ../../src/round/script/$(DEPDIR)/libround_a-script_functions.Tpo -c -o ../../src/round/script/libround_a-script_functions.o `test -f '../../src/round/script/script_functions.c' || echo '$(srcdir)/'`../../src/round/script/script_functions.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) ../../src/round/script/$(DEPDIR)/libround_a-script_functions.Tpo ../../src/round/script/$(DEPDIR)/libround_a-script_functions.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='../../src/round/script/script_functions.c' object='../../src/round/script/libround_a-script_functions.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libround_a_CFLAGS) $(CFLAGS) -c -o ../../src/round/script/libround_a-script_functions.o `test -f '../../src/round/script/script_functions.c' || echo '$(srcdir)/'`../../src/round/script/script_functions.c
+
+../../src/round/script/libround_a-script_functions.obj: ../../src/round/script/script_functions.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libround_a_CFLAGS) $(CFLAGS) -MT ../../src/round/script/libround_a-script_functions.obj -MD -MP -MF ../../src/round/script/$(DEPDIR)/libround_a-script_functions.Tpo -c -o ../../src/round/script/libround_a-script_functions.obj `if test -f '../../src/round/script/script_functions.c'; then $(CYGPATH_W) '../../src/round/script/script_functions.c'; else $(CYGPATH_W) '$(srcdir)/../../src/round/script/script_functions.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) ../../src/round/script/$(DEPDIR)/libround_a-script_functions.Tpo ../../src/round/script/$(DEPDIR)/libround_a-script_functions.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='../../src/round/script/script_functions.c' object='../../src/round/script/libround_a-script_functions.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libround_a_CFLAGS) $(CFLAGS) -c -o ../../src/round/script/libround_a-script_functions.obj `if test -f '../../src/round/script/script_functions.c'; then $(CYGPATH_W) '../../src/round/script/script_functions.c'; else $(CYGPATH_W) '$(srcdir)/../../src/round/script/script_functions.c'; fi`
 
 ../../src/round/libround_a-script_engine.o: ../../src/round/script_engine.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libround_a_CFLAGS) $(CFLAGS) -MT ../../src/round/libround_a-script_engine.o -MD -MP -MF ../../src/round/$(DEPDIR)/libround_a-script_engine.Tpo -c -o ../../src/round/libround_a-script_engine.o `test -f '../../src/round/script_engine.c' || echo '$(srcdir)/'`../../src/round/script_engine.c
@@ -1871,6 +1945,10 @@ distclean-generic:
 	-rm -f ../../src/round/method/$(am__dirstamp)
 	-rm -f ../../src/round/script/$(DEPDIR)/$(am__dirstamp)
 	-rm -f ../../src/round/script/$(am__dirstamp)
+	-rm -f ../../src/round/script/js/$(DEPDIR)/$(am__dirstamp)
+	-rm -f ../../src/round/script/js/$(am__dirstamp)
+	-rm -f ../../src/round/script/lua/$(DEPDIR)/$(am__dirstamp)
+	-rm -f ../../src/round/script/lua/$(am__dirstamp)
 	-rm -f ../../src/round/util/$(DEPDIR)/$(am__dirstamp)
 	-rm -f ../../src/round/util/$(am__dirstamp)
 
@@ -1882,7 +1960,7 @@ clean: clean-am
 clean-am: clean-generic clean-libLIBRARIES mostlyclean-am
 
 distclean: distclean-am
-	-rm -rf ../../src/round/$(DEPDIR) ../../src/round/impl/$(DEPDIR) ../../src/round/method/$(DEPDIR) ../../src/round/script/$(DEPDIR) ../../src/round/util/$(DEPDIR)
+	-rm -rf ../../src/round/$(DEPDIR) ../../src/round/impl/$(DEPDIR) ../../src/round/method/$(DEPDIR) ../../src/round/script/$(DEPDIR) ../../src/round/script/js/$(DEPDIR) ../../src/round/script/lua/$(DEPDIR) ../../src/round/util/$(DEPDIR)
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-tags
@@ -1928,7 +2006,7 @@ install-ps-am:
 installcheck-am:
 
 maintainer-clean: maintainer-clean-am
-	-rm -rf ../../src/round/$(DEPDIR) ../../src/round/impl/$(DEPDIR) ../../src/round/method/$(DEPDIR) ../../src/round/script/$(DEPDIR) ../../src/round/util/$(DEPDIR)
+	-rm -rf ../../src/round/$(DEPDIR) ../../src/round/impl/$(DEPDIR) ../../src/round/method/$(DEPDIR) ../../src/round/script/$(DEPDIR) ../../src/round/script/js/$(DEPDIR) ../../src/round/script/lua/$(DEPDIR) ../../src/round/util/$(DEPDIR)
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 
