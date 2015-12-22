@@ -120,7 +120,7 @@ bool round_js_engine_getsoucecode(RoundJavaScriptEngine* engine, RoundMethod* me
 
 bool round_js_engine_run(RoundJavaScriptEngine* engine, RoundMethod* method, const char* param, RoundJSONObject** jsonResult, RoundError* err)
 {
-  RoundString* jsSource, *strResult;
+  RoundString *jsSource, *strResult;
   bool isSuccess;
 
   if (!engine)
@@ -130,7 +130,7 @@ bool round_js_engine_run(RoundJavaScriptEngine* engine, RoundMethod* method, con
   strResult = round_string_new();
 
   round_js_sm_setlocalnode(round_script_engine_getlocalnode(engine));
-  
+
   if (round_js_engine_getsoucecode(engine, method, param, jsSource)) {
 #if defined(ROUND_SUPPORT_JS_SM)
     isSuccess = round_js_sm_engine_run(engine, round_string_getvalue(jsSource), round_string_length(jsSource), strResult, err);
@@ -138,7 +138,7 @@ bool round_js_engine_run(RoundJavaScriptEngine* engine, RoundMethod* method, con
   }
 
   round_js_sm_setlocalnode(NULL);
-  
+
   *jsonResult = NULL;
   if (isSuccess) {
     isSuccess = round_script_result2json(strResult, jsonResult, err);

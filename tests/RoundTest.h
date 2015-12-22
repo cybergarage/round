@@ -20,7 +20,9 @@ namespace Round {
     int GetRandomRepeatCount(int min, int max);
     void Setup();
     void Sleep(long milliSecond = ROUND_TEST_DEFAULT_WAIT_MILLI_SECOND);
-    
+
+    const char *CreateJsonRpcRequestString(const char *method, const char *params);
+    const char* CreateJsonRpcSetMethodRequestString(const char* lang, const char* name, const char* code);
   }
 }
 

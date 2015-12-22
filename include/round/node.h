@@ -62,6 +62,7 @@ bool round_node_setrequesttimeout(RoundNode *node, time_t value);
 time_t round_node_getrequesttimeout(RoundNode *node);
 
 bool round_node_postmessage(RoundNode *node, RoundJSONObject *reqObj, RoundJSONObject **resObj, RoundError *err);
+bool round_node_poststringmessage(RoundNode *node, const char *reqStr, RoundJSONObject **resObj, RoundError *err);
 
 bool round_node_equals(RoundNode *node1, RoundNode *node2);  
 

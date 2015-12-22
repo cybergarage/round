@@ -443,6 +443,42 @@ bool round_node_postmessage(RoundNode* node, RoundJSONObject* reqObj, RoundJSONO
 }
 
 /****************************************
+ * round_node_poststringmessage
+ ****************************************/
+
+bool round_node_poststringmessage(RoundNode* node, const char* reqStr, RoundJSONObject** resObj, RoundError* err)
+{
+  if (!node || !reqStr) {
+    round_node_rpcerrorcode2error(node, ROUND_RPC_ERROR_CODE_INVALID_REQUEST, err);
+    return false;
+  }
+
+  RoundJSON* json = round_json_new();
+  if (!json) {
+    round_node_rpcerrorcode2error(node, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR, err);
+    return false;
+  }
+
+  if (!round_json_parse(json, reqStr, err)) {
+    round_json_delete(json);
+    return false;
+  }
+
+  RoundJSONObject* reqObj = round_json_getrootobject(json);
+  if (!reqObj) {
+    round_node_rpcerrorcode2error(node, ROUND_RPC_ERROR_CODE_INVALID_REQUEST, err);
+    round_json_delete(json);
+    return false;
+  }
+
+  bool isSuccess = round_node_postmessage(node, reqObj, resObj, err);
+
+  round_json_delete(json);
+
+  return isSuccess;
+}
+
+/****************************************
  * round_node_rpcerrorcode2error
  ****************************************/
 

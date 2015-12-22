@@ -112,7 +112,7 @@ bool round_js_sm_engine_destroy(RoundJavaScriptEngine* engine)
  ****************************************/
 
 bool round_js_sm_engine_setfunctions(RoundJavaScriptEngine* engine,
-                                     JSFunctionSpec* funcs)
+    JSFunctionSpec* funcs)
 {
   if (!engine)
     return false;
@@ -128,9 +128,6 @@ bool round_js_sm_engine_setfunctions(RoundJavaScriptEngine* engine,
 
 bool round_js_sm_engine_run(RoundJavaScriptEngine* engine, const char* source, size_t sourceLen, RoundString* result, RoundError* err)
 {
-  jsval rval;
-  JSBool ok;
-
   if (!engine)
     return false;
 
@@ -138,7 +135,9 @@ bool round_js_sm_engine_run(RoundJavaScriptEngine* engine, const char* source, s
     return false;
 
   gCurrentJsEngine = engine;
-  ok = JS_EvaluateScript(engine->cx, engine->obj, source, (uintN)sourceLen, "", 0, &rval);
+
+  jsval rval;
+  JSBool ok = JS_EvaluateScript(engine->cx, engine->obj, source, (uintN)sourceLen, "", 0, &rval);
   gCurrentJsEngine = NULL;
 
   if (ok) {

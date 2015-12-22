@@ -66,7 +66,7 @@ int round_consistenthashing_node_compfunc(
     RoundConsistentHashingNode* thisNode,
     RoundConsistentHashingNode* otherNode)
 {
-  const char* thisHash, *otherHash;
+  const char *thisHash, *otherHash;
   int strCmp;
 
   if (!thisNode || !otherNode)
@@ -93,6 +93,6 @@ int round_consistenthashing_node_compfunc(
 bool round_consistenthashing_node_equals(void* thisNode, void* otherNode)
 {
   return (round_consistenthashing_node_comp(thisNode, otherNode) == RoundListNodeCompareSame)
-             ? true
-             : false;
+      ? true
+      : false;
 }
