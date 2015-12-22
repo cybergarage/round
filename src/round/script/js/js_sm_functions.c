@@ -20,6 +20,23 @@
 static RoundLocalNode* gRoundSpiderMonkeyEngineLocalNode = NULL;
 
 /****************************************
+ * round_js_sm_setlocalnode
+ ****************************************/
+
+void round_js_sm_setlocalnode(void *node)
+{
+  gRoundSpiderMonkeyEngineLocalNode = node;
+}
+
+/****************************************
+ * round_js_sm_getlocalnode
+ ****************************************/
+
+void *round_js_sm_getlocalnode() {
+  return gRoundSpiderMonkeyEngineLocalNode;
+}
+
+/****************************************
  * JSSTRING_TO_STDSTRING
  ****************************************/
 
