@@ -48,11 +48,14 @@ round_mpi_sources = \
 	../../src/round/registry_map.c \
 	../../src/round/remote_node.c \
 	../../src/round/rpc_server.c \
+	../../src/round/script/js/js_sm_functions.c \
 	../../src/round/script/js_engine.c \
 	../../src/round/script/js_sm_engine.c \
+	../../src/round/script/lua/lua_functions.c \
 	../../src/round/script/lua_engine.c \
 	../../src/round/script/native_engine.c \
 	../../src/round/script/ruby_engine.c \
+	../../src/round/script/script_functions.c \
 	../../src/round/script_engine.c \
 	../../src/round/script_engine_map.c \
 	../../src/round/server.c \

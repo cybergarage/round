@@ -106,8 +106,7 @@ BOOST_AUTO_TEST_CASE(JSONParseStrDict)
   RoundJSON* json = round_json_new();
   BOOST_CHECK(json);
 
-  BOOST_CHECK(
-      round_json_parse(json, "{\"name\": \"John Smith\", \"age\": 32}", NULL));
+  BOOST_CHECK(round_json_parse(json, "{\"name\": \"John Smith\", \"age\": 32}", NULL));
 
   union MixValue {
     const char* s;
@@ -136,7 +135,7 @@ BOOST_AUTO_TEST_CASE(JSONParseDictInArray)
   BOOST_CHECK(round_json_parse(json, "[ {\"age\": 32,\"name\":\"John "
                                      "Smith\"},{\"age\": 31,\"name\":\"John "
                                      "Lennon\"} ]",
-      NULL));
+                               NULL));
 
   union MixValue {
     const char* s;
@@ -168,8 +167,7 @@ BOOST_AUTO_TEST_CASE(JSONParseArrayInDict)
   RoundJSON* json = round_json_new();
   BOOST_CHECK(json);
 
-  BOOST_CHECK(round_json_parse(
-      json, "{\"phoneNumber\": [\"212 555-1234\", \"646 555-4567\"]}", NULL));
+  BOOST_CHECK(round_json_parse(json, "{\"phoneNumber\": [\"212 555-1234\", \"646 555-4567\"]}", NULL));
 
   union MixValue {
     const char* s;

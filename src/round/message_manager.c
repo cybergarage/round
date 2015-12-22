@@ -78,7 +78,7 @@ bool round_message_manager_clear(RoundMessageManager* mgr)
  ****************************************/
 
 bool round_message_manager_pushmessage(RoundMessageManager* mgr,
-    RoundMessage* msg)
+                                       RoundMessage* msg)
 {
   if (!mgr)
     return false;
@@ -97,7 +97,7 @@ bool round_message_manager_pushmessage(RoundMessageManager* mgr,
  ****************************************/
 
 bool round_message_manager_waitmessage(RoundMessageManager* mgr,
-    RoundMessage** msg)
+                                       RoundMessage** msg)
 {
   bool isSuccess;
 

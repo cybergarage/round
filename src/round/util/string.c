@@ -199,10 +199,10 @@ size_t round_string_length(RoundString* str)
 bool round_string_equals(RoundString* str1, RoundString* str2)
 {
   return (round_strcmp(round_string_getvalue(str1),
-              round_string_getvalue(str2))
-             == 0)
-      ? true
-      : false;
+                       round_string_getvalue(str2))
+          == 0)
+             ? true
+             : false;
 }
 
 /****************************************

@@ -21,6 +21,7 @@ BOOST_AUTO_TEST_CASE(JavaScriptEngineTest)
 #define SCRIPT_ECHO_LOOP 10
 #define SCRIPT_ECHO_EXPR "1 + 2 + 3"
 #define SCRIPT_ECHO_RESULT "6"
+
   static const std::string SCRIPT_ECHO_SCRIPT = "var result = " SCRIPT_ECHO_EXPR ";\nresult;";
 
   RoundJavaScriptEngine* jsEngine;
@@ -62,13 +63,10 @@ BOOST_AUTO_TEST_CASE(JavaScriptEngineEchoTest)
   RoundJavaScriptEngine* jsEngine = round_js_engine_new();
   BOOST_CHECK(jsEngine);
 
-  BOOST_CHECK(
-      round_method_manager_addengine(methodMgr, (RoundScriptEngine*)jsEngine));
+  BOOST_CHECK(round_method_manager_addengine(methodMgr, (RoundScriptEngine*)jsEngine));
 
-  BOOST_CHECK(round_method_manager_addmethod(
-      methodMgr, Round::Test::CreateTestMethod(Round::Test::SCRIPT_ECHO_NAME, RoundJavaScriptEngineLanguage, Round::Test::JS_ECHO_CODE)));
-  BOOST_CHECK(
-      round_method_manager_hasmethod(methodMgr, Round::Test::SCRIPT_ECHO_NAME));
+  BOOST_CHECK(round_method_manager_addmethod(methodMgr, Round::Test::CreateTestMethod(Round::Test::SCRIPT_ECHO_NAME, RoundJavaScriptEngineLanguage, Round::Test::JS_ECHO_CODE)));
+  BOOST_CHECK(round_method_manager_hasmethod(methodMgr, Round::Test::SCRIPT_ECHO_NAME));
 
   Round::Test::ScriptTestController scriptTestController;
   scriptTestController.runEchoMethodTest(methodMgr);
@@ -84,13 +82,10 @@ BOOST_AUTO_TEST_CASE(JavaScriptEngineSumTest)
   RoundJavaScriptEngine* jsEngine = round_js_engine_new();
   BOOST_CHECK(jsEngine);
 
-  BOOST_CHECK(
-      round_method_manager_addengine(methodMgr, (RoundScriptEngine*)jsEngine));
+  BOOST_CHECK(round_method_manager_addengine(methodMgr, (RoundScriptEngine*)jsEngine));
 
-  BOOST_CHECK(round_method_manager_addmethod(
-      methodMgr, Round::Test::CreateTestMethod(Round::Test::SCRIPT_SUM_NAME, RoundJavaScriptEngineLanguage, Round::Test::JS_SUM_CODE)));
-  BOOST_CHECK(
-      round_method_manager_hasmethod(methodMgr, Round::Test::SCRIPT_SUM_NAME));
+  BOOST_CHECK(round_method_manager_addmethod(methodMgr, Round::Test::CreateTestMethod(Round::Test::SCRIPT_SUM_NAME, RoundJavaScriptEngineLanguage, Round::Test::JS_SUM_CODE)));
+  BOOST_CHECK(round_method_manager_hasmethod(methodMgr, Round::Test::SCRIPT_SUM_NAME));
 
   Round::Test::ScriptTestController scriptTestController;
   scriptTestController.runSumMethodTest(methodMgr);

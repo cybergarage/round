@@ -52,9 +52,9 @@ BOOST_AUTO_TEST_CASE(MethodManagerNew)
   }
 
   BOOST_CHECK_EQUAL(ROUND_TEST_MAP_SIZE,
-      round_method_manager_getmethodsize(mgr));
+                    round_method_manager_getmethodsize(mgr));
   BOOST_CHECK_EQUAL(ROUND_TEST_MAP_SIZE,
-      round_method_manager_getenginsize(mgr));
+                    round_method_manager_getenginsize(mgr));
 
   // Get method & engines
 
@@ -67,9 +67,9 @@ BOOST_AUTO_TEST_CASE(MethodManagerNew)
   }
 
   BOOST_CHECK_EQUAL(ROUND_TEST_MAP_SIZE,
-      round_method_manager_getmethodsize(mgr));
+                    round_method_manager_getmethodsize(mgr));
   BOOST_CHECK_EQUAL(ROUND_TEST_MAP_SIZE,
-      round_method_manager_getenginsize(mgr));
+                    round_method_manager_getenginsize(mgr));
 
   // Remove method & engines
 

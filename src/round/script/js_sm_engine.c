@@ -99,7 +99,7 @@ bool round_js_sm_engine_destroy(RoundJavaScriptEngine* engine)
  ****************************************/
 
 bool round_js_sm_engine_setfunctions(RoundJavaScriptEngine* engine,
-    JSFunctionSpec* funcs)
+                                     JSFunctionSpec* funcs)
 {
   if (!engine)
     return false;

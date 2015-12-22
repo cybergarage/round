@@ -52,8 +52,7 @@ bool round_method_manager_delete(RoundMethodManager* mgr)
  * round_method_manager_delete
  ****************************************/
 
-bool round_method_manager_addmethod(RoundMethodManager* mgr,
-    RoundMethod* method)
+bool round_method_manager_addmethod(RoundMethodManager* mgr, RoundMethod* method)
 {
   if (!mgr)
     return false;
@@ -79,8 +78,7 @@ bool round_method_manager_hasmethod(RoundMethodManager* mgr, const char* name)
  * round_method_manager_getmethod
  ****************************************/
 
-RoundMethod* round_method_manager_getmethod(RoundMethodManager* mgr,
-    const char* name)
+RoundMethod* round_method_manager_getmethod(RoundMethodManager* mgr, const char* name)
 {
   if (!mgr)
     return NULL;
@@ -92,8 +90,7 @@ RoundMethod* round_method_manager_getmethod(RoundMethodManager* mgr,
  * round_method_manager_removemethod
  ****************************************/
 
-bool round_method_manager_removemethod(RoundMethodManager* mgr,
-    const char* name)
+bool round_method_manager_removemethod(RoundMethodManager* mgr, const char* name)
 {
   if (!mgr)
     return false;
@@ -105,8 +102,7 @@ bool round_method_manager_removemethod(RoundMethodManager* mgr,
  * round_method_manager_addengine
  ****************************************/
 
-bool round_method_manager_addengine(RoundMethodManager* mgr,
-    RoundScriptEngine* engine)
+bool round_method_manager_addengine(RoundMethodManager* mgr, RoundScriptEngine* engine)
 {
   if (!mgr)
     return false;
@@ -115,7 +111,7 @@ bool round_method_manager_addengine(RoundMethodManager* mgr,
     return false;
 
   round_script_engine_map_remove(mgr->engineMap,
-      round_script_engine_getlanguage(engine));
+                                 round_script_engine_getlanguage(engine));
 
   return round_script_engine_map_set(mgr->engineMap, engine);
 }
@@ -124,8 +120,7 @@ bool round_method_manager_addengine(RoundMethodManager* mgr,
  * round_method_manager_getengine
  ****************************************/
 
-RoundScriptEngine* round_method_manager_getengine(RoundMethodManager* mgr,
-    const char* name)
+RoundScriptEngine* round_method_manager_getengine(RoundMethodManager* mgr, const char* name)
 {
   if (!mgr)
     return NULL;
@@ -137,8 +132,7 @@ RoundScriptEngine* round_method_manager_getengine(RoundMethodManager* mgr,
  * round_method_manager_removeengine
  ****************************************/
 
-bool round_method_manager_removeengine(RoundMethodManager* mgr,
-    const char* name)
+bool round_method_manager_removeengine(RoundMethodManager* mgr, const char* name)
 {
   if (!mgr)
     return false;
