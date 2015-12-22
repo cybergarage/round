@@ -16,6 +16,8 @@
 
 #if defined(ROUND_SUPPORT_JS_SM)
 
+BOOST_AUTO_TEST_SUITE(script)
+
 BOOST_AUTO_TEST_CASE(JavaScriptEngineTest)
 {
 #define SCRIPT_ECHO_LOOP 10
@@ -92,5 +94,7 @@ BOOST_AUTO_TEST_CASE(JavaScriptEngineSumTest)
 
   BOOST_CHECK(round_method_manager_delete(methodMgr));
 }
+
+BOOST_AUTO_TEST_SUITE_END()
 
 #endif

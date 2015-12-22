@@ -8,8 +8,8 @@
  *
  ******************************************************************/
 
-#ifndef _ROUNDCC_TESTSCRIPT_H_
-#define _ROUNDCC_TESTSCRIPT_H_
+#ifndef _ROUND_TESTSCRIPT_H_
+#define _ROUND_TESTSCRIPT_H_
 
 #include <round/method.h>
 

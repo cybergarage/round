@@ -15,6 +15,8 @@
 
 #if defined(ROUND_SUPPORT_RUBY) || defined(ROUND_SUPPORT_MRUBY)
 
+BOOST_AUTO_TEST_SUITE(script)
+
 BOOST_AUTO_TEST_CASE(RubyEngineTest)
 {
   RoundRubyEngine* rubyEngine;
@@ -24,4 +26,7 @@ BOOST_AUTO_TEST_CASE(RubyEngineTest)
   BOOST_CHECK(round_ruby_engine_delete(rubyEngine));
 }
 
+BOOST_AUTO_TEST_SUITE_END()
+
 #endif
+
