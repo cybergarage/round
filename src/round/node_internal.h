@@ -175,6 +175,7 @@ bool round_local_node_addengine(RoundLocalNode *node, RoundScriptEngine *engine)
 
 bool round_local_node_postmessage(RoundLocalNode *node, RoundJSONObject *reqObj, RoundJSONObject **resObj, RoundError *err);
 bool round_local_node_execmessage(RoundLocalNode *node, RoundMessage *msg, RoundJSONObject **resultObj, RoundError *err);
+#define round_local_node_poststringmessage(node, reqObj, resObj, err) round_node_poststringmessage((RoundNode*)node, reqObj, resObj, err)
 
 bool round_local_node_setregistry(RoundLocalNode *node, const char *key, const char *val);
 RoundRegistry *round_local_node_getregistry(RoundLocalNode *node, const char *key);
@@ -204,7 +205,9 @@ RoundRemoteNode *round_remote_node_new(void);
 RoundRemoteNode *round_remote_node_copy(RoundNode *node);
 bool round_remote_node_destory(RoundRemoteNode *node);
 bool round_remote_node_delete(RoundRemoteNode *node);
+  
 bool round_remote_node_postmessage(RoundRemoteNode *node, RoundJSONObject *reqMap, RoundJSONObject **resObj, RoundError *err);
+#define round_remote_node_poststringmessage(node, reqObj, resObj, err) round_node_poststringmessage((RoundNode*)node, reqObj, resObj, err)
 
 bool round_remote_node_posthttpjsonrequest(RoundRemoteNode* node, const char *reqContent, RoundJSONObject** resObj, RoundError* err);
 
