@@ -18,6 +18,8 @@
 
 #include "RoundTest.h"
 
+#include <round/const.h>
+
 struct RoundFixture {
   RoundFixture()
   {
@@ -31,9 +33,17 @@ struct RoundFixture {
 
 BOOST_GLOBAL_FIXTURE(RoundFixture);
 
+/****************************************
+ * Setup
+ ****************************************/
+
 void Round::Test::Setup()
 {
 }
+
+/****************************************
+ * GetRandomRepeatCount
+ ****************************************/
 
 int Round::Test::GetRandomRepeatCount(int min, int max)
 {
@@ -47,7 +57,50 @@ int Round::Test::GetRandomRepeatCount(int min, int max)
   return randDist(rndEngine);
 }
 
+/****************************************
+ * Sleep
+ ****************************************/
+
 void Round::Test::Sleep(long milliSecond)
 {
   boost::this_thread::sleep(boost::posix_time::milliseconds(milliSecond));
+}
+
+/****************************************
+ * CreateJsonRpcRequestString
+ ****************************************/
+
+const char* Round::Test::CreateJsonRpcRequestString(const char* method, const char* params)
+{
+  static char buf[1024];
+
+  snprintf(buf, sizeof(buf), "{\"jsonrpc\": \"2.0\","
+                             "\"method\": \"%s\","
+                             "\"params\": %s, \"id\": 1}",
+      method,
+      params);
+
+  return buf;
+}
+
+/****************************************
+ * CreateJsonRpcRequestString
+ ****************************************/
+
+const char* Round::Test::CreateJsonRpcSetMethodRequestString(const char* lang, const char* name, const char* code)
+{
+  static char buf[1024];
+
+  snprintf(buf, sizeof(buf), "{\"jsonrpc\": \"2.0\","
+                             "\"method\": \"" ROUND_SYSTEM_METHOD_SET_METHOD "\","
+                             "\"params\": {"
+                             "\"lang\": \"%s\", "
+                             "\"name\": \"%s\", "
+                             "\"code\": \"%s\""
+                             "}, \"id\": 1}",
+      lang,
+      name,
+      code);
+
+  return buf;
 }

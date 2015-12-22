@@ -25,7 +25,7 @@
 void Round::NodeTestController::runScriptManagerTest(RoundNode* node)
 {
   RoundJSON* json = round_json_new();
-  RoundJSONObject* reqObj, *resObj;
+  RoundJSONObject *reqObj, *resObj;
   clock_t prevClock, postClock;
   const char* result;
 
@@ -56,7 +56,6 @@ void Round::NodeTestController::runScriptManagerTest(RoundNode* node)
   BOOST_CHECK(!round_node_postmessage(node, reqObj, &resObj, err));
   BOOST_CHECK_EQUAL(round_error_getdetailcode(err), ROUND_RPC_ERROR_CODE_METHOD_NOT_FOUND);
   postClock = round_node_getclock(node);
-  ;
   BOOST_CHECK(prevClock < postClock);
 
   // Post Node Message (Set 'echo' method)
@@ -67,11 +66,9 @@ void Round::NodeTestController::runScriptManagerTest(RoundNode* node)
   BOOST_CHECK(round_json_object_ismap(reqObj));
 
   prevClock = round_node_getclock(node);
-  ;
   resObj = NULL;
   BOOST_CHECK(round_node_postmessage(node, reqObj, &resObj, err));
   postClock = round_node_getclock(node);
-  ;
   BOOST_CHECK(prevClock < postClock);
 
   // Post Node Message (Run 'echo' method)
@@ -82,11 +79,9 @@ void Round::NodeTestController::runScriptManagerTest(RoundNode* node)
   BOOST_CHECK(round_json_object_ismap(reqObj));
 
   prevClock = round_node_getclock(node);
-  ;
   resObj = NULL;
   BOOST_CHECK(round_node_postmessage(node, reqObj, &resObj, err));
   postClock = round_node_getclock(node);
-  ;
   BOOST_CHECK(prevClock < postClock);
 
   result = NULL;
@@ -102,11 +97,9 @@ void Round::NodeTestController::runScriptManagerTest(RoundNode* node)
   BOOST_CHECK(round_json_object_ismap(reqObj));
 
   prevClock = round_node_getclock(node);
-  ;
   resObj = NULL;
   BOOST_CHECK(round_node_postmessage(node, reqObj, &resObj, err));
   postClock = round_node_getclock(node);
-  ;
   BOOST_CHECK(prevClock < postClock);
 
   // Post Node Message (Run 'echo' method)
@@ -117,11 +110,9 @@ void Round::NodeTestController::runScriptManagerTest(RoundNode* node)
   BOOST_CHECK(round_json_object_ismap(reqObj));
 
   prevClock = round_node_getclock(node);
-  ;
   resObj = NULL;
   BOOST_CHECK(round_node_postmessage(node, reqObj, &resObj, err));
   postClock = round_node_getclock(node);
-  ;
   BOOST_CHECK(prevClock < postClock);
 
   result = NULL;
@@ -137,11 +128,9 @@ void Round::NodeTestController::runScriptManagerTest(RoundNode* node)
   BOOST_CHECK(round_json_object_ismap(reqObj));
 
   prevClock = round_node_getclock(node);
-  ;
   resObj = NULL;
   BOOST_CHECK(round_node_postmessage(node, reqObj, &resObj, err));
   postClock = round_node_getclock(node);
-  ;
   BOOST_CHECK(prevClock < postClock);
 
   // Post Node Message (Run 'echo' method)
@@ -152,12 +141,11 @@ void Round::NodeTestController::runScriptManagerTest(RoundNode* node)
   BOOST_CHECK(round_json_object_ismap(reqObj));
 
   prevClock = round_node_getclock(node);
-  ;
   resObj = NULL;
   BOOST_CHECK(!round_node_postmessage(node, reqObj, &resObj, err));
   BOOST_CHECK_EQUAL(round_error_getdetailcode(err), ROUND_RPC_ERROR_CODE_METHOD_NOT_FOUND);
   postClock = round_node_getclock(node);
-  ;
+
   BOOST_CHECK(prevClock < postClock);
 }
 
