@@ -9,12 +9,13 @@
  ******************************************************************/
 
 #include <round/script.h>
+#include <round/registry.h>
 
 /****************************************
- * round_script_engine_result2json
+ * round_script_result2json
  ****************************************/
 
-bool round_script_engine_result2json(RoundString *result, RoundJSONObject** jsonResult, RoundError* err)
+bool round_script_result2json(RoundString *result, RoundJSONObject** jsonResult, RoundError* err)
 {
   *jsonResult = NULL;
   bool isSuccess = false;
@@ -36,4 +37,18 @@ bool round_script_engine_result2json(RoundString *result, RoundJSONObject** json
   }
 
   return isSuccess;
+}
+
+/****************************************
+ * round_script_engine_resistry2json
+ ****************************************/
+
+bool round_script_registry2json(RoundRegistry *reg, RoundJSONObject* jsonMap)
+{
+  if (jsonMap)
+    return false;
+  
+  round_json_map_setstring(jsonMap, round_registry_getkey(reg), round_registry_getvalue(reg));
+  
+  return true;
 }

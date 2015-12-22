@@ -117,7 +117,7 @@ bool round_ruby_engine_run(RoundRubyEngine* engine, RoundMethod* method, const c
   
   *jsonResult = NULL;
   if (isSuccess) {
-    isSuccess = round_script_engine_result2json(strResult, jsonResult, err);
+    isSuccess = round_script_result2json(strResult, jsonResult, err);
   }
   
   if (sourceCode) {
