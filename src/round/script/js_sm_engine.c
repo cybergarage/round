@@ -14,6 +14,18 @@
 
 static RoundJavaScriptEngine* gCurrentJsEngine;
 
+static JSFunctionSpec JS_SM_FUNCTIONS[] = {
+  JS_FN(ROUND_SCRIPT_PRINT_METHOD, round_js_sm_print, 0, 0),
+  //JS_FN(ROUND_SYSTEM_METHOD_GET_NETWORK_STATE, round_js_sm_getnetworkstate, 0, 0),
+  //JS_FN(ROUND_SYSTEM_METHOD_GET_CLUSTER_STATE, round_js_sm_getclusterstate, 0, 0),
+  //JS_FN(ROUND_SYSTEM_METHOD_GET_NODE_STATE, round_js_sm_getnodestate, 0, 0),
+  //JS_FN(ROUND_SCRIPT_POST_METHOD, round_js_sm_postmethod, 0, 0),
+  JS_FN(ROUND_SYSTEM_METHOD_SET_REGISTRY, round_js_sm_setregistry, 0, 0),
+  JS_FN(ROUND_SYSTEM_METHOD_GET_REGISTRY, round_js_sm_getregistry, 0, 0),
+  JS_FN(ROUND_SYSTEM_METHOD_REMOVE_REGISTRY, round_js_sm_removeregistry, 0, 0),
+  JS_FS_END
+};
+
 static void RoundJSReportError(JSContext* cx, const char* message, JSErrorReport* report)
 {
   static char errmsg[1024];
@@ -68,6 +80,7 @@ bool round_js_sm_engine_init(RoundJavaScriptEngine* engine)
     return false;
 
   JS_InitStandardClasses(engine->cx, engine->obj);
+  JS_DefineFunctions(engine->cx, engine->obj, JS_SM_FUNCTIONS);
 
   return true;
 }

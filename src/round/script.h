@@ -72,7 +72,7 @@ bool round_script_engine_unlock(RoundScriptEngine *engine);
 #define round_script_engine_getexecutefunc(engine) (engine->execFunc)
 
 #define round_script_engine_setlocalnode(engine, value) (engine->node = value)
-#define round_script_engine_getlocalnode(engine) ((RoundLocalNode *)engine->node)
+#define round_script_engine_getlocalnode(engine) (engine->node)
 
 bool round_script_engine_isvalid(RoundScriptEngine *engine);
 
