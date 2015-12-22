@@ -98,8 +98,7 @@ RoundError* round_local_node_message_geterror(RoundMessage* msg)
  * round_local_node_message_setresponsejsonobject
  ****************************************/
 
-bool round_local_node_message_setresponsejsonobject(RoundMessage* msg,
-                                                    RoundJSONObject** resultObj)
+bool round_local_node_message_setresponsejsonobject(RoundMessage* msg, RoundJSONObject** resultObj)
 {
   RoundLocalMessageData* msgData;
 
@@ -119,8 +118,7 @@ bool round_local_node_message_setresponsejsonobject(RoundMessage* msg,
  * round_local_node_message_getresponsejsonobject
  ****************************************/
 
-RoundJSONObject**
-round_local_node_message_getresponsejsonobject(RoundMessage* msg)
+RoundJSONObject** round_local_node_message_getresponsejsonobject(RoundMessage* msg)
 {
   RoundLocalMessageData* msgData;
 

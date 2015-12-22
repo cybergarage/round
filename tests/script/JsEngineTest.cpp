@@ -10,6 +10,7 @@
 
 #include <boost/test/unit_test.hpp>
 #include <string>
+#include <round/node_internal.h>
 #include <round/script/js.h>
 
 #include "ScriptTestController.h"
@@ -18,36 +19,37 @@
 
 BOOST_AUTO_TEST_SUITE(script)
 
-BOOST_AUTO_TEST_CASE(JavaScriptEngineTest)
-{
 #define SCRIPT_ECHO_LOOP 10
 #define SCRIPT_ECHO_EXPR "1 + 2 + 3"
 #define SCRIPT_ECHO_RESULT "6"
 
-  static const std::string SCRIPT_ECHO_SCRIPT = "var result = " SCRIPT_ECHO_EXPR ";\nresult;";
-
+BOOST_AUTO_TEST_CASE(JavaScriptEngineTest)
+{
   RoundJavaScriptEngine* jsEngine;
 
   jsEngine = round_js_engine_new();
   BOOST_CHECK(jsEngine);
 
   RoundMethod* method = round_method_new();
-  /*
-  round_method_setname(method, LUA_ECHO_FUNC);
-  round_method_setcode(method, (byte *)LUA_ECHO_CODE.c_str(),
-  LUA_ECHO_CODE.size());
-   */
+  round_method_setname(method, Round::Test::SCRIPT_ECHO_NAME);
+  round_method_setstringcode(method, Round::Test::JS_ECHO_CODE);
 
   RoundString* result = round_string_new();
   RoundError* err = round_error_new();
 
   for (int n = 0; n < SCRIPT_ECHO_LOOP; n++) {
     BOOST_CHECK(round_js_engine_lock(jsEngine));
-    /*
-     BOOST_CHECK(round_js_engine_run(jsEngine, SCRIPT_ECHO_SCRIPT.c_str()));
-     BOOST_CHECK(round_streq(SCRIPT_ECHO_RESULT,
-     round_js_engine_getresult(jsEngine)));
-    */
+
+    char param[32];
+    snprintf(param, sizeof(param), "hello(%d)", n);
+    RoundJSONObject* jsonResult;
+    BOOST_CHECK(round_js_engine_run(jsEngine, method, param, &jsonResult, err));
+    BOOST_CHECK(jsonResult);
+    const char* strResult;
+    BOOST_CHECK(round_json_object_getstring(jsonResult, &strResult));
+    // FIXME "hello(%d)"
+    //BOOST_CHECK_EQUAL(strResult, param);
+
     BOOST_CHECK(round_js_engine_unlock(jsEngine));
   }
 
@@ -93,6 +95,66 @@ BOOST_AUTO_TEST_CASE(JavaScriptEngineSumTest)
   scriptTestController.runSumMethodTest(methodMgr);
 
   BOOST_CHECK(round_method_manager_delete(methodMgr));
+}
+
+BOOST_AUTO_TEST_CASE(JavaScriptRegistryMethods)
+{
+#define KEY_LOOP_COUNT 10
+
+#define SET_KEY_NAME "set_key"
+#define GET_KEY_NAME "get_key"
+#define REMOVE_KEY_NAME "remove_key"
+
+  char params[1024];
+  
+  static const char* SETKEY_CODE = "function " SET_KEY_NAME "(params) {return " ROUND_SYSTEM_METHOD_SET_REGISTRY "(params);}";
+  static const char* GETKEY_CODE = "function " GET_KEY_NAME "(params) {return " ROUND_SYSTEM_METHOD_GET_REGISTRY "(params);}";
+  static const char* REMOVEKEY_CODE = "function " REMOVE_KEY_NAME "(params) {return " ROUND_SYSTEM_METHOD_REMOVE_REGISTRY "(params);}";
+
+  RoundLocalNode* node = round_local_node_new();
+  BOOST_CHECK(round_local_node_start(node));
+
+  RoundError* err = round_error_new();
+  RoundJSONObject *reqObj, *resObj;
+  const char* result;
+
+  // Post Node Message (Set '*_key' method)
+
+  resObj = NULL;
+  BOOST_CHECK(round_local_node_poststringmessage(node, Round::Test::CreateJsonRpcSetMethodRequestString(ROUND_SCRIPT_LANGUAGE_JS, SET_KEY_NAME, SETKEY_CODE), &resObj, err));
+  BOOST_CHECK(round_local_node_poststringmessage(node, Round::Test::CreateJsonRpcSetMethodRequestString(ROUND_SCRIPT_LANGUAGE_JS, GET_KEY_NAME, GETKEY_CODE), &resObj, err));
+  BOOST_CHECK(round_local_node_poststringmessage(node, Round::Test::CreateJsonRpcSetMethodRequestString(ROUND_SCRIPT_LANGUAGE_JS, REMOVE_KEY_NAME, REMOVEKEY_CODE), &resObj, err));
+
+  // Post Node Message (Run 'set_key' method)
+
+  for (size_t n = 0; n < KEY_LOOP_COUNT; n++) {
+    snprintf(params, sizeof(params), "{\"%s\" : \"key%ld\", \"%s\" : \"val%ld\"}", ROUND_SYSTEM_METHOD_PARAM_KEY, n, ROUND_SYSTEM_METHOD_PARAM_VALUE, n);
+    //BOOST_CHECK(round_local_node_poststringmessage(node, Round::Test::CreateJsonRpcRequestString(SET_KEY_NAME, params), &resObj, err));
+  }
+  /*
+  BOOST_CHECK(round_json_parse(json, Test::RPC_RUN_ECHO, err));
+  reqObj = round_json_poprootobject(json);
+  BOOST_CHECK(reqObj);
+  BOOST_CHECK(round_json_object_ismap(reqObj));
+
+  prevClock = round_node_getclock(node);
+  resObj = NULL;
+  BOOST_CHECK(round_node_postmessage(node, reqObj, &resObj, err));
+  postClock = round_node_getclock(node);
+  BOOST_CHECK(prevClock < postClock);
+
+  result = NULL;
+  BOOST_CHECK(round_json_rpc_getresultstring(resObj, &result));
+  BOOST_CHECK(result);
+  BOOST_CHECK_EQUAL(result, RPC_SET_ECHO_PARAMS);
+   */
+
+  // Clean up
+
+  BOOST_CHECK(round_error_delete(err));
+
+  BOOST_CHECK(round_local_node_stop(node));
+  BOOST_CHECK(round_local_node_delete(node));
 }
 
 BOOST_AUTO_TEST_SUITE_END()

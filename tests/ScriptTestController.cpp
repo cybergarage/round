@@ -36,8 +36,7 @@ RoundMethod* Round::Test::CreateTestMethod(const char* name, const char* lang, c
   return method;
 }
 
-void Round::Test::ScriptTestController::runEchoMethodTest(
-    RoundMethodManager* scriptMgr)
+void Round::Test::ScriptTestController::runEchoMethodTest(RoundMethodManager* scriptMgr)
 {
   std::vector<std::string> params;
 
@@ -66,19 +65,15 @@ void Round::Test::ScriptTestController::runEchoMethodTest(
 
   params.push_back("{\"key0\":\"value0\"}");
   params.push_back("{\"key0\":\"value0\",\"key1\":\"value1\"}");
-  params.push_back(
-      "{\"key0\":\"value0\",\"key1\":\"value1\",\"key2\":\"value2\"}");
+  params.push_back("{\"key0\":\"value0\",\"key1\":\"value1\",\"key2\":\"value2\"}");
 
   RoundJSONObject* resultObj;
   RoundError* err = round_error_new();
 
-  for (std::vector<std::string>::iterator echoParamIt = params.begin();
-       echoParamIt != params.end();
-       echoParamIt++) {
+  for (std::vector<std::string>::iterator echoParamIt = params.begin(); echoParamIt != params.end(); echoParamIt++) {
     std::string& echoParam = *echoParamIt;
     bool isSuccess;
-    BOOST_CHECK(isSuccess = round_method_manager_execmethod(
-                    scriptMgr, Round::Test::SCRIPT_ECHO_NAME, echoParam.c_str(), &resultObj, err));
+    BOOST_CHECK(isSuccess = round_method_manager_execmethod(scriptMgr, Round::Test::SCRIPT_ECHO_NAME, echoParam.c_str(), &resultObj, err));
     if (!isSuccess)
       continue;
 
@@ -87,8 +82,7 @@ void Round::Test::ScriptTestController::runEchoMethodTest(
       continue;
 
     const char* resultStr = NULL;
-    BOOST_CHECK(round_json_object_tostringwithoption(
-        resultObj, (RoundJSONOptionFormatCompact | RoundJSONOptionFormatSort), &resultStr));
+    BOOST_CHECK(round_json_object_tostringwithoption(resultObj, (RoundJSONOptionFormatCompact | RoundJSONOptionFormatSort), &resultStr));
     BOOST_CHECK(resultStr);
 
     if (resultStr) {
@@ -103,8 +97,7 @@ void Round::Test::ScriptTestController::runEchoMethodTest(
   round_error_delete(err);
 }
 
-void Round::Test::ScriptTestController::runSumMethodTest(
-    RoundMethodManager* scriptMgr)
+void Round::Test::ScriptTestController::runSumMethodTest(RoundMethodManager* scriptMgr)
 {
   std::vector<std::string> params;
   std::vector<std::string> results;
@@ -158,8 +151,7 @@ void Round::Test::ScriptTestController::runSumMethodTest(
   }
 }
 
-void Round::Test::ScriptTestController::runCounterMethodTest(
-    RoundMethodManager* scriptMgr)
+void Round::Test::ScriptTestController::runCounterMethodTest(RoundMethodManager* scriptMgr)
 {
   std::string result;
   /*
