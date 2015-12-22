@@ -115,6 +115,13 @@ system_method_remove_node_delay_msec,5000
 system_method_dest_all_node,"*"
 system_method_dest_any_node,"?"
 
+# Script Languages
+script_language_js,"js"
+script_language_ruby,"ruby"
+script_language_lua,"lua"
+script_language_python,"python"
+script_language_java,"java"
+
 # Script Methods
 script_post_method,"post_method"
 script_print_method,"print"
