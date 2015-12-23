@@ -227,7 +227,7 @@ bool round_remote_node_posthttpjsonrequest(RoundRemoteNode* node, const char *re
 #define round_remote_node_setclock(node,value) round_clock_setvalue(node->clock,value)
 #define round_remote_node_getclock(node) round_clock_getvalue(node->clock)
 #define round_remote_node_updateclockbyjsonobject(node,jsonobj) round_node_updateclockbyjsonobject((RoundNode*)node,jsonobj)
-
+  
 /****************************************
  * Function (Node Ring)
  ****************************************/
