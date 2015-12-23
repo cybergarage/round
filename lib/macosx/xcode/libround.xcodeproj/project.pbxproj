@@ -33,7 +33,7 @@
 		2148E5E01B9F1A7D0021CE7B /* error_rpc.c in Sources */ = {isa = PBXBuildFile; fileRef = 2148E5DF1B9F1A7D0021CE7B /* error_rpc.c */; };
 		21505E3D1BD698820042B6E1 /* consistent_hashing_node.c in Sources */ = {isa = PBXBuildFile; fileRef = 21505E3C1BD698820042B6E1 /* consistent_hashing_node.c */; };
 		215A07881BB2EAA500E9702F /* platform.h in Headers */ = {isa = PBXBuildFile; fileRef = 215A07871BB2EAA500E9702F /* platform.h */; };
-		215A078B1BB2FA8000E9702F /* server.h in Headers */ = {isa = PBXBuildFile; fileRef = 215A07891BB2FA8000E9702F /* server.h */; };
+		215A078B1BB2FA8000E9702F /* server_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 215A07891BB2FA8000E9702F /* server_internal.h */; };
 		215A078C1BB2FA8000E9702F /* server.c in Sources */ = {isa = PBXBuildFile; fileRef = 215A078A1BB2FA8000E9702F /* server.c */; };
 		215A07941BB450E100E9702F /* remove_method.c in Sources */ = {isa = PBXBuildFile; fileRef = 215A07931BB450E100E9702F /* remove_method.c */; };
 		215A07971BB4662700E9702F /* registry.h in Headers */ = {isa = PBXBuildFile; fileRef = 215A07951BB4662700E9702F /* registry.h */; };
@@ -102,6 +102,7 @@
 		21DDB71A1C281F68002DEDDF /* script_functions.c in Sources */ = {isa = PBXBuildFile; fileRef = 21DDB7191C281F68002DEDDF /* script_functions.c */; };
 		21DFCA461C287EC800F75D5C /* js_sm_functions.c in Sources */ = {isa = PBXBuildFile; fileRef = 21DFCA451C287EC800F75D5C /* js_sm_functions.c */; };
 		21DFCA481C287ED500F75D5C /* lua_functions.c in Sources */ = {isa = PBXBuildFile; fileRef = 21DFCA471C287ED500F75D5C /* lua_functions.c */; };
+		21DFCA4E1C2AEC8D00F75D5C /* server.h in Headers */ = {isa = PBXBuildFile; fileRef = 21DFCA4D1C2AEC8D00F75D5C /* server.h */; };
 		21E6E5721BB01A49006E853D /* base64.c in Sources */ = {isa = PBXBuildFile; fileRef = 21E6E5701BB01A49006E853D /* base64.c */; };
 		21E6E5731BB01A49006E853D /* base64.h in Headers */ = {isa = PBXBuildFile; fileRef = 21E6E5711BB01A49006E853D /* base64.h */; };
 		21EA96CD1B990AF800E00841 /* cluster_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 21EA96CA1B990AF800E00841 /* cluster_internal.h */; };
@@ -169,7 +170,7 @@
 		2148E5DF1B9F1A7D0021CE7B /* error_rpc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = error_rpc.c; path = ../../../src/round/error_rpc.c; sourceTree = "<group>"; };
 		21505E3C1BD698820042B6E1 /* consistent_hashing_node.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = consistent_hashing_node.c; path = ../../../src/round/util/consistent_hashing_node.c; sourceTree = "<group>"; };
 		215A07871BB2EAA500E9702F /* platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = platform.h; path = ../../../src/round/platform.h; sourceTree = "<group>"; };
-		215A07891BB2FA8000E9702F /* server.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = server.h; path = ../../../src/round/server.h; sourceTree = "<group>"; };
+		215A07891BB2FA8000E9702F /* server_internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = server_internal.h; path = ../../../src/round/server_internal.h; sourceTree = "<group>"; };
 		215A078A1BB2FA8000E9702F /* server.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = server.c; path = ../../../src/round/server.c; sourceTree = "<group>"; };
 		215A07931BB450E100E9702F /* remove_method.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = remove_method.c; sourceTree = "<group>"; };
 		215A07951BB4662700E9702F /* registry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = registry.h; path = ../../../src/round/registry.h; sourceTree = "<group>"; };
@@ -238,6 +239,7 @@
 		21DDB7191C281F68002DEDDF /* script_functions.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = script_functions.c; sourceTree = "<group>"; };
 		21DFCA451C287EC800F75D5C /* js_sm_functions.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = js_sm_functions.c; sourceTree = "<group>"; };
 		21DFCA471C287ED500F75D5C /* lua_functions.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lua_functions.c; sourceTree = "<group>"; };
+		21DFCA4D1C2AEC8D00F75D5C /* server.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = server.h; path = ../../../include/round/server.h; sourceTree = "<group>"; };
 		21E6E5701BB01A49006E853D /* base64.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = base64.c; path = ../../../src/round/util/base64.c; sourceTree = "<group>"; };
 		21E6E5711BB01A49006E853D /* base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = base64.h; path = ../../../src/round/util/base64.h; sourceTree = "<group>"; };
 		21EA96CA1B990AF800E00841 /* cluster_internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cluster_internal.h; path = ../../../src/round/cluster_internal.h; sourceTree = "<group>"; };
@@ -286,15 +288,16 @@
 		211E45C81B98153200CF0088 /* round */ = {
 			isa = PBXGroup;
 			children = (
-				210E7BA11BA145E200343445 /* util */,
-				21D427E91B9F00B700BBBD41 /* error.h */,
-				218EE9651B9AE73300960009 /* finder.h */,
-				21F6D9B41B99857700714056 /* round.h */,
-				21EA96DA1B990CF400E00841 /* node.h */,
+				211E45C91B98154A00CF0088 /* client.h */,
 				21EA96D01B990B1100E00841 /* cluster.h */,
 				2178B3611B98986200B9D86B /* const.h */,
+				21D427E91B9F00B700BBBD41 /* error.h */,
+				218EE9651B9AE73300960009 /* finder.h */,
+				21EA96DA1B990CF400E00841 /* node.h */,
+				21F6D9B41B99857700714056 /* round.h */,
+				21DFCA4D1C2AEC8D00F75D5C /* server.h */,
 				211E45D91B981A6300CF0088 /* typedef.h */,
-				211E45C91B98154A00CF0088 /* client.h */,
+				210E7BA11BA145E200343445 /* util */,
 			);
 			name = round;
 			sourceTree = "<group>";
@@ -342,7 +345,7 @@
 				21F6D9AE1B99848000714056 /* script_engine.c */,
 				219A8E2C1B9AF607004ED802 /* script.h */,
 				215A078A1BB2FA8000E9702F /* server.c */,
-				215A07891BB2FA8000E9702F /* server.h */,
+				215A07891BB2FA8000E9702F /* server_internal.h */,
 				2178B3631B98BE7B00B9D86B /* util */,
 			);
 			name = round;
@@ -534,6 +537,7 @@
 				2178B36C1B98BEAE00B9D86B /* list.h in Headers */,
 				21A776CB1BA0939F009BDB36 /* timer.h in Headers */,
 				21785DDF1BB79E0A0098DD1A /* json_rpc.h in Headers */,
+				21DFCA4E1C2AEC8D00F75D5C /* server.h in Headers */,
 				213389D01BFAEA980014548E /* rpc_server.h in Headers */,
 				21B763DF1BA05ED1003C29F3 /* queue.h in Headers */,
 				2120807B1BFB855000190BF8 /* upnp_server_desc.h in Headers */,
@@ -542,7 +546,7 @@
 				212080751BFB6B7000190BF8 /* upnp_server.h in Headers */,
 				211E45D71B98192600CF0088 /* finder_internal.h in Headers */,
 				21A776C71BA08A7C009BDB36 /* semaphore.h in Headers */,
-				215A078B1BB2FA8000E9702F /* server.h in Headers */,
+				215A078B1BB2FA8000E9702F /* server_internal.h in Headers */,
 				219A8E2D1B9AF607004ED802 /* script.h in Headers */,
 				21EA96CD1B990AF800E00841 /* cluster_internal.h in Headers */,
 				210E7BA31BA145F600343445 /* json.h in Headers */,

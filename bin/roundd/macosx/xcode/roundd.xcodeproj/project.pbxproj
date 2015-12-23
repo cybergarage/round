@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		210127FA1C21B9F100844A97 /* liblibround.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 214DA61C1BF7072B00F41C0E /* liblibround.a */; };
+		210127FA1C21B9F100844A97 /* libround.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 214DA61C1BF7072B00F41C0E /* libround.a */; };
 		210127FC1C21B9F100844A97 /* liblibmupnp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 210127FB1C21B9F100844A97 /* liblibmupnp.a */; };
 		21E6F32B15493EE800F7077B /* roundd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21E6F32A15493EE800F7077B /* roundd.cpp */; };
 /* End PBXBuildFile section */
@@ -54,7 +54,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				210127FC1C21B9F100844A97 /* liblibmupnp.a in Frameworks */,
-				210127FA1C21B9F100844A97 /* liblibround.a in Frameworks */,
+				210127FA1C21B9F100844A97 /* libround.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -64,7 +64,7 @@
 		214DA6181BF7072B00F41C0E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				214DA61C1BF7072B00F41C0E /* liblibround.a */,
+				214DA61C1BF7072B00F41C0E /* libround.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -156,10 +156,10 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		214DA61C1BF7072B00F41C0E /* liblibround.a */ = {
+		214DA61C1BF7072B00F41C0E /* libround.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = liblibround.a;
+			path = libround.a;
 			remoteRef = 214DA61B1BF7072B00F41C0E /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -240,7 +240,6 @@
 					"-ljansson",
 					"-lssl",
 					"-lcrypto",
-					"-llua",
 				);
 				SDKROOT = macosx;
 			};
@@ -293,7 +292,6 @@
 					"-ljansson",
 					"-lssl",
 					"-lcrypto",
-					"-llua",
 				);
 				SDKROOT = macosx;
 			};

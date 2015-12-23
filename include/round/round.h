@@ -11,8 +11,7 @@
 #ifndef _ROUND_ROUND_H_
 #define _ROUND_ROUND_H_
 
-#include <round/script/js.h>
-#include <round/script/lua.h>
-#include <round/script/ruby.h>
+#include <round/server.h>
+#include <round/client.h>
 
 #endif
