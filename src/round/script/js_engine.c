@@ -141,6 +141,7 @@ bool round_js_engine_run(RoundJavaScriptEngine* engine, RoundMethod* method, con
   round_js_sm_setlocalnode(round_script_engine_getlocalnode(engine));
 
   if (round_js_engine_getsoucecode(engine, method, param, jsSource)) {
+    //printf("%s\n", round_string_getvalue(jsSource));
 #if defined(ROUND_SUPPORT_JS_SM)
     isSuccess = round_js_sm_engine_run(engine, round_string_getvalue(jsSource), round_string_length(jsSource), strResult, err);
 #endif

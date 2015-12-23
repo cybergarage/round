@@ -25,6 +25,10 @@
 
 // typedef std::map<std::string,std::string> RounddOptionsDictionary;
 
+/****************************************
+ * SetupServer
+ ****************************************/
+
 void AddTestMethods(RoundServer* server)
 {
 #define SET_KEY_NAME "set_key"
@@ -46,6 +50,15 @@ void AddTestMethods(RoundServer* server)
 
   round_error_delete(err);
 }
+
+void SetupServer(RoundServer* server)
+{
+  AddTestMethods(server);
+}
+
+/****************************************
+ * main
+ ****************************************/
 
 int main(int argc, char* argv[])
 {
@@ -193,6 +206,10 @@ int main(int argc, char* argv[])
   }
 */
 
+  // Setup server
+  
+  SetupServer(server);
+  
   // Start server
 
   if (!round_server_start(server)) {
