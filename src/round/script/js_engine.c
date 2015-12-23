@@ -89,12 +89,21 @@ bool round_js_engine_getsoucecode(RoundJavaScriptEngine* engine, RoundMethod* me
   round_string_addvalue(jsSource, round_method_getstringcode(method));
   round_string_addvalue(jsSource, ROUND_ENDL);
 
+#define ROUND_USE_JS_ENCODE_PARAMS 1
+  
+#if defined(ROUND_USE_JS_ENCODE_PARAMS)
   char* encordedParams = round_strreplace(param, "\"", "\\\"");
+#else
+  const char* encordedParams = param;
+#endif
   round_string_addvalue(jsSource, "var params = \"");
   round_string_addvalue(jsSource, encordedParams ? encordedParams : "\"\"");
   round_string_addvalue(jsSource, "\";" ROUND_ENDL);
+  //printf("%s\n", encordedParams);
+#if defined(ROUND_USE_JS_ENCODE_PARAMS)
   free(encordedParams);
-
+#endif
+  
 #if defined(ROUND_USE_JS_JSON_PARAMS)
   round_string_addvalue(jsSource, "var jsonParams;" ROUND_ENDL);
   round_string_addvalue(jsSource, "if (0 < params.length) {" ROUND_ENDL);
