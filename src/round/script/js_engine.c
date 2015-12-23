@@ -89,29 +89,36 @@ bool round_js_engine_getsoucecode(RoundJavaScriptEngine* engine, RoundMethod* me
   round_string_addvalue(jsSource, round_method_getstringcode(method));
   round_string_addvalue(jsSource, ROUND_ENDL);
 
-  char* jsonParams = round_strreplace(param, "\"", "\\\"");
-  round_string_addvalue(jsSource, "var jsonParams = \"");
-  round_string_addvalue(jsSource, jsonParams ? jsonParams : "\"\"");
+  char* encordedParams = round_strreplace(param, "\"", "\\\"");
+  round_string_addvalue(jsSource, "var params = \"");
+  round_string_addvalue(jsSource, encordedParams ? encordedParams : "\"\"");
   round_string_addvalue(jsSource, "\";" ROUND_ENDL);
-  free(jsonParams);
+  free(encordedParams);
 
-  round_string_addvalue(jsSource, "var params;" ROUND_ENDL);
-  round_string_addvalue(jsSource, "if (0 < jsonParams.length) {" ROUND_ENDL);
+#if defined(ROUND_USE_JS_JSON_PARAMS)
+  round_string_addvalue(jsSource, "var jsonParams;" ROUND_ENDL);
+  round_string_addvalue(jsSource, "if (0 < params.length) {" ROUND_ENDL);
   round_string_addvalue(jsSource, "  try {" ROUND_ENDL);
-  round_string_addvalue(jsSource, "    params = JSON.parse(jsonParams);" ROUND_ENDL);
+  round_string_addvalue(jsSource, "    jsonParams = JSON.parse(params);" ROUND_ENDL);
   round_string_addvalue(jsSource, "  } catch (e) {" ROUND_ENDL);
-  round_string_addvalue(jsSource, "    params = jsonParams;" ROUND_ENDL);
+  round_string_addvalue(jsSource, "    jsonParams = params;" ROUND_ENDL);
   round_string_addvalue(jsSource, "  }" ROUND_ENDL);
   round_string_addvalue(jsSource, "} else {" ROUND_ENDL);
-  round_string_addvalue(jsSource, "  params = jsonParams;" ROUND_ENDL);
+  round_string_addvalue(jsSource, "  jsonParams = params;" ROUND_ENDL);
   round_string_addvalue(jsSource, "}" ROUND_ENDL);
 
+  round_string_addvalue(jsSource, "var jsonResults = ");
+  round_string_addvalue(jsSource, round_method_getname(method));
+  round_string_addvalue(jsSource, "(jsonParams);" ROUND_ENDL);
+
+  round_string_addvalue(jsSource, "var results = JSON.stringify(jsonResults);" ROUND_ENDL);
+#else
   round_string_addvalue(jsSource, "var results = ");
   round_string_addvalue(jsSource, round_method_getname(method));
   round_string_addvalue(jsSource, "(params);" ROUND_ENDL);
-
-  round_string_addvalue(jsSource, "var jsonResults = JSON.stringify(results);" ROUND_ENDL);
-  round_string_addvalue(jsSource, "jsonResults;");
+#endif
+  
+  round_string_addvalue(jsSource, "results;");
 
   return true;
 }
@@ -134,8 +141,6 @@ bool round_js_engine_run(RoundJavaScriptEngine* engine, RoundMethod* method, con
   round_js_sm_setlocalnode(round_script_engine_getlocalnode(engine));
 
   if (round_js_engine_getsoucecode(engine, method, param, jsSource)) {
-    printf("%s\n", param);
-    printf("%s\n", round_string_getvalue(jsSource));
 #if defined(ROUND_SUPPORT_JS_SM)
     isSuccess = round_js_sm_engine_run(engine, round_string_getvalue(jsSource), round_string_length(jsSource), strResult, err);
 #endif
