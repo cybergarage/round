@@ -74,33 +74,14 @@ const char* Round::Test::CreateJsonRpcRequestString(const char* method, const ch
 {
   static char buf[1024];
 
-  snprintf(buf, sizeof(buf), "{\"jsonrpc\": \"2.0\","
-                             "\"method\": \"%s\","
-                             "\"params\": %s, \"id\": 1}",
+  snprintf(
+      buf,
+      sizeof(buf),
+      "{\"jsonrpc\": \"2.0\","
+      "\"method\": \"%s\","
+      "\"params\": %s, \"id\": 1}",
       method,
       params);
-
-  return buf;
-}
-
-/****************************************
- * CreateJsonRpcRequestString
- ****************************************/
-
-const char* Round::Test::CreateJsonRpcSetMethodRequestString(const char* lang, const char* name, const char* code)
-{
-  static char buf[1024];
-
-  snprintf(buf, sizeof(buf), "{\"jsonrpc\": \"2.0\","
-                             "\"method\": \"" ROUND_SYSTEM_METHOD_SET_METHOD "\","
-                             "\"params\": {"
-                             "\"lang\": \"%s\", "
-                             "\"name\": \"%s\", "
-                             "\"code\": \"%s\""
-                             "}, \"id\": 1}",
-      lang,
-      name,
-      code);
 
   return buf;
 }

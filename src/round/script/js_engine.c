@@ -117,7 +117,7 @@ bool round_js_engine_getsoucecode(RoundJavaScriptEngine* engine, RoundMethod* me
   round_string_addvalue(jsSource, round_method_getname(method));
   round_string_addvalue(jsSource, "(params);" ROUND_ENDL);
 #endif
-  
+
   round_string_addvalue(jsSource, "results;");
 
   return true;
