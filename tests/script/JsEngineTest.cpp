@@ -115,7 +115,7 @@ BOOST_AUTO_TEST_CASE(JavaScriptRegistryMethods)
   BOOST_CHECK(round_local_node_start(node));
 
   RoundError* err = round_error_new();
-  RoundJSONObject *reqObj, *resObj;
+  RoundJSONObject *resObj;
   const char* result;
 
   // Post Node Message (Set '*_key' method)
@@ -128,26 +128,20 @@ BOOST_AUTO_TEST_CASE(JavaScriptRegistryMethods)
   // Post Node Message (Run 'set_key' method)
 
   for (size_t n = 0; n < KEY_LOOP_COUNT; n++) {
+    // Set key
     snprintf(params, sizeof(params), "{\"%s\" : \"key%ld\", \"%s\" : \"val%ld\"}", ROUND_SYSTEM_METHOD_PARAM_KEY, n, ROUND_SYSTEM_METHOD_PARAM_VALUE, n);
     BOOST_CHECK(round_local_node_poststringmessage(node, Round::Test::CreateJsonRpcRequestString(SET_KEY_NAME, params), &resObj, err));
+
+    // Get key
+    snprintf(params, sizeof(params), "{\"%s\" : \"key%ld\"}", ROUND_SYSTEM_METHOD_PARAM_KEY, n);
+    BOOST_CHECK(round_local_node_poststringmessage(node, Round::Test::CreateJsonRpcRequestString(GET_KEY_NAME, params), &resObj, err));
+    BOOST_CHECK(round_json_rpc_getresultstring(resObj, &result));
+    BOOST_CHECK(result);
+
+    // Remove key
+    snprintf(params, sizeof(params), "{\"%s\" : \"key%ld\"}", ROUND_SYSTEM_METHOD_PARAM_KEY, n);
+    BOOST_CHECK(round_local_node_poststringmessage(node, Round::Test::CreateJsonRpcRequestString(REMOVE_KEY_NAME, params), &resObj, err));
   }
-  /*
-  BOOST_CHECK(round_json_parse(json, Test::RPC_RUN_ECHO, err));
-  reqObj = round_json_poprootobject(json);
-  BOOST_CHECK(reqObj);
-  BOOST_CHECK(round_json_object_ismap(reqObj));
-
-  prevClock = round_node_getclock(node);
-  resObj = NULL;
-  BOOST_CHECK(round_node_postmessage(node, reqObj, &resObj, err));
-  postClock = round_node_getclock(node);
-  BOOST_CHECK(prevClock < postClock);
-
-  result = NULL;
-  BOOST_CHECK(round_json_rpc_getresultstring(resObj, &result));
-  BOOST_CHECK(result);
-  BOOST_CHECK_EQUAL(result, RPC_SET_ECHO_PARAMS);
-   */
 
   // Clean up
 

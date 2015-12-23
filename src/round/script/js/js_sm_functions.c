@@ -315,8 +315,6 @@ JSBool round_js_sm_setregistry(JSContext* cx, unsigned argc, jsval* vp)
   if (!JSOBJECT_GET_GETPROPERTYSTRING(cx, param, ROUND_SYSTEM_METHOD_PARAM_KEY, key, sizeof(key)))
     return false;
 
-  printf("%s", key);
-  
   char val[ROUND_SCRIPT_JS_SM_REGISTRY_VALUE_MAX];
   if (!JSOBJECT_GET_GETPROPERTYSTRING(cx, param, ROUND_SYSTEM_METHOD_PARAM_VALUE, val, sizeof(val)))
     return false;
@@ -371,10 +369,40 @@ JSBool round_js_sm_getregistry(JSContext* cx, unsigned argc, jsval* vp)
 
   JS_BeginRequest(cx);
 
+  jsval* argv = JS_ARGV(cx, vp);
+  jsval param = argv[0];
+  
+#if defined(ROUND_USE_JS_JSON_PARAMS)
   char key[ROUND_SCRIPT_JS_SM_REGISTRY_KEY_MAX];
-  JSARG_TO_CSTRING(cx, vp, 0, key, sizeof(key));
-
+  if (!JSOBJECT_GET_GETPROPERTYSTRING(cx, param, ROUND_SYSTEM_METHOD_PARAM_KEY, key, sizeof(key)))
+    return false;
+#else
+  char paramStr[ROUND_SCRIPT_JS_SM_REGISTRY_VALUE_MAX];
+  if (!JSOBJECT_TO_CSTRING(param, paramStr, sizeof(paramStr)))
+    return false;
+  
+  const char *key;
+  RoundJSON *json = round_json_new();
+  RoundError *err = round_error_new();
+  if (json && err && round_json_parse(json, paramStr, err)) {
+    RoundJSONObject *paramObj = round_json_getrootobject(json);
+    if (round_json_object_ismap(paramObj)) {
+      round_json_map_getstring(paramObj, ROUND_SYSTEM_METHOD_PARAM_KEY, &key);
+    }
+  }
+#endif
+  
   RoundRegistry* reg = round_local_node_getregistry(node, key);
+  
+#if !defined(ROUND_USE_JS_JSON_PARAMS)
+  if (json) {
+    round_json_delete(json);
+  }
+  
+  if (err) {
+    round_error_delete(err);
+  }
+#endif
 
   if (reg) {
     RoundJSONObject* map = round_json_map_new();
@@ -414,10 +442,40 @@ JSBool round_js_sm_removeregistry(JSContext* cx, unsigned argc, jsval* vp)
 
   JS_BeginRequest(cx);
 
+  jsval* argv = JS_ARGV(cx, vp);
+  jsval param = argv[0];
+  
+#if defined(ROUND_USE_JS_JSON_PARAMS)
   char key[ROUND_SCRIPT_JS_SM_REGISTRY_KEY_MAX];
-  JSARG_TO_CSTRING(cx, vp, 0, key, sizeof(key));
-
+  if (!JSOBJECT_GET_GETPROPERTYSTRING(cx, param, ROUND_SYSTEM_METHOD_PARAM_KEY, key, sizeof(key)))
+    return false;
+#else
+  char paramStr[ROUND_SCRIPT_JS_SM_REGISTRY_VALUE_MAX];
+  if (!JSOBJECT_TO_CSTRING(param, paramStr, sizeof(paramStr)))
+    return false;
+  
+  const char *key;
+  RoundJSON *json = round_json_new();
+  RoundError *err = round_error_new();
+  if (json && err && round_json_parse(json, paramStr, err)) {
+    RoundJSONObject *paramObj = round_json_getrootobject(json);
+    if (round_json_object_ismap(paramObj)) {
+      round_json_map_getstring(paramObj, ROUND_SYSTEM_METHOD_PARAM_KEY, &key);
+    }
+  }
+#endif
+  
   bool isSuccess = round_local_node_removeregistry(node, key);
+  
+#if !defined(ROUND_USE_JS_JSON_PARAMS)
+  if (json) {
+    round_json_delete(json);
+  }
+  
+  if (err) {
+    round_error_delete(err);
+  }
+#endif
 
   JS_SET_RVAL(cx, vp, BOOLEAN_TO_JSVAL(isSuccess));
 
