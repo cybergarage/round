@@ -45,10 +45,11 @@ bool round_script_result2json(RoundString* result, RoundJSONObject** jsonResult,
 
 bool round_script_registry2json(RoundRegistry* reg, RoundJSONObject* jsonMap)
 {
-  if (jsonMap)
+  if (!jsonMap)
     return false;
 
-  round_json_map_setstring(jsonMap, round_registry_getkey(reg), round_registry_getvalue(reg));
+  round_json_map_setstring(jsonMap, ROUND_SYSTEM_METHOD_PARAM_KEY, round_registry_getkey(reg));
+  round_json_map_setstring(jsonMap, ROUND_SYSTEM_METHOD_PARAM_VALUE, round_registry_getvalue(reg));
 
   return true;
 }
