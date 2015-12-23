@@ -95,13 +95,15 @@ bool round_js_engine_getsoucecode(RoundJavaScriptEngine* engine, RoundMethod* me
   round_string_addvalue(jsSource, "\";" ROUND_ENDL);
   free(jsonParams);
 
-  round_string_addvalue(jsSource, "var params = jsonParams;" ROUND_ENDL);
+  round_string_addvalue(jsSource, "var params;" ROUND_ENDL);
   round_string_addvalue(jsSource, "if (0 < jsonParams.length) {" ROUND_ENDL);
   round_string_addvalue(jsSource, "  try {" ROUND_ENDL);
   round_string_addvalue(jsSource, "    params = JSON.parse(jsonParams);" ROUND_ENDL);
   round_string_addvalue(jsSource, "  } catch (e) {" ROUND_ENDL);
   round_string_addvalue(jsSource, "    params = jsonParams;" ROUND_ENDL);
   round_string_addvalue(jsSource, "  }" ROUND_ENDL);
+  round_string_addvalue(jsSource, "} else {" ROUND_ENDL);
+  round_string_addvalue(jsSource, "  params = jsonParams;" ROUND_ENDL);
   round_string_addvalue(jsSource, "}" ROUND_ENDL);
 
   round_string_addvalue(jsSource, "var results = ");
@@ -132,6 +134,8 @@ bool round_js_engine_run(RoundJavaScriptEngine* engine, RoundMethod* method, con
   round_js_sm_setlocalnode(round_script_engine_getlocalnode(engine));
 
   if (round_js_engine_getsoucecode(engine, method, param, jsSource)) {
+    printf("%s\n", param);
+    printf("%s\n", round_string_getvalue(jsSource));
 #if defined(ROUND_SUPPORT_JS_SM)
     isSuccess = round_js_sm_engine_run(engine, round_string_getvalue(jsSource), round_string_length(jsSource), strResult, err);
 #endif

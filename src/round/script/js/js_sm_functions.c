@@ -64,42 +64,19 @@ static bool JSSTRING_TO_STDSTRING(JSContext* cx, jsval* vp, size_t argn, char* b
  * JSOBJECT_GET_GETPROPERTYSTRING
  ****************************************/
 
-static bool JSOBJECT_GET_GETPROPERTY(JSContext* cx, jsval vp, const char *name, jsval *prop)
+static bool JSOBJECT_GET_GETPROPERTY(JSContext* cx, jsval jsObj, const char *name, jsval *prop)
 {
-  if (!JSVAL_IS_OBJECT(vp))
+  if (JSVAL_IS_PRIMITIVE(jsObj))
     return false;
   
-  if (!JS_GetProperty(cx, JSVAL_TO_OBJECT(vp), name, prop))
-    return false;
-
-  return true;
-}
-
-/****************************************
- * JSOBJECT_GET_GETPROPERTYSTRING
- ****************************************/
-
-static bool JSOBJECT_GET_GETPROPERTYBYTES(JSContext* cx, jsval vp, const char *name, const jschar ** value)
-{
-  jsval prop;
-  if (!JSOBJECT_GET_GETPROPERTY(cx, vp, name, &prop))
+  if (!JSVAL_IS_OBJECT(jsObj))
     return false;
   
-  if (!JSVAL_IS_PRIMITIVE(prop))
-    return false;
+  if (JS_IsArrayObject(cx, JSVAL_TO_OBJECT(jsObj)))
+    return true;
   
-  if (JSVAL_IS_VOID(prop))
+  if (!JS_GetProperty(cx, JSVAL_TO_OBJECT(jsObj), name, prop))
     return false;
-
-  if (!JSVAL_IS_STRING(prop))
-    return false;
-  
-  JSString* jsStr = JSVAL_TO_STRING(prop);
-  
-  if (!jsStr)
-    return false;
-  
-  *value = JS_GetStringCharsZ(cx, jsStr);
   
   return true;
 }
@@ -112,7 +89,7 @@ static bool JSOBJECT_GET_GETPROPERTYSTRING(JSContext* cx, jsval vp, const char *
 {
   jsval prop;
   if (!JSOBJECT_GET_GETPROPERTY(cx, vp, name, &prop))
-      return false;
+    return false;
   
   if (!JSVAL_IS_PRIMITIVE(prop))
     return false;
