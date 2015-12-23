@@ -61,6 +61,80 @@ static bool JSSTRING_TO_STDSTRING(JSContext* cx, jsval* vp, size_t argn, char* b
 }
 
 /****************************************
+ * JSOBJECT_GET_GETPROPERTYSTRING
+ ****************************************/
+
+static bool JSOBJECT_GET_GETPROPERTY(JSContext* cx, jsval vp, const char *name, jsval *prop)
+{
+  if (!JSVAL_IS_OBJECT(vp))
+    return false;
+  
+  if (!JS_GetProperty(cx, JSVAL_TO_OBJECT(vp), name, prop))
+    return false;
+
+  return true;
+}
+
+/****************************************
+ * JSOBJECT_GET_GETPROPERTYSTRING
+ ****************************************/
+
+static bool JSOBJECT_GET_GETPROPERTYBYTES(JSContext* cx, jsval vp, const char *name, const jschar ** value)
+{
+  jsval prop;
+  if (!JSOBJECT_GET_GETPROPERTY(cx, vp, name, &prop))
+    return false;
+  
+  if (!JSVAL_IS_PRIMITIVE(prop))
+    return false;
+  
+  if (JSVAL_IS_VOID(prop))
+    return false;
+
+  if (!JSVAL_IS_STRING(prop))
+    return false;
+  
+  JSString* jsStr = JSVAL_TO_STRING(prop);
+  
+  if (!jsStr)
+    return false;
+  
+  *value = JS_GetStringCharsZ(cx, jsStr);
+  
+  return true;
+}
+
+/****************************************
+ * JSOBJECT_GET_GETPROPERTYSTRING
+ ****************************************/
+
+static bool JSOBJECT_GET_GETPROPERTYSTRING(JSContext* cx, jsval vp, const char *name, char* buf, size_t bufSize)
+{
+  jsval prop;
+  if (!JSOBJECT_GET_GETPROPERTY(cx, vp, name, &prop))
+      return false;
+  
+  if (!JSVAL_IS_PRIMITIVE(prop))
+    return false;
+  
+  if (JSVAL_IS_VOID(prop))
+    return false;
+  
+  if (!JSVAL_IS_STRING(prop))
+    return false;
+  
+  JSString* jsStr = JSVAL_TO_STRING(prop);
+  
+  if (!jsStr)
+    return false;
+  
+  size_t bufLen = JS_EncodeStringToBuffer(jsStr, buf, (bufSize - 1));
+  buf[bufLen] = '\0';
+  
+  return true;
+}
+
+/****************************************
  * JS_SET_STDSTRING_RVAL
  ****************************************/
 
@@ -223,7 +297,7 @@ JSBool round_js_sm_postmethod(JSContext* cx, unsigned argc, jsval* vp)
 
 JSBool round_js_sm_setregistry(JSContext* cx, unsigned argc, jsval* vp)
 {
-  if (argc < 2)
+  if (argc < 1)
     return JS_FALSE;
 
   RoundLocalNode* node = round_js_sm_getlocalnode();
@@ -233,11 +307,15 @@ JSBool round_js_sm_setregistry(JSContext* cx, unsigned argc, jsval* vp)
   JS_BeginRequest(cx);
 
   char key[ROUND_SCRIPT_JS_SM_REGISTRY_KEY_MAX];
-  JSSTRING_TO_STDSTRING(cx, vp, 0, key, sizeof(key));
+  if (!JSOBJECT_GET_GETPROPERTYSTRING(cx, vp[0], ROUND_SYSTEM_METHOD_PARAM_KEY, key, sizeof(key)))
+    return false;
 
+  printf("%s", key);
+  
   char val[ROUND_SCRIPT_JS_SM_REGISTRY_VALUE_MAX];
-  JSSTRING_TO_STDSTRING(cx, vp, 1, val, sizeof(val));
-
+  if (!JSOBJECT_GET_GETPROPERTYSTRING(cx, vp[0], ROUND_SYSTEM_METHOD_PARAM_VALUE, val, sizeof(val)))
+    return false;
+  
   bool isSuccess = round_local_node_setregistry(node, key, val);
 
   JS_SET_RVAL(cx, vp, BOOLEAN_TO_JSVAL(isSuccess));
