@@ -8,8 +8,8 @@
  *
  ******************************************************************/
 
-#ifndef _ROUND_SERVER_H_
-#define _ROUND_SERVER_H_
+#ifndef _ROUND_SERVER_INTERNAL_H_
+#define _ROUND_SERVER_INTERNAL_H_
 
 #include <round/typedef.h>
 #include <round/node_internal.h>
@@ -32,22 +32,20 @@ typedef struct {
 } RoundServer;
 
 /****************************************
+ * Public Header
+ ****************************************/
+  
+#include <round/server.h>
+
+/****************************************
  * Function
  ****************************************/
   
-RoundServer *round_server_new(void);
-bool round_server_delete(RoundServer *server);
-bool round_server_clear(RoundServer *server);
-
-bool round_server_start(RoundServer *server);
-bool round_server_stop(RoundServer *server);
-bool round_server_isrunning(RoundServer *server);
-
 #define round_server_getlocalnode(server) (server->node)
-#define round_server_getnode(server) ((RoundNode *)(server->node))
 #define round_server_getfinder(server) (server->finder)
 #define round_server_getrpcserver(server) (server->rpcServer)
-
+#define round_server_getrpcserver(server) (server->rpcServer)
+  
 void round_server_nodeaddedlistener(RoundFinder *finder, RoundNode *node);
 void round_server_noderemovedlistener(RoundFinder *finder, RoundNode *node);
 

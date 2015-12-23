@@ -18,12 +18,34 @@
 #include <histedit.h>
 #include <signal.h>
 
-#include <round/round.h>
+#include <round/const.h>
 #include <round/server.h>
 
 //#include <round/ui/Console.h>
 
 // typedef std::map<std::string,std::string> RounddOptionsDictionary;
+
+void AddTestMethods(RoundServer* server)
+{
+#define SET_KEY_NAME "set_key"
+#define GET_KEY_NAME "get_key"
+#define REMOVE_KEY_NAME "remove_key"
+
+  static const char* SETKEY_CODE = "function " SET_KEY_NAME "(params) {return " ROUND_SYSTEM_METHOD_SET_REGISTRY "(params);}";
+  static const char* GETKEY_CODE = "function " GET_KEY_NAME "(params) {return " ROUND_SYSTEM_METHOD_GET_REGISTRY "(params);}";
+  static const char* REMOVEKEY_CODE = "function " REMOVE_KEY_NAME "(params) {return " ROUND_SYSTEM_METHOD_REMOVE_REGISTRY "(params);}";
+
+  RoundNode* node = round_server_getnode(server);
+  RoundError* err = round_error_new();
+
+  // Set '*_key' method
+
+  round_node_setmethod(node, ROUND_SCRIPT_LANGUAGE_JS, SET_KEY_NAME, SETKEY_CODE, err);
+  round_node_setmethod(node, ROUND_SCRIPT_LANGUAGE_JS, GET_KEY_NAME, GETKEY_CODE, err);
+  round_node_setmethod(node, ROUND_SCRIPT_LANGUAGE_JS, REMOVE_KEY_NAME, REMOVEKEY_CODE, err);
+
+  round_error_delete(err);
+}
 
 int main(int argc, char* argv[])
 {

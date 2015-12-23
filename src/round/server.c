@@ -8,7 +8,7 @@
  *
  ******************************************************************/
 
-#include <round/server.h>
+#include <round/server_internal.h>
 
 /****************************************
 * round_server_new
@@ -58,6 +58,18 @@ bool round_server_delete(RoundServer* server)
   free(server);
 
   return true;
+}
+
+/****************************************
+ * round_server_getnode
+ ****************************************/
+
+RoundNode* round_server_getnode(RoundServer* server)
+{
+  if (!server)
+    return NULL;
+
+  return (RoundNode*)server->node;
 }
 
 /****************************************

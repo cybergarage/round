@@ -16,6 +16,7 @@ round_client_headers = \
 	./round/finder.h \
 	./round/node.h \
 	./round/round.h \
+	./round/server.h \
 	./round/typedef.h \
 	./round/util/json.h \
 	./round/util/json_rpc.h \
