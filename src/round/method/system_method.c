@@ -11,10 +11,10 @@
 #include <round/method/system_method.h>
 
 /****************************************
- * round_system_method_new
+ * round_naitive_method_new
  ****************************************/
 
-RoundMethod* round_system_method_new(const char* name, ROUND_SCRIPT_NATIVE_ENGINE_FUNC func, bool isFinal)
+RoundMethod* round_naitive_method_new(const char* name, ROUND_SCRIPT_NATIVE_ENGINE_FUNC func, bool isFinal)
 {
   RoundMethod* method;
 
@@ -30,3 +30,13 @@ RoundMethod* round_system_method_new(const char* name, ROUND_SCRIPT_NATIVE_ENGIN
 
   return method;
 }
+
+/****************************************
+ * round_local_node_setnativemethod
+ ****************************************/
+
+bool round_local_node_setnativemethod(RoundLocalNode *node, const char *name, ROUND_SCRIPT_NATIVE_ENGINE_FUNC func)
+{
+  return round_local_node_setmethod(node, round_naitive_method_new(name, func, false));
+}
+
