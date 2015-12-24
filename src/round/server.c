@@ -61,15 +61,15 @@ bool round_server_delete(RoundServer* server)
 }
 
 /****************************************
- * round_server_getnode
+ * round_server_getlocalnode
  ****************************************/
 
-RoundNode* round_server_getnode(RoundServer* server)
+RoundLocalNode* round_server_getlocalnode(RoundServer* server)
 {
   if (!server)
     return NULL;
 
-  return (RoundNode*)server->node;
+  return server->node;
 }
 
 /****************************************

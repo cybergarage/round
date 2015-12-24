@@ -11,7 +11,7 @@
 #include <boost/test/unit_test.hpp>
 
 #include <round/client_internal.h>
-#include <round/server.h>
+#include <round/server_internal.h>
 
 #include "RoundTest.h"
 

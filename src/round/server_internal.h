@@ -41,9 +41,8 @@ typedef struct {
  * Function
  ****************************************/
   
-#define round_server_getlocalnode(server) (server->node)
+#define round_server_getnode(server) (RoundNode *)(server->node)
 #define round_server_getfinder(server) (server->finder)
-#define round_server_getrpcserver(server) (server->rpcServer)
 #define round_server_getrpcserver(server) (server->rpcServer)
   
 void round_server_nodeaddedlistener(RoundFinder *finder, RoundNode *node);

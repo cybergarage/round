@@ -43,8 +43,11 @@ typedef int RoundNodeCode;
 
 #if !defined(_ROUND_NODE_INTERNAL_H_)
 typedef void RoundNode;
+typedef void RoundLocalNode;
 #endif
   
+typedef bool (*ROUND_SCRIPT_NATIVE_ENGINE_FUNC)(RoundLocalNode *, RoundJSONObject *, RoundJSONObject **, RoundError *);
+
 /****************************************
  * Function (Node)
  ****************************************/
@@ -67,7 +70,7 @@ bool round_node_poststringmessage(RoundNode *node, const char *reqStr, RoundJSON
 bool round_node_equals(RoundNode *node1, RoundNode *node2);  
 
 /****************************************
- * Function (Node Methods)
+ * Function (RPC)
  ****************************************/
 
 bool round_node_setmethod(RoundNode* node, const char* lang, const char* name, const char* code, RoundError* err);
@@ -76,6 +79,12 @@ bool round_node_removemethod(RoundNode* node, const char* name, RoundError* err)
 bool round_node_setregistry(RoundNode* node, const char *key, const char *value, RoundError *err);
 bool round_node_getregistry(RoundNode* node, const char *key, char **value, RoundError *err);
 bool round_node_removeregistry(RoundNode* node, const char *key, RoundError *err);
+
+/****************************************
+ * Function (Local)
+ ****************************************/
+
+bool round_local_node_setnativemethod(RoundLocalNode *node, const char *name, ROUND_SCRIPT_NATIVE_ENGINE_FUNC func);
 
 #ifdef  __cplusplus
 } /* extern C */

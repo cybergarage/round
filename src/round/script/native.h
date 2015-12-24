@@ -26,8 +26,6 @@ typedef struct {
   ROUND_SCRIPT_ENGINE_STRUCT_MEMBERS
 } RoundNativeEngine;
 
-typedef bool (*ROUND_SCRIPT_NATIVE_ENGINE_FUNC)(RoundLocalNode *, RoundJSONObject *, RoundJSONObject **, RoundError *);
-
 RoundNativeEngine *round_native_engine_new();
 bool round_native_engine_destory(RoundNativeEngine *engine);
 bool round_native_engine_delete(RoundNativeEngine *engine);

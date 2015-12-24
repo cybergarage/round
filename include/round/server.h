@@ -40,7 +40,7 @@ bool round_server_start(RoundServer *server);
 bool round_server_stop(RoundServer *server);
 bool round_server_isrunning(RoundServer *server);
 
-RoundNode *round_server_getnode(RoundServer *server);
+RoundLocalNode *round_server_getlocalnode(RoundServer *server);
 
 #ifdef  __cplusplus
 } /* extern C */
