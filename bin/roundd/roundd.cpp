@@ -207,9 +207,9 @@ int main(int argc, char* argv[])
 */
 
   // Setup server
-  
+
   SetupServer(server);
-  
+
   // Start server
 
   if (!round_server_start(server)) {

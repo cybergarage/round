@@ -14,16 +14,13 @@
  * round_route_object_init
  ****************************************/
 
-bool round_route_object_init(RoundRouteObject* reg)
+bool round_route_object_init(RoundRouteObject* obj)
 {
-  reg->key = round_string_new();
-  reg->value = round_string_new();
+  obj->key = round_string_new();
+  obj->value = round_string_new();
 
-  if (!reg->key || !reg->value)
+  if (!obj->key || !obj->value)
     return false;
-
-  round_route_object_setts(reg, 0);
-  round_route_object_setlts(reg, 0);
 
   return true;
 }
@@ -34,33 +31,33 @@ bool round_route_object_init(RoundRouteObject* reg)
 
 RoundRouteObject* round_route_object_new()
 {
-  RoundRouteObject* reg;
+  RoundRouteObject* obj;
 
-  reg = (RoundRouteObject*)malloc(sizeof(RoundRouteObject));
-  if (!reg)
+  obj = (RoundRouteObject*)malloc(sizeof(RoundRouteObject));
+  if (!obj)
     return NULL;
 
-  if (!round_route_object_init(reg)) {
-    round_route_object_delete(reg);
+  if (!round_route_object_init(obj)) {
+    round_route_object_delete(obj);
     return NULL;
   }
 
-  return reg;
+  return obj;
 }
 
 /****************************************
  * round_route_object_delete
  ****************************************/
 
-bool round_route_object_delete(RoundRouteObject* reg)
+bool round_route_object_delete(RoundRouteObject* obj)
 {
-  if (!reg)
+  if (!obj)
     return false;
 
-  round_string_delete(reg->key);
-  round_string_delete(reg->value);
+  round_string_delete(obj->key);
+  round_string_delete(obj->value);
 
-  free(reg);
+  free(obj);
 
   return true;
 }

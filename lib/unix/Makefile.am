@@ -47,6 +47,9 @@ round_mpi_sources = \
 	../../src/round/registry_manager.c \
 	../../src/round/registry_map.c \
 	../../src/round/remote_node.c \
+	../../src/round/route.c \
+	../../src/round/route_manager.c \
+	../../src/round/route_object.c \
 	../../src/round/rpc_server.c \
 	../../src/round/script/js/js_sm_functions.c \
 	../../src/round/script/js_engine.c \
