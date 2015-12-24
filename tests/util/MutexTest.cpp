@@ -9,7 +9,8 @@
 ******************************************************************/
 
 #include <boost/test/unit_test.hpp>
-#include <round/round.h>
+
+#include <round/util/mutex.h>
 
 BOOST_AUTO_TEST_SUITE(mutex)
 
