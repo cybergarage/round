@@ -174,6 +174,9 @@ am__objects_1 = ../../src/round/libround_a-client.$(OBJEXT) \
 	../../src/round/libround_a-registry_manager.$(OBJEXT) \
 	../../src/round/libround_a-registry_map.$(OBJEXT) \
 	../../src/round/libround_a-remote_node.$(OBJEXT) \
+	../../src/round/libround_a-route.$(OBJEXT) \
+	../../src/round/libround_a-route_manager.$(OBJEXT) \
+	../../src/round/libround_a-route_object.$(OBJEXT) \
 	../../src/round/libround_a-rpc_server.$(OBJEXT) \
 	../../src/round/script/js/libround_a-js_sm_functions.$(OBJEXT) \
 	../../src/round/script/libround_a-js_engine.$(OBJEXT) \
@@ -407,6 +410,9 @@ round_mpi_sources = \
 	../../src/round/registry_manager.c \
 	../../src/round/registry_map.c \
 	../../src/round/remote_node.c \
+	../../src/round/route.c \
+	../../src/round/route_manager.c \
+	../../src/round/route_object.c \
 	../../src/round/rpc_server.c \
 	../../src/round/script/js/js_sm_functions.c \
 	../../src/round/script/js_engine.c \
@@ -628,6 +634,15 @@ clean-libLIBRARIES:
 ../../src/round/libround_a-remote_node.$(OBJEXT):  \
 	../../src/round/$(am__dirstamp) \
 	../../src/round/$(DEPDIR)/$(am__dirstamp)
+../../src/round/libround_a-route.$(OBJEXT):  \
+	../../src/round/$(am__dirstamp) \
+	../../src/round/$(DEPDIR)/$(am__dirstamp)
+../../src/round/libround_a-route_manager.$(OBJEXT):  \
+	../../src/round/$(am__dirstamp) \
+	../../src/round/$(DEPDIR)/$(am__dirstamp)
+../../src/round/libround_a-route_object.$(OBJEXT):  \
+	../../src/round/$(am__dirstamp) \
+	../../src/round/$(DEPDIR)/$(am__dirstamp)
 ../../src/round/libround_a-rpc_server.$(OBJEXT):  \
 	../../src/round/$(am__dirstamp) \
 	../../src/round/$(DEPDIR)/$(am__dirstamp)
@@ -806,6 +821,9 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@../../src/round/$(DEPDIR)/libround_a-registry_manager.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../../src/round/$(DEPDIR)/libround_a-registry_map.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../../src/round/$(DEPDIR)/libround_a-remote_node.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@../../src/round/$(DEPDIR)/libround_a-route.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@../../src/round/$(DEPDIR)/libround_a-route_manager.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@../../src/round/$(DEPDIR)/libround_a-route_object.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../../src/round/$(DEPDIR)/libround_a-rpc_server.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../../src/round/$(DEPDIR)/libround_a-script_engine.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../../src/round/$(DEPDIR)/libround_a-script_engine_map.Po@am__quote@
@@ -1289,6 +1307,48 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='../../src/round/remote_node.c' object='../../src/round/libround_a-remote_node.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libround_a_CFLAGS) $(CFLAGS) -c -o ../../src/round/libround_a-remote_node.obj `if test -f '../../src/round/remote_node.c'; then $(CYGPATH_W) '../../src/round/remote_node.c'; else $(CYGPATH_W) '$(srcdir)/../../src/round/remote_node.c'; fi`
+
+../../src/round/libround_a-route.o: ../../src/round/route.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libround_a_CFLAGS) $(CFLAGS) -MT ../../src/round/libround_a-route.o -MD -MP -MF ../../src/round/$(DEPDIR)/libround_a-route.Tpo -c -o ../../src/round/libround_a-route.o `test -f '../../src/round/route.c' || echo '$(srcdir)/'`../../src/round/route.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) ../../src/round/$(DEPDIR)/libround_a-route.Tpo ../../src/round/$(DEPDIR)/libround_a-route.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='../../src/round/route.c' object='../../src/round/libround_a-route.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libround_a_CFLAGS) $(CFLAGS) -c -o ../../src/round/libround_a-route.o `test -f '../../src/round/route.c' || echo '$(srcdir)/'`../../src/round/route.c
+
+../../src/round/libround_a-route.obj: ../../src/round/route.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libround_a_CFLAGS) $(CFLAGS) -MT ../../src/round/libround_a-route.obj -MD -MP -MF ../../src/round/$(DEPDIR)/libround_a-route.Tpo -c -o ../../src/round/libround_a-route.obj `if test -f '../../src/round/route.c'; then $(CYGPATH_W) '../../src/round/route.c'; else $(CYGPATH_W) '$(srcdir)/../../src/round/route.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) ../../src/round/$(DEPDIR)/libround_a-route.Tpo ../../src/round/$(DEPDIR)/libround_a-route.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='../../src/round/route.c' object='../../src/round/libround_a-route.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libround_a_CFLAGS) $(CFLAGS) -c -o ../../src/round/libround_a-route.obj `if test -f '../../src/round/route.c'; then $(CYGPATH_W) '../../src/round/route.c'; else $(CYGPATH_W) '$(srcdir)/../../src/round/route.c'; fi`
+
+../../src/round/libround_a-route_manager.o: ../../src/round/route_manager.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libround_a_CFLAGS) $(CFLAGS) -MT ../../src/round/libround_a-route_manager.o -MD -MP -MF ../../src/round/$(DEPDIR)/libround_a-route_manager.Tpo -c -o ../../src/round/libround_a-route_manager.o `test -f '../../src/round/route_manager.c' || echo '$(srcdir)/'`../../src/round/route_manager.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) ../../src/round/$(DEPDIR)/libround_a-route_manager.Tpo ../../src/round/$(DEPDIR)/libround_a-route_manager.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='../../src/round/route_manager.c' object='../../src/round/libround_a-route_manager.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libround_a_CFLAGS) $(CFLAGS) -c -o ../../src/round/libround_a-route_manager.o `test -f '../../src/round/route_manager.c' || echo '$(srcdir)/'`../../src/round/route_manager.c
+
+../../src/round/libround_a-route_manager.obj: ../../src/round/route_manager.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libround_a_CFLAGS) $(CFLAGS) -MT ../../src/round/libround_a-route_manager.obj -MD -MP -MF ../../src/round/$(DEPDIR)/libround_a-route_manager.Tpo -c -o ../../src/round/libround_a-route_manager.obj `if test -f '../../src/round/route_manager.c'; then $(CYGPATH_W) '../../src/round/route_manager.c'; else $(CYGPATH_W) '$(srcdir)/../../src/round/route_manager.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) ../../src/round/$(DEPDIR)/libround_a-route_manager.Tpo ../../src/round/$(DEPDIR)/libround_a-route_manager.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='../../src/round/route_manager.c' object='../../src/round/libround_a-route_manager.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libround_a_CFLAGS) $(CFLAGS) -c -o ../../src/round/libround_a-route_manager.obj `if test -f '../../src/round/route_manager.c'; then $(CYGPATH_W) '../../src/round/route_manager.c'; else $(CYGPATH_W) '$(srcdir)/../../src/round/route_manager.c'; fi`
+
+../../src/round/libround_a-route_object.o: ../../src/round/route_object.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libround_a_CFLAGS) $(CFLAGS) -MT ../../src/round/libround_a-route_object.o -MD -MP -MF ../../src/round/$(DEPDIR)/libround_a-route_object.Tpo -c -o ../../src/round/libround_a-route_object.o `test -f '../../src/round/route_object.c' || echo '$(srcdir)/'`../../src/round/route_object.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) ../../src/round/$(DEPDIR)/libround_a-route_object.Tpo ../../src/round/$(DEPDIR)/libround_a-route_object.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='../../src/round/route_object.c' object='../../src/round/libround_a-route_object.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libround_a_CFLAGS) $(CFLAGS) -c -o ../../src/round/libround_a-route_object.o `test -f '../../src/round/route_object.c' || echo '$(srcdir)/'`../../src/round/route_object.c
+
+../../src/round/libround_a-route_object.obj: ../../src/round/route_object.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libround_a_CFLAGS) $(CFLAGS) -MT ../../src/round/libround_a-route_object.obj -MD -MP -MF ../../src/round/$(DEPDIR)/libround_a-route_object.Tpo -c -o ../../src/round/libround_a-route_object.obj `if test -f '../../src/round/route_object.c'; then $(CYGPATH_W) '../../src/round/route_object.c'; else $(CYGPATH_W) '$(srcdir)/../../src/round/route_object.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) ../../src/round/$(DEPDIR)/libround_a-route_object.Tpo ../../src/round/$(DEPDIR)/libround_a-route_object.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='../../src/round/route_object.c' object='../../src/round/libround_a-route_object.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libround_a_CFLAGS) $(CFLAGS) -c -o ../../src/round/libround_a-route_object.obj `if test -f '../../src/round/route_object.c'; then $(CYGPATH_W) '../../src/round/route_object.c'; else $(CYGPATH_W) '$(srcdir)/../../src/round/route_object.c'; fi`
 
 ../../src/round/libround_a-rpc_server.o: ../../src/round/rpc_server.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libround_a_CFLAGS) $(CFLAGS) -MT ../../src/round/libround_a-rpc_server.o -MD -MP -MF ../../src/round/$(DEPDIR)/libround_a-rpc_server.Tpo -c -o ../../src/round/libround_a-rpc_server.o `test -f '../../src/round/rpc_server.c' || echo '$(srcdir)/'`../../src/round/rpc_server.c

@@ -43,9 +43,16 @@ typedef struct {
 typedef struct {
   RoundMap *map;
 } RoundRouteManager;
+  
+/****************************************
+ * Function (Route Object)
+ ****************************************/
+  
+RoundRouteObject* round_route_object_new();
+bool round_route_object_delete(RoundRouteObject* obj);
 
 /****************************************
- * Function
+ * Function (Route)
  ****************************************/
   
 RoundRoute *round_route_new();
@@ -63,7 +70,7 @@ bool round_route_delete(RoundRoute *route);
 #define round_route_setlts(reg, val) (reg->lts = val)
 #define round_route_getlts(reg) (reg->lts)
 
-  /****************************************
+/****************************************
  * Function (Map)
  ****************************************/
   

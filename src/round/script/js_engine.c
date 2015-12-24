@@ -90,7 +90,7 @@ bool round_js_engine_getsoucecode(RoundJavaScriptEngine* engine, RoundMethod* me
   round_string_addvalue(jsSource, ROUND_ENDL);
 
 #define ROUND_USE_JS_ENCODE_PARAMS 1
-  
+
 #if defined(ROUND_USE_JS_ENCODE_PARAMS)
   char* encordedParams = round_strreplace(param, "\"", "\\\"");
 #else
@@ -99,11 +99,11 @@ bool round_js_engine_getsoucecode(RoundJavaScriptEngine* engine, RoundMethod* me
   round_string_addvalue(jsSource, "var params = \"");
   round_string_addvalue(jsSource, encordedParams ? encordedParams : "\"\"");
   round_string_addvalue(jsSource, "\";" ROUND_ENDL);
-  //printf("%s\n", encordedParams);
+//printf("%s\n", encordedParams);
 #if defined(ROUND_USE_JS_ENCODE_PARAMS)
   free(encordedParams);
 #endif
-  
+
 #if defined(ROUND_USE_JS_JSON_PARAMS)
   round_string_addvalue(jsSource, "var jsonParams;" ROUND_ENDL);
   round_string_addvalue(jsSource, "if (0 < params.length) {" ROUND_ENDL);
@@ -150,7 +150,7 @@ bool round_js_engine_run(RoundJavaScriptEngine* engine, RoundMethod* method, con
   round_js_sm_setlocalnode(round_script_engine_getlocalnode(engine));
 
   if (round_js_engine_getsoucecode(engine, method, param, jsSource)) {
-    //printf("%s\n", round_string_getvalue(jsSource));
+//printf("%s\n", round_string_getvalue(jsSource));
 #if defined(ROUND_SUPPORT_JS_SM)
     isSuccess = round_js_sm_engine_run(engine, round_string_getvalue(jsSource), round_string_length(jsSource), strResult, err);
 #endif
