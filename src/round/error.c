@@ -24,12 +24,30 @@ RoundError* round_error_new(void)
   if (!err)
     return NULL;
 
+  if (!round_error_init(err)) {
+    round_error_delete(err);
+    return NULL;
+  }
+
+  return err;
+}
+
+/****************************************
+ * round_error_init
+ ****************************************/
+
+bool round_error_init(RoundError *err)
+{
+  round_error_setcode(err, 0);
+  round_error_setdetailcode(err, 0);
+  
   err->msg = round_string_new();
   err->detailMsg = round_string_new();
 
-  round_error_clear(err);
+  if (!err->msg || !err->detailMsg)
+    return false;
 
-  return err;
+  return true;
 }
 
 /****************************************
@@ -41,9 +59,13 @@ bool round_error_delete(RoundError* err)
   if (!err)
     return false;
 
-  round_string_delete(err->msg);
-  round_string_delete(err->detailMsg);
-
+  if (err->msg) {
+    round_string_delete(err->msg);
+  }
+  if (err->detailMsg) {
+    round_string_delete(err->detailMsg);
+  }
+  
   free(err);
 
   return true;
@@ -58,10 +80,14 @@ bool round_error_clear(RoundError* err)
   if (!err)
     return false;
 
-  round_string_clear(err->msg);
-  round_string_clear(err->detailMsg);
+  if (!err->msg || !err->detailMsg)
+    return false;
+  
   round_error_setcode(err, 0);
   round_error_setdetailcode(err, 0);
+
+  round_string_clear(err->msg);
+  round_string_clear(err->detailMsg);
 
   return true;
 }
