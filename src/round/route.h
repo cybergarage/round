@@ -27,10 +27,9 @@ extern "C" {
  ****************************************/
 
 typedef struct {
-  RoundString *key;
-  RoundString *value;
-  clock_t ts;
-  clock_t lts;
+  size_t tokenCnt;
+  char **tokens;
+  void **tokenObjs;
 } RoundRouteObject;
 
 typedef struct {
@@ -49,7 +48,9 @@ typedef struct {
  ****************************************/
   
 RoundRouteObject* round_route_object_new();
+bool round_route_object_init(RoundRouteObject* obj);
 bool round_route_object_delete(RoundRouteObject* obj);
+bool round_route_object_clear(RoundRouteObject* obj);
 
 /****************************************
  * Function (Route)

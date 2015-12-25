@@ -16,12 +16,10 @@
 
 bool round_route_object_init(RoundRouteObject* obj)
 {
-  obj->key = round_string_new();
-  obj->value = round_string_new();
-
-  if (!obj->key || !obj->value)
-    return false;
-
+  obj->tokenCnt = 0;
+  obj->tokens = NULL;
+  obj->tokenObjs = NULL;
+  
   return true;
 }
 
@@ -46,6 +44,26 @@ RoundRouteObject* round_route_object_new()
 }
 
 /****************************************
+ * round_route_object_clear
+ ****************************************/
+
+bool round_route_object_clear(RoundRouteObject* obj)
+{
+  if (!obj)
+    return false;
+  
+  size_t n;
+  for (n=0; n<obj->tokenCnt; n++) {
+    if (obj->tokens[n]) {
+      free(obj->tokens[n]);
+    }
+    obj->tokenObjs[n] = NULL;
+  }
+  
+  return true;
+}
+
+/****************************************
  * round_route_object_delete
  ****************************************/
 
@@ -54,10 +72,9 @@ bool round_route_object_delete(RoundRouteObject* obj)
   if (!obj)
     return false;
 
-  round_string_delete(obj->key);
-  round_string_delete(obj->value);
+  bool isSuccess = round_route_object_clear(obj);
 
   free(obj);
 
-  return true;
+  return isSuccess;
 }
