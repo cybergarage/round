@@ -39,7 +39,7 @@ void AddTestMethods(RoundServer* server)
   static const char* GETKEY_CODE = "function " GET_KEY_NAME "(params) {return " ROUND_SYSTEM_METHOD_GET_REGISTRY "(params);}";
   static const char* REMOVEKEY_CODE = "function " REMOVE_KEY_NAME "(params) {return " ROUND_SYSTEM_METHOD_REMOVE_REGISTRY "(params);}";
 
-  RoundNode* node = round_server_getnode(server);
+  RoundLocalNode* node = round_server_getlocalnode(server);
   RoundError* err = round_error_new();
 
   // Set '*_key' method
