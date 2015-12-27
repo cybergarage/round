@@ -69,6 +69,9 @@ bool round_node_poststringmessage(RoundNode *node, const char *reqStr, RoundJSON
 
 bool round_node_equals(RoundNode *node1, RoundNode *node2);  
 
+void round_node_setuserdata(RoundNode *node, void *data);
+void *round_node_getuserdata(RoundNode *node);
+
 /****************************************
  * Function (RPC)
  ****************************************/

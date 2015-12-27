@@ -23,22 +23,39 @@ RoundServer* round_server_new(void)
   if (!server)
     return NULL;
 
-  server->node = round_local_node_new();
-  server->finder = round_finder_new();
-  server->rpcServer = round_rpc_server_new();
-
-  if (!server->node || !server->finder || !server->rpcServer) {
+  if (!round_server_init(server)) {
     round_server_delete(server);
     return NULL;
   }
 
-  round_rpc_server_setlocalnode(server->rpcServer, server->node);
+  return server;
+}
 
+/****************************************
+ * round_server_init
+ ****************************************/
+
+bool round_server_init(RoundServer *server)
+{
+  if (!server)
+    return false;
+  
+  server->node = round_local_node_new();
+  server->finder = round_finder_new();
+  server->rpcServer = round_rpc_server_new();
+  
+  if (!server->node || !server->finder || !server->rpcServer)
+    return false;
+
+  round_server_setuserdata(server, NULL);
+  
+  round_rpc_server_setlocalnode(server->rpcServer, server->node);
+  
   round_finder_setuserdata(server->finder, server);
   round_finder_setnodeaddedlistener(server->finder, round_server_nodeaddedlistener);
   round_finder_setnoderemovedlistener(server->finder, round_server_noderemovedlistener);
 
-  return server;
+  return true;
 }
 
 /****************************************
@@ -58,6 +75,30 @@ bool round_server_delete(RoundServer* server)
   free(server);
 
   return true;
+}
+
+/****************************************
+ * round_server_setuserdata
+ ****************************************/
+
+void round_server_setuserdata(RoundServer *server, void *data)
+{
+  if (!server)
+    return;
+  
+  server->userData = data;
+}
+
+/****************************************
+ * round_server_getuserdata
+ ****************************************/
+
+void *round_server_getuserdata(RoundServer *server)
+{
+  if (!server)
+    return NULL;
+  
+  return server->userData;
 }
 
 /****************************************

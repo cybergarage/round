@@ -29,6 +29,7 @@ typedef struct {
   RoundLocalNode *node;
   RoundFinder *finder;
   RoundRpcServer *rpcServer;
+  void *userData;
 } RoundServer;
 
 /****************************************
@@ -40,8 +41,9 @@ typedef struct {
 /****************************************
  * Function
  ****************************************/
-  
-#define round_server_getnode(server) (RoundNode *)(server->node)
+
+bool round_server_init(RoundServer *server);
+
 #define round_server_getfinder(server) (server->finder)
 #define round_server_getrpcserver(server) (server->rpcServer)
   
