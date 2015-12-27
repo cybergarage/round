@@ -71,6 +71,8 @@ bool round_node_init(RoundNode* node)
   if (!node->addr || !node->clusterName || !node->clock || !node->clusterMgr)
     return false;
 
+  round_node_setuserdata(node, NULL);
+  
   round_node_setrequesttimeout(node, ROUND_JSON_RPC_REQUEST_TIMEOUT_SEC);
   round_consistenthashing_node_sethashfunc(node, round_node_getdigest);
 
@@ -140,6 +142,30 @@ bool round_node_destroy(RoundNode* node)
 RoundNode* round_node_next(RoundNode* node)
 {
   return (RoundNode*)round_list_next((RoundList*)node);
+}
+
+/****************************************
+ * round_node_setuserdata
+ ****************************************/
+
+void round_node_setuserdata(RoundNode *node, void *data)
+{
+  if (!node)
+    return;
+  
+  node->userData = data;
+}
+
+/****************************************
+ * round_node_getuserdata
+ ****************************************/
+
+void *round_node_getuserdata(RoundNode *node)
+{
+  if (!node)
+    return NULL;
+  
+  return node->userData;
 }
 
 /****************************************

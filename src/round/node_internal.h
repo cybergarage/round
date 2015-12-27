@@ -55,7 +55,8 @@ typedef struct {
   time_t requestTimeout; \
   RoundClusterManager *clusterMgr; \
   ROUND_NODE_POSTMESSAGE_FUNC postMsgFunc; \
-  RoundStatus status;
+  RoundStatus status; \
+  void *userData;
 
 typedef struct {
   ROUND_NODE_STRUCT_MEMBERS
