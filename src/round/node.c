@@ -74,7 +74,7 @@ bool round_node_init(RoundNode* node)
   round_node_setuserdata(node, NULL);
   
   round_node_setrequesttimeout(node, ROUND_JSON_RPC_REQUEST_TIMEOUT_SEC);
-  round_consistenthashing_node_sethashfunc(node, round_node_getdigest);
+  round_consistenthashing_node_sethashfunc(node, round_node_getid);
 
   round_node_setcluster(node, NULL);
   round_node_setclustername(node, ROUND_DEFAULT_NODE_CLUSTER_NAME);
@@ -180,7 +180,7 @@ bool round_node_setaddress(RoundNode* node, const char* addr)
   if (!round_string_setvalue(node->addr, addr))
     return false;
 
-  return round_node_updatedigest(node);
+  return round_node_updateid(node);
 }
 
 /****************************************
@@ -211,7 +211,7 @@ bool round_node_setport(RoundNode* node, int port)
 
   node->port = port;
 
-  return round_node_updatedigest(node);
+  return round_node_updateid(node);
 }
 
 /****************************************
@@ -285,10 +285,10 @@ bool round_node_equals(RoundNode* node1, RoundNode* node2)
 }
 
 /****************************************
- * round_node_updatedigest
+ * round_node_updateid
  ****************************************/
 
-bool round_node_updatedigest(RoundNode* node)
+bool round_node_updateid(RoundNode* node)
 {
   if (!node)
     return false;
@@ -300,17 +300,17 @@ bool round_node_updatedigest(RoundNode* node)
   if (!round_node_digest(seed, &digest))
     return false;
 
-  round_node_setdigest(node, digest);
+  round_node_setid(node, digest);
   free(digest);
 
   return true;
 }
 
 /****************************************
- * round_node_getdigest
+ * round_node_getid
  ****************************************/
 
-const char* round_node_getdigest(RoundNode* node)
+const char* round_node_getid(RoundNode* node)
 {
   if (!node)
     return "";
