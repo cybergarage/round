@@ -87,6 +87,9 @@ bool round_node_removeregistry(RoundNode* node, const char *key, RoundError *err
  * Function (Local)
  ****************************************/
 
+#define round_local_node_setuserdata(node, data) round_node_setuserdata((RoundNode *)node, data)
+#define round_local_node_getuserdata(node) round_node_getuserdata((RoundNode *)node)
+
 bool round_local_node_setnativemethod(RoundLocalNode *node, const char *name, ROUND_SCRIPT_NATIVE_ENGINE_FUNC func);
 
 #ifdef  __cplusplus
