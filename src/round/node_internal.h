@@ -119,10 +119,9 @@ bool round_node_updateclockbyjsonobject(RoundNode* node, RoundJSONObject* jsonOb
 #define round_node_getpostmessagefunc(node) (node->postMsgFunc)
 
 #define round_node_digest(str,buf) round_sha256_digest(str,buf)
-bool round_node_updatedigest(RoundNode *node);
-const char *round_node_getdigest(RoundNode *node);
-#define round_node_setdigest(node, value) round_string_setvalue(node->digest, value)
-#define round_node_hasdigest(node) round_string_hasvalue(node->digest)
+bool round_node_updateid(RoundNode *node);
+#define round_node_setid(node, value) round_string_setvalue(node->digest, value)
+#define round_node_hasid(node) round_string_hasvalue(node->digest)
 
 bool round_node_addclusternode(RoundNode *node, RoundNode *clusterNode);
 bool round_node_removeclusternode(RoundNode *node, RoundNode *clusterNode);
@@ -153,13 +152,12 @@ bool round_local_node_delete(RoundLocalNode *node);
 #define round_local_node_getport(node,port) round_node_getport((RoundNode*)node,port)
   
 #define round_local_node_setclustername(node,cluster) round_node_setclustername((RoundNode*)node,cluster)
-#define round_local_node_getclustername(node,cluster) round_node_getclustername((RoundNode*)node,cluster)
 #define round_local_node_getcluster(node) round_node_getcluster((RoundNode*)node)
   
 #define round_local_node_setrequesttimeout(node,value) round_node_setrequesttimeout((RoundNode*)node,value)
 #define round_local_node_getrequesttimeout(node) round_node_getrequesttimeout((RoundNode*)node)
 
-#define round_local_node_setcloc(node,value) round_clock_setvalue(node->clock,value)
+#define round_local_node_setclock(node,value) round_clock_setvalue(node->clock,value)
 #define round_local_node_getclock(node) round_clock_getvalue(node->clock)
 #define round_local_node_updateclockbyjsonobject(node,jsonobj) round_node_updateclockbyjsonobject((RoundNode*)node,jsonobj)
 
