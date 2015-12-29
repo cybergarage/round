@@ -17,6 +17,7 @@
 #include <round/script/js.h>
 #include <round/script/lua.h>
 #include <round/script/ruby.h>
+#include <round/script/python.h>
 #include <round/method/system_method.h>
 
 /****************************************
@@ -105,22 +106,22 @@ bool round_local_node_initscriptengines(RoundLocalNode* node)
 
   areAllEnginesAdded = true;
 
-  areAllEnginesAdded &= round_local_node_addengine(
-      node, (RoundScriptEngine*)round_native_engine_new());
+  areAllEnginesAdded &= round_local_node_addengine(node, (RoundScriptEngine*)round_native_engine_new());
 
 #if defined(ROUND_SUPPORT_JS_SM)
-  areAllEnginesAdded &= round_local_node_addengine(
-      node, (RoundScriptEngine*)round_js_engine_new());
+  areAllEnginesAdded &= round_local_node_addengine(node, (RoundScriptEngine*)round_js_engine_new());
 #endif
 
 #if defined(ROUND_SUPPORT_LUA)
-  areAllEnginesAdded &= round_local_node_addengine(
-      node, (RoundScriptEngine*)round_lua_engine_new());
+  areAllEnginesAdded &= round_local_node_addengine(node, (RoundScriptEngine*)round_lua_engine_new());
 #endif
 
 #if defined(ROUND_SUPPORT_RUBY)
-  areAllEnginesAdded &= round_local_node_addengine(
-      node, (RoundScriptEngine*)round_ruby_engine_new());
+  areAllEnginesAdded &= round_local_node_addengine(node, (RoundScriptEngine*)round_ruby_engine_new());
+#endif
+
+#if defined(ROUND_SUPPORT_PYTHON)
+  areAllEnginesAdded &= round_local_node_addengine(node, (RoundScriptEngine*)round_python_engine_new());
 #endif
 
   return areAllEnginesAdded;

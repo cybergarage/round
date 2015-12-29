@@ -20,7 +20,7 @@
 		2127082A1BD662B400000985 /* consistent_hashing.h in Headers */ = {isa = PBXBuildFile; fileRef = 212708281BD662B400000985 /* consistent_hashing.h */; };
 		212A95451B9BCA4200EC9A71 /* method_manager.c in Sources */ = {isa = PBXBuildFile; fileRef = 212A95431B9BCA4200EC9A71 /* method_manager.c */; };
 		212A95461B9BCA4200EC9A71 /* method.c in Sources */ = {isa = PBXBuildFile; fileRef = 212A95441B9BCA4200EC9A71 /* method.c */; };
-		212D04721C20AFC400DCD5B3 /* libmupnp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 212D046D1C20AF6D00DCD5B3 /* libmupnp.a */; };
+		212D04721C20AFC400DCD5B3 /* liblibmupnp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 212D046D1C20AF6D00DCD5B3 /* liblibmupnp.a */; };
 		213389D01BFAEA980014548E /* rpc_server.h in Headers */ = {isa = PBXBuildFile; fileRef = 213389CE1BFAEA980014548E /* rpc_server.h */; };
 		213389D11BFAEA980014548E /* rpc_server.c in Sources */ = {isa = PBXBuildFile; fileRef = 213389CF1BFAEA980014548E /* rpc_server.c */; };
 		21346A7E1BB4FA6B00B5F3A6 /* get_registry.c in Sources */ = {isa = PBXBuildFile; fileRef = 21346A7B1BB4FA6B00B5F3A6 /* get_registry.c */; };
@@ -86,6 +86,8 @@
 		21A776CB1BA0939F009BDB36 /* timer.h in Headers */ = {isa = PBXBuildFile; fileRef = 21A776C91BA0939F009BDB36 /* timer.h */; };
 		21A776CC1BA0939F009BDB36 /* timer.c in Sources */ = {isa = PBXBuildFile; fileRef = 21A776CA1BA0939F009BDB36 /* timer.c */; };
 		21B3B3171C0F04C20099BEC8 /* upnp_remote_node.c in Sources */ = {isa = PBXBuildFile; fileRef = 21B3B3161C0F04C20099BEC8 /* upnp_remote_node.c */; };
+		21B40A471C32400600EAF962 /* python_engine.c in Sources */ = {isa = PBXBuildFile; fileRef = 21B40A451C32400600EAF962 /* python_engine.c */; };
+		21B40A481C32400600EAF962 /* python.h in Headers */ = {isa = PBXBuildFile; fileRef = 21B40A461C32400600EAF962 /* python.h */; };
 		21B755F01C270A4400E3F057 /* option.h in Headers */ = {isa = PBXBuildFile; fileRef = 21B755EF1C270A4400E3F057 /* option.h */; };
 		21B763DD1BA05ED1003C29F3 /* queue.c in Sources */ = {isa = PBXBuildFile; fileRef = 21B763DA1BA05ED1003C29F3 /* queue.c */; };
 		21B763DF1BA05ED1003C29F3 /* queue.h in Headers */ = {isa = PBXBuildFile; fileRef = 21B763DC1BA05ED1003C29F3 /* queue.h */; };
@@ -227,6 +229,8 @@
 		21A776C91BA0939F009BDB36 /* timer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = timer.h; path = ../../../src/round/util/timer.h; sourceTree = "<group>"; };
 		21A776CA1BA0939F009BDB36 /* timer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = timer.c; path = ../../../src/round/util/timer.c; sourceTree = "<group>"; };
 		21B3B3161C0F04C20099BEC8 /* upnp_remote_node.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = upnp_remote_node.c; path = ../../../src/round/impl/upnp_remote_node.c; sourceTree = "<group>"; };
+		21B40A451C32400600EAF962 /* python_engine.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = python_engine.c; sourceTree = "<group>"; };
+		21B40A461C32400600EAF962 /* python.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = python.h; sourceTree = "<group>"; };
 		21B755EF1C270A4400E3F057 /* option.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = option.h; path = ../../../include/round/util/option.h; sourceTree = "<group>"; };
 		21B763DA1BA05ED1003C29F3 /* queue.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = queue.c; path = ../../../src/round/util/queue.c; sourceTree = "<group>"; };
 		21B763DC1BA05ED1003C29F3 /* queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = queue.h; path = ../../../src/round/util/queue.h; sourceTree = "<group>"; };
@@ -275,7 +279,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				212D04721C20AFC400DCD5B3 /* libmupnp.a in Frameworks */,
+				212D04721C20AFC400DCD5B3 /* liblibmupnp.a in Frameworks */,
 				219A8E2F1B9B0103004ED802 /* Ruby.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -397,7 +401,7 @@
 		212D04691C20AF6C00DCD5B3 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				212D046D1C20AF6D00DCD5B3 /* libmupnp.a */,
+				212D046D1C20AF6D00DCD5B3 /* liblibmupnp.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -500,17 +504,19 @@
 			isa = PBXGroup;
 			children = (
 				21DFCA441C287EC800F75D5C /* js */,
-				21DFCA431C287E9B00F75D5C /* lua */,
-				21DDB7191C281F68002DEDDF /* script_functions.c */,
-				218569A61BAFFE9F00861B9B /* native.h */,
-				218569A71BAFFE9F00861B9B /* native_engine.c */,
-				219A8E1E1B9AF54D004ED802 /* js.h */,
-				219A8E231B9AF54D004ED802 /* lua.h */,
-				219A8E241B9AF54D004ED802 /* ruby.h */,
 				21F6D9AA1B99848000714056 /* js_engine.c */,
 				21F6D9AB1B99848000714056 /* js_sm_engine.c */,
+				219A8E1E1B9AF54D004ED802 /* js.h */,
+				21DFCA431C287E9B00F75D5C /* lua */,
 				21F6D9AC1B99848000714056 /* lua_engine.c */,
+				219A8E231B9AF54D004ED802 /* lua.h */,
+				218569A71BAFFE9F00861B9B /* native_engine.c */,
+				218569A61BAFFE9F00861B9B /* native.h */,
+				21B40A451C32400600EAF962 /* python_engine.c */,
+				21B40A461C32400600EAF962 /* python.h */,
 				21F6D9AD1B99848000714056 /* ruby_engine.c */,
+				219A8E241B9AF54D004ED802 /* ruby.h */,
+				21DDB7191C281F68002DEDDF /* script_functions.c */,
 			);
 			name = script;
 			path = ../../../src/round/script;
@@ -539,6 +545,7 @@
 				21D427EE1B9F07CD00BBBD41 /* error_internal.h in Headers */,
 				211E45D01B9816F300CF0088 /* client_internal.h in Headers */,
 				2178B3621B98986200B9D86B /* const.h in Headers */,
+				21B40A481C32400600EAF962 /* python.h in Headers */,
 				211E45CA1B98154A00CF0088 /* client.h in Headers */,
 				21EAA2A51B9931B10002CFF0 /* strings.h in Headers */,
 				21606BFA1BA029A0000463A8 /* method.h in Headers */,
@@ -632,10 +639,10 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		212D046D1C20AF6D00DCD5B3 /* libmupnp.a */ = {
+		212D046D1C20AF6D00DCD5B3 /* liblibmupnp.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libmupnp.a;
+			path = liblibmupnp.a;
 			remoteRef = 212D046C1C20AF6D00DCD5B3 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -669,6 +676,7 @@
 				2160B8941BB3B9F7002026E3 /* system_method.c in Sources */,
 				21EAA2A61B9931B10002CFF0 /* string_func.c in Sources */,
 				211E45CD1B98157400CF0088 /* client.c in Sources */,
+				21B40A471C32400600EAF962 /* python_engine.c in Sources */,
 				21FBE3701B9DC803000C2512 /* map_object.c in Sources */,
 				2148E5E01B9F1A7D0021CE7B /* error_rpc.c in Sources */,
 				2178B36F1B98BEAE00B9D86B /* thread_manager.c in Sources */,
