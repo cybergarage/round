@@ -40,6 +40,7 @@ typedef struct {
 } RoundRubyEngine;
 
 RoundRubyEngine *round_ruby_engine_new();
+bool round_ruby_engine_init(RoundRubyEngine* engine);
 bool round_ruby_engine_destory(RoundRubyEngine *engine);
 bool round_ruby_engine_delete(RoundRubyEngine *engine);
 

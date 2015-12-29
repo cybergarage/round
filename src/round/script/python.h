@@ -33,6 +33,7 @@ typedef struct {
 } RoundPythonEngine;
 
 RoundPythonEngine *round_python_engine_new();
+bool round_python_engine_init(RoundPythonEngine* engine);
 bool round_python_engine_destory(RoundPythonEngine *engine);
 bool round_python_engine_delete(RoundPythonEngine *engine);
 

@@ -23,16 +23,31 @@ RoundPythonEngine* round_python_engine_new()
   if (!engine)
     return NULL;
 
-  if (!round_script_engine_init((RoundScriptEngine*)engine)) {
+  if (!round_python_engine_init(engine)) {
     round_python_engine_delete(engine);
     return NULL;
   }
 
+  return engine;
+}
+
+/****************************************
+ * round_python_engine_init
+ ****************************************/
+
+bool round_python_engine_init(RoundPythonEngine* engine)
+{
+  if (!engine)
+    return false;
+  
+  if (!round_script_engine_init((RoundScriptEngine*)engine))
+    return false;
+  
   round_script_engine_setlanguage(engine, RoundPythonEngineLanguage);
   round_script_engine_setexecutefunc(engine, round_python_engine_run);
   round_oo_setdescendantdestoroyfunc(engine, round_python_engine_destory);
-
-  return engine;
+  
+  return true;
 }
 
 /****************************************
