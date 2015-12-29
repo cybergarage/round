@@ -31,6 +31,7 @@ extern "C" {
 //#define ROUND_SUPPORT_RUBY
 #define ROUND_SUPPORT_MRUBY
 #define ROUND_USE_JSON_PARSER_JANSSON
+#define ROUND_SUPPORT_PYTHON
 
 #endif
 
