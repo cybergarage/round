@@ -36,6 +36,7 @@ typedef struct {
 } RoundLuaEngine;
 
 RoundLuaEngine *round_lua_engine_new();
+bool round_lua_engine_init(RoundLuaEngine *engine);
 bool round_lua_engine_destory(RoundLuaEngine *engine);
 bool round_lua_engine_delete(RoundLuaEngine *engine);
 
