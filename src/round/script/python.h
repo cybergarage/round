@@ -20,7 +20,7 @@ extern "C" {
 #endif
 
 #if defined(ROUND_SUPPORT_PYTHON)
-#include <Python.h>
+#include <Python/Python.h>
 #endif
 
 #define RoundPythonEngineLanguage "python"

@@ -131,8 +131,7 @@ void Round::Test::ScriptTestController::runSumMethodTest(RoundMethodManager* scr
   size_t nParams = params.size();
   for (size_t n = 0; n < nParams; n++) {
     bool isSuccess;
-    BOOST_CHECK(isSuccess = round_method_manager_execmethod(
-                    scriptMgr, Round::Test::SCRIPT_SUM_NAME, params[n].c_str(), &resultObj, err));
+    BOOST_CHECK(isSuccess = round_method_manager_execmethod(scriptMgr, Round::Test::SCRIPT_SUM_NAME, params[n].c_str(), &resultObj, err));
     if (!isSuccess)
       continue;
 
@@ -141,8 +140,7 @@ void Round::Test::ScriptTestController::runSumMethodTest(RoundMethodManager* scr
       continue;
 
     const char* resultStr = NULL;
-    BOOST_CHECK(round_json_object_tostringwithoption(
-        resultObj, (RoundJSONOptionFormatCompact | RoundJSONOptionFormatSort), &resultStr));
+    BOOST_CHECK(round_json_object_tostringwithoption(resultObj, (RoundJSONOptionFormatCompact | RoundJSONOptionFormatSort), &resultStr));
     BOOST_CHECK(resultStr);
     BOOST_CHECK_EQUAL(results[n].c_str(), resultStr);
 

@@ -88,6 +88,7 @@
 		21B3B3171C0F04C20099BEC8 /* upnp_remote_node.c in Sources */ = {isa = PBXBuildFile; fileRef = 21B3B3161C0F04C20099BEC8 /* upnp_remote_node.c */; };
 		21B40A471C32400600EAF962 /* python_engine.c in Sources */ = {isa = PBXBuildFile; fileRef = 21B40A451C32400600EAF962 /* python_engine.c */; };
 		21B40A481C32400600EAF962 /* python.h in Headers */ = {isa = PBXBuildFile; fileRef = 21B40A461C32400600EAF962 /* python.h */; };
+		21B40A4D1C32BCE000EAF962 /* Python.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21B40A4C1C32BCE000EAF962 /* Python.framework */; };
 		21B755F01C270A4400E3F057 /* option.h in Headers */ = {isa = PBXBuildFile; fileRef = 21B755EF1C270A4400E3F057 /* option.h */; };
 		21B763DD1BA05ED1003C29F3 /* queue.c in Sources */ = {isa = PBXBuildFile; fileRef = 21B763DA1BA05ED1003C29F3 /* queue.c */; };
 		21B763DF1BA05ED1003C29F3 /* queue.h in Headers */ = {isa = PBXBuildFile; fileRef = 21B763DC1BA05ED1003C29F3 /* queue.h */; };
@@ -231,6 +232,7 @@
 		21B3B3161C0F04C20099BEC8 /* upnp_remote_node.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = upnp_remote_node.c; path = ../../../src/round/impl/upnp_remote_node.c; sourceTree = "<group>"; };
 		21B40A451C32400600EAF962 /* python_engine.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = python_engine.c; sourceTree = "<group>"; };
 		21B40A461C32400600EAF962 /* python.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = python.h; sourceTree = "<group>"; };
+		21B40A4C1C32BCE000EAF962 /* Python.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Python.framework; path = System/Library/Frameworks/Python.framework; sourceTree = SDKROOT; };
 		21B755EF1C270A4400E3F057 /* option.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = option.h; path = ../../../include/round/util/option.h; sourceTree = "<group>"; };
 		21B763DA1BA05ED1003C29F3 /* queue.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = queue.c; path = ../../../src/round/util/queue.c; sourceTree = "<group>"; };
 		21B763DC1BA05ED1003C29F3 /* queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = queue.h; path = ../../../src/round/util/queue.h; sourceTree = "<group>"; };
@@ -279,6 +281,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21B40A4D1C32BCE000EAF962 /* Python.framework in Frameworks */,
 				212D04721C20AFC400DCD5B3 /* liblibmupnp.a in Frameworks */,
 				219A8E2F1B9B0103004ED802 /* Ruby.framework in Frameworks */,
 			);
@@ -382,8 +385,7 @@
 		212ADD7F1A8D4F000054EC0F = {
 			isa = PBXGroup;
 			children = (
-				212D04681C20AF6C00DCD5B3 /* libmupnp.xcodeproj */,
-				219A8E2E1B9B0103004ED802 /* Ruby.framework */,
+				21B40A4B1C32BCBD00EAF962 /* Frameworks */,
 				21678EE11A8D50BD00AE79AA /* Headers */,
 				21678EF51A8D510900AE79AA /* Sources */,
 				212ADD891A8D4F000054EC0F /* Products */,
@@ -482,6 +484,16 @@
 				21A776C91BA0939F009BDB36 /* timer.h */,
 			);
 			name = util;
+			sourceTree = "<group>";
+		};
+		21B40A4B1C32BCBD00EAF962 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				21B40A4C1C32BCE000EAF962 /* Python.framework */,
+				212D04681C20AF6C00DCD5B3 /* libmupnp.xcodeproj */,
+				219A8E2E1B9B0103004ED802 /* Ruby.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		21DFCA431C287E9B00F75D5C /* lua */ = {

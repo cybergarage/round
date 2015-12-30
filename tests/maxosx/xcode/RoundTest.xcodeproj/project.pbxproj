@@ -19,14 +19,13 @@
 		212A954C1B9BD1A400EC9A71 /* MethodManagerTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 212A954A1B9BD1A400EC9A71 /* MethodManagerTest.cpp */; };
 		212A954E1B9BD24700EC9A71 /* MethodTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 212A954D1B9BD24700EC9A71 /* MethodTest.cpp */; };
 		213389D31BFAEAB30014548E /* RpcServerTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 213389D21BFAEAB30014548E /* RpcServerTest.cpp */; };
-		2137D3F11B998AEF00652E68 /* liblibround.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2137D3EE1B998ADD00652E68 /* liblibround.a */; };
+		2137D3F11B998AEF00652E68 /* libround.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2137D3EE1B998ADD00652E68 /* libround.a */; };
 		21563A121BC419AB004D33EA /* ScriptTestController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21563A101BC419AB004D33EA /* ScriptTestController.cpp */; };
 		215A078E1BB2FB9400E9702F /* ServerTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 215A078D1BB2FB9400E9702F /* ServerTest.cpp */; };
 		215A079A1BB4663C00E9702F /* RegistryTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 215A07991BB4663C00E9702F /* RegistryTest.cpp */; };
 		2166EF8C1B9D2E5E002FE45D /* ScriptEngineMapTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2166EF8A1B9D2E5E002FE45D /* ScriptEngineMapTest.cpp */; };
 		2166EF8D1B9D2E5E002FE45D /* ScriptEngineTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2166EF8B1B9D2E5E002FE45D /* ScriptEngineTest.cpp */; };
 		216D19CF1BB4B37C0007B331 /* ClockTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 216D19CE1BB4B37C0007B331 /* ClockTest.cpp */; };
-		2172C4C11B9AF3CB0032BE98 /* Ruby.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2172C4C01B9AF3CB0032BE98 /* Ruby.framework */; };
 		218569B31BB0D68800861B9B /* RemoteNodeTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 218569B21BB0D68800861B9B /* RemoteNodeTest.cpp */; };
 		218569B51BB0D69400861B9B /* LocalNodeTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 218569B41BB0D69400861B9B /* LocalNodeTest.cpp */; };
 		2195A3E31BD50DF000DF5436 /* Base64Test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2195A3DC1BD50DF000DF5436 /* Base64Test.cpp */; };
@@ -40,6 +39,9 @@
 		21A4C9F11C12EF2C00F037E9 /* JSONRpcTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21A4C9F01C12EF2C00F037E9 /* JSONRpcTest.cpp */; };
 		21A762ED1B96F82400D29732 /* RoundTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21A762EC1B96F82400D29732 /* RoundTest.cpp */; };
 		21A776B41BA0666C009BDB36 /* MessageTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21A776B31BA0666C009BDB36 /* MessageTest.cpp */; };
+		21B40A4F1C32BD0400EAF962 /* Ruby.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21B40A4E1C32BD0400EAF962 /* Ruby.framework */; };
+		21B40A511C32BD3400EAF962 /* Python.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21B40A501C32BD3400EAF962 /* Python.framework */; };
+		21B40A531C33898400EAF962 /* PythonEngineTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B40A521C33898400EAF962 /* PythonEngineTest.cpp */; };
 		21C1C5BE1C1AAFBB005B95C3 /* OptionTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21C1C5BD1C1AAFBB005B95C3 /* OptionTest.cpp */; };
 		21C1C5C01C1AB159005B95C3 /* StatusTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21C1C5BF1C1AB159005B95C3 /* StatusTest.cpp */; };
 		21C887741BD8F00700449F5D /* DigestTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21C887731BD8F00700449F5D /* DigestTest.cpp */; };
@@ -107,7 +109,6 @@
 		2166EF8B1B9D2E5E002FE45D /* ScriptEngineTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ScriptEngineTest.cpp; path = ../../ScriptEngineTest.cpp; sourceTree = "<group>"; };
 		2166EF8E1B9D3394002FE45D /* RoundTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RoundTest.h; path = ../../RoundTest.h; sourceTree = "<group>"; };
 		216D19CE1BB4B37C0007B331 /* ClockTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ClockTest.cpp; path = ../../ClockTest.cpp; sourceTree = "<group>"; };
-		2172C4C01B9AF3CB0032BE98 /* Ruby.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Ruby.framework; path = System/Library/Frameworks/Ruby.framework; sourceTree = SDKROOT; };
 		218569B21BB0D68800861B9B /* RemoteNodeTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RemoteNodeTest.cpp; path = ../../RemoteNodeTest.cpp; sourceTree = "<group>"; };
 		218569B41BB0D69400861B9B /* LocalNodeTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LocalNodeTest.cpp; path = ../../LocalNodeTest.cpp; sourceTree = "<group>"; };
 		2195A3DC1BD50DF000DF5436 /* Base64Test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Base64Test.cpp; path = ../../util/Base64Test.cpp; sourceTree = "<group>"; };
@@ -121,6 +122,9 @@
 		21A4C9F01C12EF2C00F037E9 /* JSONRpcTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = JSONRpcTest.cpp; path = ../../json/JSONRpcTest.cpp; sourceTree = "<group>"; };
 		21A762EC1B96F82400D29732 /* RoundTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RoundTest.cpp; path = ../../RoundTest.cpp; sourceTree = "<group>"; };
 		21A776B31BA0666C009BDB36 /* MessageTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MessageTest.cpp; path = ../../MessageTest.cpp; sourceTree = "<group>"; };
+		21B40A4E1C32BD0400EAF962 /* Ruby.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Ruby.framework; path = System/Library/Frameworks/Ruby.framework; sourceTree = SDKROOT; };
+		21B40A501C32BD3400EAF962 /* Python.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Python.framework; path = System/Library/Frameworks/Python.framework; sourceTree = SDKROOT; };
+		21B40A521C33898400EAF962 /* PythonEngineTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PythonEngineTest.cpp; sourceTree = "<group>"; };
 		21C1C5BD1C1AAFBB005B95C3 /* OptionTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = OptionTest.cpp; path = ../../util/OptionTest.cpp; sourceTree = "<group>"; };
 		21C1C5BF1C1AB159005B95C3 /* StatusTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StatusTest.cpp; path = ../../util/StatusTest.cpp; sourceTree = "<group>"; };
 		21C887731BD8F00700449F5D /* DigestTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DigestTest.cpp; path = ../../DigestTest.cpp; sourceTree = "<group>"; };
@@ -140,8 +144,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2172C4C11B9AF3CB0032BE98 /* Ruby.framework in Frameworks */,
-				2137D3F11B998AEF00652E68 /* liblibround.a in Frameworks */,
+				21B40A511C32BD3400EAF962 /* Python.framework in Frameworks */,
+				21B40A4F1C32BD0400EAF962 /* Ruby.framework in Frameworks */,
+				2137D3F11B998AEF00652E68 /* libround.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -180,7 +185,7 @@
 		2137D3EA1B998ADB00652E68 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2137D3EE1B998ADD00652E68 /* liblibround.a */,
+				2137D3EE1B998ADD00652E68 /* libround.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -188,7 +193,8 @@
 		213C5BF41B4A543C0013DDD9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				2172C4C01B9AF3CB0032BE98 /* Ruby.framework */,
+				21B40A501C32BD3400EAF962 /* Python.framework */,
+				21B40A4E1C32BD0400EAF962 /* Ruby.framework */,
 				211E45BF1B9814FA00CF0088 /* libround.xcodeproj */,
 			);
 			name = Frameworks;
@@ -252,6 +258,7 @@
 		21F6D9991B9983A500714056 /* script */ = {
 			isa = PBXGroup;
 			children = (
+				21B40A521C33898400EAF962 /* PythonEngineTest.cpp */,
 				21F6D99A1B9983A500714056 /* JsEngineTest.cpp */,
 				21F6D99B1B9983A500714056 /* LuaEngineTest.cpp */,
 				21F6D99C1B9983A500714056 /* RubyEngineTest.cpp */,
@@ -319,10 +326,10 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		2137D3EE1B998ADD00652E68 /* liblibround.a */ = {
+		2137D3EE1B998ADD00652E68 /* libround.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = liblibround.a;
+			path = libround.a;
 			remoteRef = 2137D3ED1B998ADD00652E68 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -366,6 +373,7 @@
 				21F6D99D1B9983A500714056 /* JsEngineTest.cpp in Sources */,
 				21EA96E21B99105E00E00841 /* NodeRingTest.cpp in Sources */,
 				2195A3E91BD50DF000DF5436 /* StringTest.cpp in Sources */,
+				21B40A531C33898400EAF962 /* PythonEngineTest.cpp in Sources */,
 				2195A3E31BD50DF000DF5436 /* Base64Test.cpp in Sources */,
 				21A762ED1B96F82400D29732 /* RoundTest.cpp in Sources */,
 				212A954E1B9BD24700EC9A71 /* MethodTest.cpp in Sources */,
