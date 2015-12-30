@@ -8,8 +8,6 @@
  *
  ******************************************************************/
 
-#include <python/Python.h>
-
 #include <stdlib.h>
 #include <round/script/python.h>
 

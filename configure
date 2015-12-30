@@ -626,6 +626,7 @@ LIBOBJS
 ROUND_ENABLE_TESTS_FALSE
 ROUND_ENABLE_TESTS_TRUE
 LUA_LIBS
+FOUND_PYTHON_CONFIG
 XML_LIBS
 XML_CFLAGS
 EGREP
@@ -727,6 +728,7 @@ enable_silent_rules
 enable_dependency_tracking
 enable_script_js_sm
 enable_script_js_v8
+enable_script_python
 enable_script_lua
 enable_tests
 '
@@ -1364,7 +1366,8 @@ Optional Features:
                           speeds up one-time build
   --enable-script-js-sm    enable JavaScript support (SpiderMonkey) default=yes
   --enable-script-js-v8    enable JavaScript support (V8) default=yes
-  --enable-script-lua	enable Lua support default=yes
+  --enable-script-python enable Python support default=no
+  --enable-script-lua	enable Lua support default=no
   --enable-tests          build tests (default = no)
 
 Some influential environment variables:
@@ -2727,6 +2730,7 @@ V8_VERSION=3.14
 JS_VERSION=1.8.5
 TCL_VERSION=8.5.0
 LUA_VERSION=5.0.0
+PYTHON_VERSION=2.7.9
 
 LIBEDIT_VERSION=3.1.0
 
@@ -5009,7 +5013,7 @@ $as_echo "$ac_cv_lib_expat_main" >&6; }
 if test "x$ac_cv_lib_expat_main" = xyes; then :
 
   FOUND_EXPAT=yes
-	XML_LIBS+="-lexpat "
+  XML_LIBS+="-lexpat "
 
 fi
 
@@ -5053,8 +5057,8 @@ $as_echo "$ac_cv_lib_xml2_xmlSAXUserParseMemory" >&6; }
 if test "x$ac_cv_lib_xml2_xmlSAXUserParseMemory" = xyes; then :
 
   FOUND_LIBXML2=yes
-	XML_CFLAGS+=`pkg-config libxml-2.0 --cflags`
-	XML_LIBS+=`pkg-config libxml-2.0 --libs`
+  XML_CFLAGS+=`pkg-config libxml-2.0 --cflags`
+  XML_LIBS+=`pkg-config libxml-2.0 --libs`
 
 fi
 
@@ -5187,7 +5191,7 @@ _ACEOF
   LIBS="-lmozjs185 $LIBS"
 
 else
-  as_fn_error $? "Round for C++ needs SpiderMonkey $JS_VERSION later" "$LINENO" 5
+  as_fn_error $? "Round for C needs SpiderMonkey $JS_VERSION later" "$LINENO" 5
 fi
 
 
@@ -5233,12 +5237,99 @@ _ACEOF
   LIBS="-lv8 $LIBS"
 
 else
-  as_fn_error $? "Round for C++ needs V8 $V8_VERSION later" "$LINENO" 5
+  as_fn_error $? "Round for C needs V8 $V8_VERSION later" "$LINENO" 5
 fi
 
 
 $as_echo "#define ROUND_SUPPORT_JS_V8 1" >>confdefs.h
 ]
+fi
+
+# Python
+
+# Check whether --enable-script-python was given.
+if test "${enable_script_python+set}" = set; then :
+  enableval=$enable_script_python;
+		if test $enableval = yes; then
+			ROUND_SUPPORT_PYTHON=yes
+		else
+			ROUND_SUPPORT_PYTHON=no
+		fi
+
+else
+
+		ROUND_SUPPORT_PYTHON=no
+
+
+fi
+
+
+if  test $ROUND_SUPPORT_PYTHON = yes ; then
+  # Extract the first word of "python-config", so it can be a program name with args.
+set dummy python-config; ac_word=$2
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+$as_echo_n "checking for $ac_word... " >&6; }
+if ${ac_cv_prog_FOUND_PYTHON_CONFIG+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  if test -n "$FOUND_PYTHON_CONFIG"; then
+  ac_cv_prog_FOUND_PYTHON_CONFIG="$FOUND_PYTHON_CONFIG" # Let the user override the test.
+else
+as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  test -z "$as_dir" && as_dir=.
+    for ac_exec_ext in '' $ac_executable_extensions; do
+  if as_fn_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
+    ac_cv_prog_FOUND_PYTHON_CONFIG="yes"
+    $as_echo "$as_me:${as_lineno-$LINENO}: found $as_dir/$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+  done
+IFS=$as_save_IFS
+
+  test -z "$ac_cv_prog_FOUND_PYTHON_CONFIG" && ac_cv_prog_FOUND_PYTHON_CONFIG="no"
+fi
+fi
+FOUND_PYTHON_CONFIG=$ac_cv_prog_FOUND_PYTHON_CONFIG
+if test -n "$FOUND_PYTHON_CONFIG"; then
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $FOUND_PYTHON_CONFIG" >&5
+$as_echo "$FOUND_PYTHON_CONFIG" >&6; }
+else
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+fi
+
+
+  if  test $FOUND_PYTHON_CONFIG != yes ; then
+    as_fn_error $? "Round for C needs Python $PYTHON_VERSION later" "$LINENO" 5
+  fi
+  for ac_header in Python/Python.h
+do :
+  ac_fn_c_check_header_mongrel "$LINENO" "Python/Python.h" "ac_cv_header_Python_Python_h" "$ac_includes_default"
+if test "x$ac_cv_header_Python_Python_h" = xyes; then :
+  cat >>confdefs.h <<_ACEOF
+#define HAVE_PYTHON_PYTHON_H 1
+_ACEOF
+
+fi
+
+done
+
+  for ac_header in Python.h
+do :
+  ac_fn_c_check_header_mongrel "$LINENO" "Python.h" "ac_cv_header_Python_h" "$ac_includes_default"
+if test "x$ac_cv_header_Python_h" = xyes; then :
+  cat >>confdefs.h <<_ACEOF
+#define HAVE_PYTHON_H 1
+_ACEOF
+
+fi
+
+done
+
 fi
 
 # Lua
@@ -5260,7 +5351,7 @@ else
 fi
 
 if  test $ROUND_SUPPORT_LUA = yes ; then
-for ac_header in lua.h
+    for ac_header in lua.h
 do :
   ac_fn_c_check_header_mongrel "$LINENO" "lua.h" "ac_cv_header_lua_h" "$ac_includes_default"
 if test "x$ac_cv_header_lua_h" = xyes; then :
@@ -5278,7 +5369,7 @@ if test "x$ac_cv_header_lua_h" = xyes; then :
 _ACEOF
 
 else
-  as_fn_error $? "Round for C++ needs LUA $LUA_VERSION later" "$LINENO" 5
+  as_fn_error $? "Round for C needs LUA $LUA_VERSION later" "$LINENO" 5
 fi
 
 done
@@ -5287,7 +5378,7 @@ fi
 
 done
 
-	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for main in -llua" >&5
+	  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for main in -llua" >&5
 $as_echo_n "checking for main in -llua... " >&6; }
 if ${ac_cv_lib_lua_main+:} false; then :
   $as_echo_n "(cached) " >&6

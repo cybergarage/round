@@ -16,6 +16,7 @@ ENV DEBEMAIL skonno@cybergarage.org
 # Git configuration
 RUN git config --global user.email "skonno@cybergarage.org"
 RUN git config --global user.name "Satoshi Konno"
+RUN git config --global credential.helper cache
 
 # mUPnP for C
 RUN apt-get install -y libxml2-dev
@@ -26,7 +27,7 @@ RUN ./configure && make && make install
 
 # Round
 RUN apt-get install -y libboost-all-dev libssl-dev libjansson-dev
-RUN apt-get install -y libmozjs185-dev
+RUN apt-get install -y libmozjs185-dev python-dev
 RUN apt-get install -y libedit-dev
 WORKDIR /root
 #RUN git clone https://github.com/cybergarage/round.git round
