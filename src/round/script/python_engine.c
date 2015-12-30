@@ -11,6 +11,8 @@
 #include <stdlib.h>
 #include <round/script/python.h>
 
+#if defined(ROUND_SUPPORT_PYTHON)
+
 #define ROUND_PYTHON_MODULE_NAME "round"
 
 /****************************************
@@ -150,3 +152,6 @@ bool round_python_engine_run(RoundPythonEngine* engine, RoundMethod* method, con
   
   return true;
 }
+
+#endif
+
