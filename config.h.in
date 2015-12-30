@@ -107,6 +107,9 @@
 /* Lua */
 #undef ROUND_SUPPORT_LUA
 
+/* Python */
+#undef ROUND_SUPPORT_PYTHON
+
 /* json_array_foreach */
 #undef ROUND_USE_JANSSON_JSON_ARRAY_FOREACH
 
