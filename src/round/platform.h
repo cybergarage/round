@@ -26,12 +26,17 @@ extern "C" {
 
 #if defined(__APPLE__) && !defined(HAVE_CONFIG_H)
 
+#define ROUND_USE_JSON_PARSER_JANSSON
+
 #define ROUND_SUPPORT_JS_SM
 //#define ROUND_SUPPORT_LUA
 //#define ROUND_SUPPORT_RUBY
 #define ROUND_SUPPORT_MRUBY
-#define ROUND_USE_JSON_PARSER_JANSSON
 #define ROUND_SUPPORT_PYTHON
+
+#if defined(ROUND_SUPPORT_PYTHON)
+#define HAVE_PYTHON_PYTHON_H
+#endif
 
 #endif
 
