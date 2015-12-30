@@ -19,6 +19,7 @@
 #include "RoundTest.h"
 
 #include <round/const.h>
+#include <round/util/json_rpc.h>
 
 struct RoundFixture {
   RoundFixture()
@@ -74,14 +75,7 @@ const char* Round::Test::CreateJsonRpcRequestString(const char* method, const ch
 {
   static char buf[1024];
 
-  snprintf(
-      buf,
-      sizeof(buf),
-      "{\"jsonrpc\": \"2.0\","
-      "\"method\": \"%s\","
-      "\"params\": %s, \"id\": 1}",
-      method,
-      params);
+  round_json_rpc_createrequeststring(method, params, buf, sizeof(buf));
 
   return buf;
 }
