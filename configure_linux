@@ -1,2 +1,2 @@
 #!/bin/bash
-./configure --enable-script-python=yes CFLAGS="`python-config --cflags`" LDFLAGS="`python-config --ldflags`" $@
+./configure --enable-script-python=yes CFLAGS="`python-config --cflags`" LIBS="`python-config --libs`" $@
