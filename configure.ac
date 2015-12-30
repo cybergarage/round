@@ -218,6 +218,7 @@ if [ test $ROUND_SUPPORT_PYTHON = yes ]; then
   fi
   AC_CHECK_HEADERS([Python/Python.h])
   AC_CHECK_HEADERS([Python.h])
+  AC_DEFINE([ROUND_SUPPORT_PYTHON],1,[Python])
 fi
 
 # Lua 
