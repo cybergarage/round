@@ -11,16 +11,20 @@
 #ifndef _ROUND_PYTHON_ENGINE_H_
 #define _ROUND_PYTHON_ENGINE_H_
 
+#include <round/platform.h>
 #include <round/script.h>
 #include <round/method.h>
-#include <round/platform.h>
 
 #ifdef  __cplusplus
 extern "C" {
 #endif
 
 #if defined(ROUND_SUPPORT_PYTHON)
+#if defined(HAVE_PYTHON_PYTHON_H)
 #include <Python/Python.h>
+#else
+#include <Python.h>
+#endif
 #endif
 
 #define RoundPythonEngineLanguage "python"

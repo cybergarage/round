@@ -32,6 +32,7 @@ V8_VERSION=3.14
 JS_VERSION=1.8.5
 TCL_VERSION=8.5.0
 LUA_VERSION=5.0.0
+PYTHON_VERSION=2.7.9
 
 LIBEDIT_VERSION=3.1.0
 
@@ -125,7 +126,7 @@ AC_CHECK_HEADERS([expat.h])
 AC_CHECK_LIB([expat],[main],
 [
   FOUND_EXPAT=yes
-	XML_LIBS+="-lexpat "
+  XML_LIBS+="-lexpat "
 ],
 []
 )
@@ -133,8 +134,8 @@ AC_CHECK_LIB([expat],[main],
 AC_CHECK_LIB(xml2, xmlSAXUserParseMemory,
 [
   FOUND_LIBXML2=yes
-	XML_CFLAGS+=`pkg-config libxml-2.0 --cflags`
-	XML_LIBS+=`pkg-config libxml-2.0 --libs`
+  XML_CFLAGS+=`pkg-config libxml-2.0 --cflags`
+  XML_LIBS+=`pkg-config libxml-2.0 --libs`
 ],
 []
 )
@@ -186,19 +187,44 @@ AC_ARG_ENABLE(
 	],[]
 )
 if [ test $ROUND_SUPPORT_JS_SM = yes ]; then
-	AC_CHECK_LIB([mozjs185],[main],,[AC_MSG_ERROR(Round for C++ needs SpiderMonkey $JS_VERSION later)])
+	AC_CHECK_LIB([mozjs185],[main],,[AC_MSG_ERROR(Round for C needs SpiderMonkey $JS_VERSION later)])
 	AC_DEFINE([ROUND_SUPPORT_JS_SM],1,[SpiderMonkey])
 fi
 if [ test $ROUND_SUPPORT_JS_V8 = yes ]; then
-	AC_CHECK_LIB([v8],[main],,[AC_MSG_ERROR(Round for C++ needs V8 $V8_VERSION later)])
+	AC_CHECK_LIB([v8],[main],,[AC_MSG_ERROR(Round for C needs V8 $V8_VERSION later)])
 	AC_DEFINE([ROUND_SUPPORT_JS_V8],1,[V8])]
+fi
+
+# Python
+
+AC_ARG_ENABLE(
+	[script-python],
+	[  --enable-script-python enable Python support [default=no]],
+	[
+		if test $enableval = yes; then
+			ROUND_SUPPORT_PYTHON=yes
+		else
+			ROUND_SUPPORT_PYTHON=no
+		fi
+	],[
+		ROUND_SUPPORT_PYTHON=no
+	]
+)
+
+if [ test $ROUND_SUPPORT_PYTHON = yes ]; then
+  AC_CHECK_PROG(FOUND_PYTHON_CONFIG, python-config, yes, no)
+  if [ test $FOUND_PYTHON_CONFIG != yes ]; then
+    AC_MSG_ERROR(Round for C needs Python $PYTHON_VERSION later)
+  fi
+  AC_CHECK_HEADERS([Python/Python.h])
+  AC_CHECK_HEADERS([Python.h])
 fi
 
 # Lua 
 
 AC_ARG_ENABLE(
 	[script-lua],
-	[  --enable-script-lua	enable Lua support [default=yes]],
+	[  --enable-script-lua	enable Lua support [default=no]],
 	[
 		if test $enableval = yes; then
 			ROUND_SUPPORT_LUA=yes
@@ -210,10 +236,10 @@ AC_ARG_ENABLE(
 	]
 )
 if [ test $ROUND_SUPPORT_LUA = yes ]; then
-AC_CHECK_HEADERS([lua.h],,
-	[AC_CHECK_HEADERS([lua.h],,[AC_MSG_ERROR(Round for C++ needs LUA $LUA_VERSION later)])])
-	AC_CHECK_LIB([lua],[main],,[LUA_LIBS=`lua-config --libs`])
-        AC_SUBST(LUA_LIBS)
+    AC_CHECK_HEADERS([lua.h],,
+	  [AC_CHECK_HEADERS([lua.h],,[AC_MSG_ERROR(Round for C needs LUA $LUA_VERSION later)])])
+	  AC_CHECK_LIB([lua],[main],,[LUA_LIBS=`lua-config --libs`])
+    AC_SUBST(LUA_LIBS)
 	AC_DEFINE([ROUND_SUPPORT_LUA],1,[Lua])
 fi
 
