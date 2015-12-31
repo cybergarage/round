@@ -23,7 +23,7 @@ extern "C" {
  ****************************************/
 
 #if !defined(_ROUND_SCRIPT_INTERNAL_H_)
-  typedef void RoundScriptEngine;
+typedef void RoundScriptEngine;
 #endif
 
 #ifdef  __cplusplus
