@@ -122,6 +122,25 @@ bool round_js_sm_engine_setfunctions(RoundJavaScriptEngine* engine, JSFunctionSp
 }
 
 /****************************************
+ * round_js_sm_engine_setfunction
+ ****************************************/
+
+bool round_js_sm_engine_setfunction(RoundJavaScriptEngine* engine, const char *name, JSNative func)
+{
+  if (!engine)
+    return false;
+  
+  JSFunctionSpec funcs[] = {
+    JS_FN(name, func, 0, 0),
+    JS_FS_END
+  };
+  
+  round_js_sm_engine_setfunctions(engine, funcs);
+  
+  return true;
+}
+
+/****************************************
  * round_js_engine_run
  ****************************************/
 
