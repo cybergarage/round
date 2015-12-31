@@ -46,6 +46,7 @@ bool round_js_engine_delete(RoundJavaScriptEngine *engine);
 #if defined(ROUND_SUPPORT_JS_SM)
 bool round_js_sm_engine_init(RoundJavaScriptEngine *engine);
 bool round_js_sm_engine_destroy(RoundJavaScriptEngine *engine);
+bool round_js_sm_engine_setfunction(RoundJavaScriptEngine* engine, const char *name, JSNative func);
 bool round_js_sm_engine_setfunctions(RoundJavaScriptEngine *engine, JSFunctionSpec *funcs);
 bool round_js_sm_engine_run(RoundJavaScriptEngine *engine, const char *source, size_t sourceLen, RoundString *result, RoundError *err);
 #endif
