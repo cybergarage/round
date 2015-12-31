@@ -329,8 +329,7 @@ bool round_local_node_isfinalmethod(RoundLocalNode* node, const char* name)
  * round_local_node_addengine
  ****************************************/
 
-bool round_local_node_addengine(RoundLocalNode* node,
-    RoundScriptEngine* engine)
+bool round_local_node_addengine(RoundLocalNode* node, RoundScriptEngine* engine)
 {
   if (!node)
     return false;
@@ -341,6 +340,18 @@ bool round_local_node_addengine(RoundLocalNode* node,
   round_script_engine_setlocalnode(engine, node);
 
   return true;
+}
+
+/****************************************
+ * round_local_node_getenginebylanguage
+ ****************************************/
+
+RoundScriptEngine *round_local_node_getenginebylanguage(RoundLocalNode *node, const char *lang)
+{
+  if (!node)
+    return NULL;
+  
+  return round_method_manager_getengine(node->methodMgr, lang);
 }
 
 /****************************************

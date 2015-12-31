@@ -11,7 +11,7 @@
 #ifndef _ROUND_NATIVE_ENGINE_H_
 #define _ROUND_NATIVE_ENGINE_H_
 
-#include <round/script.h>
+#include <round/script_internal.h>
 #include <round/method.h>
 #include <round/node_internal.h>
 #include <round/util/json_internal.h>

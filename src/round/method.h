@@ -21,7 +21,7 @@
 #include <round/util/map.h>
 #include <round/util/option.h>
 #include <round/method.h>
-#include <round/script.h>
+#include <round/script_internal.h>
 #include <round/util/json_internal.h>
 
 #ifdef  __cplusplus
