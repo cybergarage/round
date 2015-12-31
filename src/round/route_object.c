@@ -19,7 +19,7 @@ bool round_route_object_init(RoundRouteObject* obj)
   obj->tokenCnt = 0;
   obj->tokens = NULL;
   obj->tokenObjs = NULL;
-  
+
   return true;
 }
 
@@ -51,15 +51,15 @@ bool round_route_object_clear(RoundRouteObject* obj)
 {
   if (!obj)
     return false;
-  
+
   size_t n;
-  for (n=0; n<obj->tokenCnt; n++) {
+  for (n = 0; n < obj->tokenCnt; n++) {
     if (obj->tokens[n]) {
       free(obj->tokens[n]);
     }
     obj->tokenObjs[n] = NULL;
   }
-  
+
   return true;
 }
 

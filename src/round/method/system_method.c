@@ -35,8 +35,7 @@ RoundMethod* round_naitive_method_new(const char* name, ROUND_SCRIPT_NATIVE_ENGI
  * round_local_node_setnativemethod
  ****************************************/
 
-bool round_local_node_setnativemethod(RoundLocalNode *node, const char *name, ROUND_SCRIPT_NATIVE_ENGINE_FUNC func)
+bool round_local_node_setnativemethod(RoundLocalNode* node, const char* name, ROUND_SCRIPT_NATIVE_ENGINE_FUNC func)
 {
   return round_local_node_setmethod(node, round_naitive_method_new(name, func, false));
 }
-

@@ -39,14 +39,14 @@ bool round_lua_engine_init(RoundLuaEngine* engine)
 {
   if (!engine)
     return false;
-  
+
   if (!round_script_engine_init((RoundScriptEngine*)engine))
     return false;
-    
+
   round_script_engine_setlanguage(engine, RoundLuaEngineLanguage);
   round_script_engine_setexecutefunc(engine, round_lua_engine_run);
   round_oo_setdescendantdestoroyfunc(engine, round_lua_engine_destory);
-  
+
 #if defined(ROUND_SUPPORT_LUA)
   engine->luaState = luaL_newstate();
   luaL_openlibs(engine->luaState);

@@ -35,22 +35,22 @@ RoundServer* round_server_new(void)
  * round_server_init
  ****************************************/
 
-bool round_server_init(RoundServer *server)
+bool round_server_init(RoundServer* server)
 {
   if (!server)
     return false;
-  
+
   server->node = round_local_node_new();
   server->finder = round_finder_new();
   server->rpcServer = round_rpc_server_new();
-  
+
   if (!server->node || !server->finder || !server->rpcServer)
     return false;
 
   round_server_setuserdata(server, NULL);
-  
+
   round_rpc_server_setlocalnode(server->rpcServer, server->node);
-  
+
   round_finder_setuserdata(server->finder, server);
   round_finder_setnodeaddedlistener(server->finder, round_server_nodeaddedlistener);
   round_finder_setnoderemovedlistener(server->finder, round_server_noderemovedlistener);
@@ -81,11 +81,11 @@ bool round_server_delete(RoundServer* server)
  * round_server_setuserdata
  ****************************************/
 
-void round_server_setuserdata(RoundServer *server, void *data)
+void round_server_setuserdata(RoundServer* server, void* data)
 {
   if (!server)
     return;
-  
+
   server->userData = data;
 }
 
@@ -93,11 +93,11 @@ void round_server_setuserdata(RoundServer *server, void *data)
  * round_server_getuserdata
  ****************************************/
 
-void *round_server_getuserdata(RoundServer *server)
+void* round_server_getuserdata(RoundServer* server)
 {
   if (!server)
     return NULL;
-  
+
   return server->userData;
 }
 

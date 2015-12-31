@@ -38,21 +38,21 @@ bool round_js_engine_init(RoundJavaScriptEngine* engine)
 {
   if (!engine)
     return false;
-  
+
   if (!round_script_engine_init((RoundScriptEngine*)engine))
     return false;
-  
+
 #if defined(ROUND_SUPPORT_JS_SM)
   if (!round_js_sm_engine_init(engine)) {
     round_js_engine_delete(engine);
     return false;
   }
 #endif
-  
+
   round_script_engine_setlanguage(engine, RoundJavaScriptEngineLanguage);
   round_script_engine_setexecutefunc(engine, round_js_engine_run);
   round_oo_setdescendantdestoroyfunc(engine, round_js_engine_destroy);
-  
+
   return true;
 }
 

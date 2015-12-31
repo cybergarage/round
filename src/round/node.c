@@ -72,7 +72,7 @@ bool round_node_init(RoundNode* node)
     return false;
 
   round_node_setuserdata(node, NULL);
-  
+
   round_node_setrequesttimeout(node, ROUND_JSON_RPC_REQUEST_TIMEOUT_SEC);
   round_consistenthashing_node_sethashfunc(node, round_node_getid);
 
@@ -148,11 +148,11 @@ RoundNode* round_node_next(RoundNode* node)
  * round_node_setuserdata
  ****************************************/
 
-void round_node_setuserdata(RoundNode *node, void *data)
+void round_node_setuserdata(RoundNode* node, void* data)
 {
   if (!node)
     return;
-  
+
   node->userData = data;
 }
 
@@ -160,11 +160,11 @@ void round_node_setuserdata(RoundNode *node, void *data)
  * round_node_getuserdata
  ****************************************/
 
-void *round_node_getuserdata(RoundNode *node)
+void* round_node_getuserdata(RoundNode* node)
 {
   if (!node)
     return NULL;
-  
+
   return node->userData;
 }
 
