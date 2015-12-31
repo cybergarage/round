@@ -130,17 +130,17 @@ RoundJSONObject* round_json_rpc_error2response(RoundError* err)
  * round_json_rpc_createrequeststring
  ****************************************/
 
-const char* round_json_rpc_createrequeststring(const char* method, const char* params, char *buf, size_t bufSize)
+const char* round_json_rpc_createrequeststring(const char* method, const char* params, char* buf, size_t bufSize)
 {
   snprintf(
-           buf,
-           bufSize,
-           "{\"" ROUND_JSON_RPC_JSONRPC "\": \"" ROUND_JSON_RPC_VERSION "\","
-           "\"" ROUND_JSON_RPC_METHOD "\": \"%s\","
-           "\"" ROUND_JSON_RPC_PARAMS "\": %s, \"id\": 1}",
-           method,
-           params);
-  
+      buf,
+      bufSize,
+      "{\"" ROUND_JSON_RPC_JSONRPC "\": \"" ROUND_JSON_RPC_VERSION "\","
+      "\"" ROUND_JSON_RPC_METHOD "\": \"%s\","
+      "\"" ROUND_JSON_RPC_PARAMS "\": %s, \"id\": 1}",
+      method,
+      params);
+
   return buf;
 }
 

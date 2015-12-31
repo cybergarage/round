@@ -43,21 +43,21 @@ bool round_ruby_engine_init(RoundRubyEngine* engine)
 {
   if (!engine)
     return false;
-  
+
   if (!round_script_engine_init((RoundScriptEngine*)engine))
     return false;
-  
+
   round_script_engine_setlanguage(engine, RoundRubyEngineLanguage);
   round_script_engine_setexecutefunc(engine, round_ruby_engine_run);
   round_oo_setdescendantdestoroyfunc(engine, round_ruby_engine_destory);
-  
+
 #if defined(ROUND_SUPPORT_RUBY)
   ruby_init();
   ruby_init_loadpath();
 #elif defined(ROUND_SUPPORT_MRUBY)
   engine->mrb = mrb_open();
 #endif
-  
+
   return true;
 }
 

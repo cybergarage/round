@@ -41,14 +41,14 @@ bool round_native_engine_init(RoundNativeEngine* engine)
 {
   if (!engine)
     return false;
-  
+
   if (!round_script_engine_init((RoundScriptEngine*)engine))
     return false;
-  
+
   round_script_engine_setlanguage(engine, RoundNativeEngineLanguage);
   round_script_engine_setexecutefunc(engine, round_native_engine_run);
   round_oo_setdescendantdestoroyfunc(engine, round_native_engine_destory);
-  
+
   return true;
 }
 

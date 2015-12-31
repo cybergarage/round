@@ -346,11 +346,11 @@ bool round_local_node_addengine(RoundLocalNode* node, RoundScriptEngine* engine)
  * round_local_node_getenginebylanguage
  ****************************************/
 
-RoundScriptEngine *round_local_node_getenginebylanguage(RoundLocalNode *node, const char *lang)
+RoundScriptEngine* round_local_node_getenginebylanguage(RoundLocalNode* node, const char* lang)
 {
   if (!node)
     return NULL;
-  
+
   return round_method_manager_getengine(node->methodMgr, lang);
 }
 

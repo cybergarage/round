@@ -13,55 +13,55 @@ TESTS = roundtest
 
 AM_CPPFLAGS = -I$(top_srcdir)/include -I$(top_srcdir)/src -I../
 
-	../ScriptTestController.h \
-	../NodeTestController.h \
-	../RoundTest.h
+	..//NodeTestController.h \
+	..//RoundTest.h \
+	..//ScriptTestController.h
 
 roundtest_SOURCES = \
-	../ClusterManagerTest.cpp \
-	../LocalNodeMessageTest.cpp \
-	../RoundTest.cpp \
-	../MethodTest.cpp \
-	../MethodManagerTest.cpp \
-	../ClockTest.cpp \
-	../ServerTest.cpp \
-	../MessageTest.cpp \
-	../DigestTest.cpp \
-	../LocalNodeTest.cpp \
-	../util/StatusTest.cpp \
-	../util/ListTest.cpp \
-	../util/StringTest.cpp \
-	../util/MutexTest.cpp \
-	../util/OptionTest.cpp \
-	../util/SemaphoreTest.cpp \
-	../util/ListOrderedTest.cpp \
-	../util/QueueTest.cpp \
-	../util/MapTest.cpp \
-	../util/Base64Test.cpp \
-	../util/ConsistentHashingRingTest.cpp \
-	../MethodMapTest.cpp \
-	../RpcServerTest.cpp \
-	../RegistryTest.cpp \
-	../ScriptEngineTest.cpp \
-	../ScriptTestController.cpp \
-	../ClusterTest.cpp \
-	../NodeTestController.cpp \
-	../ErrorTest.cpp \
-	../RemoteNodeTest.cpp \
-	../FinderTest.cpp \
-	../ScriptEngineMapTest.cpp \
-	../ClientTest.cpp \
-	../json/JSONArrayTest.cpp \
-	../json/JSONParseTest.cpp \
-	../json/JSONRpcTest.cpp \
-	../json/JSONMapTest.cpp \
-	../json/JSONObjectTest.cpp \
-	../NodeRingTest.cpp \
-	../NodeTest.cpp \
-	../script/RubyEngineTest.cpp \
-	../script/LuaEngineTest.cpp \
-	../script/JsEngineTest.cpp \
-	../script/PythonEngineTest.cpp
+	..//ClientTest.cpp \
+	..//ClockTest.cpp \
+	..//ClusterManagerTest.cpp \
+	..//ClusterTest.cpp \
+	..//DigestTest.cpp \
+	..//ErrorTest.cpp \
+	..//FinderTest.cpp \
+	..//json/JSONArrayTest.cpp \
+	..//json/JSONMapTest.cpp \
+	..//json/JSONObjectTest.cpp \
+	..//json/JSONParseTest.cpp \
+	..//json/JSONRpcTest.cpp \
+	..//LocalNodeMessageTest.cpp \
+	..//LocalNodeTest.cpp \
+	..//MessageTest.cpp \
+	..//MethodManagerTest.cpp \
+	..//MethodMapTest.cpp \
+	..//MethodTest.cpp \
+	..//NodeRingTest.cpp \
+	..//NodeTest.cpp \
+	..//NodeTestController.cpp \
+	..//RegistryTest.cpp \
+	..//RemoteNodeTest.cpp \
+	..//RoundTest.cpp \
+	..//RpcServerTest.cpp \
+	..//script/JsEngineTest.cpp \
+	..//script/LuaEngineTest.cpp \
+	..//script/PythonEngineTest.cpp \
+	..//script/RubyEngineTest.cpp \
+	..//ScriptEngineMapTest.cpp \
+	..//ScriptEngineTest.cpp \
+	..//ScriptTestController.cpp \
+	..//ServerTest.cpp \
+	..//util/Base64Test.cpp \
+	..//util/ConsistentHashingRingTest.cpp \
+	..//util/ListOrderedTest.cpp \
+	..//util/ListTest.cpp \
+	..//util/MapTest.cpp \
+	..//util/MutexTest.cpp \
+	..//util/OptionTest.cpp \
+	..//util/QueueTest.cpp \
+	..//util/SemaphoreTest.cpp \
+	..//util/StatusTest.cpp \
+	..//util/StringTest.cpp
 #if HAVE_LIBTOOL
 #roundtest_LDADD = @HTTP_LIBS@ @XML_LIBS@ ../../lib/unix/libround.la
 #else

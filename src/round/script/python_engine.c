@@ -43,16 +43,16 @@ bool round_python_engine_init(RoundPythonEngine* engine)
 {
   if (!engine)
     return false;
-  
+
   if (!round_script_engine_init((RoundScriptEngine*)engine))
     return false;
-  
+
   round_script_engine_setlanguage(engine, RoundPythonEngineLanguage);
   round_script_engine_setexecutefunc(engine, round_python_engine_run);
   round_oo_setdescendantdestoroyfunc(engine, round_python_engine_destory);
-  
+
   Py_Initialize();
-  
+
   return true;
 }
 
@@ -66,7 +66,7 @@ bool round_python_engine_destory(RoundPythonEngine* engine)
     return false;
 
   Py_Finalize();
-  
+
   return true;
 }
 
@@ -102,34 +102,34 @@ bool round_python_engine_run(RoundPythonEngine* engine, RoundMethod* method, con
   // See :
   // 5. Embedding Python in Another Application¶
   // https://docs.python.org/2.7/extending/embedding.html#embedding-python-in-another-application
-  
+
   const char* source = round_method_getstringcode(method);
   if (!source)
     return false;
-  
-  PyObject *pSource = Py_CompileString(source, ROUND_PYTHON_MODULE_NAME, Py_single_input);
+
+  PyObject* pSource = Py_CompileString(source, ROUND_PYTHON_MODULE_NAME, Py_single_input);
   if (!pSource)
     return false;
-  
+
   PyObject* pModule = PyImport_ExecCodeModule(ROUND_PYTHON_MODULE_NAME, pSource);
   Py_DECREF(pSource);
   if (!pModule)
     return false;
-  
+
   const char* name = round_method_getname(method);
-  PyObject *pFunc = PyObject_GetAttrString(pModule, name);
+  PyObject* pFunc = PyObject_GetAttrString(pModule, name);
   if (!pFunc || !PyCallable_Check(pFunc)) {
     Py_DECREF(pModule);
     return false;
   }
-  
-  PyObject *pArgs = PyTuple_New(1);
+
+  PyObject* pArgs = PyTuple_New(1);
   if (!pArgs) {
     Py_DECREF(pModule);
     return false;
   }
 
-  PyObject *pParam = PyString_FromString(param ? param : "");
+  PyObject* pParam = PyString_FromString(param ? param : "");
   if (!pParam) {
     Py_DECREF(pModule);
     Py_DECREF(pArgs);
@@ -137,21 +137,20 @@ bool round_python_engine_run(RoundPythonEngine* engine, RoundMethod* method, con
   }
   PyTuple_SetItem(pArgs, 0, pParam);
 
-  PyObject *pValue = PyObject_CallObject(pFunc, pArgs);
+  PyObject* pValue = PyObject_CallObject(pFunc, pArgs);
   Py_DECREF(pArgs);
   if (pValue != NULL) {
-    const char *cStr = PyString_AsString(pValue);
+    const char* cStr = PyString_AsString(pValue);
     if (cStr) {
       round_string_setvalue(result, cStr);
     }
     Py_DECREF(pValue);
   }
-  
+
   Py_DECREF(pFunc);
   Py_DECREF(pModule);
-  
+
   return true;
 }
 
 #endif
-

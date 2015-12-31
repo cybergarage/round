@@ -36,11 +36,11 @@ RoundError* round_error_new(void)
  * round_error_init
  ****************************************/
 
-bool round_error_init(RoundError *err)
+bool round_error_init(RoundError* err)
 {
   round_error_setcode(err, 0);
   round_error_setdetailcode(err, 0);
-  
+
   err->msg = round_string_new();
   err->detailMsg = round_string_new();
 
@@ -65,7 +65,7 @@ bool round_error_delete(RoundError* err)
   if (err->detailMsg) {
     round_string_delete(err->detailMsg);
   }
-  
+
   free(err);
 
   return true;
@@ -82,7 +82,7 @@ bool round_error_clear(RoundError* err)
 
   if (!err->msg || !err->detailMsg)
     return false;
-  
+
   round_error_setcode(err, 0);
   round_error_setdetailcode(err, 0);
 
