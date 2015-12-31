@@ -20,7 +20,7 @@
 #include <round/util/consistent_hashing.h>
 #include <round/util/digest.h>
 #include <round/util/status.h>
-#include <round/script.h>
+#include <round/script_internal.h>
 #include <round/clock.h>
 #include <round/registry.h>
 #include <round/message.h>
@@ -171,10 +171,7 @@ bool round_local_node_removemethod(RoundLocalNode *node, const char *name);
 bool round_local_node_isfinalmethod(RoundLocalNode *node, const char *name);
 
 bool round_local_node_addengine(RoundLocalNode *node, RoundScriptEngine *engine);
-
-bool round_local_node_postmessage(RoundLocalNode *node, RoundJSONObject *reqObj, RoundJSONObject **resObj, RoundError *err);
 bool round_local_node_execmessage(RoundLocalNode *node, RoundMessage *msg, RoundJSONObject **resultObj, RoundError *err);
-#define round_local_node_poststringmessage(node, reqObj, resObj, err) round_node_poststringmessage((RoundNode*)node, reqObj, resObj, err)
 
 bool round_local_node_setregistry(RoundLocalNode *node, const char *key, const char *val);
 RoundRegistry *round_local_node_getregistry(RoundLocalNode *node, const char *key);
@@ -206,7 +203,7 @@ bool round_remote_node_destory(RoundRemoteNode *node);
 bool round_remote_node_delete(RoundRemoteNode *node);
   
 bool round_remote_node_postmessage(RoundRemoteNode *node, RoundJSONObject *reqMap, RoundJSONObject **resObj, RoundError *err);
-#define round_remote_node_poststringmessage(node, reqObj, resObj, err) round_node_poststringmessage((RoundNode*)node, reqObj, resObj, err)
+#define round_remote_node_poststringmessage(node, reqStr, resObj, err) round_node_poststringmessage((RoundNode*)node, reqStr, resObj, err)
 
 bool round_remote_node_posthttpjsonrequest(RoundRemoteNode* node, const char *reqContent, RoundJSONObject** resObj, RoundError* err);
 

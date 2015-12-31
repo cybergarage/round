@@ -9,7 +9,7 @@
  ******************************************************************/
 
 #include <stdlib.h>
-#include <round/script.h>
+#include <round/script_internal.h>
 
 /****************************************
  * round_script_engine_new

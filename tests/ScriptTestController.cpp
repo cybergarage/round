@@ -14,7 +14,7 @@
 #include <sstream>
 #include <string.h>
 
-#include <round/script.h>
+#include <round/script_internal.h>
 #include <round/util/strings.h>
 
 #include "ScriptTestController.h"

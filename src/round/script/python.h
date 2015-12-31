@@ -12,7 +12,7 @@
 #define _ROUND_PYTHON_ENGINE_H_
 
 #include <round/platform.h>
-#include <round/script.h>
+#include <round/script_internal.h>
 #include <round/method.h>
 
 #ifdef  __cplusplus

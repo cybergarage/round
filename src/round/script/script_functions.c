@@ -8,7 +8,7 @@
  *
  ******************************************************************/
 
-#include <round/script.h>
+#include <round/script_internal.h>
 #include <round/registry.h>
 
 /****************************************

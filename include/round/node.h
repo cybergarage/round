@@ -13,6 +13,7 @@
 
 #include <round/typedef.h>
 #include <round/error.h>
+#include <round/script.h>
 #include <round/util/json.h>
 #include <round/util/json_rpc.h>
 
@@ -96,6 +97,11 @@ bool round_node_removeregistry(RoundNode* node, const char *key, RoundError *err
 #define round_local_node_getid(node) round_node_getid((RoundNode*)node)
 
 bool round_local_node_setnativemethod(RoundLocalNode *node, const char *name, ROUND_SCRIPT_NATIVE_ENGINE_FUNC func);
+
+bool round_local_node_postmessage(RoundLocalNode *node, RoundJSONObject *reqObj, RoundJSONObject **resObj, RoundError *err);
+#define round_local_node_poststringmessage(node, reqStr, resObj, err) round_node_poststringmessage((RoundNode*)node, reqStr, resObj, err)
+
+RoundScriptEngine *round_local_node_getenginebylanguage(RoundLocalNode *node, const char *lang);
 
 #ifdef  __cplusplus
 } /* extern C */

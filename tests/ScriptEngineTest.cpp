@@ -10,7 +10,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include <round/script.h>
+#include <round/script_internal.h>
 
 BOOST_AUTO_TEST_SUITE(script)
 

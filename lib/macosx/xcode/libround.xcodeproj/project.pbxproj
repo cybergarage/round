@@ -20,7 +20,7 @@
 		2127082A1BD662B400000985 /* consistent_hashing.h in Headers */ = {isa = PBXBuildFile; fileRef = 212708281BD662B400000985 /* consistent_hashing.h */; };
 		212A95451B9BCA4200EC9A71 /* method_manager.c in Sources */ = {isa = PBXBuildFile; fileRef = 212A95431B9BCA4200EC9A71 /* method_manager.c */; };
 		212A95461B9BCA4200EC9A71 /* method.c in Sources */ = {isa = PBXBuildFile; fileRef = 212A95441B9BCA4200EC9A71 /* method.c */; };
-		212D04721C20AFC400DCD5B3 /* liblibmupnp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 212D046D1C20AF6D00DCD5B3 /* liblibmupnp.a */; };
+		212D04721C20AFC400DCD5B3 /* libmupnp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 212D046D1C20AF6D00DCD5B3 /* libmupnp.a */; };
 		213389D01BFAEA980014548E /* rpc_server.h in Headers */ = {isa = PBXBuildFile; fileRef = 213389CE1BFAEA980014548E /* rpc_server.h */; };
 		213389D11BFAEA980014548E /* rpc_server.c in Sources */ = {isa = PBXBuildFile; fileRef = 213389CF1BFAEA980014548E /* rpc_server.c */; };
 		21346A7E1BB4FA6B00B5F3A6 /* get_registry.c in Sources */ = {isa = PBXBuildFile; fileRef = 21346A7B1BB4FA6B00B5F3A6 /* get_registry.c */; };
@@ -28,6 +28,7 @@
 		21346A801BB4FA6B00B5F3A6 /* set_registry.c in Sources */ = {isa = PBXBuildFile; fileRef = 21346A7D1BB4FA6B00B5F3A6 /* set_registry.c */; };
 		21346A821BB50AE300B5F3A6 /* json_path_get.c in Sources */ = {isa = PBXBuildFile; fileRef = 21346A811BB50AE300B5F3A6 /* json_path_get.c */; };
 		213931781BB54B9900C93773 /* json_path_set.c in Sources */ = {isa = PBXBuildFile; fileRef = 213931771BB54B9900C93773 /* json_path_set.c */; };
+		2140DE991C34DF410067DAD0 /* script.h in Headers */ = {isa = PBXBuildFile; fileRef = 2140DE981C34DF410067DAD0 /* script.h */; };
 		2148E5D81B9DFDAF0021CE7B /* script_engine_map.c in Sources */ = {isa = PBXBuildFile; fileRef = 2148E5D61B9DFDAF0021CE7B /* script_engine_map.c */; };
 		2148E5D91B9DFDAF0021CE7B /* method_map.c in Sources */ = {isa = PBXBuildFile; fileRef = 2148E5D71B9DFDAF0021CE7B /* method_map.c */; };
 		2148E5E01B9F1A7D0021CE7B /* error_rpc.c in Sources */ = {isa = PBXBuildFile; fileRef = 2148E5DF1B9F1A7D0021CE7B /* error_rpc.c */; };
@@ -72,7 +73,7 @@
 		219A8E251B9AF54D004ED802 /* js.h in Headers */ = {isa = PBXBuildFile; fileRef = 219A8E1E1B9AF54D004ED802 /* js.h */; };
 		219A8E2A1B9AF54D004ED802 /* lua.h in Headers */ = {isa = PBXBuildFile; fileRef = 219A8E231B9AF54D004ED802 /* lua.h */; };
 		219A8E2B1B9AF54D004ED802 /* ruby.h in Headers */ = {isa = PBXBuildFile; fileRef = 219A8E241B9AF54D004ED802 /* ruby.h */; };
-		219A8E2D1B9AF607004ED802 /* script.h in Headers */ = {isa = PBXBuildFile; fileRef = 219A8E2C1B9AF607004ED802 /* script.h */; };
+		219A8E2D1B9AF607004ED802 /* script_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 219A8E2C1B9AF607004ED802 /* script_internal.h */; };
 		219A8E2F1B9B0103004ED802 /* Ruby.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 219A8E2E1B9B0103004ED802 /* Ruby.framework */; };
 		219B3D641C143A7A0091DC62 /* upnp_finder.c in Sources */ = {isa = PBXBuildFile; fileRef = 219B3D631C143A7A0091DC62 /* upnp_finder.c */; };
 		21A4C2171BC0A4C10030BD12 /* local_node_thread.c in Sources */ = {isa = PBXBuildFile; fileRef = 21A4C2161BC0A4C10030BD12 /* local_node_thread.c */; };
@@ -172,6 +173,7 @@
 		21346A7D1BB4FA6B00B5F3A6 /* set_registry.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = set_registry.c; sourceTree = "<group>"; };
 		21346A811BB50AE300B5F3A6 /* json_path_get.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = json_path_get.c; path = ../../../src/round/util/json_path_get.c; sourceTree = "<group>"; };
 		213931771BB54B9900C93773 /* json_path_set.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = json_path_set.c; path = ../../../src/round/util/json_path_set.c; sourceTree = "<group>"; };
+		2140DE981C34DF410067DAD0 /* script.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = script.h; path = ../../../include/round/script.h; sourceTree = "<group>"; };
 		2148E5D61B9DFDAF0021CE7B /* script_engine_map.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = script_engine_map.c; path = ../../../src/round/script_engine_map.c; sourceTree = "<group>"; };
 		2148E5D71B9DFDAF0021CE7B /* method_map.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = method_map.c; path = ../../../src/round/method_map.c; sourceTree = "<group>"; };
 		2148E5DF1B9F1A7D0021CE7B /* error_rpc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = error_rpc.c; path = ../../../src/round/error_rpc.c; sourceTree = "<group>"; };
@@ -216,7 +218,7 @@
 		219A8E1E1B9AF54D004ED802 /* js.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = js.h; sourceTree = "<group>"; };
 		219A8E231B9AF54D004ED802 /* lua.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lua.h; sourceTree = "<group>"; };
 		219A8E241B9AF54D004ED802 /* ruby.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ruby.h; sourceTree = "<group>"; };
-		219A8E2C1B9AF607004ED802 /* script.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = script.h; path = ../../../src/round/script.h; sourceTree = "<group>"; };
+		219A8E2C1B9AF607004ED802 /* script_internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = script_internal.h; path = ../../../src/round/script_internal.h; sourceTree = "<group>"; };
 		219A8E2E1B9B0103004ED802 /* Ruby.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Ruby.framework; path = System/Library/Frameworks/Ruby.framework; sourceTree = SDKROOT; };
 		219B3D631C143A7A0091DC62 /* upnp_finder.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = upnp_finder.c; path = ../../../src/round/impl/upnp_finder.c; sourceTree = "<group>"; };
 		21A4C2161BC0A4C10030BD12 /* local_node_thread.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = local_node_thread.c; path = ../../../src/round/local_node_thread.c; sourceTree = "<group>"; };
@@ -282,7 +284,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				21B40A4D1C32BCE000EAF962 /* Python.framework in Frameworks */,
-				212D04721C20AFC400DCD5B3 /* liblibmupnp.a in Frameworks */,
+				212D04721C20AFC400DCD5B3 /* libmupnp.a in Frameworks */,
 				219A8E2F1B9B0103004ED802 /* Ruby.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -303,6 +305,7 @@
 		211E45C81B98153200CF0088 /* round */ = {
 			isa = PBXGroup;
 			children = (
+				2140DE981C34DF410067DAD0 /* script.h */,
 				211E45C91B98154A00CF0088 /* client.h */,
 				21EA96D01B990B1100E00841 /* cluster.h */,
 				2178B3611B98986200B9D86B /* const.h */,
@@ -362,7 +365,7 @@
 				21F6D9A91B99848000714056 /* script */,
 				2148E5D61B9DFDAF0021CE7B /* script_engine_map.c */,
 				21F6D9AE1B99848000714056 /* script_engine.c */,
-				219A8E2C1B9AF607004ED802 /* script.h */,
+				219A8E2C1B9AF607004ED802 /* script_internal.h */,
 				215A078A1BB2FA8000E9702F /* server.c */,
 				215A07891BB2FA8000E9702F /* server_internal.h */,
 				2178B3631B98BE7B00B9D86B /* util */,
@@ -403,7 +406,7 @@
 		212D04691C20AF6C00DCD5B3 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				212D046D1C20AF6D00DCD5B3 /* liblibmupnp.a */,
+				212D046D1C20AF6D00DCD5B3 /* libmupnp.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -566,6 +569,7 @@
 				215A07881BB2EAA500E9702F /* platform.h in Headers */,
 				21EA96DB1B990CF400E00841 /* node.h in Headers */,
 				21F6D9B51B99857700714056 /* round.h in Headers */,
+				2140DE991C34DF410067DAD0 /* script.h in Headers */,
 				2178B36C1B98BEAE00B9D86B /* list.h in Headers */,
 				21A776CB1BA0939F009BDB36 /* timer.h in Headers */,
 				21785DDF1BB79E0A0098DD1A /* json_rpc.h in Headers */,
@@ -579,7 +583,7 @@
 				211E45D71B98192600CF0088 /* finder_internal.h in Headers */,
 				21A776C71BA08A7C009BDB36 /* semaphore.h in Headers */,
 				215A078B1BB2FA8000E9702F /* server_internal.h in Headers */,
-				219A8E2D1B9AF607004ED802 /* script.h in Headers */,
+				219A8E2D1B9AF607004ED802 /* script_internal.h in Headers */,
 				21EA96CD1B990AF800E00841 /* cluster_internal.h in Headers */,
 				210E7BA31BA145F600343445 /* json.h in Headers */,
 				2160B8921BB3B59F002026E3 /* system_method.h in Headers */,
@@ -651,10 +655,10 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		212D046D1C20AF6D00DCD5B3 /* liblibmupnp.a */ = {
+		212D046D1C20AF6D00DCD5B3 /* libmupnp.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = liblibmupnp.a;
+			path = libmupnp.a;
 			remoteRef = 212D046C1C20AF6D00DCD5B3 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
