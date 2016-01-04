@@ -40,7 +40,7 @@ bool round_node_setmethod(RoundNode* node, const char* lang, const char* name, c
   round_json_map_setstring(paramsObj, ROUND_SYSTEM_METHOD_PARAM_LANGUAGE, lang);
   round_json_map_setstring(paramsObj, ROUND_SYSTEM_METHOD_PARAM_NAME, name);
   round_json_map_setstring(paramsObj, ROUND_SYSTEM_METHOD_PARAM_CODE, code);
-  round_json_rpc_setparams(reqObj, paramsObj);
+  round_json_rpc_setparamsobject(reqObj, paramsObj);
 
   // Request
 
@@ -84,7 +84,7 @@ bool round_node_removemethod(RoundNode* node, const char* name, RoundError* err)
     return false;
   }
   round_json_map_setstring(paramsObj, ROUND_SYSTEM_METHOD_PARAM_NAME, name);
-  round_json_rpc_setparams(reqObj, paramsObj);
+  round_json_rpc_setparamsobject(reqObj, paramsObj);
 
   // Request
 
@@ -129,7 +129,7 @@ bool round_node_setregistry(RoundNode* node, const char* key, const char* value,
   }
   round_json_map_setstring(paramsObj, ROUND_SYSTEM_METHOD_PARAM_KEY, key);
   round_json_map_setstring(paramsObj, ROUND_SYSTEM_METHOD_PARAM_VALUE, value);
-  round_json_rpc_setparams(reqObj, paramsObj);
+  round_json_rpc_setparamsobject(reqObj, paramsObj);
 
   // Request
 
@@ -173,7 +173,7 @@ bool round_node_getregistry(RoundNode* node, const char* key, char** value, Roun
     return false;
   }
   round_json_map_setstring(paramsObj, ROUND_SYSTEM_METHOD_PARAM_KEY, key);
-  round_json_rpc_setparams(reqObj, paramsObj);
+  round_json_rpc_setparamsobject(reqObj, paramsObj);
 
   // Request
 
@@ -184,7 +184,7 @@ bool round_node_getregistry(RoundNode* node, const char* key, char** value, Roun
 
   if (isSuccess) {
     RoundJSONObject* resultObj;
-    if (round_json_rpc_getparams(reqObj, &resultObj)) {
+    if (round_json_rpc_getparamsobject(reqObj, &resultObj)) {
       const char* keyValue;
       if (round_json_map_getstring(paramsObj, ROUND_SYSTEM_METHOD_PARAM_KEY, &keyValue)) {
         *value = round_strdup(keyValue);
@@ -229,7 +229,7 @@ bool round_node_removeregistry(RoundNode* node, const char* key, RoundError* err
     return false;
   }
   round_json_map_setstring(paramsObj, ROUND_SYSTEM_METHOD_PARAM_KEY, key);
-  round_json_rpc_setparams(reqObj, paramsObj);
+  round_json_rpc_setparamsobject(reqObj, paramsObj);
 
   // Request
 
