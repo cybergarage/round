@@ -71,6 +71,8 @@ bool round_node_postmessage(RoundNode *node, RoundJSONObject *reqObj, RoundJSONO
 bool round_node_postmessagestring(RoundNode *node, const char *reqStr, RoundJSONObject **resObj, RoundError *err);
 bool round_node_postmethod(RoundNode *node, const char *method, const char *params, RoundJSONObject **resObj, RoundError *err);
 
+bool round_node_execmethod(RoundNode *node, const char *dest, const char *method, const char *params, RoundJSONObject **resObj, RoundError *err);
+
 bool round_node_equals(RoundNode *node1, RoundNode *node2);
 
 void round_node_setuserdata(RoundNode *node, void *data);

@@ -508,22 +508,46 @@ bool round_node_postmessagestring(RoundNode* node, const char* reqStr, RoundJSON
  * round_node_postmethod
  ****************************************/
 
-bool round_node_postmethod(RoundNode *node, const char *method, const char *params, RoundJSONObject **resObj, RoundError *err)
+bool round_node_postmethod(RoundNode* node, const char* method, const char* params, RoundJSONObject** resObj, RoundError* err)
 {
   if (!node || !method || !params) {
     round_node_rpcerrorcode2error(node, ROUND_RPC_ERROR_CODE_INVALID_REQUEST, err);
     return false;
   }
-  
+
   RoundJSONObject* reqObj = round_json_rpc_request_new();
   round_json_rpc_setmethod(reqObj, method);
   round_json_rpc_setparamsstring(reqObj, params);
-  
+
   bool isSuccess = round_node_postmessage(node, reqObj, resObj, err);
-  
+
   round_json_object_delete(reqObj);
-  
+
   return isSuccess;
+}
+
+/****************************************
+ * round_node_execmethod
+ ****************************************/
+
+bool round_node_getdestinationnode(RoundNode* node, const char* dest, RoundNode** destNode, RoundError* err)
+{
+  if (!node || !dest) {
+    round_node_rpcerrorcode2error(node, ROUND_RPC_ERROR_CODE_INVALID_REQUEST, err);
+    return false;
+  }
+}
+
+/****************************************
+ * round_node_execmethod
+ ****************************************/
+
+bool round_node_execmethod(RoundNode* node, const char* dest, const char* method, const char* params, RoundJSONObject** resObj, RoundError* err)
+{
+  if (!node || !dest || !method || !params) {
+    round_node_rpcerrorcode2error(node, ROUND_RPC_ERROR_CODE_INVALID_REQUEST, err);
+    return false;
+  }
 }
 
 /****************************************
