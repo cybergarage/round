@@ -110,6 +110,31 @@ RoundNode* round_cluster_getnode(RoundCluster* cluster, size_t idx)
 }
 
 /****************************************
+ * round_cluster_getnodebyid
+ ****************************************/
+
+RoundNode *round_cluster_getnodebyid(RoundCluster *cluster, const char *id)
+{
+  if (!cluster)
+    return NULL;
+
+  return round_node_ring_getnodebyid(cluster->nodeRing, id);
+}
+
+/****************************************
+ * round_cluster_getnodebyrandom
+ ****************************************/
+
+RoundNode *round_cluster_getnodebyrandom(RoundCluster *cluster)
+{
+  if (!cluster)
+    return NULL;
+  
+  size_t n = rand() % round_cluster_size(cluster);
+  return round_cluster_getnode(cluster, n);
+}
+
+/****************************************
  * round_cluster_hasnode
  ****************************************/
 

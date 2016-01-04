@@ -93,4 +93,35 @@ BOOST_AUTO_TEST_CASE(ClusterAddNodes)
   round_cluster_delete(cluster);
 }
 
+BOOST_AUTO_TEST_CASE(ClusterGetNode)
+{
+  RoundCluster* cluster = round_cluster_new();
+  BOOST_CHECK(cluster);
+  
+  RoundNode* node = round_node_local_new();
+  BOOST_CHECK(round_local_node_setaddress(node, "127.0.0.1"));
+  BOOST_CHECK(round_local_node_setport(node, 80));
+  BOOST_CHECK(round_cluster_addnode(cluster, node));
+  
+  RoundNode *foundNode;
+
+  foundNode = round_cluster_getnodes(cluster);
+  BOOST_CHECK(foundNode);
+  BOOST_CHECK(round_node_equals(node, foundNode));
+  
+  foundNode = round_cluster_getnode(cluster, 0);
+  BOOST_CHECK(foundNode);
+  BOOST_CHECK(round_node_equals(node, foundNode));
+  
+  foundNode = round_cluster_getnodebyrandom(cluster);
+  BOOST_CHECK(foundNode);
+  BOOST_CHECK(round_node_equals(node, foundNode));
+
+  foundNode = round_cluster_getnodebyid(cluster, round_node_getid(node));
+  BOOST_CHECK(foundNode);
+  BOOST_CHECK(round_node_equals(node, foundNode));
+  
+  round_cluster_delete(cluster);
+}
+
 BOOST_AUTO_TEST_SUITE_END()
