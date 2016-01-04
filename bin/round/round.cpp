@@ -1,8 +1,8 @@
 /*****************************************************************
 *
-* Round for C++
+* Round for C
 *
-* Copyright (C) Satoshi Konno 2012
+* Copyright (C) Satoshi Konno 2015
 *
 * This is licensed under BSD-style license, see file COPYING.
 *
@@ -42,7 +42,7 @@ void round_print_boot_message(Round::Console::Client &client) {
 }
 */
 
-bool round_exec_console_command(RoundClient *client, int argc, char* argv[])
+bool round_exec_console_command(RoundClient* client, const char* cmd, int argc, char* argv[])
 {
   /*
   Round::Console::Message msg;
@@ -60,7 +60,7 @@ bool round_exec_console_command(RoundClient *client, int argc, char* argv[])
     std::cerr << ROUND_CERR_PREFIX << errMsg << "'" << std::endl;
   }
    */
-  
+
   return false;
 }
 
@@ -149,102 +149,19 @@ std::endl;
   return EXIT_SUCCESS;
 }
 
-int round_exec_daemon(Round::Console::Client &client)
-{
-  // Setup deamon
-
-  int pid = fork();
-  if (pid < 0)
-    exit(EXIT_FAILURE);
-
-  if (0 < pid)
-    exit(EXIT_SUCCESS);
-
-  if (setsid() < 0)
-    exit(EXIT_FAILURE);
-
-  if ( chdir("/") < 0 ) {
-    exit(EXIT_FAILURE);
-  }
-
-  umask(0);
-
-  close(STDIN_FILENO);
-  close(STDOUT_FILENO);
-  close(STDERR_FILENO);
-
-  Round::Error error;
-
-  // Boot Message
-
-  round_print_boot_message(client);
-
-  // Initialize the EditLine
-
-  EditLine *el = el_init(client.getProgramName(), stdin, stdout, stderr);
-  el_set(el, EL_PROMPT, &round_prompt);
-  el_set(el, EL_EDITOR, "vi");
-
-  // Initialize the history
-
-  HistEvent ev;
-  History *inputHistory = history_init();
-  history(inputHistory, &ev, H_SETSIZE, 1024);
-  el_set(el, EL_HIST, history, inputHistory);
-
-  Round::Console::Input input;
-
-  while (true) {
-    int readCount = 0;
-    std::string inputLine = el_gets(el, &readCount);
-
-    if (readCount <= 0)
-      continue;
-
-    if ((readCount == 1) && inputLine[0] == '\n')
-      continue;
-
-    boost::trim(inputLine);
-    history(inputHistory, &ev, H_ENTER, inputLine.c_str());
-
-    input.parse(inputLine);
-
-    if (client.isQuitCommand(input))
-      break;
-
-    if (client.isRPCCommand(input)) {
-      exec_rpc_command(client, input);
-      continue;
-    }
-
-    if (!client.isConsoleCommand(input)) {
-      std::cerr << ROUND_UNKNOWN_COMMAND_MSG << " '" << inputLine << "'" <<
-std::endl;
-      continue;
-    }
-
-    round_exec_console_command(client, input);
-  }
-
-  history_end(inputHistory);
-  el_end(el);
-
-  return EXIT_SUCCESS;
-}
-
  */
 
 int main(int argc, char* argv[])
 {
-  RoundError *err = round_error_new();
-  
+  RoundError* err = round_error_new();
+
   // Setup Client
 
-  RoundClient *client = round_client_new();
+  RoundClient* client = round_client_new();
   if (!client)
     return EXIT_FAILURE;
 
-/*
+  /*
   // Parse command line options
 
   bool deamonMode = false;
@@ -285,18 +202,14 @@ int main(int argc, char* argv[])
 */
   // Start Client
 
- if (!round_client_start(client))
-  return EXIT_FAILURE;
+  if (!round_client_start(client))
+    return EXIT_FAILURE;
 
-/*
+  if (!round_client_search(client))
+    return EXIT_FAILURE;
+  /*
   if (0 < remoteHost.length()) {
     client.updateClusterFromRemoteNode(remoteHost, &error);
-  }
-
-  // Execute as daemon
-
-  if (client.isDaemonCommand(firstArg) || deamonMode) {
-    return round_exec_daemon(client);
   }
 
   // Execute shell
@@ -307,7 +220,7 @@ int main(int argc, char* argv[])
 */
   // Exec command
 
-  if (!round_exec_console_command(client, argc, argv))
+  if (!round_exec_console_command(client, argv[0], (argc - 1), argv++))
     return EXIT_FAILURE;
 
   return EXIT_SUCCESS;

@@ -8,22 +8,12 @@
 #
 ##################################################################
 
-bin_PROGRAMS = round
+noinst_PROGRAMS = round
 
-AM_CPPFLAGS = \
-	../ \
-	-I$(top_srcdir)/include \
-	-I$(top_srcdir)/src \
-	@XML_CFLAGS@
+AM_CPPFLAGS = -I$(top_srcdir)/include -I$(top_srcdir)/src -I../
 
-AUTOMAKE_OPTIONS = \
-        subdir-objects
+
 
 round_SOURCES = \
-	../round.cpp
-
-round_LDADD = \
-	../../../lib/unix/libround.a \
-	-lmupnp \
-	@LUA_LIBS@ \
-	@XML_LIBS@
+	..//round.cpp
+round_LDADD = @HTTP_LIBS@ @XML_LIBS@ ../../lib/unix/libround.a

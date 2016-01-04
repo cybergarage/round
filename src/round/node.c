@@ -542,14 +542,14 @@ bool round_node_getdestinationnode(RoundNode* node, const char* dest, RoundNode*
   }
 
   // TODO : Check cluster name
-  RoundCluster *destCluster = round_node_getcluster(node);
-  const char *destNodeId = dest;
-  
+  RoundCluster* destCluster = round_node_getcluster(node);
+  const char* destNodeId = dest;
+
   // TODO : Support all node
   if (round_node_isalldistination(dest)) {
     return false;
   }
-  
+
   if (round_node_islocaldistination(dest)) {
     *destNode = node;
     return true;
@@ -561,7 +561,7 @@ bool round_node_getdestinationnode(RoundNode* node, const char* dest, RoundNode*
   }
 
   *destNode = round_cluster_getnodebyid(destCluster, destNodeId);
-  
+
   return (*destNode) ? true : false;
 }
 
@@ -575,13 +575,13 @@ bool round_node_execmethod(RoundNode* node, const char* dest, const char* method
     round_node_rpcerrorcode2error(node, ROUND_RPC_ERROR_CODE_INVALID_REQUEST, err);
     return false;
   }
-  
-  RoundNode *destNode;
+
+  RoundNode* destNode;
   if (!round_node_getdestinationnode(node, dest, &destNode, err)) {
     round_node_rpcerrorcode2error(node, ROUND_RPC_ERROR_CODE_INVALID_REQUEST, err);
     return false;
   }
-  
+
   return round_node_postmethod(destNode, method, params, resObj, err);
 }
 

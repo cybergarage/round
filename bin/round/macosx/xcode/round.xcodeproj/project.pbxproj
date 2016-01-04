@@ -239,7 +239,6 @@
 					"-ljansson",
 					"-lssl",
 					"-lcrypto",
-					"-llua",
 				);
 				SDKROOT = macosx;
 			};
@@ -291,7 +290,6 @@
 					"-ljansson",
 					"-lssl",
 					"-lcrypto",
-					"-llua",
 				);
 				SDKROOT = macosx;
 			};
@@ -314,7 +312,6 @@
 					"-ljansson",
 					"-lcrypto",
 					"-lssl",
-					"-llua",
 				);
 				PRODUCT_NAME = round;
 			};
@@ -337,7 +334,6 @@
 					"-ljansson",
 					"-lcrypto",
 					"-lssl",
-					"-llua",
 				);
 				PRODUCT_NAME = round;
 			};
