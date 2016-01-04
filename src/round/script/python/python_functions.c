@@ -76,7 +76,18 @@ PyObject* round_python_getnodestate(PyObject* self, PyObject* args)
 
 PyObject* round_python_setregistry(PyObject* self, PyObject* args)
 {
-  return NULL;
+  const char *key, *val;
+  
+  if (!PyArg_ParseTuple(args, "ss", &key, &val))
+    return NULL;
+  
+  RoundLocalNode *node = round_python_getlocalnode();
+  if (node)
+    return NULL;
+  
+  bool isSuccess = round_local_node_setregistry(node, key, val);
+  
+  return Py_BuildValue("i", isSuccess);
 }
 
 /****************************************
@@ -85,7 +96,18 @@ PyObject* round_python_setregistry(PyObject* self, PyObject* args)
 
 PyObject* round_python_getregistry(PyObject* self, PyObject* args)
 {
-  return NULL;
+  const char *key;
+  
+  if (!PyArg_ParseTuple(args, "s", &key))
+    return NULL;
+  
+  RoundLocalNode *node = round_python_getlocalnode();
+  if (node)
+    return NULL;
+  
+  RoundRegistry *reg = round_local_node_getregistry(node, key);
+
+  return Py_BuildValue("s", (reg ? round_registry_getvalue(reg) : ""));
 }
 
 /****************************************
@@ -94,7 +116,18 @@ PyObject* round_python_getregistry(PyObject* self, PyObject* args)
 
 PyObject* round_python_removeregistry(PyObject* self, PyObject* args)
 {
-  return NULL;
+  const char *key;
+  
+  if (!PyArg_ParseTuple(args, "s", &key))
+    return NULL;
+  
+  RoundLocalNode *node = round_python_getlocalnode();
+  if (node)
+    return NULL;
+  
+  bool isSuccess = round_local_node_removeregistry(node, key);
+  
+  return Py_BuildValue("i", isSuccess);
 }
 
 /****************************************
@@ -103,6 +136,15 @@ PyObject* round_python_removeregistry(PyObject* self, PyObject* args)
 
 PyObject* round_python_postmethod(PyObject* self, PyObject* args)
 {
+  const char *dest, *method, *params;
+  
+  if (!PyArg_ParseTuple(args, "sss", &dest, &method, &params))
+    return NULL;
+  
+  RoundLocalNode *node = round_python_getlocalnode();
+  if (node)
+    return NULL;
+  
   return NULL;
 }
 
