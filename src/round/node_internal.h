@@ -171,7 +171,10 @@ bool round_local_node_removemethod(RoundLocalNode *node, const char *name);
 bool round_local_node_isfinalmethod(RoundLocalNode *node, const char *name);
 
 bool round_local_node_addengine(RoundLocalNode *node, RoundScriptEngine *engine);
+  
 bool round_local_node_execmessage(RoundLocalNode *node, RoundMessage *msg, RoundJSONObject **resultObj, RoundError *err);
+bool round_local_node_execmethod(RoundLocalNode* node, const char *method, const char *params, RoundJSONObject** resObj, RoundError* err);
+bool round_local_node_execrequest(RoundLocalNode* node, RoundJSONObject* reqObj, RoundJSONObject** resObj, RoundError* err);
 
 bool round_local_node_setregistry(RoundLocalNode *node, const char *key, const char *val);
 RoundRegistry *round_local_node_getregistry(RoundLocalNode *node, const char *key);
