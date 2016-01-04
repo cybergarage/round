@@ -19,7 +19,7 @@
 #include <unistd.h>
 #include <histedit.h>
 
-#include <round/round.h>
+#include <round/client.h>
 //#include <round/ui/Console.h>
 
 static const std::string ROUND_CERR_PREFIX = "Error : ";
@@ -40,9 +40,11 @@ void round_print_boot_message(Round::Console::Client &client) {
   client.getBootMessage(bootMessage);
   std::cout << bootMessage << std::endl;
 }
+*/
 
-bool round_exec_console_command(Round::Console::Client &client, const
-Round::Console::Input &input) {
+bool round_exec_console_command(RoundClient *client, int argc, char* argv[])
+{
+  /*
   Round::Console::Message msg;
   Round::Error err;
 
@@ -57,10 +59,12 @@ Round::Console::Input &input) {
   if (0 < errMsg.length()) {
     std::cerr << ROUND_CERR_PREFIX << errMsg << "'" << std::endl;
   }
-
+   */
+  
   return false;
 }
 
+/*
 bool exec_rpc_command(Round::Console::Client &client, const
 Round::Console::Input &input) {
   Round::Console::Message msg;
@@ -232,15 +236,15 @@ std::endl;
 
 int main(int argc, char* argv[])
 {
-  /*
-  Round::Error error;
-
+  RoundError *err = round_error_new();
+  
   // Setup Client
 
-  Round::Console::Client client;
-  gConsoleClient = &client;
-  client.setFirstArgument(argv[0]);
+  RoundClient *client = round_client_new();
+  if (!client)
+    return EXIT_FAILURE;
 
+/*
   // Parse command line options
 
   bool deamonMode = false;
@@ -278,13 +282,13 @@ int main(int argc, char* argv[])
   }
 
   std::string firstArg = argv[0];
-
+*/
   // Start Client
 
-  if (!client.start(&error)) {
-    exit(EXIT_FAILURE);
-  }
+ if (!round_client_start(client))
+  return EXIT_FAILURE;
 
+/*
   if (0 < remoteHost.length()) {
     client.updateClusterFromRemoteNode(remoteHost, &error);
   }
@@ -300,18 +304,11 @@ int main(int argc, char* argv[])
   if (client.isShellCommand(firstArg)) {
     return round_exec_shell(client);
   }
-
+*/
   // Exec command
 
-  Round::Console::Input input;
-  input.cmd = firstArg;
-  for (int n=1; n<argc; n++) {
-    input.params.addParam(argv[n]);
-  }
-
-  if (round_exec_console_command(client, input))
-    exit(EXIT_SUCCESS);
-  */
+  if (!round_exec_console_command(client, argc, argv))
+    return EXIT_FAILURE;
 
   return EXIT_SUCCESS;
 }
