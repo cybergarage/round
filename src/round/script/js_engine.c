@@ -153,7 +153,7 @@ bool round_js_engine_getsoucecode(RoundJavaScriptEngine* engine, RoundMethod* me
 
 bool round_js_engine_run(RoundJavaScriptEngine* engine, RoundMethod* method, const char* param, RoundJSONObject** jsonResult, RoundError* err)
 {
-  RoundString* jsSource, *strResult;
+  RoundString *jsSource, *strResult;
   bool isSuccess;
 
   if (!engine)
