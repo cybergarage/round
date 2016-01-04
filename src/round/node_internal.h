@@ -206,7 +206,7 @@ bool round_remote_node_destory(RoundRemoteNode *node);
 bool round_remote_node_delete(RoundRemoteNode *node);
   
 bool round_remote_node_postmessage(RoundRemoteNode *node, RoundJSONObject *reqMap, RoundJSONObject **resObj, RoundError *err);
-#define round_remote_node_poststringmessage(node, reqStr, resObj, err) round_node_poststringmessage((RoundNode*)node, reqStr, resObj, err)
+#define round_remote_node_poststringmessage(node, reqStr, resObj, err) round_node_postmessagestring((RoundNode*)node, reqStr, resObj, err)
 
 bool round_remote_node_posthttpjsonrequest(RoundRemoteNode* node, const char *reqContent, RoundJSONObject** resObj, RoundError* err);
 
