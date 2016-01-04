@@ -109,7 +109,8 @@ CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 PROGRAMS = $(noinst_PROGRAMS)
 am__dirstamp = $(am__leading_dot)dirstamp
-am_round_OBJECTS = ..//round.$(OBJEXT)
+am_round_OBJECTS = ..//cli.$(OBJEXT) ..//cmd/list.$(OBJEXT) \
+	..//round.$(OBJEXT)
 round_OBJECTS = $(am_round_OBJECTS)
 round_DEPENDENCIES = ../../lib/unix/libround.a
 AM_V_P = $(am__v_P_@AM_V@)
@@ -267,6 +268,8 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 AM_CPPFLAGS = -I$(top_srcdir)/include -I$(top_srcdir)/src -I../
 round_SOURCES = \
+	..//cli.cpp \
+	..//cmd/list.cpp \
 	..//round.cpp
 
 round_LDADD = @HTTP_LIBS@ @XML_LIBS@ ../../lib/unix/libround.a
@@ -312,6 +315,15 @@ clean-noinstPROGRAMS:
 ../$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) ..//$(DEPDIR)
 	@: > ../$(DEPDIR)/$(am__dirstamp)
+..//cli.$(OBJEXT): ../$(am__dirstamp) ../$(DEPDIR)/$(am__dirstamp)
+../cmd/$(am__dirstamp):
+	@$(MKDIR_P) ..//cmd
+	@: > ../cmd/$(am__dirstamp)
+../cmd/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) ..//cmd/$(DEPDIR)
+	@: > ../cmd/$(DEPDIR)/$(am__dirstamp)
+..//cmd/list.$(OBJEXT): ../cmd/$(am__dirstamp) \
+	../cmd/$(DEPDIR)/$(am__dirstamp)
 ..//round.$(OBJEXT): ../$(am__dirstamp) ../$(DEPDIR)/$(am__dirstamp)
 
 round$(EXEEXT): $(round_OBJECTS) $(round_DEPENDENCIES) $(EXTRA_round_DEPENDENCIES) 
@@ -321,11 +333,14 @@ round$(EXEEXT): $(round_OBJECTS) $(round_DEPENDENCIES) $(EXTRA_round_DEPENDENCIE
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
 	-rm -f ..//*.$(OBJEXT)
+	-rm -f ..//cmd/*.$(OBJEXT)
 
 distclean-compile:
 	-rm -f *.tab.c
 
+@AMDEP_TRUE@@am__include@ @am__quote@../$(DEPDIR)/cli.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../$(DEPDIR)/round.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@../cmd/$(DEPDIR)/list.Po@am__quote@
 
 .cpp.o:
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
@@ -457,6 +472,8 @@ distclean-generic:
 	-test . = "$(srcdir)" || test -z "$(CONFIG_CLEAN_VPATH_FILES)" || rm -f $(CONFIG_CLEAN_VPATH_FILES)
 	-rm -f ../$(DEPDIR)/$(am__dirstamp)
 	-rm -f ../$(am__dirstamp)
+	-rm -f ../cmd/$(DEPDIR)/$(am__dirstamp)
+	-rm -f ../cmd/$(am__dirstamp)
 
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
@@ -466,7 +483,7 @@ clean: clean-am
 clean-am: clean-generic clean-noinstPROGRAMS mostlyclean-am
 
 distclean: distclean-am
-	-rm -rf ../$(DEPDIR)
+	-rm -rf ../$(DEPDIR) ../cmd/$(DEPDIR)
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-tags
@@ -512,7 +529,7 @@ install-ps-am:
 installcheck-am:
 
 maintainer-clean: maintainer-clean-am
-	-rm -rf ../$(DEPDIR)
+	-rm -rf ../$(DEPDIR) ../cmd/$(DEPDIR)
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 
@@ -547,6 +564,9 @@ uninstall-am:
 
 .PRECIOUS: Makefile
 
+	..//cli.h \
+	..//cmd.h \
+	..//const.h
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
