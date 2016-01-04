@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		214DA6121BF706F600F41C0E /* liblibround.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 214DA60F1BF7063D00F41C0E /* liblibround.a */; };
+		214DA6121BF706F600F41C0E /* libround.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 214DA60F1BF7063D00F41C0E /* libround.a */; };
+		21D324C21C3A91CD006E9DD7 /* Python.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21D324C11C3A91CD006E9DD7 /* Python.framework */; };
 		21EC1EC515493D01003945A5 /* round.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21EC1EC415493D01003945A5 /* round.cpp */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +44,7 @@
 /* Begin PBXFileReference section */
 		2136E04A15493B2B007AC214 /* round */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = round; sourceTree = BUILT_PRODUCTS_DIR; };
 		214DA60A1BF7063D00F41C0E /* libround.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libround.xcodeproj; path = ../../../../lib/macosx/xcode/libround.xcodeproj; sourceTree = "<group>"; };
+		21D324C11C3A91CD006E9DD7 /* Python.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Python.framework; path = System/Library/Frameworks/Python.framework; sourceTree = SDKROOT; };
 		21EC1EC415493D01003945A5 /* round.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; name = round.cpp; path = ../../round.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 /* End PBXFileReference section */
 
@@ -51,7 +53,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				214DA6121BF706F600F41C0E /* liblibround.a in Frameworks */,
+				21D324C21C3A91CD006E9DD7 /* Python.framework in Frameworks */,
+				214DA6121BF706F600F41C0E /* libround.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,7 +81,7 @@
 		214DA60B1BF7063D00F41C0E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				214DA60F1BF7063D00F41C0E /* liblibround.a */,
+				214DA60F1BF7063D00F41C0E /* libround.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -94,6 +97,7 @@
 		21EC1EBA15493CC6003945A5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				21D324C11C3A91CD006E9DD7 /* Python.framework */,
 				214DA60A1BF7063D00F41C0E /* libround.xcodeproj */,
 			);
 			name = Frameworks;
@@ -152,10 +156,10 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		214DA60F1BF7063D00F41C0E /* liblibround.a */ = {
+		214DA60F1BF7063D00F41C0E /* libround.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = liblibround.a;
+			path = libround.a;
 			remoteRef = 214DA60E1BF7063D00F41C0E /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
