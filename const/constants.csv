@@ -114,6 +114,7 @@ system_method_add_node_cmd,"/usr/local/bin/roundd"
 system_method_remove_node_delay_msec,5000
 system_method_dest_all_node,"*"
 system_method_dest_any_node,"?"
+system_method_dest_local_node,"."
 
 # Script Languages
 script_language_js,"js"
