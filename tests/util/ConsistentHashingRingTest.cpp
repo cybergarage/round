@@ -89,18 +89,18 @@ BOOST_AUTO_TEST_CASE(ConsistentHashGraphAddSameNodeTest)
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_size(ring), 1);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_islastnode(ring, node), true);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getequalnode(ring, node),
-      (RoundConsistentHashingNode*)node);
+                    (RoundConsistentHashingNode*)node);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getlastnode(ring),
-      (RoundConsistentHashingNode*)node);
+                    (RoundConsistentHashingNode*)node);
 
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_addnode(ring, node), false);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_hasnode(ring, node), true);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_size(ring), 1);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_islastnode(ring, node), true);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getlastnode(ring),
-      (RoundConsistentHashingNode*)node);
+                    (RoundConsistentHashingNode*)node);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getequalnode(ring, node),
-      (RoundConsistentHashingNode*)node);
+                    (RoundConsistentHashingNode*)node);
 
   BOOST_CHECK(round_consistenthashing_ring_delete(ring));
 }
@@ -123,21 +123,21 @@ BOOST_AUTO_TEST_CASE(ConsistentHashGraphAddTest)
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_size(ring), 0);
   for (int n = 0; n < conNodeCount; n++) {
     BOOST_CHECK_EQUAL(round_consistenthashing_ring_hasnode(ring, nodes[n]),
-        false);
+                      false);
     BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, nodes[n]),
-        -1);
+                      -1);
 
     BOOST_CHECK_EQUAL(round_consistenthashing_ring_addnode(ring, nodes[n]),
-        true);
+                      true);
     BOOST_CHECK_EQUAL(round_consistenthashing_ring_hasnode(ring, nodes[n]),
-        true);
+                      true);
     BOOST_CHECK_EQUAL(round_consistenthashing_ring_size(ring), (n + 1));
     BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, nodes[n]),
-        n);
+                      n);
     BOOST_CHECK_EQUAL(round_consistenthashing_ring_getequalnode(ring, nodes[n]),
-        (RoundConsistentHashingNode*)nodes[n]);
+                      (RoundConsistentHashingNode*)nodes[n]);
     BOOST_CHECK_EQUAL(round_consistenthashing_ring_islastnode(ring, nodes[n]),
-        true);
+                      true);
   }
 
   // Clear nodes
@@ -152,9 +152,9 @@ BOOST_AUTO_TEST_CASE(ConsistentHashGraphAddTest)
   }
   for (int n = (conNodeCount - 1); 0 <= n; n--) {
     BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, nodes[n]),
-        -1);
+                      -1);
     BOOST_CHECK_EQUAL(round_consistenthashing_ring_addnode(ring, nodes[n]),
-        true);
+                      true);
     BOOST_CHECK_EQUAL(
         round_consistenthashing_ring_islastnode(ring, nodes[conNodeCount - 1]),
         true);
@@ -162,7 +162,7 @@ BOOST_AUTO_TEST_CASE(ConsistentHashGraphAddTest)
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_size(ring), conNodeCount);
   for (int n = 0; n < conNodeCount; n++) {
     BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, nodes[n]),
-        n);
+                      n);
   }
 
   round_consistenthashing_ring_clear(ring);
@@ -188,38 +188,38 @@ BOOST_AUTO_TEST_CASE(ConsistentHashGraphRemoveTest)
 
   for (int n = 0; n < conNodeCount; n++) {
     BOOST_CHECK_EQUAL(round_consistenthashing_ring_hasnode(ring, nodes[n]),
-        false);
+                      false);
     BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, nodes[n]),
-        -1);
+                      -1);
 
     BOOST_CHECK_EQUAL(round_consistenthashing_ring_addnode(ring, nodes[n]),
-        true);
+                      true);
     BOOST_CHECK_EQUAL(round_consistenthashing_ring_hasnode(ring, nodes[n]),
-        true);
+                      true);
     BOOST_CHECK_EQUAL(round_consistenthashing_ring_size(ring), (n + 1));
     BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, nodes[n]),
-        n);
+                      n);
     BOOST_CHECK_EQUAL(round_consistenthashing_ring_getequalnode(ring, nodes[n]),
-        (RoundConsistentHashingNode*)nodes[n]);
+                      (RoundConsistentHashingNode*)nodes[n]);
     BOOST_CHECK_EQUAL(round_consistenthashing_ring_islastnode(ring, nodes[n]),
-        true);
+                      true);
   }
 
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_size(ring), conNodeCount);
 
   for (int n = 0; n < conNodeCount; n++) {
     BOOST_CHECK_EQUAL(round_consistenthashing_ring_hasnode(ring, nodes[n]),
-        true);
+                      true);
 
     BOOST_CHECK_EQUAL(round_consistenthashing_ring_removenode(ring, nodes[n]),
-        true);
+                      true);
 
     BOOST_CHECK_EQUAL(round_consistenthashing_ring_hasnode(ring, nodes[n]),
-        false);
+                      false);
     BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, nodes[n]),
-        -1);
+                      -1);
     BOOST_CHECK_EQUAL(round_consistenthashing_ring_getequalnode(ring, nodes[n]),
-        (RoundConsistentHashingNode*)NULL);
+                      (RoundConsistentHashingNode*)NULL);
   }
 
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_size(ring), 0);
@@ -241,7 +241,7 @@ BOOST_AUTO_TEST_CASE(ConsistentHashGraphEqualsTest)
   for (int i = 0; i < conNodeCount; i++) {
     for (int j = 0; j < conNodeCount; j++) {
       BOOST_CHECK_EQUAL(round_consistenthashing_node_equals(nodes[i], nodes[j]),
-          ((i == j) ? true : false));
+                        ((i == j) ? true : false));
     }
   }
 
@@ -259,40 +259,40 @@ BOOST_AUTO_TEST_CASE(ConsistentHashGraphCompareTest)
   RoundTestConsistentHashingNode* node8 = nodes[3] = round_test_consistenthashing_node_new(8);
 
   BOOST_CHECK_EQUAL(round_consistenthashing_node_comp(node2, node2),
-      RoundListNodeCompareSame);
+                    RoundListNodeCompareSame);
   BOOST_CHECK_EQUAL(round_consistenthashing_node_comp(node2, node4),
-      RoundListNodeCompareGreater);
+                    RoundListNodeCompareGreater);
   BOOST_CHECK_EQUAL(round_consistenthashing_node_comp(node2, node6),
-      RoundListNodeCompareGreater);
+                    RoundListNodeCompareGreater);
   BOOST_CHECK_EQUAL(round_consistenthashing_node_comp(node2, node8),
-      RoundListNodeCompareGreater);
+                    RoundListNodeCompareGreater);
 
   BOOST_CHECK_EQUAL(round_consistenthashing_node_comp(node4, node2),
-      RoundListNodeCompareLess);
+                    RoundListNodeCompareLess);
   BOOST_CHECK_EQUAL(round_consistenthashing_node_comp(node4, node4),
-      RoundListNodeCompareSame);
+                    RoundListNodeCompareSame);
   BOOST_CHECK_EQUAL(round_consistenthashing_node_comp(node4, node6),
-      RoundListNodeCompareGreater);
+                    RoundListNodeCompareGreater);
   BOOST_CHECK_EQUAL(round_consistenthashing_node_comp(node4, node8),
-      RoundListNodeCompareGreater);
+                    RoundListNodeCompareGreater);
 
   BOOST_CHECK_EQUAL(round_consistenthashing_node_comp(node6, node2),
-      RoundListNodeCompareLess);
+                    RoundListNodeCompareLess);
   BOOST_CHECK_EQUAL(round_consistenthashing_node_comp(node6, node4),
-      RoundListNodeCompareLess);
+                    RoundListNodeCompareLess);
   BOOST_CHECK_EQUAL(round_consistenthashing_node_comp(node6, node6),
-      RoundListNodeCompareSame);
+                    RoundListNodeCompareSame);
   BOOST_CHECK_EQUAL(round_consistenthashing_node_comp(node6, node8),
-      RoundListNodeCompareGreater);
+                    RoundListNodeCompareGreater);
 
   BOOST_CHECK_EQUAL(round_consistenthashing_node_comp(node8, node2),
-      RoundListNodeCompareLess);
+                    RoundListNodeCompareLess);
   BOOST_CHECK_EQUAL(round_consistenthashing_node_comp(node8, node4),
-      RoundListNodeCompareLess);
+                    RoundListNodeCompareLess);
   BOOST_CHECK_EQUAL(round_consistenthashing_node_comp(node8, node6),
-      RoundListNodeCompareLess);
+                    RoundListNodeCompareLess);
   BOOST_CHECK_EQUAL(round_consistenthashing_node_comp(node8, node8),
-      RoundListNodeCompareSame);
+                    RoundListNodeCompareSame);
 
   for (int n = 0; n < conNodeCount; n++) {
     round_test_consistenthashing_node_delete(nodes[n]);
@@ -1007,89 +1007,89 @@ BOOST_AUTO_TEST_CASE(ConsistentHashGraphOffsetNodeTest)
     // +1
     for (int n = 0; n < (conNodeCount - 1); n++) {
       BOOST_CHECK_EQUAL(round_consistenthashing_node_next(nodes[n]),
-          nodes[n + 1]);
+                        nodes[n + 1]);
       BOOST_CHECK_EQUAL(round_consistenthashing_ring_getoffsetnode(
                             ring, nodes[n], (+1 + baseOffset)),
-          nodes[n + 1]);
+                        nodes[n + 1]);
     }
     BOOST_CHECK_EQUAL(
         round_consistenthashing_node_nextcircular(nodes[conNodeCount - 1]),
         nodes[0]);
     BOOST_CHECK_EQUAL(round_consistenthashing_ring_getoffsetnode(
                           ring, nodes[conNodeCount - 1], (+1 + baseOffset)),
-        nodes[0]);
+                      nodes[0]);
 
     // (+2 +  baseOffset)
     for (int n = 0; n < (conNodeCount - 2); n++) {
       BOOST_CHECK_EQUAL(round_consistenthashing_ring_getoffsetnode(
                             ring, nodes[n], (+2 + baseOffset)),
-          nodes[n + 2]);
+                        nodes[n + 2]);
     }
     BOOST_CHECK_EQUAL(round_consistenthashing_ring_getoffsetnode(
                           ring, nodes[conNodeCount - 2], (+2 + baseOffset)),
-        nodes[0]);
+                      nodes[0]);
     BOOST_CHECK_EQUAL(round_consistenthashing_ring_getoffsetnode(
                           ring, nodes[conNodeCount - 1], (+2 + baseOffset)),
-        nodes[1]);
+                      nodes[1]);
 
     // (+3+  baseOffset)
     for (int n = 0; n < (conNodeCount - 3); n++) {
       BOOST_CHECK_EQUAL(round_consistenthashing_ring_getoffsetnode(
                             ring, nodes[n], (+3 + baseOffset)),
-          nodes[n + 3]);
+                        nodes[n + 3]);
     }
     BOOST_CHECK_EQUAL(round_consistenthashing_ring_getoffsetnode(
                           ring, nodes[conNodeCount - 3], (+3 + baseOffset)),
-        nodes[0]);
+                      nodes[0]);
     BOOST_CHECK_EQUAL(round_consistenthashing_ring_getoffsetnode(
                           ring, nodes[conNodeCount - 2], (+3 + baseOffset)),
-        nodes[1]);
+                      nodes[1]);
     BOOST_CHECK_EQUAL(round_consistenthashing_ring_getoffsetnode(
                           ring, nodes[conNodeCount - 1], (+3 + baseOffset)),
-        nodes[2]);
+                      nodes[2]);
 
     // (-1 -  baseOffset)
     BOOST_CHECK_EQUAL(round_consistenthashing_ring_getprevnode(ring, nodes[0]),
-        nodes[conNodeCount - 1]);
+                      nodes[conNodeCount - 1]);
     BOOST_CHECK_EQUAL(round_consistenthashing_ring_getoffsetnode(
                           ring, nodes[0], (-1 - baseOffset)),
-        nodes[conNodeCount - 1]);
+                      nodes[conNodeCount - 1]);
     for (int n = 1; n < conNodeCount; n++) {
       BOOST_CHECK_EQUAL(
           round_consistenthashing_ring_getprevnode(ring, nodes[n]),
           nodes[n - 1]);
       BOOST_CHECK_EQUAL(round_consistenthashing_ring_getoffsetnode(
                             ring, nodes[n], (-1 - baseOffset)),
-          nodes[n - 1]);
+                        nodes[n - 1]);
     }
 
     // (-2 -  baseOffset)
     BOOST_CHECK_EQUAL(round_consistenthashing_ring_getoffsetnode(
                           ring, nodes[0], (-2 - baseOffset)),
-        nodes[conNodeCount - 2]);
+                      nodes[conNodeCount - 2]);
     BOOST_CHECK_EQUAL(round_consistenthashing_ring_getoffsetnode(
                           ring, nodes[1], (-2 - baseOffset)),
-        nodes[conNodeCount - 1]);
+                      nodes[conNodeCount - 1]);
     for (int n = 2; n < conNodeCount; n++) {
       BOOST_CHECK_EQUAL(round_consistenthashing_ring_getoffsetnode(
                             ring, nodes[n], (-2 - baseOffset)),
-          nodes[n - 2]);
+                        nodes[n - 2]);
     }
 
     // (-3 -  baseOffset)
     BOOST_CHECK_EQUAL(round_consistenthashing_ring_getoffsetnode(
                           ring, nodes[0], (-3 - baseOffset)),
-        nodes[conNodeCount - 3]);
+                      nodes[conNodeCount - 3]);
     BOOST_CHECK_EQUAL(round_consistenthashing_ring_getoffsetnode(
                           ring, nodes[1], (-3 - baseOffset)),
-        nodes[conNodeCount - 2]);
+                      nodes[conNodeCount - 2]);
     BOOST_CHECK_EQUAL(round_consistenthashing_ring_getoffsetnode(
                           ring, nodes[2], (-3 - baseOffset)),
-        nodes[conNodeCount - 1]);
+                      nodes[conNodeCount - 1]);
     for (int n = 3; n < conNodeCount; n++) {
       BOOST_CHECK_EQUAL(round_consistenthashing_ring_getoffsetnode(
                             ring, nodes[n], (-3 - baseOffset)),
-          nodes[n - 3]);
+                        nodes[n - 3]);
     }
   }
 
@@ -1109,255 +1109,255 @@ BOOST_AUTO_TEST_CASE(ConsistentHashGraphFowardDistanceTest)
 
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(
                         ring, nodes[0], nodes[0]),
-      0);
+                    0);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(
                         ring, nodes[0], nodes[1]),
-      1);
+                    1);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(
                         ring, nodes[0], nodes[2]),
-      2);
+                    2);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(
                         ring, nodes[0], nodes[3]),
-      3);
+                    3);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(
                         ring, nodes[0], nodes[4]),
-      4);
+                    4);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(
                         ring, nodes[0], nodes[5]),
-      5);
+                    5);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(
                         ring, nodes[0], nodes[6]),
-      6);
+                    6);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(
                         ring, nodes[0], nodes[7]),
-      7);
+                    7);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(
                         ring, nodes[0], nodes[8]),
-      8);
+                    8);
 
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(
                         ring, nodes[1], nodes[0]),
-      8);
+                    8);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(
                         ring, nodes[1], nodes[1]),
-      0);
+                    0);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(
                         ring, nodes[1], nodes[2]),
-      1);
+                    1);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(
                         ring, nodes[1], nodes[3]),
-      2);
+                    2);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(
                         ring, nodes[1], nodes[4]),
-      3);
+                    3);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(
                         ring, nodes[1], nodes[5]),
-      4);
+                    4);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(
                         ring, nodes[1], nodes[6]),
-      5);
+                    5);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(
                         ring, nodes[1], nodes[7]),
-      6);
+                    6);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(
                         ring, nodes[1], nodes[8]),
-      7);
+                    7);
 
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(
                         ring, nodes[2], nodes[0]),
-      7);
+                    7);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(
                         ring, nodes[2], nodes[1]),
-      8);
+                    8);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(
                         ring, nodes[2], nodes[2]),
-      0);
+                    0);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(
                         ring, nodes[2], nodes[3]),
-      1);
+                    1);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(
                         ring, nodes[2], nodes[4]),
-      2);
+                    2);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(
                         ring, nodes[2], nodes[5]),
-      3);
+                    3);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(
                         ring, nodes[2], nodes[6]),
-      4);
+                    4);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(
                         ring, nodes[2], nodes[7]),
-      5);
+                    5);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(
                         ring, nodes[2], nodes[8]),
-      6);
+                    6);
 
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(
                         ring, nodes[3], nodes[0]),
-      6);
+                    6);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(
                         ring, nodes[3], nodes[1]),
-      7);
+                    7);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(
                         ring, nodes[3], nodes[2]),
-      8);
+                    8);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(
                         ring, nodes[3], nodes[3]),
-      0);
+                    0);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(
                         ring, nodes[3], nodes[4]),
-      1);
+                    1);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(
                         ring, nodes[3], nodes[5]),
-      2);
+                    2);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(
                         ring, nodes[3], nodes[6]),
-      3);
+                    3);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(
                         ring, nodes[3], nodes[7]),
-      4);
+                    4);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(
                         ring, nodes[3], nodes[8]),
-      5);
+                    5);
 
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(
                         ring, nodes[4], nodes[0]),
-      5);
+                    5);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(
                         ring, nodes[4], nodes[1]),
-      6);
+                    6);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(
                         ring, nodes[4], nodes[2]),
-      7);
+                    7);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(
                         ring, nodes[4], nodes[3]),
-      8);
+                    8);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(
                         ring, nodes[4], nodes[4]),
-      0);
+                    0);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(
                         ring, nodes[4], nodes[5]),
-      1);
+                    1);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(
                         ring, nodes[4], nodes[6]),
-      2);
+                    2);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(
                         ring, nodes[4], nodes[7]),
-      3);
+                    3);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(
                         ring, nodes[4], nodes[8]),
-      4);
+                    4);
 
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(
                         ring, nodes[5], nodes[0]),
-      4);
+                    4);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(
                         ring, nodes[5], nodes[1]),
-      5);
+                    5);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(
                         ring, nodes[5], nodes[2]),
-      6);
+                    6);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(
                         ring, nodes[5], nodes[3]),
-      7);
+                    7);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(
                         ring, nodes[5], nodes[4]),
-      8);
+                    8);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(
                         ring, nodes[5], nodes[5]),
-      0);
+                    0);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(
                         ring, nodes[5], nodes[6]),
-      1);
+                    1);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(
                         ring, nodes[5], nodes[7]),
-      2);
+                    2);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(
                         ring, nodes[5], nodes[8]),
-      3);
+                    3);
 
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(
                         ring, nodes[6], nodes[0]),
-      3);
+                    3);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(
                         ring, nodes[6], nodes[1]),
-      4);
+                    4);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(
                         ring, nodes[6], nodes[2]),
-      5);
+                    5);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(
                         ring, nodes[6], nodes[3]),
-      6);
+                    6);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(
                         ring, nodes[6], nodes[4]),
-      7);
+                    7);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(
                         ring, nodes[6], nodes[5]),
-      8);
+                    8);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(
                         ring, nodes[6], nodes[6]),
-      0);
+                    0);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(
                         ring, nodes[6], nodes[7]),
-      1);
+                    1);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(
                         ring, nodes[6], nodes[8]),
-      2);
+                    2);
 
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(
                         ring, nodes[7], nodes[0]),
-      2);
+                    2);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(
                         ring, nodes[7], nodes[1]),
-      3);
+                    3);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(
                         ring, nodes[7], nodes[2]),
-      4);
+                    4);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(
                         ring, nodes[7], nodes[3]),
-      5);
+                    5);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(
                         ring, nodes[7], nodes[4]),
-      6);
+                    6);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(
                         ring, nodes[7], nodes[5]),
-      7);
+                    7);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(
                         ring, nodes[7], nodes[6]),
-      8);
+                    8);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(
                         ring, nodes[7], nodes[7]),
-      0);
+                    0);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(
                         ring, nodes[7], nodes[8]),
-      1);
+                    1);
 
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(
                         ring, nodes[8], nodes[0]),
-      1);
+                    1);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(
                         ring, nodes[8], nodes[1]),
-      2);
+                    2);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(
                         ring, nodes[8], nodes[2]),
-      3);
+                    3);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(
                         ring, nodes[8], nodes[3]),
-      4);
+                    4);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(
                         ring, nodes[8], nodes[4]),
-      5);
+                    5);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(
                         ring, nodes[8], nodes[5]),
-      6);
+                    6);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(
                         ring, nodes[8], nodes[6]),
-      7);
+                    7);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(
                         ring, nodes[8], nodes[7]),
-      8);
+                    8);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getforwardnodedistance(
                         ring, nodes[8], nodes[8]),
-      0);
+                    0);
 
   BOOST_CHECK(round_consistenthashing_ring_delete(ring));
 }
@@ -1375,255 +1375,255 @@ BOOST_AUTO_TEST_CASE(ConsistentHashGraphBackfowardDistanceTest)
 
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(
                         ring, nodes[0], nodes[0]),
-      0);
+                    0);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(
                         ring, nodes[0], nodes[1]),
-      -8);
+                    -8);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(
                         ring, nodes[0], nodes[2]),
-      -7);
+                    -7);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(
                         ring, nodes[0], nodes[3]),
-      -6);
+                    -6);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(
                         ring, nodes[0], nodes[4]),
-      -5);
+                    -5);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(
                         ring, nodes[0], nodes[5]),
-      -4);
+                    -4);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(
                         ring, nodes[0], nodes[6]),
-      -3);
+                    -3);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(
                         ring, nodes[0], nodes[7]),
-      -2);
+                    -2);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(
                         ring, nodes[0], nodes[8]),
-      -1);
+                    -1);
 
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(
                         ring, nodes[1], nodes[0]),
-      -1);
+                    -1);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(
                         ring, nodes[1], nodes[1]),
-      0);
+                    0);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(
                         ring, nodes[1], nodes[2]),
-      -8);
+                    -8);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(
                         ring, nodes[1], nodes[3]),
-      -7);
+                    -7);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(
                         ring, nodes[1], nodes[4]),
-      -6);
+                    -6);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(
                         ring, nodes[1], nodes[5]),
-      -5);
+                    -5);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(
                         ring, nodes[1], nodes[6]),
-      -4);
+                    -4);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(
                         ring, nodes[1], nodes[7]),
-      -3);
+                    -3);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(
                         ring, nodes[1], nodes[8]),
-      -2);
+                    -2);
 
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(
                         ring, nodes[2], nodes[0]),
-      -2);
+                    -2);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(
                         ring, nodes[2], nodes[1]),
-      -1);
+                    -1);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(
                         ring, nodes[2], nodes[2]),
-      0);
+                    0);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(
                         ring, nodes[2], nodes[3]),
-      -8);
+                    -8);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(
                         ring, nodes[2], nodes[4]),
-      -7);
+                    -7);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(
                         ring, nodes[2], nodes[5]),
-      -6);
+                    -6);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(
                         ring, nodes[2], nodes[6]),
-      -5);
+                    -5);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(
                         ring, nodes[2], nodes[7]),
-      -4);
+                    -4);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(
                         ring, nodes[2], nodes[8]),
-      -3);
+                    -3);
 
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(
                         ring, nodes[3], nodes[0]),
-      -3);
+                    -3);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(
                         ring, nodes[3], nodes[1]),
-      -2);
+                    -2);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(
                         ring, nodes[3], nodes[2]),
-      -1);
+                    -1);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(
                         ring, nodes[3], nodes[3]),
-      0);
+                    0);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(
                         ring, nodes[3], nodes[4]),
-      -8);
+                    -8);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(
                         ring, nodes[3], nodes[5]),
-      -7);
+                    -7);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(
                         ring, nodes[3], nodes[6]),
-      -6);
+                    -6);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(
                         ring, nodes[3], nodes[7]),
-      -5);
+                    -5);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(
                         ring, nodes[3], nodes[8]),
-      -4);
+                    -4);
 
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(
                         ring, nodes[4], nodes[0]),
-      -4);
+                    -4);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(
                         ring, nodes[4], nodes[1]),
-      -3);
+                    -3);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(
                         ring, nodes[4], nodes[2]),
-      -2);
+                    -2);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(
                         ring, nodes[4], nodes[3]),
-      -1);
+                    -1);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(
                         ring, nodes[4], nodes[4]),
-      0);
+                    0);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(
                         ring, nodes[4], nodes[5]),
-      -8);
+                    -8);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(
                         ring, nodes[4], nodes[6]),
-      -7);
+                    -7);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(
                         ring, nodes[4], nodes[7]),
-      -6);
+                    -6);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(
                         ring, nodes[4], nodes[8]),
-      -5);
+                    -5);
 
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(
                         ring, nodes[5], nodes[0]),
-      -5);
+                    -5);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(
                         ring, nodes[5], nodes[1]),
-      -4);
+                    -4);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(
                         ring, nodes[5], nodes[2]),
-      -3);
+                    -3);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(
                         ring, nodes[5], nodes[3]),
-      -2);
+                    -2);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(
                         ring, nodes[5], nodes[4]),
-      -1);
+                    -1);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(
                         ring, nodes[5], nodes[5]),
-      0);
+                    0);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(
                         ring, nodes[5], nodes[6]),
-      -8);
+                    -8);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(
                         ring, nodes[5], nodes[7]),
-      -7);
+                    -7);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(
                         ring, nodes[5], nodes[8]),
-      -6);
+                    -6);
 
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(
                         ring, nodes[6], nodes[0]),
-      -6);
+                    -6);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(
                         ring, nodes[6], nodes[1]),
-      -5);
+                    -5);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(
                         ring, nodes[6], nodes[2]),
-      -4);
+                    -4);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(
                         ring, nodes[6], nodes[3]),
-      -3);
+                    -3);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(
                         ring, nodes[6], nodes[4]),
-      -2);
+                    -2);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(
                         ring, nodes[6], nodes[5]),
-      -1);
+                    -1);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(
                         ring, nodes[6], nodes[6]),
-      0);
+                    0);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(
                         ring, nodes[6], nodes[7]),
-      -8);
+                    -8);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(
                         ring, nodes[6], nodes[8]),
-      -7);
+                    -7);
 
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(
                         ring, nodes[7], nodes[0]),
-      -7);
+                    -7);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(
                         ring, nodes[7], nodes[1]),
-      -6);
+                    -6);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(
                         ring, nodes[7], nodes[2]),
-      -5);
+                    -5);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(
                         ring, nodes[7], nodes[3]),
-      -4);
+                    -4);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(
                         ring, nodes[7], nodes[4]),
-      -3);
+                    -3);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(
                         ring, nodes[7], nodes[5]),
-      -2);
+                    -2);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(
                         ring, nodes[7], nodes[6]),
-      -1);
+                    -1);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(
                         ring, nodes[7], nodes[7]),
-      0);
+                    0);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(
                         ring, nodes[7], nodes[8]),
-      -8);
+                    -8);
 
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(
                         ring, nodes[8], nodes[0]),
-      -8);
+                    -8);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(
                         ring, nodes[8], nodes[1]),
-      -7);
+                    -7);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(
                         ring, nodes[8], nodes[2]),
-      -6);
+                    -6);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(
                         ring, nodes[8], nodes[3]),
-      -5);
+                    -5);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(
                         ring, nodes[8], nodes[4]),
-      -4);
+                    -4);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(
                         ring, nodes[8], nodes[5]),
-      -3);
+                    -3);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(
                         ring, nodes[8], nodes[6]),
-      -2);
+                    -2);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(
                         ring, nodes[8], nodes[7]),
-      -1);
+                    -1);
   BOOST_CHECK_EQUAL(round_consistenthashing_ring_getbackwardnodedistance(
                         ring, nodes[8], nodes[8]),
-      0);
+                    0);
 
   BOOST_CHECK(round_consistenthashing_ring_delete(ring));
 }

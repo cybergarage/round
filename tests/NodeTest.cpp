@@ -44,7 +44,7 @@ BOOST_AUTO_TEST_CASE(NodeBaseMember)
   BOOST_CHECK(round_node_getclustername(node, &cluster));
   BOOST_CHECK(!round_node_hasid(node));
   BOOST_CHECK_EQUAL(round_node_getrequesttimeout(node),
-      ROUND_JSON_RPC_REQUEST_TIMEOUT_SEC);
+                    ROUND_JSON_RPC_REQUEST_TIMEOUT_SEC);
 
   BOOST_CHECK(round_node_setaddress(node, TEST_NODE_ADDR));
   BOOST_CHECK(round_node_setport(node, TEST_NODE_PORT));

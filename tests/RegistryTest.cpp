@@ -94,7 +94,7 @@ BOOST_AUTO_TEST_CASE(RegistryManager)
     BOOST_CHECK(round_registry_manager_remove(mgr, key));
     BOOST_CHECK(!round_registry_manager_get(mgr, key));
     BOOST_CHECK_EQUAL((ROUND_TEST_MAP_SIZE - (n + 1)),
-        round_registry_manager_size(mgr));
+                      round_registry_manager_size(mgr));
   }
 
   BOOST_CHECK_EQUAL(0, round_registry_manager_size(mgr));
