@@ -39,6 +39,8 @@ const char *round_cluster_getname(RoundCluster *cluster);
 size_t round_cluster_size(RoundCluster* cluster);
 RoundNode *round_cluster_getnodes(RoundCluster* cluster);
 RoundNode *round_cluster_getnode(RoundCluster *cluster, size_t idx);
+RoundNode *round_cluster_getnodebyid(RoundCluster *cluster, const char *id);
+RoundNode *round_cluster_getnodebyrandom(RoundCluster *cluster);
 bool round_cluster_hasnode(RoundCluster* cluster, RoundNode *node);
 
 /****************************************
