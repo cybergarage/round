@@ -26,7 +26,7 @@ void round_python_setlocalnode(RoundLocalNode* node)
 }
 
 /****************************************
- * round_script_result2json
+ * round_python_getlocalnode
  ****************************************/
 
 RoundLocalNode* round_python_getlocalnode()
@@ -35,7 +35,27 @@ RoundLocalNode* round_python_getlocalnode()
 }
 
 /****************************************
- * round_script_result2json
+ * round_jsonobject2pythonobject
+ ****************************************/
+
+PyObject* round_jsonobject2pythonobject(RoundJSONObject *jsonObj)
+{
+  if (!jsonObj)
+    return NULL;
+  
+  PyObject *pyObj = NULL;
+  
+  if (round_json_object_isarray(jsonObj)) {
+  }
+
+  if (round_json_object_ismap(jsonObj)) {
+  }
+  
+  return pyObj;
+}
+
+/****************************************
+ * round_python_haslocalnode
  ****************************************/
 
 bool round_python_haslocalnode()
@@ -145,7 +165,21 @@ PyObject* round_python_postmethod(PyObject* self, PyObject* args)
   if (node)
     return NULL;
 
-  return NULL;
+  RoundError err;
+  round_error_init(&err);
+  
+  RoundJSONObject *resObj;
+  
+  if (!round_local_node_execmethod(node, dest, method, params, &resObj, &err)) {
+    round_error_destroy(&err);
+    return NULL;
+  }
+  
+  PyObject *retObj = round_jsonobject2pythonobject(resObj);
+  
+  round_error_destroy(&err);
+  
+  return retObj;
 }
 
 #endif
