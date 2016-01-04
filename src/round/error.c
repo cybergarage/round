@@ -58,14 +58,14 @@ bool round_error_destroy(RoundError* err)
 {
   if (!err)
     return false;
-  
+
   if (err->msg) {
     round_string_delete(err->msg);
   }
   if (err->detailMsg) {
     round_string_delete(err->detailMsg);
   }
-  
+
   return true;
 }
 

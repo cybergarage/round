@@ -616,7 +616,7 @@ bool round_local_node_execrequest(RoundLocalNode* node, RoundJSONObject* reqObj,
   round_json_rpc_getparamsstring(reqObj, &params);
 
   RoundJSONObject* resultObj = NULL;
-  bool isMethodExecuted = round_method_manager_execmethod(node->methodMgr, method, params, &resultObj, err);  
+  bool isMethodExecuted = round_method_manager_execmethod(node->methodMgr, method, params, &resultObj, err);
   if (isMethodExecuted) {
     if (resultObj) {
       round_json_rpc_setresult(*resObj, resultObj);

@@ -1,0 +1,45 @@
+#!/usr/bin/perl
+print<<HEADER;
+##################################################################
+#
+# Round for C
+#
+# Copyright (C) Satoshi Konno 2015
+#
+# This is licensed under BSD-style license, see file COPYING.
+#
+##################################################################
+
+noinst_PROGRAMS = roundd
+
+AM_CPPFLAGS = -I\$(top_srcdir)/include -I\$(top_srcdir)/src -I../
+
+HEADER
+
+my @find_files = `find ../ -name *.h`;
+my @include_files;
+foreach $file (@find_files) {
+	$file =~ s/\n//;
+	$file = "\t" . $file;
+	push @include_files, $file;
+}
+print join(" \\\n", @include_files) . "\n";
+
+print<<SOURCES;
+
+roundd_SOURCES = \\
+SOURCES
+
+my @find_files = `find ../ -name *.cpp -or -name *.c`;
+my @source_files;
+foreach $file (@find_files) {
+	$file =~ s/\n//;
+	$file = "\t" . $file;
+	push @source_files, $file;
+}
+print join(" \\\n", @source_files) . "\n";
+
+print<<FOTTER;
+roundd_LDADD = \@HTTP_LIBS\@ \@XML_LIBS\@ ../../lib/unix/libroundd.a
+FOTTER
+
