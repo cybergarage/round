@@ -51,6 +51,25 @@ bool round_error_init(RoundError* err)
 }
 
 /****************************************
+ * round_error_destroy
+ ****************************************/
+
+bool round_error_destroy(RoundError* err)
+{
+  if (!err)
+    return false;
+  
+  if (err->msg) {
+    round_string_delete(err->msg);
+  }
+  if (err->detailMsg) {
+    round_string_delete(err->detailMsg);
+  }
+  
+  return true;
+}
+
+/****************************************
  * round_error_delete
  ****************************************/
 
@@ -59,12 +78,7 @@ bool round_error_delete(RoundError* err)
   if (!err)
     return false;
 
-  if (err->msg) {
-    round_string_delete(err->msg);
-  }
-  if (err->detailMsg) {
-    round_string_delete(err->detailMsg);
-  }
+  round_error_destroy(err);
 
   free(err);
 

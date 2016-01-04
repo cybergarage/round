@@ -31,6 +31,7 @@ typedef void RoundError;
 
 RoundError *round_error_new();
 bool round_error_init(RoundError *err);
+bool round_error_destroy(RoundError *err);
 bool round_error_delete(RoundError *err);
 
 bool round_error_clear(RoundError *err);

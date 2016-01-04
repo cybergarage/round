@@ -66,6 +66,7 @@ BOOST_AUTO_TEST_CASE(ErrortStruct)
 
   BOOST_CHECK(round_error_init(&err));
   BOOST_ROUND_ERROR_TEST(&err);
+  BOOST_CHECK(round_error_destroy(&err));
 }
 
 BOOST_AUTO_TEST_SUITE_END()
