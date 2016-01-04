@@ -13,9 +13,7 @@ print<<HEADER;
 noinst_PROGRAMS = roundd
 
 AM_CPPFLAGS = -I\$(top_srcdir)/include -I\$(top_srcdir)/src -I../
-
 HEADER
-
 my @find_files = `find ../ -name *.h`;
 my @include_files;
 foreach $file (@find_files) {
@@ -40,6 +38,7 @@ foreach $file (@find_files) {
 print join(" \\\n", @source_files) . "\n";
 
 print<<FOTTER;
+
 roundd_LDADD = \@HTTP_LIBS\@ \@XML_LIBS\@ ../../lib/unix/libroundd.a
 FOTTER
 

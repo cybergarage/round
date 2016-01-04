@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		214DA6121BF706F600F41C0E /* libround.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 214DA60F1BF7063D00F41C0E /* libround.a */; };
+		215A97131C3AF4B9002FE6C0 /* cli.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 215A97111C3AF4B9002FE6C0 /* cli.cpp */; };
+		215A971A1C3AF7E8002FE6C0 /* command.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 215A97191C3AF7E8002FE6C0 /* command.cpp */; };
+		215A971D1C3AF945002FE6C0 /* list.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 215A971C1C3AF945002FE6C0 /* list.cpp */; };
 		21D324C21C3A91CD006E9DD7 /* Python.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21D324C11C3A91CD006E9DD7 /* Python.framework */; };
 		21EC1EC515493D01003945A5 /* round.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21EC1EC415493D01003945A5 /* round.cpp */; };
 /* End PBXBuildFile section */
@@ -44,6 +47,12 @@
 /* Begin PBXFileReference section */
 		2136E04A15493B2B007AC214 /* round */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = round; sourceTree = BUILT_PRODUCTS_DIR; };
 		214DA60A1BF7063D00F41C0E /* libround.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libround.xcodeproj; path = ../../../../lib/macosx/xcode/libround.xcodeproj; sourceTree = "<group>"; };
+		215A970F1C3AF4B9002FE6C0 /* const.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = const.h; path = ../../const.h; sourceTree = "<group>"; };
+		215A97101C3AF4B9002FE6C0 /* cli.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cli.h; path = ../../cli.h; sourceTree = "<group>"; };
+		215A97111C3AF4B9002FE6C0 /* cli.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = cli.cpp; path = ../../cli.cpp; sourceTree = "<group>"; };
+		215A97151C3AF5D2002FE6C0 /* command.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = command.h; path = ../../command.h; sourceTree = "<group>"; };
+		215A97191C3AF7E8002FE6C0 /* command.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = command.cpp; path = ../../command.cpp; sourceTree = "<group>"; };
+		215A971C1C3AF945002FE6C0 /* list.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = list.cpp; sourceTree = "<group>"; };
 		21D324C11C3A91CD006E9DD7 /* Python.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Python.framework; path = System/Library/Frameworks/Python.framework; sourceTree = SDKROOT; };
 		21EC1EC415493D01003945A5 /* round.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; name = round.cpp; path = ../../round.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 /* End PBXFileReference section */
@@ -86,9 +95,24 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		215A971B1C3AF945002FE6C0 /* command */ = {
+			isa = PBXGroup;
+			children = (
+				215A971C1C3AF945002FE6C0 /* list.cpp */,
+			);
+			name = command;
+			path = ../../command;
+			sourceTree = "<group>";
+		};
 		21EC1EB815493CBE003945A5 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				215A971B1C3AF945002FE6C0 /* command */,
+				215A97111C3AF4B9002FE6C0 /* cli.cpp */,
+				215A97101C3AF4B9002FE6C0 /* cli.h */,
+				215A97191C3AF7E8002FE6C0 /* command.cpp */,
+				215A97151C3AF5D2002FE6C0 /* command.h */,
+				215A970F1C3AF4B9002FE6C0 /* const.h */,
 				21EC1EC415493D01003945A5 /* round.cpp */,
 			);
 			name = Sources;
@@ -170,6 +194,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				215A971A1C3AF7E8002FE6C0 /* command.cpp in Sources */,
+				215A971D1C3AF945002FE6C0 /* list.cpp in Sources */,
+				215A97131C3AF4B9002FE6C0 /* cli.cpp in Sources */,
 				21EC1EC515493D01003945A5 /* round.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
