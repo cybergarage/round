@@ -16,7 +16,7 @@
 
 bool round_system_method_setregistry(RoundLocalNode* node, RoundJSONObject* params, RoundJSONObject** result, RoundError* err)
 {
-  const char *key, *val;
+  const char* key, *val;
 
   if (!round_json_object_ismap(params)) {
     round_error_setjsonrpcerrorcode(err, ROUND_RPC_ERROR_CODE_INVALID_PARAMS);

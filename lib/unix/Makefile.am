@@ -57,6 +57,7 @@ round_mpi_sources = \
 	../../src/round/script/lua/lua_functions.c \
 	../../src/round/script/lua_engine.c \
 	../../src/round/script/native_engine.c \
+	../../src/round/script/python/python_functions.c \
 	../../src/round/script/python_engine.c \
 	../../src/round/script/ruby_engine.c \
 	../../src/round/script/script_functions.c \

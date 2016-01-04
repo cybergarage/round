@@ -87,9 +87,9 @@ BOOST_AUTO_TEST_CASE(ClockCompare)
   BOOST_CHECK_EQUAL(round_clock_compare(clk01, clk01), RoundClockOrderSame);
   BOOST_CHECK_EQUAL(round_clock_compare(clk01, clk02), RoundClockOrderSame);
   BOOST_CHECK_EQUAL(round_clock_compare(clk01, clk03),
-      RoundClockOrderAscending);
+                    RoundClockOrderAscending);
   BOOST_CHECK_EQUAL(round_clock_compare(clk01, clk04),
-      RoundClockOrderDescending);
+                    RoundClockOrderDescending);
 
   BOOST_CHECK(round_clock_delete(clk01));
   BOOST_CHECK(round_clock_delete(clk02));
