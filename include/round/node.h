@@ -68,7 +68,7 @@ bool round_node_setrequesttimeout(RoundNode *node, time_t value);
 time_t round_node_getrequesttimeout(RoundNode *node);
 
 bool round_node_postmessage(RoundNode *node, RoundJSONObject *reqObj, RoundJSONObject **resObj, RoundError *err);
-bool round_node_poststringmessage(RoundNode *node, const char *reqStr, RoundJSONObject **resObj, RoundError *err);
+bool round_node_postmessagestring(RoundNode *node, const char *reqStr, RoundJSONObject **resObj, RoundError *err);
 
 bool round_node_equals(RoundNode *node1, RoundNode *node2);  
 
@@ -99,7 +99,7 @@ bool round_node_removeregistry(RoundNode* node, const char *key, RoundError *err
 bool round_local_node_setnativemethod(RoundLocalNode *node, const char *name, ROUND_SCRIPT_NATIVE_ENGINE_FUNC func);
 
 bool round_local_node_postmessage(RoundLocalNode *node, RoundJSONObject *reqObj, RoundJSONObject **resObj, RoundError *err);
-#define round_local_node_poststringmessage(node, reqStr, resObj, err) round_node_poststringmessage((RoundNode*)node, reqStr, resObj, err)
+#define round_local_node_poststringmessage(node, reqStr, resObj, err) round_node_postmessagestring((RoundNode*)node, reqStr, resObj, err)
 
 RoundScriptEngine *round_local_node_getenginebylanguage(RoundLocalNode *node, const char *lang);
 

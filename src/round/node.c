@@ -469,10 +469,10 @@ bool round_node_postmessage(RoundNode* node, RoundJSONObject* reqObj, RoundJSONO
 }
 
 /****************************************
- * round_node_poststringmessage
+ * round_node_postmessagestring
  ****************************************/
 
-bool round_node_poststringmessage(RoundNode* node, const char* reqStr, RoundJSONObject** resObj, RoundError* err)
+bool round_node_postmessagestring(RoundNode* node, const char* reqStr, RoundJSONObject** resObj, RoundError* err)
 {
   if (!node || !reqStr) {
     round_node_rpcerrorcode2error(node, ROUND_RPC_ERROR_CODE_INVALID_REQUEST, err);
