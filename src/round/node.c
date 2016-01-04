@@ -527,8 +527,12 @@ bool round_node_postmethod(RoundNode* node, const char* method, const char* para
 }
 
 /****************************************
- * round_node_execmethod
+ * round_node_getdestinationnode
  ****************************************/
+
+#define round_node_isalldistination(dest) round_streq(dest, ROUND_SYSTEM_METHOD_DEST_ALL_NODE)
+#define round_node_israndomdistination(dest) round_streq(dest, ROUND_SYSTEM_METHOD_DEST_ANY_NODE)
+#define round_node_islocaldistination(dest) ((round_strlen(ROUND_SYSTEM_METHOD_DEST_LOCAL_NODE) <= 0) || round_streq(dest, ROUND_SYSTEM_METHOD_DEST_LOCAL_NODE))
 
 bool round_node_getdestinationnode(RoundNode* node, const char* dest, RoundNode** destNode, RoundError* err)
 {
@@ -536,6 +540,29 @@ bool round_node_getdestinationnode(RoundNode* node, const char* dest, RoundNode*
     round_node_rpcerrorcode2error(node, ROUND_RPC_ERROR_CODE_INVALID_REQUEST, err);
     return false;
   }
+
+  // TODO : Check cluster name
+  RoundCluster *destCluster = round_node_getcluster(node);
+  const char *destNodeId = dest;
+  
+  // TODO : Support all node
+  if (round_node_isalldistination(dest)) {
+    return false;
+  }
+  
+  if (round_node_islocaldistination(dest)) {
+    *destNode = node;
+    return true;
+  }
+
+  if (round_node_israndomdistination(dest)) {
+    *destNode = round_cluster_getnodebyrandom(destCluster);
+    return true;
+  }
+
+  *destNode = round_cluster_getnodebyid(destCluster, destNodeId);
+  
+  return (*destNode) ? true : false;
 }
 
 /****************************************
@@ -548,6 +575,14 @@ bool round_node_execmethod(RoundNode* node, const char* dest, const char* method
     round_node_rpcerrorcode2error(node, ROUND_RPC_ERROR_CODE_INVALID_REQUEST, err);
     return false;
   }
+  
+  RoundNode *destNode;
+  if (!round_node_getdestinationnode(node, dest, &destNode, err)) {
+    round_node_rpcerrorcode2error(node, ROUND_RPC_ERROR_CODE_INVALID_REQUEST, err);
+    return false;
+  }
+  
+  return round_node_postmethod(destNode, method, params, resObj, err);
 }
 
 /****************************************
