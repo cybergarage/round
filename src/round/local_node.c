@@ -511,6 +511,28 @@ bool round_local_node_postjsonrequest(RoundLocalNode* node, RoundJSONObject* req
 }
 
 /****************************************
+ * round_local_node_execmethod
+ ****************************************/
+
+bool round_local_node_execmethod(RoundLocalNode* node, const char *method, const char *params, RoundJSONObject** resObj, RoundError* err)
+{
+  RoundJSONObject* resultObj = NULL;
+  bool isMethodExecuted = round_method_manager_execmethod(node->methodMgr, method, params, &resultObj, err);
+  
+  if (isMethodExecuted) {
+    if (resultObj) {
+      round_json_rpc_setresult(*resObj, resultObj);
+      round_json_object_delete(resultObj);
+    }
+  }
+  else {
+    round_json_rpc_seterror(*resObj, err);
+  }
+  
+  return isMethodExecuted;
+}
+
+/****************************************
  * round_local_node_execrequest
  ****************************************/
 
@@ -614,19 +636,9 @@ bool round_local_node_execrequest(RoundLocalNode* node, RoundJSONObject* reqObj,
 
   const char* params = NULL;
   round_json_rpc_getparamsstring(reqObj, &params);
-
+  
   RoundJSONObject* resultObj = NULL;
-  bool isMethodExecuted = round_method_manager_execmethod(node->methodMgr, method, params, &resultObj, err);
-
-  if (isMethodExecuted) {
-    if (resultObj) {
-      round_json_rpc_setresult(*resObj, resultObj);
-      round_json_object_delete(resultObj);
-    }
-  }
-  else {
-    round_json_rpc_seterror(*resObj, err);
-  }
+  bool isMethodExecuted = round_local_node_execmethod(node, method, params, &resultObj, err);
 
   /*
    bool isMethodExecuted = false;
