@@ -41,6 +41,7 @@ bool round_client_search(RoundClient *client);
 size_t round_client_getclustersize(RoundClient *client);
 RoundCluster *round_client_getclusters(RoundClient *client);
 RoundCluster *round_client_getcluster(RoundClient *client, size_t n);
+RoundCluster *round_client_getclusterbyname(RoundClient* client, const char *name);
 
 #ifdef  __cplusplus
 } /* extern C */
