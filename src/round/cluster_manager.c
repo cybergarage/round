@@ -124,7 +124,12 @@ bool round_cluster_manager_addnode(RoundClusterManager* mgr, RoundNode* node)
   if (!newNode)
     return false;
 
-  return round_cluster_addnode(cluster, newNode);
+  if (!round_cluster_addnode(cluster, newNode)) {
+    round_remote_node_delete(newNode);
+    return false;
+  }
+  
+  return true;
 }
 
 /****************************************
