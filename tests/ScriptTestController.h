@@ -35,6 +35,7 @@ static const char *JS_ECHO_CODE = \
   "  return params;"\
   "}";
 
+#if defined(ROUND_USE_JS_JSON_PARAMS)
 static const char *JS_SUM_CODE = \
   "function sum(params) {"\
   "  var sum = 0;"\
@@ -43,7 +44,18 @@ static const char *JS_SUM_CODE = \
   "  }"\
   "  return sum;"\
   "}";
-
+#else
+static const char *JS_SUM_CODE = \
+  "function sum(params) {"\
+  "  var param = JSON.parse(params);"\
+  "  var sum = 0;"\
+  "  for (i = 0; i < param.length; i++) {"\
+  "    sum += param[i];"\
+  "  }"\
+  "  return sum;"\
+  "}";
+#endif
+  
 static const char *JS_SETCOUNTER_CODE = \
   "var global = new Function(\"return this\")();"\
   "function set_counter(params) {"\
