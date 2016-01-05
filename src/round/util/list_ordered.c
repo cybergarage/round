@@ -82,8 +82,7 @@ bool round_ordered_list_add(RoundOrderedList* list, RoundListNode* newNode)
 
   // TODO : Fix the O(n) algorithm
 
-  for (node = round_ordered_list_getlast(list); node != NULL;
-       node = round_list_prev(node)) {
+  for (node = round_ordered_list_getlast(list); node != NULL; node = round_list_prev(node)) {
     if (list->cmpFunc(node, newNode) == RoundListNodeCompareGreater) {
       return round_list_insert(node, newNode);
     }
