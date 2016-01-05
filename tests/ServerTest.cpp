@@ -10,8 +10,8 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include <round/server.h>
-#include <round/client.h>
+#include <round/server_internal.h>
+#include <round/client_internal.h>
 
 #include "RoundTest.h"
 
@@ -43,13 +43,24 @@ BOOST_AUTO_TEST_CASE(MultipleServerStart)
     BOOST_CHECK(server[n]);
     BOOST_CHECK(round_server_start(server[n]));
     Round::Test::Sleep();
-    while (round_client_getclustersize(client) < (n + 1)) {
-      Round::Test::Sleep();
-    }
-    BOOST_CHECK_EQUAL(round_client_getclustersize(client), (n + 1));
-  }
 
-  BOOST_CHECK_EQUAL(round_client_getclustersize(client), ROUND_TEST_SERVER_CNT);
+    RoundLocalNode *node = round_server_getlocalnode(server[n]);
+    const char *clusterName;
+    BOOST_CHECK(round_local_node_getclustername(node, &clusterName));
+    RoundCluster *cluster = round_client_getclusterbyname(client, clusterName);
+    while (!cluster) {
+      Round::Test::Sleep();
+      cluster = round_client_getclusterbyname(client, clusterName);
+    }
+    BOOST_CHECK(cluster);
+    
+    while (round_cluster_size(cluster) < (n + 1)) {
+      BOOST_TEST_MESSAGE("Searching server[" << n << "]");
+      BOOST_CHECK(round_client_search(client));
+      Round::Test::Sleep();
+    }    
+    BOOST_CHECK_EQUAL(round_cluster_size(cluster), (n + 1));
+  }
 
   for (int n = 0; n < ROUND_TEST_SERVER_CNT; n++) {
     BOOST_CHECK(round_server_stop(server[n]));

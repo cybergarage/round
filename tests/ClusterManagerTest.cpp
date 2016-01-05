@@ -57,4 +57,25 @@ BOOST_AUTO_TEST_CASE(ClusterMgrAddNode)
   BOOST_CHECK(round_cluster_manager_delete(mgr));
 }
 
+BOOST_AUTO_TEST_CASE(ClusterMgrAddSameHostNodes)
+{
+  RoundClusterManager* mgr = round_cluster_manager_new();
+  BOOST_CHECK(mgr);
+ 
+  for (int n = 0; n < ROUND_TEST_MAP_SIZE; n++) {
+    RoundNode* node = round_node_new();
+    BOOST_CHECK(round_node_setaddress(node, "127.0.0.1"));
+    BOOST_CHECK(round_node_setport(node, (n+1)));
+    BOOST_CHECK(round_cluster_manager_addnode(mgr, node));
+    
+    const char *clusterName;
+    BOOST_CHECK(round_node_getclustername(node, &clusterName));
+    RoundCluster *cluster = round_cluster_manager_getclusterbyname(mgr, clusterName);
+    BOOST_CHECK(cluster);
+    BOOST_CHECK_EQUAL(round_cluster_size(cluster), (n+1));
+  }
+  
+  BOOST_CHECK(round_cluster_manager_delete(mgr));
+}
+
 BOOST_AUTO_TEST_SUITE_END()

@@ -145,8 +145,7 @@ ssize_t round_consistenthashing_ring_getnodeindex(RoundConsistentHashingRing* ri
 
   ssize_t nodeIdx = 0;
   RoundConsistentHashingNode* node;
-  for (node = round_consistenthashing_ring_getnodes(ring); node;
-       node = round_consistenthashing_node_next(node)) {
+  for (node = round_consistenthashing_ring_getnodes(ring); node; node = round_consistenthashing_node_next(node)) {
     const char* nodeHash = round_consistenthashing_node_gethash(node);
     if (nodeHash) {
       if (round_strcmp(targetNodeHash, nodeHash) == 0)

@@ -36,8 +36,7 @@ RoundTestNumberNode* round_test_numbernode_new(int value)
   return node;
 }
 
-int round_test_numbernode_comp(RoundTestNumberNode* thisNode,
-    RoundTestNumberNode* otherNode)
+int round_test_numbernode_comp(RoundTestNumberNode* thisNode, RoundTestNumberNode* otherNode)
 {
   if (thisNode->number == otherNode->number)
     return RoundListNodeCompareSame;

@@ -20,7 +20,6 @@
 		2127082A1BD662B400000985 /* consistent_hashing.h in Headers */ = {isa = PBXBuildFile; fileRef = 212708281BD662B400000985 /* consistent_hashing.h */; };
 		212A95451B9BCA4200EC9A71 /* method_manager.c in Sources */ = {isa = PBXBuildFile; fileRef = 212A95431B9BCA4200EC9A71 /* method_manager.c */; };
 		212A95461B9BCA4200EC9A71 /* method.c in Sources */ = {isa = PBXBuildFile; fileRef = 212A95441B9BCA4200EC9A71 /* method.c */; };
-		212D04721C20AFC400DCD5B3 /* libmupnp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 212D046D1C20AF6D00DCD5B3 /* libmupnp.a */; };
 		213389D01BFAEA980014548E /* rpc_server.h in Headers */ = {isa = PBXBuildFile; fileRef = 213389CE1BFAEA980014548E /* rpc_server.h */; };
 		213389D11BFAEA980014548E /* rpc_server.c in Sources */ = {isa = PBXBuildFile; fileRef = 213389CF1BFAEA980014548E /* rpc_server.c */; };
 		21346A7E1BB4FA6B00B5F3A6 /* get_registry.c in Sources */ = {isa = PBXBuildFile; fileRef = 21346A7B1BB4FA6B00B5F3A6 /* get_registry.c */; };
@@ -93,6 +92,7 @@
 		21B755F01C270A4400E3F057 /* option.h in Headers */ = {isa = PBXBuildFile; fileRef = 21B755EF1C270A4400E3F057 /* option.h */; };
 		21B763DD1BA05ED1003C29F3 /* queue.c in Sources */ = {isa = PBXBuildFile; fileRef = 21B763DA1BA05ED1003C29F3 /* queue.c */; };
 		21B763DF1BA05ED1003C29F3 /* queue.h in Headers */ = {isa = PBXBuildFile; fileRef = 21B763DC1BA05ED1003C29F3 /* queue.h */; };
+		21B90DA51C3BA76A0025FE80 /* libmupnp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 21B90DA21C3BA75D0025FE80 /* libmupnp.a */; };
 		21C1C5C21C1AB198005B95C3 /* status.h in Headers */ = {isa = PBXBuildFile; fileRef = 21C1C5C11C1AB198005B95C3 /* status.h */; };
 		21C482441B9F5A100087380C /* json_object.c in Sources */ = {isa = PBXBuildFile; fileRef = 21C482411B9F5A100087380C /* json_object.c */; };
 		21C482451B9F5A100087380C /* json.c in Sources */ = {isa = PBXBuildFile; fileRef = 21C482421B9F5A100087380C /* json.c */; };
@@ -135,16 +135,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		212D046C1C20AF6D00DCD5B3 /* PBXContainerItemProxy */ = {
+		21B90DA11C3BA75D0025FE80 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 212D04681C20AF6C00DCD5B3 /* libmupnp.xcodeproj */;
+			containerPortal = 21B90D9D1C3BA75D0025FE80 /* libmupnp.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 210AF4181331182E00A2EB09;
 			remoteInfo = libmupnp;
 		};
-		212D04701C20AFBC00DCD5B3 /* PBXContainerItemProxy */ = {
+		21B90DA31C3BA7630025FE80 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 212D04681C20AF6C00DCD5B3 /* libmupnp.xcodeproj */;
+			containerPortal = 21B90D9D1C3BA75D0025FE80 /* libmupnp.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 210AF4171331182E00A2EB09;
 			remoteInfo = libmupnp;
@@ -166,7 +166,6 @@
 		212A95431B9BCA4200EC9A71 /* method_manager.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = method_manager.c; path = ../../../src/round/method_manager.c; sourceTree = "<group>"; };
 		212A95441B9BCA4200EC9A71 /* method.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = method.c; path = ../../../src/round/method.c; sourceTree = "<group>"; };
 		212ADD881A8D4F000054EC0F /* libround.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libround.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		212D04681C20AF6C00DCD5B3 /* libmupnp.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libmupnp.xcodeproj; path = ../../../../mupnpc/lib/macosx/xcode/libmupnp.xcodeproj; sourceTree = "<group>"; };
 		213389CE1BFAEA980014548E /* rpc_server.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = rpc_server.h; path = ../../../src/round/rpc_server.h; sourceTree = "<group>"; };
 		213389CF1BFAEA980014548E /* rpc_server.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = rpc_server.c; path = ../../../src/round/rpc_server.c; sourceTree = "<group>"; };
 		21346A7B1BB4FA6B00B5F3A6 /* get_registry.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = get_registry.c; sourceTree = "<group>"; };
@@ -239,6 +238,7 @@
 		21B755EF1C270A4400E3F057 /* option.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = option.h; path = ../../../include/round/util/option.h; sourceTree = "<group>"; };
 		21B763DA1BA05ED1003C29F3 /* queue.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = queue.c; path = ../../../src/round/util/queue.c; sourceTree = "<group>"; };
 		21B763DC1BA05ED1003C29F3 /* queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = queue.h; path = ../../../src/round/util/queue.h; sourceTree = "<group>"; };
+		21B90D9D1C3BA75D0025FE80 /* libmupnp.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libmupnp.xcodeproj; path = ../../../../mupnp/lib/macosx/xcode/libmupnp.xcodeproj; sourceTree = "<group>"; };
 		21C1C5C11C1AB198005B95C3 /* status.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = status.h; path = ../../../src/round/util/status.h; sourceTree = "<group>"; };
 		21C482411B9F5A100087380C /* json_object.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = json_object.c; path = ../../../src/round/util/json_object.c; sourceTree = "<group>"; };
 		21C482421B9F5A100087380C /* json.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = json.c; path = ../../../src/round/util/json.c; sourceTree = "<group>"; };
@@ -285,8 +285,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21B90DA51C3BA76A0025FE80 /* libmupnp.a in Frameworks */,
 				21B40A4D1C32BCE000EAF962 /* Python.framework in Frameworks */,
-				212D04721C20AFC400DCD5B3 /* libmupnp.a in Frameworks */,
 				219A8E2F1B9B0103004ED802 /* Ruby.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -325,10 +325,6 @@
 		211E45CB1B98155300CF0088 /* round */ = {
 			isa = PBXGroup;
 			children = (
-				21E96A1B1C2C2D9B001044DB /* route_manager.c */,
-				21E96A211C2C2EAF001044DB /* route_object.c */,
-				21E96A1C1C2C2D9B001044DB /* route.c */,
-				21E96A1D1C2C2D9B001044DB /* route.h */,
 				211E45CF1B9816F300CF0088 /* client_internal.h */,
 				211E45CC1B98157400CF0088 /* client.c */,
 				216D19CB1BB4B3570007B331 /* clock.c */,
@@ -362,14 +358,18 @@
 				215A07961BB4662700E9702F /* registry.c */,
 				215A07951BB4662700E9702F /* registry.h */,
 				218569AE1BB0D66A00861B9B /* remote_node.c */,
+				21E96A1B1C2C2D9B001044DB /* route_manager.c */,
+				21E96A211C2C2EAF001044DB /* route_object.c */,
+				21E96A1C1C2C2D9B001044DB /* route.c */,
+				21E96A1D1C2C2D9B001044DB /* route.h */,
 				213389CF1BFAEA980014548E /* rpc_server.c */,
 				213389CE1BFAEA980014548E /* rpc_server.h */,
 				21F6D9A91B99848000714056 /* script */,
 				2148E5D61B9DFDAF0021CE7B /* script_engine_map.c */,
 				21F6D9AE1B99848000714056 /* script_engine.c */,
 				219A8E2C1B9AF607004ED802 /* script_internal.h */,
-				215A078A1BB2FA8000E9702F /* server.c */,
 				215A07891BB2FA8000E9702F /* server_internal.h */,
+				215A078A1BB2FA8000E9702F /* server.c */,
 				2178B3631B98BE7B00B9D86B /* util */,
 			);
 			name = round;
@@ -401,14 +401,6 @@
 			isa = PBXGroup;
 			children = (
 				212ADD881A8D4F000054EC0F /* libround.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		212D04691C20AF6C00DCD5B3 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				212D046D1C20AF6D00DCD5B3 /* libmupnp.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -494,11 +486,19 @@
 		21B40A4B1C32BCBD00EAF962 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				21B90D9D1C3BA75D0025FE80 /* libmupnp.xcodeproj */,
 				21B40A4C1C32BCE000EAF962 /* Python.framework */,
-				212D04681C20AF6C00DCD5B3 /* libmupnp.xcodeproj */,
 				219A8E2E1B9B0103004ED802 /* Ruby.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		21B90D9E1C3BA75D0025FE80 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				21B90DA21C3BA75D0025FE80 /* libmupnp.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		21D324BC1C39F4F4006E9DD7 /* python */ = {
@@ -621,7 +621,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				212D04711C20AFBC00DCD5B3 /* PBXTargetDependency */,
+				21B90DA41C3BA7630025FE80 /* PBXTargetDependency */,
 			);
 			name = libround;
 			productName = libuecho;
@@ -654,8 +654,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 212D04691C20AF6C00DCD5B3 /* Products */;
-					ProjectRef = 212D04681C20AF6C00DCD5B3 /* libmupnp.xcodeproj */;
+					ProductGroup = 21B90D9E1C3BA75D0025FE80 /* Products */;
+					ProjectRef = 21B90D9D1C3BA75D0025FE80 /* libmupnp.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -666,11 +666,11 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		212D046D1C20AF6D00DCD5B3 /* libmupnp.a */ = {
+		21B90DA21C3BA75D0025FE80 /* libmupnp.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libmupnp.a;
-			remoteRef = 212D046C1C20AF6D00DCD5B3 /* PBXContainerItemProxy */;
+			remoteRef = 21B90DA11C3BA75D0025FE80 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -759,10 +759,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		212D04711C20AFBC00DCD5B3 /* PBXTargetDependency */ = {
+		21B90DA41C3BA7630025FE80 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = libmupnp;
-			targetProxy = 212D04701C20AFBC00DCD5B3 /* PBXContainerItemProxy */;
+			targetProxy = 21B90DA31C3BA7630025FE80 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
