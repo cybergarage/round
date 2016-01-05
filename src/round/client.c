@@ -138,7 +138,7 @@ size_t round_client_getclustersize(RoundClient* client)
 }
 
 /****************************************
- * round_client_nodeaddedlistener
+ * round_client_getclusters
  ****************************************/
 
 RoundCluster* round_client_getclusters(RoundClient* client)
@@ -147,12 +147,21 @@ RoundCluster* round_client_getclusters(RoundClient* client)
 }
 
 /****************************************
- * round_client_nodeaddedlistener
+ * round_client_getcluster
  ****************************************/
 
 RoundCluster* round_client_getcluster(RoundClient* client, size_t n)
 {
   return round_cluster_manager_getcluster(client->clusterMgr, n);
+}
+
+/****************************************
+ * round_client_getclusterbyname
+ ****************************************/
+
+RoundCluster *round_client_getclusterbyname(RoundClient* client, const char *name)
+{
+  return round_cluster_manager_getclusterbyname(client->clusterMgr, name);
 }
 
 /****************************************
