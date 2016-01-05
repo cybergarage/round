@@ -37,7 +37,8 @@ void round_finder_upnpdevicelistener(mUpnpControlPoint* cp, const char* udn, mUp
   round_node_setport(node, mupnp_device_gethttpport(dev));
 
   switch (devStatus) {
-  case mUpnpDeviceStatusAdded: {
+  case mUpnpDeviceStatusAdded:
+  case mUpnpDeviceStatusUpdated: {
     if (finder->addedListener) {
       finder->addedListener(finder, node);
     }
