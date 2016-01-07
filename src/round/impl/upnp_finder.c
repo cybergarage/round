@@ -15,6 +15,10 @@
  * round_finder_upnpdevicelistener
  ****************************************/
 
+#if !defined(mupnp_device_getaddress)
+#define mupnp_device_getaddress(dev) mupnp_ssdp_packet_getlocaladdress(mupnp_device_getssdppacket(dev))
+#endif
+
 void round_finder_upnpdevicelistener(mUpnpControlPoint* cp, const char* udn, mUpnpDeviceStatus devStatus)
 {
   RoundFinder* finder = mupnp_controlpoint_getuserdata(cp);
