@@ -55,7 +55,7 @@ BOOST_AUTO_TEST_CASE(MethodMap)
     BOOST_CHECK(round_method_map_remove(map, name));
     BOOST_CHECK(!round_method_map_get(map, name));
     BOOST_CHECK_EQUAL((ROUND_TEST_MAP_SIZE - (n + 1)),
-        round_method_map_size(map));
+                      round_method_map_size(map));
   }
 
   BOOST_CHECK_EQUAL(0, round_method_map_size(map));

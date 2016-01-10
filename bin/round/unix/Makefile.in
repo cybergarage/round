@@ -109,8 +109,8 @@ CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 PROGRAMS = $(noinst_PROGRAMS)
 am__dirstamp = $(am__leading_dot)dirstamp
-am_round_OBJECTS = ../command/list.$(OBJEXT) ../cli.$(OBJEXT) \
-	../round.$(OBJEXT) ../command.$(OBJEXT)
+am_round_OBJECTS = ..//cli.$(OBJEXT) ..//command/list.$(OBJEXT) \
+	..//command.$(OBJEXT) ..//round.$(OBJEXT)
 round_OBJECTS = $(am_round_OBJECTS)
 round_DEPENDENCIES = ../../../lib/unix/libround.a
 AM_V_P = $(am__v_P_@AM_V@)
@@ -268,10 +268,10 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 AM_CPPFLAGS = -I$(top_srcdir)/include -I$(top_srcdir)/src -I../
 round_SOURCES = \
-	../command/list.cpp \
-	../cli.cpp \
-	../round.cpp \
-	../command.cpp
+	..//cli.cpp \
+	..//command/list.cpp \
+	..//command.cpp \
+	..//round.cpp
 
 round_LDADD = ../../../lib/unix/libround.a @XML_LIBS@
 all: all-am
@@ -310,23 +310,23 @@ $(am__aclocal_m4_deps):
 
 clean-noinstPROGRAMS:
 	-test -z "$(noinst_PROGRAMS)" || rm -f $(noinst_PROGRAMS)
-../command/$(am__dirstamp):
-	@$(MKDIR_P) ../command
-	@: > ../command/$(am__dirstamp)
-../command/$(DEPDIR)/$(am__dirstamp):
-	@$(MKDIR_P) ../command/$(DEPDIR)
-	@: > ../command/$(DEPDIR)/$(am__dirstamp)
-../command/list.$(OBJEXT): ../command/$(am__dirstamp) \
-	../command/$(DEPDIR)/$(am__dirstamp)
 ../$(am__dirstamp):
-	@$(MKDIR_P) ..
+	@$(MKDIR_P) ../
 	@: > ../$(am__dirstamp)
 ../$(DEPDIR)/$(am__dirstamp):
-	@$(MKDIR_P) ../$(DEPDIR)
+	@$(MKDIR_P) ..//$(DEPDIR)
 	@: > ../$(DEPDIR)/$(am__dirstamp)
-../cli.$(OBJEXT): ../$(am__dirstamp) ../$(DEPDIR)/$(am__dirstamp)
-../round.$(OBJEXT): ../$(am__dirstamp) ../$(DEPDIR)/$(am__dirstamp)
-../command.$(OBJEXT): ../$(am__dirstamp) ../$(DEPDIR)/$(am__dirstamp)
+..//cli.$(OBJEXT): ../$(am__dirstamp) ../$(DEPDIR)/$(am__dirstamp)
+../command/$(am__dirstamp):
+	@$(MKDIR_P) ..//command
+	@: > ../command/$(am__dirstamp)
+../command/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) ..//command/$(DEPDIR)
+	@: > ../command/$(DEPDIR)/$(am__dirstamp)
+..//command/list.$(OBJEXT): ../command/$(am__dirstamp) \
+	../command/$(DEPDIR)/$(am__dirstamp)
+..//command.$(OBJEXT): ../$(am__dirstamp) ../$(DEPDIR)/$(am__dirstamp)
+..//round.$(OBJEXT): ../$(am__dirstamp) ../$(DEPDIR)/$(am__dirstamp)
 
 round$(EXEEXT): $(round_OBJECTS) $(round_DEPENDENCIES) $(EXTRA_round_DEPENDENCIES) 
 	@rm -f round$(EXEEXT)
@@ -334,8 +334,8 @@ round$(EXEEXT): $(round_OBJECTS) $(round_DEPENDENCIES) $(EXTRA_round_DEPENDENCIE
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
-	-rm -f ../*.$(OBJEXT)
-	-rm -f ../command/*.$(OBJEXT)
+	-rm -f ..//*.$(OBJEXT)
+	-rm -f ..//command/*.$(OBJEXT)
 
 distclean-compile:
 	-rm -f *.tab.c
@@ -567,9 +567,9 @@ uninstall-am:
 
 .PRECIOUS: Makefile
 
-	../command.h \
-	../const.h \
-	../cli.h
+	..//cli.h \
+	..//command.h \
+	..//const.h
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

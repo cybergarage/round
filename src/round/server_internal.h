@@ -29,6 +29,7 @@ typedef struct {
   RoundLocalNode *node;
   RoundFinder *finder;
   RoundRpcServer *rpcServer;
+  bool deamonMode;
   void *userData;
 } RoundServer;
 
@@ -49,6 +50,8 @@ bool round_server_init(RoundServer *server);
   
 void round_server_nodeaddedlistener(RoundFinder *finder, RoundNode *node);
 void round_server_noderemovedlistener(RoundFinder *finder, RoundNode *node);
+
+#define round_server_setdeamonmode(server, flag) (server->deamonMode = flag)
 
 #ifdef  __cplusplus
 } /* extern C */

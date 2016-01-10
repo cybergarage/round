@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		210127FA1C21B9F100844A97 /* libround.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 214DA61C1BF7072B00F41C0E /* libround.a */; };
+		212B82881C4311AF00BF3406 /* Python.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 212B82871C4311AF00BF3406 /* Python.framework */; };
 		21E6F32B15493EE800F7077B /* roundd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21E6F32A15493EE800F7077B /* roundd.cpp */; };
 /* End PBXBuildFile section */
 
@@ -41,6 +42,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		212B82871C4311AF00BF3406 /* Python.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Python.framework; path = System/Library/Frameworks/Python.framework; sourceTree = SDKROOT; };
 		214DA6171BF7072B00F41C0E /* libround.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libround.xcodeproj; path = ../../../../lib/macosx/xcode/libround.xcodeproj; sourceTree = "<group>"; };
 		2191B3BB15493B4C003B80F4 /* roundd */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = roundd; sourceTree = BUILT_PRODUCTS_DIR; };
 		21E6F32A15493EE800F7077B /* roundd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = roundd.cpp; path = ../../roundd.cpp; sourceTree = "<group>"; };
@@ -51,6 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				212B82881C4311AF00BF3406 /* Python.framework in Frameworks */,
 				210127FA1C21B9F100844A97 /* libround.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -86,6 +89,7 @@
 		21E6F31E15493EB300F7077B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				212B82871C4311AF00BF3406 /* Python.framework */,
 				214DA6171BF7072B00F41C0E /* libround.xcodeproj */,
 			);
 			name = Frameworks;
