@@ -136,6 +136,7 @@ AC_CHECK_LIB(xml2, xmlSAXUserParseMemory,
   FOUND_LIBXML2=yes
   XML_CFLAGS+=`pkg-config libxml-2.0 --cflags`
   XML_LIBS+=`pkg-config libxml-2.0 --libs`
+  LIBS+=`pkg-config libxml-2.0 --libs`
 ],
 []
 )
