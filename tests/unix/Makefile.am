@@ -62,4 +62,5 @@ roundtest_SOURCES = \
 	../MessageTest.cpp \
 	../MethodMapTest.cpp \
 	../RemoteNodeTest.cpp
+
 roundtest_LDADD = @XML_LIBS@ ../../lib/unix/libround.a

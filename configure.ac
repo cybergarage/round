@@ -262,10 +262,20 @@ AC_ARG_ENABLE(
   esac],
 	[]
 )
+
 AM_CONDITIONAL(ROUND_ENABLE_TESTS,test "$build_tests" = yes)
 if [ test "$build_tests" = yes ]; then
+	AC_CHECK_LIB([boost_system-mt],[main],,
+		[AC_CHECK_LIB([boost_system],[main],,[AC_MSG_ERROR(Round needs boost::system-mt)])])
+
+	AC_CHECK_LIB([boost_filesystem-mt],[main],,
+		[AC_CHECK_LIB([boost_filesystem],[main],,[AC_MSG_ERROR(Round needs boost::filesystem-mt)])])
+
+	AC_CHECK_LIB([boost_thread-mt],[main],,
+		[AC_CHECK_LIB([boost_thread],[main],,[AC_MSG_ERROR(Round needs boost::thread-mt)])])
+
 	AC_CHECK_LIB([boost_unit_test_framework-mt],[main],,
-		[AC_CHECK_LIB([boost_unit_test_framework],[main],,[AC_MSG_ERROR(mUPnP needs boost::boo
+		[AC_CHECK_LIB([boost_unit_test_framework],[main],,[AC_MSG_ERROR(Round needs boost::boo
 st_unit_test_framework)])])
 fi
 
