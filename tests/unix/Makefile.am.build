@@ -41,10 +41,6 @@ foreach $file (@find_files) {
 print join(" \\\n", @source_files) . "\n";
 
 print<<FOTTER;
-#if HAVE_LIBTOOL
-#roundtest_LDADD = \@HTTP_LIBS\@ \@XML_LIBS\@ ../../lib/unix/libround.la
-#else
-roundtest_LDADD = \@HTTP_LIBS\@ \@XML_LIBS\@ ../../lib/unix/libround.a
-#endif
+roundtest_LDADD = \@XML_LIBS\@ ../../lib/unix/libround.a
 FOTTER
 

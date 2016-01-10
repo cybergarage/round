@@ -11,14 +11,14 @@
 noinst_PROGRAMS = round
 
 AM_CPPFLAGS = -I$(top_srcdir)/include -I$(top_srcdir)/src -I../
-	..//cli.h \
-	..//command.h \
-	..//const.h
+	../command.h \
+	../const.h \
+	../cli.h
 
 round_SOURCES = \
-	..//cli.cpp \
-	..//command/list.cpp \
-	..//command.cpp \
-	..//round.cpp
+	../command/list.cpp \
+	../cli.cpp \
+	../round.cpp \
+	../command.cpp
 
 round_LDADD = @HTTP_LIBS@ @XML_LIBS@ ../../lib/unix/libround.a
