@@ -39,6 +39,6 @@ print join(" \\\n", @source_files) . "\n";
 
 print<<FOTTER;
 
-roundd_LDADD = \@HTTP_LIBS\@ \@XML_LIBS\@ ../../lib/unix/libroundd.a
+roundd_LDADD = \@XML_LIBS\@ ../../lib/unix/libroundd.a
 FOTTER
 
