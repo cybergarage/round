@@ -96,7 +96,7 @@ PyObject* round_python_getnodestate(PyObject* self, PyObject* args)
 
 PyObject* round_python_setregistry(PyObject* self, PyObject* args)
 {
-  const char *key, *val;
+  const char* key, *val;
 
   if (!PyArg_ParseTuple(args, "ss", &key, &val))
     return NULL;
@@ -156,7 +156,7 @@ PyObject* round_python_removeregistry(PyObject* self, PyObject* args)
 
 PyObject* round_python_postmethod(PyObject* self, PyObject* args)
 {
-  const char *dest, *method, *params;
+  const char* dest, *method, *params;
 
   if (!PyArg_ParseTuple(args, "sss", &dest, &method, &params))
     return NULL;

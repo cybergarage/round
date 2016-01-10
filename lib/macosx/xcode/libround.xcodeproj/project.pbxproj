@@ -20,6 +20,7 @@
 		2127082A1BD662B400000985 /* consistent_hashing.h in Headers */ = {isa = PBXBuildFile; fileRef = 212708281BD662B400000985 /* consistent_hashing.h */; };
 		212A95451B9BCA4200EC9A71 /* method_manager.c in Sources */ = {isa = PBXBuildFile; fileRef = 212A95431B9BCA4200EC9A71 /* method_manager.c */; };
 		212A95461B9BCA4200EC9A71 /* method.c in Sources */ = {isa = PBXBuildFile; fileRef = 212A95441B9BCA4200EC9A71 /* method.c */; };
+		212B828A1C43170300BF3406 /* server_opt.c in Sources */ = {isa = PBXBuildFile; fileRef = 212B82891C43170300BF3406 /* server_opt.c */; };
 		213389D01BFAEA980014548E /* rpc_server.h in Headers */ = {isa = PBXBuildFile; fileRef = 213389CE1BFAEA980014548E /* rpc_server.h */; };
 		213389D11BFAEA980014548E /* rpc_server.c in Sources */ = {isa = PBXBuildFile; fileRef = 213389CF1BFAEA980014548E /* rpc_server.c */; };
 		21346A7E1BB4FA6B00B5F3A6 /* get_registry.c in Sources */ = {isa = PBXBuildFile; fileRef = 21346A7B1BB4FA6B00B5F3A6 /* get_registry.c */; };
@@ -166,6 +167,7 @@
 		212A95431B9BCA4200EC9A71 /* method_manager.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = method_manager.c; path = ../../../src/round/method_manager.c; sourceTree = "<group>"; };
 		212A95441B9BCA4200EC9A71 /* method.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = method.c; path = ../../../src/round/method.c; sourceTree = "<group>"; };
 		212ADD881A8D4F000054EC0F /* libround.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libround.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		212B82891C43170300BF3406 /* server_opt.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = server_opt.c; path = ../../../src/round/server_opt.c; sourceTree = "<group>"; };
 		213389CE1BFAEA980014548E /* rpc_server.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = rpc_server.h; path = ../../../src/round/rpc_server.h; sourceTree = "<group>"; };
 		213389CF1BFAEA980014548E /* rpc_server.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = rpc_server.c; path = ../../../src/round/rpc_server.c; sourceTree = "<group>"; };
 		21346A7B1BB4FA6B00B5F3A6 /* get_registry.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = get_registry.c; sourceTree = "<group>"; };
@@ -369,6 +371,7 @@
 				21F6D9AE1B99848000714056 /* script_engine.c */,
 				219A8E2C1B9AF607004ED802 /* script_internal.h */,
 				215A07891BB2FA8000E9702F /* server_internal.h */,
+				212B82891C43170300BF3406 /* server_opt.c */,
 				215A078A1BB2FA8000E9702F /* server.c */,
 				2178B3631B98BE7B00B9D86B /* util */,
 			);
@@ -724,6 +727,7 @@
 				21A776BC1BA06DC2009BDB36 /* message_manager.c in Sources */,
 				217F6DE31BB8FA360006B90C /* json_rpc.c in Sources */,
 				212A95461B9BCA4200EC9A71 /* method.c in Sources */,
+				212B828A1C43170300BF3406 /* server_opt.c in Sources */,
 				21852FB51B9DB11000C7F878 /* map.c in Sources */,
 				212708291BD662B400000985 /* consistent_hashing_ring.c in Sources */,
 				21B763DD1BA05ED1003C29F3 /* queue.c in Sources */,

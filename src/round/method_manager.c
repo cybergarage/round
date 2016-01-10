@@ -112,7 +112,7 @@ bool round_method_manager_addengine(RoundMethodManager* mgr, RoundScriptEngine* 
     return false;
 
   round_script_engine_map_remove(mgr->engineMap,
-      round_script_engine_getlanguage(engine));
+                                 round_script_engine_getlanguage(engine));
 
   return round_script_engine_map_set(mgr->engineMap, engine);
 }
