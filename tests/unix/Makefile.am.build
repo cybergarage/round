@@ -41,6 +41,7 @@ foreach $file (@find_files) {
 print join(" \\\n", @source_files) . "\n";
 
 print<<FOTTER;
+
 roundtest_LDADD = \@XML_LIBS\@ ../../lib/unix/libround.a
 FOTTER
 

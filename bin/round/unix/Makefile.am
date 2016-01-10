@@ -21,4 +21,4 @@ round_SOURCES = \
 	../round.cpp \
 	../command.cpp
 
-round_LDADD = @HTTP_LIBS@ @XML_LIBS@ ../../lib/unix/libround.a
+round_LDADD = @XML_LIBS@ ../../lib/unix/libround.a
