@@ -40,14 +40,14 @@ bool round_server_init(RoundServer* server)
   if (!server)
     return false;
 
+  round_list_node_init((RoundList*)server);
+
   server->node = round_local_node_new();
   server->finder = round_finder_new();
   server->rpcServer = round_rpc_server_new();
 
   if (!server->node || !server->finder || !server->rpcServer)
     return false;
-
-  round_server_setdeamonmode(server, true);
 
   round_server_setuserdata(server, NULL);
 
@@ -220,18 +220,6 @@ void round_server_noderemovedlistener(RoundFinder* finder, RoundNode* node)
     return;
 
   round_local_node_removeclusternode(server->node, node);
-}
-
-/****************************************
- * round_server_isdeamonmode
- ****************************************/
-
-bool round_server_isdeamonmode(RoundServer* server)
-{
-  if (!server)
-    return false;
-
-  return server->deamonMode;
 }
 
 /****************************************
