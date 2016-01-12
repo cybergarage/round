@@ -148,6 +148,8 @@ bool round_upnp_server_setbindaddress(RoundUpnpServer *server, const char *addr)
   if (!server)
     return NULL;
 
+  // TODO : Support single interface
+  
   return false;
 }
 
@@ -182,7 +184,7 @@ bool round_upnp_server_setbindport(RoundUpnpServer *server, int port)
   if (!server)
     return NULL;
   
-  return false;
+  return mupnp_device_sethttpport(server->dev, port);
 }
 
 /****************************************
