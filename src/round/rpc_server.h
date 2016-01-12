@@ -38,8 +38,8 @@ bool round_rpc_server_start(RoundRpcServer *server);
 bool round_rpc_server_stop(RoundRpcServer *server);
 bool round_rpc_server_isrunning(RoundRpcServer *server);
 
-#define round_rpc_server_setbindaddress(server,addr) round_upnp_server_setaddress(server->upnpServer, addr)
-#define round_rpc_server_setbindport(server,port) round_upnp_server_setport(server->upnpServer, port)
+#define round_rpc_server_setbindaddress(server,addr) round_upnp_server_setbindaddress(server->upnpServer, addr)
+#define round_rpc_server_setbindport(server,port) round_upnp_server_setbindport(server->upnpServer, port)
 
 #define round_rpc_server_getbindaddress(server) round_upnp_server_getbindaddress(server->upnpServer)
 #define round_rpc_server_getbindport(server) round_upnp_server_getbindport(server->upnpServer)

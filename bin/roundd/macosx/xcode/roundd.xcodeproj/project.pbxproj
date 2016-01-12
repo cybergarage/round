@@ -240,6 +240,7 @@
 					"-ljansson",
 					"-lssl",
 					"-lcrypto",
+					"-lexpat",
 				);
 				SDKROOT = macosx;
 			};
@@ -292,6 +293,7 @@
 					"-ljansson",
 					"-lssl",
 					"-lcrypto",
+					"-lexpat",
 				);
 				SDKROOT = macosx;
 			};
@@ -306,6 +308,20 @@
 					../../../../src,
 				);
 				LIBRARY_SEARCH_PATHS = /usr/local/lib;
+				OTHER_LDFLAGS = (
+					"-lleveldb",
+					"-lsqlite3",
+					"-lxml2",
+					"-lboost_filesystem-mt",
+					"-lboost_system-mt",
+					"-lboost_thread-mt",
+					"-lmozjs185",
+					"-lv8",
+					"-ljansson",
+					"-lssl",
+					"-lcrypto",
+					"-lexpat",
+				);
 				PRODUCT_NAME = roundd;
 			};
 			name = Debug;
@@ -319,6 +335,20 @@
 					../../../../src,
 				);
 				LIBRARY_SEARCH_PATHS = /usr/local/lib;
+				OTHER_LDFLAGS = (
+					"-lleveldb",
+					"-lsqlite3",
+					"-lxml2",
+					"-lboost_filesystem-mt",
+					"-lboost_system-mt",
+					"-lboost_thread-mt",
+					"-lmozjs185",
+					"-lv8",
+					"-ljansson",
+					"-lssl",
+					"-lcrypto",
+					"-lexpat",
+				);
 				PRODUCT_NAME = roundd;
 			};
 			name = Release;
