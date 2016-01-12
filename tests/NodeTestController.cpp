@@ -25,7 +25,7 @@
 void Round::NodeTestController::runScriptManagerTest(RoundNode* node)
 {
   RoundJSON* json = round_json_new();
-  RoundJSONObject* reqObj, *resObj;
+  RoundJSONObject *reqObj, *resObj;
   clock_t prevClock, postClock;
   const char* result;
 

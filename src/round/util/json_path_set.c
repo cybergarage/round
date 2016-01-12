@@ -88,10 +88,10 @@ bool round_json_setboolforpath(RoundJSON* json, const char* path, bool value)
  ****************************************/
 
 bool round_json_object_setobjectforpath(RoundJSONObject* parentObj,
-                                        const char* pathStr,
-                                        RoundJSONObject* obj)
+    const char* pathStr,
+    RoundJSONObject* obj)
 {
-  char* path, *token, *ptr;
+  char *path, *token, *ptr;
   char** tokens;
   size_t n, tokenCnt;
   bool isAdded;
@@ -144,7 +144,7 @@ bool round_json_object_setobjectforpath(RoundJSONObject* parentObj,
         if (!parentJson) {
           json_array_set(parentJson, round_str2int(tokens[n]), json_array());
           parentJson = round_jansson_array_getobject(parentJson,
-                                                     round_str2int(tokens[n]));
+              round_str2int(tokens[n]));
         }
       }
       else if (json_is_object(parentJson)) {

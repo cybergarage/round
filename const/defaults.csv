@@ -3,3 +3,4 @@
 # license that can be found in the LICENSE file.
 
 node_cluster_name,"round"
+node_bind_port,38400

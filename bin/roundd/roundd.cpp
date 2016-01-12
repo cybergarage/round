@@ -26,10 +26,22 @@
 // typedef std::map<std::string,std::string> RounddOptionsDictionary;
 
 /****************************************
- * SetupServer
+ * printusage
  ****************************************/
 
-void AddTestMethods(RoundServer* server)
+void printusage()
+{
+  printf("USAGE: roundd [options]\n");
+  printf("\n");
+  printf("OPTIONS:");
+  printf("\n");
+}
+
+/****************************************
+ * setup_server
+ ****************************************/
+
+void add_testmethods(RoundServer* server)
 {
 #define SET_KEY_NAME "set_key"
 #define GET_KEY_NAME "get_key"
@@ -51,9 +63,9 @@ void AddTestMethods(RoundServer* server)
   round_error_delete(err);
 }
 
-void SetupServer(RoundServer* server)
+void setup_server(RoundServer* server)
 {
-  AddTestMethods(server);
+  add_testmethods(server);
 }
 
 /****************************************
@@ -62,20 +74,90 @@ void SetupServer(RoundServer* server)
 
 int main(int argc, char* argv[])
 {
-  // Setup Server
-
-  RoundServer* server = round_server_new();
+  bool deamonMode = true;
+  size_t serverNum = 1;
+  bool verboseMode = false;
+  int bindPort = ROUND_DEFAULT_NODE_BIND_PORT;
 
   // Parse options
 
-  if (round_server_setarguments(server, argc, argv)) {
-    round_server_printusage(server);
-    exit(EXIT_FAILURE);
+  int ch;
+  while ((ch = getopt(argc, argv, "fhn:p:v")) != -1) {
+    switch (ch) {
+    case 'f': {
+      deamonMode = false;
+    } break;
+    case 'h': {
+      printusage();
+      exit(EXIT_SUCCESS);
+    } break;
+    case 'n': {
+      serverNum = atoi(optarg);
+    } break;
+    case 'p': {
+      bindPort = atoi(optarg);
+    } break;
+    case 'v': {
+      verboseMode = true;
+    } break;
+    default:
+      printusage();
+      exit(EXIT_FAILURE);
+    }
   }
+
+  // Setup Logger
+
+  /*
+   Round::Logger *logger = server.getLogger();
+   logger->setLevel((verboseMode ? Round::LoggerLevel::TRACE :
+   Round::LoggerLevel::INFO));
+   
+   if (deamonMode) {
+   std::string logFilename;
+   if (server.getLogFilename(&logFilename, &err)) {
+   Round::LoggerFileTarget *fileTarget = new Round::LoggerStdFileTarget();
+   if (fileTarget->open(logFilename)) {
+   logger->addTarget(fileTarget);
+   }
+   else
+   delete fileTarget;
+   }
+   }
+   else {
+   logger->addTarget(new Round::LoggerStdoutTarget());
+   logger->addTarget(new Round::LoggerStderrTarget());
+   }
+   */
+
+  /*
+   if (0 < configFilename.length()) {
+   if (!server.loadConfigFromString(configFilename, &err)) {
+   Round::RoundLog(err);
+   exit(EXIT_FAILURE);
+   }
+   }
+   
+   if (0 < bindAddr.length()) {
+   if (!server.setBindAddress(bindAddr, &err)) {
+   Round::RoundLog(err);
+   exit(EXIT_FAILURE);
+   }
+   }
+   */
+
+  /*
+   if (0 < bindCluster.length()) {
+   if (!server.setCluster(bindCluster, &err)) {
+   Round::RoundLog(err);
+   exit(EXIT_FAILURE);
+   }
+   }
+   */
 
   // Setup deamon
 
-  if (round_server_isdeamonmode(server)) {
+  if (deamonMode) {
     int pid = fork();
     if (pid < 0)
       exit(EXIT_FAILURE);
@@ -97,15 +179,26 @@ int main(int argc, char* argv[])
     close(STDERR_FILENO);
   }
 
-  // Setup server
+  // Setup Server
 
-  SetupServer(server);
+  RoundServer** servers = (RoundServer**)malloc(sizeof(RoundServer *) * serverNum);
+  if (!servers)
+    exit(EXIT_FAILURE);
+
+  for (size_t n=0; n<serverNum; n++) {
+    servers[n] = round_server_new();
+    RoundServer *server = servers[n];
+    if (!servers)
+      exit(EXIT_FAILURE);
+    round_server_setbindport(server, bindPort);
+    setup_server(server);
+    if (!round_server_start(server)) {
+      exit(EXIT_FAILURE);
+    }
+  }
 
   // Start server
 
-  if (!round_server_start(server)) {
-    exit(EXIT_FAILURE);
-  }
 
   bool isRunnging = true;
 
