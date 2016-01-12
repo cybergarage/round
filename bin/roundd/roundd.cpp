@@ -19,7 +19,8 @@
 #include <signal.h>
 
 #include <round/const.h>
-#include <round/server.h>
+#include <round/server_internal.h>
+#include <round/node.h>
 
 //#include <round/ui/Console.h>
 
@@ -181,24 +182,23 @@ int main(int argc, char* argv[])
 
   // Setup Server
 
-  RoundServer** servers = (RoundServer**)malloc(sizeof(RoundServer *) * serverNum);
+  RoundServerList *servers = round_server_list_new();
   if (!servers)
     exit(EXIT_FAILURE);
 
-  for (size_t n=0; n<serverNum; n++) {
-    servers[n] = round_server_new();
-    RoundServer *server = servers[n];
-    if (!servers)
+  for (size_t n = 0; n < serverNum; n++) {
+    RoundServer *server = round_server_new();
+    if (!server)
       exit(EXIT_FAILURE);
     round_server_setbindport(server, bindPort);
     setup_server(server);
     if (!round_server_start(server)) {
       exit(EXIT_FAILURE);
     }
+    round_server_list_add(servers, server);
   }
 
   // Start server
-
 
   bool isRunnging = true;
 
@@ -215,16 +215,18 @@ int main(int argc, char* argv[])
     case SIGTERM:
     case SIGINT:
     case SIGKILL: {
-      round_server_stop(server);
+      round_server_list_stop(servers);
       isRunnging = false;
     } break;
     case SIGHUP: {
-      if (!round_server_start(server)) {
+      if (!round_server_list_start(servers)) {
         exit(EXIT_FAILURE);
       }
     } break;
     }
   }
 
+  round_server_list_delete(servers);
+  
   return EXIT_SUCCESS;
 }

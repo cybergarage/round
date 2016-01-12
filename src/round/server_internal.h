@@ -26,12 +26,13 @@ extern "C" {
  ****************************************/
 
 typedef struct {
+  ROUND_LIST_STRUCT_MEMBERS
+
   RoundLocalNode *node;
   RoundFinder *finder;
   RoundRpcServer *rpcServer;
-  bool deamonMode;
   void *userData;
-} RoundServer;
+} RoundServer, RoundServerList;
 
 /****************************************
  * Public Header
@@ -51,7 +52,25 @@ bool round_server_init(RoundServer *server);
 void round_server_nodeaddedlistener(RoundFinder *finder, RoundNode *node);
 void round_server_noderemovedlistener(RoundFinder *finder, RoundNode *node);
 
-#define round_server_setdeamonmode(server, flag) (server->deamonMode = flag)
+#define round_server_next(server) (RoundServer *)round_list_next((RoundList *)server)
+#define round_server_remove(server) round_list_remove((RoundList *)server)
+
+/****************************************
+ * Function (Server List)
+ ****************************************/
+  
+RoundServerList *round_server_list_new();
+void round_server_list_delete(RoundServerList *servers);
+
+#define round_server_list_clear(servers) round_list_clear((RoundList *)servers, (ROUND_LIST_DESTRUCTORFUNC)round_server_delete)
+#define round_server_list_size(servers) round_list_size((RoundList *)servers)
+#define round_server_list_gets(servers) (RoundServer *)round_list_next((RoundList *)servers)
+#define round_server_list_add(servers, server) round_list_add((RoundList *)servers, (RoundList *)server)
+#define round_server_list_remove(server) round_list_remove((RoundList *)server)
+
+bool round_server_list_start(RoundServerList *servers);
+bool round_server_list_stop(RoundServerList *servers);
+bool round_server_list_isrunning(RoundServerList *servers);
 
 #ifdef  __cplusplus
 } /* extern C */
