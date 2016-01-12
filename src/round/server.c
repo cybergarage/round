@@ -137,8 +137,8 @@ bool round_server_start(RoundServer* server)
     return false;
   }
 
-  round_local_node_setaddress(server->node, round_rpc_server_getaddress(server->rpcServer));
-  round_local_node_setport(server->node, round_rpc_server_getport(server->rpcServer));
+  round_local_node_setaddress(server->node, round_rpc_server_getbindaddress(server->rpcServer));
+  round_local_node_setport(server->node, round_rpc_server_getbindport(server->rpcServer));
 
   return true;
 }
@@ -232,4 +232,27 @@ bool round_server_isdeamonmode(RoundServer* server)
     return false;
 
   return server->deamonMode;
+}
+
+/****************************************
+ * round_server_setbindaddress
+ ****************************************/
+
+bool round_server_setbindaddress(RoundServer *server, const char *addr)
+{
+  if (!server)
+    return false;
+  
+  return round_rpc_server_setbindaddress(server->rpcServer, addr);
+}
+/****************************************
+ * round_server_setbindport
+ ****************************************/
+
+bool round_server_setbindport(RoundServer *server, int port)
+{
+  if (!server)
+    return false;
+  
+  return round_rpc_server_setbindport(server->rpcServer, port);
 }
