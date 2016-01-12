@@ -36,10 +36,6 @@ RoundServer *round_server_new(void);
 bool round_server_delete(RoundServer *server);
 bool round_server_clear(RoundServer *server);
 
-bool round_server_setarguments(RoundServer *server, int argc, char* argv[]);
-bool round_server_isdeamonmode(RoundServer *server);
-void round_server_printusage(RoundServer *server);
-
 bool round_server_start(RoundServer *server);
 bool round_server_stop(RoundServer *server);
 bool round_server_isrunning(RoundServer *server);

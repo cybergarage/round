@@ -238,21 +238,21 @@ bool round_server_isdeamonmode(RoundServer* server)
  * round_server_setbindaddress
  ****************************************/
 
-bool round_server_setbindaddress(RoundServer *server, const char *addr)
+bool round_server_setbindaddress(RoundServer* server, const char* addr)
 {
   if (!server)
     return false;
-  
+
   return round_rpc_server_setbindaddress(server->rpcServer, addr);
 }
 /****************************************
  * round_server_setbindport
  ****************************************/
 
-bool round_server_setbindport(RoundServer *server, int port)
+bool round_server_setbindport(RoundServer* server, int port)
 {
   if (!server)
     return false;
-  
+
   return round_rpc_server_setbindport(server->rpcServer, port);
 }

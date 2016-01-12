@@ -117,7 +117,7 @@ bool round_ruby_engine_getsoucecode(RoundRubyEngine* engine, RoundMethod* method
 
 bool round_ruby_engine_run(RoundRubyEngine* engine, RoundMethod* method, const char* param, RoundJSONObject** jsonResult, RoundError* err)
 {
-  RoundString* sourceCode, *strResult;
+  RoundString *sourceCode, *strResult;
   bool isSuccess;
 
   if (!engine)

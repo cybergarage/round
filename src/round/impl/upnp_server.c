@@ -143,13 +143,13 @@ bool round_upnp_server_delete(RoundUpnpServer* server)
  * round_upnp_server_setbindaddress
  ****************************************/
 
-bool round_upnp_server_setbindaddress(RoundUpnpServer *server, const char *addr)
+bool round_upnp_server_setbindaddress(RoundUpnpServer* server, const char* addr)
 {
   if (!server)
     return NULL;
 
   // TODO : Support single interface
-  
+
   return false;
 }
 
@@ -179,11 +179,11 @@ const char* round_upnp_server_getbindaddress(RoundUpnpServer* server)
  * round_upnp_server_setbindport
  ****************************************/
 
-bool round_upnp_server_setbindport(RoundUpnpServer *server, int port)
+bool round_upnp_server_setbindport(RoundUpnpServer* server, int port)
 {
   if (!server)
     return NULL;
-  
+
   return mupnp_device_sethttpport(server->dev, port);
 }
 
