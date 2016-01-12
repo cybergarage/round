@@ -26,6 +26,7 @@ extern "C" {
 
 #if !defined(_ROUND_SERVER_INTERNAL_H_)
 typedef void RoundServer;
+typedef void RoundServerList;
 #endif
 
 /****************************************
@@ -49,7 +50,19 @@ bool round_server_setbindaddress(RoundServer *server, const char *addr);
 void round_server_setuserdata(RoundServer *server, void *data);
 void *round_server_getuserdata(RoundServer *server);
 
+/****************************************
+ * Function (Server List)
+ ****************************************/
 
+RoundServerList *round_server_list_new();
+void round_server_list_delete(RoundServerList *servers);
+
+bool round_server_list_add(RoundServerList *servers, RoundServer *server);
+
+bool round_server_list_start(RoundServerList *servers);
+bool round_server_list_stop(RoundServerList *servers);
+
+  
 #ifdef  __cplusplus
 } /* extern C */
 #endif
