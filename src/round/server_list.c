@@ -43,6 +43,15 @@ void round_server_list_delete(RoundServerList* servers)
 }
 
 /****************************************
+ * round_server_list_add
+ ****************************************/
+
+bool round_server_list_add(RoundServerList *servers, RoundServer *server)
+{
+  return round_list_add((RoundList *)servers, (RoundList *)server);
+}
+
+/****************************************
 * round_server_list_start
 ****************************************/
 

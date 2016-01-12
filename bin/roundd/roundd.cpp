@@ -19,8 +19,7 @@
 #include <signal.h>
 
 #include <round/const.h>
-#include <round/server_internal.h>
-#include <round/node.h>
+#include <round/server.h>
 
 //#include <round/ui/Console.h>
 

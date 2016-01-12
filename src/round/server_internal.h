@@ -65,7 +65,6 @@ void round_server_list_delete(RoundServerList *servers);
 #define round_server_list_clear(servers) round_list_clear((RoundList *)servers, (ROUND_LIST_DESTRUCTORFUNC)round_server_delete)
 #define round_server_list_size(servers) round_list_size((RoundList *)servers)
 #define round_server_list_gets(servers) (RoundServer *)round_list_next((RoundList *)servers)
-#define round_server_list_add(servers, server) round_list_add((RoundList *)servers, (RoundList *)server)
 #define round_server_list_remove(server) round_list_remove((RoundList *)server)
 
 bool round_server_list_start(RoundServerList *servers);
