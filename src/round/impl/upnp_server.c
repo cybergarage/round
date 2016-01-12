@@ -140,10 +140,22 @@ bool round_upnp_server_delete(RoundUpnpServer* server)
 }
 
 /****************************************
- * round_upnp_server_getaddress
+ * round_upnp_server_setbindaddress
  ****************************************/
 
-const char* round_upnp_server_getaddress(RoundUpnpServer* server)
+bool round_upnp_server_setbindaddress(RoundUpnpServer *server, const char *addr)
+{
+  if (!server)
+    return NULL;
+
+  return false;
+}
+
+/****************************************
+ * round_upnp_server_getbindaddress
+ ****************************************/
+
+const char* round_upnp_server_getbindaddress(RoundUpnpServer* server)
 {
   if (!server)
     return NULL;
@@ -162,10 +174,22 @@ const char* round_upnp_server_getaddress(RoundUpnpServer* server)
 }
 
 /****************************************
- * round_upnp_server_getport
+ * round_upnp_server_setbindport
  ****************************************/
 
-int round_upnp_server_getport(RoundUpnpServer* server)
+bool round_upnp_server_setbindport(RoundUpnpServer *server, int port)
+{
+  if (!server)
+    return NULL;
+  
+  return false;
+}
+
+/****************************************
+ * round_upnp_server_getbindport
+ ****************************************/
+
+int round_upnp_server_getbindport(RoundUpnpServer* server)
 {
   if (!server)
     return 0;
