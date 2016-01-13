@@ -29,8 +29,8 @@ RoundTestNumberNode* round_test_numbernode_new(int value)
 
   if (!node)
     return NULL;
-  
-  round_list_node_init((RoundListNode *)node);
+
+  round_list_node_init((RoundListNode*)node);
   node->number = value;
 
   return node;

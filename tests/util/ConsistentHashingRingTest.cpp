@@ -609,8 +609,7 @@ BOOST_AUTO_TEST_CASE(ConsistentHashGraphHandleTest)
           ring, round_test_consistenthashing_ring_gethandlenode(ring, 4)),
       round_consistenthashing_ring_getnodeindex(ring, node4));
   BOOST_CHECK_EQUAL(
-      round_consistenthashing_ring_getnodeindex(
-          ring, round_test_consistenthashing_ring_gethandlenode(ring, 5)),
+      round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 5)),
       round_consistenthashing_ring_getnodeindex(ring, node4));
   BOOST_CHECK_EQUAL(
       round_consistenthashing_ring_getnodeindex(
@@ -620,10 +619,7 @@ BOOST_AUTO_TEST_CASE(ConsistentHashGraphHandleTest)
       round_consistenthashing_ring_getnodeindex(
           ring, round_test_consistenthashing_ring_gethandlenode(ring, 7)),
       round_consistenthashing_ring_getnodeindex(ring, node6));
-  BOOST_CHECK_EQUAL(
-      round_consistenthashing_ring_getnodeindex(
-          ring, round_test_consistenthashing_ring_gethandlenode(ring, 8)),
-      round_consistenthashing_ring_getnodeindex(ring, node6));
+  BOOST_CHECK_EQUAL(round_consistenthashing_ring_getnodeindex(ring, round_test_consistenthashing_ring_gethandlenode(ring, 8)), round_consistenthashing_ring_getnodeindex(ring, node6));
 
   // 2-4-6-8
   round_consistenthashing_ring_addnode(ring, node8);

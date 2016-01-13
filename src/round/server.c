@@ -40,6 +40,8 @@ bool round_server_init(RoundServer* server)
   if (!server)
     return false;
 
+  round_list_node_init((RoundList*)server);
+
   server->node = round_local_node_new();
   server->finder = round_finder_new();
   server->rpcServer = round_rpc_server_new();
@@ -135,8 +137,8 @@ bool round_server_start(RoundServer* server)
     return false;
   }
 
-  round_local_node_setaddress(server->node, round_rpc_server_getaddress(server->rpcServer));
-  round_local_node_setport(server->node, round_rpc_server_getport(server->rpcServer));
+  round_local_node_setaddress(server->node, round_rpc_server_getbindaddress(server->rpcServer));
+  round_local_node_setport(server->node, round_rpc_server_getbindport(server->rpcServer));
 
   return true;
 }
@@ -218,4 +220,27 @@ void round_server_noderemovedlistener(RoundFinder* finder, RoundNode* node)
     return;
 
   round_local_node_removeclusternode(server->node, node);
+}
+
+/****************************************
+ * round_server_setbindaddress
+ ****************************************/
+
+bool round_server_setbindaddress(RoundServer* server, const char* addr)
+{
+  if (!server)
+    return false;
+
+  return round_rpc_server_setbindaddress(server->rpcServer, addr);
+}
+/****************************************
+ * round_server_setbindport
+ ****************************************/
+
+bool round_server_setbindport(RoundServer* server, int port)
+{
+  if (!server)
+    return false;
+
+  return round_rpc_server_setbindport(server->rpcServer, port);
 }

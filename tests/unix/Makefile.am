@@ -62,8 +62,5 @@ roundtest_SOURCES = \
 	..//util/SemaphoreTest.cpp \
 	..//util/StatusTest.cpp \
 	..//util/StringTest.cpp
-#if HAVE_LIBTOOL
-#roundtest_LDADD = @HTTP_LIBS@ @XML_LIBS@ ../../lib/unix/libround.la
-#else
-roundtest_LDADD = @HTTP_LIBS@ @XML_LIBS@ ../../lib/unix/libround.a
-#endif
+
+roundtest_LDADD = @XML_LIBS@ ../../lib/unix/libround.a

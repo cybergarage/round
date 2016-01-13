@@ -159,7 +159,7 @@ RoundCluster* round_client_getcluster(RoundClient* client, size_t n)
  * round_client_getclusterbyname
  ****************************************/
 
-RoundCluster *round_client_getclusterbyname(RoundClient* client, const char *name)
+RoundCluster* round_client_getclusterbyname(RoundClient* client, const char* name)
 {
   return round_cluster_manager_getclusterbyname(client->clusterMgr, name);
 }

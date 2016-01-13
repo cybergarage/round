@@ -25,7 +25,7 @@ RoundCli* round_cli_new(void)
 
   cli->cmds = round_map_new();
   round_map_setmapobjectdestructor(cli->cmds, (ROUND_MAP_OBJECT_DESTRUCTOR)round_command_delete);
-  
+
   return cli;
 }
 
