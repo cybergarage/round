@@ -220,7 +220,7 @@ int main(int argc, char* argv[])
 */
   // Exec command
 
-  if (!round_exec_console_command(client, argv[0], (argc - 1), argv++))
+  if (!round_exec_console_command(client, argv[0], (argc - 1), &argv[1]))
     return EXIT_FAILURE;
 
   return EXIT_SUCCESS;
