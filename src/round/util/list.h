@@ -26,11 +26,11 @@ typedef void (*ROUND_LIST_DESTRUCTORFUNC)(void *);
 typedef int (*ROUND_ORDERED_LIST_COMPAREFUNC)(void *, void *);
 typedef ROUND_LIST_DESTRUCTORFUNC ROUND_ORDERED_LIST_DESTRUCTORFUNC;
 
-enum {
+typedef enum {
   RoundListNodeCompareSame = 0,
   RoundListNodeCompareLess = -1,
   RoundListNodeCompareGreater = 1,
-};
+} RoundListNodeCompareType;
   
 /****************************************
  * Data Type

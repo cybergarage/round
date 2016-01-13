@@ -118,7 +118,7 @@ RoundNode* round_cluster_getnodebyid(RoundCluster* cluster, const char* id)
   if (!cluster)
     return NULL;
 
-  return round_node_ring_getnodebyid(cluster->nodeRing, id);
+  return (RoundNode*)round_node_ring_getnodebyid(cluster->nodeRing, id);
 }
 
 /****************************************

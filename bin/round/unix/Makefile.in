@@ -112,7 +112,7 @@ am__dirstamp = $(am__leading_dot)dirstamp
 am_round_OBJECTS = ..//cli.$(OBJEXT) ..//command/list.$(OBJEXT) \
 	..//command.$(OBJEXT) ..//round.$(OBJEXT)
 round_OBJECTS = $(am_round_OBJECTS)
-round_DEPENDENCIES = ../../lib/unix/libround.a
+round_DEPENDENCIES = ../../../lib/unix/libround.a
 AM_V_P = $(am__v_P_@AM_V@)
 am__v_P_ = $(am__v_P_@AM_DEFAULT_V@)
 am__v_P_0 = false
@@ -273,7 +273,7 @@ round_SOURCES = \
 	..//command.cpp \
 	..//round.cpp
 
-round_LDADD = @HTTP_LIBS@ @XML_LIBS@ ../../lib/unix/libround.a
+round_LDADD = ../../../lib/unix/libround.a @XML_LIBS@
 all: all-am
 
 .SUFFIXES:

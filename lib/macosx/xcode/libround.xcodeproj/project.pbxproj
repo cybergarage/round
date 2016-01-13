@@ -124,6 +124,7 @@
 		21EA96DB1B990CF400E00841 /* node.h in Headers */ = {isa = PBXBuildFile; fileRef = 21EA96DA1B990CF400E00841 /* node.h */; };
 		21EAA2A51B9931B10002CFF0 /* strings.h in Headers */ = {isa = PBXBuildFile; fileRef = 21EAA2A31B9931B10002CFF0 /* strings.h */; };
 		21EAA2A61B9931B10002CFF0 /* string_func.c in Sources */ = {isa = PBXBuildFile; fileRef = 21EAA2A41B9931B10002CFF0 /* string_func.c */; };
+		21EB02CA1C45880600D89922 /* server_list.c in Sources */ = {isa = PBXBuildFile; fileRef = 21EB02C91C45880600D89922 /* server_list.c */; };
 		21F6D9AF1B99848000714056 /* js_engine.c in Sources */ = {isa = PBXBuildFile; fileRef = 21F6D9AA1B99848000714056 /* js_engine.c */; };
 		21F6D9B01B99848000714056 /* js_sm_engine.c in Sources */ = {isa = PBXBuildFile; fileRef = 21F6D9AB1B99848000714056 /* js_sm_engine.c */; };
 		21F6D9B11B99848000714056 /* lua_engine.c in Sources */ = {isa = PBXBuildFile; fileRef = 21F6D9AC1B99848000714056 /* lua_engine.c */; };
@@ -270,6 +271,7 @@
 		21EA96DA1B990CF400E00841 /* node.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = node.h; path = ../../../include/round/node.h; sourceTree = "<group>"; };
 		21EAA2A31B9931B10002CFF0 /* strings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = strings.h; path = ../../../src/round/util/strings.h; sourceTree = "<group>"; };
 		21EAA2A41B9931B10002CFF0 /* string_func.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = string_func.c; path = ../../../src/round/util/string_func.c; sourceTree = "<group>"; };
+		21EB02C91C45880600D89922 /* server_list.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = server_list.c; path = ../../../src/round/server_list.c; sourceTree = "<group>"; };
 		21F6D9AA1B99848000714056 /* js_engine.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = js_engine.c; sourceTree = "<group>"; };
 		21F6D9AB1B99848000714056 /* js_sm_engine.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = js_sm_engine.c; sourceTree = "<group>"; };
 		21F6D9AC1B99848000714056 /* lua_engine.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lua_engine.c; sourceTree = "<group>"; };
@@ -369,6 +371,7 @@
 				21F6D9AE1B99848000714056 /* script_engine.c */,
 				219A8E2C1B9AF607004ED802 /* script_internal.h */,
 				215A07891BB2FA8000E9702F /* server_internal.h */,
+				21EB02C91C45880600D89922 /* server_list.c */,
 				215A078A1BB2FA8000E9702F /* server.c */,
 				2178B3631B98BE7B00B9D86B /* util */,
 			);
@@ -694,6 +697,7 @@
 				21EA96D91B990C3B00E00841 /* node.c in Sources */,
 				21346A821BB50AE300B5F3A6 /* json_path_get.c in Sources */,
 				215A079C1BB4681000E9702F /* registry_map.c in Sources */,
+				21EB02CA1C45880600D89922 /* server_list.c in Sources */,
 				2178B36B1B98BEAE00B9D86B /* list.c in Sources */,
 				21F6D9AF1B99848000714056 /* js_engine.c in Sources */,
 				216D19D51BB5A4480007B331 /* json_map.c in Sources */,

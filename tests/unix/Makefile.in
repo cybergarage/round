@@ -546,10 +546,7 @@ roundtest_SOURCES = \
 	..//util/StatusTest.cpp \
 	..//util/StringTest.cpp
 
-#if HAVE_LIBTOOL
-#roundtest_LDADD = @HTTP_LIBS@ @XML_LIBS@ ../../lib/unix/libround.la
-#else
-roundtest_LDADD = @HTTP_LIBS@ @XML_LIBS@ ../../lib/unix/libround.a
+roundtest_LDADD = @XML_LIBS@ ../../lib/unix/libround.a
 all: all-am
 
 .SUFFIXES:
@@ -1155,7 +1152,6 @@ uninstall-am:
 	..//NodeTestController.h \
 	..//RoundTest.h \
 	..//ScriptTestController.h
-#endif
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
