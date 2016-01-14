@@ -31,10 +31,11 @@
 
 void printusage()
 {
-  printf("USAGE: roundd [options]\n");
-  printf("\n");
-  printf("OPTIONS:");
-  printf("\n");
+  printf("Usage: roundd [options]\n");
+  printf("Options:\n");
+  printf("  -h : Display this information\n");
+  printf("  -v : Display version information\n");
+
 }
 
 /****************************************
