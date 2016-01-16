@@ -20,6 +20,7 @@ round_mpi_sources = \
 	../../src/round/impl/upnp_finder.c \
 	../../src/round/impl/upnp_remote_node.c \
 	../../src/round/impl/upnp_server.c \
+<<<<<<< HEAD
 	../../src/round/local_node.c \
 	../../src/round/script_engine_map.c \
 	../../src/round/error_rpc.c \
@@ -53,6 +54,18 @@ round_mpi_sources = \
 	../../src/round/method_map.c \
 	../../src/round/script_engine.c \
 	../../src/round/server_list.c \
+=======
+	../../src/round/script/lua/lua_functions.c \
+	../../src/round/script/js/js_sm_functions.c \
+	../../src/round/script/python/python_functions.c \
+	../../src/round/script/python_engine.c \
+	../../src/round/script/script_functions.c \
+	../../src/round/script/lua_engine.c \
+	../../src/round/script/js_sm_engine.c \
+	../../src/round/script/ruby_engine.c \
+	../../src/round/script/native_engine.c \
+	../../src/round/script/js_engine.c \
+>>>>>>> a710a063a08fb8053b41ef140295a9963a7d484e
 	../../src/round/util/list_ordered.c \
 	../../src/round/util/string.c \
 	../../src/round/util/queue_object.c \
@@ -79,13 +92,43 @@ round_mpi_sources = \
 	../../src/round/util/base64.c \
 	../../src/round/util/json_object.c \
 	../../src/round/util/list.c \
+<<<<<<< HEAD
 	../../src/round/route.c \
+=======
+>>>>>>> a710a063a08fb8053b41ef140295a9963a7d484e
 	../../src/round/method/set_registry.c \
 	../../src/round/method/system_method.c \
 	../../src/round/method/get_registry.c \
 	../../src/round/method/set_method.c \
 	../../src/round/method/remove_method.c \
 	../../src/round/method/remove_registry.c \
+<<<<<<< HEAD
+=======
+	../../src/round/local_node.c \
+	../../src/round/script_engine_map.c \
+	../../src/round/error_rpc.c \
+	../../src/round/registry.c \
+	../../src/round/local_node_thread.c \
+	../../src/round/client.c \
+	../../src/round/method.c \
+	../../src/round/registry_manager.c \
+	../../src/round/message_manager.c \
+	../../src/round/registry_map.c \
+	../../src/round/error.c \
+	../../src/round/cluster_manager.c \
+	../../src/round/node.c \
+	../../src/round/cluster.c \
+	../../src/round/local_node_message.c \
+	../../src/round/server.c \
+	../../src/round/node_ring.c \
+	../../src/round/remote_node.c \
+	../../src/round/route_object.c \
+	../../src/round/message.c \
+	../../src/round/method_map.c \
+	../../src/round/script_engine.c \
+	../../src/round/server_list.c \
+	../../src/round/route.c \
+>>>>>>> a710a063a08fb8053b41ef140295a9963a7d484e
 	../../src/round/route_manager.c \
 	../../src/round/method_manager.c \
 	../../src/round/rpc_server.c \
