@@ -556,11 +556,6 @@ uninstall-am:
 	mostlyclean-generic pdf pdf-am ps ps-am tags tags-am uninstall \
 	uninstall-am
 
-<<<<<<< HEAD
-.PRECIOUS: Makefile
-
-=======
->>>>>>> a710a063a08fb8053b41ef140295a9963a7d484e
 	../command.h \
 	../const.h \
 	../cli.h
