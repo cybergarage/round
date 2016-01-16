@@ -131,7 +131,7 @@ AC_CHECK_LIB([expat],[main],
 []
 )
 
-AC_CHECK_LIB(xml2, xmlSAXUserParseMemory,
+AC_CHECK_LIB([xml2], [xmlSAXUserParseMemory],
 [
   FOUND_LIBXML2=yes
   XML_CFLAGS+=`pkg-config libxml-2.0 --cflags`
