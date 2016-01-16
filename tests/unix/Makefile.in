@@ -101,22 +101,12 @@ CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 PROGRAMS = $(noinst_PROGRAMS)
 am__dirstamp = $(am__leading_dot)dirstamp
-<<<<<<< HEAD
-am_roundtest_OBJECTS = ../RegistryTest.$(OBJEXT) \
-	../RpcServerTest.$(OBJEXT) ../ClusterManagerTest.$(OBJEXT) \
-	../ScriptTestController.$(OBJEXT) \
-	../ScriptEngineTest.$(OBJEXT) ../json/JSONObjectTest.$(OBJEXT) \
-=======
 am_roundtest_OBJECTS = ../json/JSONObjectTest.$(OBJEXT) \
->>>>>>> a710a063a08fb8053b41ef140295a9963a7d484e
 	../json/JSONParseTest.$(OBJEXT) ../json/JSONRpcTest.$(OBJEXT) \
 	../json/JSONMapTest.$(OBJEXT) ../json/JSONArrayTest.$(OBJEXT) \
 	../script/JsEngineTest.$(OBJEXT) \
 	../script/RubyEngineTest.$(OBJEXT) \
 	../script/LuaEngineTest.$(OBJEXT) \
-<<<<<<< HEAD
-	../script/PythonEngineTest.$(OBJEXT) ../ServerTest.$(OBJEXT) \
-=======
 	../script/PythonEngineTest.$(OBJEXT) \
 	../util/StatusTest.$(OBJEXT) ../util/Base64Test.$(OBJEXT) \
 	../util/SemaphoreTest.$(OBJEXT) ../util/QueueTest.$(OBJEXT) \
@@ -128,7 +118,6 @@ am_roundtest_OBJECTS = ../json/JSONObjectTest.$(OBJEXT) \
 	../RpcServerTest.$(OBJEXT) ../ClusterManagerTest.$(OBJEXT) \
 	../ScriptTestController.$(OBJEXT) \
 	../ScriptEngineTest.$(OBJEXT) ../ServerTest.$(OBJEXT) \
->>>>>>> a710a063a08fb8053b41ef140295a9963a7d484e
 	../NodeRingTest.$(OBJEXT) ../LocalNodeMessageTest.$(OBJEXT) \
 	../RoundTest.$(OBJEXT) ../ScriptEngineMapTest.$(OBJEXT) \
 	../FinderTest.$(OBJEXT) ../MethodManagerTest.$(OBJEXT) \
@@ -136,17 +125,7 @@ am_roundtest_OBJECTS = ../json/JSONObjectTest.$(OBJEXT) \
 	../ClockTest.$(OBJEXT) ../NodeTestController.$(OBJEXT) \
 	../LocalNodeTest.$(OBJEXT) ../ErrorTest.$(OBJEXT) \
 	../DigestTest.$(OBJEXT) ../ClusterTest.$(OBJEXT) \
-<<<<<<< HEAD
-	../ClientTest.$(OBJEXT) ../util/StatusTest.$(OBJEXT) \
-	../util/Base64Test.$(OBJEXT) ../util/SemaphoreTest.$(OBJEXT) \
-	../util/QueueTest.$(OBJEXT) ../util/StringTest.$(OBJEXT) \
-	../util/MutexTest.$(OBJEXT) ../util/MapTest.$(OBJEXT) \
-	../util/ConsistentHashingRingTest.$(OBJEXT) \
-	../util/ListOrderedTest.$(OBJEXT) ../util/OptionTest.$(OBJEXT) \
-	../util/ListTest.$(OBJEXT) ../MessageTest.$(OBJEXT) \
-=======
 	../ClientTest.$(OBJEXT) ../MessageTest.$(OBJEXT) \
->>>>>>> a710a063a08fb8053b41ef140295a9963a7d484e
 	../MethodMapTest.$(OBJEXT) ../RemoteNodeTest.$(OBJEXT)
 roundtest_OBJECTS = $(am_roundtest_OBJECTS)
 roundtest_DEPENDENCIES = ../../lib/unix/libround.a
@@ -508,14 +487,6 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 AM_CPPFLAGS = -I$(top_srcdir)/include -I$(top_srcdir)/src -I../
 roundtest_SOURCES = \
-<<<<<<< HEAD
-	../RegistryTest.cpp \
-	../RpcServerTest.cpp \
-	../ClusterManagerTest.cpp \
-	../ScriptTestController.cpp \
-	../ScriptEngineTest.cpp \
-=======
->>>>>>> a710a063a08fb8053b41ef140295a9963a7d484e
 	../json/JSONObjectTest.cpp \
 	../json/JSONParseTest.cpp \
 	../json/JSONRpcTest.cpp \
@@ -525,8 +496,6 @@ roundtest_SOURCES = \
 	../script/RubyEngineTest.cpp \
 	../script/LuaEngineTest.cpp \
 	../script/PythonEngineTest.cpp \
-<<<<<<< HEAD
-=======
 	../util/StatusTest.cpp \
 	../util/Base64Test.cpp \
 	../util/SemaphoreTest.cpp \
@@ -543,7 +512,6 @@ roundtest_SOURCES = \
 	../ClusterManagerTest.cpp \
 	../ScriptTestController.cpp \
 	../ScriptEngineTest.cpp \
->>>>>>> a710a063a08fb8053b41ef140295a9963a7d484e
 	../ServerTest.cpp \
 	../NodeRingTest.cpp \
 	../LocalNodeMessageTest.cpp \
@@ -560,20 +528,6 @@ roundtest_SOURCES = \
 	../DigestTest.cpp \
 	../ClusterTest.cpp \
 	../ClientTest.cpp \
-<<<<<<< HEAD
-	../util/StatusTest.cpp \
-	../util/Base64Test.cpp \
-	../util/SemaphoreTest.cpp \
-	../util/QueueTest.cpp \
-	../util/StringTest.cpp \
-	../util/MutexTest.cpp \
-	../util/MapTest.cpp \
-	../util/ConsistentHashingRingTest.cpp \
-	../util/ListOrderedTest.cpp \
-	../util/OptionTest.cpp \
-	../util/ListTest.cpp \
-=======
->>>>>>> a710a063a08fb8053b41ef140295a9963a7d484e
 	../MessageTest.cpp \
 	../MethodMapTest.cpp \
 	../RemoteNodeTest.cpp
@@ -616,25 +570,6 @@ $(am__aclocal_m4_deps):
 
 clean-noinstPROGRAMS:
 	-test -z "$(noinst_PROGRAMS)" || rm -f $(noinst_PROGRAMS)
-<<<<<<< HEAD
-../$(am__dirstamp):
-	@$(MKDIR_P) ..
-	@: > ../$(am__dirstamp)
-../$(DEPDIR)/$(am__dirstamp):
-	@$(MKDIR_P) ../$(DEPDIR)
-	@: > ../$(DEPDIR)/$(am__dirstamp)
-../RegistryTest.$(OBJEXT): ../$(am__dirstamp) \
-	../$(DEPDIR)/$(am__dirstamp)
-../RpcServerTest.$(OBJEXT): ../$(am__dirstamp) \
-	../$(DEPDIR)/$(am__dirstamp)
-../ClusterManagerTest.$(OBJEXT): ../$(am__dirstamp) \
-	../$(DEPDIR)/$(am__dirstamp)
-../ScriptTestController.$(OBJEXT): ../$(am__dirstamp) \
-	../$(DEPDIR)/$(am__dirstamp)
-../ScriptEngineTest.$(OBJEXT): ../$(am__dirstamp) \
-	../$(DEPDIR)/$(am__dirstamp)
-=======
->>>>>>> a710a063a08fb8053b41ef140295a9963a7d484e
 ../json/$(am__dirstamp):
 	@$(MKDIR_P) ../json
 	@: > ../json/$(am__dirstamp)
@@ -665,40 +600,6 @@ clean-noinstPROGRAMS:
 	../script/$(DEPDIR)/$(am__dirstamp)
 ../script/PythonEngineTest.$(OBJEXT): ../script/$(am__dirstamp) \
 	../script/$(DEPDIR)/$(am__dirstamp)
-<<<<<<< HEAD
-../ServerTest.$(OBJEXT): ../$(am__dirstamp) \
-	../$(DEPDIR)/$(am__dirstamp)
-../NodeRingTest.$(OBJEXT): ../$(am__dirstamp) \
-	../$(DEPDIR)/$(am__dirstamp)
-../LocalNodeMessageTest.$(OBJEXT): ../$(am__dirstamp) \
-	../$(DEPDIR)/$(am__dirstamp)
-../RoundTest.$(OBJEXT): ../$(am__dirstamp) \
-	../$(DEPDIR)/$(am__dirstamp)
-../ScriptEngineMapTest.$(OBJEXT): ../$(am__dirstamp) \
-	../$(DEPDIR)/$(am__dirstamp)
-../FinderTest.$(OBJEXT): ../$(am__dirstamp) \
-	../$(DEPDIR)/$(am__dirstamp)
-../MethodManagerTest.$(OBJEXT): ../$(am__dirstamp) \
-	../$(DEPDIR)/$(am__dirstamp)
-../MethodTest.$(OBJEXT): ../$(am__dirstamp) \
-	../$(DEPDIR)/$(am__dirstamp)
-../NodeTest.$(OBJEXT): ../$(am__dirstamp) ../$(DEPDIR)/$(am__dirstamp)
-../ClockTest.$(OBJEXT): ../$(am__dirstamp) \
-	../$(DEPDIR)/$(am__dirstamp)
-../NodeTestController.$(OBJEXT): ../$(am__dirstamp) \
-	../$(DEPDIR)/$(am__dirstamp)
-../LocalNodeTest.$(OBJEXT): ../$(am__dirstamp) \
-	../$(DEPDIR)/$(am__dirstamp)
-../ErrorTest.$(OBJEXT): ../$(am__dirstamp) \
-	../$(DEPDIR)/$(am__dirstamp)
-../DigestTest.$(OBJEXT): ../$(am__dirstamp) \
-	../$(DEPDIR)/$(am__dirstamp)
-../ClusterTest.$(OBJEXT): ../$(am__dirstamp) \
-	../$(DEPDIR)/$(am__dirstamp)
-../ClientTest.$(OBJEXT): ../$(am__dirstamp) \
-	../$(DEPDIR)/$(am__dirstamp)
-=======
->>>>>>> a710a063a08fb8053b41ef140295a9963a7d484e
 ../util/$(am__dirstamp):
 	@$(MKDIR_P) ../util
 	@: > ../util/$(am__dirstamp)
@@ -727,8 +628,6 @@ clean-noinstPROGRAMS:
 	../util/$(DEPDIR)/$(am__dirstamp)
 ../util/ListTest.$(OBJEXT): ../util/$(am__dirstamp) \
 	../util/$(DEPDIR)/$(am__dirstamp)
-<<<<<<< HEAD
-=======
 ../$(am__dirstamp):
 	@$(MKDIR_P) ..
 	@: > ../$(am__dirstamp)
@@ -776,7 +675,6 @@ clean-noinstPROGRAMS:
 	../$(DEPDIR)/$(am__dirstamp)
 ../ClientTest.$(OBJEXT): ../$(am__dirstamp) \
 	../$(DEPDIR)/$(am__dirstamp)
->>>>>>> a710a063a08fb8053b41ef140295a9963a7d484e
 ../MessageTest.$(OBJEXT): ../$(am__dirstamp) \
 	../$(DEPDIR)/$(am__dirstamp)
 ../MethodMapTest.$(OBJEXT): ../$(am__dirstamp) \
