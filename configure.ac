@@ -131,7 +131,7 @@ AC_CHECK_LIB([expat],[main],
 []
 )
 
-AC_CHECK_LIB(xml2, xmlSAXUserParseMemory,
+AC_CHECK_LIB([xml2], [xmlSAXUserParseMemory],
 [
   FOUND_LIBXML2=yes
   XML_CFLAGS+=`pkg-config libxml-2.0 --cflags`
@@ -220,6 +220,7 @@ if [ test $ROUND_SUPPORT_PYTHON = yes ]; then
   AC_CHECK_HEADERS([Python/Python.h])
   AC_CHECK_HEADERS([Python.h])
   AC_DEFINE([ROUND_SUPPORT_PYTHON],1,[Python])
+  LIBS+=`python-config --libs`
 fi
 
 # Lua 

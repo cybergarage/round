@@ -13,54 +13,54 @@ TESTS = roundtest
 
 AM_CPPFLAGS = -I$(top_srcdir)/include -I$(top_srcdir)/src -I../
 
-	..//NodeTestController.h \
-	..//RoundTest.h \
-	..//ScriptTestController.h
+	../RoundTest.h \
+	../NodeTestController.h \
+	../ScriptTestController.h
 
 roundtest_SOURCES = \
-	..//ClientTest.cpp \
-	..//ClockTest.cpp \
-	..//ClusterManagerTest.cpp \
-	..//ClusterTest.cpp \
-	..//DigestTest.cpp \
-	..//ErrorTest.cpp \
-	..//FinderTest.cpp \
-	..//json/JSONArrayTest.cpp \
-	..//json/JSONMapTest.cpp \
-	..//json/JSONObjectTest.cpp \
-	..//json/JSONParseTest.cpp \
-	..//json/JSONRpcTest.cpp \
-	..//LocalNodeMessageTest.cpp \
-	..//LocalNodeTest.cpp \
-	..//MessageTest.cpp \
-	..//MethodManagerTest.cpp \
-	..//MethodMapTest.cpp \
-	..//MethodTest.cpp \
-	..//NodeRingTest.cpp \
-	..//NodeTest.cpp \
-	..//NodeTestController.cpp \
-	..//RegistryTest.cpp \
-	..//RemoteNodeTest.cpp \
-	..//RoundTest.cpp \
-	..//RpcServerTest.cpp \
-	..//script/JsEngineTest.cpp \
-	..//script/LuaEngineTest.cpp \
-	..//script/PythonEngineTest.cpp \
-	..//script/RubyEngineTest.cpp \
-	..//ScriptEngineMapTest.cpp \
-	..//ScriptEngineTest.cpp \
-	..//ScriptTestController.cpp \
-	..//ServerTest.cpp \
-	..//util/Base64Test.cpp \
-	..//util/ConsistentHashingRingTest.cpp \
-	..//util/ListOrderedTest.cpp \
-	..//util/ListTest.cpp \
-	..//util/MapTest.cpp \
-	..//util/MutexTest.cpp \
-	..//util/OptionTest.cpp \
-	..//util/QueueTest.cpp \
-	..//util/SemaphoreTest.cpp \
-	..//util/StatusTest.cpp \
-	..//util/StringTest.cpp
+	../RegistryTest.cpp \
+	../RpcServerTest.cpp \
+	../ClusterManagerTest.cpp \
+	../ScriptTestController.cpp \
+	../ScriptEngineTest.cpp \
+	../json/JSONObjectTest.cpp \
+	../json/JSONParseTest.cpp \
+	../json/JSONRpcTest.cpp \
+	../json/JSONMapTest.cpp \
+	../json/JSONArrayTest.cpp \
+	../script/JsEngineTest.cpp \
+	../script/RubyEngineTest.cpp \
+	../script/LuaEngineTest.cpp \
+	../script/PythonEngineTest.cpp \
+	../ServerTest.cpp \
+	../NodeRingTest.cpp \
+	../LocalNodeMessageTest.cpp \
+	../RoundTest.cpp \
+	../ScriptEngineMapTest.cpp \
+	../FinderTest.cpp \
+	../MethodManagerTest.cpp \
+	../MethodTest.cpp \
+	../NodeTest.cpp \
+	../ClockTest.cpp \
+	../NodeTestController.cpp \
+	../LocalNodeTest.cpp \
+	../ErrorTest.cpp \
+	../DigestTest.cpp \
+	../ClusterTest.cpp \
+	../ClientTest.cpp \
+	../util/StatusTest.cpp \
+	../util/Base64Test.cpp \
+	../util/SemaphoreTest.cpp \
+	../util/QueueTest.cpp \
+	../util/StringTest.cpp \
+	../util/MutexTest.cpp \
+	../util/MapTest.cpp \
+	../util/ConsistentHashingRingTest.cpp \
+	../util/ListOrderedTest.cpp \
+	../util/OptionTest.cpp \
+	../util/ListTest.cpp \
+	../MessageTest.cpp \
+	../MethodMapTest.cpp \
+	../RemoteNodeTest.cpp
 
 roundtest_LDADD = @XML_LIBS@ ../../lib/unix/libround.a
