@@ -5334,6 +5334,7 @@ done
 
 $as_echo "#define ROUND_SUPPORT_PYTHON 1" >>confdefs.h
 
+  LIBS+=`python-config --libs`
 fi
 
 # Lua
