@@ -233,6 +233,19 @@ bool round_server_setbindaddress(RoundServer* server, const char* addr)
 
   return round_rpc_server_setbindaddress(server->rpcServer, addr);
 }
+
+/****************************************
+ * round_server_getbindaddress
+ ****************************************/
+
+const char *round_server_getbindaddress(RoundServer* server)
+{
+  if (!server)
+    return false;
+  
+  return round_rpc_server_getbindaddress(server->rpcServer);
+}
+
 /****************************************
  * round_server_setbindport
  ****************************************/
@@ -243,4 +256,15 @@ bool round_server_setbindport(RoundServer* server, int port)
     return false;
 
   return round_rpc_server_setbindport(server->rpcServer, port);
+}
+/****************************************
+ * round_server_getbindport
+ ****************************************/
+
+int round_server_getbindport(RoundServer* server)
+{
+  if (!server)
+    return false;
+  
+  return round_rpc_server_getbindport(server->rpcServer);
 }

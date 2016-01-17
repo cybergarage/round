@@ -190,11 +190,14 @@ int main(int argc, char* argv[])
     if (!server)
       exit(EXIT_FAILURE);
     round_server_setbindport(server, bindPort);
+    
     setup_server(server);
     if (!round_server_start(server)) {
       exit(EXIT_FAILURE);
     }
     round_server_list_add(servers, server);
+    
+    bindPort = round_server_getbindport(server) + 1;
   }
 
   // Start server

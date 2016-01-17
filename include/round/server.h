@@ -44,8 +44,11 @@ bool round_server_isrunning(RoundServer *server);
 RoundLocalNode *round_server_getlocalnode(RoundServer *server);
 #define round_server_getnode(server) (RoundNode *)round_server_getlocalnode(server)
 
-bool round_server_setbindport(RoundServer *server, int port);
 bool round_server_setbindaddress(RoundServer *server, const char *addr);
+const char *round_server_getbindaddress(RoundServer* server);
+
+bool round_server_setbindport(RoundServer *server, int port);
+int round_server_getbindport(RoundServer* server);
 
 void round_server_setuserdata(RoundServer *server, void *data);
 void *round_server_getuserdata(RoundServer *server);
