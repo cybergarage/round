@@ -55,6 +55,7 @@ extern "C" {
 #define ROUND_JSON_RPC_VERSION "2.0"
 #define ROUND_JSON_RPC_REQUEST_TIMEOUT_SEC 60
 #define ROUND_SYSTEM_METHOD_POST_JOB "post_job"
+#define ROUND_SYSTEM_METHOD_POST_METHOD "post_method"
 #define ROUND_SYSTEM_METHOD_SET_METHOD "set_method"
 #define ROUND_SYSTEM_METHOD_SET_ALIAS "set_alias"
 #define ROUND_SYSTEM_METHOD_SET_ROUTE "set_route"

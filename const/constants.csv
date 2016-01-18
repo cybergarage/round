@@ -61,6 +61,7 @@ json_rpc_request_timeout_sec,60
 
 # System Methods
 system_method_post_job,"post_job"
+system_method_post_method,"post_method"
 system_method_set_method,"set_method"
 system_method_set_alias,"set_alias"
 system_method_set_route,"set_route"
