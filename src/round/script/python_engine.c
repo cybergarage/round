@@ -53,7 +53,7 @@ bool round_python_engine_init(RoundPythonEngine* engine)
 
   Py_Initialize();
 
-  //PyModule_Create();
+  PyModule_Create(round_python_getmodule());
   
   return true;
 }

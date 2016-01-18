@@ -46,6 +46,10 @@ bool round_python_engine_run(RoundPythonEngine *engine, RoundMethod *method, con
 #define round_python_engine_lock(engine) round_script_engine_lock((RoundScriptEngine *)engine)
 #define round_python_engine_unlock(engine) round_script_engine_unlock((RoundScriptEngine *)engine)
   
+#if defined(ROUND_SUPPORT_PYTHON)
+PyModuleDef *round_python_getmodule();
+#endif
+
 #ifdef  __cplusplus
 }
 #endif
