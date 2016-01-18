@@ -17,6 +17,34 @@
 static RoundLocalNode* gRoundPythonEngineLocalNode = NULL;
 
 /****************************************
+ * Python Modules
+ ****************************************/
+
+PyObject* round_python_getnetworkstate(PyObject* self, PyObject* args);
+PyObject* round_python_getclusterstate(PyObject* self, PyObject* args);
+PyObject* round_python_getnodestate(PyObject* self, PyObject* args);
+PyObject* round_python_setregistry(PyObject* self, PyObject* args);
+PyObject* round_python_getregistry(PyObject* self, PyObject* args);
+PyObject* round_python_removeregistry(PyObject* self, PyObject* args);
+PyObject* round_python_postmethod(PyObject* self, PyObject* args);
+
+static PyMethodDef gRoundPythonMethods[] = {
+  {ROUND_SYSTEM_METHOD_POST_METHOD, round_python_postmethod, METH_VARARGS, "convert to upper."},
+  {NULL, NULL, 0, NULL}
+};
+
+/*
+static struct PyModuleDef gRoundPythonModule;
+= {
+  PyModuleDef_HEAD_INIT,
+  "round",
+  NULL,
+  -1,
+  gRoundPythonMethods
+};
+*/
+
+/****************************************
  * round_python_setlocalnode
  ****************************************/
 
