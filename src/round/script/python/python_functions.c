@@ -187,20 +187,33 @@ PyObject* round_python_postmethod(PyObject* self, PyObject* args)
  ****************************************/
 
 static PyMethodDef gRoundPythonMethods[] = {
-  {ROUND_SYSTEM_METHOD_POST_METHOD, round_python_postmethod, METH_VARARGS, "convert to upper."},
+  {ROUND_SYSTEM_METHOD_POST_METHOD, round_python_postmethod, METH_VARARGS, ""},
+  {ROUND_SYSTEM_METHOD_SET_REGISTRY, round_python_setregistry, METH_VARARGS, ""},
+  {ROUND_SYSTEM_METHOD_GET_REGISTRY, round_python_getregistry, METH_VARARGS, ""},
+  {ROUND_SYSTEM_METHOD_REMOVE_REGISTRY, round_python_removeregistry, METH_VARARGS, ""},
   {NULL, NULL, 0, NULL}
 };
 
+PyMethodDef *round_python_getsystemmethods() {
+  return gRoundPythonMethods;
+}
+
+#if PY_MAJOR_VERSION >= 3
 static struct PyModuleDef gRoundPythonModule = {
   PyModuleDef_HEAD_INIT,
-  "round",
-  NULL,
-  -1,
-  gRoundPythonMethods
+  ROUND_PRODUCT_NAME,  /* m_name */
+  ROUND_PRODUCT_NAME,  /* m_doc */
+  -1,                  /* m_size */
+  gRoundPythonMethods, /* m_methods */
+  NULL,                /* m_reload */
+  NULL,                /* m_traverse */
+  NULL,                /* m_clear */
+  NULL,                /* m_free */
 };
 
-PyModuleDef *round_python_getmodule() {
+PyModuleDef *round_python_getsystemmodule() {
   return &gRoundPythonModule;
 }
+#endif
 
 #endif
