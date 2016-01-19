@@ -53,8 +53,12 @@ bool round_python_engine_init(RoundPythonEngine* engine)
 
   Py_Initialize();
 
-  PyModule_Create(round_python_getmodule());
-  
+#if PY_MAJOR_VERSION >= 3
+  PyModule_Create(round_python_getsystemmodule());
+#else
+  Py_InitModule3(ROUND_PRODUCT_NAME, round_python_getsystemmethods(), ROUND_PRODUCT_NAME);
+#endif
+
   return true;
 }
 

@@ -47,7 +47,10 @@ bool round_python_engine_run(RoundPythonEngine *engine, RoundMethod *method, con
 #define round_python_engine_unlock(engine) round_script_engine_unlock((RoundScriptEngine *)engine)
   
 #if defined(ROUND_SUPPORT_PYTHON)
-PyModuleDef *round_python_getmodule();
+PyMethodDef *round_python_getsystemmethods();
+#if PY_MAJOR_VERSION >= 3
+PyModuleDef *round_python_getsystemmodule();
+#endif
 #endif
 
 #ifdef  __cplusplus
