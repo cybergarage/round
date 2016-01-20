@@ -56,7 +56,7 @@ bool round_python_engine_init(RoundPythonEngine* engine)
 #if PY_MAJOR_VERSION >= 3
   PyModule_Create(round_python_getsystemmodule());
 #else
-  Py_InitModule3(ROUND_PRODUCT_NAME, round_python_getsystemmethods(), ROUND_PRODUCT_NAME);
+  Py_InitModule(ROUND_PRODUCT_NAME, round_python_getsystemmethods());
 #endif
 
   return true;
@@ -97,6 +97,18 @@ bool round_python_engine_delete(RoundPythonEngine* engine)
 }
 
 /****************************************
+ * round_python_engine_fetcherror
+ ****************************************/
+
+bool round_python_engine_fetcherror(RoundPythonEngine* engine, RoundError* err)
+{
+  PyObject *ptype, *pvalue, *ptraceback;
+  PyErr_Fetch(&ptype, &pvalue, &ptraceback);
+  round_error_setmessage(err, PyString_AsString(pvalue));
+  return true;
+}
+
+/****************************************
  * round_python_engine_run
  ****************************************/
 
@@ -113,18 +125,23 @@ bool round_python_engine_run(RoundPythonEngine* engine, RoundMethod* method, con
   if (!source)
     return false;
 
-  PyObject* pSource = Py_CompileString(source, ROUND_PYTHON_MODULE_NAME, Py_single_input);
-  if (!pSource)
+  PyObject* pSource = Py_CompileString(source, ROUND_PYTHON_MODULE_NAME, Py_file_input);
+  if (!pSource) {
+    round_python_engine_fetcherror(engine, err);
     return false;
+  }
 
   PyObject* pModule = PyImport_ExecCodeModule(ROUND_PYTHON_MODULE_NAME, pSource);
   Py_DECREF(pSource);
-  if (!pModule)
+  if (!pModule) {
+    round_python_engine_fetcherror(engine, err);
     return false;
+  }
 
   const char* name = round_method_getname(method);
   PyObject* pFunc = PyObject_GetAttrString(pModule, name);
   if (!pFunc || !PyCallable_Check(pFunc)) {
+    round_python_engine_fetcherror(engine, err);
     Py_DECREF(pModule);
     return false;
   }
@@ -137,6 +154,7 @@ bool round_python_engine_run(RoundPythonEngine* engine, RoundMethod* method, con
 
   PyObject* pParam = PyString_FromString(param ? param : "");
   if (!pParam) {
+    round_python_engine_fetcherror(engine, err);
     Py_DECREF(pModule);
     Py_DECREF(pArgs);
     return false;
@@ -153,9 +171,7 @@ bool round_python_engine_run(RoundPythonEngine* engine, RoundMethod* method, con
     Py_DECREF(pValue);
   }
   else {
-    PyObject *ptype, *pvalue, *ptraceback;
-    PyErr_Fetch(&ptype, &pvalue, &ptraceback);
-    round_error_setmessage(err, PyString_AsString(pvalue));
+    round_python_engine_fetcherror(engine, err);
   }
 
   Py_DECREF(pFunc);
