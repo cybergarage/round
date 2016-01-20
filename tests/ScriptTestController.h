@@ -12,6 +12,7 @@
 #define _ROUND_TESTSCRIPT_H_
 
 #include <round/method.h>
+#include <round/node_internal.h>
 
 #include "RoundTest.h"
 
@@ -256,8 +257,17 @@ static const char *RPC_SET_SETMETHOD = \
   "\"code\": \"" RPC_SET_ECHO_CODE "\"" \
   "}, \"id\": 1}";
 
+  
+////////////////////////////////////////////////
+// Method
+////////////////////////////////////////////////
+
 RoundMethod *CreateTestMethod(const char *name, const char *lang, const char *stringCode);
 
+#define SET_KEY_NAME "set_key"
+#define GET_KEY_NAME "get_key"
+#define REMOVE_KEY_NAME "remove_key"
+  
 class ScriptTestController {
  public:
   
@@ -267,6 +277,8 @@ class ScriptTestController {
   void runEchoMethodTest(RoundMethodManager *scriptMgr);
   void runSumMethodTest(RoundMethodManager *scriptMgr);
   void runCounterMethodTest(RoundMethodManager *scriptMgr);
+
+  void runScriptRegistryMethodTest(RoundLocalNode* node);
 };
 
 }
