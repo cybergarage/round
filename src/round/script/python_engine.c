@@ -152,6 +152,11 @@ bool round_python_engine_run(RoundPythonEngine* engine, RoundMethod* method, con
     }
     Py_DECREF(pValue);
   }
+  else {
+    PyObject *ptype, *pvalue, *ptraceback;
+    PyErr_Fetch(&ptype, &pvalue, &ptraceback);
+    round_error_setmessage(err, PyString_AsString(pvalue));
+  }
 
   Py_DECREF(pFunc);
   Py_DECREF(pModule);
