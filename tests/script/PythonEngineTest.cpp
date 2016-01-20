@@ -16,6 +16,7 @@
 #if defined(ROUND_SUPPORT_PYTHON)
 
 BOOST_AUTO_TEST_SUITE(script)
+BOOST_AUTO_TEST_SUITE(python)
 
 BOOST_AUTO_TEST_CASE(PythonEngineEcho)
 {
@@ -50,11 +51,26 @@ BOOST_AUTO_TEST_CASE(PythonEngineEcho)
   BOOST_CHECK(round_python_engine_delete(pyEngine));
 }
 
+#define ROUND_SYSTEM_METHOD_PARAM_KEY "key"
+#define ROUND_SYSTEM_METHOD_PARAM_VALUE "val"
+
 BOOST_AUTO_TEST_CASE(PythonRegistryMethods)
 {
-  static const char* SETKEY_CODE = "function " SET_KEY_NAME "(params) {return " ROUND_SYSTEM_METHOD_SET_REGISTRY "(params);}";
-  static const char* GETKEY_CODE = "function " GET_KEY_NAME "(params) {return " ROUND_SYSTEM_METHOD_GET_REGISTRY "(params);}";
-  static const char* REMOVEKEY_CODE = "function " REMOVE_KEY_NAME "(params) {return " ROUND_SYSTEM_METHOD_REMOVE_REGISTRY "(params);}";
+  static const char* SETKEY_CODE = \
+    "import json\n" \
+    "def " SET_KEY_NAME "(jsonParams):\n" \
+    "    params = json.loads(jsonParams)\n" \
+    "    return " ROUND_SYSTEM_METHOD_SET_REGISTRY "(params[\"" ROUND_SYSTEM_METHOD_PARAM_KEY "\"], params[\"" ROUND_SYSTEM_METHOD_PARAM_VALUE "\"])";
+  static const char* GETKEY_CODE = \
+    "import json\n" \
+    "def " SET_KEY_NAME "(jsonParams):\n" \
+    "    params = json.loads(jsonParams)\n" \
+    "    return " ROUND_SYSTEM_METHOD_GET_REGISTRY "(params[\"" ROUND_SYSTEM_METHOD_PARAM_KEY "\"])";
+  static const char* REMOVEKEY_CODE = \
+    "import json\n" \
+    "def " SET_KEY_NAME "(jsonParams):\n" \
+    "    params = json.loads(jsonParams)\n" \
+    "    return " ROUND_SYSTEM_METHOD_REMOVE_REGISTRY "(params[\"" ROUND_SYSTEM_METHOD_PARAM_KEY "\"])";
   
   RoundLocalNode* node = round_local_node_new();
   BOOST_CHECK(round_local_node_start(node));
@@ -80,6 +96,7 @@ BOOST_AUTO_TEST_CASE(PythonRegistryMethods)
   BOOST_CHECK(round_local_node_delete(node));
 }
 
+BOOST_AUTO_TEST_SUITE_END()
 BOOST_AUTO_TEST_SUITE_END()
 
 #endif
