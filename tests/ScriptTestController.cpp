@@ -22,6 +22,10 @@
 using namespace std;
 using namespace Round;
 
+////////////////////////////////////////////////
+// CreateTestMethod
+////////////////////////////////////////////////
+
 RoundMethod* Round::Test::CreateTestMethod(const char* name, const char* lang, const char* stringCode)
 {
   RoundMethod* method = round_method_new();
@@ -34,6 +38,10 @@ RoundMethod* Round::Test::CreateTestMethod(const char* name, const char* lang, c
 
   return method;
 }
+
+////////////////////////////////////////////////
+// runEchoMethodTest
+////////////////////////////////////////////////
 
 void Round::Test::ScriptTestController::runEchoMethodTest(RoundMethodManager* scriptMgr)
 {
@@ -96,6 +104,10 @@ void Round::Test::ScriptTestController::runEchoMethodTest(RoundMethodManager* sc
   round_error_delete(err);
 }
 
+////////////////////////////////////////////////
+// runSumMethodTest
+////////////////////////////////////////////////
+
 void Round::Test::ScriptTestController::runSumMethodTest(RoundMethodManager* scriptMgr)
 {
   std::vector<std::string> params;
@@ -148,6 +160,10 @@ void Round::Test::ScriptTestController::runSumMethodTest(RoundMethodManager* scr
   }
 }
 
+////////////////////////////////////////////////
+// runCounterMethodTest
+////////////////////////////////////////////////
+
 void Round::Test::ScriptTestController::runCounterMethodTest(RoundMethodManager* scriptMgr)
 {
   std::string result;
@@ -176,3 +192,39 @@ void Round::Test::ScriptTestController::runCounterMethodTest(RoundMethodManager*
     }
   */
 }
+
+////////////////////////////////////////////////
+// runScriptRegistryMethodTest
+////////////////////////////////////////////////
+
+void Round::Test::ScriptTestController::runScriptRegistryMethodTest(RoundLocalNode* node)
+{
+#define KEY_LOOP_COUNT 10
+  
+  RoundError* err = round_error_new();
+  RoundJSONObject* resObj;
+  const char* result;
+  char params[1024];
+  
+  // Post Node Message (Run 'set_key' method)
+  
+  for (size_t n = 0; n < KEY_LOOP_COUNT; n++) {
+    // Set key
+    snprintf(params, sizeof(params), "{\"%s\" : \"key%ld\", \"%s\" : \"val%ld\"}", ROUND_SYSTEM_METHOD_PARAM_KEY, n, ROUND_SYSTEM_METHOD_PARAM_VALUE, n);
+    BOOST_CHECK(round_local_node_poststringmessage(node, Round::Test::CreateJsonRpcRequestString(SET_KEY_NAME, params), &resObj, err));
+    
+    // Get key
+    snprintf(params, sizeof(params), "{\"%s\" : \"key%ld\"}", ROUND_SYSTEM_METHOD_PARAM_KEY, n);
+    BOOST_CHECK(round_local_node_poststringmessage(node, Round::Test::CreateJsonRpcRequestString(GET_KEY_NAME, params), &resObj, err));
+    BOOST_CHECK(round_json_rpc_getresultstring(resObj, &result));
+    BOOST_CHECK(result);
+    
+    // Remove key
+    snprintf(params, sizeof(params), "{\"%s\" : \"key%ld\"}", ROUND_SYSTEM_METHOD_PARAM_KEY, n);
+    BOOST_CHECK(round_local_node_poststringmessage(node, Round::Test::CreateJsonRpcRequestString(REMOVE_KEY_NAME, params), &resObj, err));
+  }
+  
+  BOOST_CHECK(round_error_delete(err));
+}
+
+

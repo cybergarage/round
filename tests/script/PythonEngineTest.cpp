@@ -11,6 +11,7 @@
 #include <boost/test/unit_test.hpp>
 #include <string>
 #include <round/script/python.h>
+#include "ScriptTestController.h"
 
 #if defined(ROUND_SUPPORT_PYTHON)
 
@@ -47,6 +48,36 @@ BOOST_AUTO_TEST_CASE(PythonEngineEcho)
   BOOST_CHECK(round_string_delete(result));
   BOOST_CHECK(round_error_delete(err));
   BOOST_CHECK(round_python_engine_delete(pyEngine));
+}
+
+BOOST_AUTO_TEST_CASE(PythonRegistryMethods)
+{
+  static const char* SETKEY_CODE = "function " SET_KEY_NAME "(params) {return " ROUND_SYSTEM_METHOD_SET_REGISTRY "(params);}";
+  static const char* GETKEY_CODE = "function " GET_KEY_NAME "(params) {return " ROUND_SYSTEM_METHOD_GET_REGISTRY "(params);}";
+  static const char* REMOVEKEY_CODE = "function " REMOVE_KEY_NAME "(params) {return " ROUND_SYSTEM_METHOD_REMOVE_REGISTRY "(params);}";
+  
+  RoundLocalNode* node = round_local_node_new();
+  BOOST_CHECK(round_local_node_start(node));
+  
+  RoundError* err = round_error_new();
+  
+  // Post Node Message (Set '*_key' method)
+  
+  BOOST_CHECK(round_node_setmethod((RoundNode*)node, ROUND_SCRIPT_LANGUAGE_PYTHON, SET_KEY_NAME, SETKEY_CODE, err));
+  BOOST_CHECK(round_node_setmethod((RoundNode*)node, ROUND_SCRIPT_LANGUAGE_PYTHON, GET_KEY_NAME, GETKEY_CODE, err));
+  BOOST_CHECK(round_node_setmethod((RoundNode*)node, ROUND_SCRIPT_LANGUAGE_PYTHON, REMOVE_KEY_NAME, REMOVEKEY_CODE, err));
+  
+  // Post Node Message (Run 'set_key' method)
+  
+  Round::Test::ScriptTestController scriptTestCtrl;
+  scriptTestCtrl.runScriptRegistryMethodTest(node);
+  
+  // Clean up
+  
+  BOOST_CHECK(round_error_delete(err));
+  
+  BOOST_CHECK(round_local_node_stop(node));
+  BOOST_CHECK(round_local_node_delete(node));
 }
 
 BOOST_AUTO_TEST_SUITE_END()
