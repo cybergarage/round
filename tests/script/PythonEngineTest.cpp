@@ -103,10 +103,8 @@ BOOST_AUTO_TEST_CASE(PythonEngineEcho)
   RoundError* err = round_error_new();
 
   for (int n = 0; n < SCRIPT_ECHO_LOOP; n++) {
-    BOOST_CHECK(round_python_engine_lock(pyEngine));
     BOOST_CHECK(round_python_engine_run(pyEngine, method, PY_ECHO_PARAM, result, err));
     BOOST_CHECK(round_streq(PY_ECHO_PARAM, round_string_getvalue(result)));
-    BOOST_CHECK(round_python_engine_unlock(pyEngine));
   }
 
   BOOST_CHECK(round_method_delete(method));
