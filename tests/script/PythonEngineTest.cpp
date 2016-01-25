@@ -18,25 +18,77 @@
 BOOST_AUTO_TEST_SUITE(script)
 BOOST_AUTO_TEST_SUITE(python)
 
+#define PY_ECHO_FUNC "echo"
+#define PY_ECHO_PARAM "hello"
+static const char *PY_ECHO_CODE = \
+  "def " PY_ECHO_FUNC "(params):\n" \
+  "  return params\n";
+
+#define ROUND_SYSTEM_METHOD_PARAM_KEY "key"
+#define ROUND_SYSTEM_METHOD_PARAM_VALUE "val"
+static const char* SETKEY_CODE = \
+  "import json\n" \
+  "def " SET_KEY_NAME "(jsonParams):\n" \
+  "  params = json.loads(jsonParams)\n" \
+  "  return " ROUND_SYSTEM_METHOD_SET_REGISTRY "(params[\"" ROUND_SYSTEM_METHOD_PARAM_KEY "\"], params[\"" ROUND_SYSTEM_METHOD_PARAM_VALUE "\"])\n";
+static const char* GETKEY_CODE = \
+  "import json\n" \
+  "def " SET_KEY_NAME "(jsonParams):\n" \
+  "  params = json.loads(jsonParams)\n" \
+  "  return " ROUND_SYSTEM_METHOD_GET_REGISTRY "(params[\"" ROUND_SYSTEM_METHOD_PARAM_KEY "\"])\n";
+static const char* REMOVEKEY_CODE = \
+  "import json\n" \
+  "def " SET_KEY_NAME "(jsonParams):\n" \
+  "  params = json.loads(jsonParams)\n" \
+  "  return " ROUND_SYSTEM_METHOD_REMOVE_REGISTRY "(params[\"" ROUND_SYSTEM_METHOD_PARAM_KEY "\"])\n";
+
+BOOST_AUTO_TEST_CASE(PythonCompileHello)
+{
+  RoundPythonEngine* pyEngine = round_python_engine_new();
+  BOOST_CHECK(pyEngine);
+  
+  RoundError* err = round_error_new();
+  
+  PyObject* pModule;
+  BOOST_CHECK(round_python_engine_compile(pyEngine, ROUND_PYTHON_MODULE_NAME, PY_ECHO_CODE, err, &pModule));
+  
+  PyObject* pFunc;
+  BOOST_CHECK(round_python_engine_getfunctionbyname(pyEngine, pModule, PY_ECHO_FUNC, err, &pFunc));
+  
+  BOOST_CHECK(round_error_delete(err));
+  BOOST_CHECK(round_python_engine_delete(pyEngine));
+}
+
+BOOST_AUTO_TEST_CASE(PythonCompileSetKey)
+{
+  RoundPythonEngine* pyEngine = round_python_engine_new();
+  BOOST_CHECK(pyEngine);
+  
+  RoundError* err = round_error_new();
+  
+  PyObject* pModule;
+  BOOST_CHECK(round_python_engine_compile(pyEngine, ROUND_PYTHON_MODULE_NAME, SETKEY_CODE, err, &pModule));
+  
+  PyObject* pFunc;
+  BOOST_CHECK(round_python_engine_getfunctionbyname(pyEngine, pModule, SET_KEY_NAME, err, &pFunc));
+  
+  BOOST_CHECK(round_error_delete(err));
+  BOOST_CHECK(round_python_engine_delete(pyEngine));
+}
+
 BOOST_AUTO_TEST_CASE(PythonEngineEcho)
 {
 #define SCRIPT_ECHO_LOOP 1
-#define PY_ECHO_FUNC "echo"
-#define PY_ECHO_PARAM "hello"
-
-  const std::string PY_ECHO_CODE = "def " PY_ECHO_FUNC "(params):\n"
-                                   "  return params\n";
 
   RoundPythonEngine* pyEngine = round_python_engine_new();
+  BOOST_CHECK(pyEngine);
 
   RoundMethod* method = round_method_new();
   round_method_setname(method, PY_ECHO_FUNC);
-  round_method_setcode(method, (byte*)PY_ECHO_CODE.c_str(), PY_ECHO_CODE.size());
+  round_method_setstringcode(method, PY_ECHO_CODE);
 
   RoundString* result = round_string_new();
   RoundError* err = round_error_new();
-
-  BOOST_CHECK(pyEngine);
 
   for (int n = 0; n < SCRIPT_ECHO_LOOP; n++) {
     BOOST_CHECK(round_python_engine_lock(pyEngine));
@@ -50,29 +102,8 @@ BOOST_AUTO_TEST_CASE(PythonEngineEcho)
   BOOST_CHECK(round_error_delete(err));
   BOOST_CHECK(round_python_engine_delete(pyEngine));
 }
-
-#define ROUND_SYSTEM_METHOD_PARAM_KEY "key"
-#define ROUND_SYSTEM_METHOD_PARAM_VALUE "val"
-
 BOOST_AUTO_TEST_CASE(PythonRegistryMethods)
 {
-  static const char* SETKEY_CODE = \
-    "import json\n" \
-    "def " SET_KEY_NAME "(jsonParams):\n" \
-    "  params = json.loads(jsonParams)\n" \
-    "  return " ROUND_SYSTEM_METHOD_SET_REGISTRY "(params[\"" ROUND_SYSTEM_METHOD_PARAM_KEY "\"], params[\"" ROUND_SYSTEM_METHOD_PARAM_VALUE "\"])\n";
-  
-  static const char* GETKEY_CODE = \
-    "import json\n" \
-    "def " SET_KEY_NAME "(jsonParams):\n" \
-    "  params = json.loads(jsonParams)\n" \
-    "  return " ROUND_SYSTEM_METHOD_GET_REGISTRY "(params[\"" ROUND_SYSTEM_METHOD_PARAM_KEY "\"])\n";
-  static const char* REMOVEKEY_CODE = \
-    "import json\n" \
-    "def " SET_KEY_NAME "(jsonParams):\n" \
-    "  params = json.loads(jsonParams)\n" \
-    "  return " ROUND_SYSTEM_METHOD_REMOVE_REGISTRY "(params[\"" ROUND_SYSTEM_METHOD_PARAM_KEY "\"])\n";
-  
   RoundLocalNode* node = round_local_node_new();
   BOOST_CHECK(round_local_node_start(node));
   
