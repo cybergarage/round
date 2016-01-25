@@ -102,7 +102,7 @@ bool round_python_engine_fetcherrormessage(RoundPythonEngine* engine, RoundError
 {
   PyObject *ptype, *pvalue, *ptraceback;
   PyErr_Fetch(&ptype, &pvalue, &ptraceback);
-  round_error_setmessage(err, PyString_AsString(pvalue));
+  round_error_setdetailmessage(err, PyString_AsString(pvalue));
   return true;
 }
 
@@ -115,9 +115,9 @@ bool round_python_engine_compile(RoundPythonEngine* engine, const char *name, co
   char moduleName[64];
   snprintf(moduleName, sizeof(moduleName), "%s-%s", ROUND_PYTHON_MODULE_NAME, name);
   
-  PyObject *pSource = Py_CompileString(source, moduleName, Py_file_input);
+  PyObject *pSource = Py_CompileString(source, name, Py_file_input);
   if (!pSource) {
-    round_error_setcode(err, ROUND_RPC_ERROR_CODE_INVALID_REQUEST);
+    round_error_setjsonrpcerrorcode(err, ROUND_RPC_ERROR_CODE_INVALID_REQUEST);
     round_python_engine_fetcherrormessage(engine, err);
     return false;
   }
@@ -125,7 +125,7 @@ bool round_python_engine_compile(RoundPythonEngine* engine, const char *name, co
   *pModule = PyImport_ExecCodeModule((char *)moduleName, pSource);
   Py_DECREF(pSource);
   if (!(*pModule)) {
-    round_error_setcode(err, ROUND_RPC_ERROR_CODE_INVALID_REQUEST);
+    round_error_setjsonrpcerrorcode(err, ROUND_RPC_ERROR_CODE_INVALID_REQUEST);
     round_python_engine_fetcherrormessage(engine, err);
     return false;
   }
@@ -140,7 +140,7 @@ bool round_python_engine_getfunctionbyname(RoundPythonEngine* engine, PyObject* 
 {
   *pFunc = PyObject_GetAttrString(pModule, funcName);
   if (!(*pFunc) || !PyCallable_Check(*pFunc)) {
-    round_error_setcode(err, ROUND_RPC_ERROR_CODE_INVALID_REQUEST);
+    round_error_setjsonrpcerrorcode(err, ROUND_RPC_ERROR_CODE_INVALID_REQUEST);
     round_python_engine_fetcherrormessage(engine, err);
     return false;
   }
@@ -188,7 +188,7 @@ bool round_python_engine_run(RoundPythonEngine* engine, RoundMethod* method, con
 
   PyObject* pParam = PyString_FromString(param ? param : "");
   if (!pParam) {
-    round_error_setcode(err, ROUND_RPC_ERROR_CODE_INVALID_REQUEST);
+    round_error_setjsonrpcerrorcode(err, ROUND_RPC_ERROR_CODE_INVALID_REQUEST);
     round_python_engine_fetcherrormessage(engine, err);
     Py_DECREF(pModule);
     Py_DECREF(pArgs);
@@ -211,7 +211,7 @@ bool round_python_engine_run(RoundPythonEngine* engine, RoundMethod* method, con
     Py_DECREF(pValue);
   }
   else {
-    round_error_setcode(err, ROUND_RPC_ERROR_CODE_INVALID_REQUEST);
+    round_error_setjsonrpcerrorcode(err, ROUND_RPC_ERROR_CODE_INVALID_REQUEST);
     round_python_engine_fetcherrormessage(engine, err);
   }
 
