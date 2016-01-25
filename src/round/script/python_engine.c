@@ -95,10 +95,10 @@ bool round_python_engine_delete(RoundPythonEngine* engine)
 }
 
 /****************************************
- * round_python_engine_fetcherror
+ * round_python_engine_fetcherrormessage
  ****************************************/
 
-bool round_python_engine_fetcherror(RoundPythonEngine* engine, RoundError* err)
+bool round_python_engine_fetcherrormessage(RoundPythonEngine* engine, RoundError* err)
 {
   PyObject *ptype, *pvalue, *ptraceback;
   PyErr_Fetch(&ptype, &pvalue, &ptraceback);
@@ -117,14 +117,16 @@ bool round_python_engine_compile(RoundPythonEngine* engine, const char *name, co
   
   PyObject *pSource = Py_CompileString(source, moduleName, Py_file_input);
   if (!pSource) {
-    round_python_engine_fetcherror(engine, err);
+    round_error_setcode(err, ROUND_RPC_ERROR_CODE_INVALID_REQUEST);
+    round_python_engine_fetcherrormessage(engine, err);
     return false;
   }
 
   *pModule = PyImport_ExecCodeModule((char *)moduleName, pSource);
   Py_DECREF(pSource);
   if (!(*pModule)) {
-    round_python_engine_fetcherror(engine, err);
+    round_error_setcode(err, ROUND_RPC_ERROR_CODE_INVALID_REQUEST);
+    round_python_engine_fetcherrormessage(engine, err);
     return false;
   }
   return true;
@@ -138,8 +140,8 @@ bool round_python_engine_getfunctionbyname(RoundPythonEngine* engine, PyObject* 
 {
   *pFunc = PyObject_GetAttrString(pModule, funcName);
   if (!(*pFunc) || !PyCallable_Check(*pFunc)) {
-    round_python_engine_fetcherror(engine, err);
-    Py_DECREF(pModule);
+    round_error_setcode(err, ROUND_RPC_ERROR_CODE_INVALID_REQUEST);
+    round_python_engine_fetcherrormessage(engine, err);
     return false;
   }
   return true;
@@ -186,7 +188,8 @@ bool round_python_engine_run(RoundPythonEngine* engine, RoundMethod* method, con
 
   PyObject* pParam = PyString_FromString(param ? param : "");
   if (!pParam) {
-    round_python_engine_fetcherror(engine, err);
+    round_error_setcode(err, ROUND_RPC_ERROR_CODE_INVALID_REQUEST);
+    round_python_engine_fetcherrormessage(engine, err);
     Py_DECREF(pModule);
     Py_DECREF(pArgs);
     return false;
@@ -208,7 +211,8 @@ bool round_python_engine_run(RoundPythonEngine* engine, RoundMethod* method, con
     Py_DECREF(pValue);
   }
   else {
-    round_python_engine_fetcherror(engine, err);
+    round_error_setcode(err, ROUND_RPC_ERROR_CODE_INVALID_REQUEST);
+    round_python_engine_fetcherrormessage(engine, err);
   }
 
   // TODO : Remove the mutex locak
