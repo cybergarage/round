@@ -110,9 +110,10 @@ bool round_python_engine_fetcherror(RoundPythonEngine* engine, RoundError* err)
  * round_python_engine_compile
  ****************************************/
 
-bool round_python_engine_compile(RoundPythonEngine* engine, const char *source, RoundError* err, PyObject** pModule)
+bool round_python_engine_compile(RoundPythonEngine* engine, const char *name, const char *source, RoundError* err, PyObject** pModule)
 {
-  const char *moduleName = ROUND_PYTHON_MODULE_NAME;
+  char moduleName[64];
+  snprintf(moduleName, sizeof(moduleName), "%s-%s", ROUND_PYTHON_MODULE_NAME, name);
   
   PyObject *pSource = Py_CompileString(source, moduleName, Py_file_input);
   if (!pSource) {
@@ -161,22 +162,24 @@ bool round_python_engine_run(RoundPythonEngine* engine, RoundMethod* method, con
   if (!source)
     return false;
 
-  const char* methodName = round_method_getname(method);
-  if (!methodName)
+  const char* name = round_method_getname(method);
+  if (!name)
     return false;
   
   PyObject* pModule;
-  if (!round_python_engine_compile(engine, source, err, &pModule))
+  if (!round_python_engine_compile(engine, name, source, err, &pModule))
     return false;
 
   PyObject* pFunc;
-  if (!round_python_engine_getfunctionbyname(engine, pModule, methodName, err, &pFunc)) {
+  if (!round_python_engine_getfunctionbyname(engine, pModule, name, err, &pFunc)) {
     Py_DECREF(pModule);
     return false;
   }
 
   PyObject* pArgs = PyTuple_New(1);
   if (!pArgs) {
+    Py_DECREF(pFunc);
+
     Py_DECREF(pModule);
     return false;
   }

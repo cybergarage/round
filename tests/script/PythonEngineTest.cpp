@@ -27,20 +27,23 @@ static const char *PY_ECHO_CODE = \
 #define ROUND_SYSTEM_METHOD_PARAM_KEY "key"
 #define ROUND_SYSTEM_METHOD_PARAM_VALUE "val"
 static const char* SETKEY_CODE = \
+  "import round\n" \
   "import json\n" \
   "def " SET_KEY_NAME "(jsonParams):\n" \
   "  params = json.loads(jsonParams)\n" \
-  "  return " ROUND_SYSTEM_METHOD_SET_REGISTRY "(params[\"" ROUND_SYSTEM_METHOD_PARAM_KEY "\"], params[\"" ROUND_SYSTEM_METHOD_PARAM_VALUE "\"])\n";
+  "  return round." ROUND_SYSTEM_METHOD_SET_REGISTRY "(params[\"" ROUND_SYSTEM_METHOD_PARAM_KEY "\"], params[\"" ROUND_SYSTEM_METHOD_PARAM_VALUE "\"])\n";
 static const char* GETKEY_CODE = \
+  "import round\n" \
   "import json\n" \
-  "def " SET_KEY_NAME "(jsonParams):\n" \
+  "def " GET_KEY_NAME "(jsonParams):\n" \
   "  params = json.loads(jsonParams)\n" \
-  "  return " ROUND_SYSTEM_METHOD_GET_REGISTRY "(params[\"" ROUND_SYSTEM_METHOD_PARAM_KEY "\"])\n";
+  "  return round." ROUND_SYSTEM_METHOD_GET_REGISTRY "(params[\"" ROUND_SYSTEM_METHOD_PARAM_KEY "\"])\n";
 static const char* REMOVEKEY_CODE = \
+  "import round\n" \
   "import json\n" \
-  "def " SET_KEY_NAME "(jsonParams):\n" \
+  "def " REMOVE_KEY_NAME "(jsonParams):\n" \
   "  params = json.loads(jsonParams)\n" \
-  "  return " ROUND_SYSTEM_METHOD_REMOVE_REGISTRY "(params[\"" ROUND_SYSTEM_METHOD_PARAM_KEY "\"])\n";
+  "  return round." ROUND_SYSTEM_METHOD_REMOVE_REGISTRY "(params[\"" ROUND_SYSTEM_METHOD_PARAM_KEY "\"])\n";
 
 BOOST_AUTO_TEST_CASE(PythonCompileHello)
 {
@@ -50,7 +53,7 @@ BOOST_AUTO_TEST_CASE(PythonCompileHello)
   RoundError* err = round_error_new();
   
   PyObject* pModule;
-  BOOST_CHECK(round_python_engine_compile(pyEngine, PY_ECHO_CODE, err, &pModule));
+  BOOST_CHECK(round_python_engine_compile(pyEngine, PY_ECHO_FUNC, PY_ECHO_CODE, err, &pModule));
   
   PyObject* pFunc;
   BOOST_CHECK(round_python_engine_getfunctionbyname(pyEngine, pModule, PY_ECHO_FUNC, err, &pFunc));
@@ -69,11 +72,17 @@ BOOST_AUTO_TEST_CASE(PythonCompileSetKey)
   RoundError* err = round_error_new();
   
   for (int n = 0; n < SCRIPT_COMPILE_LOOP; n++) {
-    PyObject* pModule;
-    BOOST_CHECK(round_python_engine_compile(pyEngine, SETKEY_CODE, err, &pModule));
-    PyObject* pFunc;
+    PyObject* pModule, *pFunc;
+    
+    BOOST_CHECK(round_python_engine_compile(pyEngine, SET_KEY_NAME, SETKEY_CODE, err, &pModule));
     BOOST_CHECK(round_python_engine_getfunctionbyname(pyEngine, pModule, SET_KEY_NAME, err, &pFunc));
-  }
+
+    BOOST_CHECK(round_python_engine_compile(pyEngine, GET_KEY_NAME, GETKEY_CODE, err, &pModule));
+    BOOST_CHECK(round_python_engine_getfunctionbyname(pyEngine, pModule, GET_KEY_NAME, err, &pFunc));
+
+    BOOST_CHECK(round_python_engine_compile(pyEngine, REMOVE_KEY_NAME, REMOVEKEY_CODE, err, &pModule));
+    BOOST_CHECK(round_python_engine_getfunctionbyname(pyEngine, pModule, REMOVE_KEY_NAME, err, &pFunc));
+}
   
   BOOST_CHECK(round_error_delete(err));
   BOOST_CHECK(round_python_engine_delete(pyEngine));
@@ -105,10 +114,9 @@ BOOST_AUTO_TEST_CASE(PythonEngineEcho)
   BOOST_CHECK(round_error_delete(err));
   BOOST_CHECK(round_python_engine_delete(pyEngine));
 }
+
 BOOST_AUTO_TEST_CASE(PythonRegistryMethods)
 {
-  return;
-  
   RoundLocalNode* node = round_local_node_new();
   BOOST_CHECK(round_local_node_start(node));
   
