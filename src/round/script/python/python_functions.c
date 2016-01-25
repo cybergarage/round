@@ -102,7 +102,7 @@ PyObject* round_python_setregistry(PyObject* self, PyObject* args)
     return NULL;
 
   RoundLocalNode* node = round_python_getlocalnode();
-  if (node)
+  if (!node)
     return NULL;
 
   bool isSuccess = round_local_node_setregistry(node, key, val);
@@ -122,7 +122,7 @@ PyObject* round_python_getregistry(PyObject* self, PyObject* args)
     return NULL;
 
   RoundLocalNode* node = round_python_getlocalnode();
-  if (node)
+  if (!node)
     return NULL;
 
   RoundRegistry* reg = round_local_node_getregistry(node, key);
@@ -142,7 +142,7 @@ PyObject* round_python_removeregistry(PyObject* self, PyObject* args)
     return NULL;
 
   RoundLocalNode* node = round_python_getlocalnode();
-  if (node)
+  if (!node)
     return NULL;
 
   bool isSuccess = round_local_node_removeregistry(node, key);
@@ -162,7 +162,7 @@ PyObject* round_python_postmethod(PyObject* self, PyObject* args)
     return NULL;
 
   RoundLocalNode* node = round_python_getlocalnode();
-  if (node)
+  if (!node)
     return NULL;
 
   RoundError err;
