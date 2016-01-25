@@ -199,7 +199,7 @@ void Round::Test::ScriptTestController::runCounterMethodTest(RoundMethodManager*
 
 void Round::Test::ScriptTestController::runScriptRegistryMethodTest(RoundLocalNode* node)
 {
-#define KEY_LOOP_COUNT 10
+#define KEY_LOOP_COUNT 1
   
   RoundError* err = round_error_new();
   RoundJSONObject* resObj;
