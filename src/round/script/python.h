@@ -12,6 +12,7 @@
 #define _ROUND_PYTHON_ENGINE_H_
 
 #include <round/platform.h>
+#include <round/node_internal.h>
 #include <round/script_internal.h>
 #include <round/method.h>
 
@@ -46,6 +47,8 @@ bool round_python_engine_run(RoundPythonEngine *engine, RoundMethod *method, con
 
 #define round_python_engine_lock(engine) round_script_engine_lock((RoundScriptEngine *)engine)
 #define round_python_engine_unlock(engine) round_script_engine_unlock((RoundScriptEngine *)engine)
+  
+void round_python_setlocalnode(RoundLocalNode* node);
   
 #if defined(ROUND_SUPPORT_PYTHON)
 PyMethodDef *round_python_getsystemmethods();
