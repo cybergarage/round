@@ -110,8 +110,10 @@ bool round_python_engine_fetcherror(RoundPythonEngine* engine, RoundError* err)
  * round_python_engine_compile
  ****************************************/
 
-bool round_python_engine_compile(RoundPythonEngine* engine, const char *moduleName, const char *source, RoundError* err, PyObject** pModule)
+bool round_python_engine_compile(RoundPythonEngine* engine, const char *source, RoundError* err, PyObject** pModule)
 {
+  const char *moduleName = ROUND_PYTHON_MODULE_NAME;
+  
   PyObject *pSource = Py_CompileString(source, moduleName, Py_file_input);
   if (!pSource) {
     round_python_engine_fetcherror(engine, err);
@@ -120,20 +122,6 @@ bool round_python_engine_compile(RoundPythonEngine* engine, const char *moduleNa
 
   *pModule = PyImport_ExecCodeModule((char *)moduleName, pSource);
   Py_DECREF(pSource);
-  if (!(*pModule)) {
-    round_python_engine_fetcherror(engine, err);
-    return false;
-  }
-  return true;
-}
-
-/****************************************
- * round_python_engine_getmodulebyname
- ****************************************/
-
-bool round_python_engine_getmodulebyname(RoundPythonEngine* engine, PyObject* pSource, const char* name, RoundError* err, PyObject** pModule)
-{
-  *pModule = PyImport_ExecCodeModule((char *)name, pSource);
   if (!(*pModule)) {
     round_python_engine_fetcherror(engine, err);
     return false;
@@ -178,7 +166,7 @@ bool round_python_engine_run(RoundPythonEngine* engine, RoundMethod* method, con
     return false;
   
   PyObject* pModule;
-  if (!round_python_engine_compile(engine, ROUND_PYTHON_MODULE_NAME, source, err, &pModule))
+  if (!round_python_engine_compile(engine, source, err, &pModule))
     return false;
 
   PyObject* pFunc;
