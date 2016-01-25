@@ -27,6 +27,7 @@ extern "C" {
 #endif
 #endif
 
+#define ROUND_PYTHON_MODULE_NAME "round"
 #define RoundPythonEngineLanguage "python"
   
 typedef struct {
@@ -48,6 +49,8 @@ bool round_python_engine_run(RoundPythonEngine *engine, RoundMethod *method, con
   
 #if defined(ROUND_SUPPORT_PYTHON)
 PyMethodDef *round_python_getsystemmethods();
+bool round_python_engine_compile(RoundPythonEngine* engine, const char *moduleName, const char *source, RoundError* err, PyObject** pModule);
+bool round_python_engine_getfunctionbyname(RoundPythonEngine* engine, PyObject* pModule, const char* funcName, RoundError* err, PyObject** pFunc);
 #if PY_MAJOR_VERSION >= 3
 PyModuleDef *round_python_getsystemmodule();
 #endif
