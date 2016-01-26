@@ -11,6 +11,7 @@
 #ifndef _ROUND_LUA_ENGINE_H_
 #define _ROUND_LUA_ENGINE_H_
 
+#include <round/node_internal.h>
 #include <round/script_internal.h>
 #include <round/method.h>
 #include <round/platform.h>
@@ -55,9 +56,7 @@ bool round_lua_engine_register(RoundLuaEngine *engine, const char *name, lua_CFu
 
 #if defined(ROUND_SUPPORT_LUA)
 
-void round_lua_setlocalnode(void *);
-void *round_lua_getlocalnode();
-bool round_lua_haslocalnode();
+void round_lua_setlocalnode(RoundLocalNode *);
   
 int round_lua_getnetworkstate(lua_State* L);
 int round_lua_getclusterstate(lua_State* L);

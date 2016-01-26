@@ -8,12 +8,13 @@
  *
  ******************************************************************/
 
+#include <round/node_internal.h>
 #include <round/script/lua.h>
 
 #if defined(ROUND_SUPPORT_LUA)
 
 // FIXME : Update not to use the global variable
-static RoundLocalNode* gRoundLuaEngineLocalNode = NULL;
+static RoundLocalNode* gRoundLuaEnginenode = NULL;
 
 /****************************************
  * round_lua_setlocalnode
@@ -21,7 +22,7 @@ static RoundLocalNode* gRoundLuaEngineLocalNode = NULL;
 
 void round_lua_setlocalnode(RoundLocalNode* node)
 {
-  gRoundLuaEngineLocalNode = node;
+  gRoundLuaEnginenode = node;
 }
 
 /****************************************
@@ -30,16 +31,7 @@ void round_lua_setlocalnode(RoundLocalNode* node)
 
 RoundLocalNode* round_lua_getlocalnode()
 {
-  return gRoundLuaEngineLocalNode;
-}
-
-/****************************************
- * round_lua_haslocalnode
- ****************************************/
-
-bool round_lua_haslocalnode()
-{
-  return (gRoundLuaEngineLocalNode != NULL) ? true : false;
+  return gRoundLuaEnginenode;
 }
 
 /****************************************
@@ -48,9 +40,10 @@ bool round_lua_haslocalnode()
 
 int round_lua_getnetworkstate(lua_State* L)
 {
-  std::string json = "";
+  /*
+  const char * json = "";
 
-  RoundLocalNode* node = dynamic_cast<RoundLocalNode*>(round_lua_getlocalnode());
+  RoundLocalNode* node = round_lua_getlocalnode();
   if (node) {
     RoundLocalNodeResponse nodeRes;
     Round::SystemGetNetworkInfoResponse sysRes(&nodeRes);
@@ -60,7 +53,8 @@ int round_lua_getnetworkstate(lua_State* L)
   }
 
   lua_pushstring(L, json.c_str());
-
+   */
+  
   return 1;
 }
 
@@ -70,9 +64,10 @@ int round_lua_getnetworkstate(lua_State* L)
 
 int round_lua_getclusterstate(lua_State* L)
 {
-  std::string json = "";
+  /*
+  const char * json = "";
 
-  RoundLocalNode* node = dynamic_cast<RoundLocalNode*>(round_lua_getlocalnode());
+  RoundLocalNode* node = round_lua_getlocalnode();
   if (node) {
     RoundLocalNodeResponse nodeRes;
     Round::SystemGetClusterInfoResponse sysRes(&nodeRes);
@@ -82,19 +77,21 @@ int round_lua_getclusterstate(lua_State* L)
   }
 
   lua_pushstring(L, json.c_str());
+  */
 
   return 1;
 }
 
 /****************************************
- * round_lua_getnodestate
+ * round_lua_getlocalnodestate
  ****************************************/
 
-int round_lua_getnodestate(lua_State* L)
+int round_lua_getlocalnodestate(lua_State* L)
 {
-  std::string json = "";
+  /*
+  const char * json = "";
 
-  RoundLocalNode* node = dynamic_cast<RoundLocalNode*>(round_lua_getlocalnode());
+  RoundLocalNode* node = round_lua_getlocalnode();
   if (node) {
     RoundLocalNodeResponse nodeRes;
     Round::SystemGetNodeInfoResponse sysRes(&nodeRes);
@@ -104,6 +101,7 @@ int round_lua_getnodestate(lua_State* L)
   }
 
   lua_pushstring(L, json.c_str());
+  */
 
   return 1;
 }
@@ -114,14 +112,13 @@ int round_lua_getnodestate(lua_State* L)
 
 int round_lua_setregistry(lua_State* L)
 {
-  RoundLocalNode* localNode = round_lua_getlocalnode();
-  std::string key = luaL_checkstring(L, 1);
-  std::string val = luaL_checkstring(L, 2);
+  RoundLocalNode* node = round_lua_getlocalnode();
+  const char * key = luaL_checkstring(L, 1);
+  const char * val = luaL_checkstring(L, 2);
 
   bool isSuccess = false;
-  if (localNode && (0 < key.length())) {
-    Round::Error err;
-    isSuccess = localNode->setRegistry(key, val, &err);
+  if (node && key && val) {
+    isSuccess = round_local_node_setregistry(node, key, val);
   }
 
   lua_pushboolean(L, isSuccess);
@@ -136,24 +133,19 @@ int round_lua_setregistry(lua_State* L)
 int round_lua_getregistry(lua_State* L)
 {
   bool isSuccess = false;
-  std::string result = "";
+  const char * result = "";
 
-  RoundLocalNode* localNode = round_lua_getlocalnode();
-  std::string key = luaL_checkstring(L, 1);
-  if (localNode && (0 < key.length())) {
-    Round::Error err;
-    Round::Registry reg;
-    isSuccess = localNode->getRegistry(key, &reg, &err);
-
-    if (isSuccess) {
-      Round::JSONDictionary jsonDict;
-      reg.toJSONDictionary(&jsonDict);
-      jsonDict.toJSONString(&result);
+  RoundLocalNode* node = round_lua_getlocalnode();
+  const char * key = luaL_checkstring(L, 1);
+  if (node && key) {
+    RoundRegistry *reg = round_local_node_getregistry(node, key);
+    if (reg) {
+      result = round_registry_getvalue(reg);
     }
   }
 
   lua_pushboolean(L, isSuccess);
-  lua_pushstring(L, result.c_str());
+  lua_pushstring(L, result );
 
   return 2;
 }
@@ -166,11 +158,10 @@ int round_lua_removeregistry(lua_State* L)
 {
   bool isSuccess = false;
 
-  RoundLocalNode* localNode = round_lua_getlocalnode();
-  std::string key = luaL_checkstring(L, 1);
-  if (localNode && (0 < key.length())) {
-    Round::Error err;
-    isSuccess = localNode->removeRegistry(key, &err);
+  RoundLocalNode* node = round_lua_getlocalnode();
+  const char * key = luaL_checkstring(L, 1);
+  if (node && key) {
+    isSuccess = round_local_node_removeregistry(node, key);
   }
 
   lua_pushboolean(L, isSuccess);
@@ -185,21 +176,31 @@ int round_lua_removeregistry(lua_State* L)
 int round_lua_postmethod(lua_State* L)
 {
   bool isSuccess = false;
-  std::string result;
+  const char * result = "";
 
-  std::string method = luaL_checkstring(L, 1);
-  std::string params = luaL_checkstring(L, 2);
-  std::string dest = luaL_checkstring(L, 3);
+  const char * method = luaL_checkstring(L, 1);
+  const char * params = luaL_checkstring(L, 2);
+  const char * dest = luaL_checkstring(L, 3);
 
-  RoundLocalNode* localNode = round_lua_getlocalnode();
-  if (localNode) {
-    Round::Error error;
-    isSuccess = localNode->postMessage(dest, method, params, &result);
+  RoundJSONObject *resObj;
+  RoundError err;
+
+  RoundLocalNode* node = round_lua_getlocalnode();
+  if (node && method && params && dest) {
+    round_error_init(&err);
+    if (round_local_node_postmethod(node, method, params, &resObj, &err)) {
+      round_json_object_tostring(resObj, &result);
+    }
+    round_error_destroy(&err);
   }
 
   lua_pushboolean(L, isSuccess);
-  lua_pushstring(L, result.c_str());
+  lua_pushstring(L, result);
 
+  if (resObj) {
+    round_json_object_delete(resObj);
+  }
+  
   return 2;
 }
 
