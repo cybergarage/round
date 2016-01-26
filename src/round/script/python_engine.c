@@ -129,7 +129,7 @@ bool round_python_engine_compile(RoundPythonEngine* engine, const char *name, co
     return false;
   }
 
-  *pModule = PyImport_ExecCodeModule((char *)moduleName, pSource);
+  *pModule = PyImport_ExecCodeModuleEx((char *)moduleName, pSource, (char *)name);
   Py_DECREF(pSource);
   if (!(*pModule)) {
     round_error_setjsonrpcerrorcode(err, ROUND_RPC_ERROR_CODE_INVALID_REQUEST);
