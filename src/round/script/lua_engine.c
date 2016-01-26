@@ -32,6 +32,25 @@ RoundLuaEngine* round_lua_engine_new()
 }
 
 /****************************************
+ * round_lua_engine_initsystemmethods
+ ****************************************/
+
+bool round_lua_engine_initsystemmethods(RoundLuaEngine* engine)
+{
+  lua_register(engine->luaState, ROUND_SYSTEM_METHOD_GET_NETWORK_STATE, round_lua_getnetworkstate);
+  lua_register(engine->luaState, ROUND_SYSTEM_METHOD_GET_CLUSTER_STATE, round_lua_getclusterstate);
+  lua_register(engine->luaState, ROUND_SYSTEM_METHOD_GET_NODE_STATE, round_lua_getlocalnodestate);
+  
+  lua_register(engine->luaState, ROUND_SYSTEM_METHOD_SET_REGISTRY, round_lua_setregistry);
+  lua_register(engine->luaState, ROUND_SYSTEM_METHOD_GET_REGISTRY, round_lua_getregistry);
+  lua_register(engine->luaState, ROUND_SYSTEM_METHOD_REMOVE_REGISTRY, round_lua_removeregistry);
+  
+  lua_register(engine->luaState, ROUND_SCRIPT_POST_METHOD, round_lua_postmethod);
+
+  return true;
+}
+
+/****************************************
  * round_lua_engine_init
  ****************************************/
 
@@ -50,6 +69,7 @@ bool round_lua_engine_init(RoundLuaEngine* engine)
 #if defined(ROUND_SUPPORT_LUA)
   engine->luaState = luaL_newstate();
   luaL_openlibs(engine->luaState);
+  round_lua_engine_initsystemmethods(engine);
 #endif
 
   return true;

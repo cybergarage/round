@@ -197,7 +197,7 @@ void Round::Test::ScriptTestController::runCounterMethodTest(RoundMethodManager*
 // runScriptRegistryMethodTest
 ////////////////////////////////////////////////
 
-void Round::Test::ScriptTestController::runScriptRegistryMethodTest(RoundLocalNode* node)
+void Round::Test::ScriptTestController::runScriptEchoMethodTest(RoundLocalNode* node)
 {
 #define KEY_LOOP_COUNT 2
   
@@ -206,27 +206,61 @@ void Round::Test::ScriptTestController::runScriptRegistryMethodTest(RoundLocalNo
   const char* result;
   char params[1024];
   
-  // Post Node Message (Run 'set_key' method)
-  
   for (size_t n = 0; n < KEY_LOOP_COUNT; n++) {
-    // Set key
-    snprintf(params, sizeof(params), "{\"%s\" : \"key%ld\", \"%s\" : \"val%ld\"}", ROUND_SYSTEM_METHOD_PARAM_KEY, n, ROUND_SYSTEM_METHOD_PARAM_VALUE, n);
-    BOOST_CHECK(round_local_node_poststringmessage(node, Round::Test::CreateJsonRpcRequestString(SET_KEY_NAME, params), &resObj, err));
-    
-    /*
-    // Get key
-    snprintf(params, sizeof(params), "{\"%s\" : \"key%ld\"}", ROUND_SYSTEM_METHOD_PARAM_KEY, n);
-    BOOST_CHECK(round_local_node_poststringmessage(node, Round::Test::CreateJsonRpcRequestString(GET_KEY_NAME, params), &resObj, err));
+    snprintf(params, sizeof(params), "hello%ld", n);
+    BOOST_CHECK(round_local_node_poststringmessage(node, Round::Test::CreateJsonRpcRequestString(RPC_HELLO_METHOD_NAME, params), &resObj, err));
     BOOST_CHECK(round_json_rpc_getresultstring(resObj, &result));
     BOOST_CHECK(result);
-    
-    // Remove key
-    snprintf(params, sizeof(params), "{\"%s\" : \"key%ld\"}", ROUND_SYSTEM_METHOD_PARAM_KEY, n);
-    BOOST_CHECK(round_local_node_poststringmessage(node, Round::Test::CreateJsonRpcRequestString(REMOVE_KEY_NAME, params), &resObj, err));
-     */
+    BOOST_CHECK(round_streq(params, result));
   }
   
   BOOST_CHECK(round_error_delete(err));
 }
 
+////////////////////////////////////////////////
+// runScriptRegistryMethodTest
+////////////////////////////////////////////////
+
+void Round::Test::ScriptTestController::runScriptRegistryMethodTest(RoundLocalNode* node)
+{
+#define KEY_LOOP_COUNT 2
+  
+  RoundError* err = round_error_new();
+  RoundJSONObject* resObj;
+  const char* result;
+  char val[1024];
+  char params[1024];
+  
+  // Post Node Message (Run 'set_key' method)
+  
+  for (size_t n = 0; n < KEY_LOOP_COUNT; n++) {
+    // Set key
+    snprintf(val, sizeof(val), "val%ld", n);
+    snprintf(params, sizeof(params), "{\"%s\" : \"key%ld\", \"%s\" : \"%s\"}", ROUND_SYSTEM_METHOD_PARAM_KEY, n, ROUND_SYSTEM_METHOD_PARAM_VALUE, val);
+    BOOST_CHECK(round_local_node_poststringmessage(node, Round::Test::CreateJsonRpcRequestString(RPC_SET_KEY_METHOD_NAME, params), &resObj, err));
+    
+    // Get key
+    snprintf(params, sizeof(params), "{\"%s\" : \"key%ld\"}", ROUND_SYSTEM_METHOD_PARAM_KEY, n);
+    BOOST_CHECK(round_local_node_poststringmessage(node, Round::Test::CreateJsonRpcRequestString(RPC_GET_KEY_METHOD_NAME, params), &resObj, err));
+    BOOST_CHECK(round_json_rpc_getresultstring(resObj, &result));
+    BOOST_CHECK(result);
+    BOOST_CHECK(round_streq(val, result));
+    
+    // Remove key
+    snprintf(params, sizeof(params), "{\"%s\" : \"key%ld\"}", ROUND_SYSTEM_METHOD_PARAM_KEY, n);
+    BOOST_CHECK(round_local_node_poststringmessage(node, Round::Test::CreateJsonRpcRequestString(RPC_REMOVE_KEY_METHOD_NAME, params), &resObj, err));
+  }
+  
+  BOOST_CHECK(round_error_delete(err));
+}
+
+////////////////////////////////////////////////
+// runScriptMethodTest
+////////////////////////////////////////////////
+
+void Round::Test::ScriptTestController::runScriptMethodTest(RoundLocalNode* node)
+{
+  runScriptEchoMethodTest(node);
+  runScriptRegistryMethodTest(node);
+}
 
