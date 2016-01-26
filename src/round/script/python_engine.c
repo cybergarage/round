@@ -103,6 +103,13 @@ bool round_python_engine_fetcherrormessage(RoundPythonEngine* engine, RoundError
   PyObject *ptype, *pvalue, *ptraceback;
   PyErr_Fetch(&ptype, &pvalue, &ptraceback);
   round_error_setdetailmessage(err, PyString_AsString(pvalue));
+
+#if defined(DEBUG)
+  PyObject_Print(ptype, stdout, 0);
+  PyObject_Print(pvalue, stdout, 0);
+  PyObject_Print(ptraceback, stdout, 0);
+#endif
+  
   return true;
 }
 
@@ -181,7 +188,6 @@ bool round_python_engine_run(RoundPythonEngine* engine, RoundMethod* method, con
   PyObject* pArgs = PyTuple_New(1);
   if (!pArgs) {
     Py_DECREF(pFunc);
-
     Py_DECREF(pModule);
     return false;
   }

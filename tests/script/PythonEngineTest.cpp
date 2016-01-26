@@ -37,7 +37,7 @@ static const char* GETKEY_CODE = \
   "import json\n" \
   "def " GET_KEY_NAME "(jsonParams):\n" \
   "  params = json.loads(jsonParams)\n" \
-  "  return round." ROUND_SYSTEM_METHOD_GET_REGISTRY "(params[\"" ROUND_SYSTEM_METHOD_PARAM_KEY "\"])\n";
+  "  return round." ROUND_SYSTEM_METHOD_REMOVE_REGISTRY "(params[\"" ROUND_SYSTEM_METHOD_PARAM_KEY "\"])\n";
 static const char* REMOVEKEY_CODE = \
   "import round\n" \
   "import json\n" \
