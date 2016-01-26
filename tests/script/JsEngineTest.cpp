@@ -99,9 +99,9 @@ BOOST_AUTO_TEST_CASE(JavaScriptEngineSumTest)
 
 BOOST_AUTO_TEST_CASE(JavaScriptRegistryMethods)
 {
-  static const char* SETKEY_CODE = "function " SET_KEY_NAME "(params) {return " ROUND_SYSTEM_METHOD_SET_REGISTRY "(params);}";
-  static const char* GETKEY_CODE = "function " GET_KEY_NAME "(params) {return " ROUND_SYSTEM_METHOD_GET_REGISTRY "(params);}";
-  static const char* REMOVEKEY_CODE = "function " REMOVE_KEY_NAME "(params) {return " ROUND_SYSTEM_METHOD_REMOVE_REGISTRY "(params);}";
+  static const char* SETKEY_CODE = "function " RPC_SET_KEY_METHOD_NAME "(params) {return " ROUND_SYSTEM_METHOD_SET_REGISTRY "(params);}";
+  static const char* GETKEY_CODE = "function " RPC_GET_KEY_METHOD_NAME "(params) {return " ROUND_SYSTEM_METHOD_GET_REGISTRY "(params);}";
+  static const char* REMOVEKEY_CODE = "function " RPC_REMOVE_KEY_METHOD_NAME "(params) {return " ROUND_SYSTEM_METHOD_REMOVE_REGISTRY "(params);}";
 
   RoundLocalNode* node = round_local_node_new();
   BOOST_CHECK(round_local_node_start(node));
@@ -110,9 +110,9 @@ BOOST_AUTO_TEST_CASE(JavaScriptRegistryMethods)
 
   // Post Node Message (Set '*_key' method)
 
-  BOOST_CHECK(round_node_setmethod((RoundNode*)node, ROUND_SCRIPT_LANGUAGE_JS, SET_KEY_NAME, SETKEY_CODE, err));
-  BOOST_CHECK(round_node_setmethod((RoundNode*)node, ROUND_SCRIPT_LANGUAGE_JS, GET_KEY_NAME, GETKEY_CODE, err));
-  BOOST_CHECK(round_node_setmethod((RoundNode*)node, ROUND_SCRIPT_LANGUAGE_JS, REMOVE_KEY_NAME, REMOVEKEY_CODE, err));
+  BOOST_CHECK(round_node_setmethod((RoundNode*)node, ROUND_SCRIPT_LANGUAGE_JS, RPC_SET_KEY_METHOD_NAME, SETKEY_CODE, err));
+  BOOST_CHECK(round_node_setmethod((RoundNode*)node, ROUND_SCRIPT_LANGUAGE_JS, RPC_GET_KEY_METHOD_NAME, GETKEY_CODE, err));
+  BOOST_CHECK(round_node_setmethod((RoundNode*)node, ROUND_SCRIPT_LANGUAGE_JS, RPC_REMOVE_KEY_METHOD_NAME, REMOVEKEY_CODE, err));
 
   // Post Node Message (Run 'set_key' method)
 

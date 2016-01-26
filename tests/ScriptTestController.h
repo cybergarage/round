@@ -264,9 +264,10 @@ static const char *RPC_SET_SETMETHOD = \
 
 RoundMethod *CreateTestMethod(const char *name, const char *lang, const char *stringCode);
 
-#define SET_KEY_NAME "set_key"
-#define GET_KEY_NAME "get_key"
-#define REMOVE_KEY_NAME "remove_key"
+#define RPC_HELLO_METHOD_NAME "hello"
+#define RPC_SET_KEY_METHOD_NAME "set_key"
+#define RPC_GET_KEY_METHOD_NAME "get_key"
+#define RPC_REMOVE_KEY_METHOD_NAME "remove_key"
   
 class ScriptTestController {
  public:
@@ -278,7 +279,9 @@ class ScriptTestController {
   void runSumMethodTest(RoundMethodManager *scriptMgr);
   void runCounterMethodTest(RoundMethodManager *scriptMgr);
 
+  void runScriptEchoMethodTest(RoundLocalNode* node);
   void runScriptRegistryMethodTest(RoundLocalNode* node);
+  void runScriptMethodTest(RoundLocalNode* node);
 };
 
 }

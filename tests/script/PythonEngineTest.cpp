@@ -11,6 +11,7 @@
 #include <boost/test/unit_test.hpp>
 #include <string>
 #include <round/script/python.h>
+
 #include "ScriptTestController.h"
 
 #if defined(ROUND_SUPPORT_PYTHON)
@@ -18,30 +19,28 @@
 BOOST_AUTO_TEST_SUITE(script)
 BOOST_AUTO_TEST_SUITE(python)
 
-#define PY_ECHO_FUNC "echo"
 #define PY_ECHO_PARAM "hello"
+
 static const char *PY_ECHO_CODE = \
-  "def " PY_ECHO_FUNC "(params):\n" \
+  "def " RPC_HELLO_METHOD_NAME "(params):\n" \
   "  return params\n";
 
-#define ROUND_SYSTEM_METHOD_PARAM_KEY "key"
-#define ROUND_SYSTEM_METHOD_PARAM_VALUE "val"
-static const char* SETKEY_CODE = \
+static const char* PY_SETKEY_CODE = \
   "import round\n" \
   "import json\n" \
-  "def " SET_KEY_NAME "(jsonParams):\n" \
+  "def " RPC_SET_KEY_METHOD_NAME "(jsonParams):\n" \
   "  params = json.loads(jsonParams)\n" \
   "  return round." ROUND_SYSTEM_METHOD_SET_REGISTRY "(params[\"" ROUND_SYSTEM_METHOD_PARAM_KEY "\"], params[\"" ROUND_SYSTEM_METHOD_PARAM_VALUE "\"])\n";
-static const char* GETKEY_CODE = \
+static const char* PY_GETKEY_CODE = \
   "import round\n" \
   "import json\n" \
-  "def " GET_KEY_NAME "(jsonParams):\n" \
+  "def " RPC_GET_KEY_METHOD_NAME "(jsonParams):\n" \
   "  params = json.loads(jsonParams)\n" \
   "  return round." ROUND_SYSTEM_METHOD_REMOVE_REGISTRY "(params[\"" ROUND_SYSTEM_METHOD_PARAM_KEY "\"])\n";
-static const char* REMOVEKEY_CODE = \
+static const char* PY_REMOVEKEY_CODE = \
   "import round\n" \
   "import json\n" \
-  "def " REMOVE_KEY_NAME "(jsonParams):\n" \
+  "def " RPC_REMOVE_KEY_METHOD_NAME "(jsonParams):\n" \
   "  params = json.loads(jsonParams)\n" \
   "  return round." ROUND_SYSTEM_METHOD_REMOVE_REGISTRY "(params[\"" ROUND_SYSTEM_METHOD_PARAM_KEY "\"])\n";
 
@@ -53,10 +52,10 @@ BOOST_AUTO_TEST_CASE(PythonCompileHello)
   RoundError* err = round_error_new();
   
   PyObject* pModule;
-  BOOST_CHECK(round_python_engine_compile(pyEngine, PY_ECHO_FUNC, PY_ECHO_CODE, err, &pModule));
+  BOOST_CHECK(round_python_engine_compile(pyEngine, RPC_HELLO_METHOD_NAME, PY_ECHO_CODE, err, &pModule));
   
   PyObject* pFunc;
-  BOOST_CHECK(round_python_engine_getfunctionbyname(pyEngine, pModule, PY_ECHO_FUNC, err, &pFunc));
+  BOOST_CHECK(round_python_engine_getfunctionbyname(pyEngine, pModule, RPC_HELLO_METHOD_NAME, err, &pFunc));
   
   BOOST_CHECK(round_error_delete(err));
   BOOST_CHECK(round_python_engine_delete(pyEngine));
@@ -74,14 +73,14 @@ BOOST_AUTO_TEST_CASE(PythonCompileSetKey)
   for (int n = 0; n < SCRIPT_COMPILE_LOOP; n++) {
     PyObject* pModule, *pFunc;
     
-    BOOST_CHECK(round_python_engine_compile(pyEngine, SET_KEY_NAME, SETKEY_CODE, err, &pModule));
-    BOOST_CHECK(round_python_engine_getfunctionbyname(pyEngine, pModule, SET_KEY_NAME, err, &pFunc));
+    BOOST_CHECK(round_python_engine_compile(pyEngine, RPC_SET_KEY_METHOD_NAME, PY_SETKEY_CODE, err, &pModule));
+    BOOST_CHECK(round_python_engine_getfunctionbyname(pyEngine, pModule, RPC_SET_KEY_METHOD_NAME, err, &pFunc));
 
-    BOOST_CHECK(round_python_engine_compile(pyEngine, GET_KEY_NAME, GETKEY_CODE, err, &pModule));
-    BOOST_CHECK(round_python_engine_getfunctionbyname(pyEngine, pModule, GET_KEY_NAME, err, &pFunc));
+    BOOST_CHECK(round_python_engine_compile(pyEngine, RPC_GET_KEY_METHOD_NAME, PY_GETKEY_CODE, err, &pModule));
+    BOOST_CHECK(round_python_engine_getfunctionbyname(pyEngine, pModule, RPC_GET_KEY_METHOD_NAME, err, &pFunc));
 
-    BOOST_CHECK(round_python_engine_compile(pyEngine, REMOVE_KEY_NAME, REMOVEKEY_CODE, err, &pModule));
-    BOOST_CHECK(round_python_engine_getfunctionbyname(pyEngine, pModule, REMOVE_KEY_NAME, err, &pFunc));
+    BOOST_CHECK(round_python_engine_compile(pyEngine, RPC_REMOVE_KEY_METHOD_NAME, PY_REMOVEKEY_CODE, err, &pModule));
+    BOOST_CHECK(round_python_engine_getfunctionbyname(pyEngine, pModule, RPC_REMOVE_KEY_METHOD_NAME, err, &pFunc));
 }
   
   BOOST_CHECK(round_error_delete(err));
@@ -96,7 +95,7 @@ BOOST_AUTO_TEST_CASE(PythonEngineEcho)
   BOOST_CHECK(pyEngine);
 
   RoundMethod* method = round_method_new();
-  round_method_setname(method, PY_ECHO_FUNC);
+  round_method_setname(method, RPC_HELLO_METHOD_NAME);
   round_method_setstringcode(method, PY_ECHO_CODE);
 
   RoundString* result = round_string_new();
@@ -122,11 +121,11 @@ BOOST_AUTO_TEST_CASE(PythonRegistryMethods)
   
   // Post Node Message (Set '*_key' method)
   
-  BOOST_CHECK(round_node_setmethod((RoundNode*)node, ROUND_SCRIPT_LANGUAGE_PYTHON, SET_KEY_NAME, SETKEY_CODE, err));
-  BOOST_CHECK(round_node_setmethod((RoundNode*)node, ROUND_SCRIPT_LANGUAGE_PYTHON, GET_KEY_NAME, GETKEY_CODE, err));
-  BOOST_CHECK(round_node_setmethod((RoundNode*)node, ROUND_SCRIPT_LANGUAGE_PYTHON, REMOVE_KEY_NAME, REMOVEKEY_CODE, err));
+  BOOST_CHECK(round_node_setmethod((RoundNode*)node, ROUND_SCRIPT_LANGUAGE_PYTHON, RPC_SET_KEY_METHOD_NAME, PY_SETKEY_CODE, err));
+  BOOST_CHECK(round_node_setmethod((RoundNode*)node, ROUND_SCRIPT_LANGUAGE_PYTHON, RPC_GET_KEY_METHOD_NAME, PY_GETKEY_CODE, err));
+  BOOST_CHECK(round_node_setmethod((RoundNode*)node, ROUND_SCRIPT_LANGUAGE_PYTHON, RPC_REMOVE_KEY_METHOD_NAME, PY_REMOVEKEY_CODE, err));
   
-  // Post Node Message (Run 'set_key' method)
+  // Run Methods
   
   Round::Test::ScriptTestController scriptTestCtrl;
   scriptTestCtrl.runScriptRegistryMethodTest(node);
