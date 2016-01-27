@@ -158,7 +158,7 @@ bool round_python_engine_getfunctionbyname(RoundPythonEngine* engine, PyObject* 
  * round_python_engine_run
  ****************************************/
 
-bool round_python_engine_run(RoundPythonEngine* engine, RoundMethod* method, const char* param, RoundString* result, RoundError* err)
+bool round_python_engine_run(RoundPythonEngine* engine, RoundMethod* method, const char* param, RoundJSONObject** resObj, RoundError* err)
 {
   if (!engine)
     return false;
@@ -212,7 +212,8 @@ bool round_python_engine_run(RoundPythonEngine* engine, RoundMethod* method, con
   if (pValue != NULL) {
     const char* cStr = PyString_AsString(pValue);
     if (cStr) {
-      round_string_setvalue(result, cStr);
+      // TODO : Parse result string
+      *resObj = round_json_string_new(cStr);
     }
     Py_DECREF(pValue);
   }

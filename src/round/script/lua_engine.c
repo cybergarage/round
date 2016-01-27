@@ -187,7 +187,7 @@ bool round_lua_engine_poperror(RoundLuaEngine* engine, RoundError* err)
  * round_lua_engine_run
  ****************************************/
 
-bool round_lua_engine_run(RoundLuaEngine* engine, RoundMethod* method, const char* param, RoundString* result, RoundError* err)
+bool round_lua_engine_run(RoundLuaEngine* engine, RoundMethod* method, const char* param, RoundJSONObject** resObj, RoundError* err)
 {
   const char* source;
   const char* name;
@@ -223,7 +223,11 @@ bool round_lua_engine_run(RoundLuaEngine* engine, RoundMethod* method, const cha
   int callResult = lua_pcall(engine->luaState, 1, 1, 0);
   nStack = lua_gettop(engine->luaState);
   if (callResult == 0) {
-    round_lua_engine_popresult(engine, result);
+    // TODO : Parse result string
+    RoundString* resultStr = round_string_new();
+    round_lua_engine_popresult(engine, resultStr);
+    *resObj = round_json_string_new(round_string_getvalue(resultStr));
+    round_string_delete(resultStr);
   }
   else {
     round_lua_engine_poperror(engine, err);

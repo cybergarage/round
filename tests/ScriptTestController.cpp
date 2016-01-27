@@ -242,6 +242,7 @@ void Round::Test::ScriptTestController::runScriptRegistryMethodTest(RoundLocalNo
     // Get key
     snprintf(params, sizeof(params), "{\"%s\" : \"key%ld\"}", ROUND_SYSTEM_METHOD_PARAM_KEY, n);
     BOOST_CHECK(round_local_node_poststringmessage(node, Round::Test::CreateJsonRpcRequestString(RPC_GET_KEY_METHOD_NAME, params), &resObj, err));
+    BOOST_CHECK(resObj);
     BOOST_CHECK(round_json_rpc_getresultstring(resObj, &result));
     BOOST_CHECK(result);
     BOOST_CHECK(round_streq(val, result));
