@@ -136,6 +136,13 @@ bool round_remote_node_postjsonrequest(RoundRemoteNode* node, RoundJSONObject* r
 
 bool round_remote_node_postmessage(RoundRemoteNode* node, RoundJSONObject* reqObj, RoundJSONObject** resObj, RoundError* err)
 {
+  if (!node || !reqObj || !resObj || !err) {
+    round_error_setjsonrpcerrorcode(err, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR);
+    return false;
+  }
+  
+  *resObj = NULL;
+  
   round_json_rpc_settimestamp(reqObj, round_remote_node_getclock(node));
 
   bool isSuccess = round_remote_node_postjsonrequest(node, reqObj, resObj, err);

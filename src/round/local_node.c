@@ -665,11 +665,13 @@ bool round_local_node_execrequest(RoundLocalNode* node, RoundJSONObject* reqObj,
 
 bool round_local_node_postmessage(RoundLocalNode* node, RoundJSONObject* reqObj, RoundJSONObject** resObj, RoundError* err)
 {
-  if (!node) {
+  if (!node || !reqObj || !resObj || !err) {
     round_error_setjsonrpcerrorcode(err, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR);
     return false;
   }
 
+  *resObj = NULL;
+  
   // Updated local clock
 
   round_local_node_updateclockbyjsonobject(node, reqObj);
