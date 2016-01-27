@@ -145,15 +145,17 @@ bool round_method_manager_removeengine(RoundMethodManager* mgr, const char* name
  * round_method_manager_execmethod
  ****************************************/
 
-bool round_method_manager_execmethod(RoundMethodManager* mgr, const char* name, const char* params, RoundJSONObject** result, RoundError* err)
+bool round_method_manager_execmethod(RoundMethodManager* mgr, const char* name, const char* params, RoundJSONObject** resObj, RoundError* err)
 {
   RoundMethod* method;
   RoundScriptEngine* engine;
   ROUND_SCRIPT_ENGINE_EXECFUNC execFunc;
 
-  if (!mgr)
+  if (!mgr || !name || !params || !resObj || !err)
     return false;
 
+  *resObj = NULL;
+  
   method = round_method_manager_getmethod(mgr, name);
   if (!method) {
     round_error_setjsonrpcerrorcode(err, ROUND_RPC_ERROR_CODE_METHOD_NOT_FOUND);
@@ -172,5 +174,5 @@ bool round_method_manager_execmethod(RoundMethodManager* mgr, const char* name, 
     return false;
   }
 
-  return execFunc(engine, method, params, result, err);
+  return execFunc(engine, method, params, resObj, err);
 }
