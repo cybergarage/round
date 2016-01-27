@@ -41,7 +41,7 @@ bool round_lua_engine_init(RoundLuaEngine *engine);
 bool round_lua_engine_destory(RoundLuaEngine *engine);
 bool round_lua_engine_delete(RoundLuaEngine *engine);
 
-bool round_lua_engine_run(RoundLuaEngine *engine, RoundMethod *method, const char *param, RoundString *result, RoundError *err);
+bool round_lua_engine_run(RoundLuaEngine *engine, RoundMethod *method, const char *param, RoundJSONObject** resObj, RoundError *err);
 
 #define round_lua_engine_lock(engine) round_script_engine_lock((RoundScriptEngine *)engine)
 #define round_lua_engine_unlock(engine) round_script_engine_unlock((RoundScriptEngine *)engine)

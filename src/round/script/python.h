@@ -43,7 +43,7 @@ bool round_python_engine_init(RoundPythonEngine* engine);
 bool round_python_engine_destory(RoundPythonEngine *engine);
 bool round_python_engine_delete(RoundPythonEngine *engine);
 
-bool round_python_engine_run(RoundPythonEngine *engine, RoundMethod *method, const char *param, RoundString *result, RoundError *err);
+bool round_python_engine_run(RoundPythonEngine *engine, RoundMethod *method, const char *param, RoundJSONObject** resObj, RoundError *err);
 
 #define round_python_engine_lock(engine) round_script_engine_lock((RoundScriptEngine *)engine)
 #define round_python_engine_unlock(engine) round_script_engine_unlock((RoundScriptEngine *)engine)

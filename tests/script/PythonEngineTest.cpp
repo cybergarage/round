@@ -98,16 +98,21 @@ BOOST_AUTO_TEST_CASE(PythonEngineEcho)
   round_method_setname(method, RPC_HELLO_METHOD_NAME);
   round_method_setstringcode(method, PY_ECHO_CODE);
 
-  RoundString* result = round_string_new();
+  RoundJSONObject* resObj;
+  const char *resStr;
   RoundError* err = round_error_new();
 
   for (int n = 0; n < SCRIPT_ECHO_LOOP; n++) {
-    BOOST_CHECK(round_python_engine_run(pyEngine, method, PY_ECHO_PARAM, result, err));
-    BOOST_CHECK(round_streq(PY_ECHO_PARAM, round_string_getvalue(result)));
+    BOOST_CHECK(round_python_engine_run(pyEngine, method, PY_ECHO_PARAM, &resObj, err));
+    BOOST_CHECK(resObj);
+    BOOST_CHECK(round_json_object_tostring(resObj, &resStr));
+    BOOST_CHECK(round_streq(PY_ECHO_PARAM, resStr));
+    if (resObj) {
+      round_json_object_delete(resObj);
+    }
   }
 
   BOOST_CHECK(round_method_delete(method));
-  BOOST_CHECK(round_string_delete(result));
   BOOST_CHECK(round_error_delete(err));
   BOOST_CHECK(round_python_engine_delete(pyEngine));
 }
