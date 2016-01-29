@@ -81,6 +81,8 @@ BOOST_AUTO_TEST_CASE(LuaRegistryMethods)
   
   RoundError* err = round_error_new();
   
+  // TODO : Install JSON4Lua
+  
   // Post Node Message (Set 'hello' method)
   
   BOOST_CHECK(round_node_setmethod((RoundNode*)node, ROUND_SCRIPT_LANGUAGE_LUA, RPC_HELLO_METHOD_NAME, LUA_ECHO_CODE, err));

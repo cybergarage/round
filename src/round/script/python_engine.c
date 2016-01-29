@@ -202,7 +202,7 @@ bool round_python_engine_run(RoundPythonEngine* engine, RoundMethod* method, con
   }
   PyTuple_SetItem(pArgs, 0, pParam);
 
-  // TODO : Remove the mutex locak
+  // TODO : Remove the mutex lock
   round_python_engine_lock(engine);
   
   round_python_setlocalnode(round_script_engine_getlocalnode(engine));
@@ -222,7 +222,7 @@ bool round_python_engine_run(RoundPythonEngine* engine, RoundMethod* method, con
     round_python_engine_fetcherrormessage(engine, err);
   }
 
-  // TODO : Remove the mutex locak
+  // TODO : Remove the mutex lock
   round_python_engine_unlock(engine);
   
   Py_DECREF(pFunc);
