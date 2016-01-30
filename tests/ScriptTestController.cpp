@@ -10,6 +10,7 @@
 
 #include <boost/test/unit_test.hpp>
 #include <boost/lexical_cast.hpp>
+#include <boost/algorithm/string.hpp>
 
 #include <sstream>
 #include <string.h>
@@ -199,7 +200,7 @@ void Round::Test::ScriptTestController::runCounterMethodTest(RoundMethodManager*
 
 void Round::Test::ScriptTestController::runScriptEchoMethodTest(RoundLocalNode* node)
 {
-#define KEY_LOOP_COUNT 2
+#define KEY_LOOP_COUNT 1
   
   RoundError* err = round_error_new();
   RoundJSONObject* resObj;
@@ -207,10 +208,11 @@ void Round::Test::ScriptTestController::runScriptEchoMethodTest(RoundLocalNode* 
   char params[1024];
   
   for (size_t n = 0; n < KEY_LOOP_COUNT; n++) {
-    snprintf(params, sizeof(params), "hello%ld", n);
+    snprintf(params, sizeof(params), "\"hello%ld\"", n);
     BOOST_CHECK(round_local_node_poststringmessage(node, Round::Test::CreateJsonRpcRequestString(RPC_HELLO_METHOD_NAME, params), &resObj, err));
     BOOST_CHECK(round_json_rpc_getresultstring(resObj, &result));
     BOOST_CHECK(result);
+    snprintf(params, sizeof(params), "hello%ld", n);
     BOOST_CHECK(round_streq(params, result));
   }
   
@@ -223,7 +225,7 @@ void Round::Test::ScriptTestController::runScriptEchoMethodTest(RoundLocalNode* 
 
 void Round::Test::ScriptTestController::runScriptRegistryMethodTest(RoundLocalNode* node)
 {
-#define KEY_LOOP_COUNT 2
+#define KEY_LOOP_COUNT 1
   
   RoundError* err = round_error_new();
   RoundJSONObject* resObj;
