@@ -220,7 +220,16 @@ bool round_lua_engine_run(RoundLuaEngine* engine, RoundMethod* method, const cha
 
   nStack = lua_gettop(engine->luaState);
 
+  // TODO : Remove the mutex lock
+  round_lua_engine_lock(engine);
+  
+  round_lua_setlocalnode(round_script_engine_getlocalnode(engine));
+  
   int callResult = lua_pcall(engine->luaState, 1, 1, 0);
+  
+  // TODO : Remove the mutex lock
+  round_lua_engine_unlock(engine);
+  
   nStack = lua_gettop(engine->luaState);
   if (callResult == 0) {
     // TODO : Parse result string
