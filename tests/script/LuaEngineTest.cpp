@@ -33,11 +33,12 @@ static const char* LUA_GETKEY_CODE = \
   "json = require(\"json\") -- JSON4Lua\n" \
   "function " RPC_GET_KEY_METHOD_NAME "(jsonParams)" \
   "  params = json.decode(jsonParams)\n" \
-  "  return " ROUND_SYSTEM_METHOD_REMOVE_REGISTRY "(params[\"" ROUND_SYSTEM_METHOD_PARAM_KEY "\"])\n" \
+  "  success, value = " ROUND_SYSTEM_METHOD_GET_REGISTRY "(params[\"" ROUND_SYSTEM_METHOD_PARAM_KEY "\"])\n" \
+  "  return value\n" \
   "end\n";
 static const char* LUA_REMOVEKEY_CODE = \
   "json = require(\"json\") -- JSON4Lua\n" \
-  "function " RPC_REMOVE_KEY_METHOD_NAME "(jsonParams):\n" \
+  "function " RPC_REMOVE_KEY_METHOD_NAME "(jsonParams)\n" \
   "  params = json.decode(jsonParams)\n" \
   "  return " ROUND_SYSTEM_METHOD_REMOVE_REGISTRY "(params[\"" ROUND_SYSTEM_METHOD_PARAM_KEY "\"])\n" \
   "end\n";
