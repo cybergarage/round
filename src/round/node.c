@@ -474,11 +474,13 @@ bool round_node_postmessage(RoundNode* node, RoundJSONObject* reqObj, RoundJSONO
 
 bool round_node_postmessagestring(RoundNode* node, const char* reqStr, RoundJSONObject** resObj, RoundError* err)
 {
-  if (!node || !reqStr) {
+  if (!node || !reqStr || !resObj || !err) {
     round_node_rpcerrorcode2error(node, ROUND_RPC_ERROR_CODE_INVALID_REQUEST, err);
     return false;
   }
 
+  *resObj = NULL;
+  
   RoundJSON* json = round_json_new();
   if (!json) {
     round_node_rpcerrorcode2error(node, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR, err);
