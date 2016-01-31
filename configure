@@ -5355,6 +5355,7 @@ else
 fi
 
 if  test $ROUND_SUPPORT_LUA = yes ; then
+	FOUND_LUA_LIB=no
 	for ac_header in lua.h
 do :
   ac_fn_c_check_header_mongrel "$LINENO" "lua.h" "ac_cv_header_lua_h" "$ac_includes_default"
@@ -5362,21 +5363,6 @@ if test "x$ac_cv_header_lua_h" = xyes; then :
   cat >>confdefs.h <<_ACEOF
 #define HAVE_LUA_H 1
 _ACEOF
-
-else
-  for ac_header in lua.h
-do :
-  ac_fn_c_check_header_mongrel "$LINENO" "lua.h" "ac_cv_header_lua_h" "$ac_includes_default"
-if test "x$ac_cv_header_lua_h" = xyes; then :
-  cat >>confdefs.h <<_ACEOF
-#define HAVE_LUA_H 1
-_ACEOF
-
-else
-  as_fn_error $? "Round for C needs LUA $LUA_VERSION later" "$LINENO" 5
-fi
-
-done
 
 fi
 
@@ -5413,16 +5399,86 @@ fi
 { $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_lua_main" >&5
 $as_echo "$ac_cv_lib_lua_main" >&6; }
 if test "x$ac_cv_lib_lua_main" = xyes; then :
-  cat >>confdefs.h <<_ACEOF
-#define HAVE_LIBLUA 1
-_ACEOF
-
-  LIBS="-llua $LIBS"
-
-else
-  LUA_LIBS=`lua-config --libs`
+  FOUND_LUA_LIB=yes
 fi
 
+	if  test $FOUND_LUA_LIB != yes ; then
+		{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for main in -llua5.2" >&5
+$as_echo_n "checking for main in -llua5.2... " >&6; }
+if ${ac_cv_lib_lua5_2_main+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  ac_check_lib_save_LIBS=$LIBS
+LIBS="-llua5.2  $LIBS"
+cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+
+int
+main ()
+{
+return main ();
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_link "$LINENO"; then :
+  ac_cv_lib_lua5_2_main=yes
+else
+  ac_cv_lib_lua5_2_main=no
+fi
+rm -f core conftest.err conftest.$ac_objext \
+    conftest$ac_exeext conftest.$ac_ext
+LIBS=$ac_check_lib_save_LIBS
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_lua5_2_main" >&5
+$as_echo "$ac_cv_lib_lua5_2_main" >&6; }
+if test "x$ac_cv_lib_lua5_2_main" = xyes; then :
+  FOUND_LUA_LIB=yes
+fi
+
+        LIBS+="-llua5.2"
+	fi
+	if  test $FOUND_LUA_LIB != yes ; then
+		{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for main in -llua5.3" >&5
+$as_echo_n "checking for main in -llua5.3... " >&6; }
+if ${ac_cv_lib_lua5_3_main+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  ac_check_lib_save_LIBS=$LIBS
+LIBS="-llua5.3  $LIBS"
+cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+
+int
+main ()
+{
+return main ();
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_link "$LINENO"; then :
+  ac_cv_lib_lua5_3_main=yes
+else
+  ac_cv_lib_lua5_3_main=no
+fi
+rm -f core conftest.err conftest.$ac_objext \
+    conftest$ac_exeext conftest.$ac_ext
+LIBS=$ac_check_lib_save_LIBS
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_lua5_3_main" >&5
+$as_echo "$ac_cv_lib_lua5_3_main" >&6; }
+if test "x$ac_cv_lib_lua5_3_main" = xyes; then :
+  FOUND_LUA_LIB=yes
+fi
+
+        LIBS+="-llua5.3"
+	fi
+	if  test $FOUND_LUA_LIB != yes ; then
+		as_fn_error $? "Round for C needs LUA $LUA_VERSION later" "$LINENO" 5
+	fi
 
 $as_echo "#define ROUND_SUPPORT_LUA 1" >>confdefs.h
 
@@ -5481,8 +5537,8 @@ fi
 # Check whether --enable-tests was given.
 if test "${enable_tests+set}" = set; then :
   enableval=$enable_tests; case "${enableval}" in
-    yes | no ) build_tests="${enableval}" ;;
-  esac
+    	yes | no ) build_tests="${enableval}" ;;
+	esac
 fi
 
 

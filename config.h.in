@@ -48,9 +48,6 @@
 /* Define to 1 if you have the `jansson' library (-ljansson). */
 #undef HAVE_LIBJANSSON
 
-/* Define to 1 if you have the `lua' library (-llua). */
-#undef HAVE_LIBLUA
-
 /* Define to 1 if you have the `mozjs185' library (-lmozjs185). */
 #undef HAVE_LIBMOZJS185
 
