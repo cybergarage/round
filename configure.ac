@@ -31,7 +31,7 @@ JNI_VERSION=1.6.0
 V8_VERSION=3.14
 JS_VERSION=1.8.5
 TCL_VERSION=8.5.0
-LUA_VERSION=5.0.0
+LUA_VERSION=5.2.0
 PYTHON_VERSION=2.7.9
 
 LIBEDIT_VERSION=3.1.0
@@ -239,10 +239,8 @@ AC_ARG_ENABLE(
 	]
 )
 if [ test $ROUND_SUPPORT_LUA = yes ]; then
-    AC_CHECK_HEADERS([lua.h],,
-	  [AC_CHECK_HEADERS([lua.h],,[AC_MSG_ERROR(Round for C needs LUA $LUA_VERSION later)])])
-	  AC_CHECK_LIB([lua],[main],,[LUA_LIBS=`lua-config --libs`])
-    AC_SUBST(LUA_LIBS)
+	AC_CHECK_HEADERS([lua.h],,[AC_CHECK_HEADERS([lua.h],,[AC_MSG_ERROR(Round for C needs LUA $LUA_VERSION later)])])
+	AC_CHECK_LIB([lua],[main],,[LUA_LIBS=`lua-config --libs`])
 	AC_DEFINE([ROUND_SUPPORT_LUA],1,[Lua])
 fi
 

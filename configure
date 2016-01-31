@@ -625,7 +625,6 @@ LTLIBOBJS
 LIBOBJS
 ROUND_ENABLE_TESTS_FALSE
 ROUND_ENABLE_TESTS_TRUE
-LUA_LIBS
 FOUND_PYTHON_CONFIG
 XML_LIBS
 XML_CFLAGS
@@ -2729,7 +2728,7 @@ JNI_VERSION=1.6.0
 V8_VERSION=3.14
 JS_VERSION=1.8.5
 TCL_VERSION=8.5.0
-LUA_VERSION=5.0.0
+LUA_VERSION=5.2.0
 PYTHON_VERSION=2.7.9
 
 LIBEDIT_VERSION=3.1.0
@@ -5356,7 +5355,7 @@ else
 fi
 
 if  test $ROUND_SUPPORT_LUA = yes ; then
-    for ac_header in lua.h
+	for ac_header in lua.h
 do :
   ac_fn_c_check_header_mongrel "$LINENO" "lua.h" "ac_cv_header_lua_h" "$ac_includes_default"
 if test "x$ac_cv_header_lua_h" = xyes; then :
@@ -5383,7 +5382,7 @@ fi
 
 done
 
-	  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for main in -llua" >&5
+	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for main in -llua" >&5
 $as_echo_n "checking for main in -llua... " >&6; }
 if ${ac_cv_lib_lua_main+:} false; then :
   $as_echo_n "(cached) " >&6
@@ -5423,7 +5422,6 @@ _ACEOF
 else
   LUA_LIBS=`lua-config --libs`
 fi
-
 
 
 $as_echo "#define ROUND_SUPPORT_LUA 1" >>confdefs.h
