@@ -31,8 +31,8 @@ RUN apt-get install -y lua5.2 liblua5.2-dev lua-json
 # RUN apt-get install -y lua5.3 liblua5.3-dev lua-json
 RUN apt-get install -y libedit-dev
 WORKDIR /root
-#RUN git clone https://github.com/cybergarage/round.git round
-COPY round /root/round
+RUN git clone https://github.com/cybergarage/round.git round
+# COPY round /root/round
 
 WORKDIR /root
 

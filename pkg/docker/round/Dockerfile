@@ -12,7 +12,7 @@ RUN rm -rf mupnp
 # Round
 WORKDIR /root
 WORKDIR round
-# RUN git pull
+RUN git pull
 RUN ./configure_linux && make && make install
 WORKDIR /root
 RUN rm -rf round
