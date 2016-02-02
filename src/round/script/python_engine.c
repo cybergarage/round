@@ -175,6 +175,8 @@ bool round_python_engine_run(RoundPythonEngine* engine, RoundMethod* method, con
   if (!name)
     return false;
   
+  // TODO : Compile at once
+  
   PyObject* pModule;
   if (!round_python_engine_compile(engine, name, source, err, &pModule))
     return false;
