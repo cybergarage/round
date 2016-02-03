@@ -34,6 +34,26 @@ RoundPythonEngine* round_python_engine_new()
 }
 
 /****************************************
+ * round_python_engine_initialize
+ ****************************************/
+
+bool round_python_engine_initialize(RoundPythonEngine* engine)
+{
+  if (!engine)
+    return false;
+
+  Py_Initialize();
+  
+#if PY_MAJOR_VERSION >= 3
+  PyModule_Create(round_python_getsystemmodule());
+#else
+  Py_InitModule(ROUND_PRODUCT_NAME, round_python_getsystemmethods());
+#endif
+
+  return true;
+}
+
+/****************************************
  * round_python_engine_init
  ****************************************/
 
@@ -41,22 +61,30 @@ bool round_python_engine_init(RoundPythonEngine* engine)
 {
   if (!engine)
     return false;
-
+  
   if (!round_script_engine_init((RoundScriptEngine*)engine))
     return false;
-
+  
   round_script_engine_setlanguage(engine, RoundPythonEngineLanguage);
   round_script_engine_setexecutefunc(engine, round_python_engine_run);
   round_oo_setdescendantdestoroyfunc(engine, round_python_engine_destory);
+  
+  round_python_engine_initialize(engine);
+  
+  return true;
+}
 
-  Py_Initialize();
+/****************************************
+ * round_python_engine_finalize
+ ****************************************/
 
-#if PY_MAJOR_VERSION >= 3
-  PyModule_Create(round_python_getsystemmodule());
-#else
-  Py_InitModule(ROUND_PRODUCT_NAME, round_python_getsystemmethods());
-#endif
-
+bool round_python_engine_finalize(RoundPythonEngine* engine)
+{
+  if (!engine)
+    return false;
+  
+  Py_Finalize();
+  
   return true;
 }
 
@@ -69,8 +97,8 @@ bool round_python_engine_destory(RoundPythonEngine* engine)
   if (!engine)
     return false;
 
-  Py_Finalize();
-
+  round_python_engine_finalize(engine);
+  
   return true;
 }
 
@@ -175,7 +203,11 @@ bool round_python_engine_run(RoundPythonEngine* engine, RoundMethod* method, con
   if (!name)
     return false;
   
-  // TODO : Compile at once
+  // TODO : Remove the mutex lock
+  round_python_engine_lock(engine);
+
+  // TODO : Initalize at onece
+  round_python_engine_initialize(engine);
   
   PyObject* pModule;
   if (!round_python_engine_compile(engine, name, source, err, &pModule))
@@ -204,9 +236,6 @@ bool round_python_engine_run(RoundPythonEngine* engine, RoundMethod* method, con
   }
   PyTuple_SetItem(pArgs, 0, pParam);
 
-  // TODO : Remove the mutex lock
-  round_python_engine_lock(engine);
-  
   round_python_setlocalnode(round_script_engine_getlocalnode(engine));
   
   PyObject* pValue = PyObject_CallObject(pFunc, pArgs);
@@ -224,12 +253,15 @@ bool round_python_engine_run(RoundPythonEngine* engine, RoundMethod* method, con
     round_python_engine_fetcherrormessage(engine, err);
   }
 
-  // TODO : Remove the mutex lock
-  round_python_engine_unlock(engine);
-  
   Py_DECREF(pFunc);
   Py_DECREF(pModule);
 
+  // TODO : Finalize at onece
+  round_python_engine_finalize(engine);
+  
+  // TODO : Remove the mutex lock
+  round_python_engine_unlock(engine);
+  
   return true;
 }
 
