@@ -36,7 +36,7 @@ static const char* PY_GETKEY_CODE = \
   "import json\n" \
   "def " RPC_GET_KEY_METHOD_NAME "(jsonParams):\n" \
   "  params = json.loads(jsonParams)\n" \
-  "  return round." ROUND_SYSTEM_METHOD_REMOVE_REGISTRY "(params[\"" ROUND_SYSTEM_METHOD_PARAM_KEY "\"])\n";
+  "  return round." ROUND_SYSTEM_METHOD_GET_REGISTRY "(params[\"" ROUND_SYSTEM_METHOD_PARAM_KEY "\"])\n";
 static const char* PY_REMOVEKEY_CODE = \
   "import round\n" \
   "import json\n" \
