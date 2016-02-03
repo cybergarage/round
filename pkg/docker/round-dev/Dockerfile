@@ -25,11 +25,14 @@ RUN git clone https://github.com/cybergarage/mupnpc.git mupnp
 
 # Round
 RUN apt-get install -y libboost-all-dev libssl-dev libjansson-dev libxml2-dev
-RUN apt-get install -y libmozjs185-dev python-dev
+RUN apt-get install -y libmozjs185-dev
+RUN apt-get install -y python-dev
+RUN apt-get install -y lua5.2 liblua5.2-dev lua-json
+# RUN apt-get install -y lua5.3 liblua5.3-dev lua-json
 RUN apt-get install -y libedit-dev
 WORKDIR /root
-#RUN git clone https://github.com/cybergarage/round.git round
-COPY round /root/round
+RUN git clone https://github.com/cybergarage/round.git round
+# COPY round /root/round
 
 WORKDIR /root
 

@@ -29,20 +29,29 @@ static const char* PY_SETKEY_CODE = \
   "import round\n" \
   "import json\n" \
   "def " RPC_SET_KEY_METHOD_NAME "(jsonParams):\n" \
-  "  params = json.loads(jsonParams)\n" \
-  "  return round." ROUND_SYSTEM_METHOD_SET_REGISTRY "(params[\"" ROUND_SYSTEM_METHOD_PARAM_KEY "\"], params[\"" ROUND_SYSTEM_METHOD_PARAM_VALUE "\"])\n";
+  "  try:\n" \
+  "    params = json.loads(jsonParams)\n" \
+  "    return round." ROUND_SYSTEM_METHOD_SET_REGISTRY "(params[\"" ROUND_SYSTEM_METHOD_PARAM_KEY "\"], params[\"" ROUND_SYSTEM_METHOD_PARAM_VALUE "\"])\n" \
+  "  except:\n" \
+  "    return False\n";
 static const char* PY_GETKEY_CODE = \
   "import round\n" \
   "import json\n" \
   "def " RPC_GET_KEY_METHOD_NAME "(jsonParams):\n" \
-  "  params = json.loads(jsonParams)\n" \
-  "  return round." ROUND_SYSTEM_METHOD_REMOVE_REGISTRY "(params[\"" ROUND_SYSTEM_METHOD_PARAM_KEY "\"])\n";
+  "  try:\n" \
+  "    params = json.loads(jsonParams)\n" \
+  "    return round." ROUND_SYSTEM_METHOD_GET_REGISTRY "(params[\"" ROUND_SYSTEM_METHOD_PARAM_KEY "\"])\n" \
+  "  except:\n" \
+  "    return \"\"\n";
 static const char* PY_REMOVEKEY_CODE = \
   "import round\n" \
   "import json\n" \
   "def " RPC_REMOVE_KEY_METHOD_NAME "(jsonParams):\n" \
-  "  params = json.loads(jsonParams)\n" \
-  "  return round." ROUND_SYSTEM_METHOD_REMOVE_REGISTRY "(params[\"" ROUND_SYSTEM_METHOD_PARAM_KEY "\"])\n";
+  "  try:\n" \
+  "    params = json.loads(jsonParams)\n" \
+  "    return round." ROUND_SYSTEM_METHOD_REMOVE_REGISTRY "(params[\"" ROUND_SYSTEM_METHOD_PARAM_KEY "\"])\n" \
+  "  except:\n" \
+  "    return False\n";
 
 BOOST_AUTO_TEST_CASE(PythonCompileHello)
 {
