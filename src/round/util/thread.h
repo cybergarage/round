@@ -29,7 +29,7 @@ extern "C" {
  * Define
  ****************************************/
 
-#define ROUND_THREAD_MIN_SLEEP 200
+#define ROUND_THREAD_MIN_SLEEP 100
 
 /****************************************
  * Data Type
