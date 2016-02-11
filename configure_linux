@@ -1,2 +1,5 @@
 #!/bin/bash
-./configure --enable-script-lua --enable-script-python CFLAGS="-I/usr/include/lua5.2 `python-config --cflags`" CPPFLAGS="`python-config --cflags`" LDFLAGS="`python-config --ldflags`" $@
+export CFLAGS="-I/usr/include/lua5.2 `python-config --cflags`"
+export CPPFLAGS="$CFLAGS"
+export LDFLAGS="`python-config --ldflags`"
+./configure --enable-script-lua --enable-script-python $@
