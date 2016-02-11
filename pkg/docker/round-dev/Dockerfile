@@ -1,4 +1,4 @@
-FROM ubuntu:14.04.3
+FROM ubuntu:16.04
 MAINTAINER Satoshi Konno <skonno@cybergarage.org>
 
 # Update base packages
