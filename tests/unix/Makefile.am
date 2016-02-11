@@ -18,20 +18,31 @@ AM_CPPFLAGS = -I$(top_srcdir)/include -I$(top_srcdir)/src -I../
 	../ScriptTestController.h
 
 roundtest_SOURCES = \
-	../RegistryTest.cpp \
-	../RpcServerTest.cpp \
-	../ClusterManagerTest.cpp \
-	../ScriptTestController.cpp \
-	../ScriptEngineTest.cpp \
 	../json/JSONObjectTest.cpp \
 	../json/JSONParseTest.cpp \
 	../json/JSONRpcTest.cpp \
 	../json/JSONMapTest.cpp \
 	../json/JSONArrayTest.cpp \
+	../script/PythonEngineTest.cpp \
 	../script/JsEngineTest.cpp \
 	../script/RubyEngineTest.cpp \
 	../script/LuaEngineTest.cpp \
-	../script/PythonEngineTest.cpp \
+	../util/StatusTest.cpp \
+	../util/Base64Test.cpp \
+	../util/SemaphoreTest.cpp \
+	../util/QueueTest.cpp \
+	../util/StringTest.cpp \
+	../util/MutexTest.cpp \
+	../util/MapTest.cpp \
+	../util/ConsistentHashingRingTest.cpp \
+	../util/ListOrderedTest.cpp \
+	../util/OptionTest.cpp \
+	../util/ListTest.cpp \
+	../RegistryTest.cpp \
+	../RpcServerTest.cpp \
+	../ClusterManagerTest.cpp \
+	../ScriptTestController.cpp \
+	../ScriptEngineTest.cpp \
 	../ServerTest.cpp \
 	../NodeRingTest.cpp \
 	../LocalNodeMessageTest.cpp \
@@ -48,17 +59,6 @@ roundtest_SOURCES = \
 	../DigestTest.cpp \
 	../ClusterTest.cpp \
 	../ClientTest.cpp \
-	../util/StatusTest.cpp \
-	../util/Base64Test.cpp \
-	../util/SemaphoreTest.cpp \
-	../util/QueueTest.cpp \
-	../util/StringTest.cpp \
-	../util/MutexTest.cpp \
-	../util/MapTest.cpp \
-	../util/ConsistentHashingRingTest.cpp \
-	../util/ListOrderedTest.cpp \
-	../util/OptionTest.cpp \
-	../util/ListTest.cpp \
 	../MessageTest.cpp \
 	../MethodMapTest.cpp \
 	../RemoteNodeTest.cpp
