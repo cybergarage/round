@@ -110,23 +110,16 @@ CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 PROGRAMS = $(noinst_PROGRAMS)
 am__dirstamp = $(am__leading_dot)dirstamp
-am_roundtest_OBJECTS = ../json/JSONObjectTest.$(OBJEXT) \
+am_roundtest_OBJECTS = ../RegistryTest.$(OBJEXT) \
+	../RpcServerTest.$(OBJEXT) ../ClusterManagerTest.$(OBJEXT) \
+	../ScriptTestController.$(OBJEXT) \
+	../ScriptEngineTest.$(OBJEXT) ../json/JSONObjectTest.$(OBJEXT) \
 	../json/JSONParseTest.$(OBJEXT) ../json/JSONRpcTest.$(OBJEXT) \
 	../json/JSONMapTest.$(OBJEXT) ../json/JSONArrayTest.$(OBJEXT) \
 	../script/JsEngineTest.$(OBJEXT) \
 	../script/RubyEngineTest.$(OBJEXT) \
 	../script/LuaEngineTest.$(OBJEXT) \
-	../script/PythonEngineTest.$(OBJEXT) \
-	../util/StatusTest.$(OBJEXT) ../util/Base64Test.$(OBJEXT) \
-	../util/SemaphoreTest.$(OBJEXT) ../util/QueueTest.$(OBJEXT) \
-	../util/StringTest.$(OBJEXT) ../util/MutexTest.$(OBJEXT) \
-	../util/MapTest.$(OBJEXT) \
-	../util/ConsistentHashingRingTest.$(OBJEXT) \
-	../util/ListOrderedTest.$(OBJEXT) ../util/OptionTest.$(OBJEXT) \
-	../util/ListTest.$(OBJEXT) ../RegistryTest.$(OBJEXT) \
-	../RpcServerTest.$(OBJEXT) ../ClusterManagerTest.$(OBJEXT) \
-	../ScriptTestController.$(OBJEXT) \
-	../ScriptEngineTest.$(OBJEXT) ../ServerTest.$(OBJEXT) \
+	../script/PythonEngineTest.$(OBJEXT) ../ServerTest.$(OBJEXT) \
 	../NodeRingTest.$(OBJEXT) ../LocalNodeMessageTest.$(OBJEXT) \
 	../RoundTest.$(OBJEXT) ../ScriptEngineMapTest.$(OBJEXT) \
 	../FinderTest.$(OBJEXT) ../MethodManagerTest.$(OBJEXT) \
@@ -134,7 +127,13 @@ am_roundtest_OBJECTS = ../json/JSONObjectTest.$(OBJEXT) \
 	../ClockTest.$(OBJEXT) ../NodeTestController.$(OBJEXT) \
 	../LocalNodeTest.$(OBJEXT) ../ErrorTest.$(OBJEXT) \
 	../DigestTest.$(OBJEXT) ../ClusterTest.$(OBJEXT) \
-	../ClientTest.$(OBJEXT) ../MessageTest.$(OBJEXT) \
+	../ClientTest.$(OBJEXT) ../util/StatusTest.$(OBJEXT) \
+	../util/Base64Test.$(OBJEXT) ../util/SemaphoreTest.$(OBJEXT) \
+	../util/QueueTest.$(OBJEXT) ../util/StringTest.$(OBJEXT) \
+	../util/MutexTest.$(OBJEXT) ../util/MapTest.$(OBJEXT) \
+	../util/ConsistentHashingRingTest.$(OBJEXT) \
+	../util/ListOrderedTest.$(OBJEXT) ../util/OptionTest.$(OBJEXT) \
+	../util/ListTest.$(OBJEXT) ../MessageTest.$(OBJEXT) \
 	../MethodMapTest.$(OBJEXT) ../RemoteNodeTest.$(OBJEXT)
 roundtest_OBJECTS = $(am_roundtest_OBJECTS)
 roundtest_DEPENDENCIES = ../../lib/unix/libround.a
@@ -487,7 +486,6 @@ pdfdir = @pdfdir@
 prefix = @prefix@
 program_transform_name = @program_transform_name@
 psdir = @psdir@
-runstatedir = @runstatedir@
 sbindir = @sbindir@
 sharedstatedir = @sharedstatedir@
 srcdir = @srcdir@
@@ -498,6 +496,11 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 AM_CPPFLAGS = -I$(top_srcdir)/include -I$(top_srcdir)/src -I../
 roundtest_SOURCES = \
+	../RegistryTest.cpp \
+	../RpcServerTest.cpp \
+	../ClusterManagerTest.cpp \
+	../ScriptTestController.cpp \
+	../ScriptEngineTest.cpp \
 	../json/JSONObjectTest.cpp \
 	../json/JSONParseTest.cpp \
 	../json/JSONRpcTest.cpp \
@@ -507,22 +510,6 @@ roundtest_SOURCES = \
 	../script/RubyEngineTest.cpp \
 	../script/LuaEngineTest.cpp \
 	../script/PythonEngineTest.cpp \
-	../util/StatusTest.cpp \
-	../util/Base64Test.cpp \
-	../util/SemaphoreTest.cpp \
-	../util/QueueTest.cpp \
-	../util/StringTest.cpp \
-	../util/MutexTest.cpp \
-	../util/MapTest.cpp \
-	../util/ConsistentHashingRingTest.cpp \
-	../util/ListOrderedTest.cpp \
-	../util/OptionTest.cpp \
-	../util/ListTest.cpp \
-	../RegistryTest.cpp \
-	../RpcServerTest.cpp \
-	../ClusterManagerTest.cpp \
-	../ScriptTestController.cpp \
-	../ScriptEngineTest.cpp \
 	../ServerTest.cpp \
 	../NodeRingTest.cpp \
 	../LocalNodeMessageTest.cpp \
@@ -539,6 +526,17 @@ roundtest_SOURCES = \
 	../DigestTest.cpp \
 	../ClusterTest.cpp \
 	../ClientTest.cpp \
+	../util/StatusTest.cpp \
+	../util/Base64Test.cpp \
+	../util/SemaphoreTest.cpp \
+	../util/QueueTest.cpp \
+	../util/StringTest.cpp \
+	../util/MutexTest.cpp \
+	../util/MapTest.cpp \
+	../util/ConsistentHashingRingTest.cpp \
+	../util/ListOrderedTest.cpp \
+	../util/OptionTest.cpp \
+	../util/ListTest.cpp \
 	../MessageTest.cpp \
 	../MethodMapTest.cpp \
 	../RemoteNodeTest.cpp
@@ -580,6 +578,22 @@ $(am__aclocal_m4_deps):
 
 clean-noinstPROGRAMS:
 	-test -z "$(noinst_PROGRAMS)" || rm -f $(noinst_PROGRAMS)
+../$(am__dirstamp):
+	@$(MKDIR_P) ..
+	@: > ../$(am__dirstamp)
+../$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) ../$(DEPDIR)
+	@: > ../$(DEPDIR)/$(am__dirstamp)
+../RegistryTest.$(OBJEXT): ../$(am__dirstamp) \
+	../$(DEPDIR)/$(am__dirstamp)
+../RpcServerTest.$(OBJEXT): ../$(am__dirstamp) \
+	../$(DEPDIR)/$(am__dirstamp)
+../ClusterManagerTest.$(OBJEXT): ../$(am__dirstamp) \
+	../$(DEPDIR)/$(am__dirstamp)
+../ScriptTestController.$(OBJEXT): ../$(am__dirstamp) \
+	../$(DEPDIR)/$(am__dirstamp)
+../ScriptEngineTest.$(OBJEXT): ../$(am__dirstamp) \
+	../$(DEPDIR)/$(am__dirstamp)
 ../json/$(am__dirstamp):
 	@$(MKDIR_P) ../json
 	@: > ../json/$(am__dirstamp)
@@ -610,50 +624,6 @@ clean-noinstPROGRAMS:
 	../script/$(DEPDIR)/$(am__dirstamp)
 ../script/PythonEngineTest.$(OBJEXT): ../script/$(am__dirstamp) \
 	../script/$(DEPDIR)/$(am__dirstamp)
-../util/$(am__dirstamp):
-	@$(MKDIR_P) ../util
-	@: > ../util/$(am__dirstamp)
-../util/$(DEPDIR)/$(am__dirstamp):
-	@$(MKDIR_P) ../util/$(DEPDIR)
-	@: > ../util/$(DEPDIR)/$(am__dirstamp)
-../util/StatusTest.$(OBJEXT): ../util/$(am__dirstamp) \
-	../util/$(DEPDIR)/$(am__dirstamp)
-../util/Base64Test.$(OBJEXT): ../util/$(am__dirstamp) \
-	../util/$(DEPDIR)/$(am__dirstamp)
-../util/SemaphoreTest.$(OBJEXT): ../util/$(am__dirstamp) \
-	../util/$(DEPDIR)/$(am__dirstamp)
-../util/QueueTest.$(OBJEXT): ../util/$(am__dirstamp) \
-	../util/$(DEPDIR)/$(am__dirstamp)
-../util/StringTest.$(OBJEXT): ../util/$(am__dirstamp) \
-	../util/$(DEPDIR)/$(am__dirstamp)
-../util/MutexTest.$(OBJEXT): ../util/$(am__dirstamp) \
-	../util/$(DEPDIR)/$(am__dirstamp)
-../util/MapTest.$(OBJEXT): ../util/$(am__dirstamp) \
-	../util/$(DEPDIR)/$(am__dirstamp)
-../util/ConsistentHashingRingTest.$(OBJEXT): ../util/$(am__dirstamp) \
-	../util/$(DEPDIR)/$(am__dirstamp)
-../util/ListOrderedTest.$(OBJEXT): ../util/$(am__dirstamp) \
-	../util/$(DEPDIR)/$(am__dirstamp)
-../util/OptionTest.$(OBJEXT): ../util/$(am__dirstamp) \
-	../util/$(DEPDIR)/$(am__dirstamp)
-../util/ListTest.$(OBJEXT): ../util/$(am__dirstamp) \
-	../util/$(DEPDIR)/$(am__dirstamp)
-../$(am__dirstamp):
-	@$(MKDIR_P) ..
-	@: > ../$(am__dirstamp)
-../$(DEPDIR)/$(am__dirstamp):
-	@$(MKDIR_P) ../$(DEPDIR)
-	@: > ../$(DEPDIR)/$(am__dirstamp)
-../RegistryTest.$(OBJEXT): ../$(am__dirstamp) \
-	../$(DEPDIR)/$(am__dirstamp)
-../RpcServerTest.$(OBJEXT): ../$(am__dirstamp) \
-	../$(DEPDIR)/$(am__dirstamp)
-../ClusterManagerTest.$(OBJEXT): ../$(am__dirstamp) \
-	../$(DEPDIR)/$(am__dirstamp)
-../ScriptTestController.$(OBJEXT): ../$(am__dirstamp) \
-	../$(DEPDIR)/$(am__dirstamp)
-../ScriptEngineTest.$(OBJEXT): ../$(am__dirstamp) \
-	../$(DEPDIR)/$(am__dirstamp)
 ../ServerTest.$(OBJEXT): ../$(am__dirstamp) \
 	../$(DEPDIR)/$(am__dirstamp)
 ../NodeRingTest.$(OBJEXT): ../$(am__dirstamp) \
@@ -685,6 +655,34 @@ clean-noinstPROGRAMS:
 	../$(DEPDIR)/$(am__dirstamp)
 ../ClientTest.$(OBJEXT): ../$(am__dirstamp) \
 	../$(DEPDIR)/$(am__dirstamp)
+../util/$(am__dirstamp):
+	@$(MKDIR_P) ../util
+	@: > ../util/$(am__dirstamp)
+../util/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) ../util/$(DEPDIR)
+	@: > ../util/$(DEPDIR)/$(am__dirstamp)
+../util/StatusTest.$(OBJEXT): ../util/$(am__dirstamp) \
+	../util/$(DEPDIR)/$(am__dirstamp)
+../util/Base64Test.$(OBJEXT): ../util/$(am__dirstamp) \
+	../util/$(DEPDIR)/$(am__dirstamp)
+../util/SemaphoreTest.$(OBJEXT): ../util/$(am__dirstamp) \
+	../util/$(DEPDIR)/$(am__dirstamp)
+../util/QueueTest.$(OBJEXT): ../util/$(am__dirstamp) \
+	../util/$(DEPDIR)/$(am__dirstamp)
+../util/StringTest.$(OBJEXT): ../util/$(am__dirstamp) \
+	../util/$(DEPDIR)/$(am__dirstamp)
+../util/MutexTest.$(OBJEXT): ../util/$(am__dirstamp) \
+	../util/$(DEPDIR)/$(am__dirstamp)
+../util/MapTest.$(OBJEXT): ../util/$(am__dirstamp) \
+	../util/$(DEPDIR)/$(am__dirstamp)
+../util/ConsistentHashingRingTest.$(OBJEXT): ../util/$(am__dirstamp) \
+	../util/$(DEPDIR)/$(am__dirstamp)
+../util/ListOrderedTest.$(OBJEXT): ../util/$(am__dirstamp) \
+	../util/$(DEPDIR)/$(am__dirstamp)
+../util/OptionTest.$(OBJEXT): ../util/$(am__dirstamp) \
+	../util/$(DEPDIR)/$(am__dirstamp)
+../util/ListTest.$(OBJEXT): ../util/$(am__dirstamp) \
+	../util/$(DEPDIR)/$(am__dirstamp)
 ../MessageTest.$(OBJEXT): ../$(am__dirstamp) \
 	../$(DEPDIR)/$(am__dirstamp)
 ../MethodMapTest.$(OBJEXT): ../$(am__dirstamp) \
