@@ -42,9 +42,6 @@
 /* Define to 1 if you have the `crypto' library (-lcrypto). */
 #undef HAVE_LIBCRYPTO
 
-/* Define to 1 if you have the `edit' library (-ledit). */
-#undef HAVE_LIBEDIT
-
 /* Define to 1 if you have the `jansson' library (-ljansson). */
 #undef HAVE_LIBJANSSON
 

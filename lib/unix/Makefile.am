@@ -20,10 +20,10 @@ round_mpi_sources = \
 	../../src/round/impl/upnp_finder.c \
 	../../src/round/impl/upnp_remote_node.c \
 	../../src/round/impl/upnp_server.c \
-	../../src/round/script/python_engine.c \
 	../../src/round/script/lua/lua_functions.c \
 	../../src/round/script/js/js_sm_functions.c \
 	../../src/round/script/python/python_functions.c \
+	../../src/round/script/python_engine.c \
 	../../src/round/script/script_functions.c \
 	../../src/round/script/lua_engine.c \
 	../../src/round/script/js_sm_engine.c \

@@ -220,6 +220,7 @@ if [ test $ROUND_SUPPORT_PYTHON = yes ]; then
   AC_CHECK_HEADERS([Python/Python.h])
   AC_CHECK_HEADERS([Python.h])
   AC_DEFINE([ROUND_SUPPORT_PYTHON],1,[Python])
+  LIBS+=" "
   LIBS+=`python-config --libs`
 fi
 
@@ -244,11 +245,11 @@ if [ test $ROUND_SUPPORT_LUA = yes ]; then
 	AC_CHECK_LIB([lua],[main],[FOUND_LUA_LIB=yes])
 	if [ test $FOUND_LUA_LIB != yes ]; then
 		AC_CHECK_LIB([lua5.2],[main],[FOUND_LUA_LIB=yes])
-        LIBS+="-llua5.2"
+        	LIBS+="-llua5.2"
 	fi
 	if [ test $FOUND_LUA_LIB != yes ]; then
 		AC_CHECK_LIB([lua5.3],[main],[FOUND_LUA_LIB=yes])
-        LIBS+="-llua5.3"
+        	LIBS+="-llua5.3"
 	fi
 	if [ test $FOUND_LUA_LIB != yes ]; then
 		AC_MSG_ERROR(Round for C needs LUA $LUA_VERSION later)
@@ -260,7 +261,8 @@ fi
 # Check standard libraries for Utility
 ##############################
 
-AC_CHECK_LIB([edit],[main],,[AC_MSG_ERROR(Round needs libedit $LIBEDIT_VERSION later)])
+# TODO : Could not found libedit on Ubuntu 15.10.
+# AC_CHECK_LIB([edit],[main],,[AC_MSG_ERROR(Round needs libedit $LIBEDIT_VERSION later)])
 
 ##############################
 # Testing
