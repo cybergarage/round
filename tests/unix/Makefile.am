@@ -23,10 +23,10 @@ roundtest_SOURCES = \
 	../json/JSONRpcTest.cpp \
 	../json/JSONMapTest.cpp \
 	../json/JSONArrayTest.cpp \
-	../script/PythonEngineTest.cpp \
 	../script/JsEngineTest.cpp \
 	../script/RubyEngineTest.cpp \
 	../script/LuaEngineTest.cpp \
+	../script/PythonEngineTest.cpp \
 	../util/StatusTest.cpp \
 	../util/Base64Test.cpp \
 	../util/SemaphoreTest.cpp \
