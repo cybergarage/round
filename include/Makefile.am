@@ -9,7 +9,6 @@
 ##################################################################
 
 round_client_headers = \
-	./round/const.h \
 	./round/server.h \
 	./round/round.h \
 	./round/node.h \
@@ -21,6 +20,7 @@ round_client_headers = \
 	./round/util/json.h \
 	./round/util/json_rpc.h \
 	./round/util/option.h \
+	./round/const.h \
 	./round/finder.h
 
 nobase_include_HEADERS = \
