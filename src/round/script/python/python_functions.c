@@ -69,6 +69,10 @@ bool round_python_haslocalnode()
 
 PyObject* round_python_getnetworkstate(PyObject* self, PyObject* args)
 {
+  RoundLocalNode* node = round_python_getlocalnode();
+  if (!node)
+    return NULL;
+  
   return NULL;
 }
 
@@ -78,6 +82,10 @@ PyObject* round_python_getnetworkstate(PyObject* self, PyObject* args)
 
 PyObject* round_python_getclusterstate(PyObject* self, PyObject* args)
 {
+  RoundLocalNode* node = round_python_getlocalnode();
+  if (!node)
+    return NULL;
+  
   return NULL;
 }
 
