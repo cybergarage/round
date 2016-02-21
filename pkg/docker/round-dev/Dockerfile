@@ -1,10 +1,10 @@
-FROM ubuntu:14.04.3
+FROM ubuntu:16.04
 MAINTAINER Satoshi Konno <skonno@cybergarage.org>
 
 # Update base packages
 RUN apt-get update && apt-get upgrade -y
-
 # Install base packages
+RUN apt-get install -y apt-utils
 RUN apt-get install -y git g++ make automake autoconf
 RUN apt-get install -y pkg-config
 RUN apt-get install -y libboost-all-dev

@@ -2,4 +2,8 @@
 export TCL_FRAMEWORK=/System/Library/Frameworks/Tcl.framework
 export APPLE_JDK_HOME=/System/Library/Frameworks/JavaVM.framework
 export ORACLE_JDK_HOME=/Library/Java/JavaVirtualMachines/jdk`java -version 2>&1 | grep java | awk -F"[ \"]+" '{print $3}'`.jdk/Contents/Home
-./configure CPPFLAGS="-I/usr/local/include -I$APPLE_JDK_HOME/Headers -I$ORACLE_JDK_HOME/include -I$ORACLE_JDK_HOME/include/darwin -I$TCL_FRAMEWORK/Headers" LDFLAGS="-L/usr/local/lib -L$APPLE_JDK_HOME/Libraries -framework JavaVM -framework Tcl" MKDIR_P='mkdir -p' $@
+export CFLAGS="-I/usr/local/include -I$APPLE_JDK_HOME/Headers -I$ORACLE_JDK_HOME/include -I$ORACLE_JDK_HOME/include/darwin -I$TCL_FRAMEWORK/Headers"
+export CPPFLAGS="$CFLAGS"
+export LDFLAGS="-L/usr/local/lib -L$APPLE_JDK_HOME/Libraries -framework JavaVM -framework Tcl"
+export MKDIR_P='mkdir -p'
+./configure $@
