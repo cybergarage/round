@@ -310,12 +310,14 @@ bool round_node_updateid(RoundNode* node)
  * round_node_getid
  ****************************************/
 
-const char* round_node_getid(RoundNode* node)
+bool round_node_getid(RoundNode *node, const char **id)
 {
   if (!node)
-    return "";
+    return false;
 
-  return round_string_getvalue(node->digest);
+  *id = round_string_getvalue(node->digest);
+  
+  return true;
 }
 
 /****************************************

@@ -99,7 +99,9 @@ PyObject* round_python_getnodestate(PyObject* self, PyObject* args)
   if (!round_local_node_getport(node, &port))
     return NULL;
 
-  const char *id = round_local_node_getid(node);
+  const char *id;
+  if (!round_local_node_getid(node, &id))
+    return NULL;
   
   PyObject* obj = PyDict_New();
   if (!obj)

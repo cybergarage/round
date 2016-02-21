@@ -62,7 +62,7 @@ clock_t round_node_getclock(RoundNode *node);
 bool round_node_setclustername(RoundNode *node, const char *cluster);
 bool round_node_getclustername(RoundNode *node, const char **cluster);
 
-const char *round_node_getid(RoundNode *node);
+bool round_node_getid(RoundNode *node, const char **id);
 
 bool round_node_setrequesttimeout(RoundNode *node, time_t value);
 time_t round_node_getrequesttimeout(RoundNode *node);
@@ -97,7 +97,7 @@ bool round_node_removeregistry(RoundNode* node, const char *key, RoundError *err
 #define round_local_node_getuserdata(node) round_node_getuserdata((RoundNode *)node)
 
 #define round_local_node_getclustername(node,cluster) round_node_getclustername((RoundNode*)node,cluster)
-#define round_local_node_getid(node) round_node_getid((RoundNode*)node)
+#define round_local_node_getid(node, id) round_node_getid((RoundNode*)node, id)
 
 bool round_local_node_setnativemethod(RoundLocalNode *node, const char *name, ROUND_SCRIPT_NATIVE_ENGINE_FUNC func);
 

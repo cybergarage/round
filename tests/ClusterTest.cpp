@@ -117,7 +117,9 @@ BOOST_AUTO_TEST_CASE(ClusterGetNode)
   BOOST_CHECK(foundNode);
   BOOST_CHECK(round_node_equals(node, foundNode));
 
-  foundNode = round_cluster_getnodebyid(cluster, round_node_getid(node));
+  const char *nodeId;
+  BOOST_CHECK(round_node_getid(node, &nodeId));
+  foundNode = round_cluster_getnodebyid(cluster, nodeId);
   BOOST_CHECK(foundNode);
   BOOST_CHECK(round_node_equals(node, foundNode));
 
