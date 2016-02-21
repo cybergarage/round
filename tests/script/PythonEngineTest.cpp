@@ -60,7 +60,7 @@ static const char* PY_GETNODEID_CODE = \
 "def " RPC_METHOD_GET_NODE_ID "(jsonParams):\n" \
 "  try:\n" \
 "    node = " ROUND_SYSTEM_METHOD_GET_NODE_STATE "()\n" \
-"    return node[\"" ROUND_SYSTEM_METHOD_REMOVE_REGISTRY "\"]\n" \
+"    return node[\"" ROUND_SYSTEM_METHOD_PARAM_ID "\"]\n" \
 "  except:\n" \
 "    return False\n";
 
