@@ -5333,6 +5333,7 @@ done
 
 $as_echo "#define ROUND_SUPPORT_PYTHON 1" >>confdefs.h
 
+  LIBS+=" "
   LIBS+=`python-config --libs`
 fi
 
@@ -5437,7 +5438,7 @@ if test "x$ac_cv_lib_lua5_2_main" = xyes; then :
   FOUND_LUA_LIB=yes
 fi
 
-        LIBS+="-llua5.2"
+        	LIBS+="-llua5.2"
 	fi
 	if  test $FOUND_LUA_LIB != yes ; then
 		{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for main in -llua5.3" >&5
@@ -5474,7 +5475,7 @@ if test "x$ac_cv_lib_lua5_3_main" = xyes; then :
   FOUND_LUA_LIB=yes
 fi
 
-        LIBS+="-llua5.3"
+        	LIBS+="-llua5.3"
 	fi
 	if  test $FOUND_LUA_LIB != yes ; then
 		as_fn_error $? "Round for C needs LUA $LUA_VERSION later" "$LINENO" 5
@@ -5488,47 +5489,8 @@ fi
 # Check standard libraries for Utility
 ##############################
 
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for main in -ledit" >&5
-$as_echo_n "checking for main in -ledit... " >&6; }
-if ${ac_cv_lib_edit_main+:} false; then :
-  $as_echo_n "(cached) " >&6
-else
-  ac_check_lib_save_LIBS=$LIBS
-LIBS="-ledit  $LIBS"
-cat confdefs.h - <<_ACEOF >conftest.$ac_ext
-/* end confdefs.h.  */
-
-
-int
-main ()
-{
-return main ();
-  ;
-  return 0;
-}
-_ACEOF
-if ac_fn_c_try_link "$LINENO"; then :
-  ac_cv_lib_edit_main=yes
-else
-  ac_cv_lib_edit_main=no
-fi
-rm -f core conftest.err conftest.$ac_objext \
-    conftest$ac_exeext conftest.$ac_ext
-LIBS=$ac_check_lib_save_LIBS
-fi
-{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_edit_main" >&5
-$as_echo "$ac_cv_lib_edit_main" >&6; }
-if test "x$ac_cv_lib_edit_main" = xyes; then :
-  cat >>confdefs.h <<_ACEOF
-#define HAVE_LIBEDIT 1
-_ACEOF
-
-  LIBS="-ledit $LIBS"
-
-else
-  as_fn_error $? "Round needs libedit $LIBEDIT_VERSION later" "$LINENO" 5
-fi
-
+# TODO : Could not found libedit on Ubuntu 15.10.
+# AC_CHECK_LIB([edit],[main],,[AC_MSG_ERROR(Round needs libedit $LIBEDIT_VERSION later)])
 
 ##############################
 # Testing
