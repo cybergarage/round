@@ -87,7 +87,29 @@ PyObject* round_python_getclusterstate(PyObject* self, PyObject* args)
 
 PyObject* round_python_getnodestate(PyObject* self, PyObject* args)
 {
-  return NULL;
+  RoundLocalNode* node = round_python_getlocalnode();
+  if (!node)
+    return NULL;
+
+  const char *addr;
+  if (!round_local_node_getaddress(node, &addr))
+    return NULL;
+  
+  int port;
+  if (!round_local_node_getport(node, &port))
+    return NULL;
+
+  const char *id = round_local_node_getid(node);
+  
+  PyObject* obj = PyDict_New();
+  if (!obj)
+    return NULL;
+  
+  PyDict_SetItemString(obj, ROUND_SYSTEM_METHOD_PARAM_ADDR, Py_BuildValue("s", addr));
+  PyDict_SetItemString(obj, ROUND_SYSTEM_METHOD_PARAM_PORT, Py_BuildValue("i", port));
+  PyDict_SetItemString(obj, ROUND_SYSTEM_METHOD_PARAM_ID,   Py_BuildValue("s", id));
+
+  return obj;
 }
 
 /****************************************
