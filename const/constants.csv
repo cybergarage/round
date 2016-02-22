@@ -84,6 +84,7 @@ system_method_get_node_state,"get_node_state"
 system_method_get_node_config,"get_node_config"
 
 # System Method Params
+system_method_param_id,"id"
 system_method_param_name,"name"
 system_method_param_language,"lang"
 system_method_param_code,"code"

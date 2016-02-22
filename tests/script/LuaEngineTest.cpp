@@ -19,26 +19,26 @@
 BOOST_AUTO_TEST_SUITE(script)
 BOOST_AUTO_TEST_SUITE(lua)
 
-static const char *LUA_ECHO_CODE = "function " RPC_HELLO_METHOD_NAME "(params)\n"
+static const char *LUA_ECHO_CODE = "function " RPC_METHOD_HELLO_NAME "(params)\n"
   "return params\n"
   "end";
 
 static const char* LUA_SETKEY_CODE = \
   "json = require(\"json\") -- JSON4Lua\n" \
-  "function " RPC_SET_KEY_METHOD_NAME "(jsonParams)" \
+  "function " RPC_METHOD_SET_KEY_NAME "(jsonParams)" \
   "  params = json.decode(jsonParams)\n" \
   "  return " ROUND_SYSTEM_METHOD_SET_REGISTRY "(params[\"" ROUND_SYSTEM_METHOD_PARAM_KEY "\"], params[\"" ROUND_SYSTEM_METHOD_PARAM_VALUE "\"])\n" \
   "end\n";
 static const char* LUA_GETKEY_CODE = \
   "json = require(\"json\") -- JSON4Lua\n" \
-  "function " RPC_GET_KEY_METHOD_NAME "(jsonParams)" \
+  "function " RPC_METHOD_GET_KEY_NAME "(jsonParams)" \
   "  params = json.decode(jsonParams)\n" \
   "  success, value = " ROUND_SYSTEM_METHOD_GET_REGISTRY "(params[\"" ROUND_SYSTEM_METHOD_PARAM_KEY "\"])\n" \
   "  return value\n" \
   "end\n";
 static const char* LUA_REMOVEKEY_CODE = \
   "json = require(\"json\") -- JSON4Lua\n" \
-  "function " RPC_REMOVE_KEY_METHOD_NAME "(jsonParams)\n" \
+  "function " RPC_METHOD_REMOVE_KEY_NAME "(jsonParams)\n" \
   "  params = json.decode(jsonParams)\n" \
   "  return " ROUND_SYSTEM_METHOD_REMOVE_REGISTRY "(params[\"" ROUND_SYSTEM_METHOD_PARAM_KEY "\"])\n" \
   "end\n";
@@ -51,7 +51,7 @@ BOOST_AUTO_TEST_CASE(LuaEngineTest)
   RoundLuaEngine* luaEngine = round_lua_engine_new();
 
   RoundMethod* method = round_method_new();
-  round_method_setname(method, RPC_HELLO_METHOD_NAME);
+  round_method_setname(method, RPC_METHOD_HELLO_NAME);
   round_method_setstringcode(method, LUA_ECHO_CODE);
 
   RoundJSONObject* resObj;
@@ -86,13 +86,13 @@ BOOST_AUTO_TEST_CASE(LuaRegistryMethods)
   
   // Post Node Message (Set 'hello' method)
   
-  BOOST_CHECK(round_node_setmethod((RoundNode*)node, ROUND_SCRIPT_LANGUAGE_LUA, RPC_HELLO_METHOD_NAME, LUA_ECHO_CODE, err));
+  BOOST_CHECK(round_node_setmethod((RoundNode*)node, ROUND_SCRIPT_LANGUAGE_LUA, RPC_METHOD_HELLO_NAME, LUA_ECHO_CODE, err));
   
   // Post Node Message (Set '*_key' method)
   
-  BOOST_CHECK(round_node_setmethod((RoundNode*)node, ROUND_SCRIPT_LANGUAGE_LUA, RPC_SET_KEY_METHOD_NAME, LUA_SETKEY_CODE, err));
-  BOOST_CHECK(round_node_setmethod((RoundNode*)node, ROUND_SCRIPT_LANGUAGE_LUA, RPC_GET_KEY_METHOD_NAME, LUA_GETKEY_CODE, err));
-  BOOST_CHECK(round_node_setmethod((RoundNode*)node, ROUND_SCRIPT_LANGUAGE_LUA, RPC_REMOVE_KEY_METHOD_NAME, LUA_REMOVEKEY_CODE, err));
+  BOOST_CHECK(round_node_setmethod((RoundNode*)node, ROUND_SCRIPT_LANGUAGE_LUA, RPC_METHOD_SET_KEY_NAME, LUA_SETKEY_CODE, err));
+  BOOST_CHECK(round_node_setmethod((RoundNode*)node, ROUND_SCRIPT_LANGUAGE_LUA, RPC_METHOD_GET_KEY_NAME, LUA_GETKEY_CODE, err));
+  BOOST_CHECK(round_node_setmethod((RoundNode*)node, ROUND_SCRIPT_LANGUAGE_LUA, RPC_METHOD_REMOVE_KEY_NAME, LUA_REMOVEKEY_CODE, err));
   
   // Run Methods
   

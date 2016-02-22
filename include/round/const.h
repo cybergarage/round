@@ -75,6 +75,7 @@ extern "C" {
 #define ROUND_SYSTEM_METHOD_REMOVE_REGISTRY "remove_registry"
 #define ROUND_SYSTEM_METHOD_GET_NODE_STATE "get_node_state"
 #define ROUND_SYSTEM_METHOD_GET_NODE_CONFIG "get_node_config"
+#define ROUND_SYSTEM_METHOD_PARAM_ID "id"
 #define ROUND_SYSTEM_METHOD_PARAM_NAME "name"
 #define ROUND_SYSTEM_METHOD_PARAM_LANGUAGE "lang"
 #define ROUND_SYSTEM_METHOD_PARAM_CODE "code"
