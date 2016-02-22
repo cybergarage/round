@@ -70,32 +70,35 @@ BOOST_AUTO_TEST_CASE(NodeHash)
   BOOST_CHECK(node);
 
   char nodeHash[4][ROUND_NODE_DIGEST_LENGTH] = { "", "", "", "" };
+  const char *nodeId;
 
   BOOST_CHECK_EQUAL(round_node_hasid(node), false);
-  round_strcpy(nodeHash[0], round_node_getid(node));
-  BOOST_CHECK_EQUAL(round_strlen(nodeHash[0]), 0);
 
   BOOST_CHECK_EQUAL(round_node_setaddress(node, "127.0.0.1"), true);
   BOOST_CHECK_EQUAL(round_node_hasid(node), true);
-  round_strcpy(nodeHash[1], round_node_getid(node));
-  BOOST_CHECK_EQUAL(round_strlen(nodeHash[1]), ROUND_NODE_DIGEST_LENGTH);
+  BOOST_CHECK(round_node_getid(node, &nodeId));
+  round_strcpy(nodeHash[0], nodeId);
+  BOOST_CHECK_EQUAL(round_strlen(nodeHash[0]), ROUND_NODE_DIGEST_LENGTH);
 
   BOOST_CHECK_EQUAL(round_node_setport(node, 80), true);
   BOOST_CHECK_EQUAL(round_node_hasid(node), true);
-  round_strcpy(nodeHash[1], round_node_getid(node));
+  BOOST_CHECK(round_node_getid(node, &nodeId));
+  round_strcpy(nodeHash[1], nodeId);
   BOOST_CHECK_EQUAL(round_strlen(nodeHash[1]), ROUND_NODE_DIGEST_LENGTH);
   BOOST_CHECK(round_strcmp(nodeHash[1], nodeHash[0]) != 0);
 
   BOOST_CHECK_EQUAL(round_node_setaddress(node, "localhost"), true);
   BOOST_CHECK_EQUAL(round_node_hasid(node), true);
-  round_strcpy(nodeHash[2], round_node_getid(node));
+  BOOST_CHECK(round_node_getid(node, &nodeId));
+  round_strcpy(nodeHash[2], nodeId);
   BOOST_CHECK_EQUAL(round_strlen(nodeHash[2]), ROUND_NODE_DIGEST_LENGTH);
   BOOST_CHECK(round_strcmp(nodeHash[2], nodeHash[0]) != 0);
   BOOST_CHECK(round_strcmp(nodeHash[2], nodeHash[1]) != 0);
 
   BOOST_CHECK_EQUAL(round_node_setport(node, 8080), true);
   BOOST_CHECK_EQUAL(round_node_hasid(node), true);
-  round_strcpy(nodeHash[3], round_node_getid(node));
+  BOOST_CHECK(round_node_getid(node, &nodeId));
+  round_strcpy(nodeHash[3], nodeId);
   BOOST_CHECK_EQUAL(round_strlen(nodeHash[3]), ROUND_NODE_DIGEST_LENGTH);
   BOOST_CHECK(round_strcmp(nodeHash[3], nodeHash[0]) != 0);
   BOOST_CHECK(round_strcmp(nodeHash[3], nodeHash[1]) != 0);

@@ -139,8 +139,8 @@ const char* round_json_rpc_createrequeststring(const char* method, const char* p
       "\"" ROUND_JSON_RPC_METHOD "\": \"%s\","
       "\"" ROUND_JSON_RPC_PARAMS "\": %s, \"id\": 1}",
       method,
-      params);
-
+      ((0 < round_strlen(params)) ? params : "\"\"" ));
+  
   return buf;
 }
 
