@@ -9,6 +9,7 @@
  ******************************************************************/
 
 #include <round/node_internal.h>
+#include <round/cluster_internal.h>
 #include <round/script/python.h>
 
 #if defined(ROUND_SUPPORT_PYTHON)
@@ -64,51 +65,24 @@ bool round_python_haslocalnode()
 }
 
 /****************************************
- * round_python_getnetworkstate
- ****************************************/
-
-PyObject* round_python_getnetworkstate(PyObject* self, PyObject* args)
-{
-  RoundLocalNode* node = round_python_getlocalnode();
-  if (!node)
-    return NULL;
-  
-  return NULL;
-}
-
-/****************************************
- * round_python_getclusterstate
- ****************************************/
-
-PyObject* round_python_getclusterstate(PyObject* self, PyObject* args)
-{
-  RoundLocalNode* node = round_python_getlocalnode();
-  if (!node)
-    return NULL;
-  
-  return NULL;
-}
-
-/****************************************
  * round_python_getnodestate
  ****************************************/
 
-PyObject* round_python_getnodestate(PyObject* self, PyObject* args)
+PyObject* round_python_getnodeobject(RoundNode* node)
 {
-  RoundLocalNode* node = round_python_getlocalnode();
   if (!node)
     return NULL;
-
+  
   const char *addr;
-  if (!round_local_node_getaddress(node, &addr))
+  if (!round_node_getaddress(node, &addr))
     return NULL;
   
   int port;
-  if (!round_local_node_getport(node, &port))
+  if (!round_node_getport(node, &port))
     return NULL;
-
+  
   const char *id;
-  if (!round_local_node_getid(node, &id))
+  if (!round_node_getid(node, &id))
     return NULL;
   
   PyObject* obj = PyDict_New();
@@ -118,8 +92,61 @@ PyObject* round_python_getnodestate(PyObject* self, PyObject* args)
   PyDict_SetItemString(obj, ROUND_SYSTEM_METHOD_PARAM_ADDR, Py_BuildValue("s", addr));
   PyDict_SetItemString(obj, ROUND_SYSTEM_METHOD_PARAM_PORT, Py_BuildValue("i", port));
   PyDict_SetItemString(obj, ROUND_SYSTEM_METHOD_PARAM_ID,   Py_BuildValue("s", id));
-
+  
   return obj;
+}
+
+PyObject* round_python_getnodestate(PyObject* self, PyObject* args)
+{
+  return round_python_getnodeobject((RoundNode *)round_python_getlocalnode());
+}
+
+/****************************************
+ * round_python_getclusterstate
+ ****************************************/
+
+PyObject* round_python_getclusterobject(RoundCluster *cluster)
+{
+  if (!cluster)
+    return NULL;
+  
+  PyObject* obj = PyList_New(0);
+  if (!obj)
+    return NULL;
+  
+  size_t clusterNodeCnt = 0;
+  RoundNode *clusterNode = round_cluster_getnodes(cluster);
+  PyObject *clusterNodeObj;
+  while (clusterNode) {
+    clusterNode = round_cluster_getnodes(cluster);
+    clusterNodeObj = round_python_getnodeobject(clusterNode);
+    PyList_Insert(obj, clusterNodeCnt, clusterNodeObj);
+    clusterNodeCnt++;
+  }
+  
+  return obj;
+}
+
+PyObject* round_python_getclusterstate(PyObject* self, PyObject* args)
+{
+  RoundLocalNode* node = round_python_getlocalnode();
+  if (!node)
+    return NULL;
+  
+  return round_python_getclusterobject(round_local_node_getcluster(node));
+}
+
+/****************************************
+ * round_python_getnetworkstate
+ ****************************************/
+
+PyObject* round_python_getnetworkstate(PyObject* self, PyObject* args)
+{
+  RoundLocalNode* node = round_python_getlocalnode();
+  if (!node)
+    return NULL;
+
+  return NULL;
 }
 
 /****************************************
