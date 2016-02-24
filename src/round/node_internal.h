@@ -147,12 +147,13 @@ bool round_local_node_delete(RoundLocalNode *node);
 
 #define round_local_node_setaddress(node,addr) round_node_setaddress((RoundNode*)node,addr)
 #define round_local_node_getaddress(node,addr) round_node_getaddress((RoundNode*)node,addr)
-  
+
 #define round_local_node_setport(node,port) round_node_setport((RoundNode*)node,port)
 #define round_local_node_getport(node,port) round_node_getport((RoundNode*)node,port)
   
 #define round_local_node_setclustername(node,cluster) round_node_setclustername((RoundNode*)node,cluster)
 #define round_local_node_getcluster(node) round_node_getcluster((RoundNode*)node)
+#define round_local_node_getclusters(node) round_node_getclusters((RoundNode*)node)
   
 #define round_local_node_setrequesttimeout(node,value) round_node_setrequesttimeout((RoundNode*)node,value)
 #define round_local_node_getrequesttimeout(node) round_node_getrequesttimeout((RoundNode*)node)
