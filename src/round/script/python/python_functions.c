@@ -146,7 +146,11 @@ PyObject* round_python_getnetworkstate(PyObject* self, PyObject* args)
   if (!node)
     return NULL;
 
-  return NULL;
+  PyObject* obj = PyDict_New();
+  if (!obj)
+    return NULL;
+  
+  return obj;
 }
 
 /****************************************
