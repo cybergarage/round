@@ -150,6 +150,15 @@ PyObject* round_python_getnetworkstate(PyObject* self, PyObject* args)
   if (!obj)
     return NULL;
   
+  RoundCluster *cluster = round_local_node_getclusters(node);
+  while (cluster) {
+    PyObject *clusterObj = round_python_getclusterobject(cluster);
+    const char *clusterName = round_cluster_getname(cluster);
+    PyDict_SetItemString(obj, clusterName, clusterObj);
+    
+    cluster = round_cluster_next(cluster);
+  }
+
   return obj;
 }
 
