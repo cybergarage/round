@@ -16,6 +16,7 @@ extern "C" {
 #endif
 
 #define ROUND_PRODUCT_NAME "round"
+#define ROUND_MODULE_NAME "round"
 #define ROUND_SYSTEM_TRIGGER_TIMER_PRECISION 0.1
 #define ROUND_ENDL "\n"
 #define ROUND_MD5_DIGEST_LENGTH 16

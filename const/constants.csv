@@ -3,6 +3,7 @@
 # license that can be found in the LICENSE file.
 
 product_name,"round"
+module_name,"round"
 
 # System constants
 system_trigger_timer_precision,0.1
