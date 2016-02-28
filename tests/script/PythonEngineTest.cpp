@@ -12,6 +12,7 @@
 #include <string>
 #include <round/script/python.h>
 
+#include "RoundTest.h"
 #include "ScriptTestController.h"
 
 #if defined(ROUND_SUPPORT_PYTHON)
@@ -166,8 +167,9 @@ BOOST_AUTO_TEST_CASE(PythonRegistryMethods)
 BOOST_AUTO_TEST_CASE(PythonGetNodeStatus)
 {
   RoundLocalNode* node = round_local_node_new();
-  round_local_node_setaddress(node, "127.0.0.1");
-  round_local_node_setport(node, 80);
+  round_local_node_setaddress(node, ROUND_TEST_ADDR);
+  round_local_node_setport(node, ROUND_TEST_PORT);
+  
   BOOST_CHECK(round_local_node_start(node));
   
   RoundError* err = round_error_new();

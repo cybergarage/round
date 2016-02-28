@@ -10,6 +10,8 @@
 
 #include <boost/test/unit_test.hpp>
 
+#include "RoundTest.h"
+
 #include <round/node_internal.h>
 #include <round/cluster_internal.h>
 #include <round/method/system_method.h>
@@ -50,14 +52,13 @@ BOOST_AUTO_TEST_CASE(LocalSystemMethod)
 
 BOOST_AUTO_TEST_CASE(LocalNodeRun)
 {
-  const char* TEST_ADDR = "1.2.3.4";
-  const int TEST_PORT = 8080;
   const char* TEST_CLUSTER = "round";
 
   RoundLocalNode* node = round_local_node_new();
   BOOST_CHECK(node);
-  round_local_node_setaddress(node, TEST_ADDR);
-  round_local_node_setport(node, TEST_PORT);
+  round_local_node_setaddress(node, ROUND_TEST_ADDR);
+  round_local_node_setport(node, ROUND_TEST_PORT);
+  
   round_local_node_setclustername(node, TEST_CLUSTER);
 
   BOOST_CHECK(round_local_node_start(node));
