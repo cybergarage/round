@@ -31,7 +31,7 @@ static const char* PY_SETKEY_CODE = \
   "def " RPC_METHOD_SET_KEY_NAME "(jsonParams):\n" \
   "  try:\n" \
   "    params = json.loads(jsonParams)\n" \
-  "    return round." ROUND_SYSTEM_METHOD_SET_REGISTRY "(params[\"" ROUND_SYSTEM_METHOD_PARAM_KEY "\"], params[\"" ROUND_SYSTEM_METHOD_PARAM_VALUE "\"])\n" \
+  "    return " ROUND_MODULE_NAME "." ROUND_SYSTEM_METHOD_SET_REGISTRY "(params[\"" ROUND_SYSTEM_METHOD_PARAM_KEY "\"], params[\"" ROUND_SYSTEM_METHOD_PARAM_VALUE "\"])\n" \
   "  except:\n" \
   "    return False\n";
 
@@ -41,7 +41,7 @@ static const char* PY_GETKEY_CODE = \
   "def " RPC_METHOD_GET_KEY_NAME "(jsonParams):\n" \
   "  try:\n" \
   "    params = json.loads(jsonParams)\n" \
-  "    return round." ROUND_SYSTEM_METHOD_GET_REGISTRY "(params[\"" ROUND_SYSTEM_METHOD_PARAM_KEY "\"])\n" \
+  "    return " ROUND_MODULE_NAME "." ROUND_SYSTEM_METHOD_GET_REGISTRY "(params[\"" ROUND_SYSTEM_METHOD_PARAM_KEY "\"])\n" \
   "  except:\n" \
   "    return \"\"\n";
 
@@ -51,7 +51,7 @@ static const char* PY_REMOVEKEY_CODE = \
   "def " RPC_METHOD_REMOVE_KEY_NAME "(jsonParams):\n" \
   "  try:\n" \
   "    params = json.loads(jsonParams)\n" \
-  "    return round." ROUND_SYSTEM_METHOD_REMOVE_REGISTRY "(params[\"" ROUND_SYSTEM_METHOD_PARAM_KEY "\"])\n" \
+  "    return " ROUND_MODULE_NAME "." ROUND_SYSTEM_METHOD_REMOVE_REGISTRY "(params[\"" ROUND_SYSTEM_METHOD_PARAM_KEY "\"])\n" \
   "  except:\n" \
   "    return False\n";
 
@@ -59,7 +59,7 @@ static const char* PY_GETNODEID_CODE = \
 "import round\n" \
 "def " RPC_METHOD_GET_NODE_ID "(jsonParams):\n" \
 "  try:\n" \
-"    node = " ROUND_SYSTEM_METHOD_GET_NODE_STATE "()\n" \
+"    node = " ROUND_MODULE_NAME "." ROUND_SYSTEM_METHOD_GET_NODE_STATE "()\n" \
 "    return node[\"" ROUND_SYSTEM_METHOD_PARAM_ID "\"]\n" \
 "  except:\n" \
 "    return False\n";
