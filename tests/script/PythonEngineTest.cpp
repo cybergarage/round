@@ -166,6 +166,8 @@ BOOST_AUTO_TEST_CASE(PythonRegistryMethods)
 BOOST_AUTO_TEST_CASE(PythonGetNodeStatus)
 {
   RoundLocalNode* node = round_local_node_new();
+  round_local_node_setaddress(node, "127.0.0.1");
+  round_local_node_setport(node, 80);
   BOOST_CHECK(round_local_node_start(node));
   
   RoundError* err = round_error_new();
