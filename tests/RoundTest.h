@@ -13,6 +13,8 @@
 
 #define ROUND_TEST_MAP_SIZE 10
 #define ROUND_TEST_DEFAULT_WAIT_MILLI_SECOND 500
+#define ROUND_TEST_ADDR "1.2.3.4"
+#define ROUND_TEST_PORT 8080
 
 namespace Round {
   

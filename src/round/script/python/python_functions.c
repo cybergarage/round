@@ -73,25 +73,24 @@ PyObject* round_python_getnodeobject(RoundNode* node)
   if (!node)
     return NULL;
   
-  const char *addr;
-  if (!round_node_getaddress(node, &addr))
-    return NULL;
-  
-  int port;
-  if (!round_node_getport(node, &port))
-    return NULL;
-  
-  const char *id;
-  if (!round_node_getid(node, &id))
-    return NULL;
-  
   PyObject* obj = PyDict_New();
   if (!obj)
     return NULL;
   
-  PyDict_SetItemString(obj, ROUND_SYSTEM_METHOD_PARAM_ADDR, Py_BuildValue("s", addr));
-  PyDict_SetItemString(obj, ROUND_SYSTEM_METHOD_PARAM_PORT, Py_BuildValue("i", port));
-  PyDict_SetItemString(obj, ROUND_SYSTEM_METHOD_PARAM_ID,   Py_BuildValue("s", id));
+  const char *addr;
+  if (round_node_getaddress(node, &addr)) {
+    PyDict_SetItemString(obj, ROUND_SYSTEM_METHOD_PARAM_ADDR, Py_BuildValue("s", addr));
+  }
+  
+  int port;
+  if (round_node_getport(node, &port)) {
+    PyDict_SetItemString(obj, ROUND_SYSTEM_METHOD_PARAM_PORT, Py_BuildValue("i", port));
+  }
+  
+  const char *id;
+  if (round_node_getid(node, &id)) {
+    PyDict_SetItemString(obj, ROUND_SYSTEM_METHOD_PARAM_ID,   Py_BuildValue("s", id));
+  }
   
   return obj;
 }
