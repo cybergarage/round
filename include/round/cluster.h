@@ -51,6 +51,14 @@ RoundCluster *round_node_getcluster(RoundNode *node);
 RoundCluster *round_node_getclusterbyname(RoundNode *node, const char *name);
 RoundCluster *round_node_getclusters(RoundNode *node);
 
+/****************************************
+ * Function (Local Node)
+ ****************************************/
+
+#define round_local_node_getcluster(node) round_node_getcluster((RoundNode*)node)
+#define round_local_node_getclusterbyname(node, name) round_node_getclusterbyname((RoundNode*)node, name)
+#define round_local_node_getclusters(node) round_node_getclusters((RoundNode*)node)
+
 #ifdef  __cplusplus
 } /* extern C */
 #endif
