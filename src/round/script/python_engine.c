@@ -241,10 +241,14 @@ bool round_python_engine_run(RoundPythonEngine* engine, RoundMethod* method, con
   PyObject* pValue = PyObject_CallObject(pFunc, pArgs);
   Py_DECREF(pArgs);
   if (pValue != NULL) {
-    const char* cStr = PyString_AsString(pValue);
-    if (cStr) {
-      // TODO : Parse result string
-      *resObj = round_json_string_new(cStr);
+    PyObject *strValue = PyObject_Str(pValue);
+    if (strValue) {
+      const char* cStr = PyString_AsString(strValue);
+      if (cStr) {
+        // TODO : Parse result string
+        *resObj = round_json_string_new(cStr);
+      }
+      Py_DECREF(strValue);
     }
     Py_DECREF(pValue);
   }
