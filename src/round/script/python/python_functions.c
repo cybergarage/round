@@ -119,8 +119,9 @@ PyObject* round_python_getclusterobject(RoundCluster *cluster)
   while (clusterNode) {
     clusterNode = round_cluster_getnodes(cluster);
     clusterNodeObj = round_python_getnodeobject(clusterNode);
-    PyList_Insert(obj, clusterNodeCnt, clusterNodeObj);
-    clusterNodeCnt++;
+    if (PyList_Insert(obj, clusterNodeCnt, clusterNodeObj) == 0)
+      clusterNodeCnt++;
+    clusterNode = round_node_next(clusterNode);
   }
   
   return obj;

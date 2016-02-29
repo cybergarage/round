@@ -279,17 +279,16 @@ void Round::Test::ScriptTestController::runScriptStatusTest(RoundLocalNode* node
   BOOST_CHECK(result);
   BOOST_CHECK(round_streq(nodeId, result));
   
-  // Get Node Id
+  // Get Cluster Nodes
   
   RoundCluster *cluster = round_local_node_getcluster(node);
-  
-  const char *nodeId;
-  BOOST_CHECK(round_local_node_getid(node, &nodeId));
+  BOOST_CHECK(cluster);
+  size_t clusterSize = round_cluster_size(cluster);
   
   BOOST_CHECK(round_local_node_poststringmessage(node, Round::Test::CreateJsonRpcRequestString(RPC_METHOD_GET_CLUSTER_NODE_SIZE, ""), &resObj, err));
   BOOST_CHECK(round_json_rpc_getresultstring(resObj, &result));
   BOOST_CHECK(result);
-  BOOST_CHECK(round_streq(nodeId, result));
+  BOOST_CHECK_EQUAL(clusterSize, round_str2int(result));
   
   BOOST_CHECK(round_error_delete(err));
 }
