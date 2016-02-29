@@ -16,6 +16,8 @@
 #include <string.h>
 
 #include <round/script_internal.h>
+#include <round/node_internal.h>
+#include <round/cluster_internal.h>
 #include <round/util/strings.h>
 
 #include "ScriptTestController.h"
@@ -258,7 +260,7 @@ void Round::Test::ScriptTestController::runScriptRegistryMethodTest(RoundLocalNo
 }
 
 ////////////////////////////////////////////////
-// runScriptRegistryMethodTest
+// runScriptStatusTest
 ////////////////////////////////////////////////
 
 void Round::Test::ScriptTestController::runScriptStatusTest(RoundLocalNode* node)
@@ -273,6 +275,18 @@ void Round::Test::ScriptTestController::runScriptStatusTest(RoundLocalNode* node
   BOOST_CHECK(round_local_node_getid(node, &nodeId));
   
   BOOST_CHECK(round_local_node_poststringmessage(node, Round::Test::CreateJsonRpcRequestString(RPC_METHOD_GET_NODE_ID, ""), &resObj, err));
+  BOOST_CHECK(round_json_rpc_getresultstring(resObj, &result));
+  BOOST_CHECK(result);
+  BOOST_CHECK(round_streq(nodeId, result));
+  
+  // Get Node Id
+  
+  RoundCluster *cluster = round_local_node_getcluster(node);
+  
+  const char *nodeId;
+  BOOST_CHECK(round_local_node_getid(node, &nodeId));
+  
+  BOOST_CHECK(round_local_node_poststringmessage(node, Round::Test::CreateJsonRpcRequestString(RPC_METHOD_GET_CLUSTER_NODE_SIZE, ""), &resObj, err));
   BOOST_CHECK(round_json_rpc_getresultstring(resObj, &result));
   BOOST_CHECK(result);
   BOOST_CHECK(round_streq(nodeId, result));

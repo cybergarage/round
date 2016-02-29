@@ -65,6 +65,15 @@ static const char* PY_GETNODEID_CODE = \
 "  except:\n" \
 "    return False\n";
 
+static const char* PY_GETCLUSTERNODESIZE_CODE = \
+"import round\n" \
+"def " RPC_METHOD_GET_CLUSTER_NODE_SIZE "(jsonParams):\n" \
+"  try:\n" \
+"    clusters = " ROUND_MODULE_NAME "." ROUND_SYSTEM_METHOD_GET_CLUSTER_STATE "()\n" \
+"    return len(clusters)\n" \
+"  except:\n" \
+"    return False\n";
+
 BOOST_AUTO_TEST_CASE(PythonCompileHello)
 {
   RoundPythonEngine* pyEngine = round_python_engine_new();
@@ -177,6 +186,7 @@ BOOST_AUTO_TEST_CASE(PythonGetNodeStatus)
   // Post Node Message (Set '*_key' method)
   
   BOOST_CHECK(round_node_setmethod((RoundNode*)node, ROUND_SCRIPT_LANGUAGE_PYTHON, RPC_METHOD_GET_NODE_ID, PY_GETNODEID_CODE, err));
+  BOOST_CHECK(round_node_setmethod((RoundNode*)node, ROUND_SCRIPT_LANGUAGE_PYTHON, PY_GETCLUSTERNODESIZE_CODE, PY_GETNODEID_CODE, err));
   
   // Run Methods
   
