@@ -68,8 +68,17 @@ static const char* PY_GETNODEID_CODE = \
 static const char* PY_GETCLUSTERNODESIZE_CODE = \
 "import round\n" \
 "def " RPC_METHOD_GET_CLUSTER_NODE_SIZE "(jsonParams):\n" \
+"  try:\n" \
+"    nodes = " ROUND_MODULE_NAME "." ROUND_SYSTEM_METHOD_GET_CLUSTER_STATE "()\n" \
+"    return len(nodes)\n" \
+"  except:\n" \
+"    return False\n";
+
+static const char* PY_GETCLUSTERSIZE_CODE = \
+"import round\n" \
+"def " RPC_METHOD_GET_CLUSTER_SIZE "(jsonParams):\n" \
 "  #try:\n" \
-"    clusters = " ROUND_MODULE_NAME "." ROUND_SYSTEM_METHOD_GET_CLUSTER_STATE "()\n" \
+"    clusters = " ROUND_MODULE_NAME "." ROUND_SYSTEM_METHOD_GET_NETWORK_STATE "()\n" \
 "    return len(clusters)\n" \
 "  #except:\n" \
 "  #  return False\n";
@@ -187,6 +196,7 @@ BOOST_AUTO_TEST_CASE(PythonGetNodeStatus)
   
   BOOST_CHECK(round_node_setmethod((RoundNode*)node, ROUND_SCRIPT_LANGUAGE_PYTHON, RPC_METHOD_GET_NODE_ID, PY_GETNODEID_CODE, err));
   BOOST_CHECK(round_node_setmethod((RoundNode*)node, ROUND_SCRIPT_LANGUAGE_PYTHON, RPC_METHOD_GET_CLUSTER_NODE_SIZE, PY_GETCLUSTERNODESIZE_CODE, err));
+  BOOST_CHECK(round_node_setmethod((RoundNode*)node, ROUND_SCRIPT_LANGUAGE_PYTHON, RPC_METHOD_GET_CLUSTER_SIZE, PY_GETCLUSTERSIZE_CODE, err));
   
   // Run Methods
   
