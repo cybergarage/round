@@ -273,6 +273,7 @@ RoundMethod *CreateTestMethod(const char *name, const char *lang, const char *st
 #define RPC_METHOD_GET_NODE_ADDR "get_addr"
 #define RPC_METHOD_GET_NODE_PORT "get_port"
 #define RPC_METHOD_GET_CLUSTER_NODE_SIZE "get_cluster_node_size"
+#define RPC_METHOD_GET_CLUSTER_SIZE "get_cluster_size"
 
 class ScriptTestController {
  public:

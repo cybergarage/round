@@ -459,6 +459,15 @@ RoundCluster* round_node_getclusters(RoundNode* node)
 }
 
 /****************************************
+ * round_node_getclustersize
+ ****************************************/
+
+size_t round_node_getclustersize(RoundNode* node)
+{
+  return round_cluster_manager_size(node->clusterMgr);
+}
+
+/****************************************
  * round_node_postmessage
  ****************************************/
 

@@ -50,6 +50,7 @@ bool round_cluster_hasnode(RoundCluster* cluster, RoundNode *node);
 RoundCluster *round_node_getcluster(RoundNode *node);
 RoundCluster *round_node_getclusterbyname(RoundNode *node, const char *name);
 RoundCluster *round_node_getclusters(RoundNode *node);
+size_t round_node_getclustersize(RoundNode* node);
 
 /****************************************
  * Function (Local Node)
@@ -58,6 +59,7 @@ RoundCluster *round_node_getclusters(RoundNode *node);
 #define round_local_node_getcluster(node) round_node_getcluster((RoundNode*)node)
 #define round_local_node_getclusterbyname(node, name) round_node_getclusterbyname((RoundNode*)node, name)
 #define round_local_node_getclusters(node) round_node_getclusters((RoundNode*)node)
+#define round_local_node_getclustersize(node) round_node_getclustersize((RoundNode*)node)
 
 #ifdef  __cplusplus
 } /* extern C */
