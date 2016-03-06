@@ -8,7 +8,7 @@
 #
 ##################################################################
 
-noinst_PROGRAMS = roundd
+bin_PROGRAMS = roundd
 
 AM_CPPFLAGS = -I$(top_srcdir)/include -I$(top_srcdir)/src -I../
 

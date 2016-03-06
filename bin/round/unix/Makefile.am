@@ -8,7 +8,7 @@
 #
 ##################################################################
 
-noinst_PROGRAMS = round
+bin_PROGRAMS = round
 
 AM_CPPFLAGS = -I$(top_srcdir)/include -I$(top_srcdir)/src -I../
 	..//cli.h \
