@@ -78,12 +78,13 @@ int main(int argc, char* argv[])
   bool deamonMode = true;
   size_t serverNum = 1;
   bool verboseMode = false;
+  std::string bindAddr;
   int bindPort = ROUND_DEFAULT_NODE_BIND_PORT;
 
   // Parse options
 
   int ch;
-  while ((ch = getopt(argc, argv, "fhn:p:v")) != -1) {
+  while ((ch = getopt(argc, argv, "fhn:p:i:v")) != -1) {
     switch (ch) {
     case 'f': {
       deamonMode = false;
@@ -91,6 +92,9 @@ int main(int argc, char* argv[])
     case 'h': {
       printusage();
       exit(EXIT_SUCCESS);
+    } break;
+    case 'i': {
+        bindAddr = optarg;
     } break;
     case 'n': {
       serverNum = atoi(optarg);
@@ -190,6 +194,10 @@ int main(int argc, char* argv[])
     RoundServer *server = round_server_new();
     if (!server)
       exit(EXIT_FAILURE);
+    
+    if (0 < bindAddr.length()) {
+      round_server_setbindaddress(server, bindAddr.c_str());
+    }
     round_server_setbindport(server, bindPort);
     
     setup_server(server);

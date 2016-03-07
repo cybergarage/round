@@ -241,6 +241,7 @@
 					"-lssl",
 					"-lcrypto",
 					"-lexpat",
+					"-llua",
 				);
 				SDKROOT = macosx;
 			};
@@ -294,6 +295,7 @@
 					"-lssl",
 					"-lcrypto",
 					"-lexpat",
+					"-llua",
 				);
 				SDKROOT = macosx;
 			};
@@ -321,6 +323,7 @@
 					"-lssl",
 					"-lcrypto",
 					"-lexpat",
+					"-llua",
 				);
 				PRODUCT_NAME = roundd;
 			};
@@ -348,6 +351,7 @@
 					"-lssl",
 					"-lcrypto",
 					"-lexpat",
+					"-llua",
 				);
 				PRODUCT_NAME = roundd;
 			};
