@@ -39,6 +39,22 @@ bool round_upnp_server_queryreceived(mUpnpStateVariable* statVar)
 }
 
 /****************************************
+ * round_upnp_server_isrootrequest
+ ****************************************/
+
+bool round_upnp_server_isrootrequest(mUpnpHttpRequest* httpReq)
+{
+  if (!mupnp_http_request_isgetrequest(httpReq))
+    return false;
+  
+  char* uri = mupnp_http_request_geturi(httpReq);
+  if (!round_streq(uri, "/"))
+    return false;
+  
+  return true;
+}
+
+/****************************************
  * round_upnp_server_isjsonrpcrequest
  ****************************************/
 
@@ -68,6 +84,14 @@ void round_upnp_server_httprequestrecieved(mUpnpHttpRequest* httpReq)
     // TODO : Change to post message queue
     // round_upnp_server_postrpcrequest(NULL, httpReq);
     server->upnpServer->rpcReqListener(httpReq);
+    return;
+  }
+  else if (round_upnp_server_isrootrequest(httpReq)) {
+    mUpnpHttpResponse* httpRes = mupnp_http_response_new();
+    mupnp_http_response_setstatuscode(httpRes, MUPNP_HTTP_STATUS_OK);
+    mupnp_http_response_setcontentlength(httpRes, 0);
+    mupnp_http_request_postresponse(httpReq, httpRes);
+    mupnp_http_response_delete(httpRes);
     return;
   }
 
