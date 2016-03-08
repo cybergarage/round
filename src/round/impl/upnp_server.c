@@ -15,7 +15,7 @@
 #include <round/rpc_server.h>
 
 /****************************************
- * round_upnp_server_httprequestrecieved
+ * round_upnp_server_getrpcserverfromrequest
  ****************************************/
 
 #define round_upnp_server_getrpcserverfromrequest(httpReq) round_upnp_device_getrpcserver(((mUpnpDevice*)mupnp_http_request_getuserdata(httpReq)))
