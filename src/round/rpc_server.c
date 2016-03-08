@@ -131,7 +131,7 @@ bool round_rpc_server_hasjsonrpcparameters(RoundJSON* json)
 }
 
 /****************************************
- * round_rpc_server_jsonrpcrequestrecieved
+ * round_rpc_server_postresponse
  ****************************************/
 
 void round_rpc_server_postresponse(mUpnpHttpRequest* httpReq, RoundJSONObject* jsonObj)
@@ -157,7 +157,7 @@ void round_rpc_server_postresponse(mUpnpHttpRequest* httpReq, RoundJSONObject* j
 }
 
 /****************************************
- * round_rpc_server_jsonrpcrequestrecieved
+ * round_rpc_server_posterrorresponse
  ****************************************/
 
 void round_rpc_server_posterrorresponse(mUpnpHttpRequest* httpReq, int rpcErrCode)
