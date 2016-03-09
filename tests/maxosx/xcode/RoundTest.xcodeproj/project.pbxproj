@@ -449,6 +449,8 @@
 					"-ljansson",
 					"-lmupnp",
 					"-llua",
+					"-lssl",
+					"-lcrypto",
 				);
 				SDKROOT = macosx;
 			};
@@ -497,6 +499,8 @@
 					"-ljansson",
 					"-lmupnp",
 					"-llua",
+					"-lssl",
+					"-lcrypto",
 				);
 				SDKROOT = macosx;
 			};
@@ -511,8 +515,12 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					../../../include,
 					/usr/local/include,
+					/usr/local/opt/openssl/include,
 				);
-				LIBRARY_SEARCH_PATHS = /usr/local/lib;
+				LIBRARY_SEARCH_PATHS = (
+					/usr/local/lib,
+					/usr/local/opt/openssl/lib,
+				);
 				OTHER_LDFLAGS = (
 					"-lboost_unit_test_framework-mt",
 					"-lboost_thread-mt",
@@ -524,6 +532,8 @@
 					"-lmruby",
 					"-ljansson",
 					"-llua",
+					"-lssl",
+					"-lcrypto",
 				);
 				PRODUCT_NAME = RoundTest;
 			};
@@ -538,8 +548,12 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					../../../include,
 					/usr/local/include,
+					/usr/local/opt/openssl/include,
 				);
-				LIBRARY_SEARCH_PATHS = /usr/local/lib;
+				LIBRARY_SEARCH_PATHS = (
+					/usr/local/lib,
+					/usr/local/opt/openssl/lib,
+				);
 				OTHER_LDFLAGS = (
 					"-lboost_unit_test_framework-mt",
 					"-lboost_thread-mt",
@@ -551,6 +565,8 @@
 					"-lmruby",
 					"-ljansson",
 					"-llua",
+					"-lssl",
+					"-lcrypto",
 				);
 				PRODUCT_NAME = RoundTest;
 			};

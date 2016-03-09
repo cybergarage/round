@@ -21,8 +21,8 @@ extern "C" {
  * Function
  ****************************************/
 
-//ssize_t round_base64_encode(const byte *inBytes, size_t rawByteLen, std::string *encodedStr);
-//ssize_t round_base64_decode(const std::string &encodedStr, byte **decordedBytes);
+ssize_t round_base64_encode(const byte *rawBytes, size_t rawByteLen, char **encodedStr);
+ssize_t round_base64_decode(const char *encodedStr, byte **decordedBytes);
 
 #ifdef  __cplusplus
 }
