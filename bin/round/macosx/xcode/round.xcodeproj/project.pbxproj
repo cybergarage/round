@@ -261,9 +261,9 @@
 					"-lboost_filesystem",
 					"-lboost_system",
 					"-lboost_thread-mt",
-					"-lv8",
 					"-lmozjs185",
 					"-ljansson",
+					"-llua",
 					"-lssl",
 					"-lcrypto",
 				);
@@ -312,9 +312,9 @@
 					"-lboost_filesystem",
 					"-lboost_system",
 					"-lboost_thread-mt",
-					"-lv8",
 					"-lmozjs185",
 					"-ljansson",
+					"-llua",
 					"-lssl",
 					"-lcrypto",
 				);
@@ -334,9 +334,9 @@
 					"-lboost_filesystem",
 					"-lboost_system",
 					"-lboost_thread-mt",
-					"-lv8",
 					"-lmozjs185",
 					"-ljansson",
+					"-llua",
 					"-lcrypto",
 					"-lssl",
 				);
@@ -356,9 +356,9 @@
 					"-lboost_filesystem",
 					"-lboost_system",
 					"-lboost_thread-mt",
-					"-lv8",
 					"-lmozjs185",
 					"-ljansson",
+					"-llua",
 					"-lcrypto",
 					"-lssl",
 				);
