@@ -86,13 +86,13 @@ BOOST_AUTO_TEST_CASE(LuaRegistryMethods)
   
   // Post Node Message (Set 'hello' method)
   
-  BOOST_CHECK(round_node_setmethod((RoundNode*)node, ROUND_SCRIPT_LANGUAGE_LUA, RPC_METHOD_HELLO_NAME, LUA_ECHO_CODE, err));
+  BOOST_CHECK(round_node_setmethod((RoundNode*)node, ROUND_SCRIPT_LANGUAGE_LUA, RPC_METHOD_HELLO_NAME, LUA_ECHO_CODE, RoundEncodeNone, err));
   
   // Post Node Message (Set '*_key' method)
   
-  BOOST_CHECK(round_node_setmethod((RoundNode*)node, ROUND_SCRIPT_LANGUAGE_LUA, RPC_METHOD_SET_KEY_NAME, LUA_SETKEY_CODE, err));
-  BOOST_CHECK(round_node_setmethod((RoundNode*)node, ROUND_SCRIPT_LANGUAGE_LUA, RPC_METHOD_GET_KEY_NAME, LUA_GETKEY_CODE, err));
-  BOOST_CHECK(round_node_setmethod((RoundNode*)node, ROUND_SCRIPT_LANGUAGE_LUA, RPC_METHOD_REMOVE_KEY_NAME, LUA_REMOVEKEY_CODE, err));
+  BOOST_CHECK(round_node_setmethod((RoundNode*)node, ROUND_SCRIPT_LANGUAGE_LUA, RPC_METHOD_SET_KEY_NAME, LUA_SETKEY_CODE, RoundEncodeNone, err));
+  BOOST_CHECK(round_node_setmethod((RoundNode*)node, ROUND_SCRIPT_LANGUAGE_LUA, RPC_METHOD_GET_KEY_NAME, LUA_GETKEY_CODE, RoundEncodeNone, err));
+  BOOST_CHECK(round_node_setmethod((RoundNode*)node, ROUND_SCRIPT_LANGUAGE_LUA, RPC_METHOD_REMOVE_KEY_NAME, LUA_REMOVEKEY_CODE, RoundEncodeNone, err));
   
   // Run Methods
   

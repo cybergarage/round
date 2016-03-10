@@ -156,6 +156,30 @@ BOOST_AUTO_TEST_CASE(PythonEngineEcho)
   BOOST_CHECK(round_python_engine_delete(pyEngine));
 }
 
+BOOST_AUTO_TEST_CASE(PythonEchoMethods)
+{
+  RoundLocalNode* node = round_local_node_new();
+  BOOST_CHECK(round_local_node_start(node));
+  
+  RoundError* err = round_error_new();
+  
+  // Post Node Message (Set 'echo' method)
+  
+  BOOST_CHECK(round_node_setmethod((RoundNode*)node, ROUND_SCRIPT_LANGUAGE_PYTHON, RPC_METHOD_HELLO_NAME, PY_ECHO_CODE, RoundEncodeNone, err));
+  
+  // Run Methods
+  
+  Round::Test::ScriptTestController scriptTestCtrl;
+  scriptTestCtrl.runScriptEchoMethodTest(node);
+  
+  // Clean up
+  
+  BOOST_CHECK(round_error_delete(err));
+  
+  BOOST_CHECK(round_local_node_stop(node));
+  BOOST_CHECK(round_local_node_delete(node));
+}
+
 BOOST_AUTO_TEST_CASE(PythonRegistryMethods)
 {
   RoundLocalNode* node = round_local_node_new();
@@ -165,9 +189,9 @@ BOOST_AUTO_TEST_CASE(PythonRegistryMethods)
   
   // Post Node Message (Set '*_key' method)
   
-  BOOST_CHECK(round_node_setmethod((RoundNode*)node, ROUND_SCRIPT_LANGUAGE_PYTHON, RPC_METHOD_SET_KEY_NAME, PY_SETKEY_CODE, err));
-  BOOST_CHECK(round_node_setmethod((RoundNode*)node, ROUND_SCRIPT_LANGUAGE_PYTHON, RPC_METHOD_GET_KEY_NAME, PY_GETKEY_CODE, err));
-  BOOST_CHECK(round_node_setmethod((RoundNode*)node, ROUND_SCRIPT_LANGUAGE_PYTHON, RPC_METHOD_REMOVE_KEY_NAME, PY_REMOVEKEY_CODE, err));
+  BOOST_CHECK(round_node_setmethod((RoundNode*)node, ROUND_SCRIPT_LANGUAGE_PYTHON, RPC_METHOD_SET_KEY_NAME, PY_SETKEY_CODE, RoundEncodeNone, err));
+  BOOST_CHECK(round_node_setmethod((RoundNode*)node, ROUND_SCRIPT_LANGUAGE_PYTHON, RPC_METHOD_GET_KEY_NAME, PY_GETKEY_CODE, RoundEncodeNone, err));
+  BOOST_CHECK(round_node_setmethod((RoundNode*)node, ROUND_SCRIPT_LANGUAGE_PYTHON, RPC_METHOD_REMOVE_KEY_NAME, PY_REMOVEKEY_CODE, RoundEncodeNone, err));
   
   // Run Methods
   
@@ -194,9 +218,9 @@ BOOST_AUTO_TEST_CASE(PythonGetNodeStatus)
   
   // Post Node Message (Set '*_key' method)
   
-  BOOST_CHECK(round_node_setmethod((RoundNode*)node, ROUND_SCRIPT_LANGUAGE_PYTHON, RPC_METHOD_GET_NODE_ID, PY_GETNODEID_CODE, err));
-  BOOST_CHECK(round_node_setmethod((RoundNode*)node, ROUND_SCRIPT_LANGUAGE_PYTHON, RPC_METHOD_GET_CLUSTER_NODE_SIZE, PY_GETCLUSTERNODESIZE_CODE, err));
-  BOOST_CHECK(round_node_setmethod((RoundNode*)node, ROUND_SCRIPT_LANGUAGE_PYTHON, RPC_METHOD_GET_CLUSTER_SIZE, PY_GETCLUSTERSIZE_CODE, err));
+  BOOST_CHECK(round_node_setmethod((RoundNode*)node, ROUND_SCRIPT_LANGUAGE_PYTHON, RPC_METHOD_GET_NODE_ID, PY_GETNODEID_CODE, RoundEncodeNone, err));
+  BOOST_CHECK(round_node_setmethod((RoundNode*)node, ROUND_SCRIPT_LANGUAGE_PYTHON, RPC_METHOD_GET_CLUSTER_NODE_SIZE, PY_GETCLUSTERNODESIZE_CODE, RoundEncodeNone, err));
+  BOOST_CHECK(round_node_setmethod((RoundNode*)node, ROUND_SCRIPT_LANGUAGE_PYTHON, RPC_METHOD_GET_CLUSTER_SIZE, PY_GETCLUSTERSIZE_CODE, RoundEncodeNone, err));
   
   // Run Methods
   

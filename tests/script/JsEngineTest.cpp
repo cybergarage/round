@@ -110,9 +110,9 @@ BOOST_AUTO_TEST_CASE(JavaScriptRegistryMethods)
 
   // Post Node Message (Set '*_key' method)
 
-  BOOST_CHECK(round_node_setmethod((RoundNode*)node, ROUND_SCRIPT_LANGUAGE_JS, RPC_METHOD_SET_KEY_NAME, SETKEY_CODE, err));
-  BOOST_CHECK(round_node_setmethod((RoundNode*)node, ROUND_SCRIPT_LANGUAGE_JS, RPC_METHOD_GET_KEY_NAME, GETKEY_CODE, err));
-  BOOST_CHECK(round_node_setmethod((RoundNode*)node, ROUND_SCRIPT_LANGUAGE_JS, RPC_METHOD_REMOVE_KEY_NAME, REMOVEKEY_CODE, err));
+  BOOST_CHECK(round_node_setmethod((RoundNode*)node, ROUND_SCRIPT_LANGUAGE_JS, RPC_METHOD_SET_KEY_NAME, SETKEY_CODE, RoundEncodeNone, err));
+  BOOST_CHECK(round_node_setmethod((RoundNode*)node, ROUND_SCRIPT_LANGUAGE_JS, RPC_METHOD_GET_KEY_NAME, GETKEY_CODE, RoundEncodeNone, err));
+  BOOST_CHECK(round_node_setmethod((RoundNode*)node, ROUND_SCRIPT_LANGUAGE_JS, RPC_METHOD_REMOVE_KEY_NAME, REMOVEKEY_CODE, RoundEncodeNone, err));
 
   // Post Node Message (Run 'set_key' method)
 
