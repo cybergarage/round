@@ -35,7 +35,12 @@ enum {
   RoundNodeGroupDeviceMax = 0x06,
   RoundNodeGroupProfile = 0x0E,
 };
-  
+
+typedef enum {
+  RoundEncodeNone = ROUND_ENCODING_NONE,
+  RoundEncodeBase64 = ROUND_ENCODING_BASE64,
+} RoundEncodeType;
+
 /****************************************
  * Data Type
  ****************************************/
@@ -82,7 +87,7 @@ void *round_node_getuserdata(RoundNode *node);
  * Function (RPC)
  ****************************************/
 
-bool round_node_setmethod(RoundNode* node, const char* lang, const char* name, const char* code, RoundError* err);
+bool round_node_setmethod(RoundNode* node, const char* lang, const char* name, const char* code, RoundEncodeType encType, RoundError* err);
 bool round_node_removemethod(RoundNode* node, const char* name, RoundError* err);
 
 bool round_node_setregistry(RoundNode* node, const char *key, const char *value, RoundError *err);

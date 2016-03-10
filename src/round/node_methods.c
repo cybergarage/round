@@ -15,7 +15,7 @@
  * round_node_setmethod
  ****************************************/
 
-bool round_node_setmethod(RoundNode* node, const char* lang, const char* name, const char* code, RoundError* err)
+bool round_node_setmethod(RoundNode* node, const char* lang, const char* name, const char* code, RoundEncodeType encType, RoundError* err)
 {
   if (!node || !lang || !name || !code)
     return false;
@@ -40,6 +40,13 @@ bool round_node_setmethod(RoundNode* node, const char* lang, const char* name, c
   round_json_map_setstring(paramsObj, ROUND_SYSTEM_METHOD_PARAM_LANGUAGE, lang);
   round_json_map_setstring(paramsObj, ROUND_SYSTEM_METHOD_PARAM_NAME, name);
   round_json_map_setstring(paramsObj, ROUND_SYSTEM_METHOD_PARAM_CODE, code);
+  switch (encType) {
+  case RoundEncodeBase64:
+      round_json_map_setstring(paramsObj, ROUND_SYSTEM_METHOD_PARAM_ENCODE, ROUND_SYSTEM_METHOD_PARAM_BASE64);
+      break;
+  default:
+      break;
+  }
   round_json_rpc_setparamsobject(reqObj, paramsObj);
 
   // Request
