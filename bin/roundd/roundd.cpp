@@ -57,9 +57,9 @@ void add_testmethods(RoundServer* server)
 
   // Set '*_key' method
 
-  round_node_setmethod(node, ROUND_SCRIPT_LANGUAGE_JS, SET_KEY_NAME, SETKEY_CODE, err);
-  round_node_setmethod(node, ROUND_SCRIPT_LANGUAGE_JS, GET_KEY_NAME, GETKEY_CODE, err);
-  round_node_setmethod(node, ROUND_SCRIPT_LANGUAGE_JS, REMOVE_KEY_NAME, REMOVEKEY_CODE, err);
+  round_node_setmethod(node, ROUND_SCRIPT_LANGUAGE_JS, SET_KEY_NAME, SETKEY_CODE, RoundEncodeNone, err);
+  round_node_setmethod(node, ROUND_SCRIPT_LANGUAGE_JS, GET_KEY_NAME, GETKEY_CODE, RoundEncodeNone, err);
+  round_node_setmethod(node, ROUND_SCRIPT_LANGUAGE_JS, REMOVE_KEY_NAME, REMOVEKEY_CODE, RoundEncodeNone, err);
 
   round_error_delete(err);
 }
