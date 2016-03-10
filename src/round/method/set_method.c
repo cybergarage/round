@@ -16,7 +16,7 @@
 
 bool round_system_method_setmethod(RoundLocalNode* node, RoundJSONObject* params, RoundJSONObject** result, RoundError* err)
 {
-  const char *name, *lang;
+  const char *name, *lang, *encode;
   byte* code;
   size_t codeLen;
   RoundMethod* newMethod;
@@ -44,18 +44,14 @@ bool round_system_method_setmethod(RoundLocalNode* node, RoundJSONObject* params
 
   codeLen = round_strlen((const char*)code);
 
-  /* TODO : Support Base64
-   #define ROUND_SYSTEM_METHOD_PARAM_ENCODE "encode"
-   #define ROUND_SYSTEM_METHOD_PARAM_BASE64 "base64"
-   // Encode
-   int encodeType = Script::ENCODING_NONE;
-   std::string encodeTypeStr;
-   if (jsonDict->get(METHOD_ENCODE, &encodeTypeStr)) {
-   if (encodeTypeStr.compare(METHOD_ENCODE_BASE64)) {
-   encodeType = Script::ENCODING_BASE64;
-   }
-   }
-   */
+  // Encode
+  //int encodeType = Script::ENCODING_NONE;
+  //std::string encodeTypeStr;
+  if (!round_json_map_getstring(params, ROUND_SYSTEM_METHOD_PARAM_ENCODE, (const char**)&encode)) {
+    if (round_streq(encode, ROUND_SYSTEM_METHOD_PARAM_BASE64)) {
+      //encodeType = Script::ENCODING_BASE64;
+    }
+  }
 
   newMethod = round_method_new();
   if (!newMethod) {

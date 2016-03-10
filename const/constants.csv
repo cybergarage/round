@@ -46,6 +46,10 @@ node_status_active,3
 node_status_terminating,4
 node_status_promice,5
 
+# Encoding Types
+encoding_node,0
+encoding_base64,1
+
 # JSON RPC members
 json_rpc_jsonrpc,"jsonrpc"
 json_rpc_method,"method"
