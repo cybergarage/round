@@ -11,6 +11,7 @@
 #include <boost/test/unit_test.hpp>
 #include <string>
 #include <round/script/python.h>
+#include <round/util/base64.h>
 
 #include "RoundTest.h"
 #include "ScriptTestController.h"
@@ -167,6 +168,34 @@ BOOST_AUTO_TEST_CASE(PythonEchoMethods)
   
   BOOST_CHECK(round_node_setmethod((RoundNode*)node, ROUND_SCRIPT_LANGUAGE_PYTHON, RPC_METHOD_HELLO_NAME, PY_ECHO_CODE, RoundEncodeNone, err));
   
+  // Run Methods
+  
+  Round::Test::ScriptTestController scriptTestCtrl;
+  scriptTestCtrl.runScriptEchoMethodTest(node);
+  
+  // Clean up
+  
+  BOOST_CHECK(round_error_delete(err));
+  
+  BOOST_CHECK(round_local_node_stop(node));
+  BOOST_CHECK(round_local_node_delete(node));
+}
+
+BOOST_AUTO_TEST_CASE(PythonEchoBase64Methods)
+{
+  RoundLocalNode* node = round_local_node_new();
+  BOOST_CHECK(round_local_node_start(node));
+  
+  RoundError* err = round_error_new();
+  
+  // Post Node Message (Set 'echo' method)
+  
+  char *encodeCode = NULL;
+  BOOST_CHECK(0 <= round_base64_encode((byte *)PY_ECHO_CODE, round_strlen(PY_ECHO_CODE), &encodeCode));
+  BOOST_CHECK(round_node_setmethod((RoundNode*)node, ROUND_SCRIPT_LANGUAGE_PYTHON, RPC_METHOD_HELLO_NAME, encodeCode, RoundEncodeBase64, err));
+  if (encodeCode)
+    free(encodeCode);
+
   // Run Methods
   
   Round::Test::ScriptTestController scriptTestCtrl;

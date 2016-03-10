@@ -46,7 +46,7 @@ bool round_system_method_setmethod(RoundLocalNode* node, RoundJSONObject* params
 
   bool isEncoded = false;
   const char *encode;
-  if (!round_json_map_getstring(params, ROUND_SYSTEM_METHOD_PARAM_ENCODE, &encode)) {
+  if (round_json_map_getstring(params, ROUND_SYSTEM_METHOD_PARAM_ENCODE, &encode)) {
     // Base64
     if (round_streq(encode, ROUND_SYSTEM_METHOD_PARAM_BASE64)) {
       byte *decodedCode;
