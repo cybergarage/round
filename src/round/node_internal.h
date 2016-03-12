@@ -108,6 +108,8 @@ bool round_node_delete(RoundNode *node);
 bool round_node_setaddress(RoundNode *node, const char *addr);
 bool round_node_setport(RoundNode *node, int port);
 
+const char *round_node_gethashcode(RoundNode *node);
+
 #define round_node_setcluster(node,value) (node->cluster = value)
 
 #define round_node_setclock(node, value) round_clock_setvalue(node->clock, value)
