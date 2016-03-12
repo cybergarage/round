@@ -74,7 +74,7 @@ bool round_node_init(RoundNode* node)
   round_node_setuserdata(node, NULL);
 
   round_node_setrequesttimeout(node, ROUND_JSON_RPC_REQUEST_TIMEOUT_SEC);
-  round_consistenthashing_node_sethashfunc(node, round_node_getid);
+  round_consistenthashing_node_sethashfunc(node, round_node_gethashcode);
 
   round_node_setcluster(node, NULL);
   round_node_setclustername(node, ROUND_DEFAULT_NODE_CLUSTER_NAME);
@@ -285,6 +285,18 @@ bool round_node_equals(RoundNode* node1, RoundNode* node2)
 }
 
 /****************************************
+ * round_node_gethashcode
+ ****************************************/
+
+const char *round_node_gethashcode(RoundNode *node)
+{
+  if (!node)
+    return "";
+  
+  return round_string_getvalue(node->digest);
+}
+
+/****************************************
  * round_node_updateid
  ****************************************/
 
@@ -315,7 +327,7 @@ bool round_node_getid(RoundNode *node, const char **id)
   if (!node)
     return false;
 
-  *id = round_string_getvalue(node->digest);
+  *id = round_node_gethashcode(node);
   
   return true;
 }
