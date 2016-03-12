@@ -67,7 +67,7 @@ bool round_strloc(const char* str, char** buf)
 * round_strlen
 ****************************************/
 
-size_t round_strlen(const char* str) { return (str == NULL) ? 0 : strlen(str); }
+size_t round_strlen(const char* str) { return (!str) ? 0 : strlen(str); }
 
 /****************************************
 * round_strcpy
@@ -93,9 +93,9 @@ char* round_strcat(char* dst, const char* src) { return strcat(dst, src); }
 
 int round_strcmp(const char* str1, const char* str2)
 {
-  if (str1 == NULL)
+  if (!str1)
     return -1;
-  if (str2 == NULL)
+  if (!str2)
     return 1;
   return strcmp(str1, str2);
 }
@@ -106,9 +106,9 @@ int round_strcmp(const char* str1, const char* str2)
 
 int round_strncmp(const char* str1, const char* str2, int nchars)
 {
-  if (str1 == NULL)
+  if (!str1)
     return -1;
-  if (str2 == NULL)
+  if (!str2)
     return 1;
 
   return strncmp(str1, str2, nchars);
@@ -120,7 +120,7 @@ int round_strncmp(const char* str1, const char* str2, int nchars)
 
 int round_strcasecmp(const char* str1, const char* str2)
 {
-  if (str1 == NULL || str2 == NULL)
+  if (!str1 || !str2)
     return -1;
 #if !defined(WIN32)
   return strcasecmp(str1, str2);
@@ -139,7 +139,7 @@ int round_strcasecmp(const char* str1, const char* str2)
 
 bool round_streq(const char* str1, const char* str2)
 {
-  if (str1 == NULL || str2 == NULL)
+  if (!str1 || !str2)
     return false;
 
   return ((round_strcmp(str1, str2) == 0) ? true : false);
@@ -151,7 +151,7 @@ bool round_streq(const char* str1, const char* str2)
 
 bool round_strcaseeq(const char* str1, const char* str2)
 {
-  if (str1 == NULL || str2 == NULL)
+  if (!str1 || !str2)
     return false;
 
   return ((round_strcasecmp(str1, str2) == 0) ? true : false);
@@ -182,7 +182,7 @@ ssize_t round_strchr(const char* str, const char* chars, size_t nchars)
   size_t strLen;
   ssize_t i, j;
 
-  if (str == NULL || chars == NULL)
+  if (!str || chars == NULL)
     return -1;
 
   strLen = round_strlen(str);
@@ -205,7 +205,7 @@ ssize_t round_strrchr(const char* str, const char* chars, size_t nchars)
   size_t strLen;
   ssize_t i, j;
 
-  if (str == NULL || chars == NULL)
+  if (!str || chars == NULL)
     return -1;
 
   strLen = round_strlen(str);
@@ -253,7 +253,7 @@ char* round_strtrimwhite(char* str)
 
 char* round_strtrim(char* str, char* delim, size_t ndelim)
 {
-  if (str == NULL || delim == NULL)
+  if (!str || delim == NULL)
     return NULL;
 
   round_strrtrim(str, delim, ndelim);
