@@ -128,12 +128,11 @@ json_t* round_jansson_array_getobject(json_t* jsonArray, size_t n)
 
 #if defined(ROUND_USE_JANSSON_JSON_ARRAY_FOREACH)
   // New in version 2.5.
-  json_array_foreach(jsonArray, jsonIdx, jsonObj)
-  {
+  json_array_foreach(jsonArray, jsonIdx, jsonObj) {
 #else
   for (jsonIdx = 0; jsonIdx < jsonArraySize; jsonIdx++) {
-    jsonObj = json_array_get(jsonArray, jsonIdx);
 #endif
+    jsonObj = json_array_get(jsonArray, jsonIdx);
   }
 
   return NULL;
