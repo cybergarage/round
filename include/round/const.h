@@ -64,6 +64,7 @@ extern "C" {
 #define ROUND_MODULE_PARAM_ENCODE "enc"
 #define ROUND_MODULE_PARAM_LANGUAGE "lang"
 #define ROUND_MODULE_PARAM_CODE "code"
+#define ROUND_MODULE_PARAM_URL "url"
 #define ROUND_SYSTEM_METHOD_POST_JOB "post_job"
 #define ROUND_SYSTEM_METHOD_POST_METHOD "post_method"
 #define ROUND_SYSTEM_METHOD_SET_METHOD "set_method"
