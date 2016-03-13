@@ -74,6 +74,7 @@ module_param_encode,"enc"
 module_param_language,"lang"
 module_param_code,"code"
 module_param_url,"url"
+module_param_file,"file"
 
 # System Methods
 system_method_post_job,"post_job"
