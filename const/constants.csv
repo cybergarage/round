@@ -66,6 +66,14 @@ json_rpc_message,"message"
 json_rpc_version,"2.0"
 json_rpc_request_timeout_sec,60
 
+# Module Params
+module_param_name,"name"
+module_param_version,"version"
+module_param_methods,"methods"
+module_param_encode,"enc"
+module_param_language,"lang"
+module_param_code,"code"
+
 # System Methods
 system_method_post_job,"post_job"
 system_method_post_method,"post_method"
