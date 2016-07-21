@@ -25,10 +25,25 @@ extern "C" {
 /****************************************
  * Data Type
  ****************************************/
-  
+
+typedef enum {
+  RoundRegistryTypeUnknown = 0x0000,
+  RoundRegistryTypeString = 0x0001,
+  RoundRegistryTypeInteger = 0x0002,
+  RoundRegistryTypeReal = 0x0004,
+  RoundRegistryTypeJSON = 0x0005, // Not Implemented
+} RoundRegistryType;
+
+typedef union _RoundRegistryValue {
+  RoundString *string;
+  int integer;
+  double real;
+} RoundRegistryValue;
+
 typedef struct {
   RoundString *key;
-  RoundString *value;
+  RoundRegistryType type;
+  RoundRegistryValue value;
   clock_t ts;
   clock_t lts;
 } RoundRegistry;
@@ -42,13 +57,28 @@ typedef struct {
  ****************************************/
   
 RoundRegistry *round_registry_new();
-bool round_registry_delete(RoundRegistry *registry);
-  
+bool round_registry_clear(RoundRegistry *reg);
+bool round_registry_delete(RoundRegistry *reg);
+
+#define round_registry_settype(reg, val) (reg->type = val)
+#define round_registry_gettype(reg) (reg->type)
+#define round_registry_istype(reg, val) (reg->type == val)
+#define round_registry_isunknown(reg) (reg->type == RoundRegistryTypeUnknown)
+#define round_registry_isstring(reg) (reg->type == RoundRegistryTypeString)
+#define round_registry_isinteger(reg) (reg->type == RoundRegistryTypeInteger)
+#define round_registry_isreal(reg) (reg->type == RoundRegistryTypeReal)
+
 #define round_registry_setkey(reg, val) round_string_setvalue(reg->key, val)
 #define round_registry_getkey(reg) round_string_getvalue(reg->key)
 
-#define round_registry_setvalue(reg, val) round_string_setvalue(reg->value, val)
-#define round_registry_getvalue(reg) round_string_getvalue(reg->value)
+bool round_registry_setstring(RoundRegistry *reg, const char *val);
+bool round_registry_getstring(RoundRegistry *reg, const char **val);
+
+bool round_registry_setinteger(RoundRegistry *reg, int val);
+bool round_registry_getinteger(RoundRegistry *reg, int *val);
+
+bool round_registry_setreal(RoundRegistry *reg, double val);
+bool round_registry_getreal(RoundRegistry *reg, double *val);
 
 #define round_registry_setts(reg, val) (reg->ts = val)
 #define round_registry_getts(reg) (reg->ts)
@@ -56,7 +86,7 @@ bool round_registry_delete(RoundRegistry *registry);
 #define round_registry_setlts(reg, val) (reg->lts = val)
 #define round_registry_getlts(reg) (reg->lts)
 
-  /****************************************
+/****************************************
  * Function (Map)
  ****************************************/
   

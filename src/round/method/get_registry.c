@@ -16,9 +16,9 @@
 
 bool round_system_method_getregistry(RoundLocalNode* node, RoundJSONObject* params, RoundJSONObject** resultMap, RoundError* err)
 {
-  const char* key;
+  const char* key, *val;
   RoundRegistry* reg;
-
+  
   if (!round_json_object_ismap(params)) {
     round_error_setjsonrpcerrorcode(err, ROUND_RPC_ERROR_CODE_INVALID_PARAMS);
     return false;
@@ -41,8 +41,13 @@ bool round_system_method_getregistry(RoundLocalNode* node, RoundJSONObject* para
     return false;
   }
 
+  if (!round_registry_getstring(reg, &val)) {
+    round_error_setjsonrpcerrorcode(err, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR);
+    return false;
+  }
+  
   round_json_map_setstring((*resultMap), ROUND_SYSTEM_METHOD_PARAM_KEY, key);
-  round_json_map_setstring((*resultMap), ROUND_SYSTEM_METHOD_PARAM_VALUE, round_registry_getvalue(reg));
+  round_json_map_setstring((*resultMap), ROUND_SYSTEM_METHOD_PARAM_VALUE, val);
   round_json_map_setinteger((*resultMap), ROUND_SYSTEM_METHOD_PARAM_TS, round_registry_getts(reg));
   round_json_map_setinteger((*resultMap), ROUND_SYSTEM_METHOD_PARAM_LTS, round_registry_getlts(reg));
 

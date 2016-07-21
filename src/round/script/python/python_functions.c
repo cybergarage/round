@@ -188,7 +188,7 @@ PyObject* round_python_setregistry(PyObject* self, PyObject* args)
 
 PyObject* round_python_getregistry(PyObject* self, PyObject* args)
 {
-  const char* key;
+  const char* key, *val;
 
   if (!PyArg_ParseTuple(args, "s", &key))
     return NULL;
@@ -198,8 +198,11 @@ PyObject* round_python_getregistry(PyObject* self, PyObject* args)
     return NULL;
 
   RoundRegistry* reg = round_local_node_getregistry(node, key);
-
-  return Py_BuildValue("s", (reg ? round_registry_getvalue(reg) : ""));
+  if (!round_registry_getstring(reg, &val)) {
+    reg = NULL;
+  }
+  
+  return Py_BuildValue("s", (reg ? val : ""));
 }
 
 /****************************************

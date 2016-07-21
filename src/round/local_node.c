@@ -377,7 +377,7 @@ bool round_local_node_setregistry(RoundLocalNode* node, const char* key, const c
     }
   }
 
-  round_registry_setvalue(reg, val);
+  round_registry_setstring(reg, val);
   round_registry_setts(reg, time(NULL));
   round_registry_setlts(reg, round_local_node_getclock(node));
 

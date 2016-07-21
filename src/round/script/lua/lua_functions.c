@@ -133,14 +133,14 @@ int round_lua_setregistry(lua_State* L)
 int round_lua_getregistry(lua_State* L)
 {
   bool isSuccess = false;
-  const char * result = "";
+  const char *result = "";
 
   RoundLocalNode* node = round_lua_getlocalnode();
   const char * key = luaL_checkstring(L, 1);
   if (node && key) {
     RoundRegistry *reg = round_local_node_getregistry(node, key);
     if (reg) {
-      result = round_registry_getvalue(reg);
+      isSuccess = round_registry_getstring(reg, &result);
     }
   }
 
