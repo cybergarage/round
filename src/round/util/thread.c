@@ -76,6 +76,11 @@ RoundThread* round_thread_new(void)
   thread->action = NULL;
   thread->userData = NULL;
 
+  round_thread_setloop(thread, false);
+  round_thread_setcycleinterval(thread, 0.0);
+  round_thread_setstarttime(thread, 0.0);
+  round_thread_setstoptime(thread, 0.0);
+  
   return thread;
 }
 

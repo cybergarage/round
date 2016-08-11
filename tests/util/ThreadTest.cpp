@@ -26,7 +26,22 @@ void TestThereadFunc(RoundThread *thread)
   }
 }
 
-BOOST_AUTO_TEST_CASE(ThreadTest)
+BOOST_AUTO_TEST_CASE(ThreadNewTest)
+{
+  RoundThread *thread = round_thread_new();
+  
+  BOOST_CHECK_EQUAL(round_thread_isloop(thread), false);
+  BOOST_CHECK_EQUAL(round_thread_getcycleinterval(thread), 0.0);
+  BOOST_CHECK_EQUAL(round_thread_getstarttime(thread), 0.0);
+  BOOST_CHECK_EQUAL(round_thread_getstoptime(thread), 0.0);
+  
+  BOOST_CHECK_EQUAL(round_thread_isrunnable(thread), false);
+  BOOST_CHECK_EQUAL(round_thread_isrunning(thread), false);
+  
+  round_thread_delete(thread);
+}
+
+BOOST_AUTO_TEST_CASE(ThreadLoopTest)
 {
   RoundThread *thread = round_thread_new();
   

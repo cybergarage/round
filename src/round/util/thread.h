@@ -47,7 +47,13 @@ typedef struct _RoundThread {
   pthread_t pThread;
 #endif
 
+  bool isLoop;
+  double cycleInterval;
+  double startTime;
+  double stopTime;
+
   void (*action)(struct _RoundThread *);
+
   void *userData;
 } RoundThread, RoundThreadManager;
 
@@ -60,6 +66,9 @@ typedef void (*RoundThreadFunc)(RoundThread *);
 RoundThread *round_thread_new(void);
 bool round_thread_delete(RoundThread *thread);
 
+#define round_thread_next(thread) (RoundThread *)round_list_next((RoundList *)thread)
+#define round_thread_remove(thread) round_list_remove((RoundList *)thread)
+  
 bool round_thread_start(RoundThread *thread);
 bool round_thread_stop(RoundThread *thread);
 bool round_thread_restart(RoundThread *thread);
@@ -67,11 +76,21 @@ bool round_thread_isrunnable(RoundThread *thread);
 bool round_thread_isrunning(RoundThread *thread);
   
 void round_thread_setaction(RoundThread *thread, RoundThreadFunc actionFunc);
+
+#define round_thread_setloop(thread,flag) (thread->isLoop = flag)
+#define round_thread_isloop(thread) (thread->isLoop)
+
+#define round_thread_setcycleinterval(thread,value) (thread->cycleInterval = value)
+#define round_thread_getcycleinterval(thread) (thread->cycleInterval)
+
+#define round_thread_setstarttime(thread,value) (thread->startTime = value)
+#define round_thread_getstarttime(thread) (thread->startTime)
+
+#define round_thread_setstoptime(thread,value) (thread->stopTime = value)
+#define round_thread_getstoptime(thread) (thread->stopTime)
+
 void round_thread_setuserdata(RoundThread *thread, void *data);
 void *round_thread_getuserdata(RoundThread *thread);
-
-#define round_thread_next(thread) (RoundThread *)round_list_next((RoundList *)thread)
-#define round_thread_remove(thread) round_list_remove((RoundList *)thread)
 
 /****************************************
 * Function (Thread List)
