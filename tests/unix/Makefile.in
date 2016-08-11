@@ -138,7 +138,7 @@ am_roundtest_OBJECTS = ..//ClientTest.$(OBJEXT) \
 	..//util/MapTest.$(OBJEXT) ..//util/MutexTest.$(OBJEXT) \
 	..//util/OptionTest.$(OBJEXT) ..//util/QueueTest.$(OBJEXT) \
 	..//util/SemaphoreTest.$(OBJEXT) ..//util/StatusTest.$(OBJEXT) \
-	..//util/StringTest.$(OBJEXT)
+	..//util/StringTest.$(OBJEXT) ..//util/ThreadTest.$(OBJEXT)
 roundtest_OBJECTS = $(am_roundtest_OBJECTS)
 roundtest_DEPENDENCIES = ../../lib/unix/libround.a
 AM_V_P = $(am__v_P_@AM_V@)
@@ -543,7 +543,8 @@ roundtest_SOURCES = \
 	..//util/QueueTest.cpp \
 	..//util/SemaphoreTest.cpp \
 	..//util/StatusTest.cpp \
-	..//util/StringTest.cpp
+	..//util/StringTest.cpp \
+	..//util/ThreadTest.cpp
 
 roundtest_LDADD = @XML_LIBS@ ../../lib/unix/libround.a
 all: all-am
@@ -694,6 +695,8 @@ clean-noinstPROGRAMS:
 	../util/$(DEPDIR)/$(am__dirstamp)
 ..//util/StringTest.$(OBJEXT): ../util/$(am__dirstamp) \
 	../util/$(DEPDIR)/$(am__dirstamp)
+..//util/ThreadTest.$(OBJEXT): ../util/$(am__dirstamp) \
+	../util/$(DEPDIR)/$(am__dirstamp)
 
 roundtest$(EXEEXT): $(roundtest_OBJECTS) $(roundtest_DEPENDENCIES) $(EXTRA_roundtest_DEPENDENCIES) 
 	@rm -f roundtest$(EXEEXT)
@@ -753,6 +756,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@../util/$(DEPDIR)/SemaphoreTest.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../util/$(DEPDIR)/StatusTest.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../util/$(DEPDIR)/StringTest.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@../util/$(DEPDIR)/ThreadTest.Po@am__quote@
 
 .cpp.o:
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\

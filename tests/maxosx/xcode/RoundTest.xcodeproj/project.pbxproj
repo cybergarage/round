@@ -10,6 +10,7 @@
 		21135E4A1C1A967600013136 /* NodeTestController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21135E491C1A967600013136 /* NodeTestController.cpp */; };
 		211E45D21B98188600CF0088 /* ClientTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 211E45D11B98188600CF0088 /* ClientTest.cpp */; };
 		211E45D41B9818E300CF0088 /* FinderTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 211E45D31B9818E300CF0088 /* FinderTest.cpp */; };
+		212055DB1D5CC8EB00AA7916 /* ThreadTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 212055DA1D5CC8EB00AA7916 /* ThreadTest.cpp */; };
 		2127082C1BD6640300000985 /* ConsistentHashingRingTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2127082B1BD6640300000985 /* ConsistentHashingRingTest.cpp */; };
 		2127083A1BD7995A00000985 /* JSONArrayTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 212708361BD7995A00000985 /* JSONArrayTest.cpp */; };
 		2127083B1BD7995A00000985 /* JSONMapTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 212708371BD7995A00000985 /* JSONMapTest.cpp */; };
@@ -92,6 +93,7 @@
 		211E45BF1B9814FA00CF0088 /* libround.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libround.xcodeproj; path = ../../../lib/macosx/xcode/libround.xcodeproj; sourceTree = "<group>"; };
 		211E45D11B98188600CF0088 /* ClientTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ClientTest.cpp; path = ../../ClientTest.cpp; sourceTree = "<group>"; };
 		211E45D31B9818E300CF0088 /* FinderTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FinderTest.cpp; path = ../../FinderTest.cpp; sourceTree = "<group>"; };
+		212055DA1D5CC8EB00AA7916 /* ThreadTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ThreadTest.cpp; path = ../../util/ThreadTest.cpp; sourceTree = "<group>"; };
 		2127082B1BD6640300000985 /* ConsistentHashingRingTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ConsistentHashingRingTest.cpp; path = ../../util/ConsistentHashingRingTest.cpp; sourceTree = "<group>"; };
 		212708361BD7995A00000985 /* JSONArrayTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = JSONArrayTest.cpp; path = ../../json/JSONArrayTest.cpp; sourceTree = "<group>"; };
 		212708371BD7995A00000985 /* JSONMapTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = JSONMapTest.cpp; path = ../../json/JSONMapTest.cpp; sourceTree = "<group>"; };
@@ -239,6 +241,7 @@
 		2195A3DB1BD50DD600DF5436 /* util */ = {
 			isa = PBXGroup;
 			children = (
+				212055DA1D5CC8EB00AA7916 /* ThreadTest.cpp */,
 				21C1C5BF1C1AB159005B95C3 /* StatusTest.cpp */,
 				21C1C5BD1C1AAFBB005B95C3 /* OptionTest.cpp */,
 				21C887751BD9115400449F5D /* MutexTest.cpp */,
@@ -360,6 +363,7 @@
 				2127083A1BD7995A00000985 /* JSONArrayTest.cpp in Sources */,
 				21A776B41BA0666C009BDB36 /* MessageTest.cpp in Sources */,
 				216D19CF1BB4B37C0007B331 /* ClockTest.cpp in Sources */,
+				212055DB1D5CC8EB00AA7916 /* ThreadTest.cpp in Sources */,
 				2127083B1BD7995A00000985 /* JSONMapTest.cpp in Sources */,
 				211E45D41B9818E300CF0088 /* FinderTest.cpp in Sources */,
 				21F6D99F1B9983A500714056 /* RubyEngineTest.cpp in Sources */,
