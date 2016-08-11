@@ -48,8 +48,13 @@ bool round_script_registry2json(RoundRegistry* reg, RoundJSONObject* jsonMap)
   if (!jsonMap)
     return false;
 
+  const char *val;
+  
+  if (!round_registry_getstring(reg, &val))
+    return false;
+
   round_json_map_setstring(jsonMap, ROUND_SYSTEM_METHOD_PARAM_KEY, round_registry_getkey(reg));
-  round_json_map_setstring(jsonMap, ROUND_SYSTEM_METHOD_PARAM_VALUE, round_registry_getvalue(reg));
+  round_json_map_setstring(jsonMap, ROUND_SYSTEM_METHOD_PARAM_VALUE, val);
 
   return true;
 }

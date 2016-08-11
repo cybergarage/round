@@ -55,8 +55,7 @@ bool round_thread_manager_start(RoundThreadManager* threadMgr)
   if (!threadMgr)
     return false;
 
-  for (thread = round_thread_manager_gets(threadMgr); thread != NULL;
-       thread = round_thread_next(thread)) {
+  for (thread = round_thread_manager_gets(threadMgr); thread != NULL; thread = round_thread_next(thread)) {
     round_thread_start(thread);
   }
 

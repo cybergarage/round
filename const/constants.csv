@@ -4,6 +4,7 @@
 
 product_name,"round"
 module_name,"round"
+docker_image_name,"cybergarage/round"
 
 # System constants
 system_trigger_timer_precision,0.1
