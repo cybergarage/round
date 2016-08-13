@@ -39,6 +39,7 @@ typedef struct _RoundThread {
   ROUND_LIST_STRUCT_MEMBERS
   
   bool runnableFlag;
+  bool runningFlag;
 
 #if defined(WIN32)
   HANDLE hThread;
