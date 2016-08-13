@@ -27,6 +27,9 @@
 
 void round_wait(double waitSec)
 {
+  if (waitSec < 0.0)
+    return;
+  
 #if defined(WIN32)
   Sleep(waitSec * 1000);
 #else
