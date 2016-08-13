@@ -70,7 +70,7 @@ clock_t round_getcurrentsystemtime(void)
 * round_random
 ****************************************/
 
-float round_random(void)
+double round_random(void)
 {
   static bool seedDone = false;
 
@@ -79,5 +79,5 @@ float round_random(void)
     seedDone = true;
   }
 
-  return (float)rand() / (float)RAND_MAX;
+  return (double)rand() / (double)RAND_MAX;
 }

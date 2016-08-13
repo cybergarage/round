@@ -21,7 +21,7 @@ extern "C" {
 * Function
 ****************************************/
 
-float round_random(void);
+double round_random(void);
 
 void round_wait(double mtime);
 void round_waitrandom(double mtime);
