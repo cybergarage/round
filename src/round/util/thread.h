@@ -85,9 +85,11 @@ void round_thread_setaction(RoundThread *thread, RoundThreadFunc actionFunc);
 
 #define round_thread_setstarttime(thread,value) (thread->startTime = value)
 #define round_thread_getstarttime(thread) (thread->startTime)
+#define round_thread_isstarttimeenabled(thread) ((0.0 < thread->startTime) ? true : false)
 
 #define round_thread_setstoptime(thread,value) (thread->stopTime = value)
 #define round_thread_getstoptime(thread) (thread->stopTime)
+#define round_thread_isstoptimeenabled(thread) ((0.0 < thread->stopTime) ? true : false)
 
 void round_thread_setuserdata(RoundThread *thread, void *data);
 void *round_thread_getuserdata(RoundThread *thread);

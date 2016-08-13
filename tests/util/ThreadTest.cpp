@@ -32,9 +32,13 @@ BOOST_AUTO_TEST_CASE(ThreadNewTest)
   
   BOOST_CHECK_EQUAL(round_thread_isloop(thread), false);
   BOOST_CHECK_EQUAL(round_thread_getcycleinterval(thread), 0.0);
+
   BOOST_CHECK_EQUAL(round_thread_getstarttime(thread), 0.0);
+  BOOST_CHECK_EQUAL(round_thread_isstarttimeenabled(thread), false);
+
   BOOST_CHECK_EQUAL(round_thread_getstoptime(thread), 0.0);
-  
+  BOOST_CHECK_EQUAL(round_thread_isstoptimeenabled(thread), false);
+
   BOOST_CHECK_EQUAL(round_thread_isrunnable(thread), false);
   BOOST_CHECK_EQUAL(round_thread_isrunning(thread), false);
   
