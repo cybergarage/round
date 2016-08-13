@@ -29,6 +29,7 @@ void round_waitrandom(clock_t mtime);
 #define round_sleep(val) round_wait(val)
 #define round_sleeprandom(val) round_waitrandom(val)
 
+double round_getcurrentunixtime(void);
 clock_t round_getcurrentsystemtime(void);
 
 #ifdef  __cplusplus

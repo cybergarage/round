@@ -18,6 +18,7 @@
 #else
 #include <unistd.h>
 #include <time.h>
+#include <sys/time.h>
 #endif
 
 /****************************************
@@ -45,6 +46,19 @@ void round_waitrandom(clock_t mtime)
   factor = (double)rand() / (double)RAND_MAX;
   waitTime = (long)((double)mtime * factor);
   round_wait(waitTime);
+}
+
+/****************************************
+ * round_getcurrentunixtime
+ ****************************************/
+
+double round_getcurrentunixtime(void)
+{
+  double unixTime = 0.0;
+  struct timeval now;
+  gettimeofday(&now, NULL);
+  unixTime = now.tv_sec + (now.tv_usec / 1000000.0);
+  return unixTime;
 }
 
 /****************************************

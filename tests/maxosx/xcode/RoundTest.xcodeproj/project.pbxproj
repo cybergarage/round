@@ -26,6 +26,7 @@
 		215A079A1BB4663C00E9702F /* RegistryTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 215A07991BB4663C00E9702F /* RegistryTest.cpp */; };
 		2166EF8C1B9D2E5E002FE45D /* ScriptEngineMapTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2166EF8A1B9D2E5E002FE45D /* ScriptEngineMapTest.cpp */; };
 		2166EF8D1B9D2E5E002FE45D /* ScriptEngineTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2166EF8B1B9D2E5E002FE45D /* ScriptEngineTest.cpp */; };
+		21685CAD1D5EFAA9009FB842 /* TimeTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21685CAC1D5EFAA9009FB842 /* TimeTest.cpp */; };
 		216D19CF1BB4B37C0007B331 /* ClockTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 216D19CE1BB4B37C0007B331 /* ClockTest.cpp */; };
 		218569B31BB0D68800861B9B /* RemoteNodeTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 218569B21BB0D68800861B9B /* RemoteNodeTest.cpp */; };
 		218569B51BB0D69400861B9B /* LocalNodeTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 218569B41BB0D69400861B9B /* LocalNodeTest.cpp */; };
@@ -110,6 +111,7 @@
 		2166EF8A1B9D2E5E002FE45D /* ScriptEngineMapTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ScriptEngineMapTest.cpp; path = ../../ScriptEngineMapTest.cpp; sourceTree = "<group>"; };
 		2166EF8B1B9D2E5E002FE45D /* ScriptEngineTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ScriptEngineTest.cpp; path = ../../ScriptEngineTest.cpp; sourceTree = "<group>"; };
 		2166EF8E1B9D3394002FE45D /* RoundTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RoundTest.h; path = ../../RoundTest.h; sourceTree = "<group>"; };
+		21685CAC1D5EFAA9009FB842 /* TimeTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TimeTest.cpp; path = ../../util/TimeTest.cpp; sourceTree = "<group>"; };
 		216D19CE1BB4B37C0007B331 /* ClockTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ClockTest.cpp; path = ../../ClockTest.cpp; sourceTree = "<group>"; };
 		218569B21BB0D68800861B9B /* RemoteNodeTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RemoteNodeTest.cpp; path = ../../RemoteNodeTest.cpp; sourceTree = "<group>"; };
 		218569B41BB0D69400861B9B /* LocalNodeTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LocalNodeTest.cpp; path = ../../LocalNodeTest.cpp; sourceTree = "<group>"; };
@@ -241,6 +243,7 @@
 		2195A3DB1BD50DD600DF5436 /* util */ = {
 			isa = PBXGroup;
 			children = (
+				21685CAC1D5EFAA9009FB842 /* TimeTest.cpp */,
 				212055DA1D5CC8EB00AA7916 /* ThreadTest.cpp */,
 				21C1C5BF1C1AB159005B95C3 /* StatusTest.cpp */,
 				21C1C5BD1C1AAFBB005B95C3 /* OptionTest.cpp */,
@@ -343,6 +346,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21685CAD1D5EFAA9009FB842 /* TimeTest.cpp in Sources */,
 				2195A3E81BD50DF000DF5436 /* SemaphoreTest.cpp in Sources */,
 				2127083C1BD7995A00000985 /* JSONObjectTest.cpp in Sources */,
 				2195A3E71BD50DF000DF5436 /* QueueTest.cpp in Sources */,
