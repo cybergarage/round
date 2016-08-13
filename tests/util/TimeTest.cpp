@@ -18,7 +18,7 @@ BOOST_AUTO_TEST_SUITE(timer)
 BOOST_AUTO_TEST_CASE(TimeFuncTest)
 {
   time_t currTime = time(NULL);
-  round_sleep(100);
+  round_sleep(0.1);
   
   BOOST_CHECK(round_getcurrentsystemtime() > 0);
   BOOST_CHECK(round_getcurrentunixtime() > 0.0);

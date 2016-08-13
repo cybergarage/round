@@ -23,8 +23,8 @@ extern "C" {
 
 float round_random(void);
 
-void round_wait(clock_t mtime);
-void round_waitrandom(clock_t mtime);
+void round_wait(double mtime);
+void round_waitrandom(double mtime);
 
 #define round_sleep(val) round_wait(val)
 #define round_sleeprandom(val) round_waitrandom(val)

@@ -25,12 +25,12 @@
 * round_wait
 ****************************************/
 
-void round_wait(clock_t mtime)
+void round_wait(double waitSec)
 {
 #if defined(WIN32)
-  Sleep(mtime);
+  Sleep(waitSec * 1000);
 #else
-  usleep(((useconds_t)(mtime * 1000)));
+  usleep(((useconds_t)(waitSec * 1000000)));
 #endif
 }
 
@@ -38,14 +38,10 @@ void round_wait(clock_t mtime)
 * round_waitrandom
 ****************************************/
 
-void round_waitrandom(clock_t mtime)
+void round_waitrandom(double waitSec)
 {
-  double factor;
-  long waitTime;
-
-  factor = (double)rand() / (double)RAND_MAX;
-  waitTime = (long)((double)mtime * factor);
-  round_wait(waitTime);
+  double factor = (double)rand() / (double)RAND_MAX;
+  round_wait(waitSec * factor);
 }
 
 /****************************************

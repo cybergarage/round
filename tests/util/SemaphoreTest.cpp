@@ -61,7 +61,7 @@ void RoundSemaphorePostThread(RoundThread* thread)
 {
   RoundSemaphore* sem = (RoundSemaphore*)round_thread_getuserdata(thread);
   for (int n = 0; n < SEMAPHORE_THREAD_TEST_LOOP_NUM; n++) {
-    round_sleep(100);
+    round_sleep(0.1);
     BOOST_CHECK_EQUAL(round_semaphore_post(sem), true);
   }
 }

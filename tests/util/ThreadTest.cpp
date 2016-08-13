@@ -55,7 +55,7 @@ BOOST_AUTO_TEST_CASE(ThreadLoopTest)
   
   BOOST_CHECK_EQUAL (round_thread_start(thread), true);
   while (testCounter != THREAD_TEST_LOOP_NUM) {
-    round_sleep(100);
+    round_sleep(0.1);
   }
   BOOST_CHECK_EQUAL(testCounter, THREAD_TEST_LOOP_NUM);
   BOOST_CHECK_EQUAL(round_thread_stop(thread), true);

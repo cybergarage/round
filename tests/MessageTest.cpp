@@ -78,7 +78,7 @@ void RoundMsgPushThread(RoundThread* thread)
 
   char data[32];
   for (int n = 0; n < ROUND_MSGMRG_TEST_COUNT; n++) {
-    round_sleep(100);
+    round_sleep(0.1);
     snprintf(data, sizeof(data), "msg%d", n);
     RoundMessage* msg = round_message_new();
     round_message_setstring(msg, data);

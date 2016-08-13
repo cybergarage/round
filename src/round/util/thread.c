@@ -29,6 +29,13 @@ static int RoundExecThreadAction(RoundThread* thread)
   
   thread->action(thread);
   
+  double currTime, sleepTime;
+  
+  if (round_thread_isstarttimeenabled(thread)) {
+    currTime = round_getcurrentunixtime();
+    sleepTime = currTime - round_thread_getstarttime(thread);
+  }
+  
   if (!round_thread_isloop(thread))
     return 0;
   
