@@ -62,6 +62,7 @@ roundtest_SOURCES = \
 	..//util/SemaphoreTest.cpp \
 	..//util/StatusTest.cpp \
 	..//util/StringTest.cpp \
-	..//util/ThreadTest.cpp
+	..//util/ThreadTest.cpp \
+	..//util/TimeTest.cpp
 
 roundtest_LDADD = @XML_LIBS@ ../../lib/unix/libround.a

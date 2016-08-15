@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		210989CA1D61FC3D0004C11F /* trigger.c in Sources */ = {isa = PBXBuildFile; fileRef = 210989C81D61FC3D0004C11F /* trigger.c */; };
+		210989CB1D61FC3D0004C11F /* trigger.h in Headers */ = {isa = PBXBuildFile; fileRef = 210989C91D61FC3D0004C11F /* trigger.h */; };
+		210989CD1D61FD3F0004C11F /* trigger_manager.c in Sources */ = {isa = PBXBuildFile; fileRef = 210989CC1D61FD3F0004C11F /* trigger_manager.c */; };
 		210E7BA31BA145F600343445 /* json.h in Headers */ = {isa = PBXBuildFile; fileRef = 210E7BA21BA145F600343445 /* json.h */; };
 		211E45CA1B98154A00CF0088 /* client.h in Headers */ = {isa = PBXBuildFile; fileRef = 211E45C91B98154A00CF0088 /* client.h */; };
 		211E45CD1B98157400CF0088 /* client.c in Sources */ = {isa = PBXBuildFile; fileRef = 211E45CC1B98157400CF0088 /* client.c */; };
@@ -153,6 +156,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		210989C81D61FC3D0004C11F /* trigger.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = trigger.c; path = ../../../src/round/trigger.c; sourceTree = "<group>"; };
+		210989C91D61FC3D0004C11F /* trigger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = trigger.h; path = ../../../src/round/trigger.h; sourceTree = "<group>"; };
+		210989CC1D61FD3F0004C11F /* trigger_manager.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = trigger_manager.c; path = ../../../src/round/trigger_manager.c; sourceTree = "<group>"; };
 		210E7BA21BA145F600343445 /* json.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = json.h; path = ../../../include/round/util/json.h; sourceTree = "<group>"; };
 		211E45C91B98154A00CF0088 /* client.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = client.h; path = ../../../include/round/client.h; sourceTree = "<group>"; };
 		211E45CC1B98157400CF0088 /* client.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = client.c; path = ../../../src/round/client.c; sourceTree = "<group>"; };
@@ -327,6 +333,9 @@
 		211E45CB1B98155300CF0088 /* round */ = {
 			isa = PBXGroup;
 			children = (
+				210989C81D61FC3D0004C11F /* trigger.c */,
+				210989C91D61FC3D0004C11F /* trigger.h */,
+				210989CC1D61FD3F0004C11F /* trigger_manager.c */,
 				211E45CF1B9816F300CF0088 /* client_internal.h */,
 				211E45CC1B98157400CF0088 /* client.c */,
 				216D19CB1BB4B3570007B331 /* clock.c */,
@@ -561,6 +570,7 @@
 				218569A81BAFFE9F00861B9B /* native.h in Headers */,
 				21B755F01C270A4400E3F057 /* option.h in Headers */,
 				21A776BE1BA06DC2009BDB36 /* message.h in Headers */,
+				210989CB1D61FC3D0004C11F /* trigger.h in Headers */,
 				21C1C5C21C1AB198005B95C3 /* status.h in Headers */,
 				219A8E251B9AF54D004ED802 /* js.h in Headers */,
 				21E96A201C2C2D9B001044DB /* route.h in Headers */,
@@ -721,6 +731,7 @@
 				215E6B471B9E75EA00AAA203 /* map_hash.c in Sources */,
 				215A07941BB450E100E9702F /* remove_method.c in Sources */,
 				21346A801BB4FA6B00B5F3A6 /* set_registry.c in Sources */,
+				210989CA1D61FC3D0004C11F /* trigger.c in Sources */,
 				21E6E5721BB01A49006E853D /* base64.c in Sources */,
 				2148E5D81B9DFDAF0021CE7B /* script_engine_map.c in Sources */,
 				21E96A1F1C2C2D9B001044DB /* route.c in Sources */,
@@ -734,6 +745,7 @@
 				21D427EC1B9F010A00BBBD41 /* error.c in Sources */,
 				2178B36D1B98BEAE00B9D86B /* mutex.c in Sources */,
 				21F6D9B31B99848000714056 /* script_engine.c in Sources */,
+				210989CD1D61FD3F0004C11F /* trigger_manager.c in Sources */,
 				213389D11BFAEA980014548E /* rpc_server.c in Sources */,
 				21FBE36F1B9DC803000C2512 /* map_object_list.c in Sources */,
 				2178B3701B98BEAE00B9D86B /* thread.c in Sources */,

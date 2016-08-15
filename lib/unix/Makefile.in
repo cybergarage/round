@@ -192,6 +192,8 @@ am__objects_1 = ../../src/round/libround_a-client.$(OBJEXT) \
 	../../src/round/libround_a-script_engine_map.$(OBJEXT) \
 	../../src/round/libround_a-server.$(OBJEXT) \
 	../../src/round/libround_a-server_list.$(OBJEXT) \
+	../../src/round/libround_a-trigger.$(OBJEXT) \
+	../../src/round/libround_a-trigger_manager.$(OBJEXT) \
 	../../src/round/util/libround_a-base64.$(OBJEXT) \
 	../../src/round/util/libround_a-consistent_hashing_node.$(OBJEXT) \
 	../../src/round/util/libround_a-consistent_hashing_ring.$(OBJEXT) \
@@ -431,6 +433,8 @@ round_mpi_sources = \
 	../../src/round/script_engine_map.c \
 	../../src/round/server.c \
 	../../src/round/server_list.c \
+	../../src/round/trigger.c \
+	../../src/round/trigger_manager.c \
 	../../src/round/util/base64.c \
 	../../src/round/util/consistent_hashing_node.c \
 	../../src/round/util/consistent_hashing_ring.c \
@@ -718,6 +722,12 @@ clean-libLIBRARIES:
 ../../src/round/libround_a-server_list.$(OBJEXT):  \
 	../../src/round/$(am__dirstamp) \
 	../../src/round/$(DEPDIR)/$(am__dirstamp)
+../../src/round/libround_a-trigger.$(OBJEXT):  \
+	../../src/round/$(am__dirstamp) \
+	../../src/round/$(DEPDIR)/$(am__dirstamp)
+../../src/round/libround_a-trigger_manager.$(OBJEXT):  \
+	../../src/round/$(am__dirstamp) \
+	../../src/round/$(DEPDIR)/$(am__dirstamp)
 ../../src/round/util/$(am__dirstamp):
 	@$(MKDIR_P) ../../src/round/util
 	@: > ../../src/round/util/$(am__dirstamp)
@@ -851,6 +861,8 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@../../src/round/$(DEPDIR)/libround_a-script_engine_map.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../../src/round/$(DEPDIR)/libround_a-server.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../../src/round/$(DEPDIR)/libround_a-server_list.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@../../src/round/$(DEPDIR)/libround_a-trigger.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@../../src/round/$(DEPDIR)/libround_a-trigger_manager.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../../src/round/impl/$(DEPDIR)/libround_a-upnp_finder.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../../src/round/impl/$(DEPDIR)/libround_a-upnp_remote_node.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../../src/round/impl/$(DEPDIR)/libround_a-upnp_server.Po@am__quote@
@@ -1584,6 +1596,34 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='../../src/round/server_list.c' object='../../src/round/libround_a-server_list.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libround_a_CFLAGS) $(CFLAGS) -c -o ../../src/round/libround_a-server_list.obj `if test -f '../../src/round/server_list.c'; then $(CYGPATH_W) '../../src/round/server_list.c'; else $(CYGPATH_W) '$(srcdir)/../../src/round/server_list.c'; fi`
+
+../../src/round/libround_a-trigger.o: ../../src/round/trigger.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libround_a_CFLAGS) $(CFLAGS) -MT ../../src/round/libround_a-trigger.o -MD -MP -MF ../../src/round/$(DEPDIR)/libround_a-trigger.Tpo -c -o ../../src/round/libround_a-trigger.o `test -f '../../src/round/trigger.c' || echo '$(srcdir)/'`../../src/round/trigger.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) ../../src/round/$(DEPDIR)/libround_a-trigger.Tpo ../../src/round/$(DEPDIR)/libround_a-trigger.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='../../src/round/trigger.c' object='../../src/round/libround_a-trigger.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libround_a_CFLAGS) $(CFLAGS) -c -o ../../src/round/libround_a-trigger.o `test -f '../../src/round/trigger.c' || echo '$(srcdir)/'`../../src/round/trigger.c
+
+../../src/round/libround_a-trigger.obj: ../../src/round/trigger.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libround_a_CFLAGS) $(CFLAGS) -MT ../../src/round/libround_a-trigger.obj -MD -MP -MF ../../src/round/$(DEPDIR)/libround_a-trigger.Tpo -c -o ../../src/round/libround_a-trigger.obj `if test -f '../../src/round/trigger.c'; then $(CYGPATH_W) '../../src/round/trigger.c'; else $(CYGPATH_W) '$(srcdir)/../../src/round/trigger.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) ../../src/round/$(DEPDIR)/libround_a-trigger.Tpo ../../src/round/$(DEPDIR)/libround_a-trigger.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='../../src/round/trigger.c' object='../../src/round/libround_a-trigger.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libround_a_CFLAGS) $(CFLAGS) -c -o ../../src/round/libround_a-trigger.obj `if test -f '../../src/round/trigger.c'; then $(CYGPATH_W) '../../src/round/trigger.c'; else $(CYGPATH_W) '$(srcdir)/../../src/round/trigger.c'; fi`
+
+../../src/round/libround_a-trigger_manager.o: ../../src/round/trigger_manager.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libround_a_CFLAGS) $(CFLAGS) -MT ../../src/round/libround_a-trigger_manager.o -MD -MP -MF ../../src/round/$(DEPDIR)/libround_a-trigger_manager.Tpo -c -o ../../src/round/libround_a-trigger_manager.o `test -f '../../src/round/trigger_manager.c' || echo '$(srcdir)/'`../../src/round/trigger_manager.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) ../../src/round/$(DEPDIR)/libround_a-trigger_manager.Tpo ../../src/round/$(DEPDIR)/libround_a-trigger_manager.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='../../src/round/trigger_manager.c' object='../../src/round/libround_a-trigger_manager.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libround_a_CFLAGS) $(CFLAGS) -c -o ../../src/round/libround_a-trigger_manager.o `test -f '../../src/round/trigger_manager.c' || echo '$(srcdir)/'`../../src/round/trigger_manager.c
+
+../../src/round/libround_a-trigger_manager.obj: ../../src/round/trigger_manager.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libround_a_CFLAGS) $(CFLAGS) -MT ../../src/round/libround_a-trigger_manager.obj -MD -MP -MF ../../src/round/$(DEPDIR)/libround_a-trigger_manager.Tpo -c -o ../../src/round/libround_a-trigger_manager.obj `if test -f '../../src/round/trigger_manager.c'; then $(CYGPATH_W) '../../src/round/trigger_manager.c'; else $(CYGPATH_W) '$(srcdir)/../../src/round/trigger_manager.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) ../../src/round/$(DEPDIR)/libround_a-trigger_manager.Tpo ../../src/round/$(DEPDIR)/libround_a-trigger_manager.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='../../src/round/trigger_manager.c' object='../../src/round/libround_a-trigger_manager.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libround_a_CFLAGS) $(CFLAGS) -c -o ../../src/round/libround_a-trigger_manager.obj `if test -f '../../src/round/trigger_manager.c'; then $(CYGPATH_W) '../../src/round/trigger_manager.c'; else $(CYGPATH_W) '$(srcdir)/../../src/round/trigger_manager.c'; fi`
 
 ../../src/round/util/libround_a-base64.o: ../../src/round/util/base64.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libround_a_CFLAGS) $(CFLAGS) -MT ../../src/round/util/libround_a-base64.o -MD -MP -MF ../../src/round/util/$(DEPDIR)/libround_a-base64.Tpo -c -o ../../src/round/util/libround_a-base64.o `test -f '../../src/round/util/base64.c' || echo '$(srcdir)/'`../../src/round/util/base64.c

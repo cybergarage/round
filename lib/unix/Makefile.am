@@ -65,6 +65,8 @@ round_mpi_sources = \
 	../../src/round/script_engine_map.c \
 	../../src/round/server.c \
 	../../src/round/server_list.c \
+	../../src/round/trigger.c \
+	../../src/round/trigger_manager.c \
 	../../src/round/util/base64.c \
 	../../src/round/util/consistent_hashing_node.c \
 	../../src/round/util/consistent_hashing_ring.c \
