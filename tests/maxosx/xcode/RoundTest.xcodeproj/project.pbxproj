@@ -44,6 +44,7 @@
 		21B40A4F1C32BD0400EAF962 /* Ruby.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21B40A4E1C32BD0400EAF962 /* Ruby.framework */; };
 		21B40A511C32BD3400EAF962 /* Python.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21B40A501C32BD3400EAF962 /* Python.framework */; };
 		21B40A531C33898400EAF962 /* PythonEngineTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B40A521C33898400EAF962 /* PythonEngineTest.cpp */; };
+		21B928731D6355960008397B /* TriggerTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B928721D6355960008397B /* TriggerTest.cpp */; };
 		21C1C5BE1C1AAFBB005B95C3 /* OptionTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21C1C5BD1C1AAFBB005B95C3 /* OptionTest.cpp */; };
 		21C1C5C01C1AB159005B95C3 /* StatusTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21C1C5BF1C1AB159005B95C3 /* StatusTest.cpp */; };
 		21C887741BD8F00700449F5D /* DigestTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21C887731BD8F00700449F5D /* DigestTest.cpp */; };
@@ -129,6 +130,7 @@
 		21B40A4E1C32BD0400EAF962 /* Ruby.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Ruby.framework; path = System/Library/Frameworks/Ruby.framework; sourceTree = SDKROOT; };
 		21B40A501C32BD3400EAF962 /* Python.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Python.framework; path = System/Library/Frameworks/Python.framework; sourceTree = SDKROOT; };
 		21B40A521C33898400EAF962 /* PythonEngineTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PythonEngineTest.cpp; sourceTree = "<group>"; };
+		21B928721D6355960008397B /* TriggerTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TriggerTest.cpp; path = ../../TriggerTest.cpp; sourceTree = "<group>"; };
 		21C1C5BD1C1AAFBB005B95C3 /* OptionTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = OptionTest.cpp; path = ../../util/OptionTest.cpp; sourceTree = "<group>"; };
 		21C1C5BF1C1AB159005B95C3 /* StatusTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StatusTest.cpp; path = ../../util/StatusTest.cpp; sourceTree = "<group>"; };
 		21C887731BD8F00700449F5D /* DigestTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DigestTest.cpp; path = ../../DigestTest.cpp; sourceTree = "<group>"; };
@@ -207,6 +209,7 @@
 		217993091B4A5A6B00A158CD /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				21B928721D6355960008397B /* TriggerTest.cpp */,
 				211E45D11B98188600CF0088 /* ClientTest.cpp */,
 				216D19CE1BB4B37C0007B331 /* ClockTest.cpp */,
 				21EA96DC1B99104E00E00841 /* ClusterManagerTest.cpp */,
@@ -362,6 +365,7 @@
 				21C1C5BE1C1AAFBB005B95C3 /* OptionTest.cpp in Sources */,
 				212A954C1B9BD1A400EC9A71 /* MethodManagerTest.cpp in Sources */,
 				2127082C1BD6640300000985 /* ConsistentHashingRingTest.cpp in Sources */,
+				21B928731D6355960008397B /* TriggerTest.cpp in Sources */,
 				211E45D21B98188600CF0088 /* ClientTest.cpp in Sources */,
 				21563A121BC419AB004D33EA /* ScriptTestController.cpp in Sources */,
 				2127083A1BD7995A00000985 /* JSONArrayTest.cpp in Sources */,
