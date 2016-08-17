@@ -14,14 +14,16 @@
 #include <round/util/thread.h>
 #include <round/util/timer.h>
 
-const int THREAD_TEST_LOOP_NUM = 10;
-const double THREAD_TEST_CYCLEINTERVAL = 0.1;
+static const int THREAD_TEST_LOOP_NUM = 10;
+static const double THREAD_TEST_CYCLEINTERVAL = 0.1;
 
 BOOST_AUTO_TEST_SUITE(thread)
 
 BOOST_AUTO_TEST_CASE(ThreadNew)
 {
   RoundThread *thread = round_thread_new();
+
+  BOOST_CHECK_EQUAL(round_thread_hasname(thread), false);
   
   BOOST_CHECK_EQUAL(round_thread_isloop(thread), false);
   BOOST_CHECK_EQUAL(round_thread_getcycleinterval(thread), 0.0);
@@ -34,6 +36,20 @@ BOOST_AUTO_TEST_CASE(ThreadNew)
 
   BOOST_CHECK_EQUAL(round_thread_isrunnable(thread), false);
   BOOST_CHECK_EQUAL(round_thread_isrunning(thread), false);
+  
+  round_thread_delete(thread);
+}
+
+BOOST_AUTO_TEST_CASE(ThreadMembers)
+{
+  static const char *THREAD_TEST_NAME = "testthread";
+  
+  RoundThread *thread = round_thread_new();
+  
+  BOOST_CHECK_EQUAL(round_thread_hasname(thread), false);
+  BOOST_CHECK_EQUAL(round_thread_setname(thread, THREAD_TEST_NAME), true);
+  BOOST_CHECK_EQUAL(round_thread_hasname(thread), true);
+  BOOST_CHECK_EQUAL(round_thread_isname(thread, THREAD_TEST_NAME), true);
   
   round_thread_delete(thread);
 }

@@ -13,6 +13,7 @@
 
 #include <round/typedef.h>
 #include <round/util/list.h>
+#include <round/util/strings.h>
 
 #if defined(WIN32)
 #include <windows.h>
@@ -37,6 +38,8 @@ extern "C" {
 
 typedef struct _RoundThread {
   ROUND_LIST_STRUCT_MEMBERS
+  
+  RoundString *name;
   
   bool runnableFlag;
   bool runningFlag;
@@ -77,6 +80,11 @@ bool round_thread_isrunnable(RoundThread *thread);
 bool round_thread_isrunning(RoundThread *thread);
   
 void round_thread_setaction(RoundThread *thread, RoundThreadFunc actionFunc);
+
+#define round_thread_setname(thread,value) round_string_setvalue(thread->name,value)
+#define round_thread_getname(thread) round_string_getvalue(thread->name)
+#define round_thread_hasname(thread) round_string_hasvalue(thread->name)
+#define round_thread_isname(thread,value) round_string_isvalue(thread->name,value)
 
 #define round_thread_setloop(thread,flag) (thread->isLoop = flag)
 #define round_thread_isloop(thread) (thread->isLoop)

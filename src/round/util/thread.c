@@ -91,6 +91,30 @@ static void* RoundPosixThreadProc(void* param)
 #endif
 
 /****************************************
+ * round_thread_init
+ ****************************************/
+
+bool round_thread_init(RoundThread* thread)
+{
+  round_list_node_init((RoundList*)thread);
+  
+  thread->runnableFlag = false;
+  thread->action = NULL;
+  thread->userData = NULL;
+  
+  round_thread_setloop(thread, false);
+  round_thread_setcycleinterval(thread, 0.0);
+  round_thread_setstarttime(thread, 0.0);
+  round_thread_setstoptime(thread, 0.0);
+  
+  thread->name = round_string_new();
+  if (!thread->name)
+    return false;
+  
+  return true;
+}
+
+/****************************************
 * round_thread_new
 ****************************************/
 
@@ -103,17 +127,11 @@ RoundThread* round_thread_new(void)
   if (!thread)
     return NULL;
 
-  round_list_node_init((RoundList*)thread);
+  if (!round_thread_init(thread)) {
+    round_thread_delete(thread);
+    return NULL;
+  }
 
-  thread->runnableFlag = false;
-  thread->action = NULL;
-  thread->userData = NULL;
-
-  round_thread_setloop(thread, false);
-  round_thread_setcycleinterval(thread, 0.0);
-  round_thread_setstarttime(thread, 0.0);
-  round_thread_setstoptime(thread, 0.0);
-  
   return thread;
 }
 
