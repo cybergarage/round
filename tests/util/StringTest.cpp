@@ -52,6 +52,7 @@ BOOST_AUTO_TEST_CASE(NewStringTest)
     BOOST_CHECK_EQUAL(round_string_length(str), strlen(buf));
     BOOST_CHECK_EQUAL(round_string_hasvalue(str), true);
     BOOST_CHECK_EQUAL(strcmp(round_string_getvalue(str), buf), 0);
+    BOOST_CHECK_EQUAL(round_string_isvalue(str, buf), true);
   }
 
   for (n = 0; n < ROUND_STRING_TEST_LOOP_CNT; n++) {
@@ -67,6 +68,7 @@ BOOST_AUTO_TEST_CASE(NewStringTest)
     BOOST_CHECK(round_string_addvalue(str, buf));
     snprintf(buf, sizeof(buf), "%d%d", n, rnd);
     BOOST_CHECK_EQUAL(strcmp(round_string_getvalue(str), buf), 0);
+    BOOST_CHECK_EQUAL(round_string_isvalue(str, buf), true);
     BOOST_CHECK_EQUAL(round_string_hasvalue(str), true);
   }
 

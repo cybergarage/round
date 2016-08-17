@@ -114,6 +114,7 @@ char *round_string_getvalue(RoundString *str);
 	
 size_t round_string_length(RoundString *str);
 #define round_string_hasvalue(str) (0 < round_string_length(str))
+#define round_string_isvalue(str,value) round_streq(round_string_getvalue(str), value)
 
 bool round_string_equals(RoundString *str1, RoundString *str2);
 
@@ -123,7 +124,6 @@ char *round_string_addrepvalue(RoundString *str, const char *value, size_t repea
 char *round_string_naddrepvalue(RoundString *str, const char *value, size_t valueLen, size_t repeatCnt);
 
 char *round_string_replace(RoundString *str, char *fromStr[], char *toStr[], size_t fromStrCnt);
-
 
 size_t round_string_getmemorysize(RoundString *str);
                                                                                                                                              
