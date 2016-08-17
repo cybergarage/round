@@ -36,8 +36,13 @@ typedef struct {
  * Function
  ****************************************/
   
-#define round_trigger_new round_trigger_new
-#define round_trigger_delete(trigger) round_trigger_delete(trigger)
+#define round_trigger_new round_thread_new
+#define round_trigger_delete(trigger) round_thread_delete(trigger)
+
+#define round_trigger_setname(trigger,value) round_thread_setname(trigger,value)
+#define round_trigger_getname(trigger) round_thread_getname(trigger)
+#define round_trigger_hasname(trigger) round_thread_hasname(trigger)
+#define round_trigger_isname(trigger,value) round_thread_isname(trigger,value)
 
 #define round_trigger_setaction(trigger,func) round_thread_setaction(trigger,func)
   
