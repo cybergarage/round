@@ -58,7 +58,7 @@ BOOST_AUTO_TEST_CASE(TriggerManagerNew)
   RoundTrigger* trigger;
   char name[64];
   
-  // Add name objects
+  // Add triggers
   
   for (size_t n = 0; n < TEST_TRIGGER_NUM; n++) {
     snprintf(name, sizeof(name), "%ld", n);
@@ -71,7 +71,7 @@ BOOST_AUTO_TEST_CASE(TriggerManagerNew)
   
   BOOST_CHECK_EQUAL(round_trigger_manager_size(mgr), TEST_TRIGGER_NUM);
   
-  // Get name objects
+  // Get triggers by name
   
   for (size_t n = 0; n < TEST_TRIGGER_NUM; n++) {
     snprintf(name, sizeof(name), "%ld", n);
@@ -81,7 +81,7 @@ BOOST_AUTO_TEST_CASE(TriggerManagerNew)
   
   BOOST_CHECK_EQUAL(round_trigger_manager_size(mgr), TEST_TRIGGER_NUM);
   
-  // Add same name objects
+  // Add same triggers
   
   for (size_t n = 0; n < TEST_TRIGGER_NUM; n++) {
     snprintf(name, sizeof(name), "%ld", n);
@@ -93,7 +93,7 @@ BOOST_AUTO_TEST_CASE(TriggerManagerNew)
   
   BOOST_CHECK_EQUAL(round_trigger_manager_size(mgr), TEST_TRIGGER_NUM);
   
-  // Remove name objects
+  // Remove triggers by name
   
   for (size_t n = 0; n < TEST_TRIGGER_NUM; n++) {
     snprintf(name, sizeof(name), "%ld", n);
