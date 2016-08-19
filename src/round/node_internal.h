@@ -24,6 +24,7 @@
 #include <round/clock.h>
 #include <round/registry.h>
 #include <round/message.h>
+#include <round/trigger.h>
 
 #include <round/method.h>
 
@@ -77,6 +78,7 @@ typedef struct {
   RoundRegistryManager *regMgr;
   RoundMessageManager *msgMgr;
   RoundThreadManager *threadMgr;
+  RoundTriggerManager *triggerMgr;
 } RoundLocalNode;
 
 typedef struct {

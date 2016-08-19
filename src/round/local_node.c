@@ -26,9 +26,7 @@
 
 RoundLocalNode* round_local_node_new(void)
 {
-  RoundLocalNode* node;
-
-  node = (RoundLocalNode*)malloc(sizeof(RoundLocalNode));
+  RoundLocalNode* node = (RoundLocalNode*)malloc(sizeof(RoundLocalNode));
 
   if (!node)
     return NULL;
@@ -47,6 +45,9 @@ RoundLocalNode* round_local_node_new(void)
 
 bool round_local_node_init(RoundLocalNode* node)
 {
+  if (!node)
+    return false;
+  
   round_node_init((RoundNode*)node);
   round_oo_setdescendantdestoroyfunc(node, round_local_node_destory);
 
@@ -54,7 +55,8 @@ bool round_local_node_init(RoundLocalNode* node)
   node->regMgr = round_registry_manager_new();
   node->threadMgr = round_thread_manager_new();
   node->msgMgr = round_message_manager_new();
-
+  node->triggerMgr = round_trigger_manager_new();
+  
   if (!node->methodMgr || !node->regMgr || !node->threadMgr || !node->msgMgr)
     return false;
 
@@ -163,6 +165,7 @@ bool round_local_node_destory(RoundLocalNode* node)
   round_registry_manager_delete(node->regMgr);
   round_thread_manager_delete(node->threadMgr);
   round_message_manager_delete(node->msgMgr);
+  round_trigger_manager_delete(node->triggerMgr);
 
   return true;
 }
