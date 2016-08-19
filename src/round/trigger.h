@@ -16,6 +16,7 @@
 #endif
 
 #include <round/util/thread.h>
+#include <round/util/map.h>
 
 #ifdef  __cplusplus
 extern "C" {
@@ -29,7 +30,7 @@ typedef RoundThread RoundTrigger;
 typedef RoundThreadFunc RoundTriggerFunc;
 
 typedef struct {
-  RoundThreadManager *threadMgr;
+  RoundMap *triggerMap;
 } RoundTriggerManager;
 
 /****************************************
@@ -66,6 +67,13 @@ typedef struct {
   
 RoundTriggerManager *round_trigger_manager_new();
 bool round_trigger_manager_delete(RoundTriggerManager *mgr);
+
+#define round_trigger_manager_size(mgr) round_map_size(mgr->triggerMap)
+  
+bool round_trigger_manager_settrigger(RoundTriggerManager *mgr, RoundTrigger *trigger);
+
+#define round_trigger_manager_hastriggerbyname(mgr,name) round_map_haskey(mgr->triggerMap, name)
+#define round_trigger_manager_gettriggerbyname(mgr,name) (RoundTrigger *)round_map_getobjectbykey(mgr->triggerMap, name)
   
 #ifdef  __cplusplus
 }

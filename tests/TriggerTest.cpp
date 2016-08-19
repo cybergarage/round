@@ -46,4 +46,11 @@ BOOST_AUTO_TEST_CASE(TriggerMembers)
   round_trigger_delete(trigger);
 }
 
+BOOST_AUTO_TEST_CASE(TriggerManagerNew)
+{
+  RoundTriggerManager *triggerMgr = round_trigger_manager_new();
+  
+  round_trigger_manager_delete(triggerMgr);
+}
+
 BOOST_AUTO_TEST_SUITE_END()
