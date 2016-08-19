@@ -74,6 +74,7 @@ bool round_trigger_manager_settrigger(RoundTriggerManager *mgr, RoundTrigger *tr
 
 #define round_trigger_manager_hastriggerbyname(mgr,name) round_map_haskey(mgr->triggerMap, name)
 #define round_trigger_manager_gettriggerbyname(mgr,name) (RoundTrigger *)round_map_getobjectbykey(mgr->triggerMap, name)
+#define round_trigger_manager_removetriggerbyname(mgr,name) round_map_removeobjectbykey(mgr->triggerMap, name)
   
 #ifdef  __cplusplus
 }

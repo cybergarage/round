@@ -48,9 +48,63 @@ BOOST_AUTO_TEST_CASE(TriggerMembers)
 
 BOOST_AUTO_TEST_CASE(TriggerManagerNew)
 {
-  RoundTriggerManager *triggerMgr = round_trigger_manager_new();
+  static const int TEST_TRIGGER_NUM = 10;
   
-  round_trigger_manager_delete(triggerMgr);
+  RoundTriggerManager *mgr = round_trigger_manager_new();
+  BOOST_CHECK(mgr);
+  
+  BOOST_CHECK_EQUAL(round_trigger_manager_size(mgr), 0);
+  
+  RoundTrigger* trigger;
+  char name[64];
+  
+  // Add name objects
+  
+  for (size_t n = 0; n < TEST_TRIGGER_NUM; n++) {
+    snprintf(name, sizeof(name), "%ld", n);
+    trigger = round_trigger_new();
+    round_trigger_setname(trigger, name);
+    BOOST_CHECK(round_trigger_manager_settrigger(mgr, trigger));
+    BOOST_CHECK(round_trigger_manager_hastriggerbyname(mgr, name));
+    BOOST_CHECK_EQUAL(round_trigger_manager_size(mgr), (n + 1));
+  }
+  
+  BOOST_CHECK_EQUAL(round_trigger_manager_size(mgr), TEST_TRIGGER_NUM);
+  
+  // Get name objects
+  
+  for (size_t n = 0; n < TEST_TRIGGER_NUM; n++) {
+    snprintf(name, sizeof(name), "%ld", n);
+    trigger = round_trigger_manager_gettriggerbyname(mgr, name);
+    BOOST_CHECK(trigger);
+  }
+  
+  BOOST_CHECK_EQUAL(round_trigger_manager_size(mgr), TEST_TRIGGER_NUM);
+  
+  // Add same name objects
+  
+  for (size_t n = 0; n < TEST_TRIGGER_NUM; n++) {
+    snprintf(name, sizeof(name), "%ld", n);
+    trigger = round_trigger_new();
+    round_trigger_setname(trigger, name);
+    BOOST_CHECK(round_trigger_manager_settrigger(mgr, trigger));
+    BOOST_CHECK_EQUAL(round_trigger_manager_size(mgr), TEST_TRIGGER_NUM);
+  }
+  
+  BOOST_CHECK_EQUAL(round_trigger_manager_size(mgr), TEST_TRIGGER_NUM);
+  
+  // Remove name objects
+  
+  for (size_t n = 0; n < TEST_TRIGGER_NUM; n++) {
+    snprintf(name, sizeof(name), "%ld", n);
+    BOOST_CHECK(round_trigger_manager_removetriggerbyname(mgr, name));
+    BOOST_CHECK_EQUAL(round_trigger_manager_hastriggerbyname(mgr, name), false);
+    BOOST_CHECK_EQUAL(round_trigger_manager_size(mgr), (TEST_TRIGGER_NUM - (n + 1)));
+  }
+  
+  BOOST_CHECK_EQUAL(round_trigger_manager_size(mgr), 0);
+  
+  BOOST_CHECK(round_trigger_manager_delete(mgr));
 }
 
 BOOST_AUTO_TEST_SUITE_END()
