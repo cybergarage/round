@@ -120,6 +120,8 @@ bool round_thread_manager_start(RoundThreadManager *threadMgr);
 bool round_thread_manager_stop(RoundThreadManager *threadMgr);
 bool round_thread_manager_isrunning(RoundThreadManager *threadMgr);
 
+RoundThread *round_thread_manager_getthreadbyname(RoundThreadManager *threadMgr, const char *name);
+
 #ifdef  __cplusplus
 
 } /* extern "C" */

@@ -16,46 +16,45 @@
 
 RoundThreadManager* round_thread_manager_new(void)
 {
-  RoundThreadManager* threadMgr;
+  RoundThreadManager* mgr = (RoundThreadManager*)malloc(sizeof(RoundThreadManager));
 
-  threadMgr = (RoundThreadManager*)malloc(sizeof(RoundThreadManager));
-
-  if (!threadMgr)
+  if (!mgr)
     return NULL;
 
-  round_list_header_init((RoundList*)threadMgr);
-  threadMgr->runnableFlag = false;
-  threadMgr->action = NULL;
-  threadMgr->userData = NULL;
+  round_list_header_init((RoundList*)mgr);
+  
+  mgr->runnableFlag = false;
+  mgr->action = NULL;
+  mgr->userData = NULL;
 
-  return threadMgr;
+  return mgr;
 }
 
 /****************************************
 * round_thread_manager_delete
 ****************************************/
 
-void round_thread_manager_delete(RoundThreadManager* threadMgr)
+void round_thread_manager_delete(RoundThreadManager* mgr)
 {
-  if (!threadMgr)
+  if (!mgr)
     return;
 
-  round_thread_manager_clear(threadMgr);
-  free(threadMgr);
+  round_thread_manager_clear(mgr);
+
+  free(mgr);
 }
 
 /****************************************
 * round_thread_manager_start
 ****************************************/
 
-bool round_thread_manager_start(RoundThreadManager* threadMgr)
+bool round_thread_manager_start(RoundThreadManager* mgr)
 {
-  RoundThreadManager* thread;
-
-  if (!threadMgr)
+  if (!mgr)
     return false;
 
-  for (thread = round_thread_manager_gets(threadMgr); thread != NULL; thread = round_thread_next(thread)) {
+  RoundThreadManager* thread;
+  for (thread = round_thread_manager_gets(mgr); thread != NULL; thread = round_thread_next(thread)) {
     round_thread_start(thread);
   }
 
@@ -66,15 +65,13 @@ bool round_thread_manager_start(RoundThreadManager* threadMgr)
 * round_thread_manager_stop
 ****************************************/
 
-bool round_thread_manager_stop(RoundThreadManager* threadMgr)
+bool round_thread_manager_stop(RoundThreadManager* mgr)
 {
-  RoundThreadManager* thread;
-
-  if (!threadMgr)
+  if (!mgr)
     return false;
 
-  for (thread = round_thread_manager_gets(threadMgr); thread != NULL;
-       thread = round_thread_next(thread)) {
+  RoundThreadManager* thread;
+  for (thread = round_thread_manager_gets(mgr); thread != NULL; thread = round_thread_next(thread)) {
     round_thread_stop(thread);
   }
 
@@ -85,15 +82,31 @@ bool round_thread_manager_stop(RoundThreadManager* threadMgr)
  * round_thread_manager_isrunning
  ****************************************/
 
-bool round_thread_manager_isrunning(RoundThreadManager* threadMgr)
+bool round_thread_manager_isrunning(RoundThreadManager* mgr)
 {
   RoundThreadManager* thread;
-
-  for (thread = round_thread_manager_gets(threadMgr); thread != NULL;
-       thread = round_thread_next(thread)) {
+  for (thread = round_thread_manager_gets(mgr); thread != NULL; thread = round_thread_next(thread)) {
     if (!round_thread_isrunning(thread))
       return false;
   }
 
   return true;
+}
+
+/****************************************
+ * round_thread_manager_getthreadbyname
+ ****************************************/
+
+RoundThread *round_thread_manager_getthreadbyname(RoundThreadManager *mgr, const char *name)
+{
+  if (!mgr)
+    return NULL;
+  
+  RoundThreadManager* thread;
+  for (thread = round_thread_manager_gets(mgr); thread != NULL; thread = round_thread_next(thread)) {
+    if (!round_thread_isname(thread, name))
+      return thread;
+  }
+  
+  return NULL;
 }

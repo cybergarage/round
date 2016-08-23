@@ -209,7 +209,6 @@
 		217993091B4A5A6B00A158CD /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				21B928721D6355960008397B /* TriggerTest.cpp */,
 				211E45D11B98188600CF0088 /* ClientTest.cpp */,
 				216D19CE1BB4B37C0007B331 /* ClockTest.cpp */,
 				21EA96DC1B99104E00E00841 /* ClusterManagerTest.cpp */,
@@ -226,11 +225,11 @@
 				21EA96E01B99105E00E00841 /* NodeRingTest.cpp */,
 				21EA96E11B99105E00E00841 /* NodeTest.cpp */,
 				21135E491C1A967600013136 /* NodeTestController.cpp */,
+				21135E4B1C1A974B00013136 /* NodeTestController.h */,
 				215A07991BB4663C00E9702F /* RegistryTest.cpp */,
 				218569B21BB0D68800861B9B /* RemoteNodeTest.cpp */,
 				21A762EC1B96F82400D29732 /* RoundTest.cpp */,
 				2166EF8E1B9D3394002FE45D /* RoundTest.h */,
-				21135E4B1C1A974B00013136 /* NodeTestController.h */,
 				213389D21BFAEAB30014548E /* RpcServerTest.cpp */,
 				21F6D9991B9983A500714056 /* script */,
 				2166EF8A1B9D2E5E002FE45D /* ScriptEngineMapTest.cpp */,
@@ -238,6 +237,7 @@
 				21563A101BC419AB004D33EA /* ScriptTestController.cpp */,
 				21563A111BC419AB004D33EA /* ScriptTestController.h */,
 				215A078D1BB2FB9400E9702F /* ServerTest.cpp */,
+				21B928721D6355960008397B /* TriggerTest.cpp */,
 				2195A3DB1BD50DD600DF5436 /* util */,
 			);
 			name = Sources;
