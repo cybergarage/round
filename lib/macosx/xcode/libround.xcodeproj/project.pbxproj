@@ -333,9 +333,6 @@
 		211E45CB1B98155300CF0088 /* round */ = {
 			isa = PBXGroup;
 			children = (
-				210989C81D61FC3D0004C11F /* trigger.c */,
-				210989C91D61FC3D0004C11F /* trigger.h */,
-				210989CC1D61FD3F0004C11F /* trigger_manager.c */,
 				211E45CF1B9816F300CF0088 /* client_internal.h */,
 				211E45CC1B98157400CF0088 /* client.c */,
 				216D19CB1BB4B3570007B331 /* clock.c */,
@@ -382,6 +379,9 @@
 				215A07891BB2FA8000E9702F /* server_internal.h */,
 				21EB02C91C45880600D89922 /* server_list.c */,
 				215A078A1BB2FA8000E9702F /* server.c */,
+				210989CC1D61FD3F0004C11F /* trigger_manager.c */,
+				210989C81D61FC3D0004C11F /* trigger.c */,
+				210989C91D61FC3D0004C11F /* trigger.h */,
 				2178B3631B98BE7B00B9D86B /* util */,
 			);
 			name = round;

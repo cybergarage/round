@@ -14,60 +14,6 @@
 #include <round/trigger.h>
 
 /****************************************
- * round_trigger_manager_init
- ****************************************/
-
-bool round_trigger_manager_init(RoundTriggerManager* mgr)
-{
-  if (!mgr)
-    return false;
-  
-  mgr->triggerMap = round_map_new();
-  if (!mgr->triggerMap)
-    return false;
-
-  round_map_setmapobjectdestructor(mgr->triggerMap, (ROUND_MAP_OBJECT_DESTRUCTOR)round_thread_delete);
-  
-  return true;
-}
-
-/****************************************
- * round_trigger_manager_new
- ****************************************/
-
-RoundTriggerManager* round_trigger_manager_new()
-{
-  RoundTriggerManager* mgr;
-
-  mgr = (RoundTriggerManager*)malloc(sizeof(RoundTriggerManager));
-  if (!mgr)
-    return NULL;
-
-  if (!round_trigger_manager_init(mgr)) {
-    round_trigger_manager_delete(mgr);
-    return NULL;
-  }
-  
-  return mgr;
-}
-
-/****************************************
- * round_trigger_manager_delete
- ****************************************/
-
-bool round_trigger_manager_delete(RoundTriggerManager* mgr)
-{
-  if (!mgr)
-    return false;
-
-  round_map_delete(mgr->triggerMap);
-
-  free(mgr);
-
-  return true;
-}
-
-/****************************************
  * round_trigger_manager_settrigger
  ****************************************/
 
@@ -85,5 +31,5 @@ bool round_trigger_manager_settrigger(RoundTriggerManager *mgr, RoundTrigger *tr
     round_trigger_manager_removetriggerbyname(mgr, name);
   }
 
-  return round_map_setobject(mgr->triggerMap, round_trigger_getname(trigger), trigger);
+  return round_thread_manager_add(mgr, trigger);
 }

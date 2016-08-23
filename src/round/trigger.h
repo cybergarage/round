@@ -28,10 +28,7 @@ extern "C" {
 
 typedef RoundThread RoundTrigger;
 typedef RoundThreadFunc RoundTriggerFunc;
-
-typedef struct {
-  RoundMap *triggerMap;
-} RoundTriggerManager;
+typedef RoundThreadManager RoundTriggerManager;
 
 /****************************************
  * Function
@@ -65,17 +62,17 @@ typedef struct {
  * Function (Manager)
  ****************************************/
   
-RoundTriggerManager *round_trigger_manager_new();
-bool round_trigger_manager_delete(RoundTriggerManager *mgr);
+#define round_trigger_manager_new(mgr) round_thread_manager_new(mgr)
+#define round_trigger_manager_delete(mgr) round_thread_manager_delete(mgr)
 
-#define round_trigger_manager_size(mgr) round_map_size(mgr->triggerMap)
+#define round_trigger_manager_size(mgr) round_thread_manager_size(mgr)
   
 bool round_trigger_manager_settrigger(RoundTriggerManager *mgr, RoundTrigger *trigger);
 
-#define round_trigger_manager_hastriggerbyname(mgr,name) round_map_haskey(mgr->triggerMap, name)
-#define round_trigger_manager_gettriggerbyname(mgr,name) (RoundTrigger *)round_map_getobjectbykey(mgr->triggerMap, name)
-#define round_trigger_manager_removetriggerbyname(mgr,name) round_map_removeobjectbykey(mgr->triggerMap, name)
-  
+#define round_trigger_manager_hastriggerbyname(mgr,name) round_thread_manager_hasthreadbyname(mgr, name)
+#define round_trigger_manager_removetriggerbyname(mgr,name) round_thread_manager_removethreadbyname(mgr, name)
+#define round_trigger_manager_gettriggerbyname(mgr,name) round_thread_manager_getthreadbyname(mgr, name)
+
 #ifdef  __cplusplus
 }
 #endif
