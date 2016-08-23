@@ -69,6 +69,10 @@ typedef RoundThreadManager RoundTriggerManager;
   
 bool round_trigger_manager_settrigger(RoundTriggerManager *mgr, RoundTrigger *trigger);
 
+#define round_trigger_manager_start(mgr) round_thread_manager_start(mgr)
+#define round_trigger_manager_stop(mgr) round_thread_manager_start(mgr)
+#define round_trigger_manager_isrunning(mgr) round_thread_manager_start(mgr)
+
 #define round_trigger_manager_hastriggerbyname(mgr,name) round_thread_manager_hasthreadbyname(mgr, name)
 #define round_trigger_manager_removetriggerbyname(mgr,name) round_thread_manager_removethreadbyname(mgr, name)
 #define round_trigger_manager_gettriggerbyname(mgr,name) round_thread_manager_getthreadbyname(mgr, name)
