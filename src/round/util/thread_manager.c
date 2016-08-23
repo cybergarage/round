@@ -107,7 +107,7 @@ RoundThread *round_thread_manager_getthreadbyname(RoundThreadManager *mgr, const
   
   RoundThreadManager* thread;
   for (thread = round_thread_manager_gets(mgr); thread != NULL; thread = round_thread_next(thread)) {
-    if (!round_thread_isname(thread, name))
+    if (round_thread_isname(thread, name))
       return thread;
   }
   
