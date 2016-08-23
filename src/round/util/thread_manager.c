@@ -34,14 +34,17 @@ RoundThreadManager* round_thread_manager_new(void)
 * round_thread_manager_delete
 ****************************************/
 
-void round_thread_manager_delete(RoundThreadManager* mgr)
+bool round_thread_manager_delete(RoundThreadManager* mgr)
 {
   if (!mgr)
-    return;
+    return false;
 
-  round_thread_manager_clear(mgr);
+  if (!round_thread_manager_clear(mgr))
+    return false;
 
   free(mgr);
+  
+  return true;
 }
 
 /****************************************

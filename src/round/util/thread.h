@@ -108,7 +108,7 @@ void *round_thread_getuserdata(RoundThread *thread);
 ****************************************/
 
 RoundThreadManager *round_thread_manager_new();
-void round_thread_manager_delete(RoundThreadManager *threadMgr);
+bool round_thread_manager_delete(RoundThreadManager *threadMgr);
 
 #define round_thread_manager_clear(threadMgr) round_list_clear((RoundList *)threadMgr, (ROUND_LIST_DESTRUCTORFUNC)round_thread_delete)
 #define round_thread_manager_size(threadMgr) round_list_size((RoundList *)threadMgr)
