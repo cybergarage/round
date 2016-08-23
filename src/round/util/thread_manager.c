@@ -110,3 +110,19 @@ RoundThread *round_thread_manager_getthreadbyname(RoundThreadManager *mgr, const
   
   return NULL;
 }
+
+/****************************************
+ * round_thread_manager_removethreadbyname
+ ****************************************/
+
+bool round_thread_manager_removethreadbyname(RoundThreadManager *mgr, const char *name)
+{
+  if (!mgr)
+    return NULL;
+
+  RoundThreadManager *thread = round_thread_manager_getthreadbyname(mgr, name);
+  if (!thread)
+    return NULL;
+
+  return round_thread_remove(thread);
+}

@@ -121,6 +121,8 @@ bool round_thread_manager_stop(RoundThreadManager *threadMgr);
 bool round_thread_manager_isrunning(RoundThreadManager *threadMgr);
 
 RoundThread *round_thread_manager_getthreadbyname(RoundThreadManager *threadMgr, const char *name);
+bool round_thread_manager_removethreadbyname(RoundThreadManager *threadMgr, const char *name);
+#define round_thread_manager_hasthreadbyname(threadMgr, name) (round_thread_manager_getthreadbyname(threadMgr, name) ? true : false)
 
 #ifdef  __cplusplus
 
