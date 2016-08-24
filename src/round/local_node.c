@@ -222,6 +222,7 @@ bool round_local_node_start(RoundLocalNode* node)
 
   isSuccess &= round_cluster_manager_addnode(node->clusterMgr, (RoundNode*)node);
   isSuccess &= round_thread_manager_start(node->threadMgr);
+  isSuccess &= round_trigger_manager_start(node->triggerMgr);
 
   if (!isSuccess) {
     round_local_node_stop(node);
@@ -243,6 +244,7 @@ bool round_local_node_stop(RoundLocalNode* node)
     return false;
 
   isSuccess &= round_thread_manager_stop(node->threadMgr);
+  isSuccess &= round_trigger_manager_stop(node->triggerMgr);
 
   return isSuccess;
 }
@@ -259,6 +261,9 @@ bool round_local_node_isrunning(RoundLocalNode* node)
   if (!round_thread_manager_isrunning(node->threadMgr))
     return false;
 
+  if (!round_trigger_manager_isrunning(node->threadMgr))
+    return false;
+  
   return true;
 }
 
