@@ -61,7 +61,7 @@ bool round_local_node_init(RoundLocalNode* node)
     return false;
 
   round_node_setpostmessagefunc(node, round_local_node_postmessage);
-
+  
   if (!round_local_node_initthreads(node))
     return false;
 

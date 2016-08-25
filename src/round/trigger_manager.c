@@ -12,6 +12,7 @@
 #include <round/const.h>
 #include <round/error_internal.h>
 #include <round/trigger.h>
+#include <round/route.h>
 
 /****************************************
  * round_trigger_manager_settrigger
@@ -31,5 +32,7 @@ bool round_trigger_manager_settrigger(RoundTriggerManager *mgr, RoundTrigger *tr
     round_trigger_manager_removetriggerbyname(mgr, name);
   }
 
+  round_trigger_setroutemanager(trigger, round_trigger_manager_getroutemanager(mgr));
+  
   return round_thread_manager_add(mgr, trigger);
 }

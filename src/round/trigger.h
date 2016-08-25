@@ -34,7 +34,8 @@ typedef RoundThreadManager RoundTriggerManager;
  * Function
  ****************************************/
   
-#define round_trigger_new round_thread_new
+RoundTrigger *round_trigger_new(void);
+  
 #define round_trigger_delete(trigger) round_thread_delete(trigger)
 
 #define round_trigger_setname(trigger,value) round_thread_setname(trigger,value)
@@ -58,6 +59,9 @@ typedef RoundThreadManager RoundTriggerManager;
 #define round_trigger_getstoptime(thread) round_thread_getstoptime(thread)
 #define round_trigger_isstoptimeenabled(thread) round_thread_isstoptimeenabled(thread)
 
+#define round_trigger_setroutemanager(mgr,data) round_thread_setuserdata(mgr,data)
+#define round_trigger_getroutemanager(mgr) ((RoundRouteManager *)round_thread_getuserdata(mgr))
+
 /****************************************
  * Function (Manager)
  ****************************************/
@@ -76,6 +80,9 @@ bool round_trigger_manager_settrigger(RoundTriggerManager *mgr, RoundTrigger *tr
 #define round_trigger_manager_hastriggerbyname(mgr,name) round_thread_manager_hasthreadbyname(mgr, name)
 #define round_trigger_manager_removetriggerbyname(mgr,name) round_thread_manager_removethreadbyname(mgr, name)
 #define round_trigger_manager_gettriggerbyname(mgr,name) round_thread_manager_getthreadbyname(mgr, name)
+
+#define round_trigger_manager_setroutemanager(mgr,data) round_thread_manager_setuserdata(mgr,data)
+#define round_trigger_manager_getroutemanager(mgr) ((RoundRouteManager *)round_thread_manager_getuserdata(mgr))
 
 #ifdef  __cplusplus
 }
