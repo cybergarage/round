@@ -108,21 +108,24 @@ void *round_thread_getuserdata(RoundThread *thread);
 ****************************************/
 
 RoundThreadManager *round_thread_manager_new();
-bool round_thread_manager_delete(RoundThreadManager *threadMgr);
+bool round_thread_manager_delete(RoundThreadManager *mgr);
 
-#define round_thread_manager_clear(threadMgr) round_list_clear((RoundList *)threadMgr, (ROUND_LIST_DESTRUCTORFUNC)round_thread_delete)
-#define round_thread_manager_size(threadMgr) round_list_size((RoundList *)threadMgr)
-#define round_thread_manager_gets(threadMgr) (RoundThread *)round_list_next((RoundList *)threadMgr)
-#define round_thread_manager_add(threadMgr, thread) round_list_add((RoundList *)threadMgr, (RoundList *)thread)
+#define round_thread_manager_clear(mgr) round_list_clear((RoundList *)mgr, (ROUND_LIST_DESTRUCTORFUNC)round_thread_delete)
+#define round_thread_manager_size(mgr) round_list_size((RoundList *)mgr)
+#define round_thread_manager_gets(mgr) (RoundThread *)round_list_next((RoundList *)mgr)
+#define round_thread_manager_add(mgr, thread) round_list_add((RoundList *)mgr, (RoundList *)thread)
 #define round_thread_manager_remove(thread) round_list_remove((RoundList *)thread)
 
-bool round_thread_manager_start(RoundThreadManager *threadMgr);
-bool round_thread_manager_stop(RoundThreadManager *threadMgr);
-bool round_thread_manager_isrunning(RoundThreadManager *threadMgr);
+#define round_thread_manager_setuserdata(mgr,data) round_thread_setuserdata(mgr,data)
+#define round_thread_manager_getuserdata(mgr) round_thread_getuserdata(mgr)
+  
+bool round_thread_manager_start(RoundThreadManager *mgr);
+bool round_thread_manager_stop(RoundThreadManager *mgr);
+bool round_thread_manager_isrunning(RoundThreadManager *mgr);
 
-RoundThread *round_thread_manager_getthreadbyname(RoundThreadManager *threadMgr, const char *name);
-bool round_thread_manager_removethreadbyname(RoundThreadManager *threadMgr, const char *name);
-#define round_thread_manager_hasthreadbyname(threadMgr, name) (round_thread_manager_getthreadbyname(threadMgr, name) ? true : false)
+RoundThread *round_thread_manager_getthreadbyname(RoundThreadManager *mgr, const char *name);
+bool round_thread_manager_removethreadbyname(RoundThreadManager *mgr, const char *name);
+#define round_thread_manager_hasthreadbyname(mgr, name) (round_thread_manager_getthreadbyname(mgr, name) ? true : false)
 
 #ifdef  __cplusplus
 
