@@ -16,14 +16,10 @@
 
 bool round_route_init(RoundRoute* reg)
 {
-  reg->key = round_string_new();
-  reg->value = round_string_new();
+  reg->name = round_string_new();
 
-  if (!reg->key || !reg->value)
+  if (!reg->name)
     return false;
-
-  round_route_setts(reg, 0);
-  round_route_setlts(reg, 0);
 
   return true;
 }
@@ -57,8 +53,7 @@ bool round_route_delete(RoundRoute* reg)
   if (!reg)
     return false;
 
-  round_string_delete(reg->key);
-  round_string_delete(reg->value);
+  round_string_delete(reg->name);
 
   free(reg);
 
