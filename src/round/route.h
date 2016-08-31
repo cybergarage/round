@@ -21,19 +21,33 @@
 #ifdef  __cplusplus
 extern "C" {
 #endif
-  
+
+/****************************************
+ * Constants
+ ****************************************/
+
+typedef enum {
+  RoundRouteObjectNone = 0x00,
+  RoundRouteTriggerObject = 0x01,
+  RoundRouteMethodObject = 0x02,
+} RoundRouteObjectType;
+
 /****************************************
  * Data Type
  ****************************************/
 
+typedef void RoundRouteTarget;
+  
 typedef struct {
-  size_t tokenCnt;
-  char **tokens;
-  void **tokenObjs;
+  RoundString *name;
+  RoundRouteObjectType type;
+  RoundRouteTarget *target;
 } RoundRouteObject;
 
 typedef struct {
   RoundString *name;
+  RoundRouteObject *srcObj;
+  RoundRouteObject *destObj;
 } RoundRoute;
 
 typedef struct {
@@ -49,6 +63,21 @@ bool round_route_object_init(RoundRouteObject* obj);
 bool round_route_object_delete(RoundRouteObject* obj);
 bool round_route_object_clear(RoundRouteObject* obj);
 
+#define round_route_object_setname(obj, val) round_string_setvalue(obj->name, val)
+#define round_route_object_getname(obj) round_string_getvalue(obj->name)
+#define round_route_object_hasname(obj) round_string_hasvalue(obj->name)
+
+#define round_route_object_settype(obj, value) (obj->type = value)
+#define round_route_object_gettype(obj) (obj->type)
+#define round_route_object_istrigger(obj) ((obj->type == RoundRouteTriggerObject) ? true : false)
+#define round_route_object_ismethod(obj) ((obj->type == RoundRouteMethodObject) ? true : false)
+  
+#define round_route_object_settarget(obj, value) (obj->target = value)
+#define round_route_object_gettarget(obj) (obj->target)
+#define round_route_object_hastarget(obj) ((obj->target) ? true : false)
+#define round_route_object_gettrigger(obj) ((RoundTrigger *)(obj->target))
+#define round_route_object_getmethod(obj) ((RoundMethod *)(obj->target))
+
 /****************************************
  * Function (Route)
  ****************************************/
@@ -58,6 +87,7 @@ bool round_route_delete(RoundRoute *route);
   
 #define round_route_setname(reg, val) round_string_setvalue(reg->name, val)
 #define round_route_getname(reg) round_string_getvalue(reg->name)
+#define round_route_hasname(reg) round_string_hasvalue(reg->name)
 
 /****************************************
  * Function (Map)

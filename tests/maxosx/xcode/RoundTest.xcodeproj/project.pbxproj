@@ -57,6 +57,7 @@
 		21F6D99D1B9983A500714056 /* JsEngineTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21F6D99A1B9983A500714056 /* JsEngineTest.cpp */; };
 		21F6D99E1B9983A500714056 /* LuaEngineTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21F6D99B1B9983A500714056 /* LuaEngineTest.cpp */; };
 		21F6D99F1B9983A500714056 /* RubyEngineTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21F6D99C1B9983A500714056 /* RubyEngineTest.cpp */; };
+		21F8EF741D766FAE00A7D22C /* RouteTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21F8EF731D766FAE00A7D22C /* RouteTest.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -143,6 +144,7 @@
 		21F6D99A1B9983A500714056 /* JsEngineTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JsEngineTest.cpp; sourceTree = "<group>"; };
 		21F6D99B1B9983A500714056 /* LuaEngineTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LuaEngineTest.cpp; sourceTree = "<group>"; };
 		21F6D99C1B9983A500714056 /* RubyEngineTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RubyEngineTest.cpp; sourceTree = "<group>"; };
+		21F8EF731D766FAE00A7D22C /* RouteTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RouteTest.cpp; path = ../../RouteTest.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -230,6 +232,7 @@
 				218569B21BB0D68800861B9B /* RemoteNodeTest.cpp */,
 				21A762EC1B96F82400D29732 /* RoundTest.cpp */,
 				2166EF8E1B9D3394002FE45D /* RoundTest.h */,
+				21F8EF731D766FAE00A7D22C /* RouteTest.cpp */,
 				213389D21BFAEAB30014548E /* RpcServerTest.cpp */,
 				21F6D9991B9983A500714056 /* script */,
 				2166EF8A1B9D2E5E002FE45D /* ScriptEngineMapTest.cpp */,
@@ -362,6 +365,7 @@
 				212A954B1B9BD1A400EC9A71 /* MethodMapTest.cpp in Sources */,
 				215A078E1BB2FB9400E9702F /* ServerTest.cpp in Sources */,
 				2195A3E61BD50DF000DF5436 /* MapTest.cpp in Sources */,
+				21F8EF741D766FAE00A7D22C /* RouteTest.cpp in Sources */,
 				21C1C5BE1C1AAFBB005B95C3 /* OptionTest.cpp in Sources */,
 				212A954C1B9BD1A400EC9A71 /* MethodManagerTest.cpp in Sources */,
 				2127082C1BD6640300000985 /* ConsistentHashingRingTest.cpp in Sources */,
