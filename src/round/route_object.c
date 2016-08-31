@@ -51,20 +51,6 @@ RoundRouteObject* round_route_object_new()
 }
 
 /****************************************
- * round_route_object_clear
- ****************************************/
-
-bool round_route_object_clear(RoundRouteObject* obj)
-{
-  if (!obj)
-    return false;
-
-  round_string_delete(obj->name);
-
-  return true;
-}
-
-/****************************************
  * round_route_object_delete
  ****************************************/
 
@@ -73,7 +59,9 @@ bool round_route_object_delete(RoundRouteObject* obj)
   if (!obj)
     return false;
 
-  bool isSuccess = round_route_object_clear(obj);
+  bool isSuccess = true;
+  
+  isSuccess &= round_string_delete(obj->name);
 
   free(obj);
 

@@ -14,11 +14,13 @@
  * round_route_init
  ****************************************/
 
-bool round_route_init(RoundRoute* reg)
+bool round_route_init(RoundRoute* route)
 {
-  reg->name = round_string_new();
+  route->name = round_string_new();
+  route->srcObj = round_route_object_new();
+  route->destObj = round_route_object_new();
 
-  if (!reg->name)
+  if (!route->name || !route->srcObj || !route->destObj)
     return false;
 
   return true;
@@ -30,32 +32,36 @@ bool round_route_init(RoundRoute* reg)
 
 RoundRoute* round_route_new()
 {
-  RoundRoute* reg;
+  RoundRoute* route;
 
-  reg = (RoundRoute*)malloc(sizeof(RoundRoute));
-  if (!reg)
+  route = (RoundRoute*)malloc(sizeof(RoundRoute));
+  if (!route)
     return NULL;
 
-  if (!round_route_init(reg)) {
-    round_route_delete(reg);
+  if (!round_route_init(route)) {
+    round_route_delete(route);
     return NULL;
   }
 
-  return reg;
+  return route;
 }
 
 /****************************************
  * round_route_delete
  ****************************************/
 
-bool round_route_delete(RoundRoute* reg)
+bool round_route_delete(RoundRoute* route)
 {
-  if (!reg)
+  if (!route)
     return false;
 
-  round_string_delete(reg->name);
+  bool isSuccess = true;
+  
+  isSuccess &= round_string_delete(route->name);
+  isSuccess &= round_route_object_delete(route->srcObj);
+  isSuccess &= round_route_object_delete(route->destObj);
 
-  free(reg);
+  free(route);
 
   return true;
 }

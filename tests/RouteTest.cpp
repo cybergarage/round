@@ -34,6 +34,8 @@ BOOST_AUTO_TEST_CASE(RouteNew)
   BOOST_CHECK(route);
   
   BOOST_CHECK_EQUAL(round_route_hasname(route), false);
+  BOOST_CHECK_EQUAL(round_route_hassourceobject(route), true);
+  BOOST_CHECK_EQUAL(round_route_hasdestinationobject(route), true);
   
   BOOST_CHECK(round_route_delete(route));
 }
