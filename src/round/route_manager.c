@@ -25,7 +25,7 @@ RoundRouteManager* round_route_manager_new()
   if (!mgr)
     return NULL;
 
-  mgr->map = round_route_map_new();
+  mgr->map = round_map_new();
 
   return mgr;
 }
@@ -39,7 +39,7 @@ bool round_route_manager_delete(RoundRouteManager* mgr)
   if (!mgr)
     return false;
 
-  round_route_map_delete(mgr->map);
+  round_map_delete(mgr->map);
 
   free(mgr);
 

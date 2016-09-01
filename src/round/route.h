@@ -93,18 +93,6 @@ bool round_route_delete(RoundRoute *route);
 #define round_route_hasdestinationobject(route) ((route->destObj) ? true : false)
 
 /****************************************
- * Function (Map)
- ****************************************/
-  
-RoundMap *round_route_map_new();
-  
-#define round_route_map_delete(map) round_map_delete(map)
-#define round_route_map_size(map) round_map_size(map)
-#define round_route_map_set(map, route) round_map_setobject(map, round_route_getname(route), route)
-#define round_route_map_get(map, name) ((RoundRoute*)round_map_getobjectbyname(map, name))
-#define round_route_map_remove(map, name) round_map_removeobjectbyname(map, name)
-
-/****************************************
  * Function (Manager)
  ****************************************/
   

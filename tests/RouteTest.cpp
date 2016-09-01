@@ -40,4 +40,12 @@ BOOST_AUTO_TEST_CASE(RouteNew)
   BOOST_CHECK(round_route_delete(route));
 }
 
+BOOST_AUTO_TEST_CASE(RouteManagerNew)
+{
+  RoundRouteManager *mgr = round_route_manager_new();
+  BOOST_CHECK(mgr);
+  
+  BOOST_CHECK(round_route_manager_delete(mgr));
+}
+
 BOOST_AUTO_TEST_SUITE_END()
