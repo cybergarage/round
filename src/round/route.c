@@ -65,3 +65,19 @@ bool round_route_delete(RoundRoute* route)
 
   return true;
 }
+
+/****************************************
+ * round_route_manager_setroute
+ ****************************************/
+
+bool round_route_manager_setroute(RoundRouteManager *mgr, RoundRoute *route)
+{
+  const char *name = round_route_getname(route);
+  RoundRoute *oldRoute = round_route_manager_getbyname(mgr, name);
+  if (oldRoute) {
+    round_route_manager_removeroute(mgr, oldRoute);
+    round_route_delete(oldRoute);
+  }
+
+  return round_map_setobject(mgr->map, name, route);
+}

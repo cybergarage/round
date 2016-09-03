@@ -48,4 +48,47 @@ BOOST_AUTO_TEST_CASE(RouteManagerNew)
   BOOST_CHECK(round_route_manager_delete(mgr));
 }
 
+BOOST_AUTO_TEST_CASE(RouteAddRoute)
+{
+  RoundRouteManager *mgr = round_route_manager_new();
+  BOOST_CHECK(mgr);
+
+  char name[32];
+  
+  // Add new routes
+  
+  for (int n=0; n<ROUND_TEST_LOOP_COUNT; n++) {
+    RoundRoute *route = round_route_new();
+    BOOST_CHECK(route);
+    snprintf(name, sizeof(name), "name%d", n);
+    round_route_setname(route, name);
+    BOOST_CHECK_EQUAL(round_route_manager_size(mgr), n);
+    BOOST_CHECK(round_route_manager_setroute(mgr, route));
+    BOOST_CHECK_EQUAL(round_route_manager_size(mgr), (n+1));
+  }
+
+  // Add same routes
+  
+  for (int n=0; n<ROUND_TEST_LOOP_COUNT; n++) {
+    RoundRoute *route = round_route_new();
+    BOOST_CHECK(route);
+    snprintf(name, sizeof(name), "name%d", n);
+    round_route_setname(route, name);
+    BOOST_CHECK_EQUAL(round_route_manager_size(mgr), ROUND_TEST_LOOP_COUNT);
+    BOOST_CHECK(round_route_manager_setroute(mgr, route));
+    BOOST_CHECK_EQUAL(round_route_manager_size(mgr), ROUND_TEST_LOOP_COUNT);
+  }
+  
+  // Remove routes
+  
+  for (int n=0; n<ROUND_TEST_LOOP_COUNT; n++) {
+    snprintf(name, sizeof(name), "name%d", n);
+    BOOST_CHECK_EQUAL(round_route_manager_size(mgr),(ROUND_TEST_LOOP_COUNT-n));
+    BOOST_CHECK(round_route_manager_removeroutebyname(mgr, name));
+    BOOST_CHECK_EQUAL(round_route_manager_size(mgr), (ROUND_TEST_LOOP_COUNT-(n+1)));
+  }
+  
+  BOOST_CHECK(round_route_manager_delete(mgr));
+}
+
 BOOST_AUTO_TEST_SUITE_END()
