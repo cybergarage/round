@@ -35,13 +35,14 @@ typedef struct _RoundObject {
  ****************************************/
 
 RoundObject *round_object_new();
-  
 bool round_object_init(RoundObject *obj);
+bool round_object_delete(RoundObject *obj);
 
 bool round_object_alloc(RoundObject *obj);
 bool round_object_release(RoundObject *obj);
 
-bool round_object_delete(RoundObject *obj);
+#define round_object_getreferencecount(obj) (obj->refCnt)
+#define round_object_hasreference(obj) ((obj->refCnt > 0) ? true : false)
 
 #ifdef  __cplusplus
 } /* extern "C" */

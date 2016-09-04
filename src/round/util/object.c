@@ -61,14 +61,14 @@ bool round_object_waitrelease(RoundObject *obj)
   if (!round_mutex_lock(obj->mutex))
     return false;
   
-  if (obj->refCnt != 0) {
+  if (round_object_hasreference(obj)) {
     if (!round_mutex_unlock(obj->mutex))
       return false;
     while (true) {
       round_wait(0.5);
       if (!round_mutex_lock(obj->mutex))
         return false;
-      if (obj->refCnt == 0)
+      if (!round_object_hasreference(obj))
         break;
       if (!round_mutex_unlock(obj->mutex))
         return false;
