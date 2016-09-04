@@ -42,6 +42,7 @@ roundtest_SOURCES = \
 	..//RegistryTest.cpp \
 	..//RemoteNodeTest.cpp \
 	..//RoundTest.cpp \
+	..//RouteTest.cpp \
 	..//RpcServerTest.cpp \
 	..//script/JsEngineTest.cpp \
 	..//script/LuaEngineTest.cpp \
@@ -51,12 +52,14 @@ roundtest_SOURCES = \
 	..//ScriptEngineTest.cpp \
 	..//ScriptTestController.cpp \
 	..//ServerTest.cpp \
+	..//TriggerTest.cpp \
 	..//util/Base64Test.cpp \
 	..//util/ConsistentHashingRingTest.cpp \
 	..//util/ListOrderedTest.cpp \
 	..//util/ListTest.cpp \
 	..//util/MapTest.cpp \
 	..//util/MutexTest.cpp \
+	..//util/ObjectTest.cpp \
 	..//util/OptionTest.cpp \
 	..//util/QueueTest.cpp \
 	..//util/SemaphoreTest.cpp \

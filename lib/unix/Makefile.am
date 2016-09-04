@@ -85,6 +85,7 @@ round_mpi_sources = \
 	../../src/round/util/map_object.c \
 	../../src/round/util/map_object_list.c \
 	../../src/round/util/mutex.c \
+	../../src/round/util/object.c \
 	../../src/round/util/queue.c \
 	../../src/round/util/queue_object.c \
 	../../src/round/util/semaphore.c \

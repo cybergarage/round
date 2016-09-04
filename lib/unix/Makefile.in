@@ -212,6 +212,7 @@ am__objects_1 = ../../src/round/libround_a-client.$(OBJEXT) \
 	../../src/round/util/libround_a-map_object.$(OBJEXT) \
 	../../src/round/util/libround_a-map_object_list.$(OBJEXT) \
 	../../src/round/util/libround_a-mutex.$(OBJEXT) \
+	../../src/round/util/libround_a-object.$(OBJEXT) \
 	../../src/round/util/libround_a-queue.$(OBJEXT) \
 	../../src/round/util/libround_a-queue_object.$(OBJEXT) \
 	../../src/round/util/libround_a-semaphore.$(OBJEXT) \
@@ -453,6 +454,7 @@ round_mpi_sources = \
 	../../src/round/util/map_object.c \
 	../../src/round/util/map_object_list.c \
 	../../src/round/util/mutex.c \
+	../../src/round/util/object.c \
 	../../src/round/util/queue.c \
 	../../src/round/util/queue_object.c \
 	../../src/round/util/semaphore.c \
@@ -788,6 +790,9 @@ clean-libLIBRARIES:
 ../../src/round/util/libround_a-mutex.$(OBJEXT):  \
 	../../src/round/util/$(am__dirstamp) \
 	../../src/round/util/$(DEPDIR)/$(am__dirstamp)
+../../src/round/util/libround_a-object.$(OBJEXT):  \
+	../../src/round/util/$(am__dirstamp) \
+	../../src/round/util/$(DEPDIR)/$(am__dirstamp)
 ../../src/round/util/libround_a-queue.$(OBJEXT):  \
 	../../src/round/util/$(am__dirstamp) \
 	../../src/round/util/$(DEPDIR)/$(am__dirstamp)
@@ -900,6 +905,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@../../src/round/util/$(DEPDIR)/libround_a-map_object.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../../src/round/util/$(DEPDIR)/libround_a-map_object_list.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../../src/round/util/$(DEPDIR)/libround_a-mutex.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@../../src/round/util/$(DEPDIR)/libround_a-object.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../../src/round/util/$(DEPDIR)/libround_a-queue.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../../src/round/util/$(DEPDIR)/libround_a-queue_object.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../../src/round/util/$(DEPDIR)/libround_a-semaphore.Po@am__quote@
@@ -1876,6 +1882,20 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='../../src/round/util/mutex.c' object='../../src/round/util/libround_a-mutex.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libround_a_CFLAGS) $(CFLAGS) -c -o ../../src/round/util/libround_a-mutex.obj `if test -f '../../src/round/util/mutex.c'; then $(CYGPATH_W) '../../src/round/util/mutex.c'; else $(CYGPATH_W) '$(srcdir)/../../src/round/util/mutex.c'; fi`
+
+../../src/round/util/libround_a-object.o: ../../src/round/util/object.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libround_a_CFLAGS) $(CFLAGS) -MT ../../src/round/util/libround_a-object.o -MD -MP -MF ../../src/round/util/$(DEPDIR)/libround_a-object.Tpo -c -o ../../src/round/util/libround_a-object.o `test -f '../../src/round/util/object.c' || echo '$(srcdir)/'`../../src/round/util/object.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) ../../src/round/util/$(DEPDIR)/libround_a-object.Tpo ../../src/round/util/$(DEPDIR)/libround_a-object.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='../../src/round/util/object.c' object='../../src/round/util/libround_a-object.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libround_a_CFLAGS) $(CFLAGS) -c -o ../../src/round/util/libround_a-object.o `test -f '../../src/round/util/object.c' || echo '$(srcdir)/'`../../src/round/util/object.c
+
+../../src/round/util/libround_a-object.obj: ../../src/round/util/object.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libround_a_CFLAGS) $(CFLAGS) -MT ../../src/round/util/libround_a-object.obj -MD -MP -MF ../../src/round/util/$(DEPDIR)/libround_a-object.Tpo -c -o ../../src/round/util/libround_a-object.obj `if test -f '../../src/round/util/object.c'; then $(CYGPATH_W) '../../src/round/util/object.c'; else $(CYGPATH_W) '$(srcdir)/../../src/round/util/object.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) ../../src/round/util/$(DEPDIR)/libround_a-object.Tpo ../../src/round/util/$(DEPDIR)/libround_a-object.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='../../src/round/util/object.c' object='../../src/round/util/libround_a-object.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libround_a_CFLAGS) $(CFLAGS) -c -o ../../src/round/util/libround_a-object.obj `if test -f '../../src/round/util/object.c'; then $(CYGPATH_W) '../../src/round/util/object.c'; else $(CYGPATH_W) '$(srcdir)/../../src/round/util/object.c'; fi`
 
 ../../src/round/util/libround_a-queue.o: ../../src/round/util/queue.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libround_a_CFLAGS) $(CFLAGS) -MT ../../src/round/util/libround_a-queue.o -MD -MP -MF ../../src/round/util/$(DEPDIR)/libround_a-queue.Tpo -c -o ../../src/round/util/libround_a-queue.o `test -f '../../src/round/util/queue.c' || echo '$(srcdir)/'`../../src/round/util/queue.c

@@ -125,21 +125,22 @@ am_roundtest_OBJECTS = ..//ClientTest.$(OBJEXT) \
 	..//NodeRingTest.$(OBJEXT) ..//NodeTest.$(OBJEXT) \
 	..//NodeTestController.$(OBJEXT) ..//RegistryTest.$(OBJEXT) \
 	..//RemoteNodeTest.$(OBJEXT) ..//RoundTest.$(OBJEXT) \
-	..//RpcServerTest.$(OBJEXT) ..//script/JsEngineTest.$(OBJEXT) \
+	..//RouteTest.$(OBJEXT) ..//RpcServerTest.$(OBJEXT) \
+	..//script/JsEngineTest.$(OBJEXT) \
 	..//script/LuaEngineTest.$(OBJEXT) \
 	..//script/PythonEngineTest.$(OBJEXT) \
 	..//script/RubyEngineTest.$(OBJEXT) \
 	..//ScriptEngineMapTest.$(OBJEXT) \
 	..//ScriptEngineTest.$(OBJEXT) \
 	..//ScriptTestController.$(OBJEXT) ..//ServerTest.$(OBJEXT) \
-	..//util/Base64Test.$(OBJEXT) \
+	..//TriggerTest.$(OBJEXT) ..//util/Base64Test.$(OBJEXT) \
 	..//util/ConsistentHashingRingTest.$(OBJEXT) \
 	..//util/ListOrderedTest.$(OBJEXT) ..//util/ListTest.$(OBJEXT) \
 	..//util/MapTest.$(OBJEXT) ..//util/MutexTest.$(OBJEXT) \
-	..//util/OptionTest.$(OBJEXT) ..//util/QueueTest.$(OBJEXT) \
-	..//util/SemaphoreTest.$(OBJEXT) ..//util/StatusTest.$(OBJEXT) \
-	..//util/StringTest.$(OBJEXT) ..//util/ThreadTest.$(OBJEXT) \
-	..//util/TimeTest.$(OBJEXT)
+	..//util/ObjectTest.$(OBJEXT) ..//util/OptionTest.$(OBJEXT) \
+	..//util/QueueTest.$(OBJEXT) ..//util/SemaphoreTest.$(OBJEXT) \
+	..//util/StatusTest.$(OBJEXT) ..//util/StringTest.$(OBJEXT) \
+	..//util/ThreadTest.$(OBJEXT) ..//util/TimeTest.$(OBJEXT)
 roundtest_OBJECTS = $(am_roundtest_OBJECTS)
 roundtest_DEPENDENCIES = ../../lib/unix/libround.a
 AM_V_P = $(am__v_P_@AM_V@)
@@ -525,6 +526,7 @@ roundtest_SOURCES = \
 	..//RegistryTest.cpp \
 	..//RemoteNodeTest.cpp \
 	..//RoundTest.cpp \
+	..//RouteTest.cpp \
 	..//RpcServerTest.cpp \
 	..//script/JsEngineTest.cpp \
 	..//script/LuaEngineTest.cpp \
@@ -534,12 +536,14 @@ roundtest_SOURCES = \
 	..//ScriptEngineTest.cpp \
 	..//ScriptTestController.cpp \
 	..//ServerTest.cpp \
+	..//TriggerTest.cpp \
 	..//util/Base64Test.cpp \
 	..//util/ConsistentHashingRingTest.cpp \
 	..//util/ListOrderedTest.cpp \
 	..//util/ListTest.cpp \
 	..//util/MapTest.cpp \
 	..//util/MutexTest.cpp \
+	..//util/ObjectTest.cpp \
 	..//util/OptionTest.cpp \
 	..//util/QueueTest.cpp \
 	..//util/SemaphoreTest.cpp \
@@ -645,6 +649,8 @@ clean-noinstPROGRAMS:
 	../$(DEPDIR)/$(am__dirstamp)
 ..//RoundTest.$(OBJEXT): ../$(am__dirstamp) \
 	../$(DEPDIR)/$(am__dirstamp)
+..//RouteTest.$(OBJEXT): ../$(am__dirstamp) \
+	../$(DEPDIR)/$(am__dirstamp)
 ..//RpcServerTest.$(OBJEXT): ../$(am__dirstamp) \
 	../$(DEPDIR)/$(am__dirstamp)
 ../script/$(am__dirstamp):
@@ -669,6 +675,8 @@ clean-noinstPROGRAMS:
 	../$(DEPDIR)/$(am__dirstamp)
 ..//ServerTest.$(OBJEXT): ../$(am__dirstamp) \
 	../$(DEPDIR)/$(am__dirstamp)
+..//TriggerTest.$(OBJEXT): ../$(am__dirstamp) \
+	../$(DEPDIR)/$(am__dirstamp)
 ../util/$(am__dirstamp):
 	@$(MKDIR_P) ..//util
 	@: > ../util/$(am__dirstamp)
@@ -686,6 +694,8 @@ clean-noinstPROGRAMS:
 ..//util/MapTest.$(OBJEXT): ../util/$(am__dirstamp) \
 	../util/$(DEPDIR)/$(am__dirstamp)
 ..//util/MutexTest.$(OBJEXT): ../util/$(am__dirstamp) \
+	../util/$(DEPDIR)/$(am__dirstamp)
+..//util/ObjectTest.$(OBJEXT): ../util/$(am__dirstamp) \
 	../util/$(DEPDIR)/$(am__dirstamp)
 ..//util/OptionTest.$(OBJEXT): ../util/$(am__dirstamp) \
 	../util/$(DEPDIR)/$(am__dirstamp)
@@ -735,11 +745,13 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@../$(DEPDIR)/RegistryTest.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../$(DEPDIR)/RemoteNodeTest.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../$(DEPDIR)/RoundTest.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@../$(DEPDIR)/RouteTest.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../$(DEPDIR)/RpcServerTest.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../$(DEPDIR)/ScriptEngineMapTest.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../$(DEPDIR)/ScriptEngineTest.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../$(DEPDIR)/ScriptTestController.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../$(DEPDIR)/ServerTest.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@../$(DEPDIR)/TriggerTest.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../json/$(DEPDIR)/JSONArrayTest.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../json/$(DEPDIR)/JSONMapTest.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../json/$(DEPDIR)/JSONObjectTest.Po@am__quote@
@@ -755,6 +767,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@../util/$(DEPDIR)/ListTest.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../util/$(DEPDIR)/MapTest.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../util/$(DEPDIR)/MutexTest.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@../util/$(DEPDIR)/ObjectTest.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../util/$(DEPDIR)/OptionTest.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../util/$(DEPDIR)/QueueTest.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../util/$(DEPDIR)/SemaphoreTest.Po@am__quote@
