@@ -19,7 +19,7 @@
 #include <round/const.h>
 #include <round/error_internal.h>
 #include <round/registry.h>
-#include <round/util/oo.h>
+#include <round/util/object.h>
 #include <round/util/mutex.h>
 #include <round/util/strings.h>
 #include <round/util/map.h>

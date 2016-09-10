@@ -12,7 +12,7 @@
 #define _ROUND_NODE_INTERNAL_H_
 
 #include <round/typedef.h>
-#include <round/util/oo.h>
+#include <round/util/object.h>
 #include <round/util/list.h>
 #include <round/util/json_internal.h>
 #include <round/util/strings.h>

@@ -48,7 +48,6 @@
 		2160B8911BB3B59F002026E3 /* set_method.c in Sources */ = {isa = PBXBuildFile; fileRef = 2160B88F1BB3B59F002026E3 /* set_method.c */; };
 		2160B8921BB3B59F002026E3 /* system_method.h in Headers */ = {isa = PBXBuildFile; fileRef = 2160B8901BB3B59F002026E3 /* system_method.h */; };
 		2160B8941BB3B9F7002026E3 /* system_method.c in Sources */ = {isa = PBXBuildFile; fileRef = 2160B8931BB3B9F7002026E3 /* system_method.c */; };
-		216611791BA135450097BB98 /* oo.h in Headers */ = {isa = PBXBuildFile; fileRef = 216611781BA135450097BB98 /* oo.h */; };
 		216D19C51BB4743A0007B331 /* registry_manager.c in Sources */ = {isa = PBXBuildFile; fileRef = 216D19C41BB4743A0007B331 /* registry_manager.c */; };
 		216D19CC1BB4B3570007B331 /* clock.h in Headers */ = {isa = PBXBuildFile; fileRef = 216D19CA1BB4B3570007B331 /* clock.h */; };
 		216D19CD1BB4B3570007B331 /* clock.c in Sources */ = {isa = PBXBuildFile; fileRef = 216D19CB1BB4B3570007B331 /* clock.c */; };
@@ -200,7 +199,6 @@
 		2160B88F1BB3B59F002026E3 /* set_method.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = set_method.c; sourceTree = "<group>"; };
 		2160B8901BB3B59F002026E3 /* system_method.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = system_method.h; sourceTree = "<group>"; };
 		2160B8931BB3B9F7002026E3 /* system_method.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = system_method.c; sourceTree = "<group>"; };
-		216611781BA135450097BB98 /* oo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = oo.h; path = ../../../src/round/util/oo.h; sourceTree = "<group>"; };
 		216D19C41BB4743A0007B331 /* registry_manager.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = registry_manager.c; path = ../../../src/round/registry_manager.c; sourceTree = "<group>"; };
 		216D19CA1BB4B3570007B331 /* clock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = clock.h; path = ../../../src/round/clock.h; sourceTree = "<group>"; };
 		216D19CB1BB4B3570007B331 /* clock.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = clock.c; path = ../../../src/round/clock.c; sourceTree = "<group>"; };
@@ -482,7 +480,6 @@
 				21B5552D1D7B1372005901FC /* object.h */,
 				2178B3661B98BEAE00B9D86B /* mutex.c */,
 				2178B3671B98BEAE00B9D86B /* mutex.h */,
-				216611781BA135450097BB98 /* oo.h */,
 				21A776C11BA07345009BDB36 /* queue_object.c */,
 				21B763DA1BA05ED1003C29F3 /* queue.c */,
 				21B763DC1BA05ED1003C29F3 /* queue.h */,
@@ -619,7 +616,6 @@
 				210E7BA31BA145F600343445 /* json.h in Headers */,
 				2160B8921BB3B59F002026E3 /* system_method.h in Headers */,
 				21852FB61B9DB11000C7F878 /* map.h in Headers */,
-				216611791BA135450097BB98 /* oo.h in Headers */,
 				21D427EA1B9F00B700BBBD41 /* error.h in Headers */,
 				216D19CC1BB4B3570007B331 /* clock.h in Headers */,
 				218EE9661B9AE73300960009 /* finder.h in Headers */,

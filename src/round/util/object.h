@@ -30,6 +30,8 @@ typedef struct _RoundObject {
   ROUND_OBJECT_STRUCT_MEMBERS
 } RoundObject;
 
+typedef bool (*ROUND_OO_DESCENDANT_DESTORYFUNC)(void *);
+
 /****************************************
  * Functions
  ****************************************/
@@ -43,6 +45,16 @@ bool round_object_release(RoundObject *obj);
 
 #define round_object_getreferencecount(obj) (obj->refCnt)
 #define round_object_hasreference(obj) ((obj->refCnt > 0) ? true : false)
+
+/****************************************
+ * Macros
+ ****************************************/
+  
+#define ROUND_OO_STRUCT_MEMBERS \
+ROUND_OO_DESCENDANT_DESTORYFUNC descDestroyFunc;
+  
+#define round_oo_setdescendantdestoroyfunc(obj, func) (obj->descDestroyFunc = (ROUND_OO_DESCENDANT_DESTORYFUNC)func)
+#define round_oo_execdescendantdestoroy(obj) ((obj->descDestroyFunc) ? obj->descDestroyFunc(obj) : true)
 
 #ifdef  __cplusplus
 } /* extern "C" */
