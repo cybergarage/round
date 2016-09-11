@@ -12,6 +12,7 @@
 #define _ROUND_UTIL_LIST_H_
 
 #include <round/typedef.h>
+#include <round/util/object.h>
 
 #ifdef  __cplusplus
 extern "C" {
@@ -37,6 +38,7 @@ typedef enum {
  ****************************************/
 
 #define ROUND_LIST_STRUCT_MEMBERS \
+  ROUND_OBJECT_STRUCT_MEMBERS \
   bool headFlag; \
   struct _RoundList *prev; \
   struct _RoundList *next;

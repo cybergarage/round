@@ -83,6 +83,9 @@ bool round_list_header_init(RoundList* list)
   if (!list)
     return false;
 
+  if (!round_object_init((RoundObject *)list))
+    return false;
+  
   list->headFlag = true;
   list->prev = list->next = list;
 
@@ -98,6 +101,9 @@ bool round_list_node_init(RoundList* list)
   if (!list)
     return false;
 
+  if (!round_object_init((RoundObject *)list))
+    return false;
+  
   list->headFlag = false;
   list->prev = list->next = list;
 
