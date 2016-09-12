@@ -31,6 +31,8 @@
 		21346A821BB50AE300B5F3A6 /* json_path_get.c in Sources */ = {isa = PBXBuildFile; fileRef = 21346A811BB50AE300B5F3A6 /* json_path_get.c */; };
 		213931781BB54B9900C93773 /* json_path_set.c in Sources */ = {isa = PBXBuildFile; fileRef = 213931771BB54B9900C93773 /* json_path_set.c */; };
 		2140DE991C34DF410067DAD0 /* script.h in Headers */ = {isa = PBXBuildFile; fileRef = 2140DE981C34DF410067DAD0 /* script.h */; };
+		21450C931D86484E00C92F59 /* route.h in Headers */ = {isa = PBXBuildFile; fileRef = 21450C921D86484E00C92F59 /* route.h */; };
+		21450C951D86487A00C92F59 /* route_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 21450C941D86487A00C92F59 /* route_internal.h */; };
 		2148E5D81B9DFDAF0021CE7B /* script_engine_map.c in Sources */ = {isa = PBXBuildFile; fileRef = 2148E5D61B9DFDAF0021CE7B /* script_engine_map.c */; };
 		2148E5D91B9DFDAF0021CE7B /* method_map.c in Sources */ = {isa = PBXBuildFile; fileRef = 2148E5D71B9DFDAF0021CE7B /* method_map.c */; };
 		2148E5E01B9F1A7D0021CE7B /* error_rpc.c in Sources */ = {isa = PBXBuildFile; fileRef = 2148E5DF1B9F1A7D0021CE7B /* error_rpc.c */; };
@@ -116,7 +118,6 @@
 		21E6E5731BB01A49006E853D /* base64.h in Headers */ = {isa = PBXBuildFile; fileRef = 21E6E5711BB01A49006E853D /* base64.h */; };
 		21E96A1E1C2C2D9B001044DB /* route_manager.c in Sources */ = {isa = PBXBuildFile; fileRef = 21E96A1B1C2C2D9B001044DB /* route_manager.c */; };
 		21E96A1F1C2C2D9B001044DB /* route.c in Sources */ = {isa = PBXBuildFile; fileRef = 21E96A1C1C2C2D9B001044DB /* route.c */; };
-		21E96A201C2C2D9B001044DB /* route.h in Headers */ = {isa = PBXBuildFile; fileRef = 21E96A1D1C2C2D9B001044DB /* route.h */; };
 		21E96A221C2C2EAF001044DB /* route_object.c in Sources */ = {isa = PBXBuildFile; fileRef = 21E96A211C2C2EAF001044DB /* route_object.c */; };
 		21EA96CD1B990AF800E00841 /* cluster_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 21EA96CA1B990AF800E00841 /* cluster_internal.h */; };
 		21EA96CE1B990AF800E00841 /* cluster_manager.c in Sources */ = {isa = PBXBuildFile; fileRef = 21EA96CB1B990AF800E00841 /* cluster_manager.c */; };
@@ -182,6 +183,8 @@
 		21346A811BB50AE300B5F3A6 /* json_path_get.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = json_path_get.c; path = ../../../src/round/util/json_path_get.c; sourceTree = "<group>"; };
 		213931771BB54B9900C93773 /* json_path_set.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = json_path_set.c; path = ../../../src/round/util/json_path_set.c; sourceTree = "<group>"; };
 		2140DE981C34DF410067DAD0 /* script.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = script.h; path = ../../../include/round/script.h; sourceTree = "<group>"; };
+		21450C921D86484E00C92F59 /* route.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = route.h; path = ../../../include/round/route.h; sourceTree = "<group>"; };
+		21450C941D86487A00C92F59 /* route_internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = route_internal.h; path = ../../../src/round/route_internal.h; sourceTree = "<group>"; };
 		2148E5D61B9DFDAF0021CE7B /* script_engine_map.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = script_engine_map.c; path = ../../../src/round/script_engine_map.c; sourceTree = "<group>"; };
 		2148E5D71B9DFDAF0021CE7B /* method_map.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = method_map.c; path = ../../../src/round/method_map.c; sourceTree = "<group>"; };
 		2148E5DF1B9F1A7D0021CE7B /* error_rpc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = error_rpc.c; path = ../../../src/round/error_rpc.c; sourceTree = "<group>"; };
@@ -267,7 +270,6 @@
 		21E6E5711BB01A49006E853D /* base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = base64.h; path = ../../../src/round/util/base64.h; sourceTree = "<group>"; };
 		21E96A1B1C2C2D9B001044DB /* route_manager.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = route_manager.c; path = ../../../src/round/route_manager.c; sourceTree = "<group>"; };
 		21E96A1C1C2C2D9B001044DB /* route.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = route.c; path = ../../../src/round/route.c; sourceTree = "<group>"; };
-		21E96A1D1C2C2D9B001044DB /* route.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = route.h; path = ../../../src/round/route.h; sourceTree = "<group>"; };
 		21E96A211C2C2EAF001044DB /* route_object.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = route_object.c; path = ../../../src/round/route_object.c; sourceTree = "<group>"; };
 		21EA96CA1B990AF800E00841 /* cluster_internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cluster_internal.h; path = ../../../src/round/cluster_internal.h; sourceTree = "<group>"; };
 		21EA96CB1B990AF800E00841 /* cluster_manager.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = cluster_manager.c; path = ../../../src/round/cluster_manager.c; sourceTree = "<group>"; };
@@ -317,6 +319,7 @@
 		211E45C81B98153200CF0088 /* round */ = {
 			isa = PBXGroup;
 			children = (
+				21450C921D86484E00C92F59 /* route.h */,
 				2140DE981C34DF410067DAD0 /* script.h */,
 				211E45C91B98154A00CF0088 /* client.h */,
 				21EA96D01B990B1100E00841 /* cluster.h */,
@@ -368,10 +371,10 @@
 				215A07961BB4662700E9702F /* registry.c */,
 				215A07951BB4662700E9702F /* registry.h */,
 				218569AE1BB0D66A00861B9B /* remote_node.c */,
+				21450C941D86487A00C92F59 /* route_internal.h */,
 				21E96A1B1C2C2D9B001044DB /* route_manager.c */,
 				21E96A211C2C2EAF001044DB /* route_object.c */,
 				21E96A1C1C2C2D9B001044DB /* route.c */,
-				21E96A1D1C2C2D9B001044DB /* route.h */,
 				213389CF1BFAEA980014548E /* rpc_server.c */,
 				213389CE1BFAEA980014548E /* rpc_server.h */,
 				21F6D9A91B99848000714056 /* script */,
@@ -572,12 +575,12 @@
 			files = (
 				218569A81BAFFE9F00861B9B /* native.h in Headers */,
 				21B755F01C270A4400E3F057 /* option.h in Headers */,
+				21450C951D86487A00C92F59 /* route_internal.h in Headers */,
 				21A776BE1BA06DC2009BDB36 /* message.h in Headers */,
 				210989CB1D61FC3D0004C11F /* trigger.h in Headers */,
 				21C1C5C21C1AB198005B95C3 /* status.h in Headers */,
 				21B5552F1D7B1372005901FC /* object.h in Headers */,
 				219A8E251B9AF54D004ED802 /* js.h in Headers */,
-				21E96A201C2C2D9B001044DB /* route.h in Headers */,
 				21E6E5731BB01A49006E853D /* base64.h in Headers */,
 				215A07971BB4662700E9702F /* registry.h in Headers */,
 				21C887721BD8EFD300449F5D /* digest.h in Headers */,
@@ -609,6 +612,7 @@
 				21EA96D71B990C3B00E00841 /* node_internal.h in Headers */,
 				212080751BFB6B7000190BF8 /* upnp_server.h in Headers */,
 				211E45D71B98192600CF0088 /* finder_internal.h in Headers */,
+				21450C931D86484E00C92F59 /* route.h in Headers */,
 				21A776C71BA08A7C009BDB36 /* semaphore.h in Headers */,
 				215A078B1BB2FA8000E9702F /* server_internal.h in Headers */,
 				219A8E2D1B9AF607004ED802 /* script_internal.h in Headers */,

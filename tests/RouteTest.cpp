@@ -11,7 +11,7 @@
 #include <boost/test/unit_test.hpp>
 
 #include "RoundTest.h"
-#include <round/route.h>
+#include <round/route_internal.h>
 
 BOOST_AUTO_TEST_SUITE(route)
 

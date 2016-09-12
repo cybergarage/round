@@ -279,6 +279,7 @@ round_client_headers = \
 	./round/finder.h \
 	./round/node.h \
 	./round/round.h \
+	./round/route.h \
 	./round/script.h \
 	./round/server.h \
 	./round/typedef.h \

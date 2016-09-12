@@ -92,20 +92,6 @@ bool round_route_delete(RoundRoute *route);
 #define round_route_getdestinationobject(route) (route->destObj)
 #define round_route_hasdestinationobject(route) ((route->destObj) ? true : false)
 
-/****************************************
- * Function (Manager)
- ****************************************/
-  
-RoundRouteManager *round_route_manager_new();
-bool round_route_manager_delete(RoundRouteManager *mgr);
-
-bool round_route_manager_setroute(RoundRouteManager *mgr, RoundRoute *route);
-
-#define round_route_manager_getbyname(mgr, name) round_map_getobjectbykey(mgr->map, name)
-#define round_route_manager_removeroute(mgr, route) round_map_removeobjectbykey(mgr->map, round_route_getname(route))
-#define round_route_manager_removeroutebyname(mgr, name) round_map_removeobjectbykey(mgr->map, name)
-#define round_route_manager_size(mgr) round_map_size(mgr->map)
-  
 #ifdef  __cplusplus
 }
 #endif
