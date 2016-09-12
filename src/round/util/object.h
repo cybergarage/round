@@ -56,6 +56,14 @@ ROUND_OO_DESCENDANT_DESTORYFUNC descDestroyFunc;
 #define round_oo_setdescendantdestoroyfunc(obj, func) (obj->descDestroyFunc = (ROUND_OO_DESCENDANT_DESTORYFUNC)func)
 #define round_oo_execdescendantdestoroy(obj) ((obj->descDestroyFunc) ? obj->descDestroyFunc(obj) : true)
 
+/****************************************
+ * Macros (Subclass)
+ ****************************************/
+  
+#define ROUND_OBJECT_SUBCLASS_METHODS(subclass) \
+define round_subclass_alloc(obj) round_object_alloc((RoundObject*)obj) \
+define round_subclass_release(obj) round_object_release((RoundObject*)obj)
+
 #ifdef  __cplusplus
 } /* extern "C" */
 #endif
