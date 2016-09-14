@@ -14,6 +14,7 @@
 #include <round/typedef.h>
 #include <round/error.h>
 #include <round/script.h>
+#include <round/route.h>
 #include <round/util/json.h>
 #include <round/util/json_rpc.h>
 
@@ -93,6 +94,9 @@ bool round_node_removemethod(RoundNode* node, const char* name, RoundError* err)
 bool round_node_setregistry(RoundNode* node, const char *key, const char *value, RoundError *err);
 bool round_node_getregistry(RoundNode* node, const char *key, char **value, RoundError *err);
 bool round_node_removeregistry(RoundNode* node, const char *key, RoundError *err);
+
+bool round_node_setroute(RoundNode* node, RoundRoute *route, RoundError* err);
+bool round_node_removeroutebyname(RoundNode* node, const char* name, RoundError* err);
 
 /****************************************
  * Function (Local)
