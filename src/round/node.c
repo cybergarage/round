@@ -649,23 +649,3 @@ bool round_node_jsonrpcrequest2string(void* node, RoundJSONObject* reqObj, const
 
   return true;
 }
-
-
-/****************************************
- * round_node_setroute
- ****************************************/
-
-bool round_node_setroute(RoundNode* node, RoundRoute *route, RoundError* err)
-{
-  return false;
-}
-
-/****************************************
- * round_node_removeroutebyname
- ****************************************/
-
-bool round_node_removeroutebyname(RoundNode* node, const char* name, RoundError* err)
-{
-  return false;
-}
-

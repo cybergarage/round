@@ -252,3 +252,29 @@ bool round_node_removeregistry(RoundNode* node, const char* key, RoundError* err
 
   return isSuccess;
 }
+
+/****************************************
+ * round_node_setroute
+ ****************************************/
+
+bool round_node_setroute(RoundNode* node, RoundRoute *route, RoundError* err)
+{
+  if (!node || !route)
+    return false;
+  
+  // RoundRouteManager *mgr =
+  return true;
+}
+
+/****************************************
+ * round_node_removeroutebyname
+ ****************************************/
+
+bool round_node_removeroutebyname(RoundNode* node, const char* name, RoundError* err)
+{
+  if (!node || !name)
+    return false;
+  
+  return true;
+}
+
