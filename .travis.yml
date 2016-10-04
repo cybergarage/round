@@ -13,7 +13,7 @@ before_install:
 
 install:
     - git clone https://github.com/cybergarage/mupnpc.git mupnp
-    - pushd mupnp && ./bootstrap && ./configure_linux && make && make install && popd 
+    - pushd mupnp && ./bootstrap && ./configure_linux && make && sudo make install && popd 
 
 script:
     - ./bootstrap && ./configure_linux --enable-tests && make && make check
