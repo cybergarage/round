@@ -69,7 +69,7 @@ BOOST_AUTO_TEST_CASE(JsonMapSetReal)
 {
   const char* key = "testKey";
   double val = 100;
-  double objVal;
+  double objVal = 0.0;
 
   RoundJSONObject* obj = round_json_map_new();
   BOOST_CHECK(obj);
@@ -86,7 +86,7 @@ BOOST_AUTO_TEST_CASE(JsonMapSetBool)
 {
   const char* key = "testKey";
   bool val = true;
-  bool objVal;
+  bool objVal = false;
 
   RoundJSONObject* obj = round_json_map_new();
   BOOST_CHECK(obj);
