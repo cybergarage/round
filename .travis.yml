@@ -4,12 +4,19 @@ compiler:
     - clang
     - gcc
 
-before_script:
+before_install:
     - sudo apt-get update -qq
     - sudo apt-get install libboost-all-dev
+    - sudo apt-get install libssl-dev libjansson-dev libxml2-dev
+    - apt-get install libmozjs185-dev python-dev lua5.2 liblua5.2-dev lua-json
+    - apt-get install libedit-dev
+
+install:
+    - git clone https://github.com/cybergarage/mupnpc.git mupnp
+    - pushd mupnp && ./configure_linux && make && make install && popd 
 
 script:
-    - ./bootstrap && ./configure --enable-tests && make && make check
+    - ./bootstrap && ./configure_linux --enable-tests && make && make check
 
 notifications:
   email: false
