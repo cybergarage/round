@@ -77,7 +77,7 @@ BOOST_AUTO_TEST_CASE(JsonReadObjNew)
 BOOST_AUTO_TEST_CASE(JsonBoolObjNew)
 {
   bool val = true;
-  bool objVal;
+  bool objVal = false;
 
   RoundJSONObject* obj = round_json_bool_new(val);
   BOOST_CHECK(obj);
