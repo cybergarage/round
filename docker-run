@@ -1,0 +1,2 @@
+#!/bin/bash
+sudo docker run -i -t cybergarage/round-dev:latest /bin/bash

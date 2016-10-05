@@ -3,9 +3,9 @@
 # cd round-dev && rm -rf round && git clone https://github.com/cybergarage/round.git round && cd ..
 
 cd round-dev && sudo docker build -t cybergarage/round-dev:latest $@ . && cd ..
-cd round && sudo docker build -t cybergarage/round:latest --no-cache $@ . && cd ..
+sudo docker push cybergarage/round-dev:latest
 
-# sudo docker push cybergarage/round-dev:latest
+cd round && sudo docker build -t cybergarage/round:latest --no-cache $@ . && cd ..
 sudo docker push cybergarage/round:latest
 
 rm -rf round-dev/round
