@@ -103,8 +103,8 @@ static void RoundTestObjectRandomAllocReference(RoundThread *thread)
 {
   RoundObject *obj = (RoundObject *)round_thread_getuserdata(thread);
   for (int n=0; n < ROUND_TEST_LOOP_COUNT; n++) {
-    round_waitrandom(0.1);
     round_object_alloc(obj);
+    round_waitrandom(0.1);
   }
 }
 
@@ -112,8 +112,8 @@ static void RoundTestObjectRandomReleaseReference(RoundThread *thread)
 {
   RoundObject *obj = (RoundObject *)round_thread_getuserdata(thread);
   for (int n=0; n < ROUND_TEST_LOOP_COUNT; n++) {
-    round_waitrandom(0.1);
     round_object_release(obj);
+    round_waitrandom(0.1);
   }
 }
 
@@ -128,12 +128,14 @@ BOOST_AUTO_TEST_CASE(ObjecRandomAllocReleaseReferenceByThread)
   RoundThread *thread0 = round_thread_new();
   round_thread_setaction(thread0, RoundTestObjectRandomAllocReference);
   round_thread_setuserdata(thread0, obj);
-  BOOST_CHECK_EQUAL (round_thread_start(thread0), true);
+  BOOST_CHECK_EQUAL(round_thread_start(thread0), true);
   
   RoundThread *thread1 = round_thread_new();
   round_thread_setaction(thread1, RoundTestObjectRandomReleaseReference);
   round_thread_setuserdata(thread1, obj);
-  BOOST_CHECK_EQUAL (round_thread_start(thread1), true);
+  BOOST_CHECK_EQUAL(round_thread_start(thread1), true);
+  
+  round_waitrandom(0.5);
   
   BOOST_CHECK(round_object_release(obj));
   
