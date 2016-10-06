@@ -43,10 +43,8 @@ bool round_js_engine_init(RoundJavaScriptEngine* engine)
     return false;
 
 #if defined(ROUND_SUPPORT_JS_SM)
-  if (!round_js_sm_engine_init(engine)) {
-    round_js_engine_delete(engine);
+  if (!round_js_sm_engine_init(engine))
     return false;
-  }
 #endif
 
   round_script_engine_setlanguage(engine, RoundJavaScriptEngineLanguage);
