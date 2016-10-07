@@ -135,7 +135,7 @@ BOOST_AUTO_TEST_CASE(ObjecRandomAllocReleaseReferenceByThread)
   round_thread_setuserdata(thread1, obj);
   BOOST_CHECK_EQUAL(round_thread_start(thread1), true);
   
-  round_waitrandom(0.5);
+  round_wait(0.5);
   
   BOOST_CHECK(round_object_release(obj));
   
