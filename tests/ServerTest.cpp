@@ -38,6 +38,7 @@ BOOST_AUTO_TEST_CASE(MultipleServerStart)
 
   RoundServer* server[ROUND_TEST_SERVER_CNT];
 
+  ROUND_TEST_RETRY_COUNT_INIT(retryCnt);
   for (int n = 0; n < ROUND_TEST_SERVER_CNT; n++) {
     server[n] = round_server_new();
     BOOST_CHECK(server[n]);
@@ -49,11 +50,17 @@ BOOST_AUTO_TEST_CASE(MultipleServerStart)
     BOOST_CHECK(round_local_node_getclustername(node, &clusterName));
     RoundCluster* cluster = round_client_getclusterbyname(client, clusterName);
     while (!cluster) {
+      BOOST_TEST_MESSAGE( "Server[" << n << "] couldn't find a specified cluster (" << clusterName << ")");
+      ROUND_TEST_RETRY_COUNT_CHECK(retryCnt);
+      BOOST_CHECK(round_server_restart(server[n]));
       Round::Test::Sleep();
       cluster = round_client_getclusterbyname(client, clusterName);
     }
     BOOST_CHECK(cluster);
 
+    if (!cluster)
+      return;
+    
     while (round_cluster_size(cluster) < (n + 1)) {
       BOOST_TEST_MESSAGE("Searching server[" << n << "]");
       BOOST_CHECK(round_client_search(client));
