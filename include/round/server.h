@@ -39,6 +39,7 @@ bool round_server_clear(RoundServer *server);
 
 bool round_server_start(RoundServer *server);
 bool round_server_stop(RoundServer *server);
+bool round_server_restart(RoundServer *server);
 bool round_server_isrunning(RoundServer *server);
 
 RoundLocalNode *round_server_getlocalnode(RoundServer *server);

@@ -161,6 +161,24 @@ bool round_server_stop(RoundServer* server)
 }
 
 /****************************************
+ * round_server_restart
+ ****************************************/
+
+bool round_server_restart(RoundServer* server)
+{
+  if (!server)
+    return false;
+  
+  if (!round_server_stop(server))
+    return false;
+  
+  if (!round_server_start(server))
+    return false;
+  
+  return true;
+}
+
+/****************************************
  * round_server_clear
  ****************************************/
 
