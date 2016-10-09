@@ -18,8 +18,8 @@
 #define ROUND_TEST_PORT 8080
 #define ROUND_TEST_RETRY_COUNT 10
 
-#define ROUND_TEST_RETRY_COUNT_INIT(var) size_t var = 0;
-#define ROUND_TEST_RETRY_COUNT_CHECK(var) if (ROUND_TEST_RETRY_COUNT < ++var) {break;}
+#define ROUND_TEST_RETRY_COUNT_INIT() size_t retryCnt = 0;
+#define ROUND_TEST_RETRY_COUNT_CHECK() if (ROUND_TEST_RETRY_COUNT < ++retryCnt) {break;}
 
 namespace Round {
   
