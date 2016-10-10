@@ -141,7 +141,7 @@ RoundNode* round_cluster_getnodebyrandom(RoundCluster* cluster)
 bool round_cluster_hasnode(RoundCluster* cluster, RoundNode* node)
 {
   if (!cluster)
-    return NULL;
+    return false;
 
   return round_cluster_hasequalnode(cluster, node);
 }
