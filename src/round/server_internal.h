@@ -32,6 +32,9 @@ typedef struct {
   RoundFinder *finder;
   RoundRpcServer *rpcServer;
   void *userData;
+  
+  bool finderEnabled;
+  
 } RoundServer, RoundServerList;
 
 /****************************************
@@ -55,6 +58,9 @@ void round_server_noderemovedlistener(RoundFinder *finder, RoundNode *node);
 #define round_server_next(server) (RoundServer *)round_list_next((RoundList *)server)
 #define round_server_remove(server) round_list_remove((RoundList *)server)
 
+#define round_server_setfinderenabled(server, flag) (server->finderEnabled = flag)
+#define round_server_isfinderenabled(server) (server->finderEnabled)
+  
 /****************************************
  * Function (Server List)
  ****************************************/

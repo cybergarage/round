@@ -57,6 +57,8 @@ bool round_server_init(RoundServer* server)
   round_finder_setnodeaddedlistener(server->finder, round_server_nodeaddedlistener);
   round_finder_setnoderemovedlistener(server->finder, round_server_noderemovedlistener);
 
+  round_server_setfinderenabled(server, true);
+  
   return true;
 }
 
@@ -129,9 +131,11 @@ bool round_server_start(RoundServer* server)
   isSuccess &= round_server_clear(server);
 
   isSuccess &= round_local_node_start(server->node);
-  isSuccess &= round_finder_start(server->finder);
   isSuccess &= round_rpc_server_start(server->rpcServer);
-
+  if (round_server_isfinderenabled(server)) {
+    isSuccess &= round_finder_start(server->finder);
+  }
+  
   if (!isSuccess) {
     round_server_stop(server);
     return false;

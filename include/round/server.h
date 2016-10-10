@@ -66,7 +66,6 @@ bool round_server_list_add(RoundServerList *servers, RoundServer *server);
 bool round_server_list_start(RoundServerList *servers);
 bool round_server_list_stop(RoundServerList *servers);
 
-  
 #ifdef  __cplusplus
 } /* extern C */
 #endif
