@@ -30,20 +30,24 @@ BOOST_AUTO_TEST_CASE(ClientNew)
 
 BOOST_AUTO_TEST_CASE(ClientStartAfterServer)
 {
-  RoundClient* client = round_client_new();
-  BOOST_CHECK(client);
-
   RoundServer* server = round_server_new();
   BOOST_CHECK(server);
-
+  round_server_setfinderenabled(server, false);
+  BOOST_CHECK(!round_server_isfinderenabled(server));
   BOOST_CHECK(round_server_start(server));
+  
+  RoundClient* client = round_client_new();
+  BOOST_CHECK(client);
   BOOST_CHECK(round_client_start(client));
 
   // Check Cluster
 
+  ROUND_TEST_RETRY_COUNT_INIT();
   Round::Test::Sleep();
   while (round_client_getclustersize(client) < 1) {
-    //BOOST_MESSAGE("Cluster is not found ...");
+    BOOST_TEST_MESSAGE("Cluster is not found ...");
+    ROUND_TEST_RETRY_COUNT_CHECK();
+    BOOST_CHECK(round_client_search(client));
     Round::Test::Sleep();
   }
   BOOST_CHECK_EQUAL(round_client_getclustersize(client), 1);
@@ -77,9 +81,11 @@ BOOST_AUTO_TEST_CASE(ClientStartBeforeServer)
 
   // Check Cluster
 
+  ROUND_TEST_RETRY_COUNT_INIT();
   Round::Test::Sleep();
   while (round_client_getclustersize(client) < 1) {
-    //BOOST_MESSAGE("Cluster is not found ...");
+    BOOST_TEST_MESSAGE("Cluster is not found ...");
+    ROUND_TEST_RETRY_COUNT_CHECK();
     Round::Test::Sleep();
   }
   BOOST_CHECK_EQUAL(round_client_getclustersize(client), 1);
