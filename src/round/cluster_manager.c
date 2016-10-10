@@ -118,6 +118,11 @@ bool round_cluster_manager_addnode(RoundClusterManager* mgr, RoundNode* node)
   if (!cluster)
     return false;
 
+  // Check if the same node is added
+  
+  if (round_cluster_hasnode(cluster, node))
+    return true;
+  
   // Add as a remote node
 
   RoundRemoteNode* newNode = round_remote_node_copy(node);
