@@ -59,6 +59,9 @@ bool round_server_init(RoundServer* server)
 
   round_server_setfinderenabled(server, true);
   
+  round_local_node_setaddress(server->node, "");
+  round_local_node_setport(server->node, 0);
+  
   return true;
 }
 
@@ -161,6 +164,9 @@ bool round_server_stop(RoundServer* server)
   isSuccess &= round_finder_stop(server->finder);
   isSuccess &= round_rpc_server_stop(server->rpcServer);
 
+  round_local_node_setaddress(server->node, "");
+  round_local_node_setport(server->node, 0);
+  
   return isSuccess;
 }
 
