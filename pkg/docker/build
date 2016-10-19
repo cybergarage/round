@@ -1,11 +1,11 @@
 #/bin/sh
 
-# cd round-dev && rm -rf round && git clone https://github.com/cybergarage/round.git round && cd ..
+# pushd round-dev && rm -rf round && git clone https://github.com/cybergarage/round.git round && popd
 
-cd round-dev && sudo docker build -t cybergarage/round-dev:latest $@ . && cd ..
+pushd round-dev && sudo docker build -t cybergarage/round-dev:latest $@ . && popd
 sudo docker push cybergarage/round-dev:latest
 
-cd round && sudo docker build -t cybergarage/round:latest --no-cache $@ . && cd ..
+pushd round && sudo docker build -t cybergarage/round:latest --no-cache $@ . && popd
 sudo docker push cybergarage/round:latest
 
 rm -rf round-dev/round
