@@ -626,6 +626,8 @@ LIBOBJS
 ROUND_ENABLE_TESTS_FALSE
 ROUND_ENABLE_TESTS_TRUE
 FOUND_PYTHON_CONFIG
+ROUND_ENABLE_FINDER_FALSE
+ROUND_ENABLE_FINDER_TRUE
 XML_LIBS
 XML_CFLAGS
 EGREP
@@ -725,6 +727,7 @@ ac_user_opts='
 enable_option_checking
 enable_silent_rules
 enable_dependency_tracking
+enable_finder
 enable_script_js_sm
 enable_script_js_v8
 enable_script_python
@@ -1363,6 +1366,7 @@ Optional Features:
                           do not reject slow dependency extractors
   --disable-dependency-tracking
                           speeds up one-time build
+  --enable-finder         enable finder function (default = no)
   --enable-script-js-sm    enable JavaScript support (SpiderMonkey) default=yes
   --enable-script-js-v8    enable JavaScript support (V8) default=yes
   --enable-script-python enable Python support default=no
@@ -5073,6 +5077,27 @@ fi
 
 
 ##############################
+# Check Finder Option
+##############################
+
+# Check whether --enable-finder was given.
+if test "${enable_finder+set}" = set; then :
+  enableval=$enable_finder; case "${enableval}" in
+    	yes | no ) ROUND_SUPPORT_FINDER="${enableval}" ;;
+	esac
+fi
+
+
+ if test "$ROUND_SUPPORT_FINDER" = yes; then
+  ROUND_ENABLE_FINDER_TRUE=
+  ROUND_ENABLE_FINDER_FALSE='#'
+else
+  ROUND_ENABLE_FINDER_TRUE='#'
+  ROUND_ENABLE_FINDER_FALSE=
+fi
+
+
+##############################
 # Check mUPnP
 ##############################
 
@@ -5119,7 +5144,7 @@ fi
 
 
 ##############################
-# Checks Language Options
+# Check Language Options
 ##############################
 
 # JavaScript
@@ -5983,6 +6008,10 @@ Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 if test -z "${am__fastdepCXX_TRUE}" && test -z "${am__fastdepCXX_FALSE}"; then
   as_fn_error $? "conditional \"am__fastdepCXX\" was never defined.
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
+fi
+if test -z "${ROUND_ENABLE_FINDER_TRUE}" && test -z "${ROUND_ENABLE_FINDER_FALSE}"; then
+  as_fn_error $? "conditional \"ROUND_ENABLE_FINDER\" was never defined.
 Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 if test -z "${ROUND_ENABLE_TESTS_TRUE}" && test -z "${ROUND_ENABLE_TESTS_FALSE}"; then

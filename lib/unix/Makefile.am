@@ -18,6 +18,7 @@ AM_CFLAGS = -I$(top_builddir)/include -I$(top_builddir)/src
 
 round_mpi_sources = \
 	../../src/round/client.c \
+	../../src/round/client_finder.c \
 	../../src/round/clock.c \
 	../../src/round/cluster.c \
 	../../src/round/cluster_manager.c \
@@ -64,6 +65,7 @@ round_mpi_sources = \
 	../../src/round/script_engine.c \
 	../../src/round/script_engine_map.c \
 	../../src/round/server.c \
+	../../src/round/server_finder.c \
 	../../src/round/server_list.c \
 	../../src/round/trigger.c \
 	../../src/round/trigger_manager.c \

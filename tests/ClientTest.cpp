@@ -28,6 +28,8 @@ BOOST_AUTO_TEST_CASE(ClientNew)
   BOOST_CHECK(round_client_delete(client));
 }
 
+#if defined(ROUND_ENABLE_FINDER)
+
 BOOST_AUTO_TEST_CASE(ClientStartAfterServer)
 {
   RoundServer* server = round_server_new();
@@ -105,5 +107,7 @@ BOOST_AUTO_TEST_CASE(ClientStartBeforeServer)
 
   BOOST_CHECK(round_server_delete(server));
 }
+
+#endif
 
 BOOST_AUTO_TEST_SUITE_END()

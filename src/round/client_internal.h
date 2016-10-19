@@ -23,18 +23,32 @@ extern "C" {
  ****************************************/
   
 typedef struct {
-  RoundFinder *finder;
   RoundClusterManager *clusterMgr;
+#if defined(ROUND_ENABLE_FINDER)
+  RoundFinder *finder;
+#endif
 } RoundClient;
   
 #ifdef  __cplusplus
 } /* extern C */
 #endif
 
+/****************************************
+ * Function
+ ****************************************/
+
 bool round_client_clear(RoundClient *client);
+
+/****************************************
+ * Function (Finder)
+ ****************************************/
+
+#if defined(ROUND_ENABLE_FINDER)
 
 void round_client_nodeaddedlistener(RoundFinder *finder, RoundNode *node);
 void round_client_noderemovedlistener(RoundFinder *finder, RoundNode *node);
+
+#endif
 
 #endif /* _ROUND_CLIENT_INTERNAL_H_ */
 

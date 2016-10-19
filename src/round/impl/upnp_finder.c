@@ -8,6 +8,8 @@
  *
  ******************************************************************/
 
+#if defined(ROUND_ENABLE_FINDER)
+
 #include <round/finder_internal.h>
 #include <round/node_internal.h>
 
@@ -138,3 +140,5 @@ bool round_finder_search(RoundFinder* finder)
 
   return mupnp_controlpoint_search(finder->cp, ROUND_UPNP_DEVICE_TYPE);
 }
+
+#endif

@@ -11,6 +11,8 @@
 #ifndef _ROUND_FINDER__H_
 #define _ROUND_FINDER__H_
 
+#if defined(ROUND_ENABLE_FINDER)
+
 #include <round/typedef.h>
 #include <round/const.h>
 
@@ -31,7 +33,7 @@ typedef void RoundFinder;
 /****************************************
  * Function
  ****************************************/
-  
+
 RoundFinder *round_finder_new(void);
 bool round_finder_delete(RoundFinder *finder);
 
@@ -43,5 +45,7 @@ bool round_finder_search(RoundFinder *finder);
 #ifdef  __cplusplus
 } /* extern C */
 #endif
+
+#endif /* ROUND_ENABLE_FINDER */
 
 #endif /* _ROUND_FINDER__H_ */

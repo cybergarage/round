@@ -145,6 +145,7 @@ libround_a_AR = $(AR) $(ARFLAGS)
 libround_a_LIBADD =
 am__dirstamp = $(am__leading_dot)dirstamp
 am__objects_1 = ../../src/round/libround_a-client.$(OBJEXT) \
+	../../src/round/libround_a-client_finder.$(OBJEXT) \
 	../../src/round/libround_a-clock.$(OBJEXT) \
 	../../src/round/libround_a-cluster.$(OBJEXT) \
 	../../src/round/libround_a-cluster_manager.$(OBJEXT) \
@@ -191,6 +192,7 @@ am__objects_1 = ../../src/round/libround_a-client.$(OBJEXT) \
 	../../src/round/libround_a-script_engine.$(OBJEXT) \
 	../../src/round/libround_a-script_engine_map.$(OBJEXT) \
 	../../src/round/libround_a-server.$(OBJEXT) \
+	../../src/round/libround_a-server_finder.$(OBJEXT) \
 	../../src/round/libround_a-server_list.$(OBJEXT) \
 	../../src/round/libround_a-trigger.$(OBJEXT) \
 	../../src/round/libround_a-trigger_manager.$(OBJEXT) \
@@ -387,6 +389,7 @@ lib_LIBRARIES = libround.a
 AM_CFLAGS = -I$(top_builddir)/include -I$(top_builddir)/src
 round_mpi_sources = \
 	../../src/round/client.c \
+	../../src/round/client_finder.c \
 	../../src/round/clock.c \
 	../../src/round/cluster.c \
 	../../src/round/cluster_manager.c \
@@ -433,6 +436,7 @@ round_mpi_sources = \
 	../../src/round/script_engine.c \
 	../../src/round/script_engine_map.c \
 	../../src/round/server.c \
+	../../src/round/server_finder.c \
 	../../src/round/server_list.c \
 	../../src/round/trigger.c \
 	../../src/round/trigger_manager.c \
@@ -545,6 +549,9 @@ clean-libLIBRARIES:
 	@$(MKDIR_P) ../../src/round/$(DEPDIR)
 	@: > ../../src/round/$(DEPDIR)/$(am__dirstamp)
 ../../src/round/libround_a-client.$(OBJEXT):  \
+	../../src/round/$(am__dirstamp) \
+	../../src/round/$(DEPDIR)/$(am__dirstamp)
+../../src/round/libround_a-client_finder.$(OBJEXT):  \
 	../../src/round/$(am__dirstamp) \
 	../../src/round/$(DEPDIR)/$(am__dirstamp)
 ../../src/round/libround_a-clock.$(OBJEXT):  \
@@ -721,6 +728,9 @@ clean-libLIBRARIES:
 ../../src/round/libround_a-server.$(OBJEXT):  \
 	../../src/round/$(am__dirstamp) \
 	../../src/round/$(DEPDIR)/$(am__dirstamp)
+../../src/round/libround_a-server_finder.$(OBJEXT):  \
+	../../src/round/$(am__dirstamp) \
+	../../src/round/$(DEPDIR)/$(am__dirstamp)
 ../../src/round/libround_a-server_list.$(OBJEXT):  \
 	../../src/round/$(am__dirstamp) \
 	../../src/round/$(DEPDIR)/$(am__dirstamp)
@@ -838,6 +848,7 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@../../src/round/$(DEPDIR)/libround_a-client.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@../../src/round/$(DEPDIR)/libround_a-client_finder.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../../src/round/$(DEPDIR)/libround_a-clock.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../../src/round/$(DEPDIR)/libround_a-cluster.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../../src/round/$(DEPDIR)/libround_a-cluster_manager.Po@am__quote@
@@ -865,6 +876,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@../../src/round/$(DEPDIR)/libround_a-script_engine.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../../src/round/$(DEPDIR)/libround_a-script_engine_map.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../../src/round/$(DEPDIR)/libround_a-server.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@../../src/round/$(DEPDIR)/libround_a-server_finder.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../../src/round/$(DEPDIR)/libround_a-server_list.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../../src/round/$(DEPDIR)/libround_a-trigger.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../../src/round/$(DEPDIR)/libround_a-trigger_manager.Po@am__quote@
@@ -944,6 +956,20 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='../../src/round/client.c' object='../../src/round/libround_a-client.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libround_a_CFLAGS) $(CFLAGS) -c -o ../../src/round/libround_a-client.obj `if test -f '../../src/round/client.c'; then $(CYGPATH_W) '../../src/round/client.c'; else $(CYGPATH_W) '$(srcdir)/../../src/round/client.c'; fi`
+
+../../src/round/libround_a-client_finder.o: ../../src/round/client_finder.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libround_a_CFLAGS) $(CFLAGS) -MT ../../src/round/libround_a-client_finder.o -MD -MP -MF ../../src/round/$(DEPDIR)/libround_a-client_finder.Tpo -c -o ../../src/round/libround_a-client_finder.o `test -f '../../src/round/client_finder.c' || echo '$(srcdir)/'`../../src/round/client_finder.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) ../../src/round/$(DEPDIR)/libround_a-client_finder.Tpo ../../src/round/$(DEPDIR)/libround_a-client_finder.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='../../src/round/client_finder.c' object='../../src/round/libround_a-client_finder.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libround_a_CFLAGS) $(CFLAGS) -c -o ../../src/round/libround_a-client_finder.o `test -f '../../src/round/client_finder.c' || echo '$(srcdir)/'`../../src/round/client_finder.c
+
+../../src/round/libround_a-client_finder.obj: ../../src/round/client_finder.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libround_a_CFLAGS) $(CFLAGS) -MT ../../src/round/libround_a-client_finder.obj -MD -MP -MF ../../src/round/$(DEPDIR)/libround_a-client_finder.Tpo -c -o ../../src/round/libround_a-client_finder.obj `if test -f '../../src/round/client_finder.c'; then $(CYGPATH_W) '../../src/round/client_finder.c'; else $(CYGPATH_W) '$(srcdir)/../../src/round/client_finder.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) ../../src/round/$(DEPDIR)/libround_a-client_finder.Tpo ../../src/round/$(DEPDIR)/libround_a-client_finder.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='../../src/round/client_finder.c' object='../../src/round/libround_a-client_finder.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libround_a_CFLAGS) $(CFLAGS) -c -o ../../src/round/libround_a-client_finder.obj `if test -f '../../src/round/client_finder.c'; then $(CYGPATH_W) '../../src/round/client_finder.c'; else $(CYGPATH_W) '$(srcdir)/../../src/round/client_finder.c'; fi`
 
 ../../src/round/libround_a-clock.o: ../../src/round/clock.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libround_a_CFLAGS) $(CFLAGS) -MT ../../src/round/libround_a-clock.o -MD -MP -MF ../../src/round/$(DEPDIR)/libround_a-clock.Tpo -c -o ../../src/round/libround_a-clock.o `test -f '../../src/round/clock.c' || echo '$(srcdir)/'`../../src/round/clock.c
@@ -1588,6 +1614,20 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='../../src/round/server.c' object='../../src/round/libround_a-server.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libround_a_CFLAGS) $(CFLAGS) -c -o ../../src/round/libround_a-server.obj `if test -f '../../src/round/server.c'; then $(CYGPATH_W) '../../src/round/server.c'; else $(CYGPATH_W) '$(srcdir)/../../src/round/server.c'; fi`
+
+../../src/round/libround_a-server_finder.o: ../../src/round/server_finder.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libround_a_CFLAGS) $(CFLAGS) -MT ../../src/round/libround_a-server_finder.o -MD -MP -MF ../../src/round/$(DEPDIR)/libround_a-server_finder.Tpo -c -o ../../src/round/libround_a-server_finder.o `test -f '../../src/round/server_finder.c' || echo '$(srcdir)/'`../../src/round/server_finder.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) ../../src/round/$(DEPDIR)/libround_a-server_finder.Tpo ../../src/round/$(DEPDIR)/libround_a-server_finder.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='../../src/round/server_finder.c' object='../../src/round/libround_a-server_finder.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libround_a_CFLAGS) $(CFLAGS) -c -o ../../src/round/libround_a-server_finder.o `test -f '../../src/round/server_finder.c' || echo '$(srcdir)/'`../../src/round/server_finder.c
+
+../../src/round/libround_a-server_finder.obj: ../../src/round/server_finder.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libround_a_CFLAGS) $(CFLAGS) -MT ../../src/round/libround_a-server_finder.obj -MD -MP -MF ../../src/round/$(DEPDIR)/libround_a-server_finder.Tpo -c -o ../../src/round/libround_a-server_finder.obj `if test -f '../../src/round/server_finder.c'; then $(CYGPATH_W) '../../src/round/server_finder.c'; else $(CYGPATH_W) '$(srcdir)/../../src/round/server_finder.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) ../../src/round/$(DEPDIR)/libround_a-server_finder.Tpo ../../src/round/$(DEPDIR)/libround_a-server_finder.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='../../src/round/server_finder.c' object='../../src/round/libround_a-server_finder.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libround_a_CFLAGS) $(CFLAGS) -c -o ../../src/round/libround_a-server_finder.obj `if test -f '../../src/round/server_finder.c'; then $(CYGPATH_W) '../../src/round/server_finder.c'; else $(CYGPATH_W) '$(srcdir)/../../src/round/server_finder.c'; fi`
 
 ../../src/round/libround_a-server_list.o: ../../src/round/server_list.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libround_a_CFLAGS) $(CFLAGS) -MT ../../src/round/libround_a-server_list.o -MD -MP -MF ../../src/round/$(DEPDIR)/libround_a-server_list.Tpo -c -o ../../src/round/libround_a-server_list.o `test -f '../../src/round/server_list.c' || echo '$(srcdir)/'`../../src/round/server_list.c

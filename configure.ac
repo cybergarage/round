@@ -151,13 +151,28 @@ AC_SUBST(XML_CFLAGS)
 AC_SUBST(XML_LIBS)
 
 ##############################
+# Check Finder Option
+##############################
+
+AC_ARG_ENABLE(
+ 	[finder],
+	AC_HELP_STRING([--enable-finder], [ enable finder function (default = no) ]),
+	[case "${enableval}" in
+    	yes | no ) ROUND_SUPPORT_FINDER="${enableval}" ;;
+	esac],
+	[]
+)
+
+AM_CONDITIONAL(ROUND_ENABLE_FINDER,test "$ROUND_SUPPORT_FINDER" = yes)
+
+##############################
 # Check mUPnP
 ##############################
 
 AC_CHECK_LIB([mupnp],[main],,[AC_MSG_ERROR(Round needs mUPnP $MUPNP_VERSION later)])
 
 ##############################
-# Checks Language Options
+# Check Language Options
 ##############################
 
 # JavaScript
@@ -224,7 +239,7 @@ if [ test $ROUND_SUPPORT_PYTHON = yes ]; then
   LIBS+=`python-config --libs`
 fi
 
-# Lua 
+# Lua
 
 AC_ARG_ENABLE(
 	[script-lua],

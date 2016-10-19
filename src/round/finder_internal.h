@@ -11,6 +11,8 @@
 #ifndef _ROUND_FINDER_INTERNAL_H_
 #define _ROUND_FINDER_INTERNAL_H_
 
+#if defined(ROUND_ENABLE_FINDER)
+
 #include <round/typedef.h>
 #include <round/const.h>
 
@@ -56,5 +58,7 @@ typedef struct {
 #ifdef  __cplusplus
 } /* extern C */
 #endif
+
+#endif /* ROUND_ENABLE_FINDER */
 
 #endif /* _ROUND_FINDER_INTERNAL_H_ */

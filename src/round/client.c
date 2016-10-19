@@ -11,6 +11,28 @@
 #include <round/client_internal.h>
 
 /****************************************
+ * round_client_init
+ ****************************************/
+
+bool round_client_init(RoundClient* client)
+{
+  client->clusterMgr = round_cluster_manager_new();
+  if (!client->clusterMgr)
+    return false;
+  
+#if defined(ROUND_ENABLE_FINDER)
+  client->finder = round_finder_new();
+  if (!client->finder)
+    return false;
+  round_finder_setuserdata(client->finder, client);
+  round_finder_setnodeaddedlistener(client->finder, round_client_nodeaddedlistener);
+  round_finder_setnoderemovedlistener(client->finder, round_client_noderemovedlistener);
+#endif
+  
+  return true;
+}
+
+/****************************************
  * round_client_new
  ****************************************/
 
@@ -23,16 +45,11 @@ RoundClient* round_client_new(void)
   if (!client)
     return NULL;
 
-  client->finder = round_finder_new();
-  client->clusterMgr = round_cluster_manager_new();
-
-  if (!client->finder || !client->clusterMgr)
+  if (!round_client_init(client)) {
+    round_client_delete(client);
     return NULL;
-
-  round_finder_setuserdata(client->finder, client);
-  round_finder_setnodeaddedlistener(client->finder, round_client_nodeaddedlistener);
-  round_finder_setnoderemovedlistener(client->finder, round_client_noderemovedlistener);
-
+  }
+  
   return client;
 }
 
@@ -45,15 +62,17 @@ bool round_client_delete(RoundClient* client)
   if (!client)
     return false;
 
-  if (client->finder) {
-    round_finder_delete(client->finder);
-    client->finder = NULL;
-  }
-
   if (client->clusterMgr) {
     round_cluster_manager_delete(client->clusterMgr);
     client->clusterMgr = NULL;
   }
+  
+#if defined(ROUND_ENABLE_FINDER)
+  if (client->finder) {
+    round_finder_delete(client->finder);
+    client->finder = NULL;
+  }
+#endif
 
   free(client);
 
@@ -91,8 +110,10 @@ bool round_client_start(RoundClient* client)
   bool isSuccess = true;
 
   isSuccess &= round_client_clear(client);
+#if defined(ROUND_ENABLE_FINDER)
   isSuccess &= round_finder_start(client->finder);
   isSuccess &= round_client_search(client);
+#endif
 
   if (!isSuccess) {
     round_client_stop(client);
@@ -111,7 +132,11 @@ bool round_client_stop(RoundClient* client)
   if (!client)
     return false;
 
-  bool isSuccess = round_finder_stop(client->finder);
+  bool isSuccess = true;
+  
+#if defined(ROUND_ENABLE_FINDER)
+  isSuccess &= round_finder_stop(client->finder);
+#endif
 
   return isSuccess;
 }
@@ -120,6 +145,8 @@ bool round_client_stop(RoundClient* client)
  * round_client_search
  ****************************************/
 
+#if defined(ROUND_ENABLE_FINDER)
+
 bool round_client_search(RoundClient* client)
 {
   if (!client)
@@ -127,6 +154,8 @@ bool round_client_search(RoundClient* client)
 
   return round_finder_search(client->finder);
 }
+
+#endif
 
 /****************************************
  * round_client_getclustersize
@@ -162,36 +191,4 @@ RoundCluster* round_client_getcluster(RoundClient* client, size_t n)
 RoundCluster* round_client_getclusterbyname(RoundClient* client, const char* name)
 {
   return round_cluster_manager_getclusterbyname(client->clusterMgr, name);
-}
-
-/****************************************
- * round_client_nodeaddedlistener
- ****************************************/
-
-void round_client_nodeaddedlistener(RoundFinder* finder, RoundNode* node)
-{
-  if (!finder || !node)
-    return;
-
-  RoundClient* client = round_finder_getuserdata(finder);
-  if (!client)
-    return;
-
-  round_cluster_manager_addnode(client->clusterMgr, node);
-}
-
-/****************************************
- * round_client_noderemovedlistener
- ****************************************/
-
-void round_client_noderemovedlistener(RoundFinder* finder, RoundNode* node)
-{
-  if (!finder || !node)
-    return;
-
-  RoundClient* client = round_finder_getuserdata(finder);
-  if (!client)
-    return;
-
-  round_cluster_manager_removenode(client->clusterMgr, node);
 }

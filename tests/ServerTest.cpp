@@ -24,13 +24,17 @@ BOOST_AUTO_TEST_CASE(ServerStart)
   RoundServer* server = round_server_new();
   BOOST_CHECK(server);
 
+#if defined(ROUND_ENABLE_FINDER)
   BOOST_CHECK(round_server_isfinderenabled(server));
-
+#endif
+  
   BOOST_CHECK(round_server_start(server));
   BOOST_CHECK(round_server_stop(server));
 
   BOOST_CHECK(round_server_delete(server));
 }
+
+#if defined(ROUND_ENABLE_FINDER)
 
 BOOST_AUTO_TEST_CASE(MultipleServerStart)
 {
@@ -78,5 +82,7 @@ BOOST_AUTO_TEST_CASE(MultipleServerStart)
   BOOST_CHECK(round_client_stop(client));
   BOOST_CHECK(round_client_delete(client));
 }
+
+#endif
 
 BOOST_AUTO_TEST_SUITE_END()

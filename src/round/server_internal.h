@@ -29,11 +29,13 @@ typedef struct {
   ROUND_LIST_STRUCT_MEMBERS
 
   RoundLocalNode *node;
-  RoundFinder *finder;
   RoundRpcServer *rpcServer;
   void *userData;
   
+#if defined(ROUND_ENABLE_FINDER)
+  RoundFinder *finder;
   bool finderEnabled;
+#endif
   
 } RoundServer, RoundServerList;
 
@@ -52,14 +54,22 @@ bool round_server_init(RoundServer *server);
 #define round_server_getfinder(server) (server->finder)
 #define round_server_getrpcserver(server) (server->rpcServer)
   
-void round_server_nodeaddedlistener(RoundFinder *finder, RoundNode *node);
-void round_server_noderemovedlistener(RoundFinder *finder, RoundNode *node);
-
 #define round_server_next(server) (RoundServer *)round_list_next((RoundList *)server)
 #define round_server_remove(server) round_list_remove((RoundList *)server)
 
 #define round_server_setfinderenabled(server, flag) (server->finderEnabled = flag)
 #define round_server_isfinderenabled(server) (server->finderEnabled)
+
+/****************************************
+ * Function (Fineder)
+ ****************************************/
+  
+#if defined(ROUND_ENABLE_FINDER)
+
+void round_server_nodeaddedlistener(RoundFinder *finder, RoundNode *node);
+void round_server_noderemovedlistener(RoundFinder *finder, RoundNode *node);
+
+#endif
   
 /****************************************
  * Function (Server List)
