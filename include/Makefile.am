@@ -9,20 +9,20 @@
 ##################################################################
 
 round_client_headers = \
-	./round/client.h \
 	./round/cluster.h \
-	./round/const.h \
-	./round/error.h \
-	./round/finder.h \
-	./round/node.h \
 	./round/round.h \
-	./round/route.h \
+	./round/const.h \
 	./round/script.h \
 	./round/server.h \
-	./round/typedef.h \
+	./round/finder.h \
+	./round/node.h \
+	./round/error.h \
+	./round/client.h \
 	./round/util/json.h \
+	./round/util/option.h \
 	./round/util/json_rpc.h \
-	./round/util/option.h
+	./round/route.h \
+	./round/typedef.h
 
 nobase_include_HEADERS = \
 	$(round_client_headers)

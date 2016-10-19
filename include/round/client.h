@@ -46,9 +46,7 @@ RoundCluster *round_client_getclusterbyname(RoundClient* client, const char *nam
  * Function (Finder)
  ****************************************/
   
-#if defined(ROUND_ENABLE_FINDER)
 bool round_client_search(RoundClient *client);
-#endif
 
 #ifdef  __cplusplus
 } /* extern C */
