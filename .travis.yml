@@ -9,6 +9,9 @@ compiler:
   - clang
   - gcc
 
+env:
+  - BOOST_TEST_LOG_LEVEL=all
+
 before_install:
   - sudo apt-get update -qq
   - sudo apt-get install libboost-all-dev
