@@ -145,17 +145,16 @@ bool round_client_stop(RoundClient* client)
  * round_client_search
  ****************************************/
 
-#if defined(ROUND_ENABLE_FINDER)
-
 bool round_client_search(RoundClient* client)
 {
   if (!client)
     return false;
-
+#if defined(ROUND_ENABLE_FINDER)
   return round_finder_search(client->finder);
-}
-
+#else
+  return false;
 #endif
+}
 
 /****************************************
  * round_client_getclustersize

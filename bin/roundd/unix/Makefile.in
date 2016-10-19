@@ -110,7 +110,7 @@ CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
 am__dirstamp = $(am__leading_dot)dirstamp
-am_roundd_OBJECTS = ..//roundd.$(OBJEXT)
+am_roundd_OBJECTS = ../roundd.$(OBJEXT)
 roundd_OBJECTS = $(am_roundd_OBJECTS)
 roundd_DEPENDENCIES = ../../../lib/unix/libround.a
 AM_V_P = $(am__v_P_@AM_V@)
@@ -257,6 +257,7 @@ pdfdir = @pdfdir@
 prefix = @prefix@
 program_transform_name = @program_transform_name@
 psdir = @psdir@
+runstatedir = @runstatedir@
 sbindir = @sbindir@
 sharedstatedir = @sharedstatedir@
 srcdir = @srcdir@
@@ -267,7 +268,7 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 AM_CPPFLAGS = -I$(top_srcdir)/include -I$(top_srcdir)/src -I../
 roundd_SOURCES = \
-	..//roundd.cpp
+	../roundd.cpp
 
 roundd_LDADD = ../../../lib/unix/libround.a @XML_LIBS@
 all: all-am
@@ -346,12 +347,12 @@ uninstall-binPROGRAMS:
 clean-binPROGRAMS:
 	-test -z "$(bin_PROGRAMS)" || rm -f $(bin_PROGRAMS)
 ../$(am__dirstamp):
-	@$(MKDIR_P) ../
+	@$(MKDIR_P) ..
 	@: > ../$(am__dirstamp)
 ../$(DEPDIR)/$(am__dirstamp):
-	@$(MKDIR_P) ..//$(DEPDIR)
+	@$(MKDIR_P) ../$(DEPDIR)
 	@: > ../$(DEPDIR)/$(am__dirstamp)
-..//roundd.$(OBJEXT): ../$(am__dirstamp) ../$(DEPDIR)/$(am__dirstamp)
+../roundd.$(OBJEXT): ../$(am__dirstamp) ../$(DEPDIR)/$(am__dirstamp)
 
 roundd$(EXEEXT): $(roundd_OBJECTS) $(roundd_DEPENDENCIES) $(EXTRA_roundd_DEPENDENCIES) 
 	@rm -f roundd$(EXEEXT)
@@ -359,7 +360,7 @@ roundd$(EXEEXT): $(roundd_OBJECTS) $(roundd_DEPENDENCIES) $(EXTRA_roundd_DEPENDE
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
-	-rm -f ..//*.$(OBJEXT)
+	-rm -f ../*.$(OBJEXT)
 
 distclean-compile:
 	-rm -f *.tab.c
