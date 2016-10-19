@@ -35,3 +35,6 @@ after_success:
   - sudo docker push cybergarage/round-dev:latest
   - pushd pkg/docker/round && sudo docker build -t cybergarage/round:latest --no-cache . && popd
   - sudo docker push cybergarage/round:latest
+
+after_failure:
+  - more tests/unix/test-suite.log
