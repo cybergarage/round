@@ -46,6 +46,8 @@ BOOST_AUTO_TEST_CASE(RemoteNodeCopy)
   BOOST_CHECK(round_remote_node_delete(node1));
 }
 
+#if defined(ROUND_ENABLE_FINDER)
+
 BOOST_AUTO_TEST_CASE(RemoteNodeScriping)
 {
   RoundClient* client = round_client_new();
@@ -60,8 +62,10 @@ BOOST_AUTO_TEST_CASE(RemoteNodeScriping)
 
   // Get remote node
 
+  ROUND_TEST_RETRY_COUNT_INIT();
   while (round_client_getclustersize(client) < 1) {
-    //BOOST_MESSAGE("Cluster is not found ...");
+    BOOST_TEST_MESSAGE("Cluster is not found ...");
+    ROUND_TEST_RETRY_COUNT_CHECK();
     Round::Test::Sleep();
   }
   BOOST_CHECK_EQUAL(round_client_getclustersize(client), 1);
@@ -80,5 +84,7 @@ BOOST_AUTO_TEST_CASE(RemoteNodeScriping)
   BOOST_CHECK(round_client_delete(client));
   BOOST_CHECK(round_server_delete(server));
 }
+
+#endif
 
 BOOST_AUTO_TEST_SUITE_END()
