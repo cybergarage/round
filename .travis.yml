@@ -27,7 +27,7 @@ notifications:
   email: false
 
 after_success:
-  - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+  - docker login -e $CG_DOCKER_EMAIL -u $CG_DOCKER_USER -p $CG_DOCKER_PASS
   - pushd pkg/docker/round-dev && sudo docker build -t cybergarage/round-dev:latest . && popd
   - sudo docker push cybergarage/round-dev:latest
   - pushd pkg/docker/round && sudo docker build -t cybergarage/round:latest --no-cache . && popd
