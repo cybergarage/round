@@ -20,6 +20,8 @@ BOOST_AUTO_TEST_CASE(OptionSet)
 {
   RoundOption opt;
 
+  round_option_init(opt);
+  
   BOOST_CHECK_EQUAL(round_option_get(opt), 0);
   BOOST_CHECK(round_option_isdisabled(opt, 0x01));
   BOOST_CHECK(round_option_isdisabled(opt, 0x02));

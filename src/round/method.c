@@ -28,8 +28,9 @@ RoundMethod* round_method_new()
   method->lang = NULL;
   method->code = NULL;
   method->codeSize = 0;
-  method->opt = 0;
   method->userData = NULL;
+
+  round_option_init(method->opt);
 
   return method;
 }
