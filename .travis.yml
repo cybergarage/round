@@ -10,8 +10,9 @@ compiler:
   - gcc
 
 env:
-  - BOOST_TEST_LOG_LEVEL=all
-  - BOOST_TEST_SHOW_PROGRESS=yes
+  global:
+    - BOOST_TEST_LOG_LEVEL=all
+    - BOOST_TEST_SHOW_PROGRESS=yes
 
 before_install:
   - sudo apt-get update -qq
