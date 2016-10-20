@@ -11,6 +11,7 @@ compiler:
 
 env:
   global:
+    - BOOST_TEST_AUTO_START_DBG=yes
     - BOOST_TEST_LOG_LEVEL=all
     - BOOST_TEST_SHOW_PROGRESS=yes
     - BOOST_TEST_DETECT_MEMORY_LEAK=1
