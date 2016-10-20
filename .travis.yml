@@ -37,4 +37,4 @@ after_success:
   - sudo docker push cybergarage/round:latest
 
 after_failure:
-  - more tests/unix/test-suite.log
+  - cat tests/unix/test-suite.log
