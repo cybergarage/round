@@ -53,30 +53,47 @@ BOOST_AUTO_TEST_CASE(RpcSetMethod)
                                       "\"method\": \"function echo(params) {return params;}\""
                                       "}, \"id\": 1}";
 
-  RoundJSON* json = round_json_new();
-  BOOST_CHECK(json);
-  BOOST_CHECK(round_json_parse(json, RPC_SET_METHOD, NULL));
+  RoundJSONObject* rootObj;
+  
+  RoundJSON* jsonMethod = round_json_new();
+  BOOST_CHECK(jsonMethod);
+  BOOST_CHECK(round_json_parse(jsonMethod, RPC_SET_METHOD, NULL));
 
-  RoundJSONObject* rootObj = round_json_getrootobject(json);
+  rootObj = round_json_getrootobject(jsonMethod);
   BOOST_CHECK(rootObj);
   BOOST_CHECK(round_json_object_ismap(rootObj));
 
-  const char* method;
+  const char* method = NULL;
   BOOST_CHECK(round_json_rpc_getmethod(rootObj, &method));
   BOOST_CHECK(method);
   BOOST_CHECK_EQUAL(method, "set_method");
 
-  const char* id;
-  BOOST_CHECK(id);
+  const char* id = NULL;
   BOOST_CHECK(round_json_rpc_getid(rootObj, &id));
   BOOST_CHECK_EQUAL(id, "1");
 
-  const char* params;
+  const char* params = NULL;
   BOOST_CHECK(round_json_rpc_getparamsstring(rootObj, &params));
   BOOST_CHECK(params);
-  BOOST_CHECK_EQUAL(params, RPC_METHOD_PARAM);
 
-  round_json_delete(json);
+  // Check params
+  
+  RoundJSON* jsonParam = round_json_new();
+  BOOST_CHECK(round_json_parse(jsonParam, params, NULL));
+  rootObj = round_json_getrootobject(jsonParam);
+  BOOST_CHECK(rootObj);
+  BOOST_CHECK(round_json_object_ismap(rootObj));
+  const char* paramName = NULL;
+  BOOST_CHECK(round_json_map_getstring(rootObj, "name", &paramName));
+  BOOST_CHECK(paramName);
+  BOOST_CHECK_EQUAL(paramName, "hello");
+  const char* paramMethod = NULL;
+  BOOST_CHECK(round_json_map_getstring(rootObj, "method", &paramMethod));
+  BOOST_CHECK(paramMethod);
+  BOOST_CHECK_EQUAL(paramMethod, "function echo(params) {return params;}");
+  round_json_delete(jsonParam);
+
+  round_json_delete(jsonMethod);
 }
 
 BOOST_AUTO_TEST_CASE(RpcResponseResult)
