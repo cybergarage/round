@@ -13,6 +13,7 @@ env:
   global:
     - BOOST_TEST_LOG_LEVEL=all
     - BOOST_TEST_SHOW_PROGRESS=yes
+    - BOOST_TEST_DETECT_MEMORY_LEAK=1
 
 before_install:
   - sudo apt-get update -qq
