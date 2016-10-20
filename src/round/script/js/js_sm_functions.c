@@ -323,7 +323,8 @@ JSBool round_js_sm_setregistry(JSContext* cx, unsigned argc, jsval* vp)
   if (!JSOBJECT_TO_CSTRING(param, paramStr, sizeof(paramStr)))
     return false;
 
-  const char *key, *val;
+  const char *key = NULL;
+  const char *val = NULL;
   RoundJSON* json = round_json_new();
   RoundError* err = round_error_new();
   if (json && err && round_json_parse(json, paramStr, err)) {

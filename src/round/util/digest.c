@@ -62,7 +62,7 @@ bool round_sha_digest(const char* string, char** buf)
   unsigned char shaDigest[SHA_DIGEST_LENGTH];
   char* shaDigestString = (char*)malloc((SHA_DIGEST_LENGTH * 2) + 1);
 
-  SHA1FUNC(string, (int)round_strlen(string), shaDigest);
+  SHA1FUNC((const unsigned char *)string, (int)round_strlen(string), shaDigest);
 
   char hexString[3];
   int n;
@@ -87,7 +87,7 @@ bool round_sha256_digest(const char* string, char** buf)
   char* shaDigestString = (char*)malloc((SHA256_DIGEST_LENGTH * 2) + 1);
 
   unsigned char shaDigest[SHA256_DIGEST_LENGTH];
-  SHA256FUNC(string, (int)round_strlen(string), shaDigest);
+  SHA256FUNC((const unsigned char *)string, (int)round_strlen(string), shaDigest);
 
   char hexString[3];
   int n;
