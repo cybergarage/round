@@ -15,6 +15,9 @@
 #  include "config.h"
 #endif
 
+#include <round/util/strings.h>
+#include <round/util/map.h>
+
 #include <round/route.h>
 
 #ifdef  __cplusplus

@@ -15,9 +15,6 @@
 #  include "config.h"
 #endif
 
-#include <round/util/strings.h>
-#include <round/util/map.h>
-
 #ifdef  __cplusplus
 extern "C" {
 #endif
