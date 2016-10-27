@@ -102,6 +102,11 @@ bool round_node_removeroutebyname(RoundNode* node, const char* name, RoundError*
  * Function (Local)
  ****************************************/
 
+RoundLocalNode *round_local_node_new(void);
+bool round_local_node_start(RoundLocalNode *node);
+bool round_local_node_stop(RoundLocalNode *node);
+bool round_local_node_delete(RoundLocalNode *node);
+
 #define round_local_node_setuserdata(node, data) round_node_setuserdata((RoundNode *)node, data)
 #define round_local_node_getuserdata(node) round_node_getuserdata((RoundNode *)node)
 
