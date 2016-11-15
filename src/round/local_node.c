@@ -417,6 +417,49 @@ bool round_local_node_removeregistry(RoundLocalNode* node, const char* key)
 }
 
 /****************************************
+ * round_local_node_execjsonrequest
+ ****************************************/
+
+bool round_local_node_execjsonrequest(RoundLocalNode* node, const char *jsonReq, const char **jsonRes, RoundError* err)
+{
+  if (!node || !jsonReq || !jsonRes || !err)
+    return round_node_rpcerrorcode2error(node, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR, err);
+  
+  RoundJSON* json = round_json_new();
+  if (!json)
+    return round_node_rpcerrorcode2error(node, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR, err);
+  
+  if (!round_json_parse(json, jsonReq, err)) {
+    round_json_delete(json);
+    return round_node_rpcerrorcode2error(node, ROUND_RPC_ERROR_CODE_INVALID_REQUEST, err);
+  }
+  
+  // Post request
+  
+  RoundJSONObject* reqObj = round_json_getrootobject(json);
+  if (!reqObj) {
+    round_json_delete(json);
+    return round_node_rpcerrorcode2error(node, ROUND_RPC_ERROR_CODE_INTERNAL_ERROR, err);
+  }
+  
+  RoundJSONObject *resObj = NULL;
+  if (round_local_node_postmessage(node, reqObj, &resObj, err)) {
+    round_json_delete(json);
+    return false;
+  }
+
+
+  if (resObj) {
+    round_json_object_tocompactstring(resObj, jsonRes);
+    round_json_object_delete(resObj);
+  }
+
+  round_json_delete(json);
+  
+  return true;
+}
+
+/****************************************
  * round_local_node_execmessage
  ****************************************/
 

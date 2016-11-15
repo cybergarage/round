@@ -120,6 +120,8 @@ bool round_local_node_postmessage(RoundLocalNode *node, RoundJSONObject *reqObj,
 #define round_local_node_postmethod(node, method, params, resObj, err) round_node_postmethod((RoundNode*)node, method, params, resObj, err)
 #define round_local_node_execmethod(node, dest, method, params, resObj, err) round_node_execmethod((RoundNode*)node, dest, method, params, resObj, err)
 
+bool round_local_node_execjsonrequest(RoundLocalNode* node, const char *jsonReq, const char **jsonRes, RoundError* err);
+
 RoundScriptEngine *round_local_node_getenginebylanguage(RoundLocalNode *node, const char *lang);
 
 #ifdef  __cplusplus
